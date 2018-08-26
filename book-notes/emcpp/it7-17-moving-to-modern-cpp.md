@@ -467,3 +467,128 @@ void Widget::processPointer<void>(void*) = delete;  // public,
 
 ### Declare overriding functions override
 
+Override has nothing to do with overload.
+Override made it possible to invoke a derived class function through a base class interface.
+
+For override to occur
+* Base class function must be virtual
+* Base and derived function names must be identical (except in destructor)
+* Parameter types must be identical
+* constness of the base and derived functions must be identical
+* return types and exception sepcifications must be compatible
+* (C++11) function's reference qualifier must be identical
+
+Reference qualifiers can make a member function available to lvalues or rvalues only.
+```cpp
+class Widget {
+public:
+  …
+  void doWork() &;       // this version of doWork applies
+                         // only when *this is an lvalue
+
+  void doWork() &&;      // this version of doWork applies
+};                       // only when *this is an rvalue
+
+…
+
+Widget makeWidget();     // factory function (returns rvalue)
+
+Widget w;                // normal object (an lvalue)
+
+…
+
+w.doWork();              // calls Widget::doWork for lvalues
+                         // (i.e., Widget::doWork &)
+
+makeWidget().doWork();   // calls Widget::doWork for rvalues
+                         // (i.e., Widget::doWork &&)
+```
+How is this useful? Consider this code
+```cpp
+class Widget {
+public:
+  using DataType = std::vector<double>;      // see Item 9 for
+  …                                          // info on "using"
+
+  DataType& data() { return values; }
+  …
+
+private:
+  DataType values;
+};
+
+Widget w;
+auto vals1 = w.data();               // copy w.values into vals1
+
+// Now suppose we have a factory function that creates Widgets,
+Widget makeWidget();
+
+auto vals2 = makeWidget().data();    // copy values inside the
+                                     // Widget into vals2
+
+// However in this case we don't actually need to copy since
+// the original copy in makeWidget is a temporary. Move is
+// preferable. Compiler may be able to optimize this, but
+// don't depend on it. We could have this instead, move if
+// data() is called on an rvalue, copy if it's called on an
+// lvalue
+
+class Widget {
+public:
+  using DataType = std::vector<double>;
+  …
+
+  DataType& data() &                // for lvalue Widgets, 
+  { return values; }                // return lvalue
+
+  DataType&& data() &&              // for rvalue Widgets,
+  { return std::move(values); }     // return rvalue
+  …
+
+private:
+  DataType values;
+};
+```
+
+Back to the matter at hand, small mistakes can cause you to think something overrides while in fact it doesn't. E.g.
+```cpp
+class Base {
+public:
+  virtual void mf1() const;
+  virtual void mf2(int x);
+  virtual void mf3() &;
+  void mf4() const;
+};
+
+class Derived: public Base {
+public:
+  virtual void mf1();
+  virtual void mf2(unsigned int x);
+  virtual void mf3() &&;
+  virtual void mf4() const;
+};
+```
+Compilers don't have to emit warnings in this case.
+
+Because declaring override is important to get right and easy to get wrong, C++11 introduces declaring a function override.
+In which case you are asking the compiler to help check something is indeed overridden.
+```cpp
+class Derived: public Base {
+public:
+  virtual void mf1() override;
+  virtual void mf2(unsigned int x) override;
+  virtual void mf3() && override;
+  virtual void mf4() const override;
+};
+```
+
+It also helps you gauge the ramifications if you are contemplating changing the signature of a virtual function in a base class. You can see how many derived classes fails to compile.
+
+override and final are contextual keywords: they are reserved only in a context. In override's case, at the end of a member function declaration.
+
+**Takeaways**
+* Declare overriding functions override
+* Member function reference qualifiers make it possible to treat lvalue and rvalue objects (\*this) differently
+
+### Prefer const_iterators to iterators
+
