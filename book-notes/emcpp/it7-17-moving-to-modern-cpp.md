@@ -822,3 +822,102 @@ If you later decide to remove it (like adding debug IO since they are generally 
 
 ### Make const member functions thread safe
 
+If a member function is made const, conceptually it should be safe for multiple threads to call the same method at the same time on the same object.
+However, consider the case where a const member function modifies a mutable member variable (say, getRoot of a Polynomial class modifies the rootCache and isRootCacheValid, which are declared mutable): a const member function is no longer threadsafe.
+
+One could add a mutex to the getRoot operation.
+Worth noting that std::mutex cannot be copied or moved, by doing so Polynomial class loses the ability to be copied or moved.
+std::atomic might be a cheaper solution if all you want is a counter, though know that std::atomic are uncopiable and unmovable.
+If you require two or more memory locations to be synchronized (e.g. a bool isValid and an int value), then std::atomic is typically not enough. If you only require one, they typically are.
+
+If your code is designed for a single threaded environment then this is not a concern. However such environments are becoming rarer.
+The safe bet is that const member functions will be subject to concurrent execution, and that's why you should ensure your const member functions are threadsafe.
+
+**Takeaways**
+* Make const member functions thread safe unless you’re certain they’ll never be used in a concurrent context.
+* Use of std::atomic variables may offer better performance than a mutex, but they’re suited for manipulation of only a single variable or memory location.
+
+### Understand special member function generation
+
+Special member functions are those that the compiler will generate on its own.
+In C++98 we have four. Default ctor, dtor, copycon, (copy) assignment opr.
+They are generated only if they are needed: if you declared ctor with param, the default one won't be generated.
+They are implicitly public and inline.
+They are not virtual by default, except in a derived class whose parent class's dtor is virtual.
+
+In C++11, two more special member functions are generated, move ctor and move assignment opr.
+```cpp
+class Widget {
+public:
+  …
+  Widget(Widget&& rhs);              // move constructor
+
+  Widget& operator=(Widget&& rhs);   // move assignment operator
+  …
+};
+```
+Both of them perform memberwise move on the non-static members of the class. The move ctor / assignment opr also moves its base class parts (if any).
+(Use move on data member / base class that supports it, copy otherwise)
+
+Copycon and copy assignment opr are independent: declare only one and compiler will generate the other one for you.
+Movecon and move assignment opr are not: declaring a movecon will cause move assignment opr to not be generated as well, vice versa. Compiler's rationale is that if you need customized movecon, you will want custom move assignment opr as well.
+
+Move operations won't be defined for a class with custom copycon, custom copy assignment opr, or custom dtor: if you need special copy or special dtor, you'll need special move, too.
+This goes in the other direction, too. Declaring a movecon or move assignment opr causes compilers to disable copy operations.
+
+To summarize, two moves are generated (when needed) for classes that don't have custom
+* copycon or copy assignment
+* dtor
+* movecon or move assignment
+
+The rule of three: if you have one of custom dtor, copycon, or copy assignment opr, you should have the other two, too.
+All standard library classes that manage memory has big three defined.
+Default copycon / copy assignment generation is deprecated in C++11 if custom copy assignment / copycon / dtor is present.
+
+C++11 adds "= default" to let you specify the default memberwise approach is desired.
+This is often useful in a base class where you need to declare the dtor virtual.
+In which case if the default dtor is desirable and you still want the compiler generated moves, you could do the following
+
+```cpp
+class Base {
+public:
+  virtual ~Base() = default;                // make dtor virtual
+
+  Base(Base&&) = default;                   // support moving
+  Base& operator=(Base&&) = default;
+
+  Base(const Base&) = default;              // support copying
+  Base& operator=(const Base&) = default;
+
+  …
+
+};
+```
+
+In fact, it might be a good idea to specify "= default" anyway to clearly state your intention.
+Without "= default", consider this case where you decided to add a dtor, the impact is profound as moves are silently deleted. (say you have a std::map in this class, previously it can be moved now it has to be copied, this is orders of magnitude slower.)
+
+Default ctor is the same in C++11 as C++98.
+Generated dtor is roughly the same, except it's noexcept by default.
+
+If you have template copycon / copy assignment opr, like
+```cpp
+class Widget {
+  …
+  template<typename T>                // construct Widget
+  Widget(const T& rhs);               // from anything
+
+  template<typename T>                // assign Widget
+  Widget& operator=(const T& rhs);    // from anything
+  …
+};
+```
+
+Compiler still generates the defaults (copy, move, etc) for you.
+
+**Takeaway**
+* The special member functions are those compilers may generate on their own: default constructor, destructor, copy operations, and move operations.
+* Move operations are generated only for classes lacking explicitly declared move operations, copy operations, and a destructor.
+* The copy constructor is generated only for classes lacking an explicitly declared copy constructor, and it’s deleted if a move operation is declared. The copy assignment operator is generated only for classes lacking an explicitly declared copy assignment operator, and it’s deleted if a move operation is declared. Generation of the copy operations in classes with an explicitly declared copy operation or destructor is deprecated.
+* Member function templates never suppress generation of special member functions.
+
