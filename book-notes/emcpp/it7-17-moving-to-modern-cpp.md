@@ -710,3 +710,115 @@ void b() noexcept {
 
 ### Use constexpr whenever possible
 
+Conceptually, constexpr indicates a value's not only constant but also it's known during compilation.
+Constexpr objects and functions have different meanings.
+Constexpr objects are const and known at compile time.
+Values that are known during compile time may be placed in read-only memory.
+And of broader applicability is that integral values that are constant and known during compilation can be used in contexts where C++ requires ann integral constexpr: e.g. array sizes, integral template arguments, enumerator values, alignment specifiers, etc. E.g.
+
+```cpp
+int sz;                             // non-constexpr variable
+
+…
+
+constexpr auto arraySize1 = sz;     // error! sz's value not
+                                    // known at compilation
+
+std::array<int, sz> data1;          // error! same problem
+
+constexpr auto arraySize2 = 10;     // fine, 10 is a
+                                    // compile-time constant
+
+std::array<int, arraySize2> data2;  // fine, arraySize2
+                                    // is constexpr
+
+// Note const doesn't offer the same guarantee: const needs not be
+// initialized with values known during compilation
+// All constexpr objects are const, not all consts are constexpr
+const auto arraySize = sz;          // fine, arraySize is
+                                    // const copy of sz
+
+std::array<int, arraySize> data;    // error! arraySize's value
+                                    // not known at compilation
+```
+
+constexpr functions produce compile-time constants (computed during compilation) when they are called with compile-time constants.
+If they are called with values not known until runtime, they produce runtime values.
+
+In C++11, constexpr may contain no more than a single executable statement: a return. (But you can do recursions to get loops and ternary expr to get ifs).
+
+In C++14, constexpr are limited to taking and returning **literal types**, meaning types that can have values determined during compilation.
+In C++11, all built-in types except void are literal types, and user defined types may be, too, if they have their ctors and some other member functions constexpr. E.g.
+
+```cpp
+class Point {
+public:
+  constexpr Point(double xVal = 0, double yVal = 0) noexcept
+  : x(xVal), y(yVal)
+  {}
+
+  constexpr double xValue() const noexcept { return x; }
+  constexpr double yValue() const noexcept { return y; }
+
+  // these aren't constexpr since in C++11 constexpr are implicitly
+  // const, and they return void which isn't a literal type in C++11.
+  void setX(double newX) noexcept { x = newX; }
+  void setY(double newY) noexcept { y = newY; }
+
+  // in C++14 both these constraints are lifted. You can do.
+  // constexpr void setX(double newX) noexcept     // C++14
+  // { x = newX; }
+
+  // constexpr void setY(double newY) noexcept     // C++14
+  // { y = newY; }
+private:
+  double x, y;
+};
+
+// And it's fine to do the following (evaluated at compile time)
+constexpr Point p1(9.4, 27.7);      // fine, "runs" constexpr
+                                    // ctor during compilation
+
+constexpr Point p2(28.8, 5.3);      // also fine
+
+constexpr
+Point midpoint(const Point& p1, const Point& p2) noexcept
+{
+  return { (p1.xValue() + p2.xValue()) / 2,    // call constexpr
+           (p1.yValue() + p2.yValue()) / 2 };  // member funcs
+}
+
+constexpr auto mid = midpoint(p1, p2);     // init constexpr
+                                           // object w/result of
+                                           // constexpr function
+
+// and with C++14 (setter constexpr) you can do the following
+// return reflection of p with respect to the origin (C++14)
+constexpr Point reflection(const Point& p) noexcept
+{
+  Point result;                       // create non-const Point
+
+  result.setX(-p.xValue());           // set its x and y values
+  result.setY(-p.yValue());
+
+  return result;                      // return copy of it
+}
+```
+
+This blurs the line of computation at runtime with at compile time.
+The more code is moved to compile time, the faster your program at runtime.
+Conversely the slower to compile.
+
+Use constexpr whenever possible: both constexpr functions and objects can be employed in a wider range of contexts than non-constexpr objects and functions.
+
+Keep in mind that constexpr is part of the interface: use it if only you are able to commit to it.
+If you later decide to remove it (like adding debug IO since they are generally not permitted), you may break an arbitrary amount of client code.
+
+**Takeaways**
+* constexpr objects are const and are initialized with values known during compilation.
+* constexpr functions can produce compile-time results when called with arguments whose values are known during compilation.
+* constexpr objects and functions may be used in a wider range of contexts than non-constexpr objects and functions.
+* constexpr is part of an object’s or function’s interface.
+
+### Make const member functions thread safe
+
