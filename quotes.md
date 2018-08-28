@@ -114,8 +114,7 @@ and wisdom to know the difference."
 "When users of a complex system are ignorant of how it works, yet happy with what it does, that says a lot about the design of the system."
 -- Effective Modern C++
 
-"
-1. Take Ownership
+"1. Take Ownership
 2. Accept Failure
 3. What you do at 8pm decides where you are in 10 years
 4. Success is a lonely road, while failure is a crowded highway
@@ -123,3 +122,12 @@ and wisdom to know the difference."
 6. Know why you want it
 7. Continuously learn﻿"
 -- The Tech Lead
+
+"The first rule of discovery is to have brains and good luck. The second rule of discovery is to sit tight till you have a bright idea"
+-- How to Solve It
+
+"The first rule of style is to have something to say. The second rule of style is to control yourself when, by chance, you have two things to say; say first one, then the other, not both at the same time."
+-- How to Solve It
+
+"The first rule of teaching is to know what you are supposed to teach. The second rule of teaching is to know a little more than what you are supposed to teach."
+-- How to Solve It
