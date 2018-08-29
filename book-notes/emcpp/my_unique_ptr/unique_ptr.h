@@ -3,6 +3,7 @@
 
 // TODO: support custom deleters
 // TODO: make_unique struct
+// TODO: threadsafety note
 
 template <typename T>
 class UniquePtr {
