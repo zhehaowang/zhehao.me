@@ -7,8 +7,8 @@
 template <typename T>
 class UniquePtr {
   public:
-    UniquePtr() : d_ptr(nullptr) {}
-    // noexcept?
+    // noexcept or exception-neutral?
+    UniquePtr() noexcept : d_ptr(nullptr) {}
 
     virtual ~UniquePtr() {
         if (d_ptr) {
@@ -19,12 +19,12 @@ class UniquePtr {
     UniquePtr(const UniquePtr&)            = delete;
     UniquePtr& operator=(const UniquePtr&) = delete;
 
-    UniquePtr(UniquePtr&& rhs) {
+    UniquePtr(UniquePtr&& rhs) noexcept {
         d_ptr = rhs.d_ptr;
         rhs.d_ptr  = nullptr;
     }
 
-    UniquePtr& operator=(UniquePtr&& rhs) {
+    UniquePtr& operator=(UniquePtr&& rhs) noexcept {
         d_ptr = rhs.d_ptr;
         rhs.d_ptr = nullptr;
     }
@@ -42,11 +42,11 @@ class UniquePtr {
         ptr = nullptr;
     }
 
-    T& operator*() const {
+    T& operator*() const noexcept {
         return *d_ptr;
     }
 
-    T* operator->() const {
+    T* operator->() const noexcept {
         return d_ptr;
     }
   private:

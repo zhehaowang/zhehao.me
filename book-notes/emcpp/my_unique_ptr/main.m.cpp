@@ -36,6 +36,7 @@ class CustomData {
 
 int main() {
     UniquePtr<CustomData> up;
+    cout << "1 isNull: " << up.isNull() << "\n";
     
     up.reset(new CustomData());
     cout << "1 isNull: " << up.isNull() << "\n";
