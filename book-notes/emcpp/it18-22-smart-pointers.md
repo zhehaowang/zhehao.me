@@ -77,7 +77,11 @@ The existence of std::unique\_ptr for arrays should be of only intellectual inte
 About the only situation I can conceive of when a std::unique\_ptr<T[]> would make sense would be when you’re using a C-like API that returns a raw pointer to a heap array that you assume ownership of.
 
 std::unique\_ptr is the C++11 way to express exclusive ownership, but one of its most attractive features is that it easily and efficiently converts to a std::shared\_ptr.
-This is a key part of why std::unique_ptr is so well suited as a factory function return type. Factory functions can’t know whether callers will want to use exclusive-ownership semantics for the object they return or whether shared ownership (i.e., std::shared_ptr) would be more appropriate. By returning a std::unique_ptr, factories provide callers with the most efficient smart pointer, but they don’t hinder callers from replacing it with its more flexible sibling.
+This is a key part of why std::unique_ptr is so well suited as a factory function return type. Factory functions can’t know whether callers will want to use exclusive-ownership semantics for the object they return or whether shared ownership (i.e., std::shared\_ptr) would be more appropriate. By returning a std::unique\_ptr, factories provide callers with the most efficient smart pointer, but they don’t hinder callers from replacing it with its more flexible sibling.
+
+How is bslma::ManagedPtr in C++03 without move semantics?
+From a rough look, bslma::ManagedPtr does support the unnatural auto\_ptr copycon, which takes in modifiable reference and transfers ownership in a "copy constructor".
+However, it also has a ctor taking in bslmf::MovableRef, which seems to BDE's backport of move semantics and requires more research.
 
 **Takeaways**
 * std::unique_ptr is a small, fast, move-only smart pointer for managing resources with exclusive-ownership semantics.
