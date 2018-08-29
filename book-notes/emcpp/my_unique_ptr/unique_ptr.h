@@ -12,6 +12,7 @@ class UniquePtr {
 
     virtual ~UniquePtr() {
         if (d_ptr) {
+            // TODO: differentiate [] and delete; delete func template
             delete d_ptr;
         }
     }
@@ -47,7 +48,16 @@ class UniquePtr {
     // ptr = nullptr
     // ...
     void reset(T* ptr) noexcept {
+        if (d_ptr) {
+            delete d_ptr;
+        }
         d_ptr = ptr;
+    }
+
+    void reset() noexcept {
+        if (d_ptr) {
+            delete d_ptr;
+        }
     }
 
     T& operator*() const noexcept {
