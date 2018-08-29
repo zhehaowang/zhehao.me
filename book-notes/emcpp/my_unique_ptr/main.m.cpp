@@ -55,5 +55,8 @@ int main() {
     cout << "2 isNull: " << up2.isNull() << "\n";
     cout << "2 data: "   << up2->x() << "\n";
 
+    UniquePtr<CustomData> up3 = UniquePtr<CustomData>(new CustomData());
+    up3->setX(15);
+    cout << "3 data: "   << up3->x() << "\n";
     return 0;
 }

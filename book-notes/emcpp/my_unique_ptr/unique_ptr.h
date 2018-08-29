@@ -29,6 +29,9 @@ class UniquePtr {
         rhs.d_ptr = nullptr;
     }
 
+    // Similar question as reset. Take universal reference or value?
+    UniquePtr(T* ptr) noexcept : d_ptr(ptr) {}
+
     T* get() const noexcept {
         return d_ptr;
     }
@@ -37,9 +40,14 @@ class UniquePtr {
         return d_ptr == nullptr;
     }
 
+    // Does a unique_ptr take ownership from the raw pointer it's given?
+    // if so, it'd be
+    //void reset(T*&& ptr) noexcept
+    // ...
+    // ptr = nullptr
+    // ...
     void reset(T* ptr) noexcept {
         d_ptr = ptr;
-        ptr = nullptr;
     }
 
     T& operator*() const noexcept {
