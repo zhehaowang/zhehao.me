@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 
-const auto CREATE_TYPE = 1;
-
 class Widget {
 public:
 private:

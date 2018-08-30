@@ -221,7 +221,7 @@ But given different alternatives to built-in array (e.g. array, vector, string),
 * Default resource destruction is via delete, but custom deleters are supported. The type of the deleter has no effect on the type of the std::shared\_ptr.
 * Avoid creating std::shared\_ptrs from variables of raw pointer type.
 
-
+### Use std::weak\_ptr for std::shared\_ptr like pointers that can dangle
 
 
 
