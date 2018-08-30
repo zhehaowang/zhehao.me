@@ -223,5 +223,85 @@ But given different alternatives to built-in array (e.g. array, vector, string),
 
 ### Use std::weak\_ptr for std::shared\_ptr like pointers that can dangle
 
+A weak\_ptr is like a shared\_ptr that does not affect an object's reference count.
+Thus they face the possibility of the object being destroyed when they try to access it.
 
+A weak\_ptr cannot be dereferenced directly, nor can they be tested for nullness.
+It's because it isn't standalone pointer but rather an augmentation of shared\_ptr.
+
+The relationship begins at birth. std::weak\_ptr is typically created from std::shared\_ptr.
+They point to the same place as std::shared\_ptr, but they don't affect the reference count in the control block.
+
+Weak pointers that dangle are said to have expired.
+
+```cpp
+auto spw =                       // after spw is constructed,
+  std::make_shared<Widget>();    // the pointed-to Widget's
+                                 // ref count (RC) is 1. (See
+                                 // Item 21 for info on
+                                 // std::make_shared.)
+…
+
+std::weak_ptr<Widget> wpw(spw);  // wpw points to same Widget
+                                 // as spw. RC remains 1
+…
+if (wpw.expired()) …             // if wpw doesn't point
+                                 // to an object…
+```
+
+Often you want to do check if expired, if not, dereference.
+But if you do it in two steps, a race condition would be introduced.
+Thus you need one atomic operation of check if expired, if not, create a shared\_ptr from it. This is called lock. Shared pointer ctor taking in a weak pointer is the same operation as lock, just that it throws if the weak\_ptr has expired.
+
+```cpp
+// Form 1 of lock
+std::shared_ptr<Widget> spw1 = wpw.lock();  // if wpw's expired,
+                                            // spw1 is null
+
+auto spw2 = wpw.lock();                     // same as above,
+                                            // but uses auto
+
+// Form 2 of lock
+std::shared_ptr<Widget> spw3(wpw);    // if wpw's expired,
+                                      // throw std::bad_weak_ptr
+```
+
+How are weak pointers useful?
+
+One case is the following: imagine you have a loadWidget(id) call, which by itself is expensive and you want to cache things by id inside.
+You can't have an unlimited cache.
+One way to implement it is use a weak\_ptr inside: cache the Widgets inside with weak pointers, give loaded objects back to the client, let client manage their shared ownership. When another load is called, cache trys locking and if it hasn't expired, cache can just serve the content.
+```cpp
+std::shared_ptr<const Widget> fastLoadWidget(WidgetID id)
+{
+  static std::unordered_map<WidgetID,
+                            std::weak_ptr<const Widget>> cache;
+
+  auto objPtr = cache[id].lock();   // objPtr is std::shared_ptr
+                                    // to cached object (or null
+                                    // if object's not in cache)
+
+  if (!objPtr) {                    // if not in cache,
+    objPtr = loadWidget(id);        // load it
+    cache[id] = objPtr;             // cache it
+  }
+  return objPtr;
+}
+```
+
+Another use case is the observer pattern, in which there is subjects (objects whose state may change) and observers (objects to be notified when a state change happens).
+Subjects typically hold a pointer to observers, so that they can be notified when a state change happens.
+Subjects have no interest in the lifetime of observers, but they care if an observer is destroyed they don't make subsequent access to it.
+A reasonable design is to let subjects hold weak pointers to observers.
+
+A third use case is to break cycles in cycling reference by shared\_ptr. Instead of A and B holding shared\_ptrs to each other, A to B could be shared\_ptr and B to A could be weak\_ptr.
+It's worth noting that this should be a rare case: in a typical parent's lifetime outlives that of its children's use case, parent could hold unique\_ptr to children and children could hold a raw pointer back to parent if needed.
+
+From an efficiency perspective, weak\_ptr makes the same case as shared\_ptr: same size, control block, and operations such as construction, destruction and assignment involves atomic reference count manipulations (of weak count in control block. _Why do we need weak count?_).
+
+**Takeaways**
+* Use std::weak_ptr for std::shared_ptr-like pointers that can dangle.
+* Potential use cases for std::weak_ptr include caching, observer lists, and the prevention of std::shared_ptr cycles.
+
+### Prefer std::make\_unique and std::make\_shared to direct use of new
 
