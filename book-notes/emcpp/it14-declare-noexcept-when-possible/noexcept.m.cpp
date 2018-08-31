@@ -18,6 +18,12 @@ private:
   double x, y;
 };
 
+int func() noexcept {
+    throw std::runtime_error("declared noexcept but actually throws");
+    // this would generate a compiler warning
+    return 0;
+}
+
 int main() {
   int x[2][3];
   int y[2][3];
@@ -26,8 +32,10 @@ int main() {
 
   using std::swap;
   // swap's noexcept is contingent upon the noexcept-ness of the given parameters
+  // noexcept() tests for the noexceptness of a call
   std::cout << noexcept(swap(x, y)) << "\n";
   std::cout << noexcept(swap(p1, p2)) << "\n";
 
+  func();
   return 0;
 }
