@@ -131,3 +131,6 @@ and wisdom to know the difference."
 
 "The first rule of teaching is to know what you are supposed to teach. The second rule of teaching is to know a little more than what you are supposed to teach."
 -- How to Solve It
+
+"The open secret of real success is to throw your whole personality into your problem."
+-- How to Solve It
