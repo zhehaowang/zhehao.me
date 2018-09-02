@@ -520,3 +520,224 @@ public:
 * Overloading on universal references almost always leads to the universal reference overload being called more frequently than expected.
 * Perfect-forwarding constructors are especially problematic, because they’re typically better matches than copy constructors for non-const lvalues, and they can hijack derived class calls to base class copy and move constructors.
 
+### Familiarize yourself with alternatives to overloading on universal references
+
+Avoid overloading is one option.
+
+Pass by "const T&" could sacrifice a little efficiency, but avoids a universal reference overload.
+
+Pass by value is counter intuitive, but if you know you'll copy them, this dials up performance without any increase in complexity. (Item 41) E.g.
+```cpp
+class Person {
+public:
+  explicit Person(std::string n) // replaces T&& ctor; see
+  : name(std::move(n)) {}        // Item 41 for use of std::move
+  
+  explicit Person(int idx)       // as before
+  : name(nameFromIdx(idx)) {}
+  …
+
+private:
+  std::string name;
+};
+```
+
+None of the above has support for perfect forwarding.
+If we want perfect forwarding we have to use universal references, and to use that with overload we can do tag dispatch.
+We start with this universal reference version which is problematic in the face of overload:
+```cpp
+template<typename T>                   // make log entry and add
+void logAndAdd(T&& name)               // name to data structure
+{
+  auto now = std::chrono::system_clock::now();
+  log(now, "logAndAdd");
+  names.emplace(std::forward<T>(name));
+}
+```
+We split the underlying work into two functions
+```cpp
+template<typename T>
+void logAndAdd(T&& name)
+{
+  logAndAddImpl(std::forward<T>(name),
+                std::is_integral<T>());     // not quite correct
+}
+// Why not quite correct? If lvalue reference is passed in T is int& and
+// that is not an integral type.
+
+// Instead we have
+template<typename T>
+void logAndAdd(T&& name)
+{
+  logAndAddImpl(
+    std::forward<T>(name),
+    std::is_integral<typename std::remove_reference<T>::type>()
+    // In C++14, do "std::remove_reference_t<T>"
+  );
+}
+// And the impl looks like
+template<typename T>                             // non-integral
+void logAndAddImpl(T&& name, std::false_type)    // argument:
+{                                                // add it to
+  auto now = std::chrono::system_clock::now();   // global data
+  log(now, "logAndAdd");                         // structure
+  names.emplace(std::forward<T>(name));
+}
+// std::false_type is a compile-time type that corresponds to false
+
+// and the second overload
+std::string nameFromIdx(int idx);             // as in Item 26
+
+void logAndAddImpl(int idx, std::true_type)   // integral
+{                                             // argument: look
+  logAndAdd(nameFromIdx(idx));                // up name and
+}                                             // call logAndAdd
+                                              // with it
+// this technique is called tag dispatch.
+// We hope that compilers will recognize the 2nd parameter serves
+// no purpose at runtime and will optimize them out.
+```
+
+A keystone of tag dispatch is the existence of a single (unoverloaded) function as the client API.
+
+But in the case of ctors, compilers supply their own even if you only write one ctor taking universal references.
+For situations like these, where an overloaded function taking a universal reference is greedier than you want, yet not greedy enough to act as a single dispatch function, tag dispatch is not the droid you’re looking for.
+In this case you need std::enable\_if.
+enable\_if gives you a way to force compilers to behave as if a particular template didn't exist. E.g.
+```cpp
+class Person {
+public:
+  template<typename T,
+           typename = typename std::enable_if<condition>::type>
+  explicit Person(T&& n);
+
+  …
+};
+// SFINAE is the technology that makes std::enable_if work.
+// In our case, we want to disable the universal reference ctor only if T,
+// with cv qualifier and reference-ness dropped, is the same as Person.
+// To drop cv qualifier and reference-ness, we use std::decay<T>
+
+// Thus we have
+class Person {
+public:
+  template<
+    typename T,
+    typename = typename std::enable_if<
+                 !std::is_same<Person,
+                               typename std::decay<T>::type
+                              >::value
+               >::type
+  >
+  explicit Person(T&& n);
+  …
+};
+```
+That addresses the problem of Person class, but in Item 26 there is the issue of derived classes calling base's universal reference ctor instead of base's corresponding copy or move ctor.
+To address that, we have
+```cpp
+class Person {
+public:
+  template<
+    typename T,
+    typename = typename std::enable_if<
+                 !std::is_base_of<Person,
+                                  typename std::decay<T>::type
+                                 >::value
+               >::type
+  >
+  explicit Person(T&& n);
+  // note that for user defined type T std::is_base_of<T, T> is true.
+  // for built-in types it's false.
+  …
+};
+
+// and the same in C++14:
+class Person {                                     // C++14
+public:
+  template<
+    typename T,
+    typename = std::enable_if_t<               // less code here
+                 !std::is_base_of<Person,
+                                  std::decay_t<T>  // and here
+                                 >::value
+               >                                   // and here
+  >
+  explicit Person(T&& n);
+  …
+};
+
+// combining this with the integral type exclusion we solved with tag dispatch earlier:
+class Person {
+public:
+  template<
+    typename T,
+    typename = std::enable_if_t<
+      !std::is_base_of<Person, std::decay_t<T>>::value
+      &&
+      !std::is_integral<std::remove_reference_t<T>>::value
+    >
+  > 
+  explicit Person(T&& n)        // ctor for std::strings and
+  : name(std::forward<T>(n))    // args convertible to
+  { … }                         // std::strings
+
+  explicit Person(int idx)      // ctor for integral args
+  : name(nameFromIdx(idx))
+  { … }
+
+  …                             // copy and move ctors, etc.
+
+private:
+  std::string name;
+};
+// this uses perfect forwarding and should offer maximal efficiency, and with universal
+// references controlled this technique can be used in circumstances where overloading
+// is unavoidable
+```
+
+As a rule, perfect forwarding is more efficient, because it avoids the creation of temporary objects solely for the purpose of conforming to the type of a parameter declaration.
+In the case of the Person constructor, perfect forwarding permits a string literal such as "Nancy" to be forwarded to the constructor for the std::string inside Person, whereas techniques not using perfect forwarding must create a temporary std::string object from the string literal to satisfy the parameter specification for the Person constructor.
+
+But perfect forwarding has drawbacks, one is some kinds of arguments can't be perfect-forwarded.
+Another is the comprehensibility of compiler error messages.
+To combat the comprehensibility issue, we can do static\_assertion
+```cpp
+class Person {
+public:
+  template<                                 // as before
+    typename T,
+    typename = std::enable_if_t<
+      !std::is_base_of<Person, std::decay_t<T>>::value
+      &&
+      !std::is_integral<std::remove_reference_t<T>>::value
+    >
+  >
+  explicit Person(T&& n)
+  : name(std::forward<T>(n))
+  {
+    // assert that a std::string can be created from a T object
+    static_assert(
+      std::is_constructible<std::string, T>::value,
+      "Parameter n can't be used to construct a std::string"
+   );
+
+   …                    // the usual ctor work goes here
+
+  }
+
+  …                     // remainder of Person class (as before)
+
+};
+// unfortunately in this case the static_assert being in function body after
+// member initialization list would cause the long message to be printed
+// first.
+```
+
+**Takeaways**
+* Alternatives to the combination of universal references and overloading include the use of distinct function names, passing parameters by lvalue-reference-to-const, passing parameters by value, and using tag dispatch.
+* Constraining templates via std::enable_if permits the use of universal references and overloading together, but it controls the conditions under which compilers may use the universal reference overloads.
+* Universal reference parameters often have efficiency advantages, but they typically have usability disadvantages.
+
+### Understand reference collapsing
+
