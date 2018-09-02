@@ -134,3 +134,15 @@ and wisdom to know the difference."
 
 "The open secret of real success is to throw your whole personality into your problem."
 -- How to Solve It
+
+"Be nice. You are not the smartest on your team."
+-- Advice to Young Programmers, Alexander Stepanov on ELRN
+
+"Develop your sense of beauty. That which channels with other beauty. Invest in yourself. Aspire to do something that’s beautiful. You are here to study all your life. Make it a habit."
+-- Advice to Young Programmers, Alexander Stepanov on ELRN
+
+"Practice writing, expressing, and describing. Not just technical writing. Explain things on paper. It becomes easy with practice."
+-- Advice to Young Programmers, Alexander Stepanov on ELRN
+
+"Knowledge is your ultimate capital."
+-- Lixia, advice before my leaving school
