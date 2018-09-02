@@ -358,3 +358,165 @@ Using std::move on a local variable could be useful, if you know later on you ar
 * Do the same thing for rvalue references and universal references being returned from functions that return by value.
 * Never apply std::move or std::forward to local objects if they would otherwise be eligible for the return value optimization.
 
+### Avoid overloading on universal references
+
+Consider this code
+
+```cpp
+std::multiset<std::string> names;     // global data structure
+
+void logAndAdd(const std::string& name)
+{
+  auto now =                          // get current time
+    std::chrono::system_clock::now();
+
+  log(now, "logAndAdd");              // make log entry
+
+  names.emplace(name);                // add name to global data
+}                                     // structure; see Item 42
+                                      // for info on emplace
+
+std::string petName("Darla");
+
+logAndAdd(petName);                   // pass lvalue std::string
+// a copy is made in the vector since lvalue is passed in
+
+logAndAdd(std::string("Persephone")); // pass rvalue std::string
+// a copy is made in the vector since 'name' is an lvalue.
+// just a move in this case is possible.
+
+logAndAdd("Patty Dog");               // pass string literal
+// a string object is first created from the string literal,
+// then a copy is made in the vector since 'name' is an lvalue
+// not even a move is needed in this case: if the string literal is
+// given to emplace directly, emplace would have used it directly
+// to create the string object inside the vector.
+```
+
+Instead, for optimal efficiency, we could have this
+```cpp
+template<typename T>
+void logAndAdd(T&& name)
+{
+  auto now = std::chrono::system_clock::now();
+  log(now, "logAndAdd");
+  names.emplace(std::forward<T>(name));
+}
+
+std::string petName("Darla");          // as before
+
+logAndAdd(petName);                    // as before, copy
+                                       // lvalue into multiset
+
+logAndAdd(std::string("Persephone"));  // move rvalue instead
+                                       // of copying it
+
+logAndAdd("Patty Dog");                // create std::string
+                                       // in multiset instead
+                                       // of copying a temporary
+                                       // std::string
+```
+
+Then, consider the case where clients want an overload of logAndAdd taking in int
+```cpp
+std::string nameFromIdx(int idx);      // return name
+                                       // corresponding to idx
+
+void logAndAdd(int idx)                // new overload
+{
+  auto now = std::chrono::system_clock::now();
+  log(now, "logAndAdd");
+  names.emplace(nameFromIdx(idx));
+}
+
+std::string petName("Darla");          // as before
+
+logAndAdd(petName);                    // as before, these
+logAndAdd(std::string("Persephone"));  // calls all invoke
+logAndAdd("Patty Dog");                // the T&& overload
+
+logAndAdd(22);                         // calls int overload
+
+// but:
+short nameIdx;
+…                                      // give nameIdx a value
+
+logAndAdd(nameIdx);                    // error!
+// the given short matches the universal reference version as short&,
+// (better match than the int overload)
+// thus an emplace to vector<string> is called given a short&, and
+// it's an error since there isn't ctor of string that takes a short.
+```
+
+Functions taking universal references are the greediest functions in C++.
+They instantiate to create exact matches for almost any type of argument.
+
+This is why combining overloading and universal references is almost always a bad idea: the universal reference overload vacuums up far more argument types than the developer doing the overloading generally expects.
+
+In a similar example with class ctors
+```cpp
+class Person {
+public:
+  template<typename T>              // perfect forwarding ctor
+  explicit Person(T&& n)
+  : name(std::forward<T>(n)) {}
+
+  explicit Person(int idx);         // int ctor
+
+  // despite having the perfect forwarding ctor, compiler supplies
+  // copy and move ctor following the rules of it17
+  Person(const Person& rhs);        // copy ctor
+                                    // (compiler-generated)
+
+  Person(Person&& rhs);             // move ctor
+  …                                 // (compiler-generated)
+
+};
+
+// and this would cause:
+Person p("Nancy");
+
+auto cloneOfP(p);                   // create new Person from p;
+                                    // this won't compile!
+// the perfect forwarding ctor will be called, and string does not
+// exist a ctor taking in a Person.
+// why the perfect forwarding ctor, not the copy ctor? Because the
+// perfect forwarding ctor (taking in Person&) is a perfect match
+// while the copy ctor requires adding const
+
+// change it up a bit:
+const Person cp("Nancy");     // object is now const
+
+auto cloneOfP(cp);            // calls copy constructor!
+// the perfect forwarding will be instantiated with
+  explicit Person(const Person& n);      // instantiated from
+                                         // template
+// but this doesn't matter, as one of the overload-resolution rules
+// in C++ is that in situations where a template instantiation and
+// a non-template function (i.e., a “normal” function) are equally
+// good matches for a function call, the normal function is preferred.
+```
+
+And with inheritance,
+```cpp
+class SpecialPerson: public Person {
+public:
+  SpecialPerson(const SpecialPerson& rhs)  // copy ctor; calls
+  : Person(rhs)                            // base class
+  { … }                                    // forwarding ctor!
+
+  SpecialPerson(SpecialPerson&& rhs)       // move ctor; calls
+  : Person(std::move(rhs))                 // base class
+  { … }                                    // forwarding ctor!
+};
+// note that the derived class's copy and move ctors don't call
+// their base class's copy and ctor, they call the base class's
+// perfect-forwarding ctor!
+// To understand why, note that the derived class functions are using
+// arguments of type SpecialPerson to pass to their base class.
+```
+
+**Takeaways**
+* Overloading on universal references almost always leads to the universal reference overload being called more frequently than expected.
+* Perfect-forwarding constructors are especially problematic, because they’re typically better matches than copy constructors for non-const lvalues, and they can hijack derived class calls to base class copy and move constructors.
+
