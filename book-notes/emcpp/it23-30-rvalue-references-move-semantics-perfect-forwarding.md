@@ -885,5 +885,138 @@ Thus with C++11 you can still end up with no move operations, move not faster th
 What we mean by perfect forwarding: one function passes (forwards) its parameters to another function. (the second function should receive the first parameters that the first function receives, which rules out pass-by-value, since they are copies of what the original caller passes in)
 When it comes to general purpose forwarding, we are dealing with parameters that are references.
 
+Forwarding functions are by their nature generic, like this one with variadic templates:
+```cpp
+template<typename... Ts>
+void fwd(Ts&&... params)             // accept any arguments
+{
+  f(std::forward<Ts>(params)...);    // forward them to f
+}
 
+f( expression );      // if this does one thing,
+fwd( expression );    // but this does something else, fwd fails
+                      // to perfectly forward expression to f
+```
+Several kinds of arguments can demonstrate the fwd / f discrepancy failure.
 
+* Braced initalizers:
+```cpp
+// suppose we have f like this
+void f(const std::vector<int>& v);
+
+f({ 1, 2, 3 });       // fine, "{1, 2, 3}" implicitly
+                      // converted to std::vector<int>
+fwd({ 1, 2, 3 });     // error! doesn't compile
+```
+The standard dictates that compilers are forbidden from deducing a type for the expression {1, 2, 3} in the call to fwd because fwd's parameter isn't declared to be a std::initializer\_list.
+Interestingly this would work
+```cpp
+auto il = { 1, 2, 3 };     // il's type deduced to be
+                           // std::initializer_list<int>
+
+fwd(il);                   // fine, perfect-forwards il to f
+// As it2 pointed out, the difference between auto type deduction and template type deduction.
+```
+
+* 0 or NULL as null pointers would also cause type deduction to think of them as integral as opposed to pointer types.
+
+* Declaration-only integral static const and constexpr data members
+```cpp
+class Widget {
+public:
+  static constexpr std::size_t MinVals = 28; // MinVals' declaration
+  …
+};
+…                                            // no defn. for MinVals
+
+std::vector<int> widgetData;
+widgetData.reserve(Widget::MinVals);         // use of MinVals
+```
+Here compiler is Ok with a missing definition of MinVals as it does const propagation to replace occurrences of MinVals with 28, and does not allocate storage for MinVals.
+If MinVal's address were to be taken, then the above code would compile but would fail at link time.
+And if we have
+```cpp
+void f(std::size_t val);
+
+f(Widget::MinVals);         // fine, treated as "f(28)"
+
+fwd(Widget::MinVals);       // error! shouldn't link
+```
+Nothing in the code takes MinVal's address, but fwd's parameter being universal references and the compiler generated code usually treat them like pointers.
+Not all compilers enforce this behavior. To make your code portable, define MinVals
+```cpp
+constexpr std::size_t Widget::MinVals;     // in Widget's .cpp file
+```
+
+* Overloaded function names and template names
+
+```cpp
+// suppose our f looks like the following
+void f(int (*pf)(int));         // pf = "processing function"
+// or
+void f(int pf(int));            // declares same f as above
+
+// and we have
+int processVal(int value);
+int processVal(int value, int priority);
+
+// and we have the following
+f(processVal);                  // fine
+fwd(processVal);            // error! which processVal?
+
+// same problem if we try to give the fwd function a function template
+template<typename T>
+T workOnVal(T param)        // template for processing values
+{ … }
+
+fwd(workOnVal);             // error! which workOnVal
+                            // instantiation?
+
+// to make this work you could manually specify the overload or instantiation
+using ProcessFuncType =                        // make typedef;
+  int (*)(int);                                // see Item 9
+
+ProcessFuncType processValPtr = processVal;    // specify needed
+                                               // signature for
+                                               // processVal
+
+fwd(processValPtr);                            // fine
+
+fwd(static_cast<ProcessFuncType>(workOnVal));  // also fine
+```
+
+* Bitfields
+
+```cpp
+// Say we have the following to model IPv4 headers
+struct IPv4Header {
+  std::uint32_t version:4,
+                IHL:4,
+                DSCP:6,
+                ECN:2,
+                totalLength:16;
+  …
+};
+
+void f(std::size_t sz);        // function to call
+
+IPv4Header h;
+…
+f(h.totalLength);              // fine
+fwd(h.totalLength);            // error!
+```
+
+This is because h.totalLength is a non-const bitfield, and the standard says a non-const reference shall not be bound to a bitfield.
+Reason being bitfields may consist of arbitrary parts of machine words (e.g. bits 3-5 of a 32bit int), but there's no way to directly address such bits as the smallest unit you can point to is a char.
+
+Workaround this is easy, once you find a bitfield, make a copy yourself and call fwd on the copy.
+```cpp
+// copy bitfield value; see Item 6 for info on init. form
+auto length = static_cast<std::uint16_t>(h.totalLength);
+
+fwd(length);                        // forward the copy
+```
+
+**Takeaways**
+* Perfect forwarding fails when template type deduction fails or when it deduces the wrong type.
+* The kinds of arguments that lead to perfect forwarding failure are braced initializers, null pointers expressed as 0 or NULL, declaration-only integral const static data members, template and overloaded function names, and bitfields.
