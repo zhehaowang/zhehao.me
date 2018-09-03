@@ -3,3 +3,4 @@
 ### Content
 
 * Book notes
+* Quotes, thoughts
