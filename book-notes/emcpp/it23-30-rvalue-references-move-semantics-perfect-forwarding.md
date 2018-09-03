@@ -741,3 +741,91 @@ public:
 
 ### Understand reference collapsing
 
+Consider template parameter deduction for universal references again.
+```cpp
+template<typename T>
+void func(T&& param);
+
+Widget widgetFactory();     // function returning rvalue
+
+Widget w;                   // a variable (an lvalue)
+
+func(w);                    // call func with lvalue; T deduced
+                            // to be Widget&
+
+func(widgetFactory());      // call func with rvalue; T deduced
+                            // to be Widget
+```
+
+Note that reference to reference is illegal in C++
+```cpp
+int x;
+…
+auto& & rx = x;   // error! can't declare reference to reference
+
+// but with lvalue being deduced to match universal references
+template<typename T>
+void func(T&& param);    // as before
+
+func(w);                 // invoke func with lvalue;
+                         // T deduced as Widget&
+// we would have this
+void func(Widget& && param);
+// yet the type of param is Widget&. How compiler handles this is called
+// reference collapsing.
+```
+
+Compilers allow reference to reference not in user code but may produce them in some contexts, e.g. template instantiation.
+
+There are four possible combinations: lvalue to lvalue, lvalue to rvalue, rvalue to lvalue, rvalue to rvalue.
+If reference to reference occurs in a permitted context, compiler follows the following rule to collapse reference:
+
+If either reference is an lvalue reference, the result is an lvalue reference. Otherwise (i.e., if both are rvalue references) the result is an rvalue reference.
+
+Reference collapsing is a key part of what makes std::forward work. Whose impl can be
+```cpp
+template<typename T>                                // in
+T&& forward(typename                                // namespace
+              remove_reference<T>::type& param)     // std
+{
+  return static_cast<T&&>(param);
+}
+```
+
+Reference collapsing can be mimicked in auto form,
+```cpp
+Widget w;
+auto&& w1 = w;               // w1 is an lvalue reference
+
+auto&& w2 = widgetFactory(); // w2 is an rvalue reference
+```
+
+A universal reference isn't a new kind of reference, it's actually an rvalue reference in a context where two conditions are satisfied:
+* type deduction distinguishes lvalues from rvalues. Lvalues of type T are deduced to have type T&, while rvalues of type T yield T as their deducted type.
+* reference collapsing occurs.
+The concept of universal reference is helpful to free you from recognizing the existence of reference collapsing contexts.
+
+Typedef and using alias declarations also employ reference collapsing.
+```cpp
+template<typename T>
+class Widget {
+public:
+  typedef T&& RvalueRefToT;
+  …
+};
+
+// suppose we have
+Widget<int&> w;
+// reference collapse makes it
+typedef int& RvalueRefToT;
+```
+
+decltype also employs reference collapsing during its type analysis.
+
+**Takeaways**
+* Reference collapsing occurs in four contexts: template instantiation, auto type generation, creation and use of typedefs and alias declarations, and decltype.
+* When compilers generate a reference to a reference in a reference collapsing context, the result becomes a single reference. If either of the original references is an lvalue reference, the result is an lvalue reference. Otherwise it’s an rvalue reference.
+* Universal references are rvalue references in contexts where type deduction distinguishes lvalues from rvalues and where reference collapsing occurs.
+
+### Assume that move operations are not present, not cheap, and not used
+

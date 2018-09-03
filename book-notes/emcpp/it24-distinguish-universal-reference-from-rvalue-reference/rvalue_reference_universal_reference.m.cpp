@@ -17,6 +17,7 @@ public:
     std::cout << "universal reference binding "
               << boost::typeindex::type_id_with_cvr<decltype(y)>().pretty_name()
               << "\n";
+    y = 3;
   }
 };
 
@@ -28,6 +29,7 @@ int main() {
   //w.rvalueReferenceBinding(b);
   
   w.universalReferenceBinding(b);
-  w.universalReferenceBinding(2);
+  //w.universalReferenceBinding(2);
+  std::cout << b << "\n";
   return 0;
 }
