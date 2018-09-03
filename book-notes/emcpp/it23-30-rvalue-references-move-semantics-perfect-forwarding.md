@@ -829,3 +829,61 @@ decltype also employs reference collapsing during its type analysis.
 
 ### Assume that move operations are not present, not cheap, and not used
 
+True that move may offer efficiency gains, but working with C++98 codebase you've no reason to assume move will be present (whose generation, will be suppressed if any custom copy, move, or dtor is in place, it17.)
+
+All containers in the standard C++11 library support moving, but moving in these containers may not be cheap.
+Consider std::array added in C++11, a built-in array with an STL interface.
+std::array is fundamentally different the other standard containers, each of which stores its contents on the heap.
+Objects of those container types hold conceptually pointers to the heap location storing contents of the container, making their move constant time. E.g.
+
+```cpp
+std::vector<Widget> vw1;
+
+// put data into vw1
+
+…
+
+// move vw1 into vw2. Runs in
+// constant time. Only ptrs
+// in vw1 and vw2 are modified
+auto vw2 = std::move(vw1);
+```
+
+Such constant time move is not the case for std::array, whose content may not live in heap and have a pointer to the heap location.
+
+```cpp
+std::array<Widget, 10000> aw1;
+
+// put data into aw1
+
+…
+
+
+// move aw1 into aw2. Runs in
+// linear time. All elements in
+// aw1 are moved into aw2
+auto aw2 = std::move(aw1);
+```
+
+On the other hand, std::string offers constant-time moves and linear-time copies.
+This makes it sound like moving is faster than copying, but that may not be the case.
+
+Many string impl use small string optimization, in which small strings (<15 characters) are stored in a buffer within the std::string object as opposed to on the heap.
+With SSO moving a string incurs the same cost as copying them (can't employ move-only-a-pointer trick)
+
+Even with containers supporting move, some move situations may actually incur copying.
+It14 explains due to strong exception guarantee, some can only move if they know the underlying move is noexcept.
+
+Thus with C++11 you can still end up with no move operations, move not faster than copy, move not usable, or the source object is lvalue (with few exceptions only rvalues are eligible as sources of move, it25).
+
+**Takeaways**
+* Assume that move operations are not present, not cheap, and not used.
+* In code with known types or support for move semantics, there is no need for assumptions.
+
+### Familiarize yourself with perfect forwarding failure cases
+
+What we mean by perfect forwarding: one function passes (forwards) its parameters to another function. (the second function should receive the first parameters that the first function receives, which rules out pass-by-value, since they are copies of what the original caller passes in)
+When it comes to general purpose forwarding, we are dealing with parameters that are references.
+
+
+
