@@ -359,3 +359,50 @@ auto func = std::bind(
 
 ### Use decltype on auto&& parameters to std::forward them
 
+C++14 introduced generic lambdas: they use auto in their parameter specification. E.g.
+```cpp
+auto f = [](auto x){ return normalize(x); };
+
+// The underlying closure class is implemented as
+class SomeCompilerGeneratedClassName {
+public:
+  template<typename T>                   // see Item 3 for 
+  auto operator()(T x) const             // auto return type
+  { return normalize(x); }
+
+  …                                      // other closure class
+};                                       // functionality
+```
+In the example all the lambda does with x is forward it to normalize, and if normalize treats lvalues and rvalues differently, the lambda will always forward a lvalue.
+The correct way is to have the lambda perfect forward x to normalize, and to do that
+```cpp
+auto f = [](auto&& x)
+         { return normalize(std::forward<decltype(x)>(x)); };
+// Note that decltype(x) will produce a lvalue reference if x is an lvalue,
+// and rvalue reference if x is an rvalue, due to the type of x being universal
+// reference.
+```
+Item 28 explained that when calling std::forward, convention dictates the type (to instantiate std::forward with) be an lvalue reference to indicate an lvalue and a non-reference to indicate an rvalue.
+If x is bound to lvalue, using decltype(x) to instantiate std::forward conforms to convention, but if x is bound to rvalue, decltype(x) would yield an rvalue reference instead of a non-reference.
+
+However, applying reference collapse rules, instantiating std::forward with non-reference types and rvalue reference types end up producing the same code:
+```cpp
+template<typename T>                         // in namespace
+T&& forward(remove_reference_t<T>& param)    // std
+{
+  return static_cast<T&&>(param);
+}
+```
+The above establishes that using decltype(x) to instantiate the std::forward inside the lambda produces the expected result.
+
+And since C++14 allows variadic lambdas, we forward all the arguments inside the lambda
+```cpp
+auto f = [](auto&&... xs)
+         { return normalize(std::forward<decltype(xs)>(xs)...); };
+```
+
+**Takeaways**
+* Use decltype on auto&& parameters to std::forward them.
+
+### Prefer lambdas to std::bind
+
