@@ -406,3 +406,192 @@ auto f = [](auto&&... xs)
 
 ### Prefer lambdas to std::bind
 
+std::bind in C++11 succeeds std::bind1st and std::bind2nd in C++98.
+In C++11, lambdas are almost always a better choice than std::bind.
+
+Suppose we have the following
+```cpp
+// typedef for a point in time (see Item 9 for syntax)
+using Time = std::chrono::steady_clock::time_point;
+
+// see Item 10 for "enum class"
+enum class Sound { Beep, Siren, Whistle };
+
+// typedef for a length of time
+using Duration = std::chrono::steady_clock::duration;
+
+// at time t, make sound s for duration d
+void setAlarm(Time t, Sound s, Duration d);
+
+// Then we decide we want an alarm that goes off an hour after it's 
+// set and will stay on for 30 seconds, but we don't know the sound
+// it should play. So we revise the interface with a lambda
+
+// setSoundL ("L" for "lambda") is a function object allowing a
+// sound to be specified for a 30-sec alarm to go off an hour
+// after it's set
+auto setSoundL =                             
+  [](Sound s)
+  {
+    // make std::chrono components available w/o qualification
+    using namespace std::chrono;
+
+    setAlarm(steady_clock::now() + hours(1),  // alarm to go off
+             s,                               // in an hour for
+             seconds(30));                    // 30 seconds
+  };
+
+// side note, with C++14 std::literals you could do
+...
+    using namespace std::literals;
+    setAlarm(steady_clock::now() + 1h,     // C++14, but
+             s,                            // same meaning
+             30s);                         // as above
+...
+```
+
+To achieve the same thing with std::bind
+```cpp
+using namespace std::chrono;           // as above
+using namespace std::literals;
+
+using namespace std::placeholders;     // needed for use of "_1"
+
+auto setSoundB =                       // "B" for "bind"
+  std::bind(setAlarm,
+            steady_clock::now() + 1h,  // incorrect!
+            _1,
+            30s);
+```
+The first thing we don't like is the placeholder \_1: it means the first argument in a call to setSoundB is passed as the second argument to setAlarm.
+Its type is not identified in the call to std::bind, so readers have to consult setAlarm declaration to determine what kind of argument to pass to setSoundB.
+In addition, how it's stored inside the bind object is not clear: by reference or by value? In fact it's stored by value, but such facts require muscle memory of bind as opposed to clarity offered by lambdas.
+And also when calling setSoundB(sound), how is sound passed to setSoundB? The answer is that it's passed by reference, because function call operator for such objects uses perfect forwarding. In lambda, this is clear from the code as well.
+
+The bigger problem's that the now() will be evaluated when bind is called, not when setSoundB is called, thus not our desired behavior.
+To defer the evaluation of now() we do the following:
+```cpp
+// C++14, where you can do std::plus<>
+auto setSoundB =
+  std::bind(setAlarm,
+            std::bind(std::plus<>(),
+                      std::bind(steady_clock::now),
+                      1h),
+            _1,
+            30s);
+
+// C++11
+struct genericAdder {
+  template<typename T1, typename T2>
+  auto operator()(T1&& param1, T2&& param2)
+    -> decltype(std::forward<T1>(param1) + std::forward<T2>(param2))
+  {
+    return std::forward<T1>(param1) + std::forward<T2>(param2);
+  }
+};
+
+auto setSoundB =
+  std::bind(setAlarm,
+            std::bind(genericAdder(),
+                      std::bind(steady_clock::now),
+                      hours(1)),
+            _1,
+            seconds(30));
+```
+
+When setAlarm is overloaded, a new issue arises, suppose we have
+```cpp
+enum class Volume { Normal, Loud, LoudPlusPlus };
+
+void setAlarm(Time t, Sound s, Duration d, Volume v);
+```
+
+The lambda version would work as it still uses the 3-parameter overload, but the bind call now has no way to determine which overload should be called.
+To make it work, you have
+```cpp
+using SetAlarm3ParamType = void(*)(Time t, Sound s, Duration d);
+
+auto setSoundB =                                        // now
+  std::bind(static_cast<SetAlarm3ParamType>(setAlarm),  // okay
+            std::bind(std::plus<>(),
+                      std::bind(steady_clock::now),
+                      1h),
+            _1,
+            30s);
+```
+Another implication is that compiler can likely inline setSoundL, but less likely to be able to inline a bind call made through a function pointer.
+```cpp
+setSoundL(Sound::Siren);      // body of setAlarm may
+                              // well be inlined here
+
+setSoundB(Sound::Siren);      // body of setAlarm is less
+                              // likely to be inlined here
+```
+
+If you do something more complicated, the scales tip even further in favor of lambdas. E.g.
+```cpp
+// Lambda version (C++14)
+auto betweenL =
+  [lowVal, highVal]
+  (const auto& val)                          // C++14
+  { return lowVal <= val && val <= highVal; };
+
+// Lambda version (C++11)
+auto betweenL =                              // C++11 version
+  [lowVal, highVal]
+  (int val)
+  { return lowVal <= val && val <= highVal; };
+
+// bind version (C++14)
+using namespace std::placeholders;           // as above
+
+auto betweenB =
+  std::bind(std::logical_and<>(),            // C++14
+              std::bind(std::less_equal<>(), lowVal, _1),
+              std::bind(std::less_equal<>(), _1, highVal));
+
+// bind version (C++11)
+auto betweenB =                              // C++11 version
+  std::bind(std::logical_and<bool>(),
+              std::bind(std::less_equal<int>(), lowVal, _1),
+              std::bind(std::less_equal<int>(), _1, highVal));
+```
+
+Before C++14, bind can be justified in
+* move capture (item 32), and
+* polymorphic function objects, like the following
+```cpp
+// Given
+class PolyWidget {
+public:
+    template<typename T>
+    void operator()(const T& param) const;
+    …
+};
+
+// std::bind can do
+PolyWidget pw;
+
+auto boundPW = std::bind(pw, _1);
+
+// boundPW can then be called with different types of arguments
+boundPW(1930);              // pass int to
+                            // PolyWidget::operator()
+
+boundPW(nullptr);           // pass nullptr to
+                            // PolyWidget::operator()
+
+boundPW("Rosebud");         // pass string literal to
+                            // PolyWidget::operator()
+
+// C++11 lambda has no way to express this, but not the case in C++14
+// in C++14 you can do
+auto boundPW = [pw](const auto& param)    // C++14
+               { pw(param); };
+```
+
+**Takeaways**
+* Lambdas are more readable, more expressive, and may be more efficient than using std::bind.
+* In C++11 only, std::bind may be useful for implementing move capture or for binding objects with templatized function call operators.
+
+
