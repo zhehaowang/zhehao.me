@@ -225,3 +225,137 @@ If you stay away from default by-value capture clauses, you eliminate the risk o
 
 ### Use init capture to move objects into closures
 
+Sometimes neither by-value capture or by-reference capture is what you want:
+You want to move the object into the closure, say if it's move-only like std::unqiue\_ptr, or if copy is much more expensive than move (say for most STL containers.)
+C++11 offers no way to accomplish that.
+
+C++14 introduced init capture, to support moving params into lambda and more: you can't express a default capture with it, but you shouldn't use a default capture mode anyway as item 31 suggests.
+
+Init capture makes it possible to specify
+* the name of a data member in the closure class generated from the lambda 
+* an expression initializing that data member
+
+E.g.
+```cpp
+class Widget {                          // some useful type
+public:
+  …
+
+  bool isValidated() const;
+  bool isProcessed() const;
+  bool isArchived() const;
+
+private:
+  …
+};
+
+auto pw = std::make_unique<Widget>();   // create Widget; see
+                                        // Item 21 for info on
+                                        // std::make_unique
+
+…                                       // configure *pw
+
+auto func = [pw = std::move(pw)]               // init data mbr
+            { return pw->isValidated()         // in closure w/
+                     && pw->isArchived(); };   // std::move(pw)
+// left is the name of the data member in the closure, and right
+// is the initialization expression.
+// scope of the left is that of the closure class, and scope on
+// the right is where the lambda is defined.
+// So "pw = std::move(pw)" means "create a data member pw in the
+// closure, and initialize that data member with the result of
+// applying std::move to the local variable pw."
+
+// if the configure *pw part is not necessary, we could just do
+auto func = [pw = std::make_unique<Widget>()]  // init data mbr
+            { return pw->isValidated()         // in closure w/
+                     && pw->isArchived(); };   // result of call
+                                               // to make_unique
+```
+The notion of capture in C++14 as shown above is generalized from C++11, thus earning init capture another name generalized lambda capture.
+
+How can you accomplish in C++11 without compiler support?
+You can do it by hand, the above C++14 code translates to the following function object
+```cpp
+class IsValAndArch {                         // "is validated
+public:                                      // and archived"
+  using DataType = std::unique_ptr<Widget>;
+
+  explicit IsValAndArch(DataType&& ptr)      // Item 25 explains
+  : pw(std::move(ptr)) {}                    // use of std::move
+
+  bool operator()() const
+  { return pw->isValidated() && pw->isArchived(); }
+
+private:
+  DataType pw;
+};
+
+auto func = IsValAndArch(std::make_unique<Widget>());
+```
+
+If you want to stick to C++11 lambdas, you could move the object to be captured into a function object produced std::bind and giving the lambda a reference to the captured object. E.g.
+```cpp
+// C++14, move vector into lambda
+std::vector<double> data;                 // object to be moved
+                                          // into closure
+
+…                                         // populate data
+
+auto func = [data = std::move(data)]      // C++14 init capture
+            { /* uses of data */ };
+
+// C++11, move vector into lambda
+auto func =
+  std::bind(                              // C++11 emulation
+    [](const std::vector<double>& data)   // of init capture
+    { /* uses of data */ },
+    std::move(data)
+  );
+// Question: bind an rvalue to a const lvalue reference results
+// in a move from the rvalue being bound?
+```
+
+Like lambda expressions, std::bind produces function objects (bind object), the first argument is a callable object, and subsequent arguments are values to be passed to that object.
+For each lvalue argument in bind, the corresponding object in the bind object is copy ctor'ed, and for each rvalue it's moved constructed.
+
+By default the operator() member function inside the closure class generated from a lambda is const. The move ctor'ed copy of data inside the bind object is not const.
+To prevent that copy of data from being modified inside the lambda we declare it const reference.
+If the lambda were declared mutable, it'd be appropriate to drop the const
+```cpp
+auto func =
+  std::bind(                               // C++11 emulation
+    [](std::vector<double>& data) mutable  // of init capture
+    { /* uses of data */ },                // for mutable lambda
+    std::move(data)
+  );
+
+```
+The bind object stores copies of all arguments passed to std::bind (in our case a copy of the closure produced by the lambda that is its first argument).
+The lifetime of the closure is therefore the same as the lifetime of the bind object.
+
+The fundamentals of std::bind in this case would be
+* It’s not possible to move-construct an object into a C++11 closure, but it is possible to move-construct an object into a C++11 bind object.
+* Emulating move-capture in C++11 consists of move-constructing an object into a bind object, then passing the move-constructed object to the lambda by reference.
+* Because the lifetime of the bind object is the same as that of the closure, it’s possible to treat objects in the bind object as if they were in the closure.
+
+Similarly,
+```cpp
+auto func = [pw = std::make_unique<Widget>()]    // as before,
+            { return pw->isValidated()           // create pw
+                     && pw->isArchived(); };     // in closure
+
+auto func = std::bind(
+              [](const std::unique_ptr<Widget>& pw)
+              { return pw->isValidated()
+                     && pw->isArchived(); },
+              std::make_unique<Widget>()
+            );
+```
+
+**Takeaways**
+* Use C++14’s init capture to move objects into closures
+* In C++11, emulate init capture via hand-written classes or std::bind
+
+### Use decltype on auto&& parameters to std::forward them
+
