@@ -200,4 +200,155 @@ reallyAsync(F&& f, Ts&&... params)       // return future
 
 ### Make std::threads unjoinable on all paths
 
+Every std::thread is in one of two states, joinable or unjoinable.
+
+A thread corresponding to an underlying thread that's blocked or waiting to be scheduled is joinable. std::thread objects corresponding to underlying threads that have completed are also considered joinable.
+
+Unjoinable thread objects include
+* default ctor'ed std::thread, no function to execute
+* std::threads that have been moved from, whose underlying execution now corresponds to a different thread
+* std::threads that have been joined. After the join the thread object no longer corresponds to the underlying thread of execution that has finished running
+* std::threads that have been detached. detach severs the connection between a std::thread object and the underlying thread of execution it corresponds to.
+
+We care about the joinability of a thread, because calling dtor on a joinable thread will cause the entire process to be terminated.
+
+Say we have the following (we use the thread-based approach as opposed to task-based since we want to configure the priority of this thread, the native handle part)
+```cpp
+constexpr auto tenMillion = 10'000'000;       // see Item 15
+                                              // for constexpr
+
+bool doWork(std::function<bool(int)> filter,  // returns whether
+            int maxVal = tenMillion)          // computation was
+{                                             // performed; see
+                                              // Item 5 for
+                                              // std::function
+
+  std::vector<int> goodVals;                  // values that
+                                              // satisfy filter
+
+  std::thread t([&filter, maxVal, &goodVals]  // populate
+                {                             // goodVals
+                  for (auto i = 0; i <= maxVal; ++i)
+                   { if (filter(i)) goodVals.push_back(i); }
+                });
+
+  auto nh = t.native_handle();                // use t's native
+  …                                           // handle to set
+                                              // t's priority
+  if (conditionsAreSatisfied()) {
+    t.join();                                 // let t finish
+    performComputation(goodVals);
+    return true;                              // computation was
+  }                                           // performed
+
+  return false;                               // computation was
+}                                             // not performed
+```
+If conditionsAreSatisfied returns true, this is all good; if it returns false or throws an exception, as the stack unwinds dtor will be called on a joinable t, and the process would halt.
+
+Why does a std::thread dtor behave this way? Because the other options are worse.
+An implicit join means dtor would wait for the asynchronous execution to finish. This is counter-intuitive to debug.
+An implicit detach, the underlying thread would continue to run but its connection to the thread object is severed.
+In the above code example where goodVals local variable is passed by reference to the thread function, when detach happens, doWork finishes and goodVals unwinds, the running thread would be looking at a stack frame that's popped (or worse, occupied by a later function call).
+
+This puts the onus on you to ensure if you use a std::thread object, it's made joinable on every path out of the scope in which it is defined.
+Any time you want to such things as making sure to perform some action along every path out of a block, RAII naturally comes in mind.
+RAII is predominant in the Standard Library, like std::unique\_ptr std::weak\_ptr, std::shared\_ptr and std::fstream dtors, etc.
+
+The Standard Library does not have an RAII class for std::thread, you could do one such yourself that takes in a DtorAction:
+```cpp
+class ThreadRAII {
+public:
+  enum class DtorAction { join, detach };    // see Item 10 for
+                                             // enum class info
+
+  ThreadRAII(std::thread&& t, DtorAction a)  // in dtor, take
+  : action(a), t(std::move(t)) {}            // action a on t
+  // in ctor, note that we only move thread to be managed by this
+  // RAII object, note that we can't copy std::thread objects
+  
+  ~ThreadRAII()
+  {
+    if (t.joinable()) {
+      // joinability test is necessary since join or detach on
+      // unjoinable threads yields UB.
+      if (action == DtorAction::join) {
+        t.join();
+        // If you are worried about the potential race condition
+        // between joinable check and join / detach actions, such
+        // worries are unfounded: a std::thread object can change
+        // state from joinable to unjoinable only through a member
+        // function call or a move operation. At the time a ThreadRAII
+        // object's dtor'ed invoked, no other thread should be making
+        // member function calls on that object.
+        // The client code still could invoke dtor and something else
+        // on the object at the same time, but should be made aware
+        // such calls could result in race conditions.
+      } else {
+        t.detach();
+      }
+      
+    }
+  }
+
+  std::thread& get() { return t; }           // see below
+
+private:
+  DtorAction action;
+  std::thread t;
+  // note the order of data members. In this case it doesn't matter
+  // but you usually want to put them to last in a class's members
+  // since once initialized they may start running immediately, and
+  // running them may require other member variables to be already
+  // initialized.
+};
+```
+
+And our client code now looks like
+```cpp
+bool doWork(std::function<bool(int)> filter,  // as before
+            int maxVal = tenMillion)
+{
+  std::vector<int> goodVals;                  // as before
+
+  ThreadRAII t(                               // use RAII object
+    std::thread([&filter, maxVal, &goodVals]
+                {                             
+                  for (auto i = 0; i <= maxVal; ++i)
+                    { if (filter(i)) goodVals.push_back(i); }
+                }),
+                ThreadRAII::DtorAction::join  // RAII action
+  );
+
+  auto nh = t.get().native_handle();
+  …
+
+  if (conditionsAreSatisfied()) {
+    t.get().join();
+    performComputation(goodVals);
+    return true;
+  }
+
+  return false;
+}
+```
+
+Note that join is still not a desired behavior in that it could lead to performance anomaly, or even hung a program (item 39). The proper solution would be to communicate to the asynchronously running lambda that we no longer need its work and it should return early.
+But there is no such support for interruptible threads in C++. They can be implemented by hand but is beyond the scope of now.
+
+Since we've custom dtors compiler will suppress move operations generation, there's no reason ThreadRAII's not movable, so we could add
+```cpp
+  ThreadRAII(ThreadRAII&&) = default;               // support
+  ThreadRAII& operator=(ThreadRAII&&) = default;    // moving
+```
+
+**Takeaways**
+* Make std::threads unjoinable on all paths (e.g. through RAII).
+* join-on-destruction can lead to difficult-to-debug performance anomalies.
+* detach-on-destruction can lead to difficult-to-debug undefined behavior.
+* Declare std::thread objects last in lists of data members.
+
+### Be aware of varying thread handle destructor behavior
+
+
 
