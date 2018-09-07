@@ -350,5 +350,76 @@ Since we've custom dtors compiler will suppress move operations generation, ther
 
 ### Be aware of varying thread handle destructor behavior
 
+A joinable std::thread corresponds to an underlying system thread of execution, a future for a non-deferred task has a similar relationship to a system thread.
+As such, both std::thread objects and future objects can be thought of as handles to system threads.
 
+Yet, dtor on a joinable thread results in program termination, but dtor on a future sometimes behaves as if it did an implicit join, sometimes detach, and sometimes neither. It never causes program termination.
 
+Think about the execution of a future object, the asynchronously executed callee needs to transmit result back to the caller (typically via a std::promise object), but where does the result live?
+The callee could finish before caller invokes get.
+It cannot live in the std::promise as that object, being local to the callee, would be destroyed when the callee finishes.
+The result cannot live in the caller's future, either, because a std::future may be used to create a std::shared\_future (thus transferring ownership of the caller's result from the std::future to the std::shared\_future), which may then be copied many times after the original future is destroyed.
+Given that not all result types can be copied (move-only, for example), and the result must live as long as the last future referencing to it, which of the potentially many futures corresponding to the callee should be the one to contain its result?
+
+Since neither caller or callee are suitable for storing the callee's result, it's stored in a location outside both known as the shared state. Its implementation is typically heap based but not specified by the standards.
+The dataflow is illustrated as such
+```
+Caller <-- future -- Shared State (Callee's Result) <-- std::promise (typically) -- Callee
+```
+
+The behavior of the dtor of a future is determined by the shared state associated with it.
+* The dtor for the last future referring to a shared state for a non-deferred task launched via std::async blocks until the task completes. (implicit join)
+* The dtor for all other futures simply destroys the future object. (for asynchronously running tasks, this is an implicit detach; for deferred tasks for which this is the final future, it means the deferred task will never run)
+
+In other words, the dtor of a future is a normal behavior and one exception
+* The normal behavior is that a future's dtor destroys the future object. It doesn’t join with anything, it doesn’t detach from anything, it doesn’t run anything. It just destroys the future’s data members. (and decrements the reference count inside the shared state that's manipulated by both the futures referring to it and the callee's std::promise)
+* The exception happens when the future 1) refers to a shared state that was created due to a call to std::async, 2) the task's launch policy is std::launch::async (can be explicitly specified or decided by the runtime system), and 3) the future is the last future referring to the shared state (this matters for shared\_futures). This exceptional behavior is to implicitly join.
+
+This decision of implicit join special case is controversial, but present in both C++11 and C++14.
+
+Future's API offers no way to determine whether a future refers to a shared state arising from a call to std::async, so given an arbitrary future object, it's not possible to know whether it'll block on dtor or not. E.g.
+```cpp
+// this container might block in its dtor, because one or more
+// contained futures could refer to a shared state for a non-
+// deferred task launched via std::async
+std::vector<std::future<void>> futs;   // see Item 39 for info
+                                       // on std::future<void>
+
+class Widget {                         // Widget objects might
+public:                                // block in their dtors
+  …
+
+private:
+  std::shared_future<double> fut;
+};
+```
+Unless you know in your program logic for all these futures one of the three conditions won't be met. Like this
+```cpp
+int calcValue();                      // func to run
+
+std::packaged_task<int()>             // wrap calcValue so it
+  pt(calcValue);                      // can run asynchronously
+
+auto fut = pt.get_future();           // get future for pt
+// this future does not refer to a shared state created by
+// std::async, and its dtor should not block
+
+// To illustrate why have the special case for reference to
+// shared states arose due to a std::async:
+// say instead of std::async, you create a thread on the future
+std::thread t(std::move(pt));
+// packaged_task cannot be copied
+
+... // end block
+
+// if nothing happens to t before end block, t will be joinable
+// and program will terminate
+// if a join is done on t, there is no need for fut to block its
+// dtor because join is already present
+// if a detach is done on t, there is no need for fut to detach
+// in its dtor because the calling code already does that
+```
+
+**Takeaways**
+* Future dtors normally just destroy the future’s data members.
+* The final future referring to a shared state for a non-deferred task launched via std::async blocks until the task completes.
