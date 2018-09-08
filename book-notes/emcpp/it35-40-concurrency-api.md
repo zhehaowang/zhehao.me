@@ -423,3 +423,217 @@ std::thread t(std::move(pt));
 **Takeaways**
 * Future dtors normally just destroy the future’s data members.
 * The final future referring to a shared state for a non-deferred task launched via std::async blocks until the task completes.
+
+### Consider void futures for one-shot event communication
+
+Sometimes it's useful for a task to tell a second asynchronously running task that a particular event has occurred, e.g. a synchronization between the two threads.
+One obvious choice for this is a condition variable, the reacting task waits on the detecting task. E.g.
+```cpp
+// detecting task (the one sending out the signal to tell the
+// reacting task)
+std::condition_variable cv;             // condvar for event
+
+std::mutex m;                           // mutex for use with cv
+
+…                                       // detect event
+
+cv.notify_one();                        // tell reacting task
+// if there are multiple to be notified, use notify_all
+
+// reacting task
+…                                      // prepare to react
+
+{                                      // open critical section
+
+  std::unique_lock<std::mutex> lk(m);  // lock mutex
+
+  cv.wait(lk);                         // wait for notify;
+                                       // this isn't correct!
+
+  …                                    // react to event
+                                       // (m is locked)
+
+}                                      // close crit. section;
+                                       // unlock m via lk's dtor
+
+…                                      // continue reacting
+                                       // (m now unlocked)
+
+// before callling wait on the condition variable, it must lock
+// a mutex through std::unique_lock (part of C++11 API)
+```
+This code has a code smell (works but doesn't seem quite right): it uses a mutex who are typically present for controlling access to shared data.
+In this case there may be no shared data. 
+Two other problems:
+* If detecting task notifies the condvar before the reacting task waits, the reacting task will hang.
+* The wait statement fails to account for spurious wakeups: meaning the code waiting on a condition variable may be awakened even if the condvar wasn't notified.
+Proper code deals with this by confirming that the condition being waited for has truly occurred. Like this:
+```cpp
+cv.wait(lk,
+        []{ return whether the event has occurred; });
+// this would require that the reacting task be able to determine
+// whether the condition it's waiting for is true. The reacting
+// task might not be able to tell (it's what it's waiting for in
+// the first place)
+```
+
+An alternative is a shared boolean flag and busy wait:
+```cpp
+// detecting task
+std::atomic<bool> flag(false);      // shared flag; see
+                                    // Item 40 for std::atomic
+
+…                                   // detect event
+
+flag = true;                        // tell reacting task
+
+// reacting task
+…                                   // prepare to react
+
+while (!flag);                      // wait for event
+
+…                                   // react to event
+```
+
+This approach does not have the drawbacks of the condition variable approach, but it incurs the cost of polling: the task is not truly blocked, an otherwise idle CPU needs to be occupied.
+
+It's then common to combine the condvar and flag-based design (the bool no longer has to be atomic since it's now protected by the mutex):
+
+```cpp
+// detecting task
+std::condition_variable cv;           // as before
+std::mutex m;
+
+bool flag(false);                     // not std::atomic
+
+…                                     // detect event
+
+{
+  std::lock_guard<std::mutex> g(m);   // lock m via g's ctor
+
+  flag = true;                        // tell reacting task
+                                      // (part 1)
+
+}                                     // unlock m via g's dtor
+
+cv.notify_one();                      // tell reacting task
+                                      // (part 2)
+
+// reacting task
+…                                      // prepare to react
+
+{                                      // as before
+  std::unique_lock<std::mutex> lk(m);  // as before
+
+  cv.wait(lk, [] { return flag; });    // use lambda to avoid
+                                       // spurious wakeups
+
+  …                                    // react to event
+                                       // (m is locked)
+}
+
+…                                      // continue reacting
+                                       // (m now unlocked)
+```
+This approach avoids busy wait and deals with spurious wakeups.
+Yet the code smell remains, because the detecting task communicates with the reacting task in a curious fashion: the flag, mutex, and cv all work participate in achieving this one thing of signalling, and it's not terribly clean.
+
+An alternative is leveraging the communication channel of futures: 
+The detecting task has a std::promise object, and the reacting task has a corresponding std::future object, the reacting task calls wait on the future (waiting for the promise to be set) and the detecting task sets the promise when a signal is detected.
+
+Both promise and future templates expect the type of the data to be transmitted, the std::future and std::promise thus both use a void type. E.g.
+```cpp
+// given
+std::promise<void> p;               // promise for
+                                    // communications channel
+// the detection code
+…                                   // detect event
+
+p.set_value();                      // tell reacting task
+
+// the reaction code
+
+…                                   // prepare to react
+
+p.get_future().wait();              // wait on future
+                                    // corresponding to p
+
+…                                   // react to event
+```
+Like the approach using a flag, the design requires no mutex, would work regardless of whether the detecting task sets its std::promise before or after the reacting task waits, and is immune to spurious wakeups.
+Like the condition var approach, the wait is truly blocked instead of busy wait.
+
+However things to keep in mind: item 38 explains the std::future and std::promise share a state allocated on the heap, thus we should expect heap allocation and deallocation with this mechanism.
+
+More importantly, a promise can be set only once, the communication between detection task and reacting task is one-off.
+
+One use case is to create a thread in suspended state.
+Say you want to configure its affinity and priority (using native\_handle of a std::thread) before running it, you could do
+```cpp
+std::promise<void> p;
+
+void react();                        // func for reacting task
+
+void detect()                        // func for detecting task
+{
+  ThreadRAII tr(                          // use RAII object
+    std::thread([]
+                {                       
+                  p.get_future().wait();
+                  react();
+                }),
+    ThreadRAII::DtorAction::join          // risky! (see below)
+  );
+
+  …                                       // thread inside tr
+                                          // is suspended here
+
+  p.set_value();                          // unsuspend thread
+                                          // inside tr
+  …
+}
+```
+There is an issue that if before p.set\_value is executed an exception is thrown, set\_value is never executed, the thread will never be fired as it's stuck on wait. (when dtor is called a join is made on the thread making the dtor hang forever)
+There are many ways to address this issue.
+
+Instead we give an example of using a shared\_future to have one detecting task fire off multiple reacting tasks.
+```cpp
+std::promise<void> p;                // as before
+
+void detect()                        // now for multiple
+{                                    // reacting tasks
+
+  auto sf = p.get_future().share();  // sf's type is
+                                     // std::shared_future<void>
+
+  std::vector<std::thread> vt;              // container for
+                                            // reacting threads
+
+  for (int i = 0; i < threadsToRun; ++i) {
+    vt.emplace_back([sf]{ sf.wait();        // wait on local
+                          react(); });      // copy of sf; see
+  }                                         // Item 42 for info
+                                            // on emplace_back
+
+  …                                  // ThreadRAII not used, so
+                                     // program is terminated if
+                                     // this "…" code throws!
+
+  p.set_value();                     // unsuspend all threads
+
+  …
+
+  for (auto& t : vt) {               // make all threads
+    t.join();                        // unjoinable; see Item 2
+  }                                  // for info on "auto&"
+}
+```
+
+**Takeaways**
+* For simple event communication, condvar-based designs require a superfluous mutex, impose constraints on the relative progress of detecting and reacting tasks, and require reacting tasks to verify that the event has taken place.
+* Designs employing a flag avoid those problems, but are based on polling, not blocking.
+* A condvar and flag can be used together, but the resulting communications mechanism is somewhat stilted.
+* Using std::promises and futures dodges these issues, but the approach uses heap memory for shared states, and it’s limited to one-shot communication.
+
+### Use std::atomic for concurrency, volatile for special memory
+
