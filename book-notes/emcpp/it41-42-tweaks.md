@@ -191,3 +191,205 @@ Usually, the most practical approach is to adopt a "guilty until proven innocent
 
 ### Consider emplacement instead of insertion
 
+When you have a container holding std::string, it seems logical when you add an element to it you add via insertion functions (insert, push\_front, push\_back, insert\_after), and the type you'd pass in is std::string.
+
+Consider this code though:
+```cpp
+std::vector<std::string> vs;         // container of std::string
+
+vs.push_back("xyzzy");               // add string literal
+```
+
+push\_back is overloaded as following:
+```cpp
+template <class T,                           // from the C++11
+          class Allocator = allocator<T>>    // Standard
+class vector {
+public:
+  …
+  void push_back(const T& x);                // insert lvalue
+  void push_back(T&& x);                     // insert rvalue
+  // why is just having an universal reference version not enough?
+  …
+};
+```
+In the call of push\_back with string literal, compiler sees a type mismatch (const char[6] with what vector's instantiated with: std::string), thus what it does becomes the following (create a temporary):
+```cpp
+vs.push_back(std::string("xyzzy"));  // create temp. std::string
+                                     // and pass it to push_back
+// here std::string ctor is called, and then the rvalue reference
+// is given to push_back to be move ctor'ed to the memory of the
+// new object inside std::vector.
+// immediately after push_back returns, the temp object is destroyed
+// by calling std::string dtor.
+```
+Here the ctor and dtor of the temporary std::string object is avoidable: as we construct the new std::string object to be held inside the std::vector we could give it the string literal.
+And emplace\_back does exactly that.
+```cpp
+vs.emplace_back("xyzzy");   // construct std::string inside
+                            // vs directly from "xyzzy"
+// no temporary involved
+```
+emplace\_back uses perfect forwarding, so it would have the failure / unexpected cases with perfect forwarding:
+```cpp
+vs.emplace_back(50, 'x');   // insert std::string consisting
+                            // of 50 'x' characters
+```
+Every std container that supports insert supports a corresponding emplace as well.
+
+Insertion functions take objects to be inserted, while emplacement functions take constructor arguments for objects to be inserted.
+This difference permits emplacement functions to avoid the creation and destruction of temporary objects that insertion functions can necessitate.
+
+emplacement function can be used even when an insertion function would require no temporary:
+```cpp
+std::string queenOfDisco("Donna Summer");
+// these result in the same
+vs.push_back(queenOfDisco);       // copy-construct queenOfDisco
+                                  // at end of vs
+
+vs.emplace_back(queenOfDisco);    // ditto
+```
+
+Why not always use emplacement then?
+Because in current std library, there are scenarios where insertion is faster than emplacement.
+
+Such scenarios are hard to categorize, but emplacement will almost certainly outperform insertion if all the following are true:
+* The value being added is constructed into the container, not assigned. Consider this
+```cpp
+std::vector<std::string> vs;         // as before
+
+…                                    // add elements to vs
+
+vs.emplace(vs.begin(), "xyzzy");     // add "xyzzy" to
+                                     // beginning of vs
+```
+The impl likely uses move assignment underneath, in which case a temporary object will need to be created to serve as the source of move.
+Emplacement's edge would then disappear.
+node based std containers always use ctor'ed elements instead of assigned, the rest (std::vector, std::string, std::deque, std::array (which is irrelevant)) you can rely on emplace\_back (and emplace\_front as well) to use ctor.
+* The argument type(s) being passed differ from the type held by the container.
+If they are the same insert would not create the temporary either.
+* The container is unlikely to reject the new value as a duplicate.
+Reason for this is that in order to detect if a value is already in the container, emplacement typically creates the node with the new value first so that it can compare the value with the rest.
+
+Two other issues worth considering when using emplacement:
+
+Suppose you have a container of std::shared\_ptrs:
+```cpp
+std::list<std::shared_ptr<Widget>> ptrs;
+
+// say you have a custom deleter
+void killWidget(Widget* pWidget);
+
+// and you want to insert shared pointers with a custom deleter
+ptrs.push_back(std::shared_ptr<Widget>(new Widget, killWidget));
+// and it could look like
+ptrs.push_back({ new Widget, killWidget });
+
+// note that although recommended, you can't use make_shared here
+// since a custom deleter is desired. 
+```
+With the push\_back approach, a temporary will be created.
+Emplacement would avoid creating this temporary, but in this case the temporary is desirable: say during the allocation of the node in the list container an out-of-memory exception is thrown, then as the exception propagates out, the temp object will be freed and being the sole shared pointer referring to Widget object, Widget will be deallocated by calling killWidget.
+Nothing leaks.
+
+Now consider the emplacement version
+```cpp
+ptrs.emplace_back(new Widget, killWidget);
+
+// you'd be calling something like this underneath
+std::list::node<std::shared_ptr<Widget>>(new Widget, killWidget);
+
+// think of the above as
+template <typename T> 
+class Node {
+  template <typename... Ps>
+  Node<T>(Ps&&... params) :
+    something_other_data(xxx),
+    T(std::forward<Ps>(params)) {}
+  // what if it throws after "new Widget" is constructed, but
+  // before T can be done allocated (say, some other member ctor
+  // throws an out-of-memory)? As explained below, the new
+  // Widget leaks.
+};
+```
+The raw pointer resulting from "new Widget" is perfect forwarded to node ctor and if that ctor throws an exception, as the exception propagates out there is no handle to the heap allocated Widget any more.
+It is leaked.
+
+Similarly with std::unique\_ptr with a custom deleter.
+
+Fundamentally, the effectiveness of memory management classes like std::unique\_ptr and std::shared\_ptr is predicated on resources (such as raw pointers from new) being immediately passed to ctors for resource managing objects.
+The fact that make\_shared and make\_unique automate this is one of the reasons why they are important.
+
+In cases like this, you need to ensure yourself you are not paying for potentially improved performance with diminished exception safety.
+
+The emplacement / insert versions should then look more like this:
+```cpp
+// insert version
+std::shared_ptr<Widget> spw(new Widget,    // create Widget and
+                            killWidget);   // have spw manage it
+
+ptrs.push_back(std::move(spw));            // add spw as rvalue
+
+// emplacement version
+std::shared_ptr<Widget> spw(new Widget, killWidget);
+ptrs.emplace_back(std::move(spw));
+
+// in which case emplacement won't outperform insert since spw is
+// essentially the temporary now
+```
+
+The other case is with explicit ctors.
+
+Say you wrote this by mistake,
+```cpp
+// using C++11's support for regex
+std::vector<std::regex> regexes;
+
+// you wrote this nullptr by mistake
+regexes.emplace_back(nullptr);    // add nullptr to container
+                                  // of regexes?
+                                  // once compiled, this would
+                                  // be UB.
+
+// compiler does not reject this, even though
+std::regex r = nullptr;           // error! won't compile
+// or
+regexes.push_back(nullptr);       // error! won't compile
+```
+This behavior stems from the fact that std::regex can be ctor'ed from character strings (const char \* like)
+```cpp
+std::regex upperCaseWord("[A-Z]+");
+```
+And this ctor taking a const char \* is explicit, thus the following
+```cpp
+std::regex r = nullptr;           // error! won't compile
+
+regexes.push_back(nullptr);       // error! won't compile
+
+std::regex r(nullptr);            // compiles, this is what
+                                  // emplacement would
+                                  // translate to, calling this
+                                  // explicit ctor directly
+```
+
+In official terminologies,
+```cpp
+std::regex r1 = nullptr;         // error! won't compile
+// called copy initialization, not eligible to use explicit ctor
+
+std::regex r2(nullptr);          // compiles
+// called direct initialization, eligible to use explicit ctor
+
+// and thus
+regexes.emplace_back(nullptr);  // compiles. Direct init permits
+                                // use of explicit std::regex
+                                // ctor taking a pointer
+
+regexes.push_back(nullptr);     // error! copy init forbids
+                                // use of that ctor
+```
+**Takeaways**
+* In principle, emplacement functions should sometimes be more efficient than their insertion counterparts, and they should never be less efficient.
+* In practice, they're most likely to be faster when (1) the value being added is constructed into the container, not assigned; (2) the argument type(s) passed differ from the type held by the container; and (3) the container won’t reject the value being added due to it being a duplicate.
+* Emplacement functions may perform type conversions that would be rejected by insertion functions.
+
