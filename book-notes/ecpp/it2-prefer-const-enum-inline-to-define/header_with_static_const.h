@@ -1,3 +1,6 @@
+#ifndef INCLUDED_CONST_OBJECT
+#define INCLUDED_CONST_OBJECT
+
 #include <string>
 #include <iostream>
 
@@ -22,3 +25,5 @@ class MyClass {
 };
 
 //ConstObject MyClass::d_obj; // wrong, double definition
+
+#endif
