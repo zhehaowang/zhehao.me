@@ -344,3 +344,29 @@ Note the private static function createLogString, using a helper function like t
 
 ### Have assignment operators return a reference to \*this
 
+You can chain assignments together, and they are right associative.
+
+```cpp
+int x, y, z;
+
+x = y = z = 15;                        // chain of assignments
+
+// becomes
+
+x = (y = (z = 15));
+```
+
+The way this is implemented is that assignment returns a reference to its left-hand argument, and that's the convention you should follow when you implement assignment operators for your classes.
+
+This convention applies to all assignment operators, not just the standard =, but also +=, -=.
+
+This is only a convention; code that doesn't follow it will compile.
+However, the convention is followed by all the built-in types as well as by all the types in the standard library (e.g., string, vector, complex, std::shared\_ptr, etc.).
+Unless you have a good reason for doing things differently, don't.
+
+**Takeaways**
+* Have assignment operators return a reference to \*this
+
+### Handle assignment to self in operator=
+
+
