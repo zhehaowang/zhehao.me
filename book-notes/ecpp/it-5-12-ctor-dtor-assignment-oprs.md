@@ -369,4 +369,101 @@ Unless you have a good reason for doing things differently, don't.
 
 ### Handle assignment to self in operator=
 
+Assignments to self are legal, so rest assured clients will do it.
+They may come in forms not easily recognizable, e.g.
+```cpp
+a[i] = a[j];                  // potential assignment to self
+                              // if i and j have the same value
+*px = *py;                    // also potential assignment to self
+```
+
+If you follow the advice of Items 13 and 14, you'll always use objects to manage resources, and you'll make sure that the resource-managing objects behave well when copied.
+When that's the case, your assignment operators will probably be self-assignment-safe without your having to think about it.
+
+If you try to manage resources yourself, however (which you'd certainly have to do if you were writing a resource-managing class), you can fall into the trap of accidentally releasing a resource before you're done using it. E.g.
+```cpp
+class Bitmap { ... };
+
+class Widget {
+  Widget&
+  Widget::operator=(const Widget& rhs)              // unsafe impl. of operator=
+  {
+    delete pb;                                      // stop using current bitmap
+    pb = new Bitmap(*rhs.pb);                       // start using a copy of rhs's bitmap
+
+    return *this;                                   // see Item 10
+  }
+
+private:
+  Bitmap *pb;                                     // ptr to a heap-allocated object
+};
+```
+The issue is that when assigning to self (rhs and \*this point to the same object), we would delete the Bitmap of rhs first, then try to use a copy of the deleted Bitmap.
+
+The traditional way to prevent self assignment is to add an identity test at the top. E.g.
+```cpp
+Widget& Widget::operator=(const Widget& rhs)
+{
+  if (this == &rhs) return *this;   // identity test: if a self-assignment,
+                                    // do nothing
+  delete pb;
+  pb = new Bitmap(*rhs.pb);
+
+  return *this;
+}
+```
+This version works, but it's exception-unsafe: if new Bitmap(...) yields an exception (insufficient memory, or copyctor of Bitmap throws), the Widget will end up holding a pointer to the deleted Bitmap.
+
+Making operator= exception-safe typically renders it self-assignment-safe, too. As a result, it's increasingly common to deal with issues of self-assignment by ignoring them, focusing instead on achieving exception safety.
+In this code to achieve exception safety, we only have to reorder the statements:
+```cpp
+Widget& Widget::operator=(const Widget& rhs)
+{
+  Bitmap *pOrig = pb;               // remember original pb
+  pb = new Bitmap(*rhs.pb);         // point pb to a copy of rhs's bitmap
+  delete pOrig;                     // delete the original pb
+
+  return *this;
+}
+```
+Now if the new throws, pb would still point at the old Bitmap which is not yet deleted.
+Self assignment would also be making a new copy, pointing pb to that new copy, and freeing the old Bitmap that pb used to point to.
+This may not look the most efficient when self-assigning (compared with the identity test), but before you add that in, consider how often self-assignment happens, and the cost of the check. (think bigger code, additional branch, the effectiveness of prefetching, caching and pipelining)
+
+An alternative to this reordering approach is copy-and-swap, discussed in more details in item 29. Like this
+```cpp
+class Widget {
+  ...
+  void swap(Widget& rhs);   // exchange *this's and rhs's data;
+  ...                       // see Item 29 for details
+};
+
+Widget& Widget::operator=(const Widget& rhs)
+{
+  Widget temp(rhs);             // make a copy of rhs's data
+
+  swap(temp);                   // swap *this's data with the copy's
+  return *this;
+}
+```
+A variation of this could take advantage of passing by value is acceptable for implementing copy assignment opr, and passing by value makes a copy by itself. Like this
+```cpp
+Widget& Widget::operator=(Widget rhs)   // rhs is a copy of the object
+{                                       // passed in — note pass by val
+
+  swap(rhs);                            // swap *this's data with
+                                        // the copy's
+
+  return *this;
+}
+```
+This may sacrifice clarity for 'cleverness'.
+Compilers may also generate more efficient code for this version (passing-by-value-copy over calling copy in function body).
+
+**Takeaways**
+* Make sure operator= is well-behaved when an object is assigned to itself. Techniques include comparing addresses of source and target objects, careful statement ordering, and copy-and-swap
+* Make sure that any function operating on more than one object behaves correctly if two or more of the objects are the same
+
+### Copy all parts of an object
+
 
