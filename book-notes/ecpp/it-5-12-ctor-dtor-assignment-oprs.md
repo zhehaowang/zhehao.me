@@ -466,4 +466,73 @@ Compilers may also generate more efficient code for this version (passing-by-val
 
 ### Copy all parts of an object
 
+Say you don't like compiler's copy implementation and provided your own, compiler, in turn, does not warn you if your impl is only copying a part of the object. (E.g. when new data member gets added)
 
+Similarly, you'll need to update the ctors, other forms of assignment opr (+=, etc).
+
+A particular insidious case can arise through inheritance. E.g.
+```cpp
+class PriorityCustomer: public Customer {                  // a derived class
+public:
+   ...
+   PriorityCustomer(const PriorityCustomer& rhs);
+   PriorityCustomer& operator=(const PriorityCustomer& rhs);
+   ...
+
+private:
+   int priority;
+};
+
+PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
+: priority(rhs.priority)
+{
+  logCall("PriorityCustomer copy constructor");
+}
+
+PriorityCustomer&
+PriorityCustomer::operator=(const PriorityCustomer& rhs)
+{
+  logCall("PriorityCustomer copy assignment operator");
+
+  priority = rhs.priority;
+
+  return *this;
+}
+```
+The problem with this is the Customer part of PriorityCustomer will be default ctor'ed in the copy ctor, or in the copy assignment the Customer part is not assigned.
+
+Any time you take it upon yourself to write copying functions for a derived class, you must take care to also copy the base class parts. Like this:
+```cpp
+PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
+:    Customer(rhs),                   // invoke base class copy ctor
+  priority(rhs.priority)
+{
+  logCall("PriorityCustomer copy constructor");
+}
+
+PriorityCustomer&
+PriorityCustomer::operator=(const PriorityCustomer& rhs)
+{
+  logCall("PriorityCustomer copy assignment operator");
+
+  Customer::operator=(rhs);           // assign base class parts
+  priority = rhs.priority;
+
+  return *this;
+}
+```
+
+The meaning of copy all parts then becomes:
+* copy all local data members and
+* invoke the appropriate copying function in all base classes
+
+In practice, the two copying functions will often have similar bodies, and this may tempt you to try to avoid code duplication by having one function call the other.
+Your desire to avoid code duplication is laudable, but having one copying function call the other is the wrong way to achieve it.
+
+Instead, if you find that your copy constructor and copy assignment operator have similar code bodies, eliminate the duplication by creating a third member function that both call.
+Such a function is typically private and is often named init.
+This strategy is a safe, proven way to eliminate code duplication in copy constructors and copy assignment operators.
+
+**Takeaways**
+* Copying functions should be sure to copy all of an object's data members and all of its base class parts
+* Don't try to implement one of the copying functions in terms of the other (copycon / copy assignment opr). Instead, put common functionality in a third function that both call
