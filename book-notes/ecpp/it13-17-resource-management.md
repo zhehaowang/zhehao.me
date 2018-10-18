@@ -93,5 +93,81 @@ The interface change to createInvestment is discussed in Item 18.
 
 ### Think carefully about copying behavior in resource-managing classes
 
+There are cases where you need to create your own resource managing classes, say, you are using C API mutex, and creating an RAII class to wrap around it. For example,
+```cpp
+class Lock {
+public:
+  explicit Lock(Mutex *pm)
+  : mutexPtr(pm)
+  { lock(mutexPtr); }                          // acquire resource
 
+  ~Lock() { unlock(mutexPtr); }                // release resource
+
+private:
+  Mutex *mutexPtr;
+};
+
+// to be used like this
+Mutex m;                    // define the mutex you need to use
+
+...
+
+{                           // create block to define critical section
+Lock ml(&m);               // lock the mutex
+
+...                         // perform critical section operations
+
+}                           // automatically unlock mutex at end
+                            // of block
+```
+
+But what should happen if a lock object is copied?
+```cpp
+Lock ml1(&m);                      // lock m
+
+Lock ml2(ml1);                     // copy ml1 to ml2—what should
+                                   // happen here?
+```
+"What should happen when copied" is a question every RAII class author should confront. 
+The usual answers are
+
+* Prohibit copying, e.g. it rarely makes sense to copy a synchronization primitive like mutex
+
+Refer to emcpp item 11. This is the behavior of std::unique\_ptr
+
+* Reference count the underlying resource, e.g. a std::shared\_ptr
+
+Often an RAII class can implement the reference counting behavior with a std::shared\_ptr data member.
+If we want to allow the mutex to be reference counted, we could make the data member a std::shared\_ptr<Mutex> but with a custom deleter (since when the count drops to 0, we don't want to destroy the mutex but rather unlock it).
+With TR1 it looks something like this:
+```cpp
+class Lock {
+public:
+  explicit Lock(Mutex *pm)       // init shared_ptr with the Mutex
+  : mutexPtr(pm, unlock)         // to point to and the unlock func
+  {                              // as the deleter
+
+    lock(mutexPtr.get());   // see Item 15 for info on "get"
+  }
+private:
+  std::tr1::shared_ptr<Mutex> mutexPtr;    // use shared_ptr
+};                                         // instead of raw pointer
+```
+In this case, note the absence of a custom dtor.
+
+* Copy the underlying resource
+
+Sometimes you can have as many copies of the managed resource as you like, in which case the copy operations perform a deep copy of the managed resource.
+Some implementations of std::string does this: string class contains pointer to heap memory, and both the pointer and the heap memory are copied when a string copy is made.
+
+* Transfer ownership of the managed resource
+
+Occasionally you may want to transfer ownership to the copied object when 'copying'.
+This is the behavior of std::auto\_ptr.
+
+**Takeaways**
+* Copying an RAII object entails copying the resource it manages, so the copying behavior of the resource determines the copying behavior of the RAII object
+* Common RAII class copying behaviors are disallowing copying and performing reference counting, but other behaviors (deep copy and transfer ownership) are possible
+
+### Provide access to raw resources in resource managing classes
 
