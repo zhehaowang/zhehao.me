@@ -171,3 +171,73 @@ This is the behavior of std::auto\_ptr.
 
 ### Provide access to raw resources in resource managing classes
 
+In the perfect world you only need to interact with resource-managing objects, but in reality many APIs refer to the managed resource directly.
+Say, a raw pointer is wanted but we have a shared\_ptr / unique\_ptr. Both of those would offer explicit conversion (via .get()) and implicit conversion (via operator\* and operator->) to access the raw pointer.
+
+User custom resource management classes often demonstrate similar approaches: explicit and implicit.
+For example in this Font resource management class that wraps around an underlying FontHandle.
+```cpp
+// given C API that works with FontHandle
+
+FontHandle getFont();               // from C API—params omitted
+                                    // for simplicity
+
+void releaseFont(FontHandle fh);    // from the same C API
+
+// we have the following RAII class, and to accommodate other APIs
+// working directly with FontHandle, we have the explicit and the
+// implicit conversions approach
+
+class Font {                           // RAII class
+public:
+  explicit Font(FontHandle fh)         // acquire resource;
+  : f(fh)                              // use pass-by-value, because the
+  {}                                   // C API does
+
+  ~Font() { releaseFont(f); }          // release resource
+
+  // explicit
+  FontHandle get() const { return f; } // explicit conversion function
+  // downside is explicit calls to get() function is required everywhere
+  // FontHandle is expected
+
+  // alternative, implicit approach, note the operator overload!
+  operator FontHandle() const { return f; } // implicit conversion function
+  // downside is increased chance of error
+private:
+  FontHandle f;                        // the raw font resource
+};
+
+...
+Font f1(getFont());
+
+// downside of the explicit approach:
+useFontHandle(f1.get());  // get has to be called explicitly
+
+// downside of the implicit approach:
+FontHandle f2 = f1;                 // oops! meant to copy a Font
+                                    // object, but instead implicitly
+                                    // converted f1 into its underlying
+                                    // FontHandle, then copied that
+// Now the program has a FontHandle being managed by the Font object f1,
+// but the FontHandle is also available for direct use as f2.
+// That's almost never good. For example, when f1 is destroyed, the font
+// will be released, and f2 will dangle.
+```
+The class's designer chooses whether an implicit or explicit approach is provided.
+The guideline is in item 18: make interfaces easy to use correctly and hard to use incorrectly.
+
+It may occur to you returning the resource being managed in resource management classes is contrary to encapsulation.
+This is true, but not as disastrous: RAII classes don't exist to encapsulate something, but rather to ensure a particular action, resource release, takes place.
+
+Well-designed classes hides what clients don't need to see, but makes available those things that clients honestly need to access.
+
+**Takeaways**
+* APIs often require access to raw resources, so each RAII class should offer a way to get at the resource it manages.
+* Access may be via explicit conversion or implicit conversion. In general, explicit conversion is safer, but implicit conversion is more convenient for clients.
+
+### Use the same form in corresponding uses of new and delete
+
+
+
+
