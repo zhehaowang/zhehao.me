@@ -238,6 +238,89 @@ Well-designed classes hides what clients don't need to see, but makes available 
 
 ### Use the same form in corresponding uses of new and delete
 
+Consider this code
+```cpp
+std::string *stringArray = new std::string[100];
+...
+delete stringArray;
+```
+This is undefined behavior, at least, 99 of the 100 strings are unlikely to be properly destroyed, because their dtor will probably never be called.
 
+When you employ a new operation, two things happen:
+First, memory is allocated (via a function named operator new—see Items 49 and 51).
+Second, one or more constructors are called for that memory.
 
+When you employ a delete expression, two things happen:
+First, one or more destructors are called for the memory.
+Second, the memory is deallocated (via a function named operator delete—see Item 51).
 
+The big question for delete is how many objects reside in the memory being deleted?
+Whose answer decides how many dtors should be called.
+
+Actually the question is simpler: does the pointer being deleted point to a single object or an array of objects?
+This is important because layouts are usually different, think of it like this (compilers aren't required to implement it like this, but some do):
+```
+Single Object:    | Object |
+Array of Objects: | n | Object | Object | ... |
+```
+
+When you call delete, the only way for it to know whether the layout looks like the first or the second is for you to tell it: whether you use delete[], or delete.
+Like this:
+```cpp
+std::string *stringPtr1 = new std::string;
+
+std::string *stringPtr2 = new std::string[100];
+...
+
+delete stringPtr1;                       // delete an object
+
+delete [] stringPtr2;                    // delete an array of objects
+```
+Using delete[] on stringPtr1, or using delete on stringPtr2 would cause undefined behaviors (e.g., too many or too few dtors called as the memory layout is not interpretted correctly.)
+
+This is particularly important to bear in mind when you write a class that deals with dynamic allocation and provides multiple versions of ctor: all of them must use the same new or new X[], as otherwise, dtor cannot be implemented.
+
+Also for those using typedefs, they should document which form of delete should be used.
+```cpp
+typedef std::string AddressLines[4];   // a person's address has 4 lines,
+                                       // each of which is a string
+
+// because AddressLines is an array underlying, resource allocated with
+std::string *pal = new AddressLines;   // note that "new AddressLines"
+                                       // returns a string*, just like
+                                       // "new string[4]" would
+// should use
+delete [] pal;                         // fine
+```
+To avoid such confusions, abstain from typedefs for array types, e.g. AddressLines could be a vector\<string\>
+
+**Takeaways**
+* If you use [] in a new expression, you must use [] in the corresponding delete expression. If you don't use [] in a new expression, you mustn't use [] in the corresponding delete expression.
+
+### Store new'ed objects in smart pointers in standalone statements
+
+_This item illustrates the same issue as that of emcpp item 21._
+
+Consider this code
+```cpp
+processWidget(std::shared_ptr<Widget>(new Widget), priority());
+// vs
+std::shared_ptr<Widget> pw(new Widget);  // store newed object
+                                         // in a smart pointer in a
+                                         // standalone statement
+
+processWidget(pw, priority());           // this call won't leak
+
+// the first version could leak due to compiler being given freedom to reorder
+// 1. new Widget
+// 2. std::shared\_ptr ctor
+// 3. priority()
+// as long as 2 comes after 1.
+//
+// now if compiler orders it as 1 3 2, and 3 throws, 2 won't get to manage the
+// allocated resource from 1, and 1 causes a leak.
+// so always prefer the second version.
+```
+
+**Takeaways**
+* Store newed objects in smart pointers in standalone statements. Failure to do this can lead to subtle resource leaks when exceptions are thrown.
