@@ -152,4 +152,107 @@ They can get bigger in the next release, or change as you switch to a different 
 
 ### Don't try to return a reference when you must return an object
 
+Once folks learn passing by reference, some become so relenting with it that they start passing references to things that don't exist.
+
+Consider this
+```cpp
+class Rational {
+public:
+  Rational(int numerator = 0,               // see Item 24 for why this
+           int denominator = 1);            // ctor isn't declared explicit
+
+  ...
+
+private:
+  int n, d;                                 // numerator and denominator
+
+friend
+   const Rational&                           // see Item 3 for why the
+     operator*(const Rational& lhs,         // return type is const
+               const Rational& rhs) {
+     Rational result(lhs.n * rhs.n, lhs.d * rhs.d);
+     return result;
+   }
+};
+```
+Returning a reference to a local stack-allocated object would bring undefined behavior to anyone calling operator\*.
+
+What about a heap allocated version? It won't be undefined behavior, but who's in charge of calling delete?
+
+Imagine it's heap allocated with new instead and this code
+```cpp
+Rational w, x, y, z;
+
+w = x * y * z;                     // same as operator*(operator*(x, y), z)
+```
+Here is a guaranteed leak as two objects will be heap allocated, but there is only reference to one of them.
+
+What about an even more exotic approach using static?
+```cpp
+const Rational& operator*(const Rational& lhs,    // warning! yet more
+                          const Rational& rhs)    // bad code!
+{
+  static Rational result;             // static object to which a
+                                      // reference will be returned
+
+  result = ...;                      // multiply lhs by rhs and put the
+                                      // product inside result
+  return result;
+}
+
+// client code
+bool operator==(const Rational& lhs,            // an operator==
+                const Rational& rhs);           // for Rationals
+
+Rational a, b, c, d;
+
+...
+if ((a * b) == (c * d))  {
+    do whatever's appropriate when the products are equal;
+} else    {
+   do whatever's appropriate when they're not;
+}
+
+// think of the equality test as
+if (operator==(operator*(a, b), operator*(c, d)))
+```
+Not to mention the potentially undesirable lifetime, thread-safety issue of static, the above code's check will always be true.
+The two operator\* calls would be returning reference to the same object, so they are always equal.
+
+The right way to write a function that must return a new object is to have that function return a new object. For Rational's operator\*, that means either the following code or something essentially equivalent:
+```cpp
+inline const Rational operator*(const Rational& lhs, const Rational& rhs) {
+  return Rational(lhs.n * rhs.n, lhs.d * rhs.d);
+}
+```
+
+It all boils down to this: when deciding between returning a reference and returning an object, your job is to make the choice that offers correct behavior. Let your compiler vendors wrestle with figuring out how to make that choice as inexpensive as possible.
+
+**Takeaways**
+* Never return a pointer or reference to a local stack object, a reference to a heap-allocated object, or a pointer or reference to a local static object if there is a chance that more than one such object will be needed. (Item 4 provides an example of a design where returning a reference to a local static is reasonable, at least in single-threaded environments.)
+
+### Declare data members private
+
+Why not public data members?
+* Syntactic consistency (item 18), clients will know always to retrieve data members with getter functions instead of scratching their head trying to remember.
+* Member functions grant you more precise control. With member functions you can control read / write access, but with public members you can't.
+* Most importantly, encapsulation. If you implement access to a data member with a function, you can later replace the data member with a computation, and no clients will be affected. Hiding data members behind functional interfaces can offer all kinds of implementation flexibility. E.g. it makes it easy to notify other objects when data members are read or written, to verify class invariants and function pre-and postconditions, to perform synchronization in threaded environments, etc.
+
+If you hide your data members from your clients (i.e., encapsulate them), you can ensure that class invariants are always maintained, because only member functions can affect them. Furthermore, you reserve the right to change your implementation decisions later.
+Public means unencapsulated, and practically speaking, unencapsulated means unchangeable, especially for classes that are widely used.
+
+The argument against protected data members is similar.
+Aren't protected data members more encapsulated than public ones? Practically speaking, the surprising answer is that they are not.
+Something's encapsulation is inversely proportional to the amount of code that might be broken if that something changes.
+
+Suppose we have a protected data member, and we eliminate it.
+How much code might be broken now? All the derived classes that use it, which is typically an unknowably large amount of code, not unlike the case with public data members.
+
+From an encapsulation point of view, there are really only two access levels: private (which offers encapsulation) and everything else (which doesn't).
+
+**Takeaways**
+* Declare data members private. It gives clients syntactically uniform access to data, affords fine-grained access control, allows invariants to be enforced, and offers class authors implementation flexibility
+* protected is no more encapsulated than public
+
+### Prefer non-member non-friend functions to member functions
 
