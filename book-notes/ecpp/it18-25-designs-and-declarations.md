@@ -256,3 +256,117 @@ From an encapsulation point of view, there are really only two access levels: pr
 
 ### Prefer non-member non-friend functions to member functions
 
+Often times you'll find yourself facing the choice of having a function being a member of a class, a function in this translation unit / namespace.
+Say, you have a an object o with member functions a, b, c, and there is an action abc() that calls o.a(), o.b(), o.c(). Should abc() be a part of the class, or not (say, being a part of the namespace that the class is in)?
+
+Object-oriented principles dictate that data and the functions that operate on them should be bundled together.
+Object-oriented principles dictate that data should be as encapsulated as possible.
+
+Start by inspecting encapsulation. Encapsulating something means it's hidden from view. The more something is encapsulated, the fewer see it, and the greater flexibility we have to change it.
+This is why we value encapsulation: to be able to change something in a way that only affects a limited number of clients.
+How encapsulated a data member in a class is can be evaluated by how many functions can access it. The less the number of functions accessing it, the more encapsulated it is.
+
+Thus when given the choice of a member / friend function vs a non-member non-friend option, the preferred choice in terms of encapsulation is always the non-member non-friend function.
+
+C++ doesn't require that all functions be a part of a class as Java, C\# does, so a natural approach in this case is to make the function (abc()) a part of the same namespace that the class is in.
+
+Namespace, unlike classes, can spread across multiple files, and often times it only makes sense for some clients to know this abc(), and for those who don't care their compilation shouldn't require the declaration of abc() at all.
+To address this, we could split these functions declarations into different headers.
+This is how the std namespace is organized. memory, list, algorithm, vector, etc.
+Clients only need to include part of the std library headers where the required symbol is declared, and in turn their compilation would only depend on those headers.
+
+Partioning into different headers like described above is not possible for class member functions, as they have to appear in one file.
+
+This approach of putting abc() in the namespace of the class also allows clients to easily extend the namespace with helper functions they need. This is another feature the member function approach cannot offer: classes are closed to extension by clients.
+
+**Takeaways**
+* Prefer non-member non-friend functions to member functions. Doing so increases encapsulation, packaging flexibility, and functional extensibilit
+
+### Declare non-member functions when type conversions should apply to all parameters
+
+Having classes support implicit conversions is generally a bad idea, but there are exceptions. For example, a numerical Rational class.
+Having int and float being able to implicit convert to Rational is not a bad idea.
+
+You may have this
+```cpp
+class Rational {
+public:
+  Rational(int numerator = 0,        // ctor is deliberately not explicit;
+           int denominator = 1);     // allows implicit int-to-Rational
+                                     // conversions
+
+  int numerator() const;             // accessors for numerator and
+  int denominator() const;           // denominator — see Item 22
+
+private:
+  ...
+};
+```
+
+You know you'd like to support arithmetic operations like addition, multiplication, etc., but how?
+Which one to choose among member functions, non-member functions, or non-member functions that are friends?
+
+Say you go with member functions
+```cpp
+class Rational {
+public:
+...
+
+const Rational operator*(const Rational& rhs) const;
+};
+```
+
+This is fine
+```cpp
+Rational oneEighth(1, 8);
+Rational oneHalf(1, 2);
+
+Rational result = oneHalf * oneEighth;            // fine
+
+result = result * oneEighth;                      // fine
+```
+
+But if you also want to support doing multiply with an int, this breaks
+```cpp
+result = oneHalf * 2;                             // fine
+result = 2 * oneHalf;                             // error!
+// or if you rewrite the two, it becomes more obvious
+result = oneHalf.operator*(2);                    // fine, implicit conversion from 2 to Rational
+                                                  // doable because Rational ctor is not explicit
+result = 2.operator*(oneHalf);                    // error!
+```
+
+oneHalf has an operator\*, so it's fine.
+int doesn't, so compiler will look for non-member functions that can be called like operator\*(2, oneHalf), i.e. functions that are global, or in namespaces. But in this example, that search also fails.
+
+It turns out that parameters are eligible for implicit conversion only if they are listed in the parameter list.
+In terms of member function, \*this is not eligible to become target of implicit conversion, causing the second statement to fail.
+
+So, to support mixed mode operators consistently, one approach is to make operator\* not a member. Like this
+```cpp
+const Rational operator*(const Rational& lhs,     // now a non-member
+                         const Rational& rhs)     // function
+{
+  return Rational(lhs.numerator() * rhs.numerator(),
+                  lhs.denominator() * rhs.denominator());
+}
+
+Rational oneFourth(1, 4);
+Rational result;
+
+result = oneFourth * 2;                           // fine
+result = 2 * oneFourth;                           // hooray, it works!
+```
+
+The next question is should operator\* be a friend of Rational?
+In this case no, because operator\* can be implemented entirely on Rational's public interface.
+Whenever you can avoid friend functions, you should.
+
+This item contains nothing but truth, but not the whole truth.
+When Rational is class template instead of a class, there are new things to consider.
+
+**Takeaways**
+* If you need type conversions on all parameters to a function (including the one pointed to by the this pointer), the function must be a non-member
+
+### Consider support for a non-throwing swap
+
