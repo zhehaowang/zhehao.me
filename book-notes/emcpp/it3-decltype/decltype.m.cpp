@@ -2,7 +2,10 @@
 #include <string>
 #include <vector>
 
-// test 1
+// demonstrates the behaviors of decltype(auto) and using it to deduct function
+// return type
+
+// test 1: type of (expr) is a reference
 decltype(auto) f1()
 {
   int x = 0;
@@ -16,7 +19,8 @@ decltype(auto) f2()
                    // this emits a compiler warning
 }
 
-// test 2
+// test 2: using perfect forwarding and decltype(auto) to achieve function
+// return type deduction
 template<typename Container, typename Index>    // C++14;
 auto authAndAccess(Container& c, Index i)       // not quite
 {                                               // correct

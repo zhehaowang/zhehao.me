@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 
+// demonstates rule 1 and rule 2 in template type deduction, and that a function
+// template parameter expecting an lvalue (reference) cannot work with a given
+// rvalue
+
 template <typename T>
 void func_lvalue_reference(T& param) {
     std::cout << param << "\n";

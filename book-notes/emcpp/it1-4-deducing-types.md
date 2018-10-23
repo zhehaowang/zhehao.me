@@ -266,7 +266,7 @@ authAndAccess(Container&& c, Index i)              // version
 ```
 
 decltype have few surprises, including the following
-```
+```cpp
 int x = 0;
 decltype(x)   // yields int
 decltype((x)) // yields int&, expr (x) is an lvalue expression, 
@@ -296,7 +296,7 @@ decltype(auto) f2()
 
 ### Know how to view deduced types
 
-IDE
+Some IDE tells type.
 
 Compiler diagnostics. Could rely on dummy code like this (trigger a compiler error to make it tell the types)
 ```cpp

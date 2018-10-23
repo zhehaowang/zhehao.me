@@ -3,6 +3,8 @@
 #include <vector>
 #include <boost/type_index.hpp>
 
+// demonstrates different ways to check deduced types at compiler / run time
+
 // test 1
 class Widget {
   public:
@@ -28,7 +30,7 @@ void f(const T& param)
                                                            // type
   // at runtime both are reported as PK6Widget, pointer to const
   // Widget (character-length-6): const Widget*
-  // which could be incorrect as it should const (const Widget*)&.
+  // which could be incorrect as it should be const (const Widget*)&.
 
   //TD<T> p1;
   //TD<decltype(param)> p1;
