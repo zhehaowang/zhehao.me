@@ -226,3 +226,83 @@ Like most suspicious constructs, casts should be isolated as much as possible, t
 
 ### Avoid returning handles to object internals
 
+Suppose you are working on a rectangle class represented by its upper left and lower right corners.
+To keep a Rectangle object small, you decided to keep the extents of a rectangle in a class pointed to by a member in the Rectangle object.
+```cpp
+class Point {                      // class for representing points
+public:
+  Point(int x, int y);
+  ...
+
+  void setX(int newVal);
+  void setY(int newVal);
+  ...
+};
+
+struct RectData {                    // Point data for a Rectangle
+  Point ulhc;                        // ulhc = " upper left-hand corner"
+  Point lrhc;                        // lrhc = " lower right-hand corner"
+};
+
+class Rectangle {
+  ...
+
+private:
+  std::shared_ptr<RectData> pData;   // see Item 13 for info on
+};                                   // tr1::shared_ptr
+```
+Now you want to add functions in Rectangle to expose its points:
+```cpp
+class Rectangle {
+public:
+  ...
+  Point& upperLeft() const { return pData->ulhc; }
+  Point& lowerRight() const { return pData->lrhc; }
+  ...
+};
+```
+This design is self-contradictory: const member functions (meant for read-only use) exposed internal private data that can be modified by client.
+In this case, ulhc and lrhc are effectively public.
+Since ulhc and lrhc are stored outside the Rectangle class, const member functions of Rectangle can return references to them. (limitation of bitwise const)
+
+Returning pointers, iterators demonstrates the same problem (breaking encapsulation): they are handles whose modification will affect internal members.
+
+Similarly for private member functions, you should never have a public member function return a pointer to a private member function since if you do the access level of that private member function is practically public.
+
+What about this?
+```cpp
+class Rectangle {
+public:
+  ...
+  const Point& upperLeft() const { return pData->ulhc; }
+  const Point& lowerRight() const { return pData->lrhc; }
+  ...
+};
+```
+Now clients cannot modify the returned and read-only is conveyed, but it can lead to dangling references.
+What if the referred object disappears? Like this
+```cpp
+class GUIObject { ... };
+
+const Rectangle                             // returns a rectangle by
+  boundingBox(const GUIObject& obj);        // value; see Item 3 for why
+                                            // return type is const
+
+GUIObject *pgo;                             // make pgo point to
+...                                         // some GUIObject
+
+const Point *pUpperLeft =                   // get a ptr to the upper
+  &(boundingBox(*pgo).upperLeft());         // left point of its
+                                            // bounding box
+```
+`boundingBox(*pgo)` returns a temporary object that will be destroyed at the end of the statement.
+In turn, pUpperLeft will be dangled at the end of the statement that created it.
+
+This is why returning a reference / iterator / pointer to an internal part of the object is dangerous: what if the reference outlives the object?
+
+This doesn't mean you should never return a handle, sometimes you have to, e.g. `operator[]` of `string` and `vector`.
+But such functions are exceptions, not the rule.
+
+**Takeaways**
+* Avoid returning handles (references, pointers, or iterators) to object internals. This increases encapsulation, helps const member functions act const, and minimizes the creation of dangling handles.
+
