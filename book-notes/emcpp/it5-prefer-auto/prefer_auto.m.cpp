@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// demonstrates small missteps in declaring a type by hand (pair of a map) could
+// lead to inefficiency in code, whereas auto avoids such issues
+
 // test 1
 class KeyClass {
   public:

@@ -5,15 +5,15 @@
 Upsides:
 * Avoids variable uninitalized issue: auto variables have their type deduced from the initializer, so they must be initialized
 * Avoids verbose variable declarations
-* Can hold a closure in lieu of std::function
-* Avoids potential implicit conversion you don't want: like ::size_type to int, and the pairs in unordered_map<K, V> is pair<const K, V> instead of pair<K, V> (unnecessary copycon calls!)
+* Can hold a closure in lieu of `std::function`
+* Avoids potential implicit conversion you don't want: like `::size_type` to `int`, and the pairs in `unordered_map<K, V>` who are actually `pair<const K, V>` instead of `pair<K, V>` (unnecessary copycon calls!)
 * Potentially can make refactoring easier
 
-**std::function** is a template in C++11 that generalizes the idea of a function pointer (who can only point to functions), a std::function can refer to any callable object.
-You specift the type (signature) of function you refer to when creating a std::function object.
-Since lambda expressions yield callable objects, closures can be stored in std::function objects.
+`std::function` is a template in C++11 that generalizes the idea of a function pointer (who can only point to functions), a `std::function` can refer to any callable object.
+You specify the type (signature) of function you refer to when creating a std::function object.
+Since lambda expressions yield callable objects, closures can be stored in `std::function` objects.
 
-std::function object (fixed size, if not big enough, heap allocate) typically uses more memory than the auto-declared object (takes as much space as the closure requires).
+`std::function` object (comes at a fixed size, and if not big enough, heap allocate additional memory) typically uses more memory than the auto-declared object (takes as much space as the closure requires).
 invoking a closure via a std::function object is almost certain to be slower than calling it via an auto-declared object. (implementation details that restrict inlining and yield indirect function calls)
 
 Downsides:
@@ -30,7 +30,8 @@ auto y = (x);
 
 ### Use the explicitly typed initializer idiom when auto deduces undesired types
 
-As a general rule, "invisible" proxy classes don't play well with auto. Objects of such classes are often not designed to live longer than a single statement, so creating variables of those types tends to violate fundamental library design assumptions.
+As a general rule, "invisible" proxy classes don't play well with auto.
+Objects of such classes are often not designed to live longer than a single statement, so creating variables of those types tends to violate fundamental library design assumptions.
 
 For example, consider this code
 ```cpp
