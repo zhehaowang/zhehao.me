@@ -306,3 +306,154 @@ But such functions are exceptions, not the rule.
 **Takeaways**
 * Avoid returning handles (references, pointers, or iterators) to object internals. This increases encapsulation, helps const member functions act const, and minimizes the creation of dangling handles.
 
+### Strive for exception-safe code
+
+Consider this code where we want to have this menu change background images in a threaded environment. 
+```cpp
+class PrettyMenu {
+public:
+  ...
+  void changeBackground(std::istream& imgSrc);           // change background
+  ...                                                    // image
+
+private:
+
+  Mutex mutex;                    // mutex for this object
+
+  Image *bgImage;                 // current background image
+  int imageChanges;               // # of times image has been changed
+};
+```
+We could implement `changeBackground` like this
+```cpp
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+  lock(&mutex);                      // acquire mutex (as in Item 14)
+
+  delete bgImage;                    // get rid of old background
+  ++imageChanges;                    // update image change count
+  bgImage = new Image(imgSrc);       // install new background
+
+  unlock(&mutex);                    // release mutex
+}
+```
+From the perspective of exception safety, this function is bad as it violates
+* Leak no resources: if this throws before unlock, mutex is locked forever
+* Don't allow data structures to become corrupted: if `new Image(imgSrc)` throws, bgImage is left pointing at a deleted object, and `imageChanges` is incremented
+
+Item 14 introduces a lockguard like RAII object to tackle mutex locking forever.
+```cpp
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+  Lock ml(&mutex);                 // from Item 14: acquire mutex and
+                                   // ensure its later release
+  delete bgImage;
+  ++imageChanges;
+  bgImage = new Image(imgSrc);
+}
+```
+To address data corruption, first we defines the terms.
+
+Exception-safe functions offer one of the three guarantees:
+* The basic guarantee promises if an exception is thrown, everything in the program is left in valid state. All objects are in internally consistent state, though the state of the entire program may not be predictable
+* The strong guarantee promises if an exception is thrown, the state of the program is unchanged. Calls to such functions are atomic (transactional) in the sense that if they succeed they succeed completely, and if they fail it's like they've never been called
+* The nothrow guarantee promises never to throw exceptions: the function always does what they promise to do. All operations on built-in types (int, pointer, etc) guarantee no throw. This is a critical building block of exception safe code.
+
+Empty throw specification does not mean a function is not going to throw.
+`int doSomething() throw();` indicates if an exception is thrown, it's a serious error and the "unexpected" function should be called. 
+
+Exception safe must offer one of the three guarantees, the choice is then to decide which guarantee is practical for the code you write.
+As a general rule, you want to offer the strongest guarantee that's practical.
+
+Anything dynamically allocating memory (all STL containers) typically throw a `bad_alloc` if it cannot find enough memory to satisfy the allocation.
+Offer no throw when you can, but most of the time, the choice is between strong exception guarantee and basic exception guarantee.
+
+Now if we change the `bgImage` pointer to a smart pointer (good idea from resource management perspective as well as exception safety perspective), and increment `imageChanges` after the `reset` (usually a good idea to change a status to reflect a state update only after the state update actually happens), we end up with
+```cpp
+class PrettyMenu {
+  ...
+  std::shared_ptr<Image> bgImage;
+  ...
+};
+
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+  Lock ml(&mutex);
+
+  bgImage.reset(new Image(imgSrc));  // replace bgImage's internal
+                                     // pointer with the result of the
+                                     // "new Image" expression
+  ++imageChanges;
+}
+```
+Now there is no need for manual delete, and delete only happens if the reset succeeds.
+
+Now this is almost a strong guarantee, except that imgSrc marker might moved in case of an exception.
+
+It's important to know a general strategy that typically leads to exception safe code: copy-and-swap.
+In principle, if you want to change something, make a copy of it, change the copy, and swap the original with the copy.
+If any of the operation throws, the original object is not affected.
+And after the operations are done, use a no-throw swap to swap the copy and the original.
+
+This is usually implemented with a pimpl. Like this
+```cpp
+struct PMImpl {                               // PMImpl = "PrettyMenu
+  std::tr1::shared_ptr<Image> bgImage;        // Impl."; see below for
+  int imageChanges;                           // why it's a struct
+};
+
+class PrettyMenu {
+  ...
+
+private:
+  Mutex mutex;
+  std::tr1::shared_ptr<PMImpl> pImpl;
+};
+
+void PrettyMenu::changeBackground(std::istream& imgSrc)
+{
+  using std::swap;                            // see Item 25
+
+  Lock ml(&mutex);                            // acquire the mutex
+
+  std::tr1::shared_ptr<PMImpl>                // copy obj. data
+    pNew(new PMImpl(*pImpl));
+
+  pNew->bgImage.reset(new Image(imgSrc));     // modify the copy
+  ++pNew->imageChanges;
+
+  swap(pImpl, pNew);                          // swap the new
+                                              // data into place
+
+}                                             // release the mutex
+```
+Copy-and-swap is excellent in making all or nothing changes to an object, though it doesn't guarantee strong exception safety.
+Say if you make some calls inside `changeBackground`, `changeBackground` will only be as exception safe as those calls.
+
+Say `changeBackground` makes two calls `f1` and `f2`, even if both offer strong exception safe guarantee, `changeBackground` may not. (`f1` modifies some states, `f2` then throws, states modified in `f1` will not be rolled back.)
+
+The problem is side effect: if a function is side-effect (say, update a DB) free or operate only on local data, then it's easy to guarantee strong exception safety.
+Otherwise it'll be hard, there is no general way to undo a DB operation, considering other clients might have updated it in between.
+
+Another issue with copy-and-swap is efficiency: you have to make a copy, a cost you may not want to pay.
+
+Strong exception safety is desirable, but you should offer it only when practical.
+When it's not, you'll have to offer the basic guarantee.
+Things are different if you offer no exception safety guarantee, in which case it's like guilty until proven innocent.
+All of its callers would be unable to offer exception safety guarantee, and the system in turn offers no exception safe guarantee.
+
+A function's exception-safety guarantee is a visible part of its interface, so you should choose it as deliberately as you choose all other aspects of a function's interface.
+
+Don't use interaction with legacy code as your excuse to not write exception safe code.
+Forty years ago, goto-laden code was considered perfectly good practice. Now we strive to write structured control flows. Twenty years ago, globally accessible data was considered perfectly good practice. Now we strive to encapsulate data. Ten years ago, writing functions without thinking about the impact of exceptions was considered perfectly good practice. Now we strive to write exception-safe code.
+
+Time goes on. We live. We learn.
+
+**Takeaways**
+* Exception-safe functions leak no resources and allow no data structures to become corrupted, even when exceptions are thrown. Such functions offer the basic, strong, or nothrow guarantees
+* The strong guarantee can often be implemented via copy-and-swap, but the strong guarantee is not practical for all functions
+* A function can usually offer a guarantee no stronger than the weakest guarantee of the functions it calls
+
+### Understand the ins and outs of inlining
+
+
