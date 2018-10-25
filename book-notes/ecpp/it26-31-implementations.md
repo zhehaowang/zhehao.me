@@ -456,4 +456,127 @@ Time goes on. We live. We learn.
 
 ### Understand the ins and outs of inlining
 
+Inline replaces a function call with the body of the function code, which saves function call overhead, but results in larger object code size (in turn, additional page, reduced instruction cache hits, etc).
+
+On the other hand, if an inline function is very short, the code generated for the function body may be smaller than that generated for a function call, and the effects of larger object size would be reversed.
+
+Bear in mind `inline` is a request to the compiler, not a command.
+Inline can be implicit or explicit:
+
+```cpp
+// implicit: defining a function inside a class definition
+class Person {
+public:
+  ...
+  int age() const { return theAge; }    // an implicit inline request: age is
+  ...                                   // defined in a class definition
+private:
+  int theAge;
+};
+
+// explicit: (e.g. the definition of std::max)
+template<typename T>                               // an explicit inline
+inline const T& std::max(const T& a, const T& b)   // request: std::max is
+{ return a < b ? b : a; }                          // preceded by "inline"
+```
+
+Inline functions must typically be in header files, because most compilers do inline during compilation, compilers need to know what the function looks like in order to inline.
+(Some compilers can inline at linking or even at runtime (.Net), but inlining in C++ is mostly compile time)
+
+Templates are typically in header files, because compiler needs to know what a template looks like in order to instantiate it.
+(Some compilers can do instantiation at linking)
+
+It's not true that function templates must be inline, they are independent.
+
+Most compilers refuse to inline a function deemed too complicated (e.g. loops or recursion)
+
+Virtual function calls cannot be inlined: if what to call is only known at runtime, then compiler cannot replace the function call with function body.
+
+What's inlined would end up depending on the compiler, who usually emits a warning when it refuses to inline something you told it to.
+
+If your program takes the address of a function, compiler will need to generate a function body anyway.
+Compilers generally don't perform inlining over calls made through function pointers.
+Thus if something ends up being inlined or not sometimes depends on how it's called. Like
+```cpp
+inline void f() {...}      // assume compilers are willing to inline calls to f
+
+void (*pf)() = f;          // pf points to f
+
+...
+
+f();                      // this call will be inlined, because it's a "normal" call
+
+pf();                     // this call probably won't be, because it's through
+                          // a function pointer
+```
+
+Even if you don't use function pointers, compilers may do.
+In fact, ctors and dtors are often worse candidates for inlining than a casual examination would indicate.
+For example,
+```cpp
+class Base {
+public:
+...
+
+private:
+   std::string bm1, bm2;               // base members 1 and 2
+};
+
+class Derived: public Base {
+public:
+  Derived() {}                         // Derived's ctor is empty — or is it?
+  ...
+
+private:
+  std::string dm1, dm2, dm3;           // derived members 1–3
+};
+```
+`Derived`'s ctor may contain no user code, but in order to make Base class construction happen, `string` members construction happen, and rollback if a part of it is done then exception happens, compiler has to generate code.
+E.g. like the following
+```cpp
+Derived::Derived()                       // conceptual implementation of
+{                                        // "empty" Derived ctor
+
+Base::Base();                           // initialize Base part
+
+try { dm1.std::string::string(); }      // try to construct dm1
+catch (...) {                           // if it throws,
+   Base::~Base();                        // destroy base class part and
+   throw;                                // propagate the exception
+}
+
+try { dm2.std::string::string(); }      // try to construct dm2
+catch(...) {                            // if it throws,
+   dm1.std::string::~string();           // destroy dm1,
+   Base::~Base();                        // destroy base class part, and
+   throw;                                // propagate the exception
+}
+
+try { dm3.std::string::string(); }      // construct dm3
+catch(...) {                            // if it throws,
+   dm2.std::string::~string();           // destroy dm2,
+   dm1.std::string::~string();           // destroy dm1,
+   Base::~Base();                        // destroy base class part, and
+   throw;                                // propagate the exception
+}
+}
+```
+Considering all the code added by the compiler, inlining a ctor or dtor might lead to excessive bloat in object code.
+
+Library compiler must also consider that inlining a function makes it get compiled with client's code.
+Should the library decide to change that function, clients would now need to recompile as opposed to relink, which is often times undesirable.
+And if the library is dynamically, this change may be absorbed in a way transprent to clients.
+
+Most debuggers have trouble with inline functions (how do you set a breakpoint to a function that's not there?).
+Some debuggers do support it, while others may simply disable inlining for debug builds.
+
+To summarize the strategy with regard to inlining, initially don't inline anything (or limit to those that have to be inline or trivial).
+Then figure out the right functions to inline. (Remember the 80-20 rule of 80% of time might be spent executing 20% of the code, thus finding out the right functions to inline is important)
+
+**Takeaways**
+* Limit most inlining to small, frequently called functions. This facilitates debugging and binary upgradability, minimizes potential code bloat, and maximizes the chances of greater program speed
+* Don't declare function templates inline just because they appear in header files
+
+### Minimize compilation dependencies between files
+
 
