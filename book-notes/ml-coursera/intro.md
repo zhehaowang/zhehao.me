@@ -100,4 +100,24 @@ Using contour plots to illustrate the 3-D surface.
 
 ### Gradient descent
 
+### Gradient descent
 
+Given a function `J(theta_0, theta_1, ..., theta_n)` find a `min{theta_0, ..., theta_n}{J(theta_0, ..., theta_n)}` by keep changing `theta_0`, `theta_1` in small steps such that we descend the fastest, until a local minimum is achieved
+
+Algorithm
+```
+theta_j := theta_j - alpha * {d/d{theta_j}} * J(theta_0, theta_1)
+```
+where `alpha` is the learning rate, `:=` stands for assignment, `{d/d{theta_j}}` is a partial derivative.
+
+`theta_0` and `theta_1` should be updated simultaneously.
+
+Gradient descent can converge to a local minimum, even with the learning rate `alpha` fixed.
+
+Cost function for linear regression is a convex function, which doesn't have any local maxima except the global one.
+
+This algorithm is termed "batch" gradient descent, where each step of gradient descent uses all the training examples.
+
+There exists other flavors of gradient descent.
+
+Normal equations method can solve linear regressions, but scales worse than gradient descent.
