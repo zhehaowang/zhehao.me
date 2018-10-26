@@ -579,4 +579,228 @@ Then figure out the right functions to inline. (Remember the 80-20 rule of 80% o
 
 ### Minimize compilation dependencies between files
 
+When you change the private parts / implementation of a class, sometimes you have to recompile the entire project.
+Why? Arguably C++ doesn't do a good job splitting interface from implementation. Like this
+```cpp
+// person.h
+
+class Person {
+public:
+  Person(const std::string& name, const Date& birthday,
+         const Address& addr);
+  std::string name() const;
+  std::string birthDate() const;
+  std::string address() const;
+  ...
+
+private:
+      std::string theName;        // implementation detail
+      Date theBirthDate;          // implementation detail
+      Address theAddress;         // implementation detail
+};
+```
+To be able to compile `person.h` it has to include
+```cpp
+#include <string>
+#include "date.h"
+#include "address.h"
+```
+Meaning if any of these change, the files including the changed have to recompile, meaning a compile dependency is set up.
+
+You might think why doesn't C++ do this instead
+```cpp
+namespace std {
+     class string;             // forward declaration (an incorrect
+}                              // one — see below)
+
+class Date;                    // forward declaration
+class Address;                 // forward declaration
+
+class Person {
+public:
+      Person(const std::string& name, const Date& birthday,
+                 const Address& addr);
+      std::string name() const;
+      std::string birthDate() const;
+      std::string address() const;
+    ...
+};
+```
+Two problems, first the forward declaration for `string` is not correct: `string` is not a class but rather a `typedef basic_string<char>`.
+The proper forward declaration is substantially more complicated and involves more templates.
+That said, you shouldn't forward declare anything from the standard library: they shouldn't be compilation bottlenecks, especially if your build environment takes advantage of precompiled headers.
+
+Second problem is compiler having to know the size of objects during compilation.
+```cpp
+int main() {
+  int x;                // define an int
+  Person p( params );   // define a Person
+  ...
+}
+```
+When compiler sees this definition of `p`, it has to know how much space to allocate for `p`.
+
+Java and Smalltalk doesn't have this issue, since compilers only allocate enough space for a pointer to the object, as if
+```cpp
+int main() {
+  int x;               // define an int
+  Person *p;           // define a pointer to a Person
+  ...
+}
+```
+You could play the hide the implementation behind a pointer yourself, pimpl idiom, like this
+```cpp
+#include <string>                      // standard library components
+                                       // shouldn't be forward-declared
+
+#include <memory>                      // for tr1::shared_ptr; see below
+
+class PersonImpl;                      // forward decl of Person impl. class
+class Date;                            // forward decls of classes used in
+
+class Address;                         // Person interface
+class Person {
+public:
+  Person(const std::string& name, const Date& birthday,
+         const Address& addr);
+  std::string name() const;
+  std::string birthDate() const;
+  std::string address() const;
+...
+private:                                   // ptr to implementation;
+  std::tr1::shared_ptr<PersonImpl> pImpl;  // see Item 13 for info on
+};                                         // std::tr1::shared_ptr
+```
+This is a true separation of interface and implementation, whose key is replacement of dependencies on definitions with dependencies on declarations.
+
+Thus, make headers self-sufficient whenever practical, when not, depend on the declarations in other files, not definitions.
+The rest flows from this strategy:
+* Avoid using objects when object references and pointers will do. Defining an object necessitates the presence of the type's definition.
+* Depend on class declarations instead of class definitions whenever you can. Note that you don't need a class definition to declare a function using that class, not even if the function passes or returns the class type by value. E.g.
+```cpp
+class Date;                        // class declaration
+
+Date today();                      // fine — no definition
+void clearAppointments(Date d);    // of Date is needed
+```
+We don't need the definition of `Date` in order to declare `today()` or `clearAppointments`, since whoever calls those functions must have `Date` defined.
+* Provide separate header files for declarations and definitions. (And if a declaration is changed in one place, it must be changed in both.) Library owners declare both header files, so that clients don't forward declare, but instead include the declaration header file. Like
+```cpp
+#include "datefwd.h"            // header file declaring (but not
+                                // defining) class Date
+Date today();                   // as before
+void clearAppointments(Date d);
+```
+Think of `datefwd.h` as `<iosfwd>` from C++, which contains forward declarations of `iostream` components whose definitions are in `<sstream>`, `<streambuf>`, `<fstream>`, and `<iostream>`.
+`<iosfwd>` also demonstrates the suggestions of this item applies to templates as well. Although templates are often defined in headers, for those build systems that support header definition in implementation, it still makes sense to provide declaration-only headers for templates.
+
+C++ has `export` keyword, though support in real world is scanty.
+
+Here is what an impl of the pimpl `Person` (handle class) could look like
+```cpp
+#include "Person.h"          // we're implementing the Person class,
+                             // so we must #include its class definition
+
+
+#include "PersonImpl.h"      // we must also #include PersonImpl's class
+                             // definition, otherwise we couldn't call
+                             // its member functions; note that
+                             // PersonImpl has exactly the same
+                             // member functions as Person — their
+                             // interfaces are identical
+
+Person::Person(const std::string& name, const Date& birthday,
+               const Address& addr)
+: pImpl(new PersonImpl(name, birthday, addr))
+{}
+
+std::string Person::name() const {
+  return pImpl->name();
+}
+```
+
+An alternative to `Person` class being a pimpl is to make it an interface, which could look like
+(note that C++ does not impose restrictions on interfaces like Java and .net does)
+```cpp
+class Person {
+public:
+  virtual ~Person();
+
+  virtual std::string name() const = 0;
+  virtual std::string birthDate() const = 0;
+  virtual std::string address() const = 0;
+  ...
+};
+```
+Clients of `Person` interface has to program in terms of pointers and references, due to being not possible to instantiate classes containing pure virtual methods.
+
+Clients of an interface class need a way to create new objects, typically via static functions called factory methods or virtual ctors.
+Like this
+```cpp
+class Person {
+public:
+...
+
+static std::tr1::shared_ptr<Person>    // return a tr1::shared_ptr to a new
+   create(const std::string& name,      // Person initialized with the
+          const Date& birthday,         // given params; see Item 18 for
+          const Address& addr);         // why a tr1::shared_ptr is returned
+...
+};
+
+// clients call this like
+std::string name;
+Date dateOfBirth;
+Address address;
+...
+
+// create an object supporting the Person interface
+std::tr1::shared_ptr<Person> pp(Person::create(name, dateOfBirth, address));
+```
+And we'll need a concrete class to handle the actual work:
+```cpp
+class RealPerson: public Person {
+public:
+  RealPerson(const std::string& name, const Date& birthday,
+             const Address& addr)
+  : theName(name), theBirthDate(birthday), theAddress(addr)
+  {}
+
+  virtual ~RealPerson() {}
+
+  std::string name() const;        // implementations of these
+  std::string birthDate() const;   // functions are not shown, but
+  std::string address() const;     // they are easy to imagine
+
+private:
+  std::string theName;
+  Date theBirthDate;
+  Address theAddress;
+};
+
+// and person's create function works like this
+std::tr1::shared_ptr<Person> Person::create(const std::string& name,
+                                            const Date& birthday,
+                                            const Address& addr) {
+  return std::tr1::shared_ptr<Person>(new RealPerson(name, birthday,addr));
+}
+```
+A more realistic implementation of `Person::create` would create different types of derived class objects, depending on function parameters, environment, etc.
+
+A second way to implement an Interface class involves multiple inheritance, a topic explored in Item 40.
+
+Now what does handle classes like this cost you?
+It costs you some speed at runtime, plus some additional memory per object.
+
+Additional level of indirection, size of additional pointer, have to use heap allocation for pimpl;
+Needing to go through vptr and look at vtable for Interface class method call.
+
+Finally neither pimpl of interface classes can't get much use out of inline functions: inline needs to see function bodies (in the headers), but the point of pimpl or interface (in this instance) is to hide such details away.
+
+Don't be scared off by the runtime cost of pimpl / interface functions, use them in development where propoer.
+
+**Takeaways**
+* The general idea behind minimizing compilation dependencies is to depend on declarations instead of definitions. Two approaches based on this idea are Handle classes and Interface classes
+* Library header files should exist in full and declaration-only forms. This applies regardless of whether templates are involved
+
 
