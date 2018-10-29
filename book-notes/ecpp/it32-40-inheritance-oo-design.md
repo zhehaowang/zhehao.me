@@ -416,3 +416,208 @@ Also avoid the mistake of declaring all functions virtual in a base class where 
 
 ### Consider alternatives to virtual functions
 
+Suppose that you are designing a game where different game characters have different ways of calculating health values.
+```cpp
+class GameCharacter {
+public:
+  virtual int healthValue() const;        // return character's health rating;
+  ...                                     // derived classes may redefine this
+};
+```
+The fact that `healthValue` is not pure virtual indicates there is a default way of calculating it.
+
+While this approach might seem obvious, there are possible alternatives.
+
+##### Non virtual interface idiom
+
+Let's begin with the interesting school of thought that virtual functions should almost always be private.
+Adherents to this school would make `healthValue` a non-virtual public method that calls into a virtual private method `doHealthValue`, like this
+```cpp
+class GameCharacter {
+public:
+  int healthValue() const               // derived classes do not redefine
+  {                                     // this — see Item 36
+
+    ...                                 // do "before" stuff — see below
+
+    int retVal = doHealthValue();       // do the real work
+
+    ...                                 // do "after" stuff — see below
+
+    return retVal;
+  }
+  ...
+
+private:
+  virtual int doHealthValue() const     // derived classes may redefine this
+  {
+    ...                                 // default algorithm for calculating
+  }                                     // character's health
+};
+```
+This is called NVI idiom (non-virtual interface), for having a non-virtual public function call a private virtual method.
+A particular manifestation of a more general pattern called Template Method (which has nothing to do with C++ templates).
+
+An advantage of this comes from the "do before stuff" and "do after stuff" comments: some code can be guaranteed to be executed before and after the virtual function does the work, e.g. context setup and teardown (lock a mutex, making a log entry, making sure invariants are satisfied).
+
+NVI means clients redefine something private, something they can't call!
+But there is no design contradiction there: redefining a virtual function specifies how something is to be done. Calling a virtual function specifies when it will be done. These concerns are independent.
+NVI opens up the how, but not the when.
+The NVI idiom does not mandate the function to be overridden is private: protected is also common should its functionality be exposed to derived classes.
+
+##### The strategy pattern via function pointers
+
+A more dramatic change suggests `healthValue` need not be part of a `GameCharacter` class. Like this.
+```cpp
+class GameCharacter;                               // forward declaration
+
+// function for the default health calculation algorithm
+int defaultHealthCalc(const GameCharacter& gc);
+
+class GameCharacter {
+public:
+  typedef int (*HealthCalcFunc)(const GameCharacter&);
+
+  explicit GameCharacter(HealthCalcFunc hcf = defaultHealthCalc)
+  : healthFunc(hcf)
+  {}
+
+  int healthValue() const
+  { return healthFunc(*this); }
+
+  ...
+
+private:
+  HealthCalcFunc healthFunc;
+};
+```
+This can be seen as a strategy design pattern: it offers the flexibility of having different `healthValue` calculation for different instances of characters (not just different types of characters), also `healthValue` can be changed at runtime.
+
+On the other hand, `healthValue` not being a member means it does not have access to internal parts of the object whose health it's calculating, and this becomes an issue when not all the info needed to calculated health is public.
+As a general rule the only way to work around this is to weaken encapsulation: either by declaring the method a friend, or expose public getters to parts that it would otherwise have kept hidden.
+
+##### Strategy pattern via `std::function`
+
+`std::function` can hold any callable entity (function pointer, function object, member function pointer, etc) whose signature is compatible with what's expected.
+It would look something like this
+```cpp
+class GameCharacter;                                 // as before
+int defaultHealthCalc(const GameCharacter& gc);      // as before
+
+class GameCharacter {
+public:
+   // HealthCalcFunc is any callable entity that can be called with
+   // anything compatible with a GameCharacter and that returns anything
+   // compatible with an int; see below for details
+   typedef std::function<int (const GameCharacter&)> HealthCalcFunc;
+
+   explicit GameCharacter(HealthCalcFunc hcf = defaultHealthCalc)
+   : healthFunc(hcf)
+   {}
+
+   int healthValue() const
+   { return healthFunc(*this);   }
+
+   ...
+
+private:
+  HealthCalcFunc healthFunc;
+};
+```
+In this case, by compatible we mean the `std::function` can contain any functions whose parameter can implicitly convert to `const GameCharacter&` and return value can implicitly convert to `int`.
+
+The difference with the function pointer approach is mininal, except that the client now has slightly more flexibility.
+```cpp
+short calcHealth(const GameCharacter&);          // health calculation
+                                                 // function; note
+                                                 // non-int return type
+
+struct HealthCalculator {                        // class for health
+  { ... }                                        // objects
+};
+
+class GameLevel {
+public:
+  float health(const GameCharacter&) const;      // health calculation
+  ...                                            // mem function; note
+};                                               // non-int return type
+
+
+class EvilBadGuy : public GameCharacter {         // as before
+  ...
+};
+
+class EyeCandyCharacter : public GameCharacter {  // another character
+  ...                                             // type; assume same
+};                                                // constructor as
+                                                  // EvilBadGuy
+
+EvilBadGuy ebg1(calcHealth);                      // character using a
+                                                  // health calculation
+                                                  // function
+
+EyeCandyCharacter ecc1(HealthCalculator());       // character using a
+                                                  // health calculation
+                                                  // function object
+
+GameLevel currentLevel;
+...
+EvilBadGuy ebg2(                                  // character using a
+  std::bind(&GameLevel::health,                   // health calculation
+          currentLevel,                           // member function;
+          std::placeholders::_1_1)                // see below for details
+);
+```
+`std::function` offers a lots of flexibility in the form of what can be given.
+For example, the `std::bind` allows you to specify a particular function (in this case a member function with 2 parameters, first one being an implicit `this` pointer) to call, and adapt that to the number of parameters expected by the `std::function` object.
+
+##### The classic strategy pattern
+
+With just strategy pattern, you could end up with something like this:
+```cpp
+class GameCharacter;                            // forward declaration
+
+class HealthCalcFunc {
+public:
+  ...
+  virtual int calc(const GameCharacter& gc) const
+  { ... }
+  ...
+};
+
+HealthCalcFunc defaultHealthCalc;
+
+class GameCharacter {
+public:
+  explicit GameCharacter(HealthCalcFunc *phcf = &defaultHealthCalc)
+  : pHealthCalc(phcf)
+  {}
+
+  int healthValue() const
+  { return pHealthCalc->calc(*this);}
+  ...
+private:
+  HealthCalcFunc *pHealthCalc;
+};
+```
+This becomes more like a standard strategy pattern implementation, where `HealthCalcFunc` class can be derived from to customize how health calculation is done.
+
+##### To recap
+
+We introduced the following alternatives to public virtual methods:
+* NVI idiom (private virtual being called into by public non-virtual)
+* Holding a function pointer data member (per object customization allowed but restricted to working with common parts)
+* Holding a `std::function` data member (similar with above but more flexibility in what can be given)
+* Holding a `HealthCalcFunc` pointer data member (full fledged `Strategy` pattern where `HealthCalcFunc` can be inherited to customize per object calc behavior)
+
+There are lots of alternatives in OO design, explore them often.
+
+**Takeaways**
+* Alternatives to virtual functions include the NVI idiom and various forms of the Strategy design pattern. The NVI idiom is itself an example of the Template Method design pattern
+* A disadvantage of moving functionality from a member function to a function outside the class is that the non-member function lacks access to the class's non-public members
+* `std::function` objects act like generalized function pointers. Such objects support all callable entities compatible with a given target signature
+
+### Never redefine an inherited non-virtual function
+
+
+
