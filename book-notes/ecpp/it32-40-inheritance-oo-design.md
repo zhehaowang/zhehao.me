@@ -265,5 +265,154 @@ When inheritance is combined with templates, an entirely different form of the "
 
 ### Differentiate between inheritance of interface and inheritance of implementation
 
+Public inheritance turns out to have two different notions, inheritance of interface (like a declaration) and inheritance of impl (like a definition).
+Sometimes you want the derived to inherit only the declaration, sometimes you want both but derived can override the impl, and sometimes you want both but derived cannot override.
 
+Consider
+```cpp
+class Shape {
+public:
+  virtual void draw() const = 0;
+
+  virtual void error(const std::string& msg);
+
+  int objectID() const;
+
+  ...
+};
+class Rectangle: public Shape { ... };
+class Ellipse: public Shape { ... };
+```
+Member function interfaces are always inherited.
+`Shape` is an instance and cannot be instantiated.
+Taking a look at each function, `draw` is pure virtual and has to be redeclared by any concrete class that inherits them, and they typically have no definition in the abstract class.
+The purpose of a pure virtual is to have derived classes inherit an interface only.
+From base to derived: you have to provide a `draw` impl, but I've no idea of your impl details.
+
+Incidentally, it is possible to provide a definition for pure virtual functions, but the only way to call them would be with the class qualifiers. Like
+```cpp
+Shape *ps1 = new Rectangle;         // fine
+ps1->Shape::draw();
+```
+
+`error` is a simple virtual function, whose purpose is to have derived classes inherit from a function interface as well as an impl. 
+From base to derived: you've got to support an `error` call, but if you don't write your own, you can fall back on the default one in `Shape`.
+
+This is potentially dangerous in that if a default impl is provided, and a client needing to override the default impl forgot to do so.
+
+Say we have an `Airplane` base class which used to have a simple virtual `fly` function, since all children derived from it flew the same way.
+Now we have another model deriving from `Airplane`, and it's intended to overwrite `fly`, but might forget to do so.
+We want to maintain the behavior of having a default impl, but also want to make sure the clients are aware they may have to override `fly`.
+
+We could make `fly` pure virtual like this, and provide a `defaultFly`:
+```cpp
+class Airplane {
+public:
+  virtual void fly(const Airport& destination) = 0;
+
+  ...
+
+protected:
+  void defaultFly(const Airport& destination);
+};
+
+void Airplane::defaultFly(const Airport& destination) {
+  default code for flying an airplane to the given destination
+}
+```
+The derived classes that can use the default behavior do this:
+```cpp
+class ModelA: public Airplane {
+public:
+  virtual void fly(const Airport& destination)
+  { defaultFly(destination); }
+  ...
+};
+
+class ModelB: public Airplane {
+public:
+  virtual void fly(const Airport& destination)
+  { defaultFly(destination); }
+  ...
+};
+```
+And for derived classes that cannot use the default behavior, they would be forced to consider if they can use `defaultFly` when implementing `fly` override.
+```cpp
+class ModelC: public Airplane {
+public:
+  virtual void fly(const Airport& destination);
+  ...
+};
+
+void ModelC::fly(const Airport& destination) {
+  code for flying a ModelC airplane to the given destination
+}
+```
+This is not fool proof, but safer than just a simple virtual function.
+`defaultFly` is protected as it's implementation detail of `Airplane` and its derived, and should be of no concern to the clients of `Airplane`.
+`defaultFly` also should not be virtual, because no derived classes should override one such default behavior. (If it's virtual, you open yourself up to this question again, what if it's meant to be overridden by some clients but they forget to do it?)
+
+To achieve this, you may instead do the trick of providing an impl to a pure virtual function.
+```cpp
+class Airplane {
+public:
+  virtual void fly(const Airport& destination) = 0;
+  ...
+};
+
+
+void Airplane::fly(const Airport& destination)     // an implementation of
+{                                                  // a pure virtual function
+  default code for flying an airplane to
+  the given destination
+}
+
+class ModelA: public Airplane {
+public:
+  virtual void fly(const Airport& destination)
+  { Airplane::fly(destination); }
+  ...
+};
+
+class ModelB: public Airplane {
+public:
+  virtual void fly(const Airport& destination)
+  { Airplane::fly(destination); }
+  ...
+};
+
+class ModelC: public Airplane {
+public:
+  virtual void fly(const Airport& destination);
+  ...
+};
+
+void ModelC::fly(const Airport& destination) {
+  code for flying a ModelC airplane to the given destination
+}
+```
+This is almost exactly the same as above, except that `Airplane::fly` takes the place of `Airplane::defaultFly`.
+In essence, this splits `Airplane::fly` into two parts, the declaration which derived has to use, and the impl which derived has the option to use only if they explicitly request it.
+
+In merging `fly` and `defaultFly` though, you lose the ability to specify the protection level of `defaultFly`.
+
+Now to `Shape`'s non virtual function `objectID`, which is an invariant over specialization, because it identifies behavior that is not supposed to change no matter how specialized a derived class becomes.
+As such, a non virtual function specifies both the interface and impl should be inherited.
+
+From base to derived: you must support an `objectId` that is always computed the same way.
+Because this is meant to be an invariant, derived should not redefine this function, which is covered in Item 36.
+
+The pure virtual, simple virtual, and non virtual allow you to specify whether just an interface or impl as well should be inherited.
+
+Avoid mistakes like declaring no functions virtual, as almost any classes intended to be used as base will have virtual methods (dtor at least). (If you are worried about the performance, think about the 80-20 rule. Spend your effort optimizing where it matters.)
+
+Also avoid the mistake of declaring all functions virtual in a base class where some invariant functions should be preserved in the inheritance chain.
+
+**Takeaways**
+* Inheritance of interface is different from inheritance of implementation. Under public inheritance, derived classes always inherit base class interfaces
+* Pure virtual functions specify inheritance of interface only
+* Simple (impure) virtual functions specify inheritance of interface plus inheritance of a default implementation
+* Non-virtual functions specify inheritance of interface plus inheritance of a mandatory implementation
+
+### Consider alternatives to virtual functions
 
