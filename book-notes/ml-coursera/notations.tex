@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\setlength\parindent{0pt}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\mmax}{max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\begin{document}
+
+\title{Defitions and notations}
+\author{Zhehao Wang}
+
+\maketitle{}
+
+\subsection{Limit}
+
+Let $f(x)$ be a function defined on an interval that contains $x = a$, except possibly at $x = a$, then we say that
+$$
+\lim\limits_{x \to a}{f(x) = L}
+$$
+if for every $\epsilon > 0$ there is some number $\delta > 0$ such that
+$$
+|f(x) - L| < \epsilon ~ \text{whenever} ~ 0 < |x - a| < \delta
+$$
+
+\subsection{Gradient}
+Given $f(x_1, x_n)$ on $\mathbf{R}^n$
+$$
+\bigtriangledown f(a_1, ..., a_n) = (\frac{\partial}{\partial x_1}(a_1, ..., a_n), ..., \frac{\partial}{\partial x_n}(a_1, ..., a_n))
+$$
+
+\subsection{Directional derivative}
+
+\textbf{Homework notation}
+$$
+f'(x; u) = \lim\limits_{h \to 0}{\frac{f(x + hu) - f(x)}{h}}
+$$
+
+\textbf{Wikipedias notation}
+note that it's $f$ on a vector $\vec{x}$ having its derivative calculated on direction $\vec{v}$, essentially gradient on direction $\vec{v}$.
+$$
+\bigtriangledown_v f(\vec{x}) = \lim\limits_{h \to 0}{\frac{f(\vec{x} + h\vec{v}) - f(\vec{x})}{h}}
+$$
+
+\subsection{Vector norm}
+A norm is a function that assigns a stricly positive length or size to each vector in a vector space (except the zero vector which is assigned a length of 0).
+
+\textbf{Absolute value norm} is a norm on the one-dimensional vector spaces formed by real or complex numbers.
+$$
+\norm{x} = |x|
+$$
+
+\textbf{Euclidean norm} on a Euclidean space $\mathbf{R}^n$ is such
+$$
+\norm{\vec{x}}_2 = \sqrt{x_1^2 + ... + x_n^2}
+$$
+
+\textbf{Manhattan or taxicab norm}
+$$
+\norm{\vec{x}}_1 = \sum_{i = 1}^{n}{|x_i|}
+$$
+
+\textbf{$p$-norm}
+$$
+\norm{\vec{x}}_p = (\sum_{i = 1}^{n}{|x_i|^p})^{\frac{1}{p}}
+$$
+Note that when $p = 1$, we get Manhattan norm, and when $p = 2$, we get Euclidean norm.
+
+When $p = \infty$
+$$
+\norm{\vec{x}}_{\infty} = {\mmax_{i}{|x_i|}}
+$$
+
+\subsection{argmax}
+
+Points of the domain of some function at which the function values are maximized.
+
+Given an arbitrary set $X$, a totally ordered set $Y$ and a function $f: X \to Y$, the $\argmax$ over some subset $S$ of $X$ is defined by
+$$
+\argmax_{x \in S \subseteq X}{f(x)} = \{x ~ | ~ x \in S \land \forall y \in S : f(y) \leq f(x)\}
+$$
+
+
+\end{document}

@@ -100,8 +100,6 @@ Using contour plots to illustrate the 3-D surface.
 
 ### Gradient descent
 
-### Gradient descent
-
 Given a function `J(theta_0, theta_1, ..., theta_n)` find a `min{theta_0, ..., theta_n}{J(theta_0, ..., theta_n)}` by keep changing `theta_0`, `theta_1` in small steps such that we descend the fastest, until a local minimum is achieved
 
 Algorithm
