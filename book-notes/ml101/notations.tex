@@ -1,9 +1,14 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \setlength\parindent{0pt}
+
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand*\mean[1]{\bar{#1}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}    
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\mmax}{max}
@@ -84,5 +89,44 @@ $$
 \argmax_{x \in S \subseteq X}{f(x)} = \{x ~ | ~ x \in S \land \forall y \in S : f(y) \leq f(x)\}
 $$
 
+\subsection{Random variable}
+
+A random variable $X : \Omega \to \mathit{E}$ is a measurable function from a set of possible outcomes $\Omega$ to a measurable space $\mathit{E}$.
+Often times $\mathit{E} = \mathbb{R}$
+
+The probability that $X$ takes on a value in a measurable set $S \subseteq \mathit{E}$ is written as
+$$
+Pr(X \in S) = P({\omega \in \Omega | X(\omega) \in S})
+$$
+
+\textbf{Intuition}: mapping outcomes of a random process to numbers, like this definition of $X$
+$$
+X =
+\begin{cases}
+0, & \text{if heads} \\
+1, & \text{if tails}
+\end{cases}
+$$
+Instead of a traditional algebraic variable that can be solved for one value, a random variable can have different values (each with a probability) under different conditions.
+
+\subsection{Law of large numbers}
+
+$X_i, X_2, ...$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $E(X_1) = E(X_2) = ... = \mu$, and
+$$
+\mean{X}_n = \frac{1}{n}(X_1 + ... + X_n) ~ \footnote{What does the sum of random variables mean? Seems that each $X_i$ here means 'sampled' values following the distribution defined by the random variable, like, the outcome of an experiment}
+$$
+
+
+\textbf{The weak law} states that for any positive number $\epsilon$
+$$
+\lim\limits_{n \to \infty}{Pr(|\mean{X}_n - \mu| > \epsilon)} = 0
+$$
+
+\textbf{The strong law} states that
+$$
+Pr(\lim\limits_{n \to \infty}{\mean{X}_n = \mu}) = 1
+$$
+
+\textbf{Intuition}: law of large numbers is a theorem that describes the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.
 
 \end{document}
