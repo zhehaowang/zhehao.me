@@ -757,3 +757,188 @@ This makes it clear that `draw` being an invariant (_how_ can be substituted, bu
 
 ### Model "has-a" or "is-implemented-in-terms-of" through composition
 
+Composition is the relationship between types that arises when objects of one type contain objects of another type.
+
+Example:
+```cpp
+class Address { ... };             // where someone lives
+
+class PhoneNumber { ... };
+
+class Person {
+public:
+  ...
+
+private:
+  std::string name;               // composed object
+  Address address;                // ditto
+  PhoneNumber voiceNumber;        // ditto
+  PhoneNumber faxNumber;          // ditto
+};
+```
+`Person` objects are composed of `string`, `Address`, and `PhoneNumber` objects.
+
+Composition means either “has-a” or “is-implemented-in-terms-of.” 
+
+Most people have little difficulty differentiating "has-a" and "is-a", but how about differentiating "implemented-in-terms-of" and "is-a"?
+
+Consider you want to implement a `set` (no duplicated elements) based on `std::list`, since you don't want to pay the space cost of a binary search tree of `std::set` (three pointers)
+
+How about having this `set` derive from `std::list`?
+```cpp
+template<typename T>                       // the wrong way to use list for Set
+class Set: public std::list<T> { ... };
+```
+This may seem fine but something is quite wrong: a `set` is not a `list` as a `list` allow duplicated elements but a `set` does not.
+
+The right way here is to suggest a `set` is implemented in terms of a `list`.
+```cpp
+template<class T>                   // the right way to use list for Set
+class Set {
+public:
+  bool member(const T& item) const;
+
+  void insert(const T& item);
+  void remove(const T& item);
+
+  std::size_t size() const;
+
+private:
+  std::list<T> rep;                 // representation for Set data
+};
+
+// and the implementation could look like
+template<typename T>
+bool Set<T>::member(const T& item) const {
+  return std::find(rep.begin(), rep.end(), item) != rep.end();
+}
+template<typename T>
+void Set<T>::insert(const T& item) {
+  if (!member(item)) rep.push_back(item);
+}
+template<typename T>
+void Set<T>::remove(const T& item) {
+  typename std::list<T>::iterator it =               // see Item 42 for info on
+    std::find(rep.begin(), rep.end(), item);         // "typename" here
+  if (it != rep.end()) rep.erase(it);
+}
+template<typename T>
+std::size_t Set<T>::size() const {
+  return rep.size();
+}
+```
+One can argue this `set`'s interface would be easier to use correctly and harder to use incorrectly if it conforms with STL container's interface, but that would require a lot more stuff to the code and better not added for the sake of clarity here.
+
+**Takeaways**
+* Composition has meanings completely different from that of public inheritance
+* In the application domain, composition means has-a. In the implementation domain, it means is-implemented-in-terms-of
+
+### Use private inheritance judiciously
+
+Let's look at a private inheritance example
+```cpp
+class Person { ... };
+class Student: private Person { ... };     // inheritance is now private
+
+void eat(const Person& p);                 // anyone can eat
+
+void study(const Student& s);              // only students study
+
+Person p;                                  // p is a Person
+Student s;                                 // s is a Student
+
+eat(p);                                    // fine, p is a Person
+
+eat(s);                                    // error! a Student isn't a Person
+```
+
+How does private inheritance behave?
+* Compilers will generally not convert a derived class object into a base class object.
+* Members inherited from a private base class become private members of the derived class, even if they were protected or public in the base class.
+
+What does private inheritance mean?
+It means is-implemented-in-terms-of. You do so because you want the derived to take advantage of some of the features available in the base, not because of there is any conceptual relationship between objects of the base and the derived.
+As such, private inheritance is an implementation technique, and means nothing during software design.
+
+Using the terms from Item 34, private inheritance means that implementation only should be inherited; interface should be ignored.
+
+Item 38 suggests composition also can mean "is-implemented-in-terms-of", what to choose between the two?
+Use composition whenever you can, and use private inheritance only when you must.
+
+When must you?
+Primarily when protected members and/or virtual functions enter the picture.
+
+Let's say we have a `Widget` class and we now want to keep track of how many times each member function is called.
+Suppose we already have this `Timer` class
+```cpp
+class Timer {
+public:
+  explicit Timer(int tickFrequency);
+  virtual void onTick() const;          // automatically called for each tick
+  ...
+};
+```
+`Timer` can be configured to tick with whatever frequency we need, and on each tick, it calls a virtual function.
+We can redefine the virtual function so that it examines the current state of the `Widget` world.
+
+In order for `Widget` to redefine a virtual function in `Timer`, `Widget` must inherit from `Timer`, but public inheritance is not appropriate in this case. (not is-a, encourages misuses)
+
+We then have
+```cpp
+class Widget: private Timer {
+private:
+  virtual void onTick() const;           // look at Widget usage data, etc.
+  ...
+};
+```
+Making `onTick` to private to not expose to client (mis)usage of this implementation detail.
+
+This is a nice design, but achievable without private inheritance: make a Widget that publicly inherit from `Timer`, redefine `Timer` there, and put an object of that type inside `Widget`.
+Like this
+```cpp
+class Widget {
+private:
+  class WidgetTimer: public Timer {
+  public:
+    virtual void onTick() const;
+    ...
+  };   // nested within Widget
+  WidgetTimer timer;
+  ...
+};
+```
+This may seem more complicated, but two reasons you might want to go with this:
+* You might want to allow `Widget` to be derived from, but you might want to prevent derived classes from redefining `onTick` (like `final` in Java. If `Widget` inherits from `Timer`, that's not possible, not even if the inheritance is private
+* You might want to minimize `Widget`'s compilation dependencies. If `Widget` inherits from `Timer`, `Timer`'s definition must be available when `Widget` is compiled, so `Widget` header has to be included. If `WidgetTimer` is moved out of `Widget` and `Widget` contains only a pointer to `WidgetTimer`, `Widget` can get by with a simple declaration for the `WidgetTimer` class
+
+There is other very edgy case where private inheritance might save space: when you are dealing with a class that has no data in it.
+"Freestanding" empty class in C++ has non-0 size. If you do this
+```cpp
+class Empty {};                      // has no data, so objects should
+                                     // use no memory
+class HoldsAnInt {                   // should need only space for an int
+private:
+  int x;
+  Empty e;                           // should require no memory
+};
+```
+You'll find that `sizeof(HoldsOfInt) > sizeof(int)`.
+A `char` is usually silently inserted into `Empty`, and compilers add padding to `HoldsAnInt`.
+
+Now if we have a `Empty` as base, and `HoldsAnInt` derive from it, you are almost sure to find that `sizeof(HoldsAnInt) == sizeof(int)`.
+An object of `HoldsAnInt` is not freestanding, and the base part of it needn't have a non-0 size.
+This is known as empty base optimization (EBO). EBO is generally only viable under single inheritance.
+
+In practice, empty classes aren't truly empty.
+They never have non-static data members, they often contain `typedef`s, `enum`s, static data members, or non-virtual functions.
+The STL has many such. `unary_function`, `binary_function` are too.
+
+But let's go back to the basics, both private inheritance and composition mean is-implemented-in-terms-of, but composition is easier to understand, so use it whenever you can.
+
+**Takeaways**
+* Private inheritance means is-implemented-in-terms of. It's usually inferior to composition, but it makes sense when a derived class needs access to protected base class members or needs to redefine inherited virtual functions
+* Unlike composition, private inheritance can enable the empty base optimization. This can be important for library developers who strive to minimize object sizes
+
+### Use multiple inheritance judiciously
+
+
