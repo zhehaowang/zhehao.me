@@ -941,4 +941,114 @@ But let's go back to the basics, both private inheritance and composition mean i
 
 ### Use multiple inheritance judiciously
 
+When multiple inheriting, it becomes possible to inherit the same name (e.g. function, typedef, etc) from more than one base class.
+This could lead to ambiguity.
+```cpp
+class BorrowableItem {             // something a library lets you borrow
+public:
+  void checkOut();                 // check the item out from the library
 
+  ...
+};
+
+class ElectronicGadget {
+private:
+  bool checkOut() const;           // perform self-test, return whether
+
+  ...                              // test succeeds
+};
+
+class MP3Player:                   // note MI here
+  public BorrowableItem,           // (some libraries loan MP3 players)
+  public ElectronicGadget
+{ ... };                           // class definition is unimportant
+MP3Player mp;
+
+mp.checkOut();                     // ambiguous! which checkOut?
+```
+Note that in this case, even if only `BorrowableItem`'s `checkOut` is accessible, this call is still ambiguous in that C++ first identifies the best match for the call, and then check its accessibility.
+In this case both are equally good matches, so it's ambiguous.
+To resolve ambiguity, you could do
+```cpp
+mp.BorrowableItem::checkOut();              // ah, that checkOut...
+```
+
+Multiple inheritance could lead to diamond of doom. Like this
+```cpp
+class File { ... };
+class InputFile: public File { ... };
+class OutputFile: public File { ... };
+class IOFile: public InputFile,
+              public OutputFile
+{ ... };
+```
+Now suppose `File` has a data member `fileName`, how many copies of `fileName` should `IOFile` have?
+
+C++ allows both.
+By default it provides the replication.
+If that's not what you want, you mut make `File` a virtual base class.
+To do that, you have all classes that immediately inherit from it use **virtual inheritance**.
+```cpp
+class File { ... };
+class InputFile: virtual public File { ... };
+class OutputFile: virtual public File { ... };
+class IOFile: public InputFile,
+              public OutputFile
+{ ... };
+```
+The std library contains multiple inheritance just like this one, except classes are class templates, and names are `basic_ios`, `basic_istream`, `basic_ostream` and `basic_iostream`.
+
+From the viewpoint of correct behavior, public inheritance should always be virtual.
+But correctness is not the only the perspective, due to internal implementation, virtual inheritance costs.
+It costs in other ways too: the rules governing the initialization of virtual base classes are more complicated and less intuitive than are those for non-virtual bases: the responsibility for initializing a virtual base is borne by the most derived class in the hierarchy.
+
+Given the above, the advice on virtual inheritance is simple:
+* don't use it unless you need to
+* if you must use them, avoid putting data into virtual base classes (in this sense, it's similar with Java / .Net interfaces which are not allowed to contain any data)
+
+Now to demonstrate a case where multiple inheritance can be useful.
+```cpp
+class IPerson {                            // this class specifies the
+public:                                    // interface to be implemented
+  virtual ~IPerson();
+
+  virtual std::string name() const = 0;
+  virtual std::string birthDate() const = 0;
+};
+
+class DatabaseID { ... };                  // used below; details are
+                                           // unimportant
+
+class PersonInfo {                         // this class has functions
+public:                                    // useful in implementing
+  explicit PersonInfo(DatabaseID pid);     // the IPerson interface
+  virtual ~PersonInfo();
+
+  virtual const char * theName() const;
+  virtual const char * theBirthDate() const;
+
+  virtual const char * valueDelimOpen() const;
+  virtual const char * valueDelimClose() const;
+  ...
+};
+
+class CPerson: public IPerson, private PersonInfo {     // note use of MI
+public:
+  explicit CPerson(    DatabaseID pid): PersonInfo(pid) {}
+  virtual std::string name() const                      // implementations
+  { return PersonInfo::theName(); }                     // of the required
+                                                        // IPerson member
+  virtual std::string birthDate() const                 // functions
+  { return PersonInfo::theBirthDate(); }
+private:                                                // redefinitions of
+  const char * valueDelimOpen() const { return ""; }    // inherited virtual
+  const char * valueDelimClose() const { return ""; }   // delimiter
+};                                                      // functions
+```
+The idea is that we want to implement a concrete class that public inherits from `IPerson` interface, and we found another class `PerrsonInfo` that has useful functions to help with implementing this concrete class, but those functions are declared virtual.
+To override them we privately inherit from `PersonInfo`.
+
+**Takeaways**
+* Multiple inheritance is more complex than single inheritance. It can lead to new ambiguity issues and to the need for virtual inheritance
+* Virtual inheritance imposes costs in size, speed, and complexity of initialization and assignment. It's most practical when virtual base classes have no data
+* Multiple inheritance does have legitimate uses. One scenario involves combining public inheritance from an Interface class with private inheritance from a class that helps with implementation
