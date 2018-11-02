@@ -114,3 +114,24 @@ With this, we define an **empirical risk minimizer defined in hypothesis**.
 **Terms to recap**
 * Loss function, Risk, Bayesian decision function, Empirical Risk, Empirical Risk Minimizer, Empirical Risk Minimization over Hypothesis space
 * Strong law of large numbers
+
+### Stochastic gradient descent
+
+Gradient descent, fixed step size (factor to time gradient with) (small enough it will converge; if not, may diverge)
+
+Contour plot
+
+Backtracking line search
+
+Convergence theorem for fixed step size, Lipschitz continuous (Given a convex function, intuitively if 2nd derivative is bound by L, then gradient descent with `fixed step size <= 1/L` converges.
+More intuition, the slower the gradient changes, the larger the fixed step size you can take and not risk divergence.
+This gives the lower bound of the step size you should take, don't bother going slower than `1/L`)
+
+When to stop? epsilon bound; or in a learning context, until performance on validation test does not improve
+
+Noisy gradient descent: by default we'll need to run through all data points (pass them to loss function) to take a step (batch gradient descent). we can use an unbiased estimator (a subsample). Minibatch gradient works. Intuition: minor offs from gradient direction is Ok, the iterative steps will correct the offs.
+
+Stochastic gradient descent is when minibatch size is 1 (use single randomly chosen point to determine step direction; faster to compute, worse estimate of gradient)
+
+SGD step size, robbins-monro conditions
+

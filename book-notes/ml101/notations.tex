@@ -16,10 +16,12 @@
 
 \begin{document}
 
-\title{Defitions and notations}
+\title{Definitions and notations}
 \author{Zhehao Wang}
 
 \maketitle{}
+
+\section{Calculus and linear algebra}
 
 \subsection{Limit}
 
@@ -33,10 +35,12 @@ $$
 $$
 
 \subsection{Gradient}
-Given $f(x_1, x_n)$ on $\mathbf{R}^n$
+Given $f(\vec{x})$ where $\vec{x} = (x_1, ..., x_n)$ on $\mathbb{R}^n$
 $$
-\bigtriangledown f(a_1, ..., a_n) = (\frac{\partial}{\partial x_1}(a_1, ..., a_n), ..., \frac{\partial}{\partial x_n}(a_1, ..., a_n))
+\bigtriangledown f(a_1, ..., a_n) = (\frac{\partial f}{\partial x_1}(a_1, ..., a_n), ..., \frac{\partial f}{\partial x_n}(a_1, ..., a_n))
 $$
+
+\textbf{Intuition}: gradient is a vector (the rate of change of your function, when you move in a certain direction), which in a two-dimensional space, tangents the curve at a given point.
 
 \subsection{Directional derivative}
 
@@ -46,10 +50,12 @@ f'(x; u) = \lim\limits_{h \to 0}{\frac{f(x + hu) - f(x)}{h}}
 $$
 
 \textbf{Wikipedias notation}
-note that it's $f$ on a vector $\vec{x}$ having its derivative calculated on direction $\vec{v}$, essentially gradient on direction $\vec{v}$.
+
 $$
 \bigtriangledown_v f(\vec{x}) = \lim\limits_{h \to 0}{\frac{f(\vec{x} + h\vec{v}) - f(\vec{x})}{h}}
 $$
+
+\textbf{Intuition}: the rate-of-change of a function $f(\vec{x})$ on direction $\vec{v}$.
 
 \subsection{Vector norm}
 A norm is a function that assigns a stricly positive length or size to each vector in a vector space (except the zero vector which is assigned a length of 0).
@@ -59,7 +65,7 @@ $$
 \norm{x} = |x|
 $$
 
-\textbf{Euclidean norm} on a Euclidean space $\mathbf{R}^n$ is such
+\textbf{Euclidean norm} on a Euclidean space $\mathbb{R}^n$ is such
 $$
 \norm{\vec{x}}_2 = \sqrt{x_1^2 + ... + x_n^2}
 $$
@@ -89,6 +95,9 @@ $$
 \argmax_{x \in S \subseteq X}{f(x)} = \{x ~ | ~ x \in S \land \forall y \in S : f(y) \leq f(x)\}
 $$
 
+
+\section{Probability}
+
 \subsection{Random variable}
 
 A random variable $X : \Omega \to \mathit{E}$ is a measurable function from a set of possible outcomes $\Omega$ to a measurable space $\mathit{E}$.
@@ -110,6 +119,7 @@ $$
 Instead of a traditional algebraic variable that can be solved for one value, a random variable can have different values (each with a probability) under different conditions.
 
 \subsection{Law of large numbers}
+\label{law-of-large-numbers}
 
 $X_i, X_2, ...$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $E(X_1) = E(X_2) = ... = \mu$, and
 $$
@@ -128,5 +138,67 @@ Pr(\lim\limits_{n \to \infty}{\mean{X}_n = \mu}) = 1
 $$
 
 \textbf{Intuition}: law of large numbers is a theorem that describes the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.
+
+
+\section{Statistical learning}
+
+Let $\mathbf{X}$ denote the input space, $\mathbf{Y}$ denote the output space, and $\mathbf{A}$ denote the action space.
+
+A \textbf{decision function / prediction function} $f: \mathbf{X} \to \mathbf{A}$ maps an input to an action.
+
+A \textbf{loss function} $l: \mathbf{A} \times \mathbf{Y} \to \mathbb{R}$ evaluates an action in the context of an output, and maps the error to a real.
+In traditional problems we can usually assume action has no effect on the output (like stock market prediction).
+
+\subsection{Risk, Bayesian function, empirical risk}
+
+Assume there is a data generating distribution $P_{\mathbf{X} \times \mathbf{Y}}$.
+
+\textbf{Risk} of a decision function can then be defined as
+$$
+R(f) = \mathbb{E}l(f(x), y)
+$$
+Where an input/output pair $(x, y)$ is generated independently and identically distributed from $P_{\mathbf{X} \times \mathbf{Y}}$.
+
+A \textbf{Bayesian decision function / target function} $f^* : \mathbf{X} \to \mathbf{A}$ is a function that achieves the minimal risk among all possible functions.
+$$
+f^* = \argmin_{f}{R(f)}
+$$
+
+Risk cannot be calculated as we are not given $P_{\mathbf{X} \times \mathbf{Y}}$.
+
+Let $\mathbf{D}_n = \{(x_1, y_1), ..., (x_n, y_n)\}$ be drawn iid from $P_{\mathbf{X} \times \mathbf{Y}}$.
+
+The \textbf{empirical risk} of $f : \mathbf{X} \to \mathbf{A}$ with respect to $\mathbf{D}_n$ is
+
+$$
+\hat{R}_n(f) = \frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}
+$$
+
+By strong law of large numbers (\ref{law-of-large-numbers}), when $n$ is big enough, empirical risk can be used to approximate risk.
+
+\subsection{Empirical risk minimization, constrained empirical risk minimization}
+
+A function $\hat{f}$ is an \textbf{empirical risk minimizer} if
+$$
+\hat{f} = \argmin_{f}{\hat{R}_n(f)}
+$$
+The prediction function that produces the smallest empiricall risk over set $\mathbf{D}_n$.
+This naturally leads to overfit.
+
+So we minimize empirical risk, but only within a hypothesis space $\mathbf{F}$, being a set of prediction functions.
+
+\textbf{Constrained empirical risk minimizer} can then be defined as
+$$
+\hat{f}_n = \argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}}
+$$
+
+If we plug Risk in instead, a \textbf{constrained risk minimizer} becomes
+$$
+f^*_{\mathbf{F}} = \argmin_{f \in \mathbf{F}}{\mathbb{E}l(f(x), y)}
+$$
+
+\subsection{Recap: linear regression with square loss}
+
+
 
 \end{document}
