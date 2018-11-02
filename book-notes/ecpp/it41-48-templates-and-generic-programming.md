@@ -33,5 +33,261 @@ Just as you can't use an object in a way contradictory to the explicit interface
 * For classes, interfaces are explicit and centered on function signatures. Polymorphism occurs at runtime through virtual functions
 * For template parameters, interfaces are implicit and based on valid expressions. Polymorphism occurs during compilation through template instantiation and function overloading resolution
 
-### Understand the two meanings of typename
+### Understand the two meanings of `typename`
+
+These two mean the same thing:
+```cpp
+template<class T> class Widget;                 // uses "class"
+template<typename T> class Widget;              // uses "typename"
+```
+
+Suppose that we want to print the 2nd element of an STL compliant container, with a template function looking like this (which won't compile but just for illustration purposes)
+```cpp
+template<typename C>                            // print 2nd element in
+void print2nd(const C& container)               // container;
+{                                               // this is not valid C++!
+  if (container.size() >= 2) {
+     C::const_iterator iter(container.begin()); // get iterator to 1st element
+     ++iter;                                    // move iter to 2nd element
+     int value = *iter;                         // copy that element to an int
+     std::cout << value;                        // print the int
+  }
+}
+```
+`iter`'s type `C::const_iterator` depends on the template parameter `C`, they are called dependent names.
+`const_iterator` is nested inside a class, making it a nested dependent type name.
+
+Nested dependent names can be difficult for parsing.
+Suppose this
+```cpp
+template<typename C>
+void print2nd(const C& container)
+{
+  C::const_iterator * x;
+  ...
+}
+```
+We know that `C::const_iterator` is a type name, but the compiler doesn't.
+What if `const_iterator` is a static member of `C`, and `x` is a global variable? Then the above wouldn't be declaring a pointer, but rather a multiplication of two values.
+
+Until `C` is known, there is no way to know whether `C::const_iterator` is a type or not, and when the template `print2nd` is parsed, `C` is not known.
+This is resolved with this rule: if the parser encounters a nested dependent name in a template, it assumes the name is not a type name unless you tell it otherwise.
+
+By default, nested dependent names are not types.
+This is why the first snippet fails: `C::const_iterator` is not considered a type by the compiler.
+We have to tell the compiler it is a type, by putting `typename` right before it:
+```cpp
+template<typename C>                           // this is valid C++
+void print2nd(const C& container) {
+  if (container.size() >= 2) {
+    typename C::const_iterator iter(container.begin());
+    ...
+  }
+}
+```
+
+The rule is simple, any time you refer to a nested dependent name in a template, you must precede it by the word `typename`.
+But only do it for nested dependent type names:
+```cpp
+template<typename C>                   // typename allowed (as is "class")
+void f(const C&             container,   // typename not allowed
+       typename C::iterator iter);       // typename required
+```
+
+There is one exception to the rule, `typename` must not precede nested dependent type names in a list of base classes or as a base class identifier in a member initialization list.
+E.g.
+```cpp
+template<typename T>
+class Derived: public Base<T>::Nested { // base class list: typename not
+public:                                 // allowed
+  explicit Derived(int x)
+  : Base<T>::Nested(x)                  // base class identifier in mem
+  {                                     // init. list: typename not allowed
+
+    typename Base<T>::Nested temp;      // use of nested dependent type
+    ...                                 // name not in a base class list or
+  }                                     // as a base class identifier in a
+  ...                                   // mem. init. list: typename required
+};
+```
+
+Another example on `typename`:
+```cpp
+template<typename IterT>
+void workWithIterator(IterT iter) {
+  typename std::iterator_traits<IterT>::value_type temp(*iter);
+  ...
+}
+```
+This makes a copy of what the iterator points to in `temp`.
+Type of `temp` is the same as what `iter` points to. (E.g. if `IterT` is `vector<int>::iterator`, `temp` is of type `int`)
+
+Many programmers `typedef` this entire thing
+```cpp
+template<typename IterT>
+void workWithIterator(IterT iter) {
+  typedef typename std::iterator_traits<IterT>::value_type value_type;
+  value_type temp(*iter);
+  ...
+}
+```
+You may find this `typedef typename` weird, but it follows from the rule of putting `typename` before nested dependent type names.
+
+Finally, it's worth pointing out that compilers differ in enforcing this rule: some accept code where `typename` is required but missing, some accept `typename` being present but not allowed, and some reject `typename` where it's required.
+This could cause minor portability headaches.
+
+**Takeaways**
+* When declaring template parameters, class and typename are interchangeable
+* Use typename to identify nested dependent type names, except in base class lists or as a base class identifier in a member initialization list
+
+### Know how to access names in templatized base classes
+
+Suppose we have this code
+```cpp
+class CompanyA {
+public:
+  ...
+  void sendCleartext(const std::string& msg);
+  void sendEncrypted(const std::string& msg);
+  ...
+};
+
+class CompanyB {
+public:
+  ...
+  void sendCleartext(const std::string& msg);
+  void sendEncrypted(const std::string& msg);
+  ...
+};
+...                                     // classes for other companies
+
+class MsgInfo { ... };                  // class for holding information
+                                        // used to create a message
+template<typename Company>
+class MsgSender {
+public:
+  ...                                   // ctors, dtor, etc.
+
+  void sendClear(const MsgInfo& info)
+  {
+    std::string msg;
+    create msg from info;
+
+    Company c;
+    c.sendCleartext(msg);
+  }
+
+  void sendSecret(const MsgInfo& info)   // similar to sendClear, except
+  { ... }                                // calls c.sendEncrypted
+};
+```
+This will work fine, when instantiating `MsgSender` with `CompanyA` or `CompanyB`.
+
+Now suppose we want some extra behaviors in `MsgSender`, say, logging the message, we can achieve this with a derived class.
+```cpp
+template<typename Company>
+class LoggingMsgSender: public MsgSender<Company> {
+public:
+  ...                                    // ctors, dtor, etc.
+  void sendClearMsg(const MsgInfo& info) {
+    // write "before sending" info to the log;
+
+    sendClear(info);                     // call base class function;
+                                         // this code will not compile!
+    // write "after sending" info to the log;
+  }
+  ...
+};
+```
+Now this won't compile.
+Standard compliant compilers will complain that `sendClear` does not exist, it's in the base class, but compilers won't look for it there, because when compiler encounter the definition of `LoggingMsgSender`, they know the base class is `MsgSender<Company>`, but this template won't be instantiated until later.
+Without knowing what `Company` is, there is no way to know if `MsgSender<Company>` has a `sendClear` function.
+
+Suppose we have a `CompanyZ` which only sends encrypted, and a total specialization for `CompanyZ` to accommodate that.
+```cpp
+class CompanyZ {                             // this class offers no
+public:                                      // sendCleartext function
+  ...
+  void sendEncrypted(const std::string& msg);
+  ...
+};
+
+template<>                                 // a total specialization of
+class MsgSender<CompanyZ> {                // MsgSender; the same as the
+public:                                    // general template, except
+  ...                                      // sendCleartext is omitted
+  void sendSecret(const MsgInfo& info)
+  { ... }
+};
+```
+The `template <>` at the beginning signifies this is neither a template, nor a standalone class.
+Rather, it's a specialized version of the template `MsgSender`, when the template argument is `CompanyZ`.
+
+This is known as **total template specialization**.
+
+Now consider `LoggingMessageSender`, if `Company` is `CompanyZ`, there will be no such `sendClear` to call.
+
+The compiler knows with a total specialization, the function in templated base may not exist, so it refuses to look inside templated base for that function.
+
+There are three ways to disable this "don't look inside templated base" behavior.
+You can preface the call with `this`
+```cpp
+template<typename Company>
+class LoggingMsgSender: public MsgSender<Company> {
+public:
+  void sendClearMsg(const MsgInfo& info) {
+    ...
+    this->sendClear(info);                // okay, assumes that
+                                          // sendClear will be inherited
+    ...
+  }
+};
+```
+You can employ a `using` declaration
+```cpp
+template<typename Company>
+class LoggingMsgSender: public MsgSender<Company> {
+public:
+  using MsgSender<Company>::sendClear;   // tell compilers to assume
+  ...                                    // that sendClear is in the
+                                         // base class
+  void sendClearMsg(const MsgInfo& info) {
+    ...
+    sendClear(info);                   // okay, assumes that
+    ...                                // sendClear will be inherited
+  }
+  ...
+};
+```
+A final way is to explicitly specify the function you are calling
+```cpp
+template<typename Company>
+class LoggingMsgSender: public MsgSender<Company> {
+public:
+  ...
+  void sendClearMsg(const MsgInfo& info) {
+    ...
+    MsgSender<Company>::sendClear(info);      // okay, assumes that
+    ...                                       // sendClear will be
+  }                                           //inherited
+  ...
+};
+```
+This is generally the least favored behavior, because if the function you are calling is `virtual`, you'd be turning off the virtual binding behavior.
+
+From a name visibility point of view, the three do the same thing: promise compiler that any subsequent specialization of base class template will support the interface offered by the general template.
+
+If the compiler later finds out that this promise is not satisfied:
+```cpp
+LoggingMsgSender<CompanyZ> zMsgSender;
+MsgInfo msgData;
+zMsgSender.sendClearMsg(msgData);            // error! won't compile
+```
+An error will be emitted.
+
+**Takeaways**
+* In derived class templates, refer to names in base class templates via a “this->” prefix, via using declarations, or via an explicit base class qualification
+
+### Factor parameter independent code out of templates
+
 
