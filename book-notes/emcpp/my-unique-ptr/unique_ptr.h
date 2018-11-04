@@ -5,11 +5,23 @@
 // TODO: make_unique struct
 // TODO: threadsafety note
 
+#include <memory>
+
 template <typename T>
 class UniquePtr {
   public:
     // noexcept or exception-neutral?
     UniquePtr() noexcept : d_ptr(nullptr) {}
+
+    // generalized move ctor: it45 from ec++, so that we can do
+    // UniquePtr<Derived> pd;
+    // UniquePtr<Base>    pb = pd;
+    // TODO: should we use std::forward on this universal reference, why or why
+    // not?
+    template <typename U>
+    UniquePtr(U&& rhs) noexcept {
+        d_ptr = std::forward<U>(rhs).release();
+    }
 
     virtual ~UniquePtr() {
         if (d_ptr) {
@@ -21,18 +33,18 @@ class UniquePtr {
     UniquePtr(const UniquePtr&)            = delete;
     UniquePtr& operator=(const UniquePtr&) = delete;
 
-    UniquePtr(UniquePtr&& rhs) noexcept {
-        d_ptr = rhs.d_ptr;
-        rhs.d_ptr  = nullptr;
-    }
+    UniquePtr(UniquePtr&& rhs) noexcept : d_ptr(rhs.release()) {}
 
     UniquePtr& operator=(UniquePtr&& rhs) noexcept {
-        d_ptr = rhs.d_ptr;
-        rhs.d_ptr = nullptr;
+        d_ptr = rhs.release();
     }
 
-    // Similar question as reset. Take universal reference or value?
-    UniquePtr(T* ptr) noexcept : d_ptr(ptr) {}
+    template <typename U>
+    UniquePtr& operator=(U&& rhs) noexcept {
+        d_ptr = std::forward<U>(rhs).release();
+    }
+
+    explicit UniquePtr(T* ptr) noexcept : d_ptr(ptr) {}
 
     T* get() const noexcept {
         return d_ptr;
@@ -59,6 +71,12 @@ class UniquePtr {
         if (d_ptr) {
             delete d_ptr;
         }
+    }
+
+    T* release() noexcept {
+        T* temp = d_ptr;
+        d_ptr = nullptr;
+        return temp;
     }
 
     T& operator*() const noexcept {

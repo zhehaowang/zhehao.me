@@ -6,10 +6,10 @@ using namespace std;
 
 class CustomData {
   public:
-    CustomData() {
+    CustomData() : d_x(-1) {
         cout << "default ctor\n";
     }
-    ~CustomData() {
+    virtual ~CustomData() {
         cout << "dtor\n";
     }
 
@@ -34,11 +34,13 @@ class CustomData {
     int d_x;
 };
 
+class Derived : public CustomData {};
+
 int main() {
-    UniquePtr<CustomData> up;
+    UniquePtr<Derived> up;
     cout << "1 isNull: " << up.isNull() << "\n";
     
-    up.reset(new CustomData());
+    up.reset(new Derived());
     cout << "1 isNull: " << up.isNull() << "\n";
     cout << "1 data: "   << up->x() << "\n";
 
@@ -49,14 +51,22 @@ int main() {
     cout << "1 data: "   << (*up).x() << "\n";
 
     // without std::move this calls the deleted copycon by default
-    UniquePtr<CustomData> up2 = std::move(up);
+    UniquePtr<Derived> up2 = std::move(up);
 
     cout << "1 isNull: " << up.isNull() << "\n";
     cout << "2 isNull: " << up2.isNull() << "\n";
     cout << "2 data: "   << up2->x() << "\n";
 
-    UniquePtr<CustomData> up3 = UniquePtr<CustomData>(new CustomData());
+    UniquePtr<Derived> up3 = UniquePtr<Derived>(new Derived());
     up3->setX(15);
     cout << "3 data: "   << up3->x() << "\n";
+
+    UniquePtr<CustomData> cd = up3;
+    cout << "3 isNull: " << up3.isNull() << "\n";
+    cout << "parent data: " << cd->x() << "\n";
+
+    UniquePtr<CustomData> cd1 = UniquePtr<Derived>(new Derived());
+    cout << "parent1 data: " << cd1->x() << "\n";
+
     return 0;
 }

@@ -14,7 +14,6 @@ class ControlBlock {
     ControlBlock(ControlBlock&&) = default;
     ControlBlock& operator=(ControlBlock&&) = default;
 
-
     void incrementReference() noexcept {
         d_reference_cnt ++;
     }
@@ -38,7 +37,7 @@ template <typename T>
 class SharedPtr {
   public:
     SharedPtr() : d_ptr_p(nullptr), d_cb_p(nullptr) {}
-    SharedPtr(T* ptr) : d_ptr_p(ptr), d_cb_p(new ControlBlock()) {}
+    explicit SharedPtr(T* ptr) : d_ptr_p(ptr), d_cb_p(new ControlBlock()) {}
 
     SharedPtr(const SharedPtr& rhs) noexcept
      : d_ptr_p(rhs.d_ptr_p),
@@ -47,6 +46,27 @@ class SharedPtr {
             d_cb_p->incrementReference();
         }
     }
+
+    // TODO: generalized copy / move cons, assignment opr
+    /*
+    // How to implement a generalized copy con for shared_ptr, without making
+    // ControlBlock pointer public?
+    //
+    // Also differentiating generalized move con and generalized copy con:
+    // generalized move con, once made template, will have its argument treated
+    // as a universal reference, thus can be instantiated by lvalue calls,
+    // although we want different behaviors for shared_ptr lvalue (copy), and
+    // rvalue (move) calls. Right?
+
+    template <typename U>
+    SharedPtr(const U& rhs) noexcept
+     : d_ptr_p(rhs.get()),
+       d_cb_p(rhs.d_cb_p) {
+        if (d_cb_p && d_ptr_p) {
+            d_cb_p->incrementReference();
+        }
+    }
+    */
 
     // TODO: use my unique ptr to build ctor(unique_ptr)
 

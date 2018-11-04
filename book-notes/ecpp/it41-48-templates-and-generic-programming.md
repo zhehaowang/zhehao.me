@@ -395,3 +395,114 @@ If you are concerned with code bloat, you could do the same thing.
 
 ### Use member function templates to accept all compatible types
 
+Iterators into STL containers are almost always smart pointers.
+
+Real pointers do well in supporting implicit conversion, and emulating such behaviors in smart pointers can be tricky.
+We want the following to compile:
+```cpp
+class Top { ... };
+class Middle: public Top { ... };
+class Bottom: public Middle { ... };
+
+template<typename T>
+class SmartPtr {
+public:                             // smart pointers are typically
+  explicit SmartPtr(T *realPtr);    // initialized by built-in pointers
+  ...
+};
+
+SmartPtr<Top> pt1 =                 // convert SmartPtr<Middle> ⇒
+  SmartPtr<Middle>(new Middle);     //   SmartPtr<Top>
+
+SmartPtr<Top> pt2 =                 // convert SmartPtr<Bottom> ⇒
+  SmartPtr<Bottom>(new Bottom);     //   SmartPtr<Top>
+
+SmartPtr<const Top> pct2 = pt1;     // convert SmartPtr<Top> ⇒
+                                    //  SmartPtr<const Top>
+```
+Compiler will view `SmartPtr<Middle>` and `SmartPtr<Top>` as different classes, to get the conversion we want we have to program them explicitly.
+
+There is no way for to write out all ctors we need. Though all we need is a ctor template:
+```cpp
+template<typename T>
+class SmartPtr {
+public:
+  template<typename U>                       // member template
+  SmartPtr(const SmartPtr<U>& other);        // for a "generalized
+  ...                                        // copy constructor"
+};
+```
+Ctors like this (create one object from another object whose type is a different instantiation of the same template) are known as **generalized copy ctors**.
+We want to allow implicit conversion so this ctor is not explicit.
+
+We'll want to restrict the relationship between `T` and `U`.
+```cpp
+template<typename T>
+class SmartPtr {
+public:
+  template<typename U>
+  SmartPtr(const SmartPtr<U>& other)         // initialize this held ptr
+  : heldPtr(other.get()) { ... }             // with other's held ptr
+
+  T* get() const { return heldPtr; }
+  ...
+
+private:                                     // built-in pointer held
+  T *heldPtr;                                // by the SmartPtr
+};
+```
+Note the `heldPtr` initialization, this will compile only if there is an implicit conversion from a `U*` to `T*`, and that's what we want.
+
+Another common role for member function templates is to support assignment. E.g. `std::tr1::shared_ptr`
+```cpp
+template<class T> class shared_ptr {
+public:
+  template<class Y>                                     // construct from
+    explicit shared_ptr(Y * p);                         // any compatible
+  template<class Y>                                     // built-in pointer,
+    shared_ptr(shared_ptr<Y> const& r);                 // shared_ptr,
+  template<class Y>                                     // weak_ptr, or
+    explicit shared_ptr(weak_ptr<Y> const& r);          // auto_ptr
+  template<class Y>
+    explicit shared_ptr(auto_ptr<Y>& r);
+
+  template<class Y>                                     // assign from
+    shared_ptr& operator=(shared_ptr<Y> const& r);      // any compatible
+  template<class Y>                                     // shared_ptr or
+    shared_ptr& operator=(auto_ptr<Y>& r);              // auto_ptr
+  ...
+};
+```
+Note that among the ctors only the generalized copy ctor is not explicit, meaning one can't implicit convert `weak_ptr`, raw pointer or `unique_ptr` to a `shared_ptr`, but implicit conversions among `shared_ptr`s is allowed.
+
+Also note that in the version with `auto_ptr`, the given pointer is not `const` since ownership is taken over when copying an `auto_ptr`.
+
+Declaring a generalized copy constructor (a member template) in a class doesn't keep compilers from generating their own copy ctor (a non-template), so if you want to control all aspects of copy construction, you must declare both a generalized copy ctor as well as the normal copycon.
+
+E.g. excerpt in `std::tr1::shared_ptr`
+```cpp
+template<class T> class shared_ptr {
+public:
+  shared_ptr(shared_ptr const& r);                 // copy constructor
+
+  template<class Y>                                // generalized
+    shared_ptr(shared_ptr<Y> const& r);            // copy constructor
+
+  shared_ptr& operator=(shared_ptr const& r);      // copy assignment
+
+  template<class Y>                                // generalized
+    shared_ptr& operator=(shared_ptr<Y> const& r); // copy assignment
+  ...
+};
+```
+
+_Refer to [my_unique_ptr](../emcpp/my-unique-ptr) for code example._
+
+**Takeaways**
+* Use member function templates to generate functions that accept all compatible types
+* If you declare member templates for generalized copy construction or generalized assignment, you'll still need to declare the normal copy constructor and copy assignment operator, too
+
+### Define non-member functions inside templates when type conversions are desired
+
+
+

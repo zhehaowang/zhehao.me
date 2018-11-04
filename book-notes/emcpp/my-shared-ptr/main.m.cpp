@@ -35,18 +35,20 @@ class CustomData {
     int d_x;
 };
 
+class Derived : public CustomData {};
 
 int main() {
-    CustomData *x = new CustomData();
+    Derived *x = new Derived();
     x->setX(5);
-    SharedPtr<CustomData> sp(x); // bad style
-    SharedPtr<CustomData> sp1(sp);
+    SharedPtr<Derived> sp(x); // bad style
+    SharedPtr<Derived> sp1(sp);
 
-    SharedPtr<CustomData> sp2(new CustomData());
+    SharedPtr<Derived> sp2(new Derived());
     sp2->setX(10);
     sp1 = sp2;
     sp  = sp2;
     
-    cout << "initial tests\n";
+    // TODO: fix this after we add generalized move / copy ctor support
+    //SharedPtr<CustomData> bp1(SharedPtr<Derived>(new Derived()));
     return 0;
 }
