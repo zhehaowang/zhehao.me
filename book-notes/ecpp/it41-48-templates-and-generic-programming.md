@@ -290,4 +290,108 @@ An error will be emitted.
 
 ### Factor parameter independent code out of templates
 
+Templates let you save time and avoid code replication, but if you are not careful, using templates can lead to code bloat: the source may look trim and fit, but the binary is fat and flabby.
+
+The primary way to avoid this is commonality and variability analysis, the same thing you do when you extract the shared code out of two code paths and put them in one function that both calls.
+
+Only that with templates, the replication is implicit.
+E.g. consider this code
+```cpp
+template<typename T,           // template for n x n matrices of
+         std::size_t n>        // objects of type T; a non-type parameter
+class SquareMatrix {           // on the size_t parameter
+public:
+  ...
+  void invert();              // invert the matrix in place
+};
+
+SquareMatrix<double, 5> sm1;
+...
+sm1.invert();                  // call SquareMatrix<double, 5>::invert
+
+SquareMatrix<double, 10> sm2;
+...
+sm2.invert();                  // call SquareMatrix<double, 10>::invert
+```
+Two copies of similar `invert` will be generated as a result, one works with 5, and another with 10.
+How about parameterizing `size` instead?
+```cpp
+template<typename T>                   // size-independent base class for
+class SquareMatrixBase {               // square matrices
+protected:
+  ...
+  void invert(std::size_t matrixSize); // invert matrix of the given size
+  ...
+};
+
+template<          typename T, std::size_t n>
+class SquareMatrix: private SquareMatrixBase<T> {
+private:
+  using SquareMatrixBase<T>::invert;   // avoid hiding base version of
+                                       // invert; see Item 33
+public:
+  ...
+  void invert() { this->invert(n); }   // make inline call to base class
+};                                     // version of invert; see below
+                                       // for why "this->" is here
+```
+This version, there will be only one version of `invert` logic generated in `SquareMatrixBase`.
+
+Additional cost of function call `base->invert` should be 0: it's inlined.
+Also note the `this->` as otherwise template base function won't be visible.
+Finally note the `private` inheritance, meaning "is-implemented-in-terms-of", not "is-a".
+
+How does the base know what data to invert on? We could have it hold a pointer to matrix values and the matrix size.
+Like this
+```cpp
+template<typename T>
+class SquareMatrixBase {
+protected:
+  SquareMatrixBase(std::size_t n, T *pMem)     // store matrix size and a
+  : size(n), pData(pMem) {}                    // ptr to matrix values
+
+  void setDataPtr(T *ptr) { pData = ptr; }     // reassign pData
+  ...
+
+private:
+  std::size_t size;                            // size of matrix
+
+  T *pData;                                    // pointer to matrix values
+};
+
+```
+And let the derived classes decide how to allocate memory
+```cpp
+template<typename T, std::size_t n>
+class SquareMatrix: private SquareMatrixBase<T> {
+public:
+  SquareMatrix()                             // send matrix size and
+  : SquareMatrixBase<T>(n, data) {}          // data ptr to base class
+  ...
+
+private:
+  T data[n*n];
+};
+```
+This parameterized version comes at a cost: the size-specific would run faster, as e.g. the sizes would be compile-time constants, hence eligible for optimizations such as constant propagation, which can't be done in size-independent version.
+
+On the other hand, having one version of `invert` means smaller binary, and better locality of reference in instruction cache.
+
+To decide which of the above effects would dominate requires trying both out.
+
+Type parameters can lead to bloat, too.
+E.g. on many platforms `int` and `long` have the same binary representation, so `vector<int>` and `vector<long>` would be identical, the very definition of bloat.
+Some linkers would merge those identical function implementations, some will not causing bloats.
+
+Similarly, on most platforms all pointer types have the same binary representation, so templates holding pointer types (e.g. `list<int*>`, `list<const int*>`) should often be able to use a single underlying implementation for each member function.
+Typically, this means implementing member functions that work with untyped pointers (`void*`).
+Some implementations of the standard library do this for templates like `vector`, `deque` and `list`. (Could this be a reason why `bslma::ManagedPtr` template underlying is a `void*`?).
+If you are concerned with code bloat, you could do the same thing.
+
+**Takeaways**
+* Templates generate multiple classes and multiple functions, so any template code not dependent on a template parameter causes bloat
+* Bloat due to non-type template parameters can often be eliminated by replacing template parameters with function parameters or class data members
+* Bloat due to type parameters can be reduced by sharing implementations for instantiation types with identical binary representations
+
+### Use member function templates to accept all compatible types
 
