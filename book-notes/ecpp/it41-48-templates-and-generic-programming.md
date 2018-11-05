@@ -504,5 +504,131 @@ _Refer to [my_unique_ptr](../emcpp/my-unique-ptr) for code example._
 
 ### Define non-member functions inside templates when type conversions are desired
 
+Recall that item 24 explained why non-member functions are eligible for implicit type conversions on all arguments (`operator*` on `Rational` class, why it should not be a member function, instead, have a non-member so that `lhs` is eligible for implicit conversion.)
 
+Consider this code, goal is to support the same mixed mode operation item 24 pointed out.
+```cpp
+template<typename T>
+class Rational {
+public:
+  Rational(const T& numerator = 0,     // see Item 20 for why params
+           const T& denominator = 1);  // are now passed by reference
+
+  const T numerator() const;           // see Item 28 for why return
+  const T denominator() const;         // values are still passed by value,
+  ...                                  // Item 3 for why they're const
+};
+
+template<typename T>
+const Rational<T> operator*(const Rational<T>& lhs,
+                            const Rational<T>& rhs)
+{ ... }
+```
+Now if we have this
+```cpp
+Rational<int> oneHalf(1, 2);          // this example is from Item 24,
+                                      // except Rational is now a template
+
+Rational<int> result = oneHalf * 2;   // error! won't compile
+```
+The template suggested `lhs` and `rhs` are of the same type, so we can't multiply a `Rational<int>` with a `int`.
+
+Having deduced `lhs` and `T = int`, you might want compilers to use implicit conversion and convert `2` to `Rational<int>` and succeed, but **implicit type conversions are never considered during template argument deduction**.
+Such conversions are used during function calls, but before you can call a function, you have to know which functions exist.
+
+This instead will work:
+```cpp
+template<typename T>
+class Rational {
+public:
+  ...
+
+friend                                              // declare operator*
+  const Rational operator*(const Rational& lhs,     // function (see
+                           const Rational& rhs);    // below for details)
+};
+
+template<typename T>                                // define operator*
+const Rational<T> operator*(const Rational<T>& lhs, // functions
+                            const Rational<T>& rhs)
+{ ... }
+```
+We relieve compilers the work of having to do type deduction, by leveraging the fact that a `friend` declaration in a template class can refer to a specific function. (Class templates don't depend on template argument deduction (that process only applies to function templates)), so `T` is always known at the time the class `Rational<T>` is instantiated.
+
+So what happens here is `oneHalf` will cause `Rational<int>` to be instantiated, when that happens, the `friend` function declaration happens, and as a declared function, compilers no longer need to do type deduction on it, just try to generate code to call it and apply implicit conversion when needed, which in this case will be able to turn `int` into `Rational<int>`.
+
+Note the syntax for declaring the `friend` function, without `<T>` just saves typing, the following is the same.
+```cpp
+template<typename T>
+class Rational {
+public:
+  ...
+friend
+   const Rational<T> operator*(const Rational<T>& lhs,
+                               const Rational<T>& rhs);
+  ...
+};
+```
+
+Now this will compile but will not link, since compiler knows we want to call `operator*(Rational<int>, Rational<int>)`, that function is declared in `Rational` but not defined there.
+We want the template function outside to provide the definition, but things don't work that way: if we declare this `friend` function, we are also responsible for defining it.
+
+The simplest approach is this:
+```cpp
+template<typename T>
+class Rational {
+public:
+  ...
+
+friend const Rational operator*(const Rational& lhs, const Rational& rhs)
+{
+  return Rational(lhs.numerator() * rhs.numerator(),       // same impl
+                  lhs.denominator() * rhs.denominator());  // as in
+}                                                          // Item 24
+};
+```
+An interesting observation about this technique is that the use of friendship has nothing to do with needing to access non-public parts of the class.
+
+In order to make type conversions possible on all arguments, we need a non-member function (Item 24 still applies);
+And in order to have the proper function automatically instantiated, we need to declare the function inside the class.
+The only way to declare a non-member function inside a class is to make it a friend. So that's what we do.
+
+Or you can do this instead with a helper function call, say, you want to avoid the `inline`.
+```cpp
+template<typename T> class Rational;                 // declare
+                                                     // Rational
+                                                     // template
+template<typename T>                                    // declare
+const Rational<T> doMultiply(const Rational<T>& lhs,    // helper
+                             const Rational<T>& rhs);   // template
+template<typename T>
+class Rational {
+public:
+  ...
+
+friend
+  const Rational<T> operator*(const Rational<T>& lhs,
+                              const Rational<T>& rhs)   // Have friend
+  { return doMultiply(lhs, rhs); }                      // call helper
+  ...
+};
+
+// doMultiply impl
+template<typename T>                                      // define
+const Rational<T> doMultiply(const Rational<T>& lhs,      // helper
+                             const Rational<T>& rhs)      // template in
+{                                                         // header file,
+  return Rational<T>(lhs.numerator() * rhs.numerator(),   // if necessary
+                     lhs.denominator() * rhs.denominator());
+}
+```
+`doMultiply` does not need to support mixed-mode multiplication, but it doesn't need to.
+It will only be called by `operator*`, and `operator*` does support mixed mode.
+
+In essence, `operator*` makes sure implicit conversion happens, and when both become the same `Rational<T>`, `doMultiply` does the action.
+
+**Takeaways**
+* When writing a class template that offers functions related to the template that support implicit type conversions on all parameters, define those functions as friends inside the class template
+
+### Uses traits classes for information about types
 

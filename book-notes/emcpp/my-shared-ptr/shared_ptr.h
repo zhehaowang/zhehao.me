@@ -58,6 +58,10 @@ class SharedPtr {
     // although we want different behaviors for shared_ptr lvalue (copy), and
     // rvalue (move) calls. Right?
 
+    // Essentially, given the public interface of
+    // https://en.cppreference.com/w/cpp/memory/shared_ptr, how to implement its
+    // ctor 9 and 10 variation 2.
+    
     template <typename U>
     SharedPtr(const U& rhs) noexcept
      : d_ptr_p(rhs.get()),
