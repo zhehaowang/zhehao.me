@@ -15,14 +15,14 @@ class ControlBlock {
     ControlBlock& operator=(ControlBlock&&) = default;
 
     void incrementReference() noexcept {
-        d_reference_cnt ++;
+        ++d_reference_cnt;
     }
 
     bool decrementReference() {
         if (d_reference_cnt == 0) {
             throw std::runtime_error("decrement called on reference cnt 0");
         }
-        d_reference_cnt --;
+        --d_reference_cnt;
         return d_reference_cnt == 0;
     }
   private:
