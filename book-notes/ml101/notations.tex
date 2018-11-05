@@ -197,8 +197,36 @@ $$
 f^*_{\mathbf{F}} = \argmin_{f \in \mathbf{F}}{\mathbb{E}l(f(x), y)}
 $$
 
-\subsection{Recap: linear regression with square loss}
+\textbf{Approximation error} is the risk difference between the constrained risk minimizer (in $\mathbf{F}$) and the target
 
+$$
+R(f_{\mathbf{F}}) - R(f^*)
+$$
+
+\textbf{Estimation error} is the risk difference between the constrained empirical risk minimizer and the constrained risk minimizer (both in $\mathbf{F}$)
+
+$$
+R(\hat{f}_n) - R(f_{\mathbf{F}})
+$$
+
+\textbf{Optimization error} is the risk difference between a function $\tilde{f}_n$ (which we find in practice) and the constrained empirical risk minimizer
+\footnote{Optimization can be negative, however, this $\hat{R}(\tilde{f}_n) - \hat{R}(\hat{f}_n)$ can't.
+In this hypothesis space, this function can fit the overall world better than the constrained empirical risk minimizer, but it can't on the training set, on which the constrained ERM performs best in this space}
+
+$$
+R(\tilde{f}_n) - R(\hat{f}_n)
+$$
+
+\textbf{Excess risk} is the risk between a function and the target
+$$
+\text{Excess Risk}(\hat{f}_n) = \text{Estimation Error} + \text{Approximation Error} = R(\hat{f}_n) - R(f^*)
+$$
+$$
+\text{Excess Risk}(\tilde{f}_n) = \text{Optimization Error} + \text{Estimation Error} + \text{Approximation Error}
+    = R(\tilde{f}_n) - R(f^*)
+$$
+
+\subsection{Recap: linear regression with square loss}
 
 
 \end{document}

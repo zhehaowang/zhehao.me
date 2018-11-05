@@ -135,3 +135,15 @@ Stochastic gradient descent is when minibatch size is 1 (use single randomly cho
 
 SGD step size, robbins-monro conditions
 
+### Excess risk decomposition
+
+Approximation error (how much higher a risk the best prediction function in the hypothesis space has, compared with that of target function)
+
+Estimation error (how much higher an empirical risk the best prediction function in the hypothesis space has, compared with the one that has the lowest risk in the hypothesis space)
+
+Conceptually, the smaller the hypothesis space, the smaller the estimation error, but the larger the approximation error.
+
+Excess risk (risk gap between a function f and the target), can be decomposed into estimation error and approximation error.
+
+Optimization error (in practice you don't find the ERM, you find a good enough `\hat{f}`. The risk difference between `\hat{f}` and ERM is called optimization error, and can be negative. The empirical risk between the two though is always positive)
+
