@@ -1,0 +1,341 @@
+\documentclass{beamer}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\begin{document}
+
+\title{Introduction to blockchain}
+\subtitle{With bitcoin as an example}
+\author{Zhehao Wang}
+\date{Oct 2018}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Symmetric cryptography}
+
+Consider symmetric cryptoraphy, where
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{symmetric-encryption}
+\end{figure}
+
+The problem: how do I securely transfer \textcolor{blue}{$key~K$} over the network?
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Asymmetric cryptography, RSA algorithm}
+
+Find 3 very large positive integers $e$, $d$, $n$ s.t.
+$$
+(m^e)^d \equiv m ~ (\text{mod} ~ n), ~ ~ \forall m,~ 0 \leq m \le n
+$$
+Knowing $e$, $n$ or even $m$ it's extremely hard to find $d$.
+
+\begin{itemize}
+  \item Public key: $n$, $e$
+  \item Private key: $n$, $d$
+  \item Message: $m$
+\end{itemize}
+
+Operations:
+\begin{itemize}
+    \item Encryption(m): $c = m^e ~ (\text{mod} ~ n)$
+    \item Decryption(c): $m' = c^d ~ (\text{mod} ~ n) = (m^e)^d ~ (\text{mod} ~ n)$, $m' = m ~ (\text{mod} ~ n)$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{RSA algorithm example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{asymmetric-encryption}
+\end{figure}
+
+Anyone who wants to talk to Bob can retrieve Bob's public key, use it to encrypt the message, and know that only holder of the corresponding private key can decrypt.
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RSA algorithm in practice}
+
+In practice, key pairs are much longer.
+\begin{lstlisting}[language=bash]
+  $ ssh-keygen -t rsa -b 4096
+\end{lstlisting}
+
+Each key pair corresponds with an \textbf{identity}.
+
+\vspace{0.2in}
+
+The two operations:
+\begin{itemize}
+  \item {Encryption/Decryption}: Alice uses Bob's public key to encrypt, Bob uses his private key to decrypt
+  \item {Signing/Validation}: Alice uses her own private key to sign, others use Alice's public key to verify
+\end{itemize}
+
+\vspace{0.2in}
+Vs symmetric encryption: more computation, but solves the problem of key transfer (and many others)
+
+\vspace{0.2in}
+Related concepts: digital signature, certificate, public key infrastructure
+
+\end{frame}
+
+\begin{frame}
+\frametitle{To design a cryptocurrency}
+
+Imagine designing a cryptocurrency
+\begin{itemize}
+  \item An account is a public/private key pair!
+  \item If I pay someone (a public key identity), I sign with my private key: others can verify \textit{I} made the payment, and I cannot repudiate later on
+\end{itemize}
+
+But how does anyone know I have enough money left to make the payment? \textit{Double spending}
+\begin{itemize}
+  \item The \textbf{centralized} way: we all agree on (and preinstall) having one party to trust, who keeps track of everyone's account balances
+  \item The \textbf{decentralized} way: is it possible to have \textit{all} of us keep track of account balances together?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{To design a cryptocurrency - cont}
+
+Considerations:
+\begin{itemize}
+  \item Distributed
+  \item Trustless, no a-prori trust relationship established
+  \item Consensus, everyone agrees on account balances
+\end{itemize}
+
+\vspace{0.3in}
+Why is this problem unique:
+
+\begin{itemize}
+  \item I don't trust anyone I talk to
+  \item But we can still agree on something
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Distributed trustless consensus - intuition}
+
+Distributed consensus: leadership election, and \textbf{state-machine replication}\footnote{Think Raft consensus algorithm}
+
+\vspace{0.2in}
+If we can agree on the entire history of transactions (state machine), we know if someone is trying to double spend.
+\footnote{Think log structured merge tree (e.g. writes in Cassandra) / journaling file system / git}
+
+\vspace{0.2in}
+To agree on the history,
+
+\begin{itemize}
+  \item what if we assume: there are more peers in the network who are honest, than those who are not
+  \item we can have everyone tell everyone else their view of the entire history, and hope they converge...
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Blockchain, introduction\footnote{As in the classic bitcoin whitepaper, since the field has seen lots of divergents}}
+
+Blockchain makes a different assumption
+\begin{itemize}
+  \item \textbf{honest peers own more computation power than those who are dishonest}
+\end{itemize}
+
+\vspace{0.2in}
+
+Consequently, if it takes computation power to grow the history, then honest peers can grow the history faster than dishonest ones
+\begin{itemize}
+  \item Peers \textbf{trust the chain with the most computation power invested (i.e. the longest)}, and grow based on that
+  \item In order to grow the history, peers perform a \textbf{proof of work}, which is computationally non-trivial
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof of work}
+
+After assembling $X$ transactions in a block\footnote{$X$ depends on the size of transactions, and is usually above 1000 in bitcoin}, find a nonce value to attach to the block, $s.t.$ the hash\footnote{E.g. sha256} of the entire block has an agreed number of $0$s at its end
+\begin{itemize}
+  \item A block is only considered valid and complete, if one such nonce is attached
+  \item No known efficient algorithm exists to find one such value, (mostly) trials
+  \item Alternatives exist
+\end{itemize}
+
+\vspace{0.2in}
+Proof-of-work "verifies" a block (in turn, grows a chain)
+
+\vspace{0.2in}
+Peers who carry out proof-of-work are called \textbf{miners}.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Building a block}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.85\textwidth]{building-a-block}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Growing a chain}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.90\textwidth]{grow-a-chain}
+\end{figure}
+
+Genesis block: the start of the chain (e.g. allocating $X$ coins to the creator)
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mining and incentive}
+
+\vspace{0.2in}
+Why should anyone verify someone else's transaction (mine)?
+\begin{itemize}
+  \item Miners are awarded a fixed number of bitcoins for each block mined
+  \item Transactions can attach a transaction fee
+  \item Winner takes all
+\end{itemize}
+
+\vspace{0.2in}
+How are new coins introduced to the system?
+\begin{itemize}
+  \item Genesis block
+  \item Mining 'adds' new coins to the system (analogy: miners spend work to find gold nuggets to add to world gold circulation)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Operation}
+
+What if two blocks are created at the same time?
+\begin{itemize}
+  \item A temporary fork. Can introduce an ordering mechanism, or miners may work on different forks, until one gets longer than the other and propagates.
+\end{itemize}
+
+\vspace{0.1in}
+As the system progresses,
+\begin{itemize}
+  \item Number of $0$s to satisfy proof-of-work increases \footnote{The system aims to create 1 new block every 10 minutes, and it does so by adjusting the difficulty of proof-of-work}
+  \item Mining reward \textbf{halves} every $X$ blocks\footnote{Current reward: 12.5 btc, $X = 210000$. How to incentivize afterwards: transaction fee}
+  \item A hard fork could be made for backward incompatible upgrade, or confirmed compromise
+\end{itemize}
+
+\vspace{0.1in}
+Max number of coins is fixed (inflation-free!)
+$$
+\lim\limits_{n \to \infty}{\sum_{i = 1}^{n}{\frac{1}{2^i}}} = 1
+$$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Tamper resistance and privacy}
+
+Assume dishonest peers work together to produce proof-of-work for a block in which a transaction source account double spends
+\begin{itemize}
+  \item Dishonest peers have to grow the chain faster than the honest ones, so that the honest ones use their chain (contrary to assumption)
+  \item Subverting an existing block in the chain gets exponentially more difficult (grow everything afterwards, and faster)
+  \item If you have this much computation power, it'd be more in your interest to mine, rather than to subvert
+\end{itemize}
+
+\vspace{0.2in}
+Privacy
+\begin{itemize}
+  \item No tie between account $736f$ with a physical identity
+  \item The network does not store anything related with physical identity
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{The trade-offs}
+
+Distributed and trustless come at a cost
+
+\begin{itemize}
+  \item Global scale broadcast messages: vs unicast to a bank
+  \item Proof-of-work: vs bank keeping records and trusting what they keep
+  \item Transaction fee: pay to verifier, or pay to bank
+\end{itemize}
+
+\vspace{0.2in}
+But also with advantages
+
+\begin{itemize}
+  \item Minimal a-priori
+  \item Anonymous
+  \item Mathematically hard to tamper / counterfeit
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Analogy to a currency}
+
+\begin{itemize}
+  \item Durable
+  \item Portable
+  \item Divisible
+  \item Fungible (like symmetric in an equivalence relation)
+  \item Intrinsic value?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Extensions - smart contract}
+
+With bitcoin, the \textit{actions} we record on the chain are transactions.
+
+They can be anything else.
+
+\vspace{0.2in}
+
+\begin{itemize}
+  \item Casting a vote for a presidential candidate
+  \item Publishing a blog post
+  \item ...
+\end{itemize}
+
+\vspace{0.2in}
+How do we express \textit{anything}
+
+The ethereum framework and Solidity programming language.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary}
+
+\begin{itemize}
+  \item Public key cryptography
+  \item Distributed trustless consensus
+  \item Proof-of-work and computation power assumption
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+
+\end{frame}
+
+\end{document}
