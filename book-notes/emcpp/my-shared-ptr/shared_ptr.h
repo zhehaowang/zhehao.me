@@ -47,10 +47,8 @@ class SharedPtr {
         }
     }
 
-    // TODO: generalized copy / move cons, assignment opr
+    // TODO: generalized move ctor, generalized move / copy assignment opr
     /*
-    // How to implement a generalized copy con for shared_ptr, without making
-    // ControlBlock pointer public?
     //
     // Also differentiating generalized move con and generalized copy con:
     // generalized move con, once made template, will have its argument treated
@@ -61,7 +59,13 @@ class SharedPtr {
     // Essentially, given the public interface of
     // https://en.cppreference.com/w/cpp/memory/shared_ptr, how to implement its
     // ctor 9 and 10 variation 2.
-    
+    */
+
+    // friend class template s.t. we can access the control block pointer in
+    // generalized ctor
+    template <typename U>
+    friend class SharedPtr;
+
     template <typename U>
     SharedPtr(const U& rhs) noexcept
      : d_ptr_p(rhs.get()),
@@ -70,7 +74,6 @@ class SharedPtr {
             d_cb_p->incrementReference();
         }
     }
-    */
 
     // TODO: use my unique ptr to build ctor(unique_ptr)
 

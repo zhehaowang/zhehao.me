@@ -48,7 +48,6 @@ int main() {
     sp1 = sp2;
     sp  = sp2;
     
-    // TODO: fix this after we add generalized move / copy ctor support
-    //SharedPtr<CustomData> bp1(SharedPtr<Derived>(new Derived()));
+    SharedPtr<CustomData> bp1(SharedPtr<Derived>(new Derived()));
     return 0;
 }
