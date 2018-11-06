@@ -800,4 +800,70 @@ And TR1 introduces `is_fundamental<T>`, `is_array<T>`, `is_base_of<T1, T2>`.
 
 ### Be aware of template meta programming
 
+TMP is the technique that writes template-based C++ programs that execute during compilation.
 
+TMP makes some things easy that would otherwise be hard or impossible.
+They also shift the work from runtime to compile time.
+
+Like the example with `advance` from previous item, this is a version where work is done at runtime
+```cpp
+template<typename IterT, typename DistT>
+void advance(IterT& iter, DistT d) {
+  if (typeid(typename std::iterator_traits<IterT>::iterator_category) ==
+      typeid(std::random_access_iterator_tag)) {
+     iter += d;                                     // use iterator arithmetic
+  } else {                                          // for random access iters
+    if (d >= 0) { while (d--) ++iter; }             // use iterative calls to
+    else { while (d++) --iter; }                    // ++ or -- for other
+  }                                                 // iterator categories
+}
+```
+
+Item 47 shows how `traits` can be more efficient, in fact, the `traits` approach is TMP.
+
+If `advance` looks like the above, consider this code
+```cpp
+std::list<int>::iterator iter;
+advance(iter, 10);                          // move iter 10 elements forward;
+                                            // won't compile with above impl.
+```
+This won't compile, as `iter += d` doesn't work on `list`'s bidirectional iterator.
+We know the line `iter += d` will never be executed, but compiler doesn't know that, as `typeid` is a runtime check.
+The `traits` TMP approach doesn't have the same problem.
+
+Boost's `mpl` offers a higher level TMP syntax, something that looks very different from ordinary C++.
+
+TMP uses recursive template instantiations to realize recursion (loops).
+
+E.g. this TMP factorial
+```cpp
+template<unsigned n>                 // general case: the value of
+struct Factorial {                   // Factorial<n> is n times the value
+                                     // of Factorial<n-1>
+  enum { value = n * Factorial<n-1>::value };
+};
+
+template<>                           // special case: the value of
+struct Factorial<0> {                // Factorial<0> is 1
+  enum { value = 1 };
+
+};
+```
+You get the factorial of `n` by referring to `Factorial<n>::value`.
+This uses enum hack described in item 2.
+
+Why is TMP worth knowing about, some examples:
+* ensuring dimensional unit correctness (like, a variable representing mass cannot be assigned to a variable representing velocity, but can be divided by such)
+* optimizing matrix operations. This code
+```cpp
+typedef SquareMatrix<double, 10000> BigMatrix;
+BigMatrix m1, m2, m3, m4, m5;               // create matrices and
+...                                         // give them values
+BigMatrix result = m1 * m2 * m3 * m4 * m5;  // compute their product
+```
+The normal way calls for four temporary matrices and independent for loops, using **TMP expression templates** it's possible to avoid temporaries and merge the loops.
+* Generating custom design pattern implementations. **policy-based design**, **generative programming**
+
+**Takeaways**
+* Template metaprogramming can shift work from runtime to compile-time, thus enabling earlier error detection and higher runtime performance
+* TMP can be used to generate custom code based on combinations of policy choices, and it can also be used to avoid generating code inappropriate for particular types
