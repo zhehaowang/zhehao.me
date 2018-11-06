@@ -80,7 +80,10 @@ template<typename T>
 std::new_handler NewHandlerSupport<T>::currentHandler = 0;
 
 // client class
-// can this be private inheritance, since all we want is implemented-in-terms-of
+// this cannot be private inheritance, since otherwise everything inside
+// NewHandlerSupport, set_new_handler included, will be private. We won't be
+// able to do Widget::set_new_handler(...). We can use a different syntax
+// NewHandlerSupport<Widget>::set_new_handler(...) but arguably more obscure.
 class Widget : public NewHandlerSupport<Widget> {
 public:
   Widget() = default;
