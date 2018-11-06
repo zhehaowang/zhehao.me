@@ -385,7 +385,8 @@ Some linkers would merge those identical function implementations, some will not
 
 Similarly, on most platforms all pointer types have the same binary representation, so templates holding pointer types (e.g. `list<int*>`, `list<const int*>`) should often be able to use a single underlying implementation for each member function.
 Typically, this means implementing member functions that work with untyped pointers (`void*`).
-Some implementations of the standard library do this for templates like `vector`, `deque` and `list`. (Could this be a reason why `bslma::ManagedPtr` template underlying is a `void*`?).
+Some implementations of the standard library do this for templates like `vector`, `deque` and `list`.
+`bslma::ManagedPtr` template underlying, `bslma::ManagedPtr_Members` does not use a template and uses `void*` instead, out of the same concern.
 If you are concerned with code bloat, you could do the same thing.
 
 **Takeaways**
@@ -631,4 +632,172 @@ In essence, `operator*` makes sure implicit conversion happens, and when both be
 * When writing a class template that offers functions related to the template that support implicit type conversions on all parameters, define those functions as friends inside the class template
 
 ### Uses traits classes for information about types
+
+STL has templates for containers, algorithms, iterators, etc, but also utilities.
+Among its utilities templates there is `advance`.
+```cpp
+template<typename IterT, typename DistT>       // move iter d units
+void advance(IterT& iter, DistT d);            // forward; if d < 0,
+                                               // move iter backward
+```
+Conceptually `advance` is `iter += d`, but only random access iterators support such.
+Less powerful iterators need `++` `--` iteratively `d` times.
+
+There are five categories of STL iterators:
+* **Input iterators** can only move forward one step at a time, read what they point to only once (like a read pointer to an input file, e.g. `istream_iterators`)
+* **Output iterators** can only move forward one step at a time, write what they point to only once (e.g. `ostream_iterators`)
+* **Forward iterator** is more powerful. They can move forward, read or write what they point to multiple times. The STL offers no singly linked list, but if one were offered it would come with a forward iterator.
+* **Bidirectional iterators** adds the ability to move backward. STL `list` iterator is in this category, as for iterators for `set`, `multiset`, `map` and `multimap`
+* **Random access iterator** adds to bidirectional iterator the ability to perform iterator arithmetic, to jump forward or backward a distance in constant time. Iterators for `vector`, `dequeu` and `string` are random access iterators.
+
+For each of the five categories, C++ has a tag struct that serves to identify it
+```cpp
+struct input_iterator_tag {};
+struct output_iterator_tag {};
+struct forward_iterator_tag: public input_iterator_tag {};
+struct bidirectional_iterator_tag: public forward_iterator_tag {};
+struct random_access_iterator_tag: public bidirectional_iterator_tag {};
+```
+
+Now back to `advance`, what we really want to do is this
+```cpp
+template<typename IterT, typename DistT>
+void advance(IterT& iter, DistT d) {
+  if (iter is a random access iterator) {
+     iter += d;                                      // use iterator arithmetic
+  }                                                  // for random access iters
+  else {
+    if (d >= 0) { while (d--) ++iter; }              // use iterative calls to
+    else { while (d++) --iter; }                     // ++ or -- for other
+  }                                                  // iterator categories
+}
+```
+We need this information about `iter` during compilation, which `traits` let you do.
+
+Traits is not a keyword, and needs to work for built-in types as well.
+The standard technique is to put it into a template and one or more specializations of the template.
+Like this
+```cpp
+template<typename IterT>          // template for information about
+struct iterator_traits;           // iterator types
+```
+The way `iterator_traits` works is that for each type `IterT`, a `typedef` named `iterator_category` is declared in the struct `iterator_traits<IterT>`.
+This `typedef` identifies the iterator category of `IterT`.
+
+`iterator_traits` implements this in two parts.
+Any user defined iterator type must contain a nested typedef named `iterator_category` that identifies the appropriate tag struct.
+Like for `deque` and `list`:
+```cpp
+template < ... >                    // template params elided
+class deque {
+public:
+  class iterator {
+  public:
+    typedef random_access_iterator_tag iterator_category;
+    ...
+  }:
+  ...
+};
+
+template < ... >
+class list {
+public:
+  class iterator {
+  public:
+    typedef bidirectional_iterator_tag iterator_category;
+    ...
+  }:
+  ...
+};
+
+// iterator_traits just parrots back the iterator class's nested typedef
+
+// the iterator_category for type IterT is whatever IterT says it is;
+// see Item 42 for info on the use of "typedef typename"
+template<typename IterT>
+struct iterator_traits {
+  typedef typename IterT::iterator_category iterator_category;
+  ...
+};
+```
+This works well for user defined types, but not for iterators that are pointers, since there's no such thing as a pointer with a nested `typedef`.
+Thus the second part of the `iterator_traits` implementation handles iterators that are pointers, by offering a **partial template specialization** for pointer types.
+```cpp
+template<typename IterT>               // partial template specialization
+struct iterator_traits<IterT*>         // for built-in pointer types
+{
+  typedef random_access_iterator_tag iterator_category;
+  ...
+};
+```
+So to design a `traits` class:
+* identify some information you'd like to make available (for iterators, their category)
+* choose a name to identify that information (e.g. `iterator_category`)
+* provide a template and set of specializations (e.g. `iterator_traits` taht contain the information for the types you want to support)
+
+And `advance` looks like
+```cpp
+template<typename IterT, typename DistT>
+void advance(IterT& iter, DistT d) {
+  if (typeid(typename std::iterator_traits<IterT>::iterator_category) ==
+     typeid(std::random_access_iterator_tag))
+  ...
+}
+```
+But `typeid` is runtime, while at compile time we have all the information.
+We need an `if...else...` for types that is evaluated during compilation, we can achieve this via overloading.
+Like this
+```cpp
+template<typename IterT, typename DistT>              // use this impl for
+void doAdvance(IterT& iter, DistT d,                  // random access
+               std::random_access_iterator_tag)       // iterators
+{
+  iter += d;
+}
+
+template<typename IterT, typename DistT>              // use this impl for
+void doAdvance(IterT& iter, DistT d,                  // bidirectional
+               std::bidirectional_iterator_tag)       // iterators
+{
+  if (d >= 0) { while (d--) ++iter; }
+  else { while (d++) --iter;        }
+}
+
+template<typename IterT, typename DistT>              // use this impl for
+void doAdvance(IterT& iter, DistT d,                  // input iterators
+               std::input_iterator_tag)
+{
+  if (d < 0 ) {
+     throw std::out_of_range("Negative distance");    // see below
+  }
+  while (d--) ++iter;
+}
+```
+Because `forward_iterator_tag` inherits from `input_iterator_tag`, the version taking `input_iterator_tag` will also work for `forward_iterators`.
+And code for `advance` looks like
+```cpp
+template<typename IterT, typename DistT>
+void advance(IterT& iter, DistT d) {
+  doAdvance(                                              // call the version
+    iter, d,                                              // of doAdvance
+    typename                                              // that is
+      std::iterator_traits<IterT>::iterator_category()    // appropriate for
+  );                                                      // iter's iterator
+}                                                         // category
+```
+So how to use a traits class:
+* create a set of overloaded worker functions that differ in a traits parameter. Implement each function in accord with the traits information passed
+* create a master or function template that calls the workers, passing information provided by a traits class
+
+Traits are widely used in standard library.
+There's `iterator_traits` which offers `iterator_category`, `value_type`, etc.
+There's also `char_traits`, `numeric_limits`.
+And TR1 introduces `is_fundamental<T>`, `is_array<T>`, `is_base_of<T1, T2>`.
+
+**Takeaways**
+* Traits classes make information about types available during compilation. They're implemented using templates and template specializations
+* In conjunction with overloading, traits classes make it possible to perform compile-time `if...else` tests on types
+
+### Be aware of template meta programming
+
 
