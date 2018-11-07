@@ -95,6 +95,26 @@ $$
 \argmax_{x \in S \subseteq X}{f(x)} = \{x ~ | ~ x \in S \land \forall y \in S : f(y) \leq f(x)\}
 $$
 
+\subsection{Jacobian matrix}
+
+\textbf{Jacobian matrix} is the matrix of all first-order partial derivatives of a vector-valued function.
+
+Suppose $\vec{f} : \mathbb{R}^n \to \mathbb{R}^m$, the Jacobian matrix $\vec{J}$ of $\vec{f}$ is defined as follows
+
+$$
+\vec{J} = \begin{bmatrix} ~ \frac{\partial \vec{f}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f}}{\partial x_n} ~ \end{bmatrix}
+$$
+
+or component-wise $\vec{J}_{ij} = \frac{\partial \vec{f_i}}{\partial x_j}$, meaning
+
+$$
+\vec{J} = 
+ \begin{bmatrix}
+  \frac{\partial \vec{f_1}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f_1}}{\partial x_n} \\
+  ... \\
+  \frac{\partial \vec{f_m}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f_m}}{\partial x_n}
+ \end{bmatrix}
+$$
 
 \section{Probability}
 
