@@ -3,12 +3,14 @@
 #include <memory>
 #include <new>
 
-// demonstrates global and class-specific new and delete 
+// demonstrates global and class-specific new that conforms to the conventional
+// behaviors 
 
 // a conformant `operator new` needs to
 //  * account for zero-allocation
 //  * call new_handler in a loop
 //  * throw std::bad_alloc if null handler
+// (or calling a conformant one)
 void* operator new(std::size_t size) throw(std::bad_alloc) {
   std::cout << "custom global operator new\n";
 
@@ -33,6 +35,9 @@ void* operator new(std::size_t size) throw(std::bad_alloc) {
 
 class Base {
 public:
+  Base() : d_data(10) {}
+  virtual ~Base() = default;
+
   static void* operator new(std::size_t size) throw(std::bad_alloc) {
     std::cout << "Base class operator new\n";
 
@@ -44,6 +49,8 @@ public:
     // in this custom new we don't do anything in addition
     return ::operator new(size);
   }
+
+  void print() const { std::cout << d_data << "\n"; }
 private:
   int d_data;
 };
@@ -63,5 +70,11 @@ int main() {
 
   Base* pb = new Base;
   delete pb;
+
+  // it would seem without an `operator new[] overload`, the global default is
+  // used with no issues
+  Base* pds = new Base[4];
+  pds[3].print();
+  delete[] pds;
   return 0;
 }
