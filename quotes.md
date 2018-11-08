@@ -146,3 +146,33 @@ and wisdom to know the difference."
 
 "Knowledge is your ultimate capital."
 -- Lixia, advice before my leaving school
+
+"The man who does not read has no advantage over the man who cannot read."
+-- Mark Twain
+
+"No matter what system you use, I recommend having a goal and putting it in writing."
+-- The Creative Habit
+
+"I read for a lot of reasons, pleasure being the least of them. I read for growth, firmly believing what you are today and what will be in five years depends on two things: the people you meet and the books you read.
+Mostly, I read for inspiration.
+I read transactionally: it's not enough for me to read a book, I have to own it. By writing all over the pages I transform the author's book into my book, and mine alone."
+-- The Creative Habit
+
+"Be prepared to be lucky. You don't get lucky without preparation.
+The more I practice the luckier I get."
+-- The Creative Habit
+
+"Remember this the next time you moan about the hand you are dealt: no matter how limited your resources, they are enough to get you started.
+Necessity will continue to be the mother of invention."
+-- The Creative Habit
+
+"The power of instruction is seldom of much efficacy except in those happy dispositions where it is almost superfluous."
+-- Edward Gibbon
+
+"Wisdom, courage, temperance, and justice"
+-- Plato, cardinal virtues in the Republic
+
+"Here was something to live for, to win to, to fight for - ay, and to die for"
+-- Jack London, Martin Eden
+
+
