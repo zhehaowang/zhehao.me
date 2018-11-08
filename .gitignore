@@ -2,6 +2,7 @@
 main
 wip/*
 **/*dSYM/*
+*.eps
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

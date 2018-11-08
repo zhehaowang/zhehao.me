@@ -246,6 +246,56 @@ $$
     = R(\tilde{f}_n) - R(f^*)
 $$
 
+\section{Exercises}
+
+\subsection{Deriving gradient affine form}
+
+1. Given $f(w) = c^{t} w$ , $\bigtriangledown f(w)$?
+
+$$
+f'(x; u) = \lim\limits_{h \to 0}{\frac{f(w + hu) - f(w)}{h}} = \lim\limits_{h \to 0}{\frac{c^{T} h u}{h}} = c^{T} u
+$$
+
+This shows
+
+$$
+\bigtriangledown f(x) = c
+$$
+
+2. Given $f(w) = w^{T} A w$ , $\bigtriangledown f(w)$?
+
+\begin{align*}
+f'(w; u) &= \lim\limits_{h \to 0}{\frac{f(w + hu) - f(w)}{h}} \\
+         &= \lim\limits_{h \to 0}{\frac{(w + hu)^{T} A (w + hu) - w^{T} A w}{h}} \\
+         &= \lim\limits_{h \to 0}{ \frac{w^{T} A w + h w^{T} u + h u^{T} A w + h^2 u^{T} A u - w^{T} A w}{h} } \\
+         &= u^{T} A w + w^{T} A u \\
+         &= w^{T} A^{T} u + w^{T} A u
+\end{align*}
+
+This shows
+$$
+\bigtriangledown f(x) = (w^{T} A^{T} + w^{T} A)^{T} = (A + A^{T}) w
+$$
+
+3. Given $f(w) = \norm{Aw}_2^2$ , $\bigtriangledown f(w)$?
+
+$$
+f(w) = \norm{Aw - y}_2^2 = (Aw - y)^{T} (Aw - y)
+$$
+
+\begin{align*}
+f'(w; u) &= \lim\limits_{h \to 0}{\frac{(A (w + hu) - y)^{T} (A (w + hu) - y) - (Aw - y)^{T} (Aw - y)}{h}} \\
+         &= \lim\limits_{h \to 0}{ (A (w + hu) - y)^{T} A u + (A u)^{T} (A (w + hu) - y)} \\
+         &= (A w - y)^{T} A u + (A u)^{T} (A w - y) \\
+         &= 2 (A w - y)^{T} A u
+\end{align*}
+
+This shows
+
+$$
+\bigtriangledown f(x) = 2 ((A w - y)^{T} A)^{T} = 2 A^{T} (A w - y) = 2 A^{T} A w - 2 A^{T} y
+$$
+
 \subsection{Recap: linear regression with square loss}
 
 
