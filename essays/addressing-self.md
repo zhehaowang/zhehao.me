@@ -14,7 +14,7 @@ We dive in this time equipped with a ball of thread like what Theseus was given,
 
 ### External conditions
 
-Recent events reinforced the realization how much of my fate is not in my own hands.
+Recent events reinforced the realization that much of my fate is not in my own hands.
 For the first time in my last five years as an immigrant to this country, I saw how limited my freedom is, in pursuing what I deemed worthy, in particular due to the restrictions in switching employers and traveling abroad.
 
 This may be a moment when I swallow my pride, fear and anxiety, and accept it for what it is, as the serenity prayer would preach.
@@ -31,10 +31,10 @@ And in the pursuit I aim to stay true to the virtues described in later sections
 
 We often times pondered, what it means to really know something, and among all the arts in this world, what would be worth knowing.
 
-The majority of my life was spent as a student, yet among the many things I was taught, I cannot say I learnt most of them.
+The majority of my life was spent as a student, yet among the things I was taught, I cannot say I learnt most of them.
 One can read a book, audit a course, labor in pratices, yet all of these are ways of obtaining knowledge, mostly irrelevant with evaluating whether our goal of learning something is achieved.
 
-I often times see these feats from those considered masters of their own arts:
+I often times see these feats from those considered masters of their arts:
 * To be able to explain it to a community, both from a high level and in-depth, in order to cater to different interest and skill levels of the audience.
 * To be able to connect the dots when something seemingly irrelevant to the untrained eyes is brought up.
 * To be able to apply what they know to produce something tangible.
@@ -74,7 +74,7 @@ It is not due to their lack of endeavors (the cases usually suggest quite the op
 To such fortune and those who participated in weaving it we show gratitude.
 And to cherish these that we arguably aren't worthy of, we work and learn hard, and pay it forward.
 
-Do not ridicule, or easily discredit anyone: it could be just a difference in habits, belief, temperament and priorities.
+Do not ridicule, or easily discredit others: it could be just a difference in habits, belief, temperament and priorities.
 Most in life are burdened with their own struggles, be it career, health, relationships and many others.
 
 Do not think that the troubles you face are the biggest adversity, decide what few accomplishments you have deserve the attention and praise of all, or boast what little you own and realize.
