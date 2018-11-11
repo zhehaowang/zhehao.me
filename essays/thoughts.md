@@ -28,3 +28,8 @@ It is at such moments we should reiterate the deepest values we believed in, wha
 The difference often comes from that final push, one that goes just beyond the critical mass, and tips the balance in your favor.
 One can give up thinking the tasks all but impossible, or complain about the inability of others.
 Yet know that more often than not failure comes one's own lackage of resolve to make the final push, or one's inexperience in seeing the merits and contributions of others.
+
+Much like the time-value of money, using which we discount future cashflows to derive a present value, there is a time-value of knowledge / skills / achievements as well.
+Different branches of knowledge have instrinsically different discount curves, mapped to a multi-dimensional space of evaluation criteria.
+Thus the key would lie in identifying the critical path, and giving it all you got, now.
+
