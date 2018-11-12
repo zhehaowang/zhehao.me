@@ -1,0 +1,186 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+
+\usepackage[left=1in,top=0.4in,right=1in,bottom=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage{bibentry}
+\usepackage{xstring}
+
+% Quick workaround as I'm the only person with last name Wang
+% The solution without xstring is having trouble with spaces in names;
+% Solution suggested here: http://tex.stackexchange.com/questions/33330/make-one-authors-name-bold-every-time-it-shows-up-in-the-bibliography 
+\def\FormatName#1{%
+  \IfSubStr{#1}{Wang}{\textbf{#1}}{#1}%
+}
+
+\name{Zhehao Wang}
+\address{424-333-8516, zhehao@cs.ucla.edu}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+{\bf University of California, Los Angeles} \hfill {Sep 2015 - Present} \\ 
+M.S. in Computer Science (Expected graduation: Mar 2017) \\
+\itab{Advisor:} \tab{Lixia Zhang} \\
+\itab{GPA:} \tab{3.9/4} 
+
+{\bf Xi'an Jiaotong University, China} \hfill {Sep 2010 - Jun 2014} \\ 
+B.E. in Computer Science \& Technology \\
+\itab{Major GPA:} \tab{89/100}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Skills \& Profiles}
+
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{3ex}} l }
+Languages & Python (proficient), JavaScript (proficient), C, C++, C\#, Matlab \\
+Github repository & https://github.com/zhehaowang \\
+% Shrink linkedin profile if possible
+Linkedin profile & https://www.linkedin.com/in/zhehao-wang-15739869 \\
+\end{tabular}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Experience}
+
+\begin{rSubsection}{The Center for Research in Engineering, Media and Performance, UCLA}{Feb 2014 - Present}{Graduate student researcher; Staff software developer (through Aug, 2015)}{}
+\item \textbf{Named Data Networking} (NDN) future Internet architecture project, funded by the NSF
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] NDN Internet of Things framework (C++, Python, JS, C\#) and example application. The framework implements trust and bootstrap, device discovery, and application pub/sub in a home context; and the example application provides an exploratory entertainment experience via person tracking, wearable devices, and user mobile phone
+\item[--] NDN building management system (Python), which receives, aggregates and visualizes data from UCLA's campus system
+\item[--] \textit{NDNFit} (Java, Android), a mobile health application investigating security in NDN
+\item[--] NDN multiplayer game (C\#, Unity) exploring peer-to-peer synchronization in online games
+\item[--] Chat application for the NDN tutorial in the \textit{2$^{nd}$ ACM Conference on Information-Centric Networking}
+% Jeff would not dedicated two lines to a chat application
+% NDNFS2, performance improvement, more about what it is
+% List OpenMHealth and BMS
+% Sort in order from most involved/time devoted to least
+% Explain a little about the technical part, for example Matryoshka peer-to-peer exploration and some such
+% Remove 'designed', 'developed', etc
+\end{itemize}
+
+\item \textbf{Future of Storytelling} project, funded by Google
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] \textit{Fountainhead}, a markup parser for a screenwriting language that generates a webpage, which uses web components and NDN for real-time show control
+\item[--] \textit{Los Atlantis} project website (http://the-archive.la), for user registration, online performance watching and real-time interaction
+% remove terms that don't make sense to people, 'active' script, 'Fountainhead', etc; underselling the first one, more about how the second one's used
+\item[--] Administrator website (JS, Google API) for \textit{GracePlains}, which creates a live roleplaying game experience with Google Glass
+% Would be helpful to stuff the website URLs in...
+\end{itemize}
+
+\end{rSubsection}
+
+\begin{rSubsection}{National Institute of Standards and Technology}{Jul 2016 - Sep 2016}{Guest researcher}{}
+\item[--] NDN building management system simulation and visualization
+\item[--] Division and team presentations on NDN architecture and application building blocks
+\end{rSubsection}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Publications}
+
+\nocite{*}
+\bibliographystyle{abbrv-mybold}
+\nobibliography{zhehao-cv}
+\bibentry{ndnfit}
+
+\bibentry{ndn-real-time}
+
+\bibentry{ndn-mog-demo}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	AWARDS AND SCHOLARSHIPS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Awards \& Scholarships}
+
+Outstanding Senior Student of Xi'an Jiaotong University (10\%)\hfill 2014 \\
+Meritorious Winner of International Mathematical Contest in Modeling \hfill 2013 \\
+UCLA-CSST Scholarship (9000 USD) \hfill 2013 \\
+3$^{rd}$ Class Award in ACM Competition of Xi'an Jiaotong University \hfill 2011 \\
+
+\end{rSection}
+
+\end{document}
+
+
+% Zhehao Wang
+% 424-333-8516
+% zhehao@cs.ucla.edu
+
+% ** Education
+% University of California, Los Angeles 
+% Sep 2015 - Present 
+% M.S. in Computer Science (Expected graduation: Mar 2017
+% Advisor: Lixia Zhang
+% GPA: 3.9/4 
+
+% Xi'an Jiaotong University, China
+% Sep 2010 - Jun 2014
+% B.E. in Computer Science
+% Major GPA: 89/100
+
+% ** Skills & Profiles
+
+% Languages: Python (proficient), JavaScript (proficient), C, C++, C\#, Matlab
+% Github repository: https://github.com/zhehaowang
+% Linkedin profile: https://www.linkedin.com/in/zhehao-wang-15739869
+
+% ** Experience
+
+% The Center for Research in Engineering, Media and Performance, UCLA
+% Feb 2014 - Present
+% Graduate student researcher; Staff software developer (through Aug, 2015)
+
+%  - Named Data Networking (NDN) future Internet architecture project, funded by the NSF
+%    -- NDN building management system (Python), which receives, aggregates and visualizes data from UCLA's campus system
+%    -- NDNFit (Java, Android), a mobile health application investigating security in NDN
+%    -- NDN multiplayer game (C#, Unity) exploring peer-to-peer synchronization in online games
+%    -- Chat application for the NDN tutorial in the 2nd ACM Conference on Information-Centric Networking
+%    -- Performance improvements for NDNFS (C, Fuse), a file system that supports data access from remote
+
+%  - Future of Storytelling project, funded by Google
+%    -- Fountainhead, a markup parser for a screenwriting language that generates a webpage, which uses web components and NDN for real-time show control
+%    -- Los Atlantis project website (http://the-archive.la), for user registration, online performance watching and real-time interaction
+%    -- Adminstrator website (JS, Google API) for GracePlains, which creates a live roleplaying game experience with Google Glass
+
+% National Institute of Standards and Technology
+% Jul 2016 - Sep 2016
+% Guest researcher
+%  - NDN building manangement system simulation and visualization
+%  - Division and team presentations on NDN architecture and application building blocks
+
+% ** Awards & Scholarships
+
+% Outstanding Senior Student of Xi'an Jiaotong University (10%) 2014
+% Meritorious Winner of International Mathematical Contest in Modelling 2013
+% UCLA-CSST Scholarship (9000 USD) 2013
+% 3rd Class Award in ACM Competition of Xi'an Jiaotong University 2011
+
