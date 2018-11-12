@@ -2,13 +2,14 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 
 \setlength\parindent{0pt}
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand*\mean[1]{\bar{#1}}
 
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}    
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\mmax}{max}
@@ -35,9 +36,9 @@ $$
 $$
 
 \subsection{Gradient}
-Given $f(\vec{x})$ where $\vec{x} = (x_1, ..., x_n)$ on $\mathbb{R}^n$
+Given $f(\vec{x})$ where $\vec{x} = (x_1, \dots, x_n)$ on $\mathbb{R}^n$
 $$
-\bigtriangledown f(a_1, ..., a_n) = (\frac{\partial f}{\partial x_1}(a_1, ..., a_n), ..., \frac{\partial f}{\partial x_n}(a_1, ..., a_n))
+\bigtriangledown f(a_1, \dots, a_n) = (\frac{\partial f}{\partial x_1}(a_1, \dots, a_n), \dots, \frac{\partial f}{\partial x_n}(a_1, \dots, a_n))
 $$
 
 \textbf{Intuition}: gradient is a vector (the rate of change of your function, when you move in a certain direction), which in a two-dimensional space, tangents the curve at a given point.
@@ -56,6 +57,13 @@ $$
 $$
 
 \textbf{Intuition}: the rate-of-change of a function $f(\vec{x})$ on direction $\vec{v}$.
+Remember that this is a scalar (since we are given the direction).
+
+$$
+f'(x; u) = \bigtriangledown f(x)^{T} u
+$$
+
+Meaning gradient on a certain direction vector $u$ is $f(x)$'s directional derivative on $u$.
 
 \subsection{Vector norm}
 A norm is a function that assigns a stricly positive length or size to each vector in a vector space (except the zero vector which is assigned a length of 0).
@@ -67,7 +75,7 @@ $$
 
 \textbf{Euclidean norm} on a Euclidean space $\mathbb{R}^n$ is such
 $$
-\norm{\vec{x}}_2 = \sqrt{x_1^2 + ... + x_n^2}
+\norm{\vec{x}}_2 = \sqrt{x_1^2 + \dots + x_n^2}
 $$
 
 \textbf{Manhattan or taxicab norm}
@@ -95,6 +103,39 @@ $$
 \argmax_{x \in S \subseteq X}{f(x)} = \{x ~ | ~ x \in S \land \forall y \in S : f(y) \leq f(x)\}
 $$
 
+\subsection{Dot product, inner product}
+
+Maps two equal-size vectors to a real value.
+
+$$
+\cdot : \mathbb{R}^d \times \mathbb{R}^d \to \mathbb{R}
+$$
+
+Defined geometrically, given two vectors $a$ and $b$,
+
+$$
+a \cdot b = \norm{a} \norm{b} cos(\theta)
+$$
+
+where $\theta$ is the angle between $a$ and $b$.
+
+Defined algebraically,
+
+$$
+a \cdot b = ab^{T}
+$$
+
+\subsection{Cauchy-Schwarz inequality}
+
+Given two vectors $u$ and $v$
+
+$$
+|\langle u , v \rangle|^2 \leq |\langle u , u \rangle| \cdot |\langle v , v \rangle|
+$$
+
+Where $|\langle u , u \rangle|$ is the inner product.
+The equality holds only when $u$ and $v$ are linearly independent (parallel).
+
 \subsection{Jacobian matrix}
 
 \textbf{Jacobian matrix} is the matrix of all first-order partial derivatives of a vector-valued function.
@@ -102,7 +143,7 @@ $$
 Suppose $\vec{f} : \mathbb{R}^n \to \mathbb{R}^m$, the Jacobian matrix $\vec{J}$ of $\vec{f}$ is defined as follows
 
 $$
-\vec{J} = \begin{bmatrix} ~ \frac{\partial \vec{f}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f}}{\partial x_n} ~ \end{bmatrix}
+\vec{J} = \begin{bmatrix} ~ \frac{\partial \vec{f}}{\partial x_1} ~ \dots ~ \frac{\partial \vec{f}}{\partial x_n} ~ \end{bmatrix}
 $$
 
 or component-wise $\vec{J}_{ij} = \frac{\partial \vec{f_i}}{\partial x_j}$, meaning
@@ -110,11 +151,23 @@ or component-wise $\vec{J}_{ij} = \frac{\partial \vec{f_i}}{\partial x_j}$, mean
 $$
 \vec{J} = 
  \begin{bmatrix}
-  \frac{\partial \vec{f_1}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f_1}}{\partial x_n} \\
-  ... \\
-  \frac{\partial \vec{f_m}}{\partial x_1} ~ ... ~ \frac{\partial \vec{f_m}}{\partial x_n}
+  \frac{\partial \vec{f_1}}{\partial x_1} ~ \dots ~ \frac{\partial \vec{f_1}}{\partial x_n} \\
+  \dots \\
+  \frac{\partial \vec{f_m}}{\partial x_1} ~ \dots ~ \frac{\partial \vec{f_m}}{\partial x_n}
  \end{bmatrix}
 $$
+
+\subsection{Order of a matrix}
+
+
+
+\subsection{Inversibility of a matrix}
+
+
+
+\subsection{Eigenvalue}
+
+
 
 \section{Probability}
 
@@ -141,9 +194,9 @@ Instead of a traditional algebraic variable that can be solved for one value, a 
 \subsection{Law of large numbers}
 \label{law-of-large-numbers}
 
-$X_i, X_2, ...$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $E(X_1) = E(X_2) = ... = \mu$, and
+$X_i, X_2, \dots$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $E(X_1) = E(X_2) = \dots = \mu$, and
 $$
-\mean{X}_n = \frac{1}{n}(X_1 + ... + X_n) ~ \footnote{What does the sum of random variables mean? Seems that each $X_i$ here means 'sampled' values following the distribution defined by the random variable, like, the outcome of an experiment}
+\mean{X}_n = \frac{1}{n}(X_1 + \dots + X_n) ~ \footnote{What does the sum of random variables mean? Seems that each $X_i$ here means 'sampled' values following the distribution defined by the random variable, like, the outcome of an experiment}
 $$
 
 
@@ -186,7 +239,7 @@ $$
 
 Risk cannot be calculated as we are not given $P_{\mathbf{X} \times \mathbf{Y}}$.
 
-Let $\mathbf{D}_n = \{(x_1, y_1), ..., (x_n, y_n)\}$ be drawn iid from $P_{\mathbf{X} \times \mathbf{Y}}$.
+Let $\mathbf{D}_n = \{(x_1, y_1), \dots, (x_n, y_n)\}$ be drawn iid from $P_{\mathbf{X} \times \mathbf{Y}}$.
 
 The \textbf{empirical risk} of $f : \mathbf{X} \to \mathbf{A}$ with respect to $\mathbf{D}_n$ is
 
@@ -241,10 +294,76 @@ $$
 $$
 \text{Excess Risk}(\hat{f}_n) = \text{Estimation Error} + \text{Approximation Error} = R(\hat{f}_n) - R(f^*)
 $$
+\begin{align*}
+\text{Excess Risk}(\tilde{f}_n) &= \text{Optimization Error} + \text{Estimation Error} + \text{Approximation Error} \\
+                                &= R(\tilde{f}_n) - R(f^*)
+\end{align*}
+
+\subsection{Complexity measure, $\mathit{l}_1$, $\mathit{l}_2$ regularization, ridge regression, lasso regression, coordinate gradient descent}
+
+\textbf{Regularization} is a mechanism to reduce overfitting.
+By narrowing down the hypothesis space to only those functions satisfying being within a complexity measure.
+
+\textbf{Complexity measure} $\Omega : \mathbf{F} \to [0, \infty)$ for linear decision functions $f(x) = w^{T} x$ can be defined using the $p$-norm (to the $p$) of $w$.
+
+\begin{itemize}
+  \item $\mathit{l}_0$ complexity is then the number of non-zero coefficients
+  \item $\mathit{l}_1$ \textbf{lasso} complexity is $\sum_{i = 1}^{d}{|w_i|}$
+  \item $\mathit{l}_2$ \textbf{ridge} complexity is $w^{T} w = \sum_{i = 1}^{d}{w_{i}^{2}}$
+\end{itemize}
+
+To factor complexity measure in constrained empirical risk minimization, we can use \textbf{Ivanov} or \textbf{Tikhonov} regularization. where
+
 $$
-\text{Excess Risk}(\tilde{f}_n) = \text{Optimization Error} + \text{Estimation Error} + \text{Approximation Error}
-    = R(\tilde{f}_n) - R(f^*)
+\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}} ~ \text{s.t.} ~ \Omega(f) \leq r
 $$
+
+is Ivanov regularization, and
+
+$$
+\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)} + \lambda \Omega(f)}
+$$
+
+is Tikhonov regularization.
+The two can be shown to be equivalent for many performance measure of $f$, and $\Omega$, using Lagrangian duality theory.
+
+Plugging in the lasso / ridge definition of $\Omega$ to either form, we get lasso / ridge regression.
+
+For example, ridge regression in Tikhonov form looks like
+
+$$
+\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_2^2}
+$$
+
+Lasso regression typically lead to feature sparsity (more coefficient equal to $0$).
+This can be shown intuitively by comparing the two on the intersection of contour plot (of empirical risk minimizer) and the area constrained by lasso (diamond on a $f(x) = ax + b$ prediction function) / ridge (circle on the same prediction function) regression, as show in Figure \ref{lasso-vs-ridge-sparsity}\footnote{https://niallmartin.wordpress.com/2016/05/12/shrinkage-methods-ridge-and-lasso-regression/}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{res/lasso_vs_ridge_regression.png}
+\caption{Why lasso regression tends to lead to feature sparsity}
+\label{lasso-vs-ridge-sparsity}
+\end{figure}
+
+Lasso regression ($\mathit{l}_1$-norm) is not differentiable, thus we cannot apply gradient descent as-is.
+We split each coefficient into positive and negative parts: rewrite the vector $w = w^{+} - w^{-}$ ($|w| = w^{+} + w^{-}$), and we have this equivalent problem\footnote{whose equivalence can be proved. And this can be plugged in to a quadratic solver to give us $w^{+}$ and $w^{-}$}:
+
+$$
+\argmin_{w^{+}, w^{-}}{\frac{1}{n} \sum_{i = 1}^{n}{((w^{+} - w^{-})^{T} x_i - y_i)^2} + \lambda (w^{+} + w^{-})}
+$$
+subject to $w_i^{+} \geq 0 ~ \forall i$, $w_i^{-} \leq 0 ~ \forall i$
+
+Now we have a constraint and two vectors, to find the minimum, we can use \textbf{projected SGD}\footnote{Normal gradient descent but project / reset each coordinate to the constrained space after each step} or \textbf{coordinate descent}.
+
+Coordinate gradient descent on a vector $w$ works by adjusting only a single $w_i$ in each step, as opposed to possibly alter the entire $w$ in one step as in regular gradient descent.
+We iteratively adjust each coordinate several times, where we can pick a random one to adjust, or do cyclic adjustment.
+
+Coordinate gradient descent has a \textbf{closed form solution} for lasso (in the form below\footnote{This form is not differentiable, but it can be shown that for coordinate gradient descent to work there is a weaker condition, which lasso satisfies. \textit{This would indicate that the split into positive and negative shown above is not required, for solving using coordinate gradient descent?}}), where we can use a formula to solve each $w_i$, instead of having to loop over them.
+
+$$
+\hat{w}_j = \argmin_{w_j \in \mathbf{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
+$$
+
 
 \section{Exercises}
 
