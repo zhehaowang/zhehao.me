@@ -6,6 +6,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+import time
 
 ### Assignment Owner: Tian Wang
 
@@ -45,6 +46,7 @@ def compute_square_loss(X, y, theta):
         loss - the square loss, scalar
     """
     res = X.dot(theta)
+    
     return ((res - y) ** 2).mean()
 
 ########################################
@@ -168,7 +170,6 @@ def batch_grad_descent(X, y, alpha=0.1, num_iter=1000, check_gradient=False):
     loss_hist = np.zeros(num_iter+1) #initialize loss_hist
     theta = np.zeros(num_features) #initialize theta
     
-    theta_hist[0] = theta
     loss_hist[0] = compute_square_loss(X, y, theta)
 
     if check_gradient:
@@ -193,9 +194,24 @@ def batch_grad_descent(X, y, alpha=0.1, num_iter=1000, check_gradient=False):
 ####################################
 ###Q2.4b: Implement backtracking line search in batch_gradient_descent
 ###Check http://en.wikipedia.org/wiki/Backtracking_line_search for details
-#TODO
 
+def backtracking_line_search(X, y, theta, direction, alpha):
+    # Q: something is wrong here, this as-is doesn't do anything useful
+    c = 0.5
+    tor = 0.5
 
+    m = np.linalg.norm(direction) ** 2
+    t = - c * m
+
+    j = 0
+    temp = alpha
+    while compute_square_loss(X, y, theta + temp * direction) - compute_square_loss(X, y, theta) < t * temp:
+        j += 1
+        temp = tor * temp
+
+    if temp != alpha:
+        print('backtracking line search adjusted step size from ' + str(alpha) + ' to ' + str(temp))
+    return temp
 
 ###################################################
 ### Compute the gradient of Regularized Batch Gradient Descent
@@ -212,11 +228,15 @@ def compute_regularized_square_loss_gradient(X, y, theta, lambda_reg):
     Returns:
         grad - gradient vector, 1D numpy array of size (num_features)
     """
-    #TODO
+    Xt = np.transpose(X)
+    num_instances = y.shape[0]
+
+    return (2 * Xt.dot(X).dot(theta) - 2 * Xt.dot(y) + 2 * lambda_reg * theta) / num_instances
+
 
 ###################################################
 ### Batch Gradient Descent with regularization term
-def regularized_grad_descent(X, y, alpha=0.1, lambda_reg=1, num_iter=1000):
+def regularized_grad_descent(X, y, alpha=0.1, lambda_reg=1, num_iter=1000, use_backtracking_line_search = True):
     """
     Args:
         X - the feature vector, 2D numpy array of size (num_instances, num_features)
@@ -231,9 +251,25 @@ def regularized_grad_descent(X, y, alpha=0.1, lambda_reg=1, num_iter=1000):
     """
     (num_instances, num_features) = X.shape
     theta = np.zeros(num_features) #Initialize theta
-    theta_hist = np.zeros((num_iter+1, num_features))  #Initialize theta_hist
-    loss_hist = np.zeros(num_iter+1) #Initialize loss_hist
-    #TODO
+    theta_hist = np.zeros((num_iter + 1, num_features))  #Initialize theta_hist
+    loss_hist = np.zeros(num_iter + 1) #Initialize loss_hist
+
+    loss_hist[0] = compute_square_loss(X, y, theta)
+
+    for i in range(1, num_iter + 1):
+        gradient = compute_regularized_square_loss_gradient(X, y, theta, lambda_reg)
+        loss = compute_square_loss(X, y, theta)
+        theta_hist[i] = theta
+        loss_hist[i] = loss
+
+        step = alpha
+        if use_backtracking_line_search:
+            step = backtracking_line_search(X, y, theta, gradient, alpha)
+
+        theta -= step * gradient
+
+    return theta_hist, loss_hist
+
 
 #############################################
 ## Visualization of Regularized Batch Gradient Descent
@@ -264,10 +300,32 @@ def stochastic_grad_descent(X, y, alpha=0.1, lambda_reg=1, num_iter=1000):
     num_instances, num_features = X.shape[0], X.shape[1]
     theta = np.ones(num_features) #Initialize theta
 
+    # theta_hist = np.zeros((num_iter + 1, num_instances, num_features))  #Initialize theta_hist
+    # Q: why is theta_hist a 3D matrix in the given?
+    theta_hist = np.zeros((num_iter + 1, num_features))
+    loss_hist = np.zeros((num_iter + 1, num_instances)) #Initialize loss_hist
 
-    theta_hist = np.zeros((num_iter, num_instances, num_features))  #Initialize theta_hist
-    loss_hist = np.zeros((num_iter, num_instances)) #Initialize loss_hist
-    #TODO
+    loss_hist[0] = compute_square_loss(X, y, theta)
+
+    yt = np.transpose(y[np.newaxis]) # transpose of 1d array results in a 1d array
+
+    data = np.append(X, yt, 1)
+    np.random.shuffle(data)
+
+    X_shuffled = data[:, :-1]
+    y_shuffled = data[:, -1]
+
+    # Q: this impl seems slow
+    for i in range(1, num_iter + 1):
+        idx = (i - 1) % num_instances
+        loss = compute_square_loss(X_shuffled[idx], y_shuffled[idx], theta)
+        gradient = compute_regularized_square_loss_gradient(X_shuffled[idx][np.newaxis], y_shuffled[idx][np.newaxis], theta, lambda_reg)
+
+        theta -= alpha * gradient
+        loss_hist[i] = loss
+        theta_hist[i] = theta
+    return theta_hist, loss_hist
+
 
 ################################################
 ### Visualization that compares the convergence speed of batch
@@ -292,8 +350,18 @@ def main():
     X_test = np.hstack((X_test, np.ones((X_test.shape[0], 1)))) # Add bias term
 
     # alpha = 0.1: does not converge
-    theta_hist, loss_hist = batch_grad_descent(X_train, y_train, alpha = 0.05, num_iter = 10000, check_gradient = False)
-    print(loss_hist)
+    now = time.time()
+    # Q: why do I see a higher loss, when I increase the num_iter from 10000 to 100000 in batch gradient descent and batch gradient descent with regularization?
+    theta_hist, loss_hist = batch_grad_descent(X_train, y_train, alpha = 0.005, num_iter = 10000, check_gradient = False)
+    print("batch gradient descent, loss: " + str(compute_square_loss(X_test, y_test, theta_hist[-1])) + ", time: " + str(time.time() - now))
+    
+    now = time.time()
+    theta_hist, loss_hist = regularized_grad_descent(X_train, y_train, alpha = 0.005, num_iter = 10000, lambda_reg = 1, use_backtracking_line_search = True)
+    print("batch gradient descent (l2 regularization), loss: " + str(compute_square_loss(X_test, y_test, theta_hist[-1])) + ", time: " + str(time.time() - now))
+
+    now = time.time()
+    theta_hist, loss_hist = stochastic_grad_descent(X_train, y_train, alpha = 0.005, num_iter = 10000, lambda_reg = 0.01)
+    print("stochastic gradient descent (l2 regularization), loss: " + str(compute_square_loss(X_test, y_test, theta_hist[-1])) + ", time: " + str(time.time() - now))
 
 if __name__ == "__main__":
     main()
