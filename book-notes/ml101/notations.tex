@@ -122,7 +122,7 @@ where $\theta$ is the angle between $a$ and $b$.
 Defined algebraically,
 
 $$
-a \cdot b = ab^{T}
+a \cdot b = a^{T}b
 $$
 
 \subsection{Cauchy-Schwarz inequality}
@@ -165,9 +165,33 @@ $$
 
 
 
-\subsection{Eigenvalue}
+\subsection{Eigenvalue, eigenvector}
 
+An \textbf{eigenvalue} of a \textbf{linear transformation} \footnote{Think square transformation matrix} is a non-zero vector that changes by only a scalar factor when that linear transformation is applied to it.
 
+Meaning the set of $\vec{v}$ that satisfies
+
+$$
+T(\vec{v}) = \lambda \vec{v}
+$$
+
+Where $T$ is the linear transformation, $\lambda$ is a scalar and called \textbf{eigenvalue}.
+
+We can compute the eigenvalues $\lambda$ of a square matrix $A$ of size $n$ by solving this \textbf{determinant}
+
+$$
+|A - \lambda I| = 0
+$$
+
+Where $I$ is the \textbf{identity matrix (unit matrix)} of size $n$.
+
+For each eigenvalue $\lambda$, we can then solve its (corresponding set of) eigenvectors $\vec{v}$ using
+
+$$
+(A - \lambda I) \cdot \vec{v} = 0
+$$
+
+\textbf{Intuition}: applying a linear transformation on an eigenvector of that linear transformation yields a vector that is parallel to this eigenvector (multiplier: eigenvalue).
 
 \section{Probability}
 
