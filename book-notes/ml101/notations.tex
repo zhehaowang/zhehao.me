@@ -326,7 +326,7 @@ $$
 \subsection{Complexity measure, $\mathit{l}_1$, $\mathit{l}_2$ regularization, ridge regression, lasso regression, coordinate gradient descent}
 
 \textbf{Regularization} is a mechanism to reduce overfitting.
-By narrowing down the hypothesis space to only those functions satisfying being within a complexity measure.
+By narrowing down the hypothesis space to only those functions who satisfies being within a complexity measure (or penalize the empirical risk minimizer with another term representing complexity).
 
 \textbf{Complexity measure} $\Omega : \mathbf{F} \to [0, \infty)$ for linear decision functions $f(x) = w^{T} x$ can be defined using the $p$-norm (to the $p$) of $w$.
 
@@ -388,6 +388,21 @@ $$
 \hat{w}_j = \argmin_{w_j \in \mathbf{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
 $$
 
+\subsection{Elastic nets}
+
+Consider what happens in lasso and ridge regressions when features are linear:
+lasso would assign all the weight to the feature with larger scale, and ridge would assign the weights proportional to the features' scales.
+
+It's similar when features are highly correlated (near-linear relationship between features):
+think Figure \ref{lasso-vs-ridge-sparsity} instead of parallel lines, we get elongated ellipses, whose intersection with the hypothesis space would reflect the scales of correlated features.
+
+\textbf{Elastic net} combines lasso and ridge penalties.
+
+$$
+\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda_1 \norm{w}_1 + \lambda_2 \norm{w}_2^2}
+$$
+
+Geometrically, we end with a hypothesis space like a diamond with edges bulging out (between a circle and a diamond).
 
 \section{Exercises}
 
