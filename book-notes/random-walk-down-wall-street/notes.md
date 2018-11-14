@@ -82,5 +82,27 @@ And even professional investors cannot estimate well enough to always hold the u
 
 # Part II: how the pros play the biggest game in town
 
-### Technical and fundamental analysis
+### Technical analysis
 
+Investment by castle-in-the-air theory.
+
+Chartists.
+Think a stock chart (line with a bar on y-axis for each point on x-axis) where it marks daily high, low, closing prices and volumes traded.
+
+Make decisions based on patterns in the chart (e.g. head-and-shoulders), and ignore factors like income statement, balance sheet, etc. 
+
+### Fundamentals analysis
+
+Investment by firm foundation theory.
+
+Rules (of pricing a stock): a rational investor is willing to pay more if (given the same conditions otherwise)
+* growth rate of dividends and earnings are higher
+* a larger proportion of a company's earning is paid out in cash dividends or to buy back stock
+* risk is lower (e.g. volatility as a measurement)
+* interest rate is lower
+
+Future growth, risk, interest rate cannot be determined (or deterministically) inferred from present.
+Thus the precise price cannot be determined. (and pricing becomes a matter of assumptions and scenarios.)
+
+When comparing different aspects above of two companies and deciding if one's price is undervalued, it's useful to compare ***price / earning ratio** (P/E ratio, price per share divided by earnings per share).
+With one company's P/E ratio as a benchmark, compare the above aspects to decide if another company's P/E ratio is higher or lower than expected.
