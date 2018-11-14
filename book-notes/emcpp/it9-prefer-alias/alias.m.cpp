@@ -2,6 +2,8 @@
 #include <string>
 #include <list>
 
+// demonstrates typedefs can't work with templates while 'using' aliases can
+
 template <typename T>
 using MyList = std::list<T>;
 

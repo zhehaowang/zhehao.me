@@ -1,6 +1,6 @@
 # Moving to Modern C++
 
-### Distinguish between () and {} when creating objects
+### Item 7: distinguish between () and {} when creating objects
 
 Different ways of initializing
 
@@ -53,12 +53,17 @@ Widget w2();       // most vexing parse! declares a function
 Widget w3{};       // calls Widget ctor with no args
 ```
 
-Why not always use braced initialization then? There can be unexpected behaviors due to the tangled relationship among initializers, std::intializer_lists, and constructor overload resolution.
-E.g. in [item 2](it1-4-deducing-types.md#understand-auto-type-deduction), deduced type for auto using braced initialization is std::initializer_list. (The more you like auto, the less you may like braced initialization)
+Why not always use braced initialization then?
+
+There can be unexpected behaviors due to the tangled relationship among initializers, `std::intializer_lists`, and constructor overload resolution.
+
+E.g. in [item 2](it1-4-deducing-types.md#understand-auto-type-deduction), deduced type for auto using braced initialization is `std::initializer_list`.
+(The more you like auto, the less you may like braced initialization)
 
 ```cpp
 // Braced initialization always prefers a constructor overload that takes in std::initialization_list,
 // and what would normally be copy and move construction can be hijacked by std::initialization_list ctors
+
 class Widget {
 public:
   Widget(int i, bool b);
@@ -110,7 +115,7 @@ Widget w4({});        // calls std::initializer_list ctor
 ```
 
 Why does this matter?
-Consider std::vector, it has a (length, value) ctor and a std::initializer_list ctor.
+Consider `std::vector`, it has a (length, value) ctor and a `std::initializer_list` ctor.
 And the difference could be such.
 ```cpp
 std::vector<int> v1(10, 20);  // use non-std::initializer_list
@@ -122,22 +127,24 @@ std::vector<int> v2{10, 20};  // use std::initializer_list ctor:
                               // create 2-element std::vector,
                               // element values are 10 and 20
 ```
-That means as a class designer, don't do what std::vector does.
-It’s best to design your constructors so that the overload called isn’t affected by whether clients use parentheses or braces.
-And if you need to add a std::initializer_list ctor, do so with great deliberation.
+That means as a class designer, don't do what `std::vector` does.
+
+It's best to design your constructors so that the overload called isn't affected by whether clients use parentheses or braces.
+
+And if you need to add a `std::initializer_list` ctor, do so with great deliberation.
 
 The second lesson is that as a class client, you must choose carefully between parentheses and braces when creating objects.
 
 **Takeaway**
 * Braced initialization is the most widely usable initialization syntax, it prevents narrowing conversions, and it’s immune to C++’s most vexing parse.
-* During constructor overload resolution, braced initializers are matched to std::initializer_list parameters if at all possible, even if other constructors offer seemingly better matches.
-* An example of where the choice between parentheses and braces can make a significant difference is creating a std::vector<numeric type> with two arguments.
-* Choosing between parentheses and braces for object creation inside templates can be challenging. One could do braces only when necessary; or instead, always do {} but understand when semantically () is desirable
+* During constructor overload resolution, braced initializers are matched to `std::initializer_list` parameters if at all possible, even if other constructors offer seemingly better matches.
+* An example of where the choice between parentheses and braces can make a significant difference is creating a `std::vector<numeric type>` with two arguments.
+* Choosing between parentheses and braces for object creation inside templates can be challenging. One could do braces only when necessary; or instead, always do `{}` but understand when semantically `()` is desirable
 
 
-### Prefer nullptr to 0 and NULL
+### Item 8: prefer nullptr to 0 and NULL
 
-Neither 0 or null has a pointer type.
+Neither `0` or `NULL` has a pointer type.
 In C++98, the primary implication of this was overloads on pointer and integral types could be surprising.
 
 ```cpp
@@ -155,33 +162,28 @@ f(NULL);            // might not compile (if NULL is 0L, since
 f(nullptr);         // calls f(void*) overload
 ```
 
-nullptr does not have an integral type. It does not suffer from overload resolution surprises that 0 and NULL are susceptible to.
+`nullptr` does not have an integral type.
+It does not suffer from overload resolution surprises that `0` and `NULL` are susceptible to.
 It doesn't have a pointer type either, but you can think of it as a pointer of all types.
-Its actual type is std::nullptr_t, which implicitly converts to all pointer types.
+Its actual type is `std::nullptr_t`, which implicitly converts to all pointer types.
 
-nullptr improves code clarity. Consider
+`nullptr` improves code clarity. Consider
 ```cpp
 auto result = findRecord( /* arguments */ );
-
-if (result == nullptr) {
-  …
-}
+if (result == nullptr) { ... }
 
 // vs
 auto result = findRecord( /* arguments */ );
-
-if (result == 0) {
-  …
-}
+if (result == 0) { ... }
 ```
 
-nullptr shines even more in template specialization.
+`nullptr` shines even more in template specialization.
 
 **Takeaways**
-* Prefer nullptr to 0 and NULL.
+* Prefer `nullptr` to `0` and `NULL`.
 * Avoid overloading on integral and pointer types.
 
-### Prefer alias declarations to typedefs
+### Item 9: prefer alias declarations to `typedefs`
 
 Alias is easier to swallow when dealing with types involving function pointers
 ```cpp
@@ -226,9 +228,10 @@ MyAllocList<Widget>::type lw;            // client code
 // It gets worse. If you use typedef inside a template for the purpose
 // of creating a linked list holding objects of a type specified by a
 // template parameter, you have to precede the typedef name with typename,
-// because MyAllocList<T>::type is now a dependent type. (Compiler doesn't
-// know for sure MyAllocList<T>::type is a type. There might be a
-// specialization of MyAllocList<T> somewhere that has ::type not as a type,
+// because MyAllocList<T>::type is now a dependent type (nested dependent name).
+//
+// Compiler doesn't know for sure MyAllocList<T>::type is a type. There might be
+// a specialization of MyAllocList<T> somewhere that has ::type not as a type,
 // but as a data member. Compiler doesn't know for sure.)
 
 template<typename T>
@@ -253,8 +256,8 @@ std::add_lvalue_reference_t<T>       // C++14 equivalent
 ```
 
 **Takeaways**
-* typedefs don’t support templatization, but alias declarations do.
-* Alias templates avoid the “::type” suffix and, in templates, the “typename” prefix often required to refer to typedefs.
+* `typedef`s don’t support templatization, but alias declarations do.
+* Alias templates avoid the `::type` suffix and, in templates, the `typename` prefix often required to refer to typedefs.
 * C++14 offers alias templates for all the C++11 type traits transformations.
 
 ### Prefer scoped enums to unscoped enums

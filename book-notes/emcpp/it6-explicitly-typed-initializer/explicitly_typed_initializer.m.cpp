@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// demonstrate a case working with proxy classes (vector<bool>) where auto might
+// cause undefined behavior while bool is fine.
+
 vector<bool> buildVector() {
   vector<bool> bs;
   bs.push_back(false);
@@ -26,7 +29,7 @@ int main() {
     cout << "low priority\n";
   }
 
-  // instead, do
+  // instead, do (explicitly typed initializer idiom)
   auto highPriorityGood = static_cast<bool>(buildVector()[5]);
   if (highPriorityGood) {     // all good
     cout << "high priority\n";
