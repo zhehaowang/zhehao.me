@@ -61,8 +61,9 @@ E.g. in [item 2](it1-4-deducing-types.md#understand-auto-type-deduction), deduce
 (The more you like auto, the less you may like braced initialization)
 
 ```cpp
-// Braced initialization always prefers a constructor overload that takes in std::initialization_list,
-// and what would normally be copy and move construction can be hijacked by std::initialization_list ctors
+// Braced initialization always prefers a constructor overload that takes in
+// std::initialization_list, and what would normally be copy and move
+// construction can be hijacked by std::initialization_list ctors
 
 class Widget {
 public:

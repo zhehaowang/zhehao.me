@@ -15,17 +15,17 @@ We dive in this time equipped with a ball of thread like what Theseus was given,
 ### External conditions
 
 Recent events reinforced the realization that much of my fate is not in my own hands.
-For the first time in my last five years as an immigrant to this country, I saw how limited my freedom is, in pursuing what I deemed worthy, in particular due to the restrictions in switching employers and traveling abroad.
+For the first time in my last five years as an immigrant to this country, I saw how limited my freedom is, in pursuing what I deemed worthy, due to the restrictions in switching employers and traveling abroad.
 
-This may be a moment when I swallow my pride, fear and anxiety, and accept it for what it is, as the serenity prayer would preach.
+This may be a moment when I should swallow my pride, fear and anxiety, and accept it for what it is, as the serenity prayer would preach.
 On one hand, to live and learn is but the best option we have, and on the other hand, there is something to be salvaged out of every misfortune, and it is exactly through such we evaluate ourselves, steer our goals and harden our resolve.
 
-In these endeavors, know that we do not bow easily to the whims of external conditions.
-I hold firm in the belief that the true excellence of an individual is decoupled from external conditions.
+In these endeavors, know that we do not bow to the whims of external conditions.
+I hold firm the belief that one's true excellence is decoupled from external conditions.
 
 The goal is to master my own fate.
 The way there is through the pursuit of knowledge.
-And in the pursuit I aim to stay true to the virtues described in later sections, and weather the storms with faith and temperance.
+And in the pursuit I aim to stay true to the virtues below, and to weather the storms with faith and temperance.
 
 ### Pursuit of knowledge
 
@@ -46,7 +46,7 @@ Let us not rest in the comforts of having read something, but one step further o
 In the field of engineering, this can come in the forms of understanding the design alternatives, building something with it, having seminal discussions with like-minded people, and many others.
 For all of which we should seek and create opportunities, if we find them lacking.
 
-When reflecting daily what we have achieved, let us make sure to apply the same criteria of internalization.
+When reflecting daily what we have achieved, make sure to apply the same criteria of internalization.
 
 ### Open-mindedness
 
@@ -77,7 +77,7 @@ And to cherish these that we arguably aren't worthy of, we work and learn hard, 
 Do not ridicule, or easily discredit others: it could be just a difference in habits, belief, temperament and priorities.
 Most in life are burdened with their own struggles, be it career, health, relationships and many others.
 
-Do not think that the troubles you face are the biggest adversity, decide what few accomplishments you have deserve the attention and praise of all, or boast what little you own and realize.
+Do not think that the troubles you face are the biggest adversity, or decide what few accomplishments you have deserve the attention and praise of all, or boast what little you own and realize.
 Listen attentively, show compassion, be supportive, learn from them, and heartily congratulate them for their achievements.
 
 Greed, vanity and ignorance often cloud our judgment, do not fall victim to the temptations of such.
