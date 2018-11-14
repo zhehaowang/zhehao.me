@@ -91,6 +91,14 @@ Think a stock chart (line with a bar on y-axis for each point on x-axis) where i
 
 Make decisions based on patterns in the chart (e.g. head-and-shoulders), and ignore factors like income statement, balance sheet, etc. 
 
+##### Does it really work
+
+The history of stock price movements contains no useful information that will enable an investor consistently to out-perform a buy-and-hold strategy in managing a portfolio.
+
+In other words, you are unlikely to beat buying index funds by staring at charts.
+
+The claim is that stock price movement (in the short term) is a random process (hence the name, random walk).
+
 ### Fundamentals analysis
 
 Investment by firm foundation theory.
@@ -106,3 +114,11 @@ Thus the precise price cannot be determined. (and pricing becomes a matter of as
 
 When comparing different aspects above of two companies and deciding if one's price is undervalued, it's useful to compare ***price / earning ratio** (P/E ratio, price per share divided by earnings per share).
 With one company's P/E ratio as a benchmark, compare the above aspects to decide if another company's P/E ratio is higher or lower than expected.
+
+### Combining fundamental and technical
+
+* Buy only companies that are expected to have above-average earnings growth for five or more years (double the factor, price grows and P/E ratio grows)
+* Never pay more for a stock than its firm foundation of value
+* Look for stories whose stories of anticipated growth are of the kind on which investors can build castles in the air
+
+
