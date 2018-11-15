@@ -99,6 +99,10 @@ In other words, you are unlikely to beat buying index funds by staring at charts
 
 The claim is that stock price movement (in the short term) is a random process (hence the name, random walk).
 
+Technical methods cannot be used to make useful investment strategies, and not one has consistently outperformed the simple buy-and-hold, with fees and taxes in mind.
+This is the foundamental conclusion of the random walk theory.
+Stock prices cannot be predicted on the basis of past stock prices.
+
 ### Fundamentals analysis
 
 Investment by firm foundation theory.
@@ -121,4 +125,7 @@ With one company's P/E ratio as a benchmark, compare the above aspects to decide
 * Never pay more for a stock than its firm foundation of value
 * Look for stories whose stories of anticipated growth are of the kind on which investors can build castles in the air
 
+Simply buying and holding a diversified portfolio suited to your objectives will enable you to save on investment expense, brokerage charges and taxes.
+
+Over the past 30 years, 95 percent of stock market gains came from 1% of the total amount of trading days.
 
