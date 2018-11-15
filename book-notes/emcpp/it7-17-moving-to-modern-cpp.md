@@ -261,9 +261,11 @@ std::add_lvalue_reference_t<T>       // C++14 equivalent
 * Alias templates avoid the `::type` suffix and, in templates, the `typename` prefix often required to refer to typedefs.
 * C++14 offers alias templates for all the C++11 type traits transformations.
 
-### Prefer scoped enums to unscoped enums
+### Item 10: prefer scoped enums to unscoped enums
 
-As a general rule, declaring a name inside curly braces limits the visibility of that name to the scope defined by the braces. Not so for the enumerators declared in C++98-style enums.
+As a general rule, declaring a name inside curly braces limits the visibility of that name to the scope defined by the braces.
+Not so for the enumerators declared in C++98-style enums.
+
 The names of such enumerators belong to the scope containing the enum (definition is leaked into the enclosing scope, thus unscoped enums), and that means that nothing else in that scope may have the same name:
 
 ```cpp
@@ -289,13 +291,16 @@ auto c = Color::white;           // also fine (and in accord
                                  // with Item 5's advice)
 ```
 
-Scoped enums are declared via enum class, and they are referred to as enum classes as well.
+Scoped enums are declared via `enum class`.
+They are referred to as enum classes as well.
 
 Enum classes
 * Reduce namespace pollution
 * Are strongly typed (no implicit conversion to other types, while unscoped enum implicitly convert to integral types)
 
-Enum classes can be forward declared (by default the underlying type for scoped enums in int, so the compiler knows the size of a forward declared enum. You can override the default underlying type).
+Enum classes can be forward declared (by default the underlying type for scoped enums in `int`, so the compiler knows the size of a forward declared enum.
+You can override the default underlying type).
+
 Unscoped enum can be forward declared only if the underlying type is specified.
 
 ```cpp
@@ -334,7 +339,7 @@ UserInfo uInfo;                  // object of tuple type
 auto val = std::get<1>(uInfo);   // get value of field 1
 
 // You probably don't want to remember what fields 1, 2, 3 are,
-// so you could have
+// so you could have this instead
 enum UserInfoFields { uiName, uiEmail, uiReputation };
 
 UserInfo uInfo;                        // as before
@@ -371,7 +376,7 @@ auto val = std::get<toUType(UserInfoFields::uiEmail)>(uInfo);
 **Takeaways**
 * C++98-style enums are now known as unscoped enums.
 * Enumerators of scoped enums are visible only within the enum. They convert to other types only with a cast.
-* Both scoped and unscoped enums support specification of the underlying type. The default underlying type for scoped enums is int. Unscoped enums have no default underlying type.
+* Both scoped and unscoped enums support specification of the underlying type. The default underlying type for scoped enums is `int`. Unscoped enums have no default underlying type (implementation-dependent integral type that can represent all enumerator values).
 * Scoped enums may always be forward-declared. Unscoped enums may be forward-declared only if their declaration specifies an underlying type.
 
 ### Prefer deleted functions to private undefined ones

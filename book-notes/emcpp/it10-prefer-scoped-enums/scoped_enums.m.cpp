@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+// demonstrates how unscoped enum names are leaked to the scope containing its
+// definition
+
 int main() {
   enum State { good, bad };
   //int good = 2; // compiler error: redefinition
