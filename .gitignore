@@ -4,6 +4,7 @@ wip/*
 **/*dSYM/*
 *.eps
 
+**/res/*.png
 **/data.csv
 
 ## Core latex/pdflatex auxiliary files:

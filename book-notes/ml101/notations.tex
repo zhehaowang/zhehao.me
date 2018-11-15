@@ -251,7 +251,7 @@ Let $\mathbf{X}$ denote the input space, $\mathbf{Y}$ denote the output space, a
 
 A \textbf{decision function / prediction function} $f: \mathbf{X} \to \mathbf{A}$ maps an input to an action.
 
-A \textbf{loss function} $l: \mathbf{A} \times \mathbf{Y} \to \mathbb{R}$ evaluates an action in the context of an output, and maps the error to a real.
+A \textbf{loss function} $\mathit{l}: \mathbf{A} \times \mathbf{Y} \to \mathbb{R}$ evaluates an action in the context of an output, and maps the error to a real.
 In traditional problems we can usually assume action has no effect on the output (like stock market prediction).
 
 \subsection{Risk, Bayesian function, empirical risk}
@@ -260,7 +260,7 @@ Assume there is a data generating distribution $P_{\mathbf{X} \times \mathbf{Y}}
 
 \textbf{Risk} of a decision function can then be defined as
 $$
-R(f) = \mathbb{E}l(f(x), y)
+R(f) = \mathbb{E}\mathit{l}(f(x), y)
 $$
 Where an input/output pair $(x, y)$ is generated independently and identically distributed from $P_{\mathbf{X} \times \mathbf{Y}}$.
 
@@ -276,7 +276,7 @@ Let $\mathbf{D}_n = \{(x_1, y_1), \dots, (x_n, y_n)\}$ be drawn iid from $P_{\ma
 The \textbf{empirical risk} of $f : \mathbf{X} \to \mathbf{A}$ with respect to $\mathbf{D}_n$ is
 
 $$
-\hat{R}_n(f) = \frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}
+\hat{R}_n(f) = \frac{1}{n} \sum_{i = 1}^{n}{\mathit{l}(f(x_i), y_i)}
 $$
 
 By strong law of large numbers (\ref{law-of-large-numbers}), when $n$ is big enough, empirical risk can be used to approximate risk.
@@ -294,12 +294,12 @@ So we minimize empirical risk, but only within a hypothesis space $\mathbf{F}$, 
 
 \textbf{Constrained empirical risk minimizer} can then be defined as
 $$
-\hat{f}_n = \argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}}
+\hat{f}_n = \argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{\mathit{l}(f(x_i), y_i)}}
 $$
 
 If we plug Risk in instead, a \textbf{constrained risk minimizer} becomes
 $$
-f^*_{\mathbf{F}} = \argmin_{f \in \mathbf{F}}{\mathbb{E}l(f(x), y)}
+f^*_{\mathbf{F}} = \argmin_{f \in \mathbf{F}}{\mathbb{E}\mathit{l}(f(x), y)}
 $$
 
 \textbf{Approximation error} is the risk difference between the constrained risk minimizer (in $\mathbf{F}$) and the target
@@ -347,13 +347,13 @@ By narrowing down the hypothesis space to only those functions who satisfies bei
 To factor complexity measure in constrained empirical risk minimization, we can use \textbf{Ivanov} or \textbf{Tikhonov} regularization. where
 
 $$
-\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)}} ~ \text{s.t.} ~ \Omega(f) \leq r
+\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{\mathit{l}(f(x_i), y_i)}} ~ \text{s.t.} ~ \Omega(f) \leq r
 $$
 
 is Ivanov regularization, and
 
 $$
-\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{l(f(x_i), y_i)} + \lambda \Omega(f)}
+\argmin_{f \in \mathbf{F}}{\frac{1}{n} \sum_{i = 1}^{n}{\mathit{l}(f(x_i), y_i)} + \lambda \Omega(f)}
 $$
 
 is Tikhonov regularization.
@@ -364,7 +364,7 @@ Plugging in the lasso / ridge definition of $\Omega$ to either form, we get lass
 For example, ridge regression in Tikhonov form looks like
 
 $$
-\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_2^2}
+\hat{w} = \argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_2^2}
 $$
 
 Lasso regression typically lead to feature sparsity (more coefficient equal to $0$).
@@ -393,7 +393,7 @@ We iteratively adjust each coordinate several times, where we can pick a random 
 Coordinate gradient descent has a \textbf{closed form solution} for lasso (in the form below\footnote{This form is not differentiable, but it can be shown that for coordinate gradient descent to work there is a weaker condition, which lasso satisfies. \textit{This would indicate that the split into positive and negative shown above is not required, for solving using coordinate gradient descent?}}), where we can use a formula to solve each $w_i$, instead of having to loop over them.
 
 $$
-\hat{w}_j = \argmin_{w_j \in \mathbf{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
+\hat{w}_j = \argmin_{w_j \in \mathbb{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
 $$
 
 \subsection{Elastic nets}
@@ -407,10 +407,88 @@ think Figure \ref{lasso-vs-ridge-sparsity} instead of parallel lines, we get elo
 \textbf{Elastic net} combines lasso and ridge penalties.
 
 $$
-\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda_1 \norm{w}_1 + \lambda_2 \norm{w}_2^2}
+\hat{w} = \argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda_1 \norm{w}_1 + \lambda_2 \norm{w}_2^2}
 $$
 
 Geometrically, we end with a hypothesis space like a diamond with edges bulging out (between a circle and a diamond).
+
+\subsection{Regression loss functions}
+
+A \textbf{distance-based loss function} is a loss function ($\mathit{l}(\hat{y}, y) \in \mathbb{R}$) that only depends on the \textbf{residual} $r = \hat{y} - y$.
+Most regression losses are distance-based.
+
+Distance-based losses are translation-invariant: $\mathit{l}(\hat{y} + a, y + a) = \mathit{l}(\hat{y}, y)$.
+
+Square loss ($\mathit{l}(r) = r^2$) penalizes outlier points more heavily than absolute (Laplacian) loss ($\mathit{l} = |r|$) does, and is considered less robust.
+
+Downside with absolute loss is that it's not differentiable.
+
+We are able to construct \textbf{Huber loss function} that is robust and differentiable: quadratic for $|r| \leq \delta$ and linear for $|r| > \delta$.
+
+\subsection{Classification loss functions}
+
+If we have action space $\mathbf{A}$ and outcome space $\mathbf{Y}$ both being $\{-1, 1\}$.
+
+\textbf{0-1 loss} for $f: \mathbf{X} \to \{-1, 1\}$:
+
+$$
+\mathit{l}(f(x), y) = 1 ~ (f(x) \neq y)
+$$
+
+Where $1 ~ (f(x) \neq y)$ denotes score 1 whenever $(f(x) \neq y)$.
+\\
+\\
+If we allow \textbf{real-valued prediction function} $f : \mathbf{X} \to \mathbb{R}$, meaning action space $\mathbf{A} = \mathbb{R}$ where the value represents confidence of our prediction.
+
+We can define \textbf{margin} $m$ as $m = y \hat{y}$.
+We want to maximize the margin.
+Most classification losses are \textbf{margin-based}.
+
+Empirical risk for 0-1 loss is
+
+$$
+\hat{R}_n(f) = \frac{1}{n} \sum_{i = 1}^{n}{1}~(y_i f(x_i) \leq 0)
+$$
+
+$\hat{R}_n(f)$ is non-convex, not differentiable, discontinuous, and its optimization is NP-hard.
+\\
+\\
+\textbf{SVM/Hinge loss} is defined as
+
+$$
+\mathit{l}_{Hinge} = max\{ 1 - m, 0 \} = (1 - m)_+
+$$
+
+It is a convex, upper bound on 0-1 loss, and not differentiable at $m = 1$.
+And we have \textbf{margin error} when $m < 1$.
+
+Using hinge loss function, we define \textbf{soft margin linear support vector machine} (a constrained empirical risk minimizer) as
+
+$$
+\argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(1 - y_i f_w (x_i))_+} + \lambda \norm{w}_2^2}
+$$
+
+With $l2$ regularization, and hypothesis space is linear $\{f(x) = w^{T} x | w \in \mathbb{R}^d\}$.
+\\
+\\
+\textbf{Logistic/log loss} is defined as 
+
+$$
+\mathit{l}_{Logistic} = \text{log}(1 + e^{-m})
+$$
+
+It always wants more margin, and is differentiable.
+\\
+\\
+0-1 loss, hinge and Logistic loss functions are illustrated in Figure \ref{logistic-hinge-01-loss} \footnote{http://fa.bianp.net/blog/2013/loss-functions-for-ordinal-regression/}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{res/logistic-hinge-01-loss.png}
+\caption{0-1 loss, hinge loss and Logistic loss functions}
+\label{logistic-hinge-01-loss}
+\end{figure}
+
 
 \section{Exercises}
 
