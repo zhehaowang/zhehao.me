@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+// demonstrates '= delete' can be used to get rid of unwanted implicit
+// conversions and template instantiations
+
 bool isLucky(int number) { return true; }            // original function
 
 bool isLucky(char) = delete;         // reject chars

@@ -379,11 +379,11 @@ auto val = std::get<toUType(UserInfoFields::uiEmail)>(uInfo);
 * Both scoped and unscoped enums support specification of the underlying type. The default underlying type for scoped enums is `int`. Unscoped enums have no default underlying type (implementation-dependent integral type that can represent all enumerator values).
 * Scoped enums may always be forward-declared. Unscoped enums may be forward-declared only if their declaration specifies an underlying type.
 
-### Prefer deleted functions to private undefined ones
+### Item 11: prefer deleted functions to private undefined ones
 
 You often want to suppress the special member functions that the compiler generates for you, like copycon and assignment operator.
 In C++03 you do that with private undefined copycon and assignment opr.
-In C++10 you do that with declaration with "= delete".
+In C++11 you do that with declaration with `= delete`.
 
 ```cpp
 // C++03
@@ -408,8 +408,8 @@ public:
   …
 };
 ```
-The advantages of delete
-* delete will result in better error messages: always at compile time (as opposed to friends / members seeing undefined symbols)
+The advantages of `= delete`
+* `= delete` will result in better error messages: always at compile time (as opposed to friends / members seeing undefined symbols)
 * any functions can be deleted, while only member functions can be made private. You can use this to get rid of unwanted implicit conversions, or unwanted template instantiation. E.g.
 ```cpp
 bool isLucky(int number);
@@ -474,14 +474,14 @@ void Widget::processPointer<void>(void*) = delete;  // public,
 * Prefer deleted functions to private undefined ones
 * Any function may be deleted, including non-member functions and template instantiations
 
-### Declare overriding functions override
+### Item 12: declare overriding functions `override`
 
-Override has nothing to do with overload.
-Override made it possible to invoke a derived class function through a base class interface.
+`override` has nothing to do with overload.
+`override` made it possible to invoke a derived class function through a base class interface.
 
-For override to occur
-* Base class function must be virtual
-* Base and derived function names must be identical (except in destructor)
+For `override` to occur
+* Base class function must be `virtual`
+* Base and derived function names must be identical (except in dtor)
 * Parameter types must be identical
 * constness of the base and derived functions must be identical
 * return types and exception sepcifications must be compatible
@@ -579,7 +579,7 @@ public:
 ```
 Compilers don't have to emit warnings in this case.
 
-Because declaring override is important to get right and easy to get wrong, C++11 introduces declaring a function override.
+Because declaring `override` is important to get right and easy to get wrong, C++11 introduces declaring a function `override`.
 In which case you are asking the compiler to help check something is indeed overridden.
 ```cpp
 class Derived: public Base {
@@ -593,11 +593,12 @@ public:
 
 It also helps you gauge the ramifications if you are contemplating changing the signature of a virtual function in a base class. You can see how many derived classes fails to compile.
 
-override and final are contextual keywords: they are reserved only in a context. In override's case, at the end of a member function declaration.
+`override` and `final` are contextual keywords: they are reserved only in a context.
+In `override`'s case, at the end of a member function declaration.
 
 **Takeaways**
 * Declare overriding functions override
-* Member function reference qualifiers make it possible to treat lvalue and rvalue objects (\*this) differently
+* Member function reference qualifiers make it possible to treat lvalue and rvalue objects (`*this`) differently
 
 ### Prefer const_iterators to iterators
 
