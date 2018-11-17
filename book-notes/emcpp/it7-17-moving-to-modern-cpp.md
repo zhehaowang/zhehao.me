@@ -600,10 +600,10 @@ In `override`'s case, at the end of a member function declaration.
 * Declare overriding functions override
 * Member function reference qualifiers make it possible to treat lvalue and rvalue objects (`*this`) differently
 
-### Prefer const_iterators to iterators
+### Item 13: prefer `const_iterator`s to `iterator`s
 
-This is in line with use const whenever possible.
-Problem is STL in C++98 has const\_iterators, but a lot of functions expect iterators (e.g. vector.insert) as opposed to const\_iterators, making adopting const\_iterators hard. E.g.
+This is in line with use `const` whenever possible.
+Problem is STL in C++98 has `const_iterator`s, but a lot of functions expect `iterator`s (e.g. `vector.insert`) as opposed to `const_iterator`s, making adopting `const_iterator`s hard. E.g.
 
 ```cpp
 // To find a value replace it with another one if found, otherwise
@@ -633,15 +633,15 @@ values.insert(static_cast<IterT>(ci), 1998);    // may not
                                                 // compile
 ```
 
-To write maximally generic library code, take into account that some containers and container-like data structures offer begin and end (plus cbegin, cend, rbegin, etc.) as non-member functions, rather than members.
+To write maximally generic library code, take into account that some containers and container-like data structures offer `begin` and `end` (plus `cbegin`, `cend`, `rbegin`, etc.) as non-member functions, rather than members.
 This is the case for built-in arrays, for example, and it’s also the case for some third-party libraries with interfaces consisting only of free functions.
 Maximally generic code thus uses non-member functions rather than assuming the existence of member versions.
 
-(C++11 had non-member versions of begin, end, but forgot to add non-member versions of cbegin, cend, rbegin, rend, crbegin. This is corrected in C++14)
+(C++11 had non-member versions of `begin`, `end`, but forgot to add non-member versions of `cbegin`, `cend`, `rbegin`, `rend`, `crbegin`. This is corrected in C++14)
 
 **Takeaways**
-* Prefer const\_iterators to iterators.
-* In maximally generic code, prefer non-member versions of begin, end, rbegin, etc., over their member function counterparts.
+* Prefer `const_iterator`s to `iterator`s.
+* In maximally generic code, prefer non-member versions of `begin`, `end`, `rbegin`, etc., over their member function counterparts.
 
 ### Declare functions noexcept if they won't emit exceptions
 
