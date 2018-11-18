@@ -643,14 +643,14 @@ Maximally generic code thus uses non-member functions rather than assuming the e
 * Prefer `const_iterator`s to `iterator`s.
 * In maximally generic code, prefer non-member versions of `begin`, `end`, `rbegin`, etc., over their member function counterparts.
 
-### Declare functions noexcept if they won't emit exceptions
+### Item 14: declare functions `noexcept` if they won't emit exceptions
 
 C++98 compiler offers no help in checking exception specification: programmers summarize the possible exception specifications, and update them as code changes.
 C++11 allows indication of if a function may emit any exceptions.
 
 Why noexcept:
-* Failure to declare a function noexcept when you know that it won't throw an exception is poor interface specification: whether a function is noexcept is as important a piece of information as whether a member function is const.
-* Compiler may generate more efficient code for noexcept: the difference between unwinding the stack and possibly unwinding it has a surprisingly large impact on code generation.
+* Failure to declare a function noexcept when you know that it won't throw an exception is poor interface specification: whether a function is `noexcept` is as important a piece of information as whether a member function is `const`.
+* Compiler may generate more efficient code for `noexcept`: the difference between unwinding the stack and possibly unwinding it has a surprisingly large impact on code generation.
 
 ```cpp
 RetType function(params) noexcept;     // most optimizable
@@ -662,13 +662,23 @@ RetType function(params);              // less optimizable
 
 More motivations in practice:
 
-Think of vector's insert implementation. In C++98, it's allocate, copy, then remove.
-This has strong exception safe guarantee: if an exception is thrown during copying, the state of the vector will be unchanged. (push\_back does not guarantee noexcept though)
-In C++11 we can leverage move. If move doens't have noexcept, push\_back's exception safety guarantee is violated: a move throwing an exception may cause the vector to be in a different state. What about move back on exception? Still no guarantee since move back may throw an exception itself.
-Thus the push\_back implementation in C++11 leverages move when it can (i.e. move has been declared noexcept). Other STL functions do that, too: "move if you can, copy if you must".
+Think of `vector`'s insert implementation.
+In C++98, it's allocate, copy, then remove.
 
-swap functions comprise another case where noexcept is desirable. Heavily used in STL and assignment operator.
-Often times a swap is defined as noexcept dependent on user-defined types are noexcept. Conditionally noexcept e.g.
+This has [strong exception safe guarantee](../ecpp/it26-31-implementations.md#strive-for-exception-safe-code): if an exception is thrown during copying, the state of the vector will be unchanged.
+(`push_back` does not guarantee noexcept though)
+
+In C++11 we can leverage move.
+If move doens't have `noexcept`, `push_back`'s exception safety guarantee is violated: a move throwing an exception may cause the vector to be in a different state.
+What about move back on exception?
+Still no guarantee since move back may throw an exception itself.
+
+Thus the `push_back` implementation in C++11 leverages move when it can (i.e. move has been declared `noexcept`).
+Other STL functions do that, too: "move if you can, copy if you must".
+
+`swap` functions comprise another case where noexcept is desirable.
+Heavily used in STL and assignment operator.
+Often times a whether `swap` is defined as `noexcept` depends on user-defined types are `noexcept`: conditionally noexcept e.g.
 
 ```cpp
 template <class T, size_t N>
@@ -684,25 +694,29 @@ struct pair {
 };
 ```
 
-Yet, optimization is important, but correctness is more important.
-Declare something noexcept only if you are willing to commit to this function being noexcept in the future.
+Optimization is important, but correctness is more important.
+
+Declare something `noexcept` only if you are willing to commit to this function being noexcept in the future.
 This is part of the interface (in this case, the agreement between you and your client code), and you risk breaking client code if you change your mind.
 
-The fact is most functions are exception neutral: they don't throw, but what they call might.
-If so, these exception neutral functions are rightfully defined as not noexcept.
+The fact is most functions are **exception neutral**: they don't throw, but what they call might.
+If so, these exception neutral functions are rightfully defined as not `noexcept`.
 
-If some function (e.g. swap) has natural noexcept impls, it's worth implementing them that way and declaring noexcept.
-But if not and you tweak the impl (e.g. an underlying call might throw and you catch all possible ones and return different values) such that it's noexcept, it'd be putting the cart before the horse.
+If some function (e.g. `swap`) has natural `noexcept` impls, it's worth implementing them that way and declaring `noexcept`.
+But if not and you tweak the impl (e.g. an underlying call might throw and you catch all possible ones and return different values) such that it's `noexcept`, it'd be putting the cart before the horse.
 
-By default, some functions are implicitly noexcept (e.g. dtors).
+By default, some functions are implicitly `noexcept` (e.g. dtors).
 
 Some impls differentiate functions by wide contract and narrow contract.
-Wide contract means this function has no precondition (unaware of program states) and it imposes no constraints on the arguments it's given. They never exhibit UB.
-Narrow contract means otherwise: if a precondition is violated, results are undefined.
-Typically we declare noexcept on wide contract functions, and situation is trickier with narrow contract functions.
 
-Compilers offer no help in detecting noexcept.
-The following compiles without warning. Reasoning being the called function might be in C, might be in C++98 style.
+**Wide contract** means this function has no precondition (unaware of program states) and it imposes no constraints on the arguments it's given. They never exhibit UB.
+
+**Narrow contract** means otherwise: if a precondition is violated, results are undefined.
+
+Typically we declare `noexcept` on wide contract functions, and situation is trickier with narrow contract functions.
+
+Compilers offer no help in detecting `noexcept`.
+The following compiles without warning. Reasoning being the called function might be in C, might be in C++98 style, where `noexcept` doesn't exist.
 
 ```cpp
 void a();
@@ -713,10 +727,10 @@ void b() noexcept {
 ```
 
 **Takeaways**
-* noexcept is part of a function’s interface, and that means that callers may depend on it.
-* noexcept functions are more optimizable than non-noexcept functions.
-* noexcept is particularly valuable for the move operations, swap, memory deallocation functions, and destructors.
-* Most functions are exception-neutral rather than noexcept.
+* `noexcept` is part of a function’s interface, and that means that callers may depend on it.
+* `noexcept` functions are more optimizable than non-`noexcept` functions.
+* `noexcept` is particularly valuable for the move operations, `swap`, memory deallocation functions, and dtors.
+* Most functions are exception-neutral rather than `noexcept`.
 
 ### Use constexpr whenever possible
 

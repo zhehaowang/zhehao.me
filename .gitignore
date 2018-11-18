@@ -6,6 +6,7 @@ wip/*
 
 **/res/*.png
 **/data.csv
+*.pyc
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

@@ -2,6 +2,10 @@
 #include <string>
 #include <algorithm>
 
+// demonstrates the contigency of std::swap's noexcept on user type's noexcept,
+// and that you can declare an obviously throwing function noexcept, which would
+// violate correctness.
+
 class Point {
 public:
   Point(double xVal = 0, double yVal = 0) noexcept
@@ -31,11 +35,20 @@ int main() {
   Point p1, p2;
 
   using std::swap;
-  // swap's noexcept is contingent upon the noexcept-ness of the given parameters
+  // swap's noexcept is contingent upon the noexcept-ness of the given
+  // parameters.
   // noexcept() tests for the noexceptness of a call
   std::cout << noexcept(swap(x, y)) << "\n";
   std::cout << noexcept(swap(p1, p2)) << "\n";
+  // can I make swap on two points not noexcept?
 
-  func();
+  try {
+    func();
+    // note how this is not caught: correctness is violated due to the presence
+    // of a wrongful noexcept
+  } catch (const std::runtime_error& ex) {
+    std::cout << "caught: " << ex.what() << "\n";
+  }
+  
   return 0;
 }
