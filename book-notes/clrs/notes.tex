@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[perpage]{footmisc}
+
+\setlength\parindent{0pt}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand*\mean[1]{\bar{#1}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}    
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\mmax}{max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\begin{document}
+
+\title{CLRS Notes}
+\author{Zhehao Wang}
+
+\maketitle{}
+
+\section{Analyzing algorithms, growth of functions}
+
+\textbf{Loop invariant} can help show the correctness of an algorithm.
+We must show three things about a loop invariant:
+\begin{itemize}
+  \item initialization (true prior to the first iteration),
+  \item maintenance (true before an iteration, remains true after an iteration), and
+  \item termination (when loop terminates, the invariant gives us a useful property in showing the algorithm is correct.)
+\end{itemize}
+
+The first two conditions correspond with those of induction.
+
+\subsection{Asymptotic notation}
+
+\textbf{$\Theta$-notation}: for a given function $g(n)$, we denote by $\Theta(g(n))$ the set of functions
+
+$$
+\Theta(g(n)) = \{ f(n): \exists c_1, c_2, n_0, ~ \text{s.t.} ~ 0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n), ~ \forall n \geq n_0 \}
+$$
+
+\textbf{$O$-notation}: (asymptotic upper bound) for a given function $g(n)$, we denote by $\Theta(g(n))$ the set of functions
+
+$$
+O(g(n)) = \{ f(n): \exists c, n_0, ~ \text{s.t.} ~ 0 \leq f(n) \leq c g(n), ~ \forall n \geq n_0 \}
+$$
+
+When we say ``the running time is $O(n^2)$'', we mean that there is a function $f(n)$ that is $O(n^2)$ s.t. for any value of $n$, no matter what particular input of size $n$ is chosen, the running time on that input is bounded from above by the value $f(n)$.
+Equivalently, we mean that the worst-case running time is $O(n^2)$.
+
+\textbf{$\Omega$-notation}: (asymptotic lower bound) for a given function $g(n)$, we denote by $\Omega(g(n))$ the set of functions
+
+$$
+\Omega(g(n)) = \{ f(n): \exists c, n_0, ~ \text{s.t.} ~ 0 \leq c g(n) \leq f(n), ~ \forall n \geq n_0 \}
+$$
+
+For any two functions $f(n)$ and $g(n)$, we have $f(n) = \Theta(g(n))$ iff $f(n) = \Omega(g(n))$ and $f(n) = O(g(n))$.
+\\
+\\
+\textbf{$o$-notation}: (upper bound that is not asymptotically tight) for a given function $g(n)$, we denote by $o(g(n))$ the set of functions
+
+$$
+o(g(n)) = \{ f(n): \forall c > 0, ~ \exists n_0, ~ \text{s.t.} ~ 0 \leq f(n) \leq c g(n), ~ \forall n \geq n_0 \}
+$$
+
+$$
+f(n) = o(g(n)) \implies \lim\limits_{n \to \infty}{\frac{f(n)}{g(n)}} = 0
+$$
+
+E.g. $2 n = o(n^2)$ but $2 n^2 \neq o(n^2)$
+
+Similarly, we can define \textbf{$\omega$-notation} as lower bound that is not asymptotically tight.
+
+\begin{itemize}
+  \item $\Omega, \Theta, O, o, \omega$ are transitive
+  \item $\Omega, \Theta, O$ are reflexive
+  \item $\Theta$ is symmetric
+  \item $O$ and $\Omega$, and $o$ and $\omega$ are transpose-symmetric.
+\end{itemize}
+
+We can then draw an analogy with real-number comparison:
+
+\begin{itemize}
+  \item $f(n) = O(g(n))$ with $a \leq b$
+  \item $f(n) = \Theta(g(n))$ with $a = b$
+  \item $f(n) = \Omega(g(n))$ with $a \geq b$
+  \item $f(n) = o(g(n))$ with $a < b$
+  \item $f(n) = \omega(g(n))$ with $a > b$
+\end{itemize}
+
+However, \textbf{trichotomy}\footnote{For any two real numbers $a$ and $b$, one of $a < b$, $a > b$ or $a = b$ must hold. Counter example with our notation: $f(n) = n^{1 + \sin{n}}$, $g(n) = n$} of real numbers comparison does not carry over to our notation.
+
+\section{Divide and conquer}
+
+\begin{itemize}
+  \item \textbf{Divide} the problem into a number of subproblems that are smaller instances of the same problem.
+  \item \textbf{Conquer} the subproblems by solving them recursively. If sizes are sufficiently small: solve them in a straightforward manner.
+  \item \textbf{Combine} the solutions to the subproblems into the solution for the original problem.
+\end{itemize}
+
+Given that \textbf{mergesort} has a higher constant coefficient than selection sort, how about combine the two:
+we split till subsets are small enough and apply selection sort on the small enough subsets.
+
+\end{document}
