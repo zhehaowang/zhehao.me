@@ -119,6 +119,27 @@ Thus the precise price cannot be determined. (and pricing becomes a matter of as
 When comparing different aspects above of two companies and deciding if one's price is undervalued, it's useful to compare ***price / earning ratio** (P/E ratio, price per share divided by earnings per share).
 With one company's P/E ratio as a benchmark, compare the above aspects to decide if another company's P/E ratio is higher or lower than expected.
 
+##### Does it really work
+
+Very few active fund managers outperform the market consistently.
+
+Security analysis, or predicting the future, is fundamentally difficult due to random events, company "creative" accounting, mistakes of analysts, losing analysts to sales or portfolio managers, and conflict of interest between analysts and investment banking department.
+
+With these, we introduce the **efficient market hypothesis**.
+* The weak form suggests technical analysis - looking at past price patterns, cannot help investors.
+* The semi-strong form suggests looking at public information (fundamental analysis) cannot help investors, either, due to the market being efficient, and stock pricing has already taken into account all the public information available.
+* The strong form suggests even having insider information (fundamental analysis, but against the law) doesn't help, nothing helps. This tends to be an overstatement.
+
+### View on HFT
+
+HFT does not hurt individual investors.
+Technology has always facilitated trading.
+
+One way they can help is in pricing of ETFs: any discrepancy between the pricing of an ETF with its underlying stocks will quickly be arbitraged away, thus improving liquidity, better prices, and making the market more efficient.
+
+That said, it would be illegal if optimally positioned traders can see the orders of others, and drive prices up or down before such orders are executed.
+This kind of insider trading, called "front-running", is regulated by SEC.
+
 ### Combining fundamental and technical
 
 * Buy only companies that are expected to have above-average earnings growth for five or more years (double the factor, price grows and P/E ratio grows)
