@@ -846,22 +846,24 @@ If you later decide to remove it (like adding debug IO since they are generally 
 * `constexpr` objects and functions may be used in a wider range of contexts than non-`constexpr` objects and functions.
 * `constexpr` is part of an object’s or function’s interface.
 
-### Make const member functions thread safe
+### Item 16: make `const` member functions thread safe
 
-If a member function is made const, conceptually it should be safe for multiple threads to call the same method at the same time on the same object.
-However, consider the case where a const member function modifies a mutable member variable (say, getRoot of a Polynomial class modifies the rootCache and isRootCacheValid, which are declared mutable): a const member function is no longer threadsafe.
+If a member function is made `const`, conceptually it should be safe for multiple threads to call the same method at the same time on the same object.
 
-One could add a mutex to the getRoot operation.
-Worth noting that std::mutex cannot be copied or moved, by doing so Polynomial class loses the ability to be copied or moved.
-std::atomic might be a cheaper solution if all you want is a counter, though know that std::atomic are uncopiable and unmovable.
-If you require two or more memory locations to be synchronized (e.g. a bool isValid and an int value), then std::atomic is typically not enough. If you only require one, they typically are.
+However, consider the case where a `const` member function modifies a `mutable` member variable (say, `getRoot` of a `Polynomial` class modifies the `rootCache` and `isRootCacheValid`, which are declared `mutable`): a `const` member function is no longer threadsafe.
 
-If your code is designed for a single threaded environment then this is not a concern. However such environments are becoming rarer.
-The safe bet is that const member functions will be subject to concurrent execution, and that's why you should ensure your const member functions are threadsafe.
+One could add a `mutex` to the `getRoot` operation. Worth noting that `std::mutex` cannot be copied or moved, by doing so `Polynomial` class loses the ability to be copied or moved. `std::atomic` might be a cheaper solution if all you want is a counter, though know that `std::atomic` are also uncopiable and unmovable.
+
+If you require two or more memory locations to be synchronized (e.g. a `bool isValid` and an `int value`), then `std::atomic` is typically not enough.
+If you only require one, they typically are.
+
+If your code is designed for a single threaded environment then this is not a concern.
+However such environments are becoming rarer.
+The safe bet is that `const` member functions will be subject to concurrent execution, and that's why you should ensure your `const` member functions are threadsafe.
 
 **Takeaways**
-* Make const member functions thread safe unless you’re certain they’ll never be used in a concurrent context.
-* Use of std::atomic variables may offer better performance than a mutex, but they’re suited for manipulation of only a single variable or memory location.
+* Make `const` member functions threadsafe unless you're certain they'll never be used in a concurrent context.
+* Use of `std::atomic` variables may offer better performance than a `mutex`, but they’re suited for manipulation of only a single variable or memory location.
 
 ### Understand special member function generation
 

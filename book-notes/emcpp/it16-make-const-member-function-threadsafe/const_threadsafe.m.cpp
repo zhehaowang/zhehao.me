@@ -3,9 +3,18 @@
 #include <vector>
 #include <string>
 
-// Does const member function mean it's threadsafe? No, they could be operating on 'mutable' states.
-// Should you make them threadsafe? Yes. Unless you are sure this code will run in a single-threaded environment.
-//   (alternatively, you could document the threadsafety behavior like BDE components are required to do)
+// demonstrates a case where a const member function is only made threadsafe by
+// introducing a mutex. The particular example does not involve a multi-threaded
+// environment.
+
+// Does const member function mean it's threadsafe?
+// No, they could be operating on 'mutable' states.
+//
+// Should you make them threadsafe?
+// Yes. Unless you are sure this code will run in a single-threaded environment.
+// (alternatively, you could document the threadsafety behavior like BDE
+// components are required to do)
+//
 // The mutex in this example guarantees threadsafety.
 
 class Polynomial {
