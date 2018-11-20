@@ -263,7 +263,12 @@ $x^*$ is an \textbf{optimal point} (a solution to the problem) if $x^*$ is feasi
 
 \subsection{Lagrangian duality}
 
-Given a general optimization problem: minimize $f_0(x)$ subject to $f_i(x) \leq 0, i = 1, \dots m$.
+Given a general optimization problem:
+
+\begin{align*}
+\text{minimize}       & f_0(x) \\
+\text{subject to} ~ ~ & f_i(x) \leq 0, i = 1, \dots m.
+\end{align*}
 
 The \textbf{Lagrangian} for it is defined as
 
@@ -329,6 +334,8 @@ $$
 \lambda_i^* f_i(x^*) = 0
 $$
 Always have Lagrange multiplier being zero, or constraint is active at optimum, or both.
+
+Lagrangian can be applied to illustrate the equivalence of Tikhanov and Ivanov forms of penalizing complexity measure.
 
 \subsection{Convex optimization standard form}
 
@@ -577,7 +584,7 @@ Where $1 ~ (f(x) \neq y)$ denotes score 1 whenever $(f(x) \neq y)$.
 \\
 If we allow \textbf{real-valued prediction function} $f : \mathbf{X} \to \mathbb{R}$, meaning action space $\mathbf{A} = \mathbb{R}$ where the value represents confidence of our prediction.
 
-We can define \textbf{margin} $m$ as $m = y \hat{y}$.
+We can define \textbf{margin} $m$ as $m = y \hat{y}$, where $\hat{y}$ stands for the predicted score.
 We want to maximize the margin.
 Most classification losses are \textbf{margin-based}.
 
@@ -625,6 +632,111 @@ It always wants more margin, and is differentiable.
 \caption{0-1 loss, hinge loss and Logistic loss functions}
 \label{logistic-hinge-01-loss}
 \end{figure}
+
+\subsection{SVM and Lagrangian duality}
+
+Adding a \textbf{bias} term $b$ to the constrained empirical risk minimizer of \textbf{support vector machine}, we have
+
+$$
+\argmin_{w \in \mathbb{R}^{d}, ~ b \in \mathbb{R}}{\frac{c}{n} \sum_{i = 1}^{n}{\text{max}(0, 1 - y_i (w^{T} x_i + b))} + \frac{1}{2} {\norm{w}_2^2}}
+$$
+
+whose solution gives us the SVM prediction function.
+$c$ is a constant that can be tweaked to decide how much regularization matters.
+
+This problem is not differentiable due to $max$.
+We can turn it into an equivalent problem.
+
+\begin{align*}
+\text{minimize}   ~~& \frac{c}{n} \sum_{i = 1}^{n}{\xi_i} + \frac{1}{2} {\norm{w}_2^2} \\
+\text{subject to} ~~& -\xi_i &\leq 0, ~ \forall i \in \{1, \dots n\} \\
+                  & (1 - y_i (w^{T} x_i + b)) - \xi_i &\leq 0, ~ \forall i \in \{1, \dots n\}
+\end{align*}
+
+This has a differentiable objective function, $n + d + 1$ unknowns and $2 d$ affine constraints.
+This can be solved by off-the-shelf QP solver.
+$\sum_{i = 1}^{n}{\xi_i}$ now represents the margin loss.
+
+We apply \textbf{Lagrangian multiplier} to the constrained optimization problem to get the following
+
+\begin{align*}
+L(w, b, \xi, \alpha, \lambda) &= \frac{1}{2} {\norm{w}_2^2} + \frac{c}{n} \sum_{i = 1}^{n}{\xi_i} + \sum_{i = 1}^{n}{\alpha_i (1 - y_i (w^{T} x_i + b) - \xi_i)} - \sum_{i = 1}^{n}{\lambda_i \xi_i} \\
+                              &= \frac{1}{2} w^{T} w + \sum_{i = 1}^{n}{\xi_i (\frac{c}{n} - \alpha_i - \lambda_i)} + \sum_{i = 1}^{n}{\alpha_i (1 - y_i (w^{T} x_i + b))}
+\end{align*}
+
+Its \textbf{primal} and \textbf{dual problems} look like
+
+\begin{align*}
+p^* &= \minf_{w, \xi. b} \msup_{\alpha, \lambda \geq 0} L(w, b, \xi, \alpha, \lambda) \\
+    &\geq \msup_{\alpha, \lambda \geq 0} \minf_{w, \xi. b} L(w, b, \xi, \alpha, \lambda) \\
+    &= d^*
+\end{align*}
+
+This satisfies strong duality by \textbf{Slater's constraint qualification}.
+\footnote{Where a convex problem + affine constraints $\implies$ strong duality iff problem is \textbf{feasible}.
+This problem is feasible if we simply let $w = b = 0$ and $\xi_i = 1 ~ \forall i \in \{1, \dots n\}$}
+
+The \textbf{Lagrangian dual function} then becomes
+
+\begin{align*}
+g(\alpha, \lambda) &= \minf_{w, \xi. b} L(w, b, \xi, \alpha, \lambda) \\
+                   &= \minf_{w, \xi. b} (\frac{1}{2} w^{T} w + \sum_{i = 1}^{n}{\xi_i (\frac{c}{n} - \alpha_i - \lambda_i)} + \sum_{i = 1}^{n}{\alpha_i (1 - y_i (w^{T} x_i + b))})
+\end{align*}
+
+This is convex and differentiable: quadratic in $w$, and linear in $\xi_i$ and $b$.
+The global minima is at $\frac{\partial L}{\partial w} = 0$, $\frac{\partial L}{\partial \xi} = 0$, $\frac{\partial L}{\partial b} = 0$.
+
+Solving the three partial derivations (\textbf{first order conditions}), we have
+
+\begin{align*}
+\frac{\partial L}{\partial w} = 0   \implies & ~w = \sum_{i = 1}^{n}{\alpha_i y_i x_i} \\
+\frac{\partial L}{\partial \xi} = 0 \implies & ~\alpha_i + \lambda_i = \frac{c}{n} \\
+\frac{\partial L}{\partial b} = 0   \implies & ~\sum_{i = 1}^{n}{\alpha_i y_i = 0}
+\end{align*}
+
+Replacing the $w$, $\xi$ and $b$s from the \textbf{dual function}, the \textbf{dual problem} then becomes
+
+\begin{align*}
+\msup_{\alpha} ~ ~ & \sum_{i = 1}^{n}{\alpha_i} - \frac{1}{2} \sum_{i = 1}^{n}{\alpha_i \alpha_j y_i y_j x_j^{T} x_i} \\
+s.t.               & \sum_{i = 1}^{n}{\alpha_i y_i} = 0 \\
+                   & \alpha_i \in \begin{bmatrix}0, \frac{c}{n}\end{bmatrix} ~ ~ \forall i \in \{1, \dots n\}
+\end{align*}
+
+Note
+\begin{itemize}
+  \item Given a solution $\alpha^*$ to dual, primal solution is $w^* = \sum_{i = 1}^{n}{\alpha_i^* y_i x_i}$. The $x_i$'s corresponding to $\alpha_i^* > 0$ are called \textbf{support vectors}.
+  \item $w^*$ is a linear combination of the data $x_1, \dots x_n$.
+  \item $\alpha^* \in \begin{bmatrix}0, \frac{c}{n}\end{bmatrix}$, so $c$ controls the maximum weight on each sample. This is \textbf{robust}.
+  \item This is a quadratic objective with $n$ unknowns and $n + 1$ constraints.
+  \item Efficient minimization algorithm, sequential minimal optimization, exists.
+\end{itemize}
+
+Since we have \textbf{strong duality}, \textbf{complementary slackness} holds, where the Lagrangian multiplier $\times$ the constraint function is 0.
+
+\begin{align*}
+\alpha_i^* (1 - y_i f^*(x_i) - \xi_i)                    &= 0 \\
+\lambda_i^* \xi^*_i = (\frac{c}{n} - \alpha_i^*) \xi_i^* &= 0
+\end{align*}
+
+This means
+
+\begin{itemize}
+  \item $y_i f^*(x_i) > 1 \implies \alpha_i^* = 0, ~\xi_i^* = 0$
+  \item $y_i f^*(x_i) < 1 \implies \alpha_i^* = \frac{c}{n}, ~\xi_i^* > 0$
+  \item $y_i f^*(x_i) = 1 \implies \alpha_i^* \in \begin{bmatrix}0, ~\frac{c}{n}\end{bmatrix}$
+  \item $\alpha_i^* = 0   \implies \xi_i^* = 0$ (margin loss is 0), so $y_i f^*(x_i) \geq 1$
+  \item $\alpha_i^* = \frac{c}{n} \implies y_i f^*(x_i) \leq 1$
+  \item $\alpha_i^* \in \begin{pmatrix}0, \frac{c}{n}\end{pmatrix} \implies y_i f^*(x_i) = 1$
+\end{itemize}
+
+Suppose we have an $i$ s.t. $\alpha_i^* \in \begin{pmatrix}0, \frac{c}{n}\end{pmatrix}$, using the complementary slackness conditions we can solve the bias term $b^*$, whose value stays the same for any choice of $i$ satisfying $\alpha_i^* \in \begin{pmatrix}0, \frac{c}{n}\end{pmatrix}$.
+\footnote{With numerical error, it's more rubust to average over all eligible $i$ and use the mean of resulting $b^*$}
+
+$$
+b^* = y_i - x_i^{T} w^*
+$$
+
+If there are no such $\alpha_i^*$s, then we have a degenerate SVM training problem.
 
 
 \section{Exercises}
