@@ -150,3 +150,15 @@ Simply buying and holding a diversified portfolio suited to your objectives will
 
 Over the past 30 years, 95 percent of stock market gains came from 1% of the total amount of trading days.
 
+### Modern portfolio theory
+
+(Given an efficient market) risk, and risk alone, determines the degree to which returns will be above or below average.
+
+Risk can be measured as the standard deviation (volatility) of price (a random variable).
+
+**Modern portfolio theory** shows how to combine diversified instruments to give the least risk possible with the return investors seek.
+
+It's possible to reduce risk by diversification, as long as the individual instruments are not completely positively correlated.
+Due to the possible negative correlation between different instruments and different currencies / economies, it's possible to obtain lower volatility and higher rate of return (to a certain degree) at the same time by diversification.
+
+Globalization increases the correlation of instruments, especially in times of financial crisis.
