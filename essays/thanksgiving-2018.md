@@ -12,7 +12,7 @@ Yet I do find myself constantly reflecting on the people and events of the past.
 Usually no matter if those brought joy, anger or pain at the moment I experienced them, by the time of the reflection I feel gratitude: towards the much treasured memories we shared, or the bitter lessons they taught.
 
 It is almost once again this time of the year, and in typing these down I would hope to make up for my lack of words.
-No particular order would do these justice, perhaps the cliche alphabetical one is the best I can do.
+No particular order would do these justice, perhaps the cliche alphabetical one is but the best I can do.
 
 
 To Adam and Jochen, for their excellent advice on career, and on what I could have done better.
@@ -60,5 +60,6 @@ And to the many unnamed, for your kindness, patience and support.
 
 
 I was treated by this world with kindness, for that I constantly remind myself to pay it forward.
+
 I find myself again at a crossroads, perhaps making questionable decisions.
 Even if the path may turn out to be a dead end, work hard, learn, stay humble, and appreciate.
