@@ -63,7 +63,7 @@ To those I met in my travels this and the last year, for making me feel at home 
 
 To my parents, always.
 
-And to the many unnamed, for your kindness, patienc, support, or simply your smile at a stranger in distress.
+And to the many unnamed, for your kindness, patience, support, or simply your smile at a stranger in distress.
 
 
 I was treated by this world with kindness, for that I constantly remind myself to pay it forward.

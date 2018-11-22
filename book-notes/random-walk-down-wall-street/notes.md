@@ -116,7 +116,7 @@ Rules (of pricing a stock): a rational investor is willing to pay more if (given
 Future growth, risk, interest rate cannot be determined (or deterministically) inferred from present.
 Thus the precise price cannot be determined. (and pricing becomes a matter of assumptions and scenarios.)
 
-When comparing different aspects above of two companies and deciding if one's price is undervalued, it's useful to compare ***price / earning ratio** (P/E ratio, price per share divided by earnings per share).
+When comparing different aspects above of two companies and deciding if one's price is undervalued, it's useful to compare **price / earning ratio** (P/E ratio, price per share divided by earnings per share).
 With one company's P/E ratio as a benchmark, compare the above aspects to decide if another company's P/E ratio is higher or lower than expected.
 
 ##### Does it really work
@@ -178,3 +178,11 @@ A portfolio manager then chooses the stocks with different beta characteristics 
 Popular in the 70s.
 
 ##### Does beta really work?
+
+Not as-is: beta for individual stocks are not stable over time, and they are very sensitive to the market proxy against which they are measured (e.g. SP 500 does not account for the world's stock market, nor bonds, nor human resource assets for that matter).
+
+The likes of arbitrage pricing theory, and Fama-French three factor model are introduced to bring in more factors, like interest rate, inflation, national income in the former, or market capitalization and market-to-book value ratio in the latter.
+
+### Behavioral finance
+
+Previous theories assume a perfectly rational investor, which is not the case.
