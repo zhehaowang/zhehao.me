@@ -19,23 +19,30 @@ To Adam and Jochen, for their excellent advice on career, and on what I could ha
 
 To Buyu, for putting up with my nonchalance and ambiguity, which I am now ashamed of.
 
-To Chongshan, Dongjie, Zhongxia and Jian, for our first reunion in four years, and dragging me to a net cafe, another first.
+To Chongshan, Dongjie, Zhongxia and Jian, for all the fun in our first reunion in four years.
+And dragging me to a net cafe, not something I'm particularly proud of but another first nonetheless.
 
-To Fei, Li, and Sergii, for their willingness to help and share their knowledge, and for their understanding (well, hopefully. Here goes nothing).
+To Fei, Li, and Sergii, for their willingness to help and share their knowledge, and the time they generously invested in me.
 
 To Janani, for always being encouraging and comforting to talk to.
 Often times I don't see myself share this much with friends.
 A change for the better, I suppose.
 
+To Jiajun and Josh, for sharing their knowledge and motivating each other on the similar path we undertook.
+
 To Jian, Ken, and others of Jump, for the many Friday nights we spent discussing papers / technologies of mutual interest.
 Perhaps one of those was my finest moment this year.
 
-To Joseph, David, Erin, Kevin, Kai, Kim and many others at HRT, for the fun interviews, and inspiring me to try hard at getting better, to remain humble and not get satisfied with my few achievements.
+To Joseph, David, Erin, Kevin, Kai, Kim and many others at HRT, for the fun interviews and events.
+Also for inspiring me to keep improving, to remain humble and not get satisfied with my few achievements.
 
 To Joseph, for being an outstanding conversationist and lunch pal.
 
-To Ning, for the small gifts and few interactions in a foreign office.
-In the past year, those days, if not now, were perhaps the ones I was most troubled.
+To Nikhil and Shawn, for their encouragement and support on my decision to leave earlier.
+A shame the way it turned out.
+
+To Ning, for the gifts and few interactions in a foreign office.
+In the past year, those days, if not now, were perhaps the ones during which I was most troubled.
 
 To Nzo, for always being there to bounce ideas with.
 Even those "evil", unethical and silly ones.
@@ -45,8 +52,8 @@ To Ponjo, for being a genuine friend, someone to share happiness, experience, or
 
 To Sam, Eduardo, Rayna, Jason and others who bombarded LinkedIn / Inbox, for reaching out and reminding me how much more there is to explore out there.
 
-To Setty, for the day hikes we went on, the trip to CDMX, and the many sentiments we shared.
-From my disappointment in Februrary, the anxiety in April and May, the joy in July till September, and the deep concerns now.
+To Setty, for the day hikes we went on, the trips to Chicago and CDMX, the arguments we had, and the many sentiments we shared.
+From my disappointment in Februrary, the anxiety in April and May, the exhilaration in July till September, and the deep concerns now.
 
 To Sophia, for helping me realize how much I should treasure the opportunities now, and wanting to work harder to be worthy of what luck has graciously gifted me with.
 
@@ -56,7 +63,7 @@ To those I met in my travels this and the last year, for making me feel at home 
 
 To my parents, always.
 
-And to the many unnamed, for your kindness, patience and support.
+And to the many unnamed, for your kindness, patienc, support, or simply your smile at a stranger in distress.
 
 
 I was treated by this world with kindness, for that I constantly remind myself to pay it forward.

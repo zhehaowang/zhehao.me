@@ -92,9 +92,9 @@ int main() {
   // Q1: the std::move shouldn't matter here in the first place, the param is a
   // temporary, and the cast should be no-op. But with / without it the printed
   // result is 0 / 10.
-  // Q2: in the version with std::move, and Base's move con is called, shouldn't
-  // the move con use NoMove's copy con, since NoMove's move con is disabled? In
-  // fact it uses default ctor.
+  // Q2: in the version with std::move, and Base's default move con is called,
+  // shouldn't the default move con use NoMove's copy con, since NoMove's move
+  // con is disabled? In fact it uses NoMove's default ctor.
   Base b(std::move(Base(NoMove(10))));
   std::cout << b.nm().y() << "\n";
   return 0;
