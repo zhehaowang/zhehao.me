@@ -162,3 +162,19 @@ It's possible to reduce risk by diversification, as long as the individual instr
 Due to the possible negative correlation between different instruments and different currencies / economies, it's possible to obtain lower volatility and higher rate of return (to a certain degree) at the same time by diversification.
 
 Globalization increases the correlation of instruments, especially in times of financial crisis.
+
+### Capital-asset pricing model
+
+Quantifying risk: **beta**.
+
+Beta of a portfolio measures the relative price change of the portfolio to that of the market: if market goes up by 10% portfolio A goes up by 20%, then the portfolio is said to have a beta of 2.
+
+The theory is that in an efficient market, an investor won't be rewarded for risk that can be mitigated by diversification (unsystematic risk, e.g. particular events of a company).
+But the systematic risk (measured by beta), representing the basic variability of stock prices and the tendency of stock prices being positively correlated, cannot be diversified away.
+
+And the higher the beta, meaning the more systematic risk an investor takes, the higher that investor's reward should be.
+A portfolio manager then chooses the stocks with different beta characteristics to maximize his returns within his risk tolerance.
+
+Popular in the 70s.
+
+##### Does beta really work?
