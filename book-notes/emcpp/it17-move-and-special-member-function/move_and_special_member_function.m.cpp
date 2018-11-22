@@ -1,31 +1,49 @@
 #include <iostream>
 #include <string>
 
+// demonstrates in a composition, default move con of the whole uses the default
+// ctor of the part, if the part has its move con disabled. (Shouldn't the 
+// behavior of part be use copy con if no move con in this case though?)
+
 class NoMove {
 public:
   NoMove() {
     std::cout << "NoMove default ctor\n";
   };
+  
+  NoMove(int y) : d_y(y) {
+    std::cout << "NoMove ctor taking in y\n";
+  };
+
   ~NoMove() = default;
   
   NoMove(NoMove&&) = delete;
+  /*
+  {
+    std::cout << "NoMove move ctor\n";
+  } */
+
   NoMove& operator=(NoMove&&) = delete;
 
-  NoMove(const NoMove& rhs) : y(rhs.y) {
+  NoMove(const NoMove& rhs) : d_y(rhs.d_y) {
     std::cout << "NoMove copycon\n";
   }
 
   NoMove& operator=(const NoMove& rhs) {
     std::cout << "NoMove copy assignment\n";
-    y = rhs.y;
+    d_y = rhs.d_y;
     return *this;
   }
+
+  void setY(int y) { d_y = y; }
+  int y() const { return d_y; }
 private:
-  int y;
+  int d_y;
 };
 
-// Recommended practice is to declare "= default", if the default supplied behaviors are desired
-// Understand clearly state your intent
+// Recommended practice is to declare "= default", if the default supplied
+// behaviors are desired
+// Clearly state your intent
 
 class Base {
 public:
@@ -35,13 +53,19 @@ public:
     std::cout << "Base default ctor\n";
   }
 
-  // To test out the 'move if possible' behavior on moving an object containing another whose move is deleted.
-  // Turns out with default, NoMove default ctor is called again when move happens on Base.
+  Base(const NoMove& nm) : d_nm(nm) {
+    std::cout << "Base ctor taking in NoMove\n";
+  }
+
+  // To test out the 'move if possible' behavior on moving an object containing
+  // another whose move is deleted.
+  // Turns out with default, NoMove default ctor is called again when move
+  // happens on Base.
   // With the commented out, NoMove copycon is called as expected.
   Base(Base&& rhs) = default;
   /*
    : x(std::move(rhs.x)),
-     nm(rhs.nm) {
+     d_nm(rhs.d_nm) {
     std::cout << "Base movecon\n";
   }
   */
@@ -53,17 +77,25 @@ public:
   }
 
   Base(const Base&) {
-    std::cout << "Base copy assignment\n";
+    std::cout << "Base copy con\n";
   }
 
   Base& operator=(const Base&) = default;
 
+  const NoMove& nm() const { return d_nm; }
 private:
   int x;
-  NoMove nm;
+  NoMove d_nm;
 };
 
 int main() {
-  Base b{std::move(Base())};
+  // Q1: the std::move shouldn't matter here in the first place, the param is a
+  // temporary, and the cast should be no-op. But with / without it the printed
+  // result is 0 / 10.
+  // Q2: in the version with std::move, and Base's move con is called, shouldn't
+  // the move con use NoMove's copy con, since NoMove's move con is disabled? In
+  // fact it uses default ctor.
+  Base b(std::move(Base(NoMove(10))));
+  std::cout << b.nm().y() << "\n";
   return 0;
 }

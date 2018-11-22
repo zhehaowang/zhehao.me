@@ -865,7 +865,7 @@ The safe bet is that `const` member functions will be subject to concurrent exec
 * Make `const` member functions threadsafe unless you're certain they'll never be used in a concurrent context.
 * Use of `std::atomic` variables may offer better performance than a `mutex`, but they’re suited for manipulation of only a single variable or memory location.
 
-### Understand special member function generation
+### Item 17: understand special member function generation
 
 Special member functions are those that the compiler will generate on its own.
 In C++98 we have four. Default ctor, dtor, copycon, (copy) assignment opr.
@@ -923,7 +923,8 @@ public:
 ```
 
 In fact, it might be a good idea to specify "= default" anyway to clearly state your intention.
-Without "= default", consider this case where you decided to add a dtor, the impact is profound as moves are silently deleted. (say you have a std::map in this class, previously it can be moved now it has to be copied, this is orders of magnitude slower.)
+Without "= default", consider this case where you decided to add a dtor, the impact is profound as moves are silently deleted.
+Say you have a `std::map` in this class, previously it can be moved now it has to be copied, this is orders of magnitude slower.
 
 Default ctor is the same in C++11 as C++98.
 Generated dtor is roughly the same, except it's noexcept by default.
