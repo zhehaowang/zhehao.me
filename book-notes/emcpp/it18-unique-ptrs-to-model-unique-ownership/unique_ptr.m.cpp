@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+// demonstrates using unique_ptr with custom deleter as a factory method return
+// type.
+
 const auto CREATE_TYPE = 1;
 
 class Investment {
