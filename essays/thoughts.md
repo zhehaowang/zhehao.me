@@ -33,3 +33,11 @@ Much like the time-value of money, using which we discount future cashflows to d
 Different branches of knowledge have instrinsically different discount curves, mapped to a multi-dimensional space of evaluation criteria.
 Thus the key would lie in identifying the critical path, and giving it all you got, now.
 
+The biggest asset of a company, or perhaps any human construct, is its people.
+Make sure they are treated as such, and make sure they are given the right environment and resources to inspire their potentials.
+
+Looking at my documents since 2013 there are at least three dozen named notes, thoughts, realizations, plans and the like.
+Most of them are scratches, mind dumps, and early studies that never led to fruition.
+They strike me with the realization that almost none of my ideas now is completely new.
+They all trace back to somewhere, although the source may seem long forgotten.
+Work on your bookkeeping, taxonomy, and consolidate often.

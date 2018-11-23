@@ -175,4 +175,8 @@ Necessity will continue to be the mother of invention."
 "Here was something to live for, to win to, to fight for - ay, and to die for"
 -- Jack London, Martin Eden
 
+"We imagine that as soon as we are torn out of our habitual path all is over, but it is only the beginning of something new and good. As long as there is life, there is happiness. There is a great deal, a great deal before us."
+-- Tolstoy, War and Peace
 
+"In a corporate environment, whenever you think you aren't being evaluated, you are."
+-- Adam
