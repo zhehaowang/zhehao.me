@@ -186,3 +186,14 @@ The likes of arbitrage pricing theory, and Fama-French three factor model are in
 ### Behavioral finance
 
 Previous theories assume a perfectly rational investor, which is not the case.
+Efficient market claims the random actions of irrational investors will cancel each other out as a whole, and that the arbitrageurs would smooth out irrational fluctuations in stock pricing.
+
+However, behavioral finance suggests the irrational behavior of investors is continual rather than episodic.
+And the systematic errors investors are prone to defeats the cancelling each other out claim, also effective arbitrage is difficult.
+
+The irrational behavior can be attributed to these observations in psychology
+* Overconfidence: study shows majority of people's self-assessment is that they are in the top quartile in many aspects. Making money is because of skill, and losing money is because of luck
+* Biased judgment: the illusion of being in control, and able to beat the market
+* Herding: statistically a group is more likely to make a rational decision than a single person. Not all the time, and a person's often times under pressure to conform to a group's erroneous view
+* Loss aversion: people are more sensitive to loss than to income: rarely would someone accept a statistically fair bet: the expectation needs to be in his favor, and study shows, usually by a large margin. How the possibility of loss is phrased to them matters as well.
+* Pride and regret: people tend to sell their best performers (whose selling is often times nonsensical due to incurring income taxes), and hold their worst ones until prices bounce back (which sometimes makes more sense to sell).
