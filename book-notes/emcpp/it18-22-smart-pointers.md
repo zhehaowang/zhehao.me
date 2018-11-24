@@ -90,23 +90,30 @@ However, it also has a ctor taking in `bslmf::MovableRef`, which seems to BDE's 
 * By default, resource destruction takes place via `delete`, but custom deleters can be specified. Stateful deleters and function pointers as deleters increase the size of `std::unique_ptr` objects.
 * Converting a `std::unique_ptr` to a `std::shared_ptr` is easy.
 
-### Use std::shared\_ptr for shared-ownership resource management
+### Item 19: use `std::shared_ptr` for shared-ownership resource management
 
 An argument for manually manage memory (and dtors) may be the deterministic nature and predictability of when resource reclamation is going to happen.
-Why can’t we have the best of both worlds: a system that works automatically (like garbage collection), yet applies to all resources and has predictable timing (like destructors)? C++11 std::shared\_ptr does this.
-An object accessed via std::shared\_ptr has its lifetime managed by these shared pointers. No single one assumes ownership, they collaborate to make sure the object is destroyed when it's no longer needed (last shared\_ptr stops pointing at the object).
 
-A shared pointer knows how many others are pointing at the object by consulting the resource's reference count. (Usually ctor increments it (move ctor doesn't), dtor decrements it, copy assignment opr does both.)
-When after a decrement the count drops to 0, the shared\_ptr destroys the object.
+Why can't we have the best of both worlds:
+a system that works automatically (like garbage collection), yet applies to all resources and has predictable timing (like destructors)?
+C++11 `std::shared_ptr` does this.
+
+An object accessed via `std::shared_ptr` has its lifetime managed by these shared pointers.
+No single one assumes ownership, they collaborate to make sure the object is destroyed when it's no longer needed (last `shared_ptr` stops pointing at the object).
+
+A shared pointer knows how many others are pointing at the object by consulting the resource's reference count.
+(Usually ctor increments it (move ctor doesn't), dtor decrements it, copy assignment opr does both.)
+When after a decrement the count drops to 0, the `shared_ptr` destroys the object.
 
 As a result
-* std::shared\_ptr is twice the size of unique pointers: it holds a reference to the object and another reference to the reference count of the object.
+* `std::shared_ptr` is twice the size of unique pointers: it holds a reference to the object and another reference to the reference count of the object.
 * Memory for the reference count needs to be dynamically allocated. (Pointed to object has no idea it's managed by a pointer)
 * Increments and decrements to reference count needs to be atomic to guarantee threadsafety. Atomic operations are typically slower than the non-atomic counterparts.
 
-Move assignment / ctor is faster than copy assignment / ctor for std::shared\_ptr, since move doesn't involve atomic increments / decrements but copy does.
+Move assignment / ctor is faster than copy assignment / ctor for `std::shared_ptr`, since move doesn't involve atomic increments / decrements but copy does.
 
-Note that if a custom deleter is given it's not part of shared\_ptr's type. This is not the case the unique\_ptr.
+Note that if a custom deleter is given it's not part of `shared_ptr`'s type.
+This is not the case with `unique_ptr`.
 ```cpp
 auto loggingDel = [](Widget *pw)        // custom deleter
                   {                     // (as in Item 18)
@@ -121,20 +128,20 @@ std::unique_ptr<                        // deleter type is
 std::shared_ptr<Widget>                 // deleter type is not
   spw(new Widget, loggingDel);          // part of ptr type
 ```
-The shared\_ptr design is more flexible.
-Having a custom deleter changes the size of the unique\_ptr, while having a custom deleter does not change the size of a shared\_ptr.
+The `shared_ptr` deleter design is more flexible.
+Having a custom deleter changes the size of the `unique_ptr` (and that deleter is part of `unique_ptr`'s type), while having a custom deleter does not change the size of a `shared_ptr`.
 
-Why the difference? shared\_ptr stores the deleter not inside each shared pointer object, but together with the reference count, as part of a "control block".
+Why the difference? `shared_ptr` stores the deleter not inside each shared pointer object, but together with the reference count, as part of a "control block".
 
 The control block contains reference count, a custom deleter if specified, a custom allocator if specified, and a secondary reference count "the weak count".
 
 The following rules exist for creating control blocks:
-* std::make\_shared always creates a control block
-* when a shared\_ptr is created from unique\_ptr or auto\_ptr (and as part of the construction the unique\_ptr is set to null)
-* when a shared\_ptr is called with a raw pointer
-* shared\_ptr created from shared\_ptr or weak\_ptr don't allocate new control blocks. They expect the control block to be passed in.
+* `std::make_shared` always creates a control block
+* when a `shared_ptr` is created from `unique_ptr` or `auto_ptr` (and as part of the construction the `unique_ptr` is set to null)
+* when a `shared_ptr` is called with a raw pointer
+* `shared_ptr` created from `shared_ptr` or `weak_ptr` don't allocate new control blocks. They expect the control block to be passed in.
 
-As a consequence, more than one shared\_ptrs created from a raw pointer means more than one control blocks thus double free and UB.
+As a consequence, more than one `shared_ptr`s created from a raw pointer means more than one control blocks thus double free and UB.
 Avoid doing this
 ```cpp
 auto pw = new Widget;                          // pw is raw ptr
@@ -151,10 +158,10 @@ std::shared_ptr<Widget> spw2(pw, loggingDel);  // create 2nd
 ```
 
 Two lessons
-* avoid passing raw pointers to std::shared\_ptr. Use make\_shared instead.
-* if you have to pass a raw pointer to a shared\_ptr, pass the result directly from new instead.
+* avoid passing raw pointers to `std::shared_ptr`. Use `make_shared` instead.
+* if you have to pass a raw pointer to a `shared_ptr`, pass the result directly from new instead.
 
-A particular case to be careful about is this pointer.
+A particular case to be careful about is `this` pointer.
 Say we have the following vector to keep track of processed widgets.
 ```cpp
 std::vector<std::shared_ptr<Widget>> processedWidgets;
@@ -176,20 +183,22 @@ You could do instead
 ```cpp
 class Widget: public std::enable_shared_from_this<Widget> {
 public:
-  …
+  ...
   void process() {
     processedWidgets.emplace_back(shared_from_this()); // fine
   }
-  …
+  ...
 };
 // Widget derives from std::enable_shared_from_this with Widget itself as a template
 // argument. This is completely legal and has a name "Curiously Recurring Template Pattern".
 ```
 
-std::enable\_shared\_from\_this defines a function shared\_from\_this() that allocates control block to the current object without duplicating. Use shared\_from\_this() when you want a shared\_ptr that points to the same object as this.
+`std::enable_shared_from_this` defines a function `shared_from_this()` that allocates control block to the current object without duplicating. Use `shared_from_this()` when you want a `shared_ptr` that points to the same object as `this`.
 
-Underlying std::enable\_shared\_from\_this it relies on the current object having a control block, and there must be an existing shared\_ptr (outside the member function calling shared\_from\_this) pointing to this. If not, shared\_from\_this typically throws.
-To make sure such a shared\_ptr exists, classes deriving from std::enable\_shared\_from\_this typically hides ctor and provides a factory method returning shared\_ptr. E.g.
+Underlying `std::enable_shared_from_this` it relies on the current object having a control block, and there must be an existing `shared_ptr` (outside the member function calling `shared_from_this`) pointing to this.
+If not, `shared_from_this` typically throws.
+
+To make sure such a `shared_ptr` exists, classes deriving from `std::enable_shared_from_this` typically hides ctor and provides a factory method returning `shared_ptr`. E.g.
 ```cpp
 class Widget: public std::enable_shared_from_this<Widget> {
 public:
@@ -198,30 +207,31 @@ public:
   template<typename... Ts>
   static std::shared_ptr<Widget> create(Ts&&... params);
 
-  …
+  ...
   void process();             // as before
-  …
+  ...
 
 private:
   …                           // ctors
 };
 ```
 
-Control blocks come at a cost, they may have arbitrarily large deleters, and the underlying impl uses inheritance so there's also vptr.
-But for the functionality they provide, shared\_ptr's cost is very reasonable.
-With default deleter and allocator, and created with make\_shared, the control block is 3 words in size, and its allocation is essentially free. Dereferencing is cheap, atomic operations should map to machine instructions.
-If you want to model shared ownership, shared\_ptr is still the right way to go.
+Control blocks come at a cost, they may have arbitrarily large deleters, and the underlying impl uses inheritance so there's also vptr (_how?_).
 
-unique\_ptr cannot be created from shared\_ptr.
+But for the functionality they provide, `shared_ptr`'s cost is very reasonable.
+With default deleter and allocator, and created with `make_shared`, the control block is 3 words in size, and its allocation is essentially free. Dereferencing is cheap, atomic operations should map to machine instructions.
+If you want to model shared ownership, `shared_ptr` is still the right way to go.
 
-Another thing shared pointers can't do is working with arrays, no array template parameters, unlike unique\_ptr.
-But given different alternatives to built-in array (e.g. array, vector, string), using a smart pointer to manage a dumb array is probably a bad idea in the first place.
+`unique_ptr` cannot be created from `shared_ptr`.
+
+Another thing `shared_ptr` can't do is working with arrays, no array template parameters, unlike `unique_ptr`.
+But given different alternatives to built-in array (e.g. `array`, `vector`, `string`), using a smart pointer to manage a dumb array is probably a bad idea in the first place.
 
 **Takeaway**
-* std::shared\_ptrs offer convenience approaching that of garbage collection for the shared lifetime management of arbitrary resources.
-* Compared to std::unique\_ptr, std::shared\_ptr objects are typically twice as big, incur overhead for control blocks, and require atomic reference count manipulations.
-* Default resource destruction is via delete, but custom deleters are supported. The type of the deleter has no effect on the type of the std::shared\_ptr.
-* Avoid creating std::shared\_ptrs from variables of raw pointer type.
+* `std::shared_ptr`s offer convenience approaching that of garbage collection for the shared lifetime management of arbitrary resources.
+* Compared to `std::unique_ptr`, `std::shared_ptr` objects are typically twice as big, incur overhead for control blocks, and require atomic reference count manipulations.
+* Default resource destruction is via delete, but custom deleters are supported. The type of the deleter has no effect on the type of the `std::shared_ptr`.
+* Avoid creating `std::shared_ptr`s from variables of raw pointer type.
 
 ### Use std::weak\_ptr for std::shared\_ptr like pointers that can dangle
 
