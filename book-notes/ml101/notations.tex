@@ -738,6 +738,109 @@ $$
 
 If there are no such $\alpha_i^*$s, then we have a degenerate SVM training problem.
 
+\subsection{Level sets / contours, sublevel sets and convex optimization}
+
+Let $f : \mathbb{R}^d \to \mathbb{R}$ be a function.
+A \textbf{level set} or \textbf{contour line} for the value $c$ is the set of points $x \in \mathbb{R}^d$ for which $f(x) = c$.
+
+A \textbf{sublevel set} for the value $c$ is the set of points $x \in \mathbb{R}^d$ for which $f(x) \leq c$.
+
+If $f : \mathbb{R}^d \to \mathbb{R}$ is \textbf{convex}, then sublevel sets are convex.
+Level sets and superlevel sets of convex functions are not generally convex, hence, the \textbf{standard form of convex optimization problem} uses $\leq 0$ to express constraints.
+
+The \textbf{implicit form of convex optimization problem} goes as
+
+\begin{align*}
+\text{minimize}   & ~ ~ f(x) \\
+\text{subject to} & ~ ~ x \in C
+\end{align*}
+
+where $f$ is a convex function and $C$ is a convex set.
+
+Also, intersection of convex sets is convex.
+
+\subsection{First-order approximation}
+
+Suppose $f : \mathbb{R}^d \to \mathbb{R}$ is differentiable.
+
+We can use \textbf{linear} / \textbf{first-order approximation} to predict $f(y)$ given $f(x)$ and $\bigtriangledown f(x)$
+
+$$
+f(y) \approx f(x) + \bigtriangledown f(x)^{T} (y - x)
+$$
+\\
+\\
+Now suppose $f : \mathbb{R}^d \to \mathbb{R}$ is convex and differentiable.
+
+The linear approximation to $f$ at $x$ is a \textbf{global underestimator} of $f$.
+
+$$
+\forall ~ x, y \in \mathbb{R}^d, ~ ~ f(y) \geq f(x) + \bigtriangledown f(x)^{T} (y - x)
+$$
+
+And if $\bigtriangledown f(x) = 0$ then $x$ is a global minimizer of $f$ \footnote{Where local information gives global information!}.
+
+\subsection{Subgradients}
+
+A vector $g \in \mathbb{R}^d$ is a \textbf{subgradient} of $f : \mathbb{R}^d \to \mathbb{R}$ at $x$ if $\forall ~ z$,
+
+$$
+f(z) \geq f(x) + g^{T} (z - x)
+$$
+
+$f$ is \textbf{subdifferentiable} at $x$ if $\exists$ at least one subgradient at $x$.
+
+The set of all subgradients at $x$ is called the \textbf{subdifferential}: $\partial f(x)$
+
+$f$ is convex and differentiable $\implies \partial f(x) = \{ \bigtriangledown f(x) \}$.
+At any point $x$, there can be $0$, $1$, or infinite many subgradients.
+$\partial f(x) = \emptyset \implies f$ is not convex.
+
+If $0 \in \partial f(x)$, then $x$ is a \textbf{global minimizer} of $f$.
+
+As a reminder, for function $f : \mathbb{R}^d \to R$,
+\begin{itemize}
+  \item graph of function lives in $\mathbb{R}^{d + 1}$
+  \item gradient, subgradient of $f$ live in $\mathbb{R}^d$, and
+  \item contours, level sets, sublevel sets are in $\mathbb{R}^d$
+\end{itemize}
+
+Gradient at $x$ is orthogonal to level set at $x$. (assuming $f$ continuously differentiable.)
+\\
+\\
+Now to figure out the \textbf{direction} on which to do a subgradient descent.
+
+Let $f : \mathbb{R}^d \to \mathbb{R}$ have a subgradient $g$ at $x_0$, hyperplane $H$ orthogonal to $g$ at $x_0$ must \textbf{support} the level set $S = \{ x \in \mathbb{R}^d | f(x) = f(x_0) \}$, meaning $H$ contains $x_0$ and all of $S$ lies on one side of $H$.
+The proof of which\footnote{Using the definition of subgradient, and inner product $g^T \cdot (y - x_0) > 0$ if $y$ is on the side $g$ points in} suggests the following:
+
+Points on subgradient $g$ side of $H$ have larger $f$-values than $f(x_0)$, and points on $-g$ side may not have smaller $f$-values, meaning $-g$ may not be a descent direction.
+\\
+\\
+In \textbf{subgradient descent}, suppose we repeatedly step in a negative subgradient direction $x = x_0 - t g$ where $t > 0$ is the step size and $g \in \partial f(x_0)$.
+
+We can prove $-g$ gets us closer to minimizer.
+Meaning, suppose $f$ is convex, let $x = x_0 - t g$ for $g \in \partial f(x_0)$, and let $z$ be any point for which $f(z) < f(x_0)$, then for small enough $t > 0$, $\norm{x - z}_2 < \norm{x_0 - z}_2$.
+
+\textbf{Proof:}
+\begin{align*}
+\norm{x - z}_2^2 &= \norm{x_0 - tg - z}_2^2 \\
+                 &= \norm{x_0 - z}_2^2 - 2 t g^T (x_0 - z) + t^2 \norm{g}_2^2 \\
+                 &\leq \norm{x_0 - z}_2^2 - 2 t (f(x_0) - f(z)) + t^2 \norm{g}_2^2
+\end{align*}
+
+Consider
+
+$$
+g(t) = - 2 t (f(x_0) - f(z)) + t^2 \norm{g}_2^2
+$$
+
+It's a convex quadratic facing upwards, has zeros at $t = 0$ and $t = 2 (f(x_0) - f(z)) / \norm{g}_2^2 > 0$, so
+
+$$
+g(t) < 0 ~\forall ~ t \in \begin{pmatrix} 0, \frac{2 (f(x_0) - f(x))}{\norm{g}_2^2} \end{pmatrix}
+$$
+
+Thus we have $-g$ gets us closer to a smaller $f(z)$.
 
 \section{Exercises}
 
