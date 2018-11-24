@@ -79,7 +79,9 @@ class SharedPtr {
 
     SharedPtr& operator=(const SharedPtr& rhs) {
         if (d_ptr_p != rhs.d_ptr_p) {
-            decrementAndFreeIfNeeded();
+            if (d_ptr_p && d_cb_p) {
+                decrementAndFreeIfNeeded();
+            }
             d_ptr_p = rhs.d_ptr_p;
             d_cb_p  = rhs.d_cb_p;
             d_cb_p->incrementReference();
@@ -91,7 +93,9 @@ class SharedPtr {
 
     SharedPtr& operator=(SharedPtr&& rhs) {
         if (d_ptr_p != rhs.d_ptr_p) {
-            decrementAndFreeIfNeeded();
+            if (d_ptr_p && d_cb_p) {
+                decrementAndFreeIfNeeded();
+            }
             d_ptr_p = rhs.d_ptr_p;
             d_cb_p  = rhs.d_cb_p;
             rhs.d_cb_p  = nullptr;

@@ -38,16 +38,25 @@ class CustomData {
 class Derived : public CustomData {};
 
 int main() {
-    Derived *x = new Derived();
-    x->setX(5);
-    SharedPtr<Derived> sp(x); // bad style
-    SharedPtr<Derived> sp1(sp);
+    {
+        Derived *x = new Derived();
+        x->setX(5);
+        SharedPtr<Derived> sp(x); // bad style
+        SharedPtr<Derived> sp1(sp);
 
-    SharedPtr<Derived> sp2(new Derived());
-    sp2->setX(10);
-    sp1 = sp2;
-    sp  = sp2;
-    
-    SharedPtr<CustomData> bp1(SharedPtr<Derived>(new Derived()));
+        SharedPtr<Derived> sp2(new Derived());
+        sp2->setX(10);
+        sp1 = sp2;
+        sp  = sp2;
+        
+        SharedPtr<CustomData> bp1(SharedPtr<Derived>(new Derived()));
+    }
+
+    {
+        SharedPtr<Derived> sp3;
+        sp3 = SharedPtr<Derived>(new Derived()); // move assignment opr
+        std::cout << "delete temporary\n";
+        sp3->setX(10);
+    }
     return 0;
 }

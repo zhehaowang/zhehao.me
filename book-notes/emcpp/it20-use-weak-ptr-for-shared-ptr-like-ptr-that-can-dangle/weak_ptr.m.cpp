@@ -2,6 +2,11 @@
 #include <string>
 #include <unordered_map>
 
+// demonstrates one use case of weak_ptr in building a cached load operation, in
+// which cache uses a weak_ptr that can dangle (to avoid hogging the space if we
+// use shared_ptr), and let the client decide the lifetime of the objects
+// returned by cache.
+
 class Widget {
 public:
   Widget() = default;
