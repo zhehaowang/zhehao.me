@@ -197,3 +197,11 @@ The irrational behavior can be attributed to these observations in psychology
 * Herding: statistically a group is more likely to make a rational decision than a single person. Not all the time, and a person's often times under pressure to conform to a group's erroneous view
 * Loss aversion: people are more sensitive to loss than to income: rarely would someone accept a statistically fair bet: the expectation needs to be in his favor, and study shows, usually by a large margin. How the possibility of loss is phrased to them matters as well.
 * Pride and regret: people tend to sell their best performers (whose selling is often times nonsensical due to incurring income taxes), and hold their worst ones until prices bounce back (which sometimes makes more sense to sell).
+
+Plus, efficient arbitrage is difficult, due to its risk (in LTCM's case, what if spread continues to widen), sometimes unable to find similar instruments.
+This results in being sophisticated traders like hedge funds often end up not being a pricing correction force in bubbles, but rather they helped the prices move in irrational direction (as in DotNet bubble).
+
+**Insights from behavioral finance**: bow to the wisdom of the market, buy and hold an index, don't be your own worst enemy, and avoid stupid investor tricks.
+
+
+

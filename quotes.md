@@ -120,7 +120,7 @@ and wisdom to know the difference."
 4. Success is a lonely road, while failure is a crowded highway
 5. The last 10% is the hardest. Finish it
 6. Know why you want it
-7. Continuously learn﻿"
+7. Continuously learn"
 -- The Tech Lead
 
 "The first rule of discovery is to have brains and good luck. The second rule of discovery is to sit tight till you have a bright idea"
