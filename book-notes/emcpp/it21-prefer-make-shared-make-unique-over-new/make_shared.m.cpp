@@ -2,6 +2,9 @@
 #include <string>
 #include <unordered_map>
 
+// demonstrates a case where creating smart ptr from raw ptr may lead to
+// exception unsafe code, while make_ functions won't have such an issue.
+
 class Widget {
 public:
   Widget() = default;
@@ -23,8 +26,8 @@ int getPriority() {
 }
 
 int main() {
-  // exception unsafe: in compiler generated code, getPriority can get in between Widget ctor and shared_ptr ctor
-  // which will cause memory leak
+  // exception unsafe: in compiler generated code, getPriority can get in
+  // between Widget ctor and shared_ptr ctor which will cause memory leak
   try {
     processWidget(std::shared_ptr<Widget>(new Widget()),
                   getPriority());

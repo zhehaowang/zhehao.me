@@ -318,10 +318,11 @@ From an efficiency perspective, `weak_ptr` makes the same case as `shared_ptr`: 
 * Use `std::weak_ptr` for `std::shared_ptr`-like pointers that can dangle.
 * Potential use cases for `std::weak_ptr` include caching, observer lists, and the prevention of `std::shared_ptr` cycles.
 
-### Prefer std::make\_unique and std::make\_shared to direct use of new
+### Item 21: prefer `std::make_unique` and `std::make_shared` to direct use of new
 
-std::make\_unique is part of C++14.
-std::make\_shared is part of C++11. If you need to implement it yourself, it looks like (without supporting arrays)
+`std::make_unique` is part of C++14.
+`std::make_shared` is part of C++11.
+If you need to implement it yourself, it looks like this (without supporting arrays)
 ```cpp
 template<typename T, typename... Ts>
 std::unique_ptr<T> make_unique(Ts&&... params)
@@ -329,9 +330,9 @@ std::unique_ptr<T> make_unique(Ts&&... params)
   return std::unique_ptr<T>(new T(std::forward<Ts>(params)...));
 }
 ```
-std::allocate\_shared acts like make\_shared, except its first argument is an allocator to be used for the underlying dynamic memory allocation.
+`std::allocate_shared` acts like `make_shared`, except its first argument is an allocator to be used for the underlying dynamic memory allocation.
 
-Compare the version using make\_xxx and using raw pointer ctor:
+Compare the version using `make_xxx` and using raw pointer ctor:
 ```cpp
 auto upw1(std::make_unique<Widget>());      // with make func
 
@@ -342,10 +343,10 @@ auto spw1(std::make_shared<Widget>());      // with make func
 
 std::shared_ptr<Widget> spw2(new Widget);   // without make func
 ```
-The version without repeats the type Widget, whose duplication should be avoided.
+`make_xxx` version does not repeat the type `Widget`, whose duplication should be avoided.
 
 Another concern is exception safety.
-Consider this code where we process widget with a priority (pass shared\_ptr by value looks suspicious, how?):
+Consider this code where we process widget with a priority (ignore the suspicious looking pass `shared_ptr` by value for now):
 ```cpp
 void processWidget(std::shared_ptr<Widget> spw, int priority);
 
@@ -357,18 +358,19 @@ processWidget(std::shared_ptr<Widget>(new Widget),  // potential
                                                     // leak!
 ```
 
-Why potential resource leak?
-Three things need to happen here, new Widget, shared\_ptr ctor, computePriority() call.
-Compiler is allowed to generate code that put computePriority call in between.
-Thus if computePriority call throws, heap allocation of Widget is done, but the memory won't be managed by a smart pointer.
-std::make\_shared avoids such a problem.
+This has potential resource leak. Why?
+Three things need to happen here, `new Widget`, `shared_ptr` ctor, `computePriority()` call.
+Compiler is allowed to generate code that put `computePriority` call in between.
+Thus if `computePriority` call throws, heap allocation of Widget is done, but the memory won't be managed by a smart pointer.
+`std::make_shared` avoids such a problem.
 ```cpp
 processWidget(std::make_shared<Widget>(),   // no potential
               computePriority());           // resource leak
-// even though either one of make_shared and computePriority can be called first in the compiler generated code 
+// even though either one of make_shared and computePriority
+// can be called first in the compiler generated code 
 ```
 
-std::make\_shared also improves efficiency.
+`std::make_shared` also improves efficiency.
 ```cpp
 std::shared_ptr<Widget> spw(new Widget);
 // two memory allocations of Widget object and its control block
@@ -376,16 +378,16 @@ auto spw = std::make_shared<Widget>();
 // one memory allocation to hold both the object and the control block.
 ```
 
-There are circumstances where make\_shared and make\_unique cannot be used.
+There are circumstances where `make_shared` and `make_unique` cannot be used.
 First is when deleter is passed in as argument.
-Second is this: make\_unique and make\_shared perfectly forwards to the object's ctor, but do they forwward using parentheses or brackets?
+Second is this: `make_unique` and `make_shared` perfectly forwards to the object's ctor, but do they forwward using parentheses or brackets?
 ```cpp
 auto upv = std::make_unique<std::vector<int>>(10, 20);
 
 auto spv = std::make_shared<std::vector<int>>(10, 20);
 // Forwards using () or {} makes a difference for vectors!
 ```
-They use parentheses, which means if you want to initialize the object using brackets, you can either use new, or pass an std::initializer\_list:
+They use parentheses, which means if you want to initialize the object using brackets, you can either use `new`, or pass an `std::initializer_list`:
 ```cpp
 // create std::initializer_list
 auto initList = { 10, 20 };
@@ -394,17 +396,17 @@ auto initList = { 10, 20 };
 auto spv = std::make_shared<std::vector<int>>(initList);
 ```
 
-For make\_shared, there are two more caveats.
-* Classes with custom operator new and delete, who typically allocates the exact size of the Object in their new.
-std::allocate\_shared need to request size of Object + size of control block, it usually doesn't work well with overloaded new.
-* Big objects that has shared\_ptrs and weak\_ptrs pointing to it, and wants the object to be destroyed when all shared\_ptr references are gone.
-Since make\_shared allocates the control block and the object together, and the control block is only freed after all shared\_ptr as well as weak\_ptr references are gone, make\_shared created objects will not have the freedom as new'ed objects do to deallocate the object and the control block separately.
+For `make_shared`, there are two more caveats.
+* Classes with custom `operator new` and `delete`, who typically allocates the exact size of the object in their `new`.
+`std::allocate_shared` need to request size of object + size of control block, it usually doesn't work well with overloaded new.
+* Big objects that has `shared_ptrs` and `weak_ptrs` pointing to it, and wants the object to be destroyed when all `shared_ptr` references are gone.
+Since `make_shared` allocates the control block and the object together, and the control block is only freed after all `shared_ptr` as well as `weak_ptr` references are gone, `make_shared` created objects will not have the freedom as `new`ed objects do to deallocate the object and the control block separately.
 
-If you have to use new, watch out for the exception-safety issue mentioned earlier.
+If you have to use `new`, watch out for the exception-safety issue mentioned earlier.
 
 You could do
 ```cpp
-std::shared_ptr<Widget> spw(new Widget, cusDel);
+std::shared_ptr<Widget> spw(new Widget, customDel);
 
 processWidget(spw, computePriority());     // correct, but not
                                            // optimal: pass shared_ptr by
@@ -416,9 +418,9 @@ processWidget(std::move(spw),            // both efficient and
 ```
 
 **Takeaways**
-* Compared to direct use of new, make functions eliminate source code duplication, improve exception safety, and, for std::make_shared and std::allocate_shared, generate code that’s smaller and faster.
-* Situations where use of make functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
-* For std::shared_ptrs, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and std::weak_ptrs that outlive the corresponding std::shared_ptrs.
+* Compared to direct use of `new`, `make` functions eliminate source code duplication, improve exception safety, and, for `std::make_shared` and `std::allocate_shared`, generate code that’s smaller and faster.
+* Situations where use of `make` functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
+* For `std::shared_ptr`s, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and `std::weak_ptr`s that outlive the corresponding `std::shared_ptr`s.
 
 ### When using the pimpl idiom, define special member functions in the implementation file
 
