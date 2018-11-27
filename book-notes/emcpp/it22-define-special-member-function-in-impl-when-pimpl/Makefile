@@ -1,2 +1,2 @@
-main: *.m.cpp
-	g++ -o main *.m.cpp -std=gnu++14 -I .
+main: *.cpp
+	g++ -o main *.m.cpp pimpl.cpp -std=gnu++14 -I .

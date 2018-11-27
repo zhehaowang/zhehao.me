@@ -19,9 +19,7 @@ class UniquePtr {
     // TODO: should we use std::forward on this universal reference, why or why
     // not?
     template <typename U>
-    UniquePtr(U&& rhs) noexcept {
-        d_ptr = std::forward<U>(rhs).release();
-    }
+    UniquePtr(U&& rhs) noexcept : d_ptr(std::forward<U>(rhs).release()) {}
 
     virtual ~UniquePtr() {
         if (d_ptr) {
@@ -35,13 +33,24 @@ class UniquePtr {
 
     UniquePtr(UniquePtr&& rhs) noexcept : d_ptr(rhs.release()) {}
 
+    /*
+    // turns out this is shadowed by the universal version
     UniquePtr& operator=(UniquePtr&& rhs) noexcept {
+        if (rhs.isNull() || !isNull()) {
+            std::cout << "regular move called\n";
+            reset();
+        }
         d_ptr = rhs.release();
     }
+    */
 
     template <typename U>
     UniquePtr& operator=(U&& rhs) noexcept {
+        if (rhs.isNull() || !isNull()) {
+            reset();
+        }
         d_ptr = std::forward<U>(rhs).release();
+        return *this;
     }
 
     explicit UniquePtr(T* ptr) noexcept : d_ptr(ptr) {}

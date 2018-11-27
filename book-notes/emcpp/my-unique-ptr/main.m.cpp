@@ -36,6 +36,8 @@ class CustomData {
 
 class Derived : public CustomData {};
 
+class Irrelevant {};
+
 int main() {
     UniquePtr<Derived> up;
     cout << "1 isNull: " << up.isNull() << "\n";
@@ -67,6 +69,13 @@ int main() {
 
     UniquePtr<CustomData> cd1 = UniquePtr<Derived>(new Derived());
     cout << "parent1 data: " << cd1->x() << "\n";
+
+    UniquePtr<Derived> empty1;
+    cd1 = empty1;
+    up2 = empty1;
+
+    //UniquePtr<Irrelevant> ir1;
+    //cd1 = ir1;
 
     return 0;
 }

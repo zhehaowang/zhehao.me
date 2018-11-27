@@ -422,7 +422,7 @@ processWidget(std::move(spw),            // both efficient and
 * Situations where use of `make` functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
 * For `std::shared_ptr`s, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and `std::weak_ptr`s that outlive the corresponding `std::shared_ptr`s.
 
-### When using the pimpl idiom, define special member functions in the implementation file
+### Item 22: when using the pimpl idiom, define special member functions in the implementation file
 
 Pimpl idiom is often used to combat excessive build times.
 Why does it help? Consider the following
@@ -430,15 +430,15 @@ Why does it help? Consider the following
 class Widget {                     // in header "widget.h"
 public:
   Widget();
-  …
+  ...
 private:
   std::string name;
   std::vector<double> data;
   Gadget g1, g2, g3;               // Gadget is some user-
 };                                 // defined type
 ```
-This means the header has to include vector, string, and gadget.
-These headers in turn increase the build time of Widget's clients, and if header contents (e.g. gadget and widget) change, the client has to recompile.
+This means the header has to include `vector`, `string`, and `gadget`.
+These headers in turn increase the build time of `Widget`'s clients, and if header contents (e.g. `gadget` and `widget`) change, the client has to recompile.
 With pimpl you have
 ```cpp
 class Widget {                 // still in header "widget.h"
@@ -452,7 +452,7 @@ private:
   Impl *pImpl;                 // and pointer to it
 };
 ```
-Where Widget::Impl is an incomplete type.
+Where `Widget::Impl` is an incomplete type.
 There is little you can do an incomplete type, but you can make a pointer to it, given the size is known.
 The impl in C++98 then looks something like this:
 ```cpp
@@ -475,7 +475,7 @@ Widget::~Widget()              // destroy data members for
 { delete pImpl; }              // this object
 ```
 
-With C++11, unqiue\_ptr is exactly the tool we need, and the code in turn looks something like this
+With C++11, `unqiue_ptr` is exactly the tool we need, and the code in turn looks something like this
 ```cpp
 #include "widget.h"                 // in "widget.cpp"
 #include "gadget.h"
@@ -496,12 +496,13 @@ Widget::Widget()                    // per Item 21, create
 However when we use it in a different translation unit, 
 ```cpp
 Widget w;
-// Compiler generates: invalid application of 'sizeof' to an incomplete type 'Widget::Impl'
+// Compiler generates: invalid application of 'sizeof' to an incomplete type
+// 'Widget::Impl'
 ```
-Problem is that as compiler generates code for w's deletion (delete on the raw pointer inside unique_ptr), delete needs to be called on a complete type.
-In this translation unit with pimpl.h included, struct Impl is not a complete type.
+Problem is that as compiler generates code for `w`'s deletion (delete on the raw pointer inside `unique_ptr`), delete needs to be called on a complete type.
+In this translation unit with `pimpl.h` included, struct `Impl` is not a complete type.
 
-So we declare Widget's dtor in the header but not define it.
+So we declare `Widget`'s dtor in the header but not define it.
 ```cpp
 class Widget {                     // as before, in "widget.h"
 public:
@@ -536,7 +537,8 @@ Widget::~Widget()                  // ~Widget definition
 Widget::~Widget() = default;       // same effect as above
 ```
 
-Pimpls are often times great candidates for move. So we add in the move operations.
+Pimpls are often times great candidates for move.
+So we add in the move operations.
 ```cpp
 // header
 ...
@@ -554,7 +556,7 @@ Widget& Widget::operator=(Widget&& rhs) noexcept = default;
 // exception, even though you declare it noexcept), Impl needs to be a complete type
 ```
 
-And we'll need to write the copy operations ourselves since compiler won't be generate copy operations for classes with move-only types like unique\_ptr. (Even if they do it'd be a shallow copy of the pointer not a deeo copy of the underlying object)
+And we'll need to write the copy operations ourselves since compiler won't be generate copy operations for classes with move-only types like `unique_ptr`. (Even if they do it'd be a shallow copy of the pointer not a deep copy of the underlying object)
 
 ```cpp
 // deep copy of an object using pimpl
@@ -572,7 +574,7 @@ Widget& Widget::operator=(const Widget& rhs)   // copy operator=
 }
 ```
 
-Yet if we use a shared\_ptr for pimpl, the rules of this chapter don't apply.
+Yet if we use a `shared_ptr` for pimpl, the rules of this chapter don't apply.
 This would work just fine in client code and the compiler will supply the big five.
 ```cpp
 class Widget {                     // in "widget.h"
@@ -586,15 +588,15 @@ private:
 };                                 // instead of std::unique_ptr
 ```
 
-The difference between shared\_ptr and unique\_ptr stems from custom deleter support: in unique\_ptr due to deleter being part of the type (allowing smaller runtime structures and faster runtime code), the type must be complete when using compiler generated dtor or moves.
-Such restriction is lifted in shared\_ptr's case with deleter not being part of the type.
+The difference between `shared_ptr` and `unique_ptr` stems from custom deleter support: in `unique_ptr` due to deleter being part of the type (allowing smaller runtime structures and faster runtime code), the type must be complete when using compiler generated dtor or moves.
+Such restriction is lifted in `shared_ptr`'s case with deleter not being part of the type.
 
-To use unique\_ptr or shared\_ptr depends on the use case.
+To use `unique_ptr` or `shared_ptr` depends on the use case.
 It's possible pimpls could desire shared ownership of the underlying.
 
 **Takeaways**
-* The Pimpl Idiom decreases build times by reducing compilation dependencies between class clients and class implementations.
-* For std::unique_ptr pImpl pointers, declare special member functions in the class header, but implement them in the implementation file. Do this even if the default function implementations are acceptable.
-* The above advice applies to std::unique_ptr, but not to std::shared_ptr.
+* The pimpl idiom decreases build times by reducing compilation dependencies between class clients and class implementations.
+* For `std::unique_ptr` pImpl pointers, declare special member functions in the class header, but implement them in the implementation file. Do this even if the default function implementations are acceptable.
+* The above advice applies to `std::unique_ptr`, but not to `std::shared_ptr`.
 
-(_think about it, even though my custom deleter and compiler supplied deleter does the same thing, we still can't use compiler's in unique\_ptr's case. Is it because the inline-by-default nature of compiler generated ones?_)
+(_think about it, even though my custom deleter and compiler supplied deleter does the same thing, we still can't use compiler's in `unique_ptr`'s case. Is it because the inline-by-default nature of compiler generated ones?_)
