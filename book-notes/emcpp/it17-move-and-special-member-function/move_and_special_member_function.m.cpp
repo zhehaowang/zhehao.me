@@ -95,7 +95,11 @@ int main() {
   // Q2: in the version with std::move, and Base's default move con is called,
   // shouldn't the default move con use NoMove's copy con, since NoMove's move
   // con is disabled? In fact it uses NoMove's default ctor.
+  // Q3: in the version without std::move, why is Base's movecon not called?
+  // A3: presumably optimized away by compiler: this behavior is present with
+  // -O0
   Base b(std::move(Base(NoMove(10))));
+  //Base b(Base(NoMove(10)));
   std::cout << b.nm().y() << "\n";
   return 0;
 }
