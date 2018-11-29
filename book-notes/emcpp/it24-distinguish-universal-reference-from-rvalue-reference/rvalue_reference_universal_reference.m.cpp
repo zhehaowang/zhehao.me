@@ -3,6 +3,9 @@
 
 #include <boost/type_index.hpp>
 
+// demonstrates the two preconditions for a reference to be considered universal
+// type deduction and the form T&&. (template <typename T> T&&, or auto&& t)
+
 template <typename T>
 class Widget {
 public:
@@ -29,7 +32,7 @@ int main() {
   //w.rvalueReferenceBinding(b);
   
   w.universalReferenceBinding(b);
-  //w.universalReferenceBinding(2);
-  std::cout << b << "\n";
+  w.universalReferenceBinding(2);
+  //std::cout << b << "\n";
   return 0;
 }

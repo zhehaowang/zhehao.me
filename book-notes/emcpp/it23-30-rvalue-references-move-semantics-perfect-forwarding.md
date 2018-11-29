@@ -100,9 +100,9 @@ But remember they are different in a mandatory rvalue cast and conditional rvalu
 * Neither `std::move` nor `std::forward` do anything at runtime.
 * Move requests on const objects are treated as copy requests.
 
-### Distinguish universal references from rvalue references
+### Itemm 24: distinguish universal references from rvalue references
 
-If you see T&& in source code, it's not always rvalue reference.
+If you see `T&&` in source code, it's not always rvalue reference.
 
 ```cpp
 void f(Widget&& param);             // rvalue reference
@@ -118,9 +118,9 @@ template<typename T>
 void f(T&& param);                  // not rvalue reference
 ```
 
-T&& has two meanings.
+`T&&` has two meanings.
 One meaning is rvalue reference, to identify objects that may be moved from.
-Another meaning is universal reference, either rvalue or lvalue reference, they are permitted to bind to rvalues or lvalues, const or non const, volatile or non volatile.
+Another meaning is universal reference, either rvalue or lvalue reference, they are permitted to bind to rvalues or lvalues, `const` or non `const`, `volatile` or non `volatile`.
 
 Universal references arise in template parameters and auto declarations.
 ```cpp
@@ -130,7 +130,7 @@ void f(T&& param);             // param is a universal reference
 auto&& var2 = var1;            // var2 is a universal reference
 ```
 Both of these have template type deduction.
-When there isn't type deduction happening, && is an rvalue reference.
+When there isn't type deduction happening, `&&` is an rvalue reference.
 
 References have to be initialized.
 The initializer for universal references decide if it represents an rvalue reference or an lvalue reference: if initializer is rvalue, it's rvalue reference; if it's lvalue, it's lvalue references. E.g.
@@ -147,7 +147,8 @@ f(std::move(w));       // rvalue passed to f; param's type is
                        // Widget&& (i.e., an rvalue reference)
 ```
 
-Universal reference must precisely be T&&, can't even be the likes of const T&& or vector<T>&&; and type deduction has to happen. Consider this:
+Universal reference must precisely be `T&&`, can't even be the likes of `const T&&` or `vector<T>&&;` and type deduction has to happen.
+Consider this:
 ```cpp
 template<class T, class Allocator = allocator<T>>  // from C++
 class vector {                                     // Standards
@@ -159,7 +160,7 @@ public:
 };
 ```
 
-The argument x is not a universal reference, since push\_back can’t exist without a particular vector instantiation for it to be part of, and the type of that instantiation fully determines the declaration for push_back.
+The argument `x` is not a universal reference, since `push_back` can't exist without a particular `vector` instantiation for it to be part of, and the type of that instantiation fully determines the declaration for `push_back`.
 
 Consider this:
 ```cpp
@@ -168,32 +169,31 @@ std::vector<Widget> v;
 class vector<Widget, allocator<Widget>> {
 public:
   void push_back(Widget&& x);               // rvalue reference
-  …
+  ...
 };
 ```
 
-The arguments args are universal references, since Args are independent of T.
+The arguments `args` are universal references, since `Args` are independent of `T`.
 
-Variables declared with the type auto&& are universal references, because type deduction takes place and they have the correct form (“T&&”).
-One use case is such in C++14 where auto&& is allowed as lambda parameters.
+Variables declared with the type `auto&&` are universal references, because type deduction takes place and they have the correct form (`T&&`).
+One use case is such in C++14 where `auto&&` is allowed as lambda parameters.
 ```cpp
 auto timeFuncInvocation =
-  [](auto&& func, auto&&... params)               // C++14
-  {
-    start timer;
+  [](auto&& func, auto&&... params) {             // C++14
+    // start timer
     std::forward<decltype(func)>(func)(           // invoke func
       std::forward<decltype(params)>(params)...   // on params
-      );                              
-    stop timer and record elapsed time;
+    );                              
+    // stop timer and record elapsed time
   };
 ```
 
 The underlying is actually reference collapsing, which we'll get to later.
 
 **Takeaways**
-* If a function template parameter has type T&& for a deduced type T, or if an object is declared using auto&&, the parameter or object is a universal reference.
-* If the form of the type declaration isn’t precisely type&&, or if type deduction does not occur, type&& denotes an rvalue reference.
-* Universal references correspond to rvalue references if they’re initialized with rvalues. They correspond to lvalue references if they’re initialized with lvalues.  
+* If a function template parameter has type `T&&` for a deduced type `T`, or if an object is declared using `auto&&`, the parameter or object is a universal reference.
+* If the form of the type declaration isn't precisely `type&&`, or if type deduction does not occur, `type&&` denotes an rvalue reference.
+* Universal references correspond to rvalue references if they're initialized with rvalues. They correspond to lvalue references if they're initialized with lvalues.  
 
 ### Use std::move on rvalue references, std::forward on universal references
 
