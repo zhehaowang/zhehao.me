@@ -202,6 +202,25 @@ Plus, efficient arbitrage is difficult, due to its risk (in LTCM's case, what if
 This results in being sophisticated traders like hedge funds often end up not being a pricing correction force in bubbles, but rather they helped the prices move in irrational direction (as in DotNet bubble).
 
 **Insights from behavioral finance**: bow to the wisdom of the market, buy and hold an index, don't be your own worst enemy, and avoid stupid investor tricks.
+In particular,
+* avoid herd behavior
+* avoid overtrading (the correct holding period for stock market is forever)
+* if you do trade, sell losers (hold only if you have reasons to believe the company is still successful), not winners
+* be wary of new issues (you are not going to get the best IPO deals. After the first six months when insiders are allowed to sell to the public, new issues generally perform worse than the market)
+* distrust foolproof schemes (if something seems too good to be true, it is too good to be true. Market timing can only be accomplished by liars).
 
+### "Smart beta" strategies
 
+**"Smart beta"**: goal is to gain excess returns by using a variety of relatively passive investment strategies that tilt your asset allocation towards certain characteristics.
 
+Some of these tilts / flavors include:
+* Value wins. Favor low P/E ratio, low price-to-book-value. Risk: those two are often indication of crisis e.g. bankruptcy. Vanguard offers its value index fund, and growth index fund
+* Smaller is better. Favor small company stocks. Risk: smaller companies are intrinsically more risky than established bigger ones, and survivorship bias. ETF IWB small cap fund is an example. Russell 1000, 2000 stock index tracks the largest US companies by market cap.
+* Momentum and reversion to the mean. For a short period price shows momentum / inertia, and will then adjust to the fundamental value. (oscillation). Behavioral explanation, and investors taking time to react. Weakness: not uniform across studies, and weaker in particular periods of time.
+* Low volatility can produce high returns. _buy margin?_
+* Blended flavor: mix-and-match the above, recall Fama-French three factor model.
+
+Keep in mind that
+* The reason why smart beta can generate excessive return in a short period is most likely due to assuming extra risk (maybe not measured by beta, which is imperfect): by tilting your allocation in favor of certain factors, you are e.g. sacrificing diversification.
+* These portfolios need to be actively managed and rebalanced, incurring additional management fees and trading fees.
+* Over longer periods smart beta strategies underperform the market.
