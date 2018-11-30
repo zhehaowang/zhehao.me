@@ -195,7 +195,7 @@ The underlying is actually reference collapsing, which we'll get to later.
 * If the form of the type declaration isn't precisely `type&&`, or if type deduction does not occur, `type&&` denotes an rvalue reference.
 * Universal references correspond to rvalue references if they're initialized with rvalues. They correspond to lvalue references if they're initialized with lvalues.  
 
-### Use std::move on rvalue references, std::forward on universal references
+### Itemm 25: use `std::move` on rvalue references, `std::forward` on universal references
 
 If a function has an rvalue reference parameter, you know the object's bound to may be moved.
 
@@ -207,7 +207,7 @@ class Widget {
 ```
 
 That being the case, you'll want to pass such objects to other functions in a way that permits those functions to take advantage of the object's rvalueness.
-The way to do it is to cast parameters to rvalues using std::move. E.g.
+The way to do it is to cast parameters to rvalues using `std::move`. E.g.
 
 ```cpp
 class Widget {
@@ -215,9 +215,8 @@ public:
   Widget(Widget&& rhs)               // rhs is rvalue reference
   : name(std::move(rhs.name)),
     p(std::move(rhs.p))
-    { … }
-  …
-
+    { ... }
+  ...
 private:
   std::string name;
   std::shared_ptr<SomeDataStructure> p;
@@ -225,7 +224,7 @@ private:
 ```
 
 A universal reference might be bound to an object that's eligible for moving: they can be casted to rvalues only if they were intialized with rvalues.
-This is precisely what std::forward does.
+This is precisely what `std::forward` does.
 
 ```cpp
 class Widget {
@@ -233,20 +232,18 @@ public:
   template<typename T>
   void setName(T&& newName)               // newName is
   { name = std::forward<T>(newName); }    // universal reference
-
-  …
+  ...
 };
 ```
 
-Don't use std::forward on rvalue references, and more importantly, don't use std::move on universal references, you may unexpectedly modify lvalues.
+Don't use `std::forward` on rvalue references, and more importantly, don't use `std::move` on universal references, you may unexpectedly modify lvalues.
 ```cpp
 class Widget {
 public:
   template<typename T>
   void setName(T&& newName)         // universal reference
   { name = std::move(newName); }    // compiles, but is
-  …                                 // bad, bad, bad!
-
+  ...                               // bad, bad, bad!
 private:
   std::string name;
   std::shared_ptr<SomeDataStructure> p;
@@ -255,12 +252,9 @@ private:
 std::string getWidgetName();        // factory function
 
 Widget w;
-
 auto n = getWidgetName();           // n is local variable
-
 w.setName(n);                       // moves n into w!
-
-…                                   // n's value now unknown
+...                                 // n's value now unknown
 ```
 
 Consider the following two:
@@ -269,7 +263,7 @@ Consider the following two:
   template<typename T>
   void setName(T&& newName)         // universal reference
   { name = std::move(newName); }    // compiles, but is
-  …                                 // bad, bad, bad!
+  ...                               // bad, bad, bad!
 
 // You can have these as an alternative
   void setName(const std::string& newName)      // set from
@@ -278,7 +272,9 @@ Consider the following two:
   void setName(std::string&& newName)           // set from
   { name = std::move(newName); }                // rvalue
 
-// Problem with the alternative is that (despite very minor efficiency concerns when passing a string literal) when the method takes N (or even unlimited) parameters you'd have 2^N overloads.
+// Problem with the alternative is that (despite very minor efficiency concerns
+// when passing a string literal) when the method takes N (or even unlimited)
+// parameters you'd have 2^N overloads.
 
 // Like these guys:
 template<class T, class... Args>                 // from C++11
@@ -287,7 +283,10 @@ shared_ptr<T> make_shared(Args&&... args);       // Standard
 template<class T, class... Args>                 // from C++14
 unique_ptr<T> make_unique(Args&&... args);       // Standard
 
-// And inside such functions, I assure you, std::forward is applied to the universal reference parameters when they’re passed to other functions. Which is exactly what you should do (eventually, after you are done with it in the function body, like the following example)
+// And inside such functions, I assure you, std::forward is applied to the
+// universal reference parameters when they’re passed to other functions. Which
+// is exactly what you should do (eventually, after you are done with it in the
+// function body, like the following example)
 
 template<typename T>                       // text is
 void setSignText(T&& text)                 // univ. reference
@@ -302,10 +301,11 @@ void setSignText(T&& text)                 // univ. reference
                   std::forward<T>(text));  // conditionally cast
 }                                          // text to rvalue
 
-// In rare cases, you’ll want to call std::move_if_noexcept instead of std::move.
+// In rare cases, you’ll want to call std::move_if_noexcept instead
+// of std::move.
 ```
 
-If you are in a function returning by value, and you are returning an object bound to an rvalue reference or a universal reference, you'll want to apply std::move or std::forward when you return the reference.
+If you are in a function returning by value, and you are returning an object bound to an rvalue reference or a universal reference, you'll want to apply `std::move` or `std::forward` when you return the reference.
 Consider the following
 ```cpp
 Matrix                                        // by-value return
@@ -322,7 +322,8 @@ operator+(Matrix&& lhs, const Matrix& rhs)
   return lhs;                                 // copy lhs into
 }                                             // return value
 // the first approach works as-is if Matrix supports move construction. If not,
-// casting it to rvalue won't hurt as the rvalue will be copied by Matrix's copyctor
+// casting it to rvalue won't hurt as the rvalue will be copied by Matrix's
+// copycon
 
 // Similar case goes for using std::forward on universal references.
 ```
@@ -333,7 +334,7 @@ Widget makeWidget()        // "Copying" version of makeWidget
 {
   Widget w;                // local variable
 
-  …                        // configure w
+  ...                      // configure w
 
   return w;                // "copy" w into return value
 }
@@ -341,23 +342,26 @@ Widget makeWidget()        // "Copying" version of makeWidget
 Widget makeWidget()        // Moving version of makeWidget
 {
   Widget w;
-  …
+  ...
   return std::move(w);     // move w into return value
 }                          // (don't do this!)
 ```
 Return value optimization does this for you, and is in the standards.
-With the std::move, RVO cannot be applied as it requires 1) type of the local object is the same as that returned by the function, 2) the local object is what's being returned.
-When you do std::move in this case, you are returning a reference instead of the object itself, which breaks the condition for RVO.
+With the `std::move`, RVO cannot be applied as it requires
+* type of the local object is the same as that returned by the function,
+* the local object is what's being returned.
+
+When you do `std::move` in this case, you are returning a reference instead of the object itself, which breaks the condition for RVO.
 
 Since RVO is not required, what if you suspect the compiler doesn't do it, or you know the internals of this function is probably too hard for the compiler to apply RVO?
 Still don't do this, as the standards say if the conditions of RVO are met but the compiler does not do it, the compiler is still required to treat the returned local variable as an rvalue.
 
-Using std::move on a local variable could be useful, if you know later on you aren't going to use it, but not in this return local object by value case.
+Using `std::move` on a local variable could be useful, if you know later on you aren't going to use it, but not in this return local object by value case.
 
 **Takeaways**
-* Apply std::move to rvalue references and std::forward to universal references the last time each is used.
+* Apply `std::move` to rvalue references and `std::forward` to universal references the last time each is used.
 * Do the same thing for rvalue references and universal references being returned from functions that return by value.
-* Never apply std::move or std::forward to local objects if they would otherwise be eligible for the return value optimization.
+* Never apply `std::move` or `std::forward` to local objects if they would otherwise be eligible for the return value optimization.
 
 ### Avoid overloading on universal references
 

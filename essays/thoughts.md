@@ -41,3 +41,6 @@ Most of them are scratches, mind dumps, and early studies that never led to frui
 They strike me with the realization that almost none of my ideas now is completely new.
 They all trace back to somewhere, although the source may seem long forgotten.
 Work on your bookkeeping, taxonomy, and consolidate often.
+
+Learn like you will not be able to tomorrow.
+That may actually happen.
