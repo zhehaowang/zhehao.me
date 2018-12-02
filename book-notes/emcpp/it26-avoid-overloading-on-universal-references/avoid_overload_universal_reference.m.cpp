@@ -1,6 +1,12 @@
 #include <iostream>
 #include <string>
 
+// demonstrates overloading a function taking in universal references will
+// almost always end up with the overload taking in universal references called
+// more often than expected.
+// in this case ctor universal reference overloading is particularly
+// problematic.
+
 class Widget {
 public:
   Widget() = default;
@@ -18,7 +24,7 @@ public:
     std::cout << "base move assignment\n";
     return *this;
   }
-  ~Widget() = default;
+  virtual ~Widget() = default;
 
   template <typename T>
   Widget(T&& rhs) noexcept {
@@ -38,14 +44,18 @@ public:
 };
 
 int main() {
-  // Note how they call different overloads
+  // note how they call different overloads
   Widget w;
-  auto w1(w);
+  auto w1(w);  // calls perfect forwarding ctor, which does not require adding
+               // const as copy ctor does
 
   const Widget cw;
-  auto cw1(cw);
+  auto cw1(cw); // calls copy ctor, since when a template and a regular function
+                // are equally good matches, regular function wins
 
-  // Note how child copy ctor calls base's universal ref ctor as opposed to copy ctor
+  // note how child copy ctor calls base's universal ref ctor as opposed to copy
+  // ctor, reasoning being that when calling the parent class's ctor, an object
+  // of type Child is passed in.
   ChildWidget child;
   auto child1(child);
 

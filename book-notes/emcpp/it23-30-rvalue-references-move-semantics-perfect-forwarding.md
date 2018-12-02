@@ -363,10 +363,9 @@ Using `std::move` on a local variable could be useful, if you know later on you 
 * Do the same thing for rvalue references and universal references being returned from functions that return by value.
 * Never apply `std::move` or `std::forward` to local objects if they would otherwise be eligible for the return value optimization.
 
-### Avoid overloading on universal references
+### Item 26: avoid overloading on universal references
 
 Consider this code
-
 ```cpp
 std::multiset<std::string> names;     // global data structure
 
@@ -422,7 +421,7 @@ logAndAdd("Patty Dog");                // create std::string
                                        // std::string
 ```
 
-Then, consider the case where clients want an overload of logAndAdd taking in int
+Then, consider the case where clients want an overload of `logAndAdd` taking in `int`
 ```cpp
 std::string nameFromIdx(int idx);      // return name
                                        // corresponding to idx
@@ -444,7 +443,7 @@ logAndAdd(22);                         // calls int overload
 
 // but:
 short nameIdx;
-…                                      // give nameIdx a value
+...                                    // give nameIdx a value
 
 logAndAdd(nameIdx);                    // error!
 // the given short matches the universal reference version as short&,
@@ -474,7 +473,7 @@ public:
                                     // (compiler-generated)
 
   Person(Person&& rhs);             // move ctor
-  …                                 // (compiler-generated)
+  ...                               // (compiler-generated)
 
 };
 
@@ -493,9 +492,10 @@ auto cloneOfP(p);                   // create new Person from p;
 const Person cp("Nancy");     // object is now const
 
 auto cloneOfP(cp);            // calls copy constructor!
+
 // the perfect forwarding will be instantiated with
-  explicit Person(const Person& n);      // instantiated from
-                                         // template
+explicit Person(const Person& n);      // instantiated from
+                                       // template
 // but this doesn't matter, as one of the overload-resolution rules
 // in C++ is that in situations where a template instantiation and
 // a non-template function (i.e., a “normal” function) are equally
@@ -523,7 +523,7 @@ public:
 
 **Takeaways**
 * Overloading on universal references almost always leads to the universal reference overload being called more frequently than expected.
-* Perfect-forwarding constructors are especially problematic, because they’re typically better matches than copy constructors for non-const lvalues, and they can hijack derived class calls to base class copy and move constructors.
+* Perfect-forwarding constructors are especially problematic, because they’re typically better matches than copy constructors for non-`const` lvalues, and they can hijack derived class calls to base class copy and move constructors.
 
 ### Familiarize yourself with alternatives to overloading on universal references
 
