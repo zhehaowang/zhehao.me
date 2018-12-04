@@ -2,7 +2,14 @@
 #include <string>
 #include <vector>
 
-// Demonstrates enable_if:
+// demonstrates alternatives to having a universal reference function override,
+// one is enable_if, where you can specify the condition where this universal
+// reference template can be applied.
+// another is tagged dispatch, where you can have one universal reference
+// version call different underlying impls based on conditions tested on the
+// type with which the template is instantiated.
+
+// enable_if:
 
 class Widget {
 public:
@@ -46,7 +53,7 @@ public:
   }
 };
 
-// Demonstrates tag dispatch (we want different behaviors for integral and non-integral types)
+// tag dispatch (we want different behaviors for integral and non-integral types)
 
 template<typename T>                             // non-integral
 void logAndAddImpl(T&& name, std::false_type)    // argument:
