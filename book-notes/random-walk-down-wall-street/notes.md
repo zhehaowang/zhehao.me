@@ -224,3 +224,14 @@ Keep in mind that
 * The reason why smart beta can generate excessive return in a short period is most likely due to assuming extra risk (maybe not measured by beta, which is imperfect): by tilting your allocation in favor of certain factors, you are e.g. sacrificing diversification.
 * These portfolios need to be actively managed and rebalanced, incurring additional management fees and trading fees.
 * Over longer periods smart beta strategies underperform the market.
+
+In conclusion, capitalization weighted indexing is unlikely to be deposed as the favorite.
+The core of every portfolio should consist of low cost, tax efficient, broad based index funds.
+
+# Part IV: practical guide for random walkers and other investors
+
+* Gather the necessary supplies: save and invest early and regularly, do not touch money set aside. Do not dream of get rich quick. Buy and hold index funds.
+* Don't be caught empty-handed, cover yourself with cash reserves and insurance. Assuming you are covered by medical and disability insurance at work, have enough cash reserve for three months. Fund the rest with investment whose maturity matches the date funding's required. Home, auto, health and disability insurances are a must; for ones with family life insurance is a must as well. Shop around for the best insurance deal. Advice is to buy renewable term life insurance.
+
+
+
