@@ -232,6 +232,10 @@ The core of every portfolio should consist of low cost, tax efficient, broad bas
 
 * Gather the necessary supplies: save and invest early and regularly, do not touch money set aside. Do not dream of get rich quick. Buy and hold index funds.
 * Don't be caught empty-handed, cover yourself with cash reserves and insurance. Assuming you are covered by medical and disability insurance at work, have enough cash reserve for three months. Fund the rest with investment whose maturity matches the date funding's required. Home, auto, health and disability insurances are a must; for ones with family life insurance is a must as well. Shop around for the best insurance deal. Advice is to buy renewable term life insurance.
+* Be competitive, let the yield of your cash reserve keep pace with inflation (invest in money market mutual funds, bank certificate of deposit, Internet banks, T bills)
+* Learn how to dodge the tax collector: IRA, Roth IRA (works well if you expect to pay more taxes after you retire, or if your income is low enough for pretax Roth IRA contribution), pension plans, 529 (college)
+* Understand your investment objectives: the risk you are willing to take. Ordered in increasing risk and returns: bank accounts, money market funds, bank certificate of deposit, TILs, high quality corporate bonds, diversified portfolio of blue-chip US or developed country stocks, real estate (and REIT), diversified portfolio of smaller growth company stocks, diversified portfolio of emerging market stocks, gold, collectibles
+
 
 
 
