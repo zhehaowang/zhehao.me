@@ -235,7 +235,7 @@ The core of every portfolio should consist of low cost, tax efficient, broad bas
 * Be competitive, let the yield of your cash reserve keep pace with inflation (invest in money market mutual funds, bank certificate of deposit, Internet banks, T bills)
 * Learn how to dodge the tax collector: IRA, Roth IRA (works well if you expect to pay more taxes after you retire, or if your income is low enough for pretax Roth IRA contribution), pension plans, 529 (college)
 * Understand your investment objectives: the risk you are willing to take. Ordered in increasing risk and returns: bank accounts, money market funds, bank certificate of deposit, TILs, high quality corporate bonds, diversified portfolio of blue-chip US or developed country stocks, real estate (and REIT), diversified portfolio of smaller growth company stocks, diversified portfolio of emerging market stocks, gold, collectibles
-
+* Own your own home if you can possibly afford it. Also consider real estate investment trusts (REITs). They have produced returns comparable to common stocks, provide good diversification, and hedge against inflation
 
 
 
