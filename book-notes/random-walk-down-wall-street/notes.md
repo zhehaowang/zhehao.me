@@ -145,6 +145,7 @@ This kind of insider trading, called "front-running", is regulated by SEC.
 * Buy only companies that are expected to have above-average earnings growth for five or more years (double the factor, price grows and P/E ratio grows)
 * Never pay more for a stock than its firm foundation of value
 * Look for stories whose stories of anticipated growth are of the kind on which investors can build castles in the air
+* Avoid trading too much: incurs taxes and brokerage fees
 
 Simply buying and holding a diversified portfolio suited to your objectives will enable you to save on investment expense, brokerage charges and taxes.
 
@@ -232,10 +233,32 @@ The core of every portfolio should consist of low cost, tax efficient, broad bas
 
 * Gather the necessary supplies: save and invest early and regularly, do not touch money set aside. Do not dream of get rich quick. Buy and hold index funds.
 * Don't be caught empty-handed, cover yourself with cash reserves and insurance. Assuming you are covered by medical and disability insurance at work, have enough cash reserve for three months. Fund the rest with investment whose maturity matches the date funding's required. Home, auto, health and disability insurances are a must; for ones with family life insurance is a must as well. Shop around for the best insurance deal. Advice is to buy renewable term life insurance.
-* Be competitive, let the yield of your cash reserve keep pace with inflation (invest in money market mutual funds, bank certificate of deposit, Internet banks, T bills)
-* Learn how to dodge the tax collector: IRA, Roth IRA (works well if you expect to pay more taxes after you retire, or if your income is low enough for pretax Roth IRA contribution), pension plans, 529 (college)
-* Understand your investment objectives: the risk you are willing to take. Ordered in increasing risk and returns: bank accounts, money market funds, bank certificate of deposit, TILs, high quality corporate bonds, diversified portfolio of blue-chip US or developed country stocks, real estate (and REIT), diversified portfolio of smaller growth company stocks, diversified portfolio of emerging market stocks, gold, collectibles
-* Own your own home if you can possibly afford it. Also consider real estate investment trusts (REITs). They have produced returns comparable to common stocks, provide good diversification, and hedge against inflation
+* Be competitive, let the yield of your cash reserve keep pace with inflation (invest in money market mutual funds, bank certificate of deposit, Internet banks, T bills).
+* Learn how to dodge the tax collector: IRA, Roth IRA (works well if you expect to pay more taxes after you retire, or if your income is low enough for pretax Roth IRA contribution), pension plans, 529 (college).
+* Understand your investment objectives: the risk you are willing to take. Ordered in increasing risk and returns: bank accounts, money market funds, bank certificate of deposit, TILs, high quality corporate bonds, diversified portfolio of blue-chip US or developed country stocks, real estate (and REIT), diversified portfolio of smaller growth company stocks, diversified portfolio of emerging market stocks, gold, collectibles.
+* Own your own home if you can possibly afford it. Also consider real estate investment trusts (REITs). They have produced returns comparable to common stocks, provide good diversification, and hedge against inflation.
+* When navigating bond investment, zero-coupon bonds can be useful to fund future liabilities, no-load bond fund can be appropriate vehicles, tax-exempt bonds can be useful to high tax bracket investors, and inflation linked bonds can be a good way to maintain real purchasing power. Historiclly junk bonds gross yield premium has more than compensated for actual default experience.
+* Tiptoe through the fields of gold, collectibles, and other investments. The book also recommends steering clear of hedge-fund, private equity and venture-capital funds. These are not for individual investors.
+* Remember investment costs aren't random: some are lower than others.
+* Avoid sinkholes and stumbling blocks: diversify your investment steps.
 
+Five asset allocation principles:
+* Risk and returns are related.
+* Actual risk in stock and bond investing depends on the length of time you hold your investment: a substantial amount of risk can be eliminated by adopting a program of long-term ownership and sticking to it through thick and thin. (Imagine you are going to eat hamburgers for the next 10 years, you'd want hamburger prices to go down. Same goes for stocks, if you are not speculating and holding them for value, when you are young you are purely a consumer of stocks, and you should want stock prices to go down.)
+* Dollar cost averaging can reduce the risk in stocks and bonds investment. This is controversial, but it simply means instead of looking for market timings, invest regularly a portion of your income, no matter if the price is high or low.
+* Rebalancing (to your target stocks / bonds percentage) can reduce risk and possibly increase returns. 
+* Distinguish your attitude toward and your capacity for risk. Your age, earning ability outside investment should decide your capacity for risk. An aggressive portfolio is recommended for the young and high earning power.
 
+Guidelines to tailoring a lifecycle investment plan
+* Specific needs requiring dedicated specific assets: e.g. housing down payment, college tuition. Zero coupon bonds and certificate of deposits could be useful.
+* Recognize your tolerance for risk.
+* Persistent savings in regular amounts, no matter how small, pays off.
+* For those in their twenties, a very aggressive portfolio is recommended, as investors age, start cutting back on risky investments. Lifecycle funds offer this rebalancing if you want to avoid the hassle yourself.
+
+Annuities can be useful (for investment after retirement), where you pay a lump sum and gets back an amount for the next x years (or as long as you are alive, sometimes inflation adjusted amount), but there are drawbacks in being unable to leave a bequest, and they can be costly and tax-inefficient.
+
+How do you go about buying stocks? Three ways
+* indexing: investing in a no-load index fund is recommended for most. Indexing, however, should use a broader definition, not just US S\&P 500 (major corporation in US market). US Total Stock Market, international stock markets, emerging markets should be a part of your indexing portfolio. Indexing is extremely effective in emerging markets, where risk and returns are generally higher than S\&P 500. ETFs can be used in lieu of indexing mutual funds, though ETFs require the cost of transactions: brokerage fees and crossing bid-ask spread. When indexing by world stock market aggregated, consider adding in more funds indexing Chinese stocks (YAO, TAO, HAO), as they are under-represented due to cannot be traded outside China, or significant government holding.
+* do it yourself: follow the four suggestions in section combining-fundamental-and-technical.
+* use a manager: few consistently outperform the market, and their past performance cannot be used to estimate future performance.
 
