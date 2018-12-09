@@ -95,7 +95,19 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
 
 ### Composition
 
-Some things to consider: rule of thirds, symmetry, leading lines, head room, depth (midground, background, what you do with them), size of subject / angle.
+What do you want to convey? What is the story you are trying to tell?
+What is your subject, and what are some visual cues in the image?
+
+Some things to consider,
+* rule of thirds,
+* symmetry,
+* size of subject / angle,
+And in landscape,
+* leading lines, they don't have to be straight, towards the subject you want the audience to focus on. What if you don't have them: can you have objects placement that would help cue / balance the image?
+* depth (midground, background, what you do with them). Some things to consider: foreground as a stepping stone to introduce the subject. Or if you want to convey isolation, maybe the foreground would be too much of a distraction.
+* focal point, the subject: try creating an anchor in the image for the eyes to rest upon.
+* scan the edges of the frame: did you get something you don't want (the camera and our eyes may see things differently, whereas our eyes may filter out the unwanted in an image, the camera would capture them faithfully)? Do your subjects require a little more headroom?
+* subtraction: did you include anything in the frame that would distract the eyes?
 
 ### Depth of field
 
@@ -113,6 +125,27 @@ DoF can be used to
 * give better bokeh (visual quality of out-of-focus parts of an image: e.g. smooth circular light spots from an out-of-focus background)
 
 ### Exposure histogram, noise
+
+##### Natural light in landscape photography
+
+* Golden, sun being low, right after sunrise or before sunset. More directional. Think landscape with hills and textures upon which shadows are cast. Light and shadow, depth and drama. Clouds have similar effect: part of the scene are lit. Warm golden glow.
+* Blue, right before sunrise or after sunset. Sun's below the horizon, light's reflected from the atmosphere, taking away contrast and evenly lit. Ambient, soft. Narrow time frame. 
+* Flat, generally poor for landscape: not much contrast, depth. Overcast flat light can work in particular cases, e.g. with overcast cloud, on waterfalls. Consider desaturating, black and white to bring out the texture / mood of the scene.
+
+### Lenses, landscape photography
+
+Our eyes are used to seeing the world at around 50mm focal length, phone cameras capture images around 30mm.
+To go below that with a short focal length wide-angle or a telephoto focal length can often reflect the world in ways our eyes were not used to seeing.
+Wide-angle lens may make it harder to compose the image, a lot will be in your field of view, and you have a larger depth of field.
+With a telephoto lens you are going to remove a lot of the context, e.g. creating an abstract image. Telephoto lens also pull distant things together.
+
+Similarly, we are used to seeing the world 1.2m to 1.7m above the ground. When you get the camera lower or higher than that, it could also reflect the world in ways our eyes were not used to seeing.
+
+If you are out and don't have the lens of the desired focal length with you, think differently and compose differently, move around, experiment.
+
+### Misc
+
+* In landscape photography, travel as light as possible: anything that dissuades you from moving is going to hurt, and your creativity / focus will be restricted if you are out of breath.
 
 ### Sharpness
 
