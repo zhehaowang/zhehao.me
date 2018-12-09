@@ -260,5 +260,9 @@ Annuities can be useful (for investment after retirement), where you pay a lump 
 How do you go about buying stocks? Three ways
 * indexing: investing in a no-load index fund is recommended for most. Indexing, however, should use a broader definition, not just US S\&P 500 (major corporation in US market). US Total Stock Market, international stock markets, emerging markets should be a part of your indexing portfolio. Indexing is extremely effective in emerging markets, where risk and returns are generally higher than S\&P 500. ETFs can be used in lieu of indexing mutual funds, though ETFs require the cost of transactions: brokerage fees and crossing bid-ask spread. When indexing by world stock market aggregated, consider adding in more funds indexing Chinese stocks (YAO, TAO, HAO), as they are under-represented due to cannot be traded outside China, or significant government holding.
 * do it yourself: follow the four suggestions in section combining-fundamental-and-technical.
-* use a manager: few consistently outperform the market, and their past performance cannot be used to estimate future performance.
+* use a manager: few consistently outperform the market, and their past performance cannot be used to estimate future performance. The book suggests that investors never buy funds with expense ratios above 0.50% and with turnover more than 50%, and if you buy actively managed funds, look for closed-end funds traded at a discount that are only available through a broker. Any particular investment advice faces a paradox: if enough people know about it, it won't be a good investment any more. But "pick up the $100 bill quickly because if it's really there surely someone will take it".
 
+# A final word
+
+Broad diversification, annual rebalancing, using index funds, and staying the course.
+The first decade of 2000 was a trying time where US total stock market funds lost money. But follow the simple rules and timeless lessons epoused in this bookm are you likely to do just fine even during the toughest of times.
