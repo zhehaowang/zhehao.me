@@ -745,7 +745,7 @@ public:
 * Constraining templates via `std::enable_if` permits the use of universal references and overloading together, but it controls the conditions under which compilers may use the universal reference overloads.
 * Universal reference parameters often have efficiency advantages, but they typically have usability disadvantages.
 
-### Understand reference collapsing
+### Item 28: understand reference collapsing
 
 Consider template parameter deduction for universal references again.
 ```cpp
@@ -788,7 +788,7 @@ If reference to reference occurs in a permitted context, compiler follows the fo
 
 If either reference is an lvalue reference, the result is an lvalue reference. Otherwise (i.e., if both are rvalue references) the result is an rvalue reference.
 
-Reference collapsing is a key part of what makes std::forward work. Whose impl can be
+Reference collapsing is a key part of what makes `std::forward` work. Whose impl can be
 ```cpp
 template<typename T>                                // in
 T&& forward(typename                                // namespace
@@ -807,7 +807,7 @@ auto&& w2 = widgetFactory(); // w2 is an rvalue reference
 ```
 
 A universal reference isn't a new kind of reference, it's actually an rvalue reference in a context where two conditions are satisfied:
-* type deduction distinguishes lvalues from rvalues. Lvalues of type T are deduced to have type T&, while rvalues of type T yield T as their deducted type.
+* type deduction distinguishes lvalues from rvalues. Lvalues of type `T` are deduced to have type `T&`, while rvalues of type `T` yield `T` as their deducted type.
 * reference collapsing occurs.
 The concept of universal reference is helpful to free you from recognizing the existence of reference collapsing contexts.
 
@@ -826,11 +826,11 @@ Widget<int&> w;
 typedef int& RvalueRefToT;
 ```
 
-decltype also employs reference collapsing during its type analysis.
+`decltype` also employs reference collapsing during its type analysis.
 
 **Takeaways**
-* Reference collapsing occurs in four contexts: template instantiation, auto type generation, creation and use of typedefs and alias declarations, and decltype.
-* When compilers generate a reference to a reference in a reference collapsing context, the result becomes a single reference. If either of the original references is an lvalue reference, the result is an lvalue reference. Otherwise it’s an rvalue reference.
+* Reference collapsing occurs in four contexts: template instantiation, `auto` type generation, creation and use of typedefs and alias declarations, and `decltype`.
+* When compilers generate a reference to a reference in a reference collapsing context, the result becomes a single reference. If either of the original references is an lvalue reference, the result is an lvalue reference. Otherwise it's an rvalue reference.
 * Universal references are rvalue references in contexts where type deduction distinguishes lvalues from rvalues and where reference collapsing occurs.
 
 ### Assume that move operations are not present, not cheap, and not used

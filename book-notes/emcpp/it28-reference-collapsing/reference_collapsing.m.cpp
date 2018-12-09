@@ -2,6 +2,9 @@
 #include <string>
 #include <boost/type_index.hpp>
 
+// demonstrates an implementation of std::forward and types involved during its
+// instantiation with rvalues and lvalues.
+
 // Test forward impl using 
 template <typename T>
 T&& my_forward(std::remove_reference_t<T>& param) {
@@ -38,7 +41,9 @@ void func(U&& param) {
 
 int main() {
   int x = 3;
+  std::cout << "calling func with lvalue:\n";
   func(x);
+  std::cout << "calling func with rvalue:\n";
   func(4);
   return 0;
 }
