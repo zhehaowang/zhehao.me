@@ -842,6 +842,70 @@ $$
 
 Thus we have $-g$ gets us closer to a smaller $f(z)$.
 
+\subsection{Features extraction}
+
+Mapping an input space $\mathbf{X}$ (sound wave, image, DNA sequence) to a vector $\mathbb{R}^d$ is called \textbf{feature extraction} or \textbf{featurization}.
+
+A \textbf{feature template} is a group of features all computed in a similar way (e.g. $last\_three\_chars\_of(x) = \_\_\_$).\footnote{With regularization, our resulting prediction function won't be too complicated.}
+
+A \textbf{one-hot encoding} is a feature template that always has exactly one non-zero value.
+
+Features can be encoded with an array (good for dense features), or a map (good for sparse features).
+
+Some factors to consider when featurizing
+\begin{itemize}
+  \item Non-monotonicity. E.g. temperature as a feature for health prediction, health is not monotonic with temperature. We can transform the input $\Phi{x} = [1, \{temperature(x) - 37\}^2]$\footnote{Array representation of features, where $1$ is a bias term}, but this would require domain knowledge, instead, we could do $\Phi(x) = [1, temperature(x), \{temperature(x)\}^2]$, where having one extra feature, we increase the flexibility and make it easier to use.\footnote{Think less, make the computer do more}
+  \item Saturation. E.g. find products relevant to user's query, where given a product $x$, we have a feature map $\Phi(x) = [1, N(x)]$ where $N(x) = \text{number of people who bought x}$. However at some point $x$ should saturate: a product bought 50000 times is not necessarily 10 times more relevant than a product bought 5000 times, as a linear model would suggest. We could do $log(1 + N(x))$, or $arctan(x)$\footnote{A sigmoid function. Note how this transformation does not need to be convex.} to slow down the growth. Or we could do a discretization, like $\Phi(x) = [1 (x < 10), 1 (10 \leq x < 100), 1 (100 \leq x)]$\footnote{Where if not bucketed carefully, buckets with few items will have coefficients $0$, due to regularization. Instead, we could have $\Phi(x) = [1 (x \geq 5), 1 (x \geq 10), 1 (x \geq 100)], where a small bucket would fall back to the previous feature.$}.
+  \item Interaction. E.g. predicting health with weight and height, it's not that they individually matter, but rather weight relative to height. You can add a cross term $h(x)w(x)$, making $\Phi(x) = [1, h(x), w(x), h^2(x), x^2(x), h(x)w(x)]$
+\end{itemize}
+
+A \textbf{predicate} of the input space is a function $P : \mathbf{X} \to \{\text{True},~\text{False}\}$.
+
+What about given features $\Phi(x) = [x_1, x_2]$, we want to classify if a point will fall into a circle in the two-dimensional input space? We could add $x_1^2 + x_2^2$ as another feature.
+
+Similaryly, output space can be transformed as well.
+
+We essentially grow the (linear) hypothesis space by adding more features.
+
+\subsection{Neural nets}
+
+Linear prediction functions, like SVM, ridge, lasso generate feature vector $\Phi(x)$ by hand, and learn parameter vector $w$ from data.
+A neural net adds \textbf{hidden nodes} between the $\Phi(x)$ and score.
+Multi-layer perceptron, e.g. in this two-layer representation (two affine combinations):
+
+\begin{align*}
+h_i   &= \sigma(v_i^T \Phi(x)) \\
+score &= w^T h + b
+\end{align*}
+
+where $\sigma$ is a nonlinear \textbf{activation function}, and we need to learn the vectors $v_i$ (with a bias term), $w$, and scalar $b$.
+We can add hidden nodes, hidden layers, etc, where $>1$ hidden layer is a deep network.
+
+\textbf{Hyperbolic tangent} is a common activation function.
+
+$$
+\sigma(x) = tanh(x)
+$$
+
+\textbf{Rectified linear function} (ReLU) is another. ReLU in practice often works better.
+
+$$
+\sigma(x) = max(0, x)
+$$
+
+One way to think about neural nets is that it's learning the non-linear featurization functions we want to create.
+(From the hidden layer $h_i$ to $score$ looks just like learning in a linear context, and neural nets learn $\Phi(x)$ to $h_i$ as well).
+
+Our objective function (with $tanh$) is then differentiable w.r.t. all parameters (we can use gradient descent), but not convex.
+In practice gradient descent seems sufficient.
+
+\textbf{Universal approximation theorem}: a neural network with one (possibly huge) hidden layer can uniformly approximate any continuous function on a compact set iff the activation function is not a polynomial. (the bias term is necessary)
+
+\subsection{Multinomial logistic regression}
+
+
+
+
 \section{Exercises}
 
 \subsection{Deriving gradient affine form}
