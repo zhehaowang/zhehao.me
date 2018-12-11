@@ -266,3 +266,19 @@ How do you go about buying stocks? Three ways
 
 Broad diversification, annual rebalancing, using index funds, and staying the course.
 The first decade of 2000 was a trying time where US total stock market funds lost money. But follow the simple rules and timeless lessons epoused in this bookm are you likely to do just fine even during the toughest of times.
+
+# Appendix: derivatives
+
+Futures and options allow one to transfer risk / hedge, and speculate at a great leverage (and thus great risk).
+At-the-money means the striking price of the derivatives contract is the same as the current price of the underlying.
+Out-of-the-money means striking price of the contract is higher.
+In-the-money means striking price of the contract is lower.
+
+The book suggests individual investors can benefit from derivatives, by using options buying as an adjunct to investing in index mutual funds / ETFs, an adjunct to portfolio management, or as hedging instrument.
+Essentially, leverage its utility in transfering risk / hedging.
+
+### Derivatives pricing
+
+* (Commodity) futures. Factors: interest rate, term, storage cost, convenience yield
+* Options. Factors: exercise price, underlying stock price, expiration date (valid exercise period), volatility of the stock (the more volatile the stock the more valuable the option), interest rates.
+One can use binomial formula to decide the price of an option by finding the perfectly hedged portion of a share such that the payoff is the same if the price goes up or down. Black-Scholes model is a multi-term binomial where a tree-like price-probability is used to determine the price.
