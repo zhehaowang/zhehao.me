@@ -93,22 +93,6 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
 
 # Concepts
 
-### Composition
-
-What do you want to convey? What is the story you are trying to tell?
-What is your subject, and what are some visual cues in the image?
-
-Some things to consider,
-* rule of thirds,
-* symmetry,
-* size of subject / angle,
-And in landscape,
-* leading lines, they don't have to be straight, towards the subject you want the audience to focus on. What if you don't have them: can you have objects placement that would help cue / balance the image?
-* depth (midground, background, what you do with them). Some things to consider: foreground as a stepping stone to introduce the subject. Or if you want to convey isolation, maybe the foreground would be too much of a distraction.
-* focal point, the subject: try creating an anchor in the image for the eyes to rest upon.
-* scan the edges of the frame: did you get something you don't want (the camera and our eyes may see things differently, whereas our eyes may filter out the unwanted in an image, the camera would capture them faithfully)? Do your subjects require a little more headroom?
-* subtraction: did you include anything in the frame that would distract the eyes?
-
 ### Depth of field
 
 The range of distance in an image where the focus is acceptably sharp.
