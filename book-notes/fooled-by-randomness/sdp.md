@@ -26,12 +26,6 @@ Outside opinions, no matter where they are from, are valuable.
 
 "I'd rather you leave your camera in auto mode than become preoccupied with any one aspect of making a picture, especially the equipment and settings."
 
-### Example subjects
-
-* Still life photography: arrangements / composition; choosing props: symbolism, interaction with light. Good practice for theories.
-* Levitation photography, editting trick
-* Multiple exposures, silhouette one picture on (the dark portrait in) another
-
 ### Composition
 
 What do you want to convey? What is the story you are trying to tell?
@@ -44,16 +38,29 @@ Some things to consider,
 * Simplifying / subtraction: did you include anything in the frame that would distract the eyes?
 * Angle of view, choose your fore/background, depth of field (lens focal length, f stop, distance to subject, flash). Some things to consider: foreground as a stepping stone to introduce the subject. Or if you want to convey isolation, maybe the foreground would be too much of a distraction.
 * Showing scale: you may lose the scale of your subject with too much simplification. If you need to show the scale of your subject, include something of known size.
-* Leading lines, they don't have to be straight, towards the subject you want the audience to focus on. What if you don't have them: can you have objects placement that would help cue / balance the image?
+* Leading lines, they don't have to be straight, towards the subject you want the audience to focus on. What if you don't have them: can you have objects placement that would help cue / balance the image? When a picture has prominent lines, make sure your camera is level. If you want angled lines, make sure it's at least 20-30 degrees off level. 5-degree would just look careless.
+* Repeated patterns can leave the impression of something being boundless
+* Symmetry, often you need to align the picture perfectly and disregard the rule of thirds
+* A flat image (square composition) is often times uninteresting, to show depth, try placing a focal point in front or shooting from an angle. But if you want to convey a stately, formal, and professional attitude, a square composition (with symmetry) might be preferable
+* Consider using Dutch angle (a deliberate 15-30 degrees tilt) to convey liveliness, casual and fun. Typically not a good choice for portraits and landscapes.
+* Consider combining multiple shots in post-processing for panoramic effect (requires your ae (auto exposure) lock on, and pictures to overlap about one-third)
+* Balance and visual weights: subjects in a picture balance by visual weights (size, brightness, color, sharpness, and direction). Compose a visually balanced image.
+* Scan the edges of the frame: did you get something you don't want (the camera and our eyes may see things differently, whereas our eyes may filter out the unwanted in an image, the camera would capture them faithfully)? Do your subjects require a little more headroom?
+* When shooting black and white, think black and white, focus on the form, texture and composition. Shoot raw, lower the iso. Do it when, e.g. background colors would be distracting.
+* Storytelling, mood
+* Deliberating breaking the rules
 
-* symmetry,
 
-* scan the edges of the frame: did you get something you don't want (the camera and our eyes may see things differently, whereas our eyes may filter out the unwanted in an image, the camera would capture them faithfully)? Do your subjects require a little more headroom?
 
 ### Portraits
 
 * The subject of a portrait is rarely the entire person, but instead their facial expression, and you should consider cropping around the face.
 
+### Example subjects
+
+* Still life photography: arrangements / composition; choosing props: symbolism, interaction with light. Good practice for theories.
+* Levitation photography, editting trick
+* Multiple exposures, silhouette one picture on (the dark portrait in) another
 
 # Adobe Lightroom
 
