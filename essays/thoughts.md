@@ -44,3 +44,7 @@ Work on your bookkeeping, taxonomy, and consolidate often.
 
 Learn like you will not be able to tomorrow.
 That may actually happen.
+
+Do your best to learn from them, rather than be intimidated by them.
+
+
