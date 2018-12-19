@@ -42,4 +42,16 @@ Karl Popper would claim there are only two types of theories, those that are kno
 
 Survivorship bias.
 
+Ergodicity, roughly, under certain conditions very long sample paths would end up resembling each other.
 
+Remember that nobody accepts randomness in his own success, only his failure.
+
+There is a high probability of the investment coming to you if its success is caused entirely by randomness. (Say, an actively managed fund with an outstanding track record due to pure randomness.)
+
+Is it really a small world? The world is much larger than we think, it is just that we are not truly testing for the odds of having an encounter with one specific person in a specific location at a specific time. Rather, we are simply testing for any encounter, with any person we have ever met in the past, and in any place we will visit during the period concerned.
+(Think birthday paradox: get 23 persons in a room there is about 50% chance of two having the same birthday. Seems large no? Remember we are testing for "any" pairs.)
+
+Consider backtesting particular strategies on historical data: you might be fitting the rule on the data, and the more you try, the more likely, by mere luck, you'll be able to find a rule that worked on past data: e.g. correlating stock markets with length of women's skirts, or finding that one instrument whose movement is perfectly correlated with weather in Ulan Bator.
+You might be throwing monkeys at typewriters, not telling them what book to write! (If you throw enough monkeys, one of them will produce Illiad. But how likely is he to then produce Odyssey?)
+
+Stock analysts have both a worse record and higher idea of their past performance than weather forecasters.
