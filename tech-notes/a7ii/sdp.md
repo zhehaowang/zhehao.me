@@ -19,8 +19,7 @@ Outside opinions, no matter where they are from, are valuable.
   * Edit the picture.
 * Evaluate your photography: experience, planning, camera. Get better gears only after you learn how to plan a shot.
 * Don't worry so much about the equipment and settings.
-* Get an extra battery and SD card.
-* Never close an empty door: when you have your SD card / battery out, leave the empty door open so you know you are missing something.
+* Get an extra battery and SD card. Never close an empty door: when you have your SD card / battery out, leave the empty door open so you know you are missing something.
 
 "Be there and think": the subject, the location, the perspective, the lighting, the timing, the weather, the mood, the pose, the clothes, the expression, the composition and the camera settings.
 
@@ -50,6 +49,38 @@ Some things to consider,
 * Storytelling, mood
 * Deliberating breaking the rules
 
+### Lighting
+
+The most amazing subject will be boring when the lighting is bad, and even dull subjects come alive with great lighting.
+
+Every scene has highlights, shadows, and the transitions between them.
+
+**Soft lighting** creates long, smooth transitions between highlights and shadows while **hard lighting** creates sharp transitions.
+Hard lighting shows form (3-dimensional, e.g.) and texture, while soft lighting shows shape.
+
+Hard lighting is created by small or faraway light sources while soft lighting is created by large nearby light sources.
+
+Direct sunlight or a bare bulb creates hard lighting, while reflected and diffused light creates soft lighting (e.g. octobox when shooting portraits, or a diffuser before a point light source).
+Reflexvive surfaces vs curving shapes, and how they react to light.
+
+Between highlights and shadows are the mid-tones. In soft lighting most of a picture is mid-tones.
+Cameras capture mid-tones best. In hard lighting pictures can consist entirely of highlights and shadows with nothing in between. Only the most skilled are able to take great pictures in hard lighting.
+
+The direction of the main light (key light) can change the look of your subject.
+Highlights draw attention to features. Shadows diminish and hide features.
+Whether photographing person or landscape, choose lighting that highlights the focal point.
+
+* Top lighting gives a natural appearance, but it casts unattractive shadows on faces. Avoid this when shooting portrait.
+* Front lighting is better for faces but it removes texture and depth. Flattering for portrait, unideal for architecture and landscape because it removes depth. Your camera's built-in flash creates front lighting.
+* Side lighting highlights texture, form and depth and casts long shadows. Side lighting in portraits make pores and blemishes across the face seem exaggerated. 
+* Back lighting creates the most dramatic effects but can be challenging to work with. They tend to be all highlights and shadows with few mid-tones. Even worse, the background tends to be highlighted while the foreground in shadows. For portraits, back lighting creates a ring of light around the face that can be very flattering. Similarly for flowers, animals, etc. Backlighting makes your subject silhouette, and forces the viewer to concentrate on shape by eliminating texture, color and form. An ethereal and monochrome style. "Backlighting is one of the rare scenarios that require a good quality lens". Grass and reeds are a good choice for subjects.
+
+Your environment interacts with light. All light is hard when it leaves its source; your environment softens and diffuses it.
+If you want to reduce the amount of reflected light, put a polarizing filter on your lens.
+
+* Golden, sun being low, right after sunrise or before sunset. More directional, and soft. Think landscape with hills and textures upon which shadows are cast. Light and shadow, depth and drama. Clouds have similar effect: part of the scene are lit. Warm golden glow. During golden hours sky is also typically less hazy, making your pictures sharper and creating better contrasts. Important for shooting fall colors. For landscape photography, plan your trip around golden hours. Check out www.photoephemeris.com and google earth, toggle time and plan your shot.
+* Blue, right before sunrise or after sunset. Sun's below the horizon, light's reflected from the atmosphere, taking away contrast and evenly lit. Ambient, soft. Narrow time frame. 
+* Flat, generally poor for landscape: not much contrast, depth. Overcast flat light can work in particular cases, e.g. with overcast cloud, on waterfalls. Consider desaturating, black and white to bring out the texture / mood of the scene.
 
 
 ### Portraits

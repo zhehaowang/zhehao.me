@@ -110,12 +110,6 @@ DoF can be used to
 
 ### Exposure histogram, noise
 
-##### Natural light in landscape photography
-
-* Golden, sun being low, right after sunrise or before sunset. More directional. Think landscape with hills and textures upon which shadows are cast. Light and shadow, depth and drama. Clouds have similar effect: part of the scene are lit. Warm golden glow.
-* Blue, right before sunrise or after sunset. Sun's below the horizon, light's reflected from the atmosphere, taking away contrast and evenly lit. Ambient, soft. Narrow time frame. 
-* Flat, generally poor for landscape: not much contrast, depth. Overcast flat light can work in particular cases, e.g. with overcast cloud, on waterfalls. Consider desaturating, black and white to bring out the texture / mood of the scene.
-
 ### Lenses, landscape photography
 
 Our eyes are used to seeing the world at around 50mm focal length, phone cameras capture images around 30mm.
