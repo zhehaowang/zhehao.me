@@ -91,6 +91,8 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
   * which button focuses (back-button focus e.g.)
 * Audio signals off (no focusing beeps)
 
+### Tripods
+
 # Concepts
 
 ### Depth of field
@@ -108,7 +110,11 @@ DoF can be used to
 * foreground blur, remove obstacles (e.g. fences),
 * give better bokeh (visual quality of out-of-focus parts of an image: e.g. smooth circular light spots from an out-of-focus background)
 
-### Exposure histogram, noise
+### Histogram
+
+Color distribution on the spectrum of shadow - light. In general, try avoiding spikes.
+
+### Noise
 
 ### Lenses, landscape photography
 
@@ -130,3 +136,14 @@ If you are out and don't have the lens of the desired focal length with you, thi
 ### Mirrorless vs DSLR
 
 Size, electronic / optical view finder, focus time, battery life, etc
+
+### Tripod
+
+* Head (pan \& zoom (two degree-of-freedom), three lever, ball head)
+* Feet (replaceable, e.g. nails)
+* Legs (flipped, twisted)
+* Material (aluminum, carbon fiber)
+* Center column (gets wobbly, raise it only you need to)
+
+Look for one tall enough
+
