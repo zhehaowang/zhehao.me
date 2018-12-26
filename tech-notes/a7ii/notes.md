@@ -6,12 +6,15 @@
 * Program mode (P). Auto.
 * Aperture Priority (A). Front dial controls aperture (camera controls shutter, iso)
   * Analogous to pupil.
-  * Measured by. f/x, the smaller x, the bigger apperture (more light is let in), the more background blur (see depth-of-field). (f/1.8 - f/22).
+  * Measured by. f/x, the smaller x, the bigger aperture (more light is let in), the more background blur (see depth-of-field). (e.g. f/1.8 - f/22). f/2.8 lets in 4 times as much light as f/5.6. Typically each f stop steps are arranged by a factor of `sqrt(2)`, meaning each step brings in double the amount of light, and your shutter speed can get cut by half, while iso remains unchanged to get the same exposure. A f/3.5-f/5.6 on a zoom lens says at minimum / maximum focal lengths, what the lowest f stop numbers are.
+  * Userful for controlling background blur. (as a lower f stop number gives you shallower DoF)
 * Shutter Priority (S). Front dial controls shutter (camera controls aperture, iso)
   * How long the shutter is open for. You can shoot in smallest shutter period possible, in which case camera will likely dial up iso, resulting in noises. To capture fast moving objects you generally want faster shutter speed.
   * Measured by seconds. E.g. 1/60s.
+  * Useful for capturing movement.
 * Manual mode (M). Front dial controls aperture. Back dial controls shutter speed. (camera controls iso)
   * Can switch to bulb mode, where shutter can open for more than 30s by holding. (E.g. night sky)
+  * When you need to control background blur and freeze movement.
 * Video mode.
 
 ### Drive mode (shutter mode)
@@ -32,10 +35,13 @@
 
 ### Focusing mode
 
-* Single-shot auto focus (AFS): once you focus (hold shoot half down), lock in focus even if you move the camera. Allows focus recompose.
-* Continuous auto focus (AFC): as you move, refocus continuously. Not especially reliable. Can use for action.
+* Single-shot auto focus (AFS): once you focus (hold shoot half down), lock in focus even if you move the camera. Allows focus recompose (most cameras auto focus best the centered object, you could use AF on that, then shift the camera so that the subject is in the thirds. Watch out if you have a very shallow DoF. You will be rotating the camera so with a shallow DoF this may cause your subject to be out of focus).
+* Continuous auto focus (AFC): as the subject moves, refocus continuously. Not especially reliable. Can use for action. A lower f stop lens also makes it faster to autofocus moving subjects.
 * Dynamic manual focus (DMF): auto focus by default, but you can also grab the focus ring (lens) and focus manually.
 * Manual focus (MF): disable auto focus. Disable auto focus. Does nothing when shoot half down.
+
+Cameras autofocus by focusing farther and closer until they find maximum contrast.
+If you are attempting to focus on a solid color, the autofocus system won't be able to find any contrast, regardless of the amount of light you have.
 
 ### Focus area
 
@@ -48,8 +54,9 @@
 
 ### Manual focus
 
-* Manual focus assist: when Manual Focus is on, grabbing focus ring zooms in in monitor
-* Focus peaking: colors what's in focus
+* Mirrorless has these features making manual focus more practical. On DSLRs, manual focus using a small viewfinder is less practical than autofocus, manual focusing and zooming in with live view takes time.
+  * Manual focus assist: when Manual Focus is on, grabbing focus ring zooms in in monitor
+  * Focus peaking: colors what's in focus
 
 ### Adapting lenses
 
@@ -98,12 +105,12 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
 ### Depth of field
 
 The range of distance in an image where the focus is acceptably sharp.
-Lens focal length, apperture, and distance to your subject decides DoF.
+Lens focal length, aperture, and distance to your subject decides DoF.
 
-* Short lens focal length: deep DoF, wide field of view, objects appear farther away from your subject
-* Long lens focal length: shallow DoF, narrow field of view, objects appear closer to your subject
-* Apperture: the wider the apperture, the shallower DoF
-* Distance to subject: the closer you are to your subject, shallower DoF
+* Short lens focal length: deep DoF, wide field of view, objects appear farther away from your subject. Long lens focal length: shallow DoF, narrow field of view, objects appear closer to your subject
+* Aperture: the wider the aperture (lower f stop number), the shallower DoF
+* Distance to subject: the closer you are to your subject, the shallower DoF
+* Sensor sizes: the larger the sensor, the shallower DoF (a 100mm f/2.8 lens on a cropped sensor by crop factor 2 generates the same perspective and DoF as a 200mm f/5.6 lens on a full frame lens)
 
 DoF can be used to
 * isolate your subject from other elements in a photo (e.g. portrait background blur),

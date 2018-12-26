@@ -82,6 +82,25 @@ If you want to reduce the amount of reflected light, put a polarizing filter on 
 * Blue, right before sunrise or after sunset. Sun's below the horizon, light's reflected from the atmosphere, taking away contrast and evenly lit. Ambient, soft. Narrow time frame. 
 * Flat, generally poor for landscape: not much contrast, depth. Overcast flat light can work in particular cases, e.g. with overcast cloud, on waterfalls. Consider desaturating, black and white to bring out the texture / mood of the scene.
 
+* Flash
+  * Fill flash. Say you are shooting a model in daylight under an overcast sky, and want to reduce shadows from the eyes / face by adding a front lighting. Control flash output using flash exposure compensation (try aperture priority or shutter priority with this).
+  * Bounce flash. Attaching an external flash to change the angle of lighting, or have lighting bounce off a wall. This wouldn't work outside without bouncing your flash off a reflector. (requires low, white ceilings). Broad lighting (main light closer to the side of face closer to the camera), short lighting.
+  * High speed sync option. Motion with flash.
+
+Proper catchlight (light reflected from the eyes, ideally, above the center of the pupils) is critical to portrait and wildlife photography.
+
+As long as your eyes are open, you can study light and shadow.
+
+* Color temperature
+  * Different light sources, e.g. candles, sunrise, moonlight, daylight / flash (warm --> cold), have different color temperatures.
+  * Lower color temperature are considered warm, as they cast an orange light.
+  * Cameras may apply auto white balancing (think multiple light sources with different temperatures), which may be off and can be adjusted in postprocessing. Our eyes apply auto white balancing as well, lights warm or cold often mis-appear as white to our eyes.
+
+### Camera control
+
+* Focal plane; focusing modes
+* Back button focus; focus traps; precise focusing using live view
+* 
 
 ### Portraits
 
