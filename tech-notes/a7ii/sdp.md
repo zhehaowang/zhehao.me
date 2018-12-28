@@ -91,16 +91,17 @@ Proper catchlight (light reflected from the eyes, ideally, above the center of t
 
 As long as your eyes are open, you can study light and shadow.
 
-* Color temperature
+* Color temperature, white balance
   * Different light sources, e.g. candles, sunrise, moonlight, daylight / flash (warm --> cold), have different color temperatures.
   * Lower color temperature are considered warm, as they cast an orange light.
-  * Cameras may apply auto white balancing (think multiple light sources with different temperatures), which may be off and can be adjusted in postprocessing. Our eyes apply auto white balancing as well, lights warm or cold often mis-appear as white to our eyes.
+  * Cameras may apply auto white balancing, which may be off (think multiple light sources with different temperatures, e.g. camera flash and a lantern, in which case you might want to apply orange gels to your flash). White balance can be adjusted in postprocessing. Our eyes apply auto white balancing as well, which causes lights warm or cold often mis-appear as white to our eyes.
 
 ### Camera control
 
 * Focal plane; focusing modes
-* Back button focus; focus traps; precise focusing using live view
-* 
+* Back button focus (avoid switching between AFS / AFC / MF through menu); focus traps; precise focusing using live view
+* Shutter speed
+* iso, dynamic range, exposure compensation, histogram, metering modes
 
 ### Portraits
 
