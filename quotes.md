@@ -180,3 +180,7 @@ Necessity will continue to be the mother of invention."
 
 "In a corporate environment, whenever you think you aren't being evaluated, you are."
 -- Adam
+
+"Everyday you don't practice you are one day further from being good."
+-- Ben Hogan, quoted by Twyla Tharp in the Creative Habit
+

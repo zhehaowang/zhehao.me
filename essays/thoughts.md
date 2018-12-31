@@ -33,6 +33,8 @@ Much like the time-value of money, using which we discount future cashflows to d
 Different branches of knowledge have instrinsically different discount curves, mapped to a multi-dimensional space of evaluation criteria.
 Thus the key would lie in identifying the critical path, and giving it all you got, now.
 
+You should know when to stop. And when you are about to, push one step further. You never know if just one step would make all the difference if you simply don't take it.
+
 The biggest asset of a company, or perhaps any human construct, is its people.
 Make sure they are treated as such, and make sure they are given the right environment and resources to inspire their potentials.
 
@@ -47,4 +49,7 @@ That may actually happen.
 
 Do your best to learn from them, rather than be intimidated by them.
 
+Reach out. Ask. Praise. Appreciate. Voice your thoughts.
 
+Right, wrong, good, bad, it's all a matter of perspective.
+Keep an open mind. Know and appreciate that your perspective may not be one shared by others.

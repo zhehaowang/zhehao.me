@@ -78,17 +78,22 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
 * Exposure compensation can adjust the overall exposure of the picture, A7ii offers -3 to +3 stops. You should always prefer exposure compensation to adjusting exposure in post processing, as exposure compensation can affect the camera's automatic decisions (be it aperture, iso, or shutter speed, unless you shoot in full manual mode), leaving you with a different raw file to work with in post processing, one that is usually better suited to your judgment of the scene. (No matter what you do later, you cannot get what was outside of the captured dynamic range back.)
 * Blinkies (exposure highlight warnings), camera's warning when parts of your image is overexposed.
 
-### Histogram
+### (Luminence) histogram
 
-Color distribution on the spectrum of shadow - highlight, e.g. if parts of your image is dark, you'll see a spike in the left of the histogram.
+Black-white distribution on the spectrum of shadow - highlight, e.g. if parts of your image is dark, you'll see a spike in the left of the histogram.
 
 In general, try avoiding spikes unless, say, you intend to create silhouettes, or are shooting in the snow.
-A properly exposed picture has a histogram that peaks in the center and does not touch either the left or the right end.
-(At least your subject's histogram should be in the center.)
+A properly exposed picture has a histogram that usually does not peak on the very left or the very right end (a digital camera will not be able to recover details from something fully black or fully white; but know that the histogram is based on the jpeg, not the raw file. (the editting program does, though, when you import raw) When your jpeg histogram says something is fully blown out, it may not be so in raw).
+The distribution of the histogram generally does not make or break a shot: it's a tool for you to understand if the exposure is as you expected.
+E.g., when shooting portraits e.g., try to get your subject to peak in the center. And when your histogram does not touch either end and peaks very much in the middle, it's probably washed out. A U-shaped image is high contrast. Spike in midtone with nothing on the right side means it's probably underexposed, consider adding exposure compensation. Highlights are usually the sweetest parts of your picture: it has much less noise than the shadows.
 
 Some scenes can be too dark and too bright at the same time: histogram peaking in both ends. Exposure compensation wouldn't be able to help in this case. Try fill flash (if the subject is going to be under exposed), or HDR. Often times the sky in daylight is going to be overexposed, polarizing filters help darken the sky in this case, too.
 
 Always look at the histogram, don't trust just the LCD display.
+
+Color histogram: can help you decide if white balancing is off.
+
+_Is shutter speed reflected in the luminence histogram on camera?_
 
 ### Metering modes
 
