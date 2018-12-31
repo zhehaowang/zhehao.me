@@ -55,3 +55,23 @@ Consider backtesting particular strategies on historical data: you might be fitt
 You might be throwing monkeys at typewriters, not telling them what book to write! (If you throw enough monkeys, one of them will produce Illiad. But how likely is he to then produce Odyssey?)
 
 Stock analysts have both a worse record and higher idea of their past performance than weather forecasters.
+
+The sample size matters!
+
+Our emotional apparatus is designed for linear causality, for instance you study everyday and learn something proportional to your studies. If you don't go anywhere, you will be demoralized.
+But the reality rarely gives us the satisfaction of a linear positive progression, you may study for a year and learn nothing, then, unless you are disheartened and give up, something will come to you in a flash.
+This summarizes why there are routes to success that are nonrandom, but few, very few, people have the mental stamina to follow them.
+Those who go the extra mile are rewarded. Most people give up before the rewards.
+
+An example of biases in understanding probabilities: a test of disease has 5% false positive, the disease strikes 0.1% of the population. We test people at random and someone turns out positive. What's the probability of someone actually having the disease? By Bayesian formula, it's about 2%. Usually smaller than our estimates.
+
+On Bloomberg: "it acts as a safe email service, a news service, a historical data retrieving tool, a charting system, an invalubable analytical aid, and a screen where I can see the price of securities and currencies. I have gotten so addicted to it that I cannot operate without it, as I would otherwise feel cut off from the rest of the world. I use it to get in contact with my friends, confirm appointments, and solve some of those entertaining quarrels that put some sharpness into life. Somehow, traders who do not have a Bloomberg address do not exist for us."
+
+### Part III
+
+Wittgenstein's Ruler: when a criteria (such as our opinions of something, or a book review) speaks more about the criteria itself, rather than the subject being reviewed.
+
+Randomness and personal elegance.
+
+Flexibility around a schedule and happiness.
+
