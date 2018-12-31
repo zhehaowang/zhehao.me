@@ -35,10 +35,6 @@
 * Useful for HDR (high dynamic range), where you blend different exposures and take the best of each
 * This camera has HDR built-in, but it may not do a good job
 
-### Exposure compensation
-
-* Exposure dial: decides the exposure (e.g. +2ev). Shift the light (exposure) histogram horizontally.
-
 ### Focusing mode
 
 * Single-shot auto focus (AFS): once you focus (hold shoot half down), lock in focus even if you move the camera. Allows focus recompose (most cameras auto focus best the centered object, you could use AF on that, then shift the camera so that the subject is in the thirds. Watch out if you have a very shallow DoF. You will be rotating the camera so with a shallow DoF this may cause your subject to be out of focus).
@@ -48,6 +44,8 @@
 
 Cameras autofocus by focusing farther and closer until they find maximum contrast.
 If you are attempting to focus on a solid color, the autofocus system won't be able to find any contrast, regardless of the amount of light you have.
+
+Try using a single auto focus point.
 
 ### Focus area
 
@@ -77,7 +75,7 @@ Sensitivty of your sensor. Given a certain shutter speed and aperture, low iso g
 * The human eyes can also adjust iso: if you spend some time in a dark room, your body increases rhodopsin level in your retina, allowing your eyes to be more sensitive to light. (human eyes can do 50-30K iso)
 * Cameras have a limited dynamic range compared with eyes. If your camera has a **dynamic range** of 10 **stops** (exponentials of 2), that means you'll be able to see subjects in the shadows and highlights of a picture as long as the brightest parts aren't more than 1000 times brighter than the darkest parts. Professional cameras usually have a dynamic range of 8-12 stops, while human eyes can do about 20 stops. That's why exposure's a challenge: your eyes can see the underexposed part because it's less than 2^20 times darker than the sky, but your camera can't because it's more than 2^10 darker.
 * Because our eyes and brain automatically adjust to different light levels, your living room seems to be about as bright in the day lit by sunlight as it is at night lit by artificial lights. Your camera will teach you it's actually about 10 times brighter at day.
-* Exposure compensation can adjust the overall exposure of the picture, A7ii offers -3 to +3 stops. You should always prefer exposure compensation to dialing exposure in post processing, as exposure compensation can affect the camera's automatic decisions (be it aperture, iso, or shutter speed, unless you shoot in full manual mode), leaving you with a different raw file to work with in post processing, one that is usually better suited to your judgment of the scene.
+* Exposure compensation can adjust the overall exposure of the picture, A7ii offers -3 to +3 stops. You should always prefer exposure compensation to adjusting exposure in post processing, as exposure compensation can affect the camera's automatic decisions (be it aperture, iso, or shutter speed, unless you shoot in full manual mode), leaving you with a different raw file to work with in post processing, one that is usually better suited to your judgment of the scene. (No matter what you do later, you cannot get what was outside of the captured dynamic range back.)
 * Blinkies (exposure highlight warnings), camera's warning when parts of your image is overexposed.
 
 ### Histogram

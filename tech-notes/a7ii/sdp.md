@@ -103,6 +103,35 @@ As long as your eyes are open, you can study light and shadow.
 * Shutter speed
 * iso, dynamic range, exposure compensation, histogram, metering modes
 
+### Troubleshooting
+
+Blurry pictures
+* Depth of field
+* Autofocus picked the wrong spot / multiple spots
+* Could be image stabilization not set-up correctly (turn image stabilization off when on a tripod, if it doesn't turn off automatically); or using full frame lenses on aps-c sensors
+* Subject motion blur
+* Picking the sharpest aperture: the primary concern is DoF, but know that most cameras are sharpest when two stops higher than wide open
+* Air quality (the more humid, the more air distorts light in its transmission)
+* Lens quality
+* Soft light: subjects in hard light are sharper
+* Be sure to use a single auto focus point, take lots of pictures, refocus often, and choose the sharpest
+
+Noise
+* lower iso, lightroom / photoshop (where you can reduce noise in selected areas of the image, as noise reduction on the full image also tends to lose details)
+
+Bad color
+* white balance issues when lights of multiple color temperatures are present
+* lightroom white balance selector works by letting pick a pixel that is truly white, and adjust based on that
+
+Spots in picture / dust on sensor
+
+Washed out pictures
+* Low contrast: histogram peaks around one area in the middle, instead of distributed throughout the dynamic range
+
+Battery
+
+Flash sync
+
 ### Portraits
 
 * The subject of a portrait is rarely the entire person, but instead their facial expression, and you should consider cropping around the face.
