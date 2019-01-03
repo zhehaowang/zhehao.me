@@ -128,6 +128,49 @@ $$
 a \cdot b = a^{T}b
 $$
 
+\subsection{Inner product space / pre-Hilbert space, Hilbert space}
+
+An \textbf{inner product space} (over reals) is a vector space $\mathbf{V}$ and an \textbf{inner product}, which is a mapping
+
+$$
+\langle . , . \rangle : \mathbf{V} \times \mathbf{V} \to \mathbf{R}
+$$
+
+This space has the properties that $\forall x, y, z \in \mathbf{V}$ and $a, b \in \mathbf{R}$,
+\begin{itemize}
+  \item symmetry: $\langle x, y \rangle = \langle y, x \rangle$
+  \item linearity: $\langle a x + b y , z \rangle = a \langle x z \rangle + b \langle y , z \rangle$
+  \item positive-definitiveness: $\langle x , x \rangle \geq 0$. And $\langle x , x \rangle = 0 \Longleftrightarrow x = 0$
+\end{itemize}
+
+A \textbf{norm} on the inner product space can then be defined as
+
+$$
+\norm{x} = \sqrt{\langle x , x \rangle}
+$$
+
+\textbf{Parallelogram law} states that a norm can be written in terms of an inner product on $\mathbf{V} ~iff~ \forall x, x' \in \mathbf{V}$,
+
+$$
+2 \norm{x}^2 + 2 \norm{x'}^2 = \norm{x + x'}^2 + \norm{x - x'}^2
+$$
+
+And if it can be, the inner product is given by the \textbf{polarization identity}
+
+$$
+\langle x , x' \rangle = \frac{\norm{x}^2 + \norm{x'}^2 - \norm{x - x'}^2}{2}
+$$
+\\
+\\
+\textbf{Pythagorean theorem} states that two vectors are \textbf{orthogonal} if $\langle x , x' \rangle$ = 0, denoted as $x \perp x'$.
+And $x$ is orthogonal to a set $S$ if for all $s \in S$, $x$ is orthogonal to $s$.
+
+If $x \perp x'$, then $\norm{x + x'}^2 = \norm{x}^2 + \norm{x'}^2$
+\\
+\\
+Roughly, \textbf{projection onto a plane} can then be defined as for $x \in \mathbf{V}$, let $M$ be a subspace of inner product space $\mathbf{V}$, then $m_0$ is the projection of $x$ onto $M$ if $m_0 \in M$ and is the closest point to $x$ in $M$.
+Meaning $\forall m \in M$, $\norm{x - m_0} \leq \norm{x - m}$.
+
 \subsection{Cauchy-Schwarz inequality}
 
 Given two vectors $u$ and $v$
@@ -138,6 +181,8 @@ $$
 
 Where $|\langle u , u \rangle|$ is the inner product.
 The equality holds only when $u$ and $v$ are linearly independent (parallel).
+
+
 
 \subsection{Jacobian matrix}
 
@@ -866,6 +911,99 @@ What about given features $\Phi(x) = [x_1, x_2]$, we want to classify if a point
 Similaryly, output space can be transformed as well.
 
 We essentially grow the (linear) hypothesis space by adding more features.
+
+\subsection{Kernel methods}
+
+From a high level, goal is to allow access to huge feature spaces without suffering heavy computational cost.
+
+With featurization, we can map input space $\mathbf{X}$ to $\mathbb{R}^d$, and the hypothesis space is of affine functions on feature space looks like
+
+$$
+\mathbf{H} = \{ x \to w^{T}\Phi{x} + b | w \in \mathbb{R}^d, b \in \mathbb{R} \}
+$$
+
+To get expressive hypothesis spaces using linear models, we need high-dimensional feature spaces (say, adding in all $x_i^{k_i}$ where $\sum{k_i} \leq C$).
+This complicates computation, and may cause overfitting.
+Overfitting can be handled with regularization, and kernel methods can help with memory and computational costs.
+
+For example, recall a featurized SVM prediction function, which is the solution to the following
+
+$$
+\argmin_{w \in \mathbb{R}^d, b \in \mathbb{R}} (\frac{1}{2} w^{T} w + \frac{c}{n} \sum_{i = 1}^{n}{(1 - y_i [w^T \Phi(x_i) + b])_+}
+$$
+
+whose dual is
+
+\begin{align*}
+\msup_{\alpha} ~ ~ & \sum_{i = 1}^{n}{\alpha_i} - \frac{1}{2} \sum_{i,j = 1}^{n}{\alpha_i \alpha_j y_i y_j \Phi(x_j)^{T} \Phi(x_i)} \\
+s.t.               & \sum_{i = 1}^{n}{\alpha_i y_i} = 0 \\
+                   & \alpha_i \in \begin{bmatrix}0, \frac{c}{n}\end{bmatrix} ~ ~ \forall i \in \{1, \dots n\}
+\end{align*}
+
+Where $\Phi{x}$ only shows up as inner products with other $x$s.
+
+A method is \textbf{kernerlized} if inputs only appear inside inner products. $\langle \Phi(x) , \Phi(x') \rangle$ for $x, x' \in \mathbf{X}$.
+The \textbf{kernel function} corresponding to $\Phi$ and inner product $\langle . , . \rangle$ is
+
+$$
+k(x, x') = \langle \Phi(x) , \Phi(x') \rangle
+$$
+
+For example, consider quadratic feature map for $x = (x_1, \dots x_d) \in \mathbf{R}^d$
+
+$$
+\Phi(x) = (x_1, \dots x_d, x_1^2, \dots x_d^2, \sqrt{2} x_1 x_2, \dots, \sqrt{2} x_{d - 1} x_d)^T
+$$
+
+has dimension $O(d^2)$, but for any $x, x' \in \mathbf{R}^d$
+
+$$
+k(x, x') = \langle \Phi(x), \Phi(x') \rangle = \langle x, x' \rangle + \langle x, x' \rangle^2
+$$
+
+Bringing down the computation cost from $O(d^2)$ to $O(d)$.\footnote{Often useful to think of the kernel function as a \textbf{similarity score}}
+
+Continuing on with the SVM example, with linear kernel $k(x, x') = x^T x'$, we define the \textbf{kernel matrix} (\textbf{Gram matrix}) as such:
+
+$$
+K = (\langle x_i, x_j \rangle)_{i, j} =
+\begin{pmatrix}
+\langle x_1, x_1 \rangle \dots \langle x_1, x_n \rangle \\
+\dots \\
+\langle x_n, x_1 \rangle \dots \langle x_n, x_n \rangle \\
+\end{pmatrix}
+$$
+
+Then for the standard Euclidean inner product $\langle x_i, x_j \rangle = x_i^T x_j$, we have
+
+$$
+K = X X^T
+$$
+
+Where $X = (x_1, \dots x_n)^T$, an $n \times d$ vector, and $K$ is all the $Phi(x)-$terms we are interested in.\footnote{Recall with ridge regression, we worked with $X^T X$, which is $d \times d$, meaning we are interested in kernel methods when $n \leq d$}
+
+And the dual problem becomes
+
+\begin{align*}
+\msup_{\alpha} ~ ~ & \sum_{i = 1}^{n}{\alpha_i} - \frac{1}{2} \sum_{i,j = 1}^{n}{\alpha_i \alpha_j y_i y_j K_{ji}} \\
+s.t.               & \sum_{i = 1}^{n}{\alpha_i y_i} = 0 \\
+                   & \alpha_i \in \begin{bmatrix}0, \frac{c}{n}\end{bmatrix} ~ ~ \forall i \in \{1, \dots n\}
+\end{align*}
+
+This also gives us the flexibility to change kernels to a different $K$ of $n \times n$ dimension, which can, e.g., correspond to a high dimensional feature space.
+This is \textbf{kernel trick}.
+\\
+\\
+And there are other non-linear kernels, our quadratic example earlier and \textbf{polynomial kernel} $k(x, x') = (1 + \langle x, x' \rangle)^M$, which corresponds to a feature map with all monomials up to degree $M$, the computational cost of the kernel does not grow with $M$, while plugging in the featurized terms directly the computational cost grows rapidly with $M$.
+
+And \textbf{Radial Basis Function / Gaussian kernel}, $\forall x, x' \in \mathbf{R}^d$
+
+$$
+k(w, x) = e^{- \frac{\norm{x - x'}^2}{2 \sigma^2}}
+$$\footnote{Note how this acts like a similarity score, and with this kernel, your featurization dimension $d$ may grow, but to compute the kernel is always $n \times n$ where $n$ is the number of data points.}
+
+
+
 
 \subsection{Neural nets}
 
