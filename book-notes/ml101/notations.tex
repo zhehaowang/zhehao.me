@@ -171,6 +171,21 @@ If $x \perp x'$, then $\norm{x + x'}^2 = \norm{x}^2 + \norm{x'}^2$
 Roughly, \textbf{projection onto a plane} can then be defined as for $x \in \mathbf{V}$, let $M$ be a subspace of inner product space $\mathbf{V}$, then $m_0$ is the projection of $x$ onto $M$ if $m_0 \in M$ and is the closest point to $x$ in $M$.
 Meaning $\forall m \in M$, $\norm{x - m_0} \leq \norm{x - m}$.
 
+A Hilbert space is a complete\footnote{a space is complete if all Cauchy sequences in the space converge.} inner product space.
+E.g. $\mathbf{R}^d$ and the standard inner product. Any finite dimensional inner product space is a Hilbert space.
+
+The \textbf{projection theorem} suggests, for a Hilbert space $\mathbf{H}$ , $M$ is a closed subspace of $\mathbf{H}$, for any $x \in \mathbf{H}$, there exists a unique $m_0 \in M$ for which
+
+$$
+\norm{x - m_0} \leq \norm{x - m} ~ \forall m \in M
+$$
+
+This $m_0$ is called the orthogonal projection of $x$ onto $M$.
+Furthermore, $m_0 \in M$ is the projection of $x$ onto $M$ iff $x - m_0 \perp M$.
+
+Projection reduces norm: let $M$ be a closed subspace of $\mathbf{H}$.
+For any $x \in \mathbf{H}$, let $m_0$ be the projection of $x$ onto $M$, then $\norm{m_0} \leq \norm{x}$ with equality only when $m_0 = x$. \footnote{think Pythagorean theorem on a $\mathbf{R}^2$ space}
+
 \subsection{Cauchy-Schwarz inequality}
 
 Given two vectors $u$ and $v$
@@ -1002,6 +1017,25 @@ $$
 k(w, x) = e^{- \frac{\norm{x - x'}^2}{2 \sigma^2}}
 $$\footnote{Note how this acts like a similarity score, and with this kernel, your featurization dimension $d$ may grow, but to compute the kernel is always $n \times n$ where $n$ is the number of data points.}
 
+
+\subsection{Representer theorem and its usage in kernelization}
+
+Consider SVM objective function in a more general term,
+
+$$
+\argmin_{w \in \mathbf{H}}{J(w)}
+$$
+
+And let $J(w)$ be
+
+$$
+J(w) = R(\norm{w}) + L(\langle w , \Phi(x_1) \rangle , \dots , \langle w , \Phi(x_n) \rangle)
+$$
+
+Where $\norm{.}$ corresponds to the inner product on space $\mathbf{H}$.
+$R : [0, \infty) \to \mathbf{R}$ is the regularization term and $L : \mathbf{R}^n \to \mathbf{R}$ is the loss term.\footnote{Each inner product represents a (linear) prediction. Ridge regression and SVM are both of this form.}
+
+If $J(w)$ has a minimizer, then it has a minimizer of the form $w^* = \sum_{i = 1}^{n}{\alpha_i \Phi(x_i)}$.\footnote{This is the same conclusion we reached at the end of SVM: $w^*$ is a linear combination of features.}
 
 
 
