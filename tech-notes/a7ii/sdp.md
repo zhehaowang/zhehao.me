@@ -135,6 +135,15 @@ Flash sync
 ### Portraits
 
 * The subject of a portrait is rarely the entire person, but instead their facial expression, and you should consider cropping around the face.
+* Your focus is usually the eyes; make sure eyes are well lit, ideally a catch light to ten or two o'clock should show
+* Rembrandt lighting: side lighting with bounce flash so that a triangle under the subject's eye is lit (on the shadowy side of face)
+* Tilted shoulder: narrower body; generally preferable at an angle
+* Head turn: direct (business headshots, eye contact), seven-eighth (nose to the side to appear smaller; both ears visible; usually looks better with men), three quarters (nose not crossing the cheek to appear smaller, accentuating cheekbones; gives more depth to the face; usually looks better with women), profile (face to one side, rarely flattering; shows character)
+* Head tilt: chin tilted up, head tilt towards the lower (farther) shoulder, ear a little to the back, masculine; chin a little bit down, head tilt towards the higher shoulder, feminine
+* Mouth
+* Hair light / bounce flash (hard lighting to reflect off of the subject's hair; to bring out (especially dark) hair from the background; consider a little fan to add movement to hair; be careful when lighting white or grey hair. Fly-aways: make sure no stray hairs cover the face, they are difficult for post processing.)
+* Arms, hands
+* Group shots; deeper DoF (so use simple backgrounds), fill the frame with faces, 
 
 ### Example subjects
 
