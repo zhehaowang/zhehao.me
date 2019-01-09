@@ -931,7 +931,7 @@ We essentially grow the (linear) hypothesis space by adding more features.
 
 From a high level, goal is to allow access to huge feature spaces without suffering heavy computational cost.
 
-With featurization, we can map input space $\mathbf{X}$ to $\mathbb{R}^d$, and the hypothesis space is of affine functions on feature space looks like
+With featurization, we can map input space $\mathbf{X} \subset \mathbb{R}^n$ to $\mathbb{R}^d$\footnote{And as it would seem, this optimization makes sense when $n < d$}, and the hypothesis space is of affine functions on feature space looks like
 
 $$
 \mathbf{H} = \{ x \to w^{T}\Phi{x} + b | w \in \mathbb{R}^d, b \in \mathbb{R} \}
@@ -1033,9 +1033,20 @@ J(w) = R(\norm{w}) + L(\langle w , \Phi(x_1) \rangle , \dots , \langle w , \Phi(
 $$
 
 Where $\norm{.}$ corresponds to the inner product on space $\mathbf{H}$.
-$R : [0, \infty) \to \mathbf{R}$ is the regularization term and $L : \mathbf{R}^n \to \mathbf{R}$ is the loss term.\footnote{Each inner product represents a (linear) prediction. Ridge regression and SVM are both of this form.}
+$R : [0, \infty) \to \mathbf{R}$ is the regularization term and $L : \mathbf{R}^n \to \mathbf{R}$ is the loss term.\footnote{Each inner product represents a (linear) prediction. Ridge regression and SVM are both of this form. Lasso is not, as $l_1$ norm does not correspond to an inner product.}
 
-If $J(w)$ has a minimizer, then it has a minimizer of the form $w^* = \sum_{i = 1}^{n}{\alpha_i \Phi(x_i)}$.\footnote{This is the same conclusion we reached at the end of SVM: $w^*$ is a linear combination of features.}
+If $J(w)$ has a minimizer, then it has a minimizer of the form $w^* = \sum_{i = 1}^{n}{\alpha_i \Phi(x_i)}$.\footnote{This is the same conclusion we reached at the end of SVM: $w^*$ is a linear combination of features. This can be proved using Pythagorean theorem and projection theorem: do a projection from $w^*$ to $M$, span of the data}
+
+With this, we don't have to search over the feature space $w^*$ is in, $\mathbb{R}^d$, but rather having computed the $n$ $\Phi(x_i)$s, we search over that space of $n$ dimensions.
+This lets you deal with infinite dimensional feature space.
+
+As an example, a kernelized objective function for SVM looks like
+
+$$
+\argmin_{\alpha \in \mathbb{R}^n} R(\sqrt{\alpha^T K \alpha}) + L(K \alpha)
+$$
+
+Where there is no direct access to $\Phi(x_i)$, and all references are via kernel matrix $K$.
 
 
 
