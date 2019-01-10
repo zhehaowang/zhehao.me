@@ -108,7 +108,7 @@ and wisdom to know the difference."
 "We first make our habits, then our habits make us"
 -- John Dryden
 
-"Building rituals requires defining very premise behaviors and performing them at very specific times, motivated by deeply held values."
+"Building rituals requires defining very precise behaviors and performing them at very specific times, motivated by deeply held values."
 -- Tal Ben Shahar
 
 "When users of a complex system are ignorant of how it works, yet happy with what it does, that says a lot about the design of the system."
