@@ -1049,6 +1049,50 @@ $$
 Where there is no direct access to $\Phi(x_i)$, and all references are via kernel matrix $K$.
 
 
+\subsection{Performance evaluation}
+
+Intuition,
+\begin{itemize}
+\item Always spend some time building a linear baseline model. (lasso / ridge / elastic net regression; l1 / l2 regularized logistic regression or svm)
+\item Prefer simpler models if performance is the same.
+\item Consider building an oracle model, which is helpful to get an upper bound on achievable performance. E.g. fit your validation data without regularization. This can give estimate of the approximation error of our hypothesis space.
+\end{itemize}
+
+\textbf{Confusion matrix} for binary classification problem, the 4-cell matrix of true / false positive / negatives.
+
+\begin{itemize}
+\item \textbf{True positive}: predicted positive, and it's right
+\item \textbf{True negative}: predicted negative, and it's right
+\item \textbf{False positive / type 1 error}: predicted positive, and it's wrong
+\item \textbf{False negative / type 2 error}: predicted negative, and it's wrong
+\end{itemize}
+
+Criteria based on the confusion matrix,
+\begin{itemize}
+\item \textbf{Accuracy} $(TP + TN) / (TP + TN + FP + FN)$
+\item \textbf{Error rate} $(FP + FN) / (TP + TN + FP + FN)$
+\item $\text{Accuracy} + \text{Error rate} = 1$.
+\item Accuracy by itself is often not enough, consider a no-information classifier (always produced 0, e.g.) on a distribution that's predominantly one-sided (e.g. 0).
+\item \textbf{Precision} $TP / (TP + FP)$: high precision means low false alarm rate.
+\item \textbf{True positive rate / recall / sensitivity} $TP / (TP + FN)$: high recall means you are not missing many positives.
+\item \textbf{False negative rate / miss rate} $FN / (FN + TP)$
+\item \textbf{False positive rate / fall-out / false-alarm rate} $FP / (FP + TN)$
+\item \textbf{True negative rate / specificity} $TN / (FP + TN)$
+\item \textbf{$F_1$ score}. $F_1 = 2 \frac{precision \cdot recall}{precision + recall}$. $F_{\beta}$. Weigh towards precision or recall
+\end{itemize}
+
+In a classification problem, the real-valued prediction function (score function) does not have to be thresholded at 0\footnote{$> 0$ predict positive, $< 0$ predict negative}.
+Thresholding the score function differently causes the performance metrics to shift.
+We can threshold it at a value to meet our performance goals, e.g. $recall > 80\%$.
+
+Measurement curves based on these rates.
+\begin{itemize}
+\item \textbf{Precision-recall curve}: as you change the threshold, how precision and recall change.
+\item \textbf{Receiver-operation characteristic (ROC) curve}: as you change threshold, how TP rate and FP rate change.
+\item \textbf{AUC / AUC ROC}: area under the ROC curve.
+\end{itemize}
+
+
 
 \subsection{Neural nets}
 
