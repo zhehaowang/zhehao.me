@@ -1092,6 +1092,20 @@ Measurement curves based on these rates.
 \item \textbf{AUC / AUC ROC}: area under the ROC curve.
 \end{itemize}
 
+\subsection{Probablistic modeling}
+
+Instead of producing a single value or classification (regression or classification), produce a probability distribution of values, with which we can decide how likely a test data point is.
+This is applicable in e.g. anonamaly detection.
+
+The approach usually entails selecting a particular probability distribution, and fit the samples to derive the parameters of that distribution. (E.g. the mean value of Poisson distribution)
+
+\textbf{Stratification} means partitioning our input data into groups, and treat each group separately.
+E.g. we stratify each symbol traded into time ranges like 9:30A to 10:30A on every weekday, and train a model for that particular time range.
+
+\textbf{Bucketing / binning} is the opposite of stratification, where we combine natural groups of data into a single group, and train a model for that single group.
+E.g. we can bucket multiple tech stock symbols into one group, and train one model to predict their overall price movement.
+
+Stratification brings out specificity (also more bias), bucketing smoothes bias out but lose specificity.
 
 
 \subsection{Neural nets}
