@@ -2,12 +2,13 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{physics}
 \usepackage{graphicx}
 \usepackage[perpage]{footmisc}
 
 \setlength\parindent{0pt}
 
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand*\mean[1]{\bar{#1}}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
@@ -447,6 +448,63 @@ Pr(\lim\limits_{n \to \infty}{\mean{X}_n = \mu}) = 1
 $$
 
 \textbf{Intuition}: law of large numbers is a theorem that describes the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.
+
+
+\subsection{Expectation, variance}
+
+Variance
+$$
+\mathbf{V}(X) = \mathbf{E}(x^2) - \mathbf{E}(x)^2
+$$
+
+$$
+\mathbf{V}(X - a) = \mathbf{V}(X)
+$$
+
+$$
+\mathbf{E}(X - a) = \mathbf{E}(X) - a
+$$
+
+Say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
+
+\begin{align*}
+\text{MSE}(m) &= \mathbf{E}[(X - m)^2] \\
+              &= (\mathbf{E}[X - m])^2 + \mathbf{V}[X - m] \\
+              &= (\mathbf{E}[X] - m)^2 + \mathbf{V}[X] \\
+\end{align*}
+
+$$
+\derivative{\text{MSE}(m)}{m} = 2 m - 2 \mathbf{E}[X]
+$$
+
+Thus when $m = \mathbf{E}[X]$, $\derivative{\text{MSE}(m)}{m} = 0$.
+
+So the value we should use is the expectation.
+\\
+\\
+The expectation $\mu$ can be estimated from the sample ($y_1, \dots y_n$) mean.
+
+$$
+\hat{\mu} \equiv \frac{1}{n} \sum_{i = 1}^{n}{y_i}
+$$\footnote{Where the hat indicates empirical, as seen later on in empirical risk minimizer}
+
+If samples are i.i.d, the \textbf{law of large number} suggests that 
+
+$$
+\hat{\mu} \to \mathbf{E}(Y) = \mu
+$$
+
+
+\textbf{Law of total expectation}: for any random variables $U$ and $V$,
+
+$$
+\mathbf{E}(U) = \mathbf{E}(\mathbf{E}(U | V))
+$$
+
+
+\textbf{Regression function}
+
+
 
 
 \section{Statistical learning}
