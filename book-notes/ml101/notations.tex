@@ -40,7 +40,7 @@ $$
 $$
 
 \subsection{Gradient}
-Given $f(\vec{x})$ where $\vec{x} = (x_1, \dots, x_n)$ on $\mathbb{R}^n$
+Given $f(\vec{x})$ where $\vec{x} = (x_1, \dots, x_n)$ on $\mathbf{R}^n$
 $$
 \bigtriangledown f(a_1, \dots, a_n) = (\frac{\partial f}{\partial x_1}(a_1, \dots, a_n), \dots, \frac{\partial f}{\partial x_n}(a_1, \dots, a_n))
 $$
@@ -77,7 +77,7 @@ $$
 \norm{x} = |x|
 $$
 
-\textbf{Euclidean norm} on a Euclidean space $\mathbb{R}^n$ is such
+\textbf{Euclidean norm} on a Euclidean space $\mathbf{R}^n$ is such
 $$
 \norm{\vec{x}}_2 = \sqrt{x_1^2 + \dots + x_n^2}
 $$
@@ -112,7 +112,7 @@ $$
 Maps two equal-size vectors to a real value.
 
 $$
-\cdot : \mathbb{R}^d \times \mathbb{R}^d \to \mathbb{R}
+\cdot : \mathbf{R}^d \times \mathbf{R}^d \to \mathbf{R}
 $$
 
 Defined geometrically, given two vectors $a$ and $b$,
@@ -131,13 +131,13 @@ $$
 
 \subsection{Inner product space / pre-Hilbert space, Hilbert space}
 
-An \textbf{inner product space} (over reals) is a vector space $\mathbf{V}$ and an \textbf{inner product}, which is a mapping
+An \textbf{inner product space} (over reals) is a vector space $\mathbb{V}$ and an \textbf{inner product}, which is a mapping
 
 $$
-\langle . , . \rangle : \mathbf{V} \times \mathbf{V} \to \mathbf{R}
+\langle . , . \rangle : \mathbb{V} \times \mathbb{V} \to \mathbf{R}
 $$
 
-This space has the properties that $\forall x, y, z \in \mathbf{V}$ and $a, b \in \mathbf{R}$,
+This space has the properties that $\forall x, y, z \in \mathbb{V}$ and $a, b \in \mathbf{R}$,
 \begin{itemize}
   \item symmetry: $\langle x, y \rangle = \langle y, x \rangle$
   \item linearity: $\langle a x + b y , z \rangle = a \langle x z \rangle + b \langle y , z \rangle$
@@ -150,7 +150,7 @@ $$
 \norm{x} = \sqrt{\langle x , x \rangle}
 $$
 
-\textbf{Parallelogram law} states that a norm can be written in terms of an inner product on $\mathbf{V} ~iff~ \forall x, x' \in \mathbf{V}$,
+\textbf{Parallelogram law} states that a norm can be written in terms of an inner product on $\mathbb{V} ~iff~ \forall x, x' \in \mathbb{V}$,
 
 $$
 2 \norm{x}^2 + 2 \norm{x'}^2 = \norm{x + x'}^2 + \norm{x - x'}^2
@@ -169,7 +169,7 @@ And $x$ is orthogonal to a set $S$ if for all $s \in S$, $x$ is orthogonal to $s
 If $x \perp x'$, then $\norm{x + x'}^2 = \norm{x}^2 + \norm{x'}^2$
 \\
 \\
-Roughly, \textbf{projection onto a plane} can then be defined as for $x \in \mathbf{V}$, let $M$ be a subspace of inner product space $\mathbf{V}$, then $m_0$ is the projection of $x$ onto $M$ if $m_0 \in M$ and is the closest point to $x$ in $M$.
+Roughly, \textbf{projection onto a plane} can then be defined as for $x \in \mathbb{V}$, let $M$ be a subspace of inner product space $\mathbb{V}$, then $m_0$ is the projection of $x$ onto $M$ if $m_0 \in M$ and is the closest point to $x$ in $M$.
 Meaning $\forall m \in M$, $\norm{x - m_0} \leq \norm{x - m}$.
 
 A Hilbert space is a complete\footnote{a space is complete if all Cauchy sequences in the space converge.} inner product space.
@@ -204,7 +204,7 @@ The equality holds only when $u$ and $v$ are linearly independent (parallel).
 
 \textbf{Jacobian matrix} is the matrix of all first-order partial derivatives of a vector-valued function.
 
-Suppose $\vec{f} : \mathbb{R}^n \to \mathbb{R}^m$, the Jacobian matrix $\vec{J}$ of $\vec{f}$ is defined as follows
+Suppose $\vec{f} : \mathbf{R}^n \to \mathbf{R}^m$, the Jacobian matrix $\vec{J}$ of $\vec{f}$ is defined as follows
 
 $$
 \vec{J} = \begin{bmatrix} ~ \frac{\partial \vec{f}}{\partial x_1} ~ \dots ~ \frac{\partial \vec{f}}{\partial x_n} ~ \end{bmatrix}
@@ -259,7 +259,7 @@ $$
 
 \subsection{Positive-definite}
 
-A \textbf{symmetric} $n \times n$ real matrix is positive definite if the scalar $z^{T} M z$ is strictly positive for every non-zero column vector $z \in \mathbb{R}^n$.
+A \textbf{symmetric} $n \times n$ real matrix is positive definite if the scalar $z^{T} M z$ is strictly positive for every non-zero column vector $z \in \mathbf{R}^n$.
 
 The identity matrix $I$ is positive definite.
 
@@ -276,7 +276,7 @@ $$
 \textbf{Intuition}: for all $x_1$, $x_2$ in $C$, all the points on the line segment connecting points $x_1$, $x_2$ are in $C$.
 \\
 \\
-A \textbf{function} $f: \mathbb{R}^n \to \mathbb{R}$ is \textbf{convex} if $\text{dom}$ $f$ is a convex set and if for all $x, y \in \text{dom} ~ f$, and $0 \leq \theta \leq 1$, we have
+A \textbf{function} $f: \mathbf{R}^n \to \mathbf{R}$ is \textbf{convex} if $\text{dom}$ $f$ is a convex set and if for all $x, y \in \text{dom} ~ f$, and $0 \leq \theta \leq 1$, we have
 
 $$
 f(\theta x + (1 - \theta) y) \leq \theta f(x) + (1 - \theta) f(y)
@@ -286,11 +286,11 @@ $$
 
 Examples:
 \begin{itemize}
-  \item $f(x) = a x + b$ is both convex and concave on $\mathbb{R}$ for all $a, b \in \mathbb{R}$.
-  \item $f(x) = |x|^p$ for $p \geq 1$ is convex on $\mathbb{R}$.
-  \item $f(x) = e^{a x}$ for all $a$ is convex on $\mathbb{R}$.
-  \item Every norm on $\mathbb{R}^n$ is convex.
-  \item $f(x) = \text{max}\{ x \}$ is convex on $\mathbb{R}^n$.
+  \item $f(x) = a x + b$ is both convex and concave on $\mathbf{R}$ for all $a, b \in \mathbf{R}$.
+  \item $f(x) = |x|^p$ for $p \geq 1$ is convex on $\mathbf{R}$.
+  \item $f(x) = e^{a x}$ for all $a$ is convex on $\mathbf{R}$.
+  \item Every norm on $\mathbf{R}^n$ is convex.
+  \item $f(x) = \text{max}\{ x \}$ is convex on $\mathbf{R}^n$.
 \end{itemize}
 
 A function $f$ is \textbf{strictly convex} if the line segment connecting any two points on the graph of $f$ lies strictly above the graph.
@@ -303,7 +303,7 @@ A function $f$ is \textbf{strictly convex} if the line segment connecting any tw
 \subsection{The general optimization problem}
 
 \textbf{Standard form}: minimize $f_0(x)$ subject to $f_i(x) \leq 0, ~ i = 1, \dots m$, $h_i(x) = 0, ~ i = 1, \dots m$.\footnote{Assuming the intersections of domains of all $f_i$ and $h_i$ is not empty.}
-Where $f_0$ is the objective function and $x \in \mathbb{R}^n$ are the optimization variables.
+Where $f_0$ is the objective function and $x \in \mathbf{R}^n$ are the optimization variables.
 
 We can replace $h(x) = 0$ with $h(x) \leq 0$ and $-h(x) \leq 0$, so we don't need the equality constraints.
 
@@ -411,7 +411,7 @@ The additional conditions needed are called \textbf{constraint qualifications}.
 \subsection{Random variable}
 
 A random variable $X : \Omega \to \mathit{E}$ is a measurable function from a set of possible outcomes $\Omega$ to a measurable space $\mathit{E}$.
-Often times $\mathit{E} = \mathbb{R}$
+Often times $\mathit{E} = \mathbf{R}$
 
 The probability that $X$ takes on a value in a measurable set $S \subseteq \mathit{E}$ is written as
 $$
@@ -454,30 +454,30 @@ $$
 
 Variance
 $$
-\mathbf{V}(X) = \mathbf{E}(x^2) - \mathbf{E}(x)^2
+\mathbb{V}(X) = \mathbb{E}(x^2) - \mathbb{E}(x)^2
 $$
 
 $$
-\mathbf{V}(X - a) = \mathbf{V}(X)
+\mathbb{V}(X - a) = \mathbb{V}(X)
 $$
 
 $$
-\mathbf{E}(X - a) = \mathbf{E}(X) - a
+\mathbb{E}(X - a) = \mathbb{E}(X) - a
 $$
 
 Say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
 
 \begin{align*}
-\text{MSE}(m) &= \mathbf{E}[(X - m)^2] \\
-              &= (\mathbf{E}[X - m])^2 + \mathbf{V}[X - m] \\
-              &= (\mathbf{E}[X] - m)^2 + \mathbf{V}[X] \\
+\text{MSE}(m) &= \mathbb{E}[(X - m)^2] \\
+              &= (\mathbb{E}[X - m])^2 + \mathbb{V}[X - m] \\
+              &= (\mathbb{E}[X] - m)^2 + \mathbb{V}[X] \\
 \end{align*}
 
 $$
-\derivative{\text{MSE}(m)}{m} = 2 m - 2 \mathbf{E}[X]
+\derivative{\text{MSE}(m)}{m} = 2 m - 2 \mathbb{E}[X]
 $$
 
-Thus when $m = \mathbf{E}[X]$, $\derivative{\text{MSE}(m)}{m} = 0$.
+Thus when $m = \mathbb{E}[X]$, $\derivative{\text{MSE}(m)}{m} = 0$.
 
 So the value we should use is the expectation.
 \\
@@ -491,14 +491,14 @@ $$\footnote{Where the hat indicates empirical, as seen later on in empirical ris
 If samples are i.i.d, the \textbf{law of large number} suggests that 
 
 $$
-\hat{\mu} \to \mathbf{E}(Y) = \mu
+\hat{\mu} \to \mathbb{E}(Y) = \mu
 $$
 
 
 \textbf{Law of total expectation}: for any random variables $U$ and $V$,
 
 $$
-\mathbf{E}(U) = \mathbf{E}(\mathbf{E}(U | V))
+\mathbb{E}(U) = \mathbb{E}[\mathbb{E}[U | V]]
 $$
 
 
@@ -513,7 +513,7 @@ Let $\mathbf{X}$ denote the input space, $\mathbf{Y}$ denote the output space, a
 
 A \textbf{decision function / prediction function} $f: \mathbf{X} \to \mathbf{A}$ maps an input to an action.
 
-A \textbf{loss function} $\mathit{l}: \mathbf{A} \times \mathbf{Y} \to \mathbb{R}$ evaluates an action in the context of an output, and maps the error to a real.
+A \textbf{loss function} $\mathit{l}: \mathbf{A} \times \mathbf{Y} \to \mathbf{R}$ evaluates an action in the context of an output, and maps the error to a real.
 In traditional problems we can usually assume action has no effect on the output (like stock market prediction).
 
 \subsection{Risk, Bayesian function, empirical risk}
@@ -626,7 +626,7 @@ Plugging in the lasso / ridge definition of $\Omega$ to either form, we get lass
 For example, ridge regression in Tikhonov form looks like
 
 $$
-\hat{w} = \argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_2^2}
+\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_2^2}
 $$
 
 Lasso regression typically lead to feature sparsity (more coefficient equal to $0$).
@@ -655,7 +655,7 @@ We iteratively adjust each coordinate several times, where we can pick a random 
 Coordinate gradient descent has a \textbf{closed form solution} for lasso (in the form below\footnote{This form is not differentiable, but it can be shown that for coordinate gradient descent to work there is a weaker condition, which lasso satisfies. \textit{This would indicate that the split into positive and negative shown above is not required, for solving using coordinate gradient descent?}}), where we can use a formula to solve each $w_i$, instead of having to loop over them.
 
 $$
-\hat{w}_j = \argmin_{w_j \in \mathbb{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
+\hat{w}_j = \argmin_{w_j \in \mathbf{R}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda \norm{w}_1}
 $$
 
 \subsection{Elastic nets}
@@ -669,14 +669,14 @@ think Figure \ref{lasso-vs-ridge-sparsity} instead of parallel lines, we get elo
 \textbf{Elastic net} combines lasso and ridge penalties.
 
 $$
-\hat{w} = \argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda_1 \norm{w}_1 + \lambda_2 \norm{w}_2^2}
+\hat{w} = \argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(w^{T} x_i - y_i)^2} + \lambda_1 \norm{w}_1 + \lambda_2 \norm{w}_2^2}
 $$
 
 Geometrically, we end with a hypothesis space like a diamond with edges bulging out (between a circle and a diamond).
 
 \subsection{Regression loss functions}
 
-A \textbf{distance-based loss function} is a loss function ($\mathit{l}(\hat{y}, y) \in \mathbb{R}$) that only depends on the \textbf{residual} $r = \hat{y} - y$.
+A \textbf{distance-based loss function} is a loss function ($\mathit{l}(\hat{y}, y) \in \mathbf{R}$) that only depends on the \textbf{residual} $r = \hat{y} - y$.
 Most regression losses are distance-based.
 
 Distance-based losses are translation-invariant: $\mathit{l}(\hat{y} + a, y + a) = \mathit{l}(\hat{y}, y)$.
@@ -700,7 +700,7 @@ $$
 Where $1 ~ (f(x) \neq y)$ denotes score 1 whenever $(f(x) \neq y)$.
 \\
 \\
-If we allow \textbf{real-valued prediction function} $f : \mathbf{X} \to \mathbb{R}$, meaning action space $\mathbf{A} = \mathbb{R}$ where the value represents confidence of our prediction.
+If we allow \textbf{real-valued prediction function} $f : \mathbf{X} \to \mathbf{R}$, meaning action space $\mathbf{A} = \mathbf{R}$ where the value represents confidence of our prediction.
 
 We can define \textbf{margin} $m$ as $m = y \hat{y}$, where $\hat{y}$ stands for the predicted score.
 We want to maximize the margin.
@@ -727,10 +727,10 @@ And we have \textbf{margin error} when $m < 1$.
 Using hinge loss function, we define \textbf{soft margin linear support vector machine} (a constrained empirical risk minimizer) as
 
 $$
-\argmin_{w \in \mathbb{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(1 - y_i f_w (x_i))_+} + \lambda \norm{w}_2^2}
+\argmin_{w \in \mathbf{R}^{d}}{\frac{1}{n} \sum_{i = 1}^{n}{(1 - y_i f_w (x_i))_+} + \lambda \norm{w}_2^2}
 $$
 
-With $l2$ regularization, and hypothesis space is linear $\{f(x) = w^{T} x | w \in \mathbb{R}^d\}$.
+With $l2$ regularization, and hypothesis space is linear $\{f(x) = w^{T} x | w \in \mathbf{R}^d\}$.
 \\
 \\
 \textbf{Logistic/log loss} is defined as 
@@ -756,7 +756,7 @@ It always wants more margin, and is differentiable.
 Adding a \textbf{bias} term $b$ to the constrained empirical risk minimizer of \textbf{support vector machine}, we have
 
 $$
-\argmin_{w \in \mathbb{R}^{d}, ~ b \in \mathbb{R}}{\frac{c}{n} \sum_{i = 1}^{n}{\text{max}(0, 1 - y_i (w^{T} x_i + b))} + \frac{1}{2} {\norm{w}_2^2}}
+\argmin_{w \in \mathbf{R}^{d}, ~ b \in \mathbf{R}}{\frac{c}{n} \sum_{i = 1}^{n}{\text{max}(0, 1 - y_i (w^{T} x_i + b))} + \frac{1}{2} {\norm{w}_2^2}}
 $$
 
 whose solution gives us the SVM prediction function.
@@ -858,12 +858,12 @@ If there are no such $\alpha_i^*$s, then we have a degenerate SVM training probl
 
 \subsection{Level sets / contours, sublevel sets and convex optimization}
 
-Let $f : \mathbb{R}^d \to \mathbb{R}$ be a function.
-A \textbf{level set} or \textbf{contour line} for the value $c$ is the set of points $x \in \mathbb{R}^d$ for which $f(x) = c$.
+Let $f : \mathbf{R}^d \to \mathbf{R}$ be a function.
+A \textbf{level set} or \textbf{contour line} for the value $c$ is the set of points $x \in \mathbf{R}^d$ for which $f(x) = c$.
 
-A \textbf{sublevel set} for the value $c$ is the set of points $x \in \mathbb{R}^d$ for which $f(x) \leq c$.
+A \textbf{sublevel set} for the value $c$ is the set of points $x \in \mathbf{R}^d$ for which $f(x) \leq c$.
 
-If $f : \mathbb{R}^d \to \mathbb{R}$ is \textbf{convex}, then sublevel sets are convex.
+If $f : \mathbf{R}^d \to \mathbf{R}$ is \textbf{convex}, then sublevel sets are convex.
 Level sets and superlevel sets of convex functions are not generally convex, hence, the \textbf{standard form of convex optimization problem} uses $\leq 0$ to express constraints.
 
 The \textbf{implicit form of convex optimization problem} goes as
@@ -879,7 +879,7 @@ Also, intersection of convex sets is convex.
 
 \subsection{First-order approximation}
 
-Suppose $f : \mathbb{R}^d \to \mathbb{R}$ is differentiable.
+Suppose $f : \mathbf{R}^d \to \mathbf{R}$ is differentiable.
 
 We can use \textbf{linear} / \textbf{first-order approximation} to predict $f(y)$ given $f(x)$ and $\bigtriangledown f(x)$
 
@@ -888,19 +888,19 @@ f(y) \approx f(x) + \bigtriangledown f(x)^{T} (y - x)
 $$
 \\
 \\
-Now suppose $f : \mathbb{R}^d \to \mathbb{R}$ is convex and differentiable.
+Now suppose $f : \mathbf{R}^d \to \mathbf{R}$ is convex and differentiable.
 
 The linear approximation to $f$ at $x$ is a \textbf{global underestimator} of $f$.
 
 $$
-\forall ~ x, y \in \mathbb{R}^d, ~ ~ f(y) \geq f(x) + \bigtriangledown f(x)^{T} (y - x)
+\forall ~ x, y \in \mathbf{R}^d, ~ ~ f(y) \geq f(x) + \bigtriangledown f(x)^{T} (y - x)
 $$
 
 And if $\bigtriangledown f(x) = 0$ then $x$ is a global minimizer of $f$ \footnote{Where local information gives global information!}.
 
 \subsection{Subgradients}
 
-A vector $g \in \mathbb{R}^d$ is a \textbf{subgradient} of $f : \mathbb{R}^d \to \mathbb{R}$ at $x$ if $\forall ~ z$,
+A vector $g \in \mathbf{R}^d$ is a \textbf{subgradient} of $f : \mathbf{R}^d \to \mathbf{R}$ at $x$ if $\forall ~ z$,
 
 $$
 f(z) \geq f(x) + g^{T} (z - x)
@@ -916,11 +916,11 @@ $\partial f(x) = \emptyset \implies f$ is not convex.
 
 If $0 \in \partial f(x)$, then $x$ is a \textbf{global minimizer} of $f$.
 
-As a reminder, for function $f : \mathbb{R}^d \to R$,
+As a reminder, for function $f : \mathbf{R}^d \to R$,
 \begin{itemize}
-  \item graph of function lives in $\mathbb{R}^{d + 1}$
-  \item gradient, subgradient of $f$ live in $\mathbb{R}^d$, and
-  \item contours, level sets, sublevel sets are in $\mathbb{R}^d$
+  \item graph of function lives in $\mathbf{R}^{d + 1}$
+  \item gradient, subgradient of $f$ live in $\mathbf{R}^d$, and
+  \item contours, level sets, sublevel sets are in $\mathbf{R}^d$
 \end{itemize}
 
 Gradient at $x$ is orthogonal to level set at $x$. (assuming $f$ continuously differentiable.)
@@ -928,7 +928,7 @@ Gradient at $x$ is orthogonal to level set at $x$. (assuming $f$ continuously di
 \\
 Now to figure out the \textbf{direction} on which to do a subgradient descent.
 
-Let $f : \mathbb{R}^d \to \mathbb{R}$ have a subgradient $g$ at $x_0$, hyperplane $H$ orthogonal to $g$ at $x_0$ must \textbf{support} the level set $S = \{ x \in \mathbb{R}^d | f(x) = f(x_0) \}$, meaning $H$ contains $x_0$ and all of $S$ lies on one side of $H$.
+Let $f : \mathbf{R}^d \to \mathbf{R}$ have a subgradient $g$ at $x_0$, hyperplane $H$ orthogonal to $g$ at $x_0$ must \textbf{support} the level set $S = \{ x \in \mathbf{R}^d | f(x) = f(x_0) \}$, meaning $H$ contains $x_0$ and all of $S$ lies on one side of $H$.
 The proof of which\footnote{Using the definition of subgradient, and inner product $g^T \cdot (y - x_0) > 0$ if $y$ is on the side $g$ points in} suggests the following:
 
 Points on subgradient $g$ side of $H$ have larger $f$-values than $f(x_0)$, and points on $-g$ side may not have smaller $f$-values, meaning $-g$ may not be a descent direction.
@@ -962,7 +962,7 @@ Thus we have $-g$ gets us closer to a smaller $f(z)$.
 
 \subsection{Features extraction}
 
-Mapping an input space $\mathbf{X}$ (sound wave, image, DNA sequence) to a vector $\mathbb{R}^d$ is called \textbf{feature extraction} or \textbf{featurization}.
+Mapping an input space $\mathbf{X}$ (sound wave, image, DNA sequence) to a vector $\mathbf{R}^d$ is called \textbf{feature extraction} or \textbf{featurization}.
 
 A \textbf{feature template} is a group of features all computed in a similar way (e.g. $last\_three\_chars\_of(x) = \_\_\_$).\footnote{With regularization, our resulting prediction function won't be too complicated.}
 
@@ -989,10 +989,10 @@ We essentially grow the (linear) hypothesis space by adding more features.
 
 From a high level, goal is to allow access to huge feature spaces without suffering heavy computational cost.
 
-With featurization, we can map input space $\mathbf{X} \subset \mathbb{R}^n$ to $\mathbb{R}^d$\footnote{And as it would seem, this optimization makes sense when $n < d$}, and the hypothesis space is of affine functions on feature space looks like
+With featurization, we can map input space $\mathbf{X} \subset \mathbf{R}^n$ to $\mathbf{R}^d$\footnote{And as it would seem, this optimization makes sense when $n < d$}, and the hypothesis space is of affine functions on feature space looks like
 
 $$
-\mathbf{H} = \{ x \to w^{T}\Phi{x} + b | w \in \mathbb{R}^d, b \in \mathbb{R} \}
+\mathbf{H} = \{ x \to w^{T}\Phi{x} + b | w \in \mathbf{R}^d, b \in \mathbf{R} \}
 $$
 
 To get expressive hypothesis spaces using linear models, we need high-dimensional feature spaces (say, adding in all $x_i^{k_i}$ where $\sum{k_i} \leq C$).
@@ -1002,7 +1002,7 @@ Overfitting can be handled with regularization, and kernel methods can help with
 For example, recall a featurized SVM prediction function, which is the solution to the following
 
 $$
-\argmin_{w \in \mathbb{R}^d, b \in \mathbb{R}} (\frac{1}{2} w^{T} w + \frac{c}{n} \sum_{i = 1}^{n}{(1 - y_i [w^T \Phi(x_i) + b])_+}
+\argmin_{w \in \mathbf{R}^d, b \in \mathbf{R}} (\frac{1}{2} w^{T} w + \frac{c}{n} \sum_{i = 1}^{n}{(1 - y_i [w^T \Phi(x_i) + b])_+}
 $$
 
 whose dual is
@@ -1095,13 +1095,13 @@ $R : [0, \infty) \to \mathbf{R}$ is the regularization term and $L : \mathbf{R}^
 
 If $J(w)$ has a minimizer, then it has a minimizer of the form $w^* = \sum_{i = 1}^{n}{\alpha_i \Phi(x_i)}$.\footnote{This is the same conclusion we reached at the end of SVM: $w^*$ is a linear combination of features. This can be proved using Pythagorean theorem and projection theorem: do a projection from $w^*$ to $M$, span of the data}
 
-With this, we don't have to search over the feature space $w^*$ is in, $\mathbb{R}^d$, but rather having computed the $n$ $\Phi(x_i)$s, we search over that space of $n$ dimensions.
+With this, we don't have to search over the feature space $w^*$ is in, $\mathbf{R}^d$, but rather having computed the $n$ $\Phi(x_i)$s, we search over that space of $n$ dimensions.
 This lets you deal with infinite dimensional feature space.
 
 As an example, a kernelized objective function for SVM looks like
 
 $$
-\argmin_{\alpha \in \mathbb{R}^n} R(\sqrt{\alpha^T K \alpha}) + L(K \alpha)
+\argmin_{\alpha \in \mathbf{R}^n} R(\sqrt{\alpha^T K \alpha}) + L(K \alpha)
 $$
 
 Where there is no direct access to $\Phi(x_i)$, and all references are via kernel matrix $K$.
