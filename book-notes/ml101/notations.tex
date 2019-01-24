@@ -500,11 +500,112 @@ $$
 $$
 \mathbb{E}(U) = \mathbb{E}[\mathbb{E}[U | V]]
 $$
+\\
+\\
+Now instead of predicting one value for a random variable, we are given input $X$ and want to find a function $f: X \to Y$ s.t. the mean square error is minimal.
+This function is the \textbf{regression function}, and
+
+\begin{align*}
+\text{MSE}(f) &= \mathbb{E}[(Y - f(X))^2]                                   \\
+              &= \mathbb{E}[\mathbb{E}[(Y - f(X))^2 | X]]                   \\
+              &= \mathbb{E}[\mathbb{V}[Y - f(X) | X] + (E[Y - f(X) | X])^2] \\
+              &= \mathbb{E}[\mathbb{V}[Y | X] + (E[Y - f(X) | X])^2]
+\end{align*}
+
+To minimize this, the first term in the expectation doesn't depend on our prediction, and the second term looks like previously when we are predicting the value of a random variable with one value, only with all expectations conditional on $X$.
+
+So the optimal function $\mu(x) = \mathbb{E}[Y | X = x]$, and this is called \textbf{regression function}.
+\\
+\\
+When $Y$ depends on $X$ (causal model), we can use a noise random variable $\epsilon$ (whose expectation is 0) and regression function $\mu(x)$ to estimate $Y$:
+
+$$
+\mu(X) + \epsilon \to Y
+$$
+
+When causal relationship $X \to Y$ cannot be assumed, the noise random variable can be dependent on $X$, thus the general form $Y|X = \mu(X) + \eta(X)$.
+
+\subsection{Bias-variance trade-off}
+
+When $X$ takes only a finite set of values and we have enough sample points, we can reliably approximate a regression function (law of large number).
+But our sample points is almost always undersampled (e.g. when X is continuous), in which case we need interpolation, extrapolation and smoothing, and there are different methods to do these (different regression methods).
+
+Suppose the true regression function is $\mu(x)$ and we use $\hat{\mu}$ to make prediction.\footnote{As seen later, the true Bayesian form, and our prediction function which hopes to be as close as possible.}
+
+The MSE of $\hat{\mu}$ (at $x$) can be written as such:
+
+\begin{align*}
+\text{MSE}(\hat{\mu}) &= \mathbb{E}[(Y - \hat{\mu}(x))^2]                     \\
+                      &= \mathbb{E}[(Y - \mu(x) + \mu(x) - \hat{\mu}(x))^2]   \\
+                      &= \mathbb{E}[(Y - \mu(x))^2 + 2 (Y - \mu(x)) (\mu(x) - \hat{\mu}(x)) + (\mu(x) - \hat{\mu}(x))^2] \\
+                      &= \mathbb{E}[\eta^2] + 2 (\mu(x) - \hat{\mu}(x)) \mathbb{E}[\eta] + \mathbb{E}[(\mu(x) - \hat{\mu}(x))^2] \\
+                      &= \mathbb{V}[\eta] + (\mu(x) - \hat{\mu}(x))^2
+\end{align*}
+
+This is our first \textbf{bias-variance decomposition}, the second term is a bias by which our predictions are systematically off, and the first term is a variance that affect even the best prediction (which in general depends on $x$, let's denote it as $\sigma_x^2$).
+
+In practice, $\hat{\mu}$ is not a single fixed function: it's something we estimate from sample data.
+If sample data are random, then exact regression function we get is random, too.
+Let's call this random function $\hat{M_n}$.\footnote{The previous analysis really is $\text{MSE}(\hat{M_n(x)} | \hat{M_n(x)} = \hat{\mu})$}
+
+Now if we are to analyze the prediction error of the \textit{method}, averaging over all the possible training data sets
+
+\begin{align*}
+\text{MSE}(\hat{M_n}(x)) &= \mathbb{E}[(Y - \hat{M_n}(X))^2 | X = x] \\
+                         &= \sigma_x^2 + (\mu(x) - \mathbb{E}[\hat{M_n}(x)])^2 + \mathbb{V}[\hat{M_n}(x)]
+\end{align*}
+
+This our second bias-variance decomposition.
+The first term is the same as before.
+The second term is in using $\hat{M_n}$ to estimate $\mu$, the \textbf{approximation error / approximation error}.
+The third term is the variance in our estimate of the regression function, even if we have an unbiased method $\mu(x) = \mathbb{E}[\hat{M_n}(x)]$, if there is a lot of variance in our estimates, we can expect to make large errors.
+
+\textbf{The catch} is, at least past a certain point, decreasing the approximation bias can only come through increasing the estimation variance.
+This is the \textbf{bias-variance trade-off}.
+
+The trade off doesn't have to be one-for-one, sometimes we can lower the total error by introducing some bias as it gets rid of more variance than it adds approximation error.
+
+In general, both approximation bias and estimation variance depend on $n$.
+A method is \textbf{consistent} when both of these go to 0 as $n \to \infty$.
+There can be multiple consistent methods for the same problem, and their biases and variances don't have to go to 0 at the same rate.
 
 
-\textbf{Regression function}
+\subsection{Ordinary least squares linear regression as smoothing}
 
+We choose to approximate $\mu(x)$ by $\alpha + \beta x$ and ask for the best $a$, $b$ of the those constants.
 
+For the sake of simplicity, we assume $X$ is one dimensional and $X$ and $Y$ have mean 0.
+
+\begin{align*}
+\text{MSE}(\alpha, \beta) &= \mathbb{E}[(Y - \alpha - \beta X)^2] \\
+                          &= \mathbb{E}[\mathbb{V}[Y | X]] + \mathbb{E}[(\mathbb{E}[Y - \alpha - \beta X | X])^2]
+\end{align*}
+
+The first term doesn't depend on $\alpha$ or $\beta$, so we can drop it.
+Taking the derivative of the second term, we have
+
+$$
+\frac{\partial MSE}{\partial \alpha} = \mathbb{E}[-2 \cdot (Y - \alpha - \beta X)]
+$$
+
+and $a = \mathbb{E}[Y] - b\mathbb{E}[X] = 0$. (we assumed $X$ and $Y$ both have mean 0)
+
+$$
+\frac{\partial MSE}{\partial \beta} = \mathbb{E}[-2X \cdot (Y - \alpha - \beta X)]
+$$
+
+and $b = \frac{\mathbb{E}[XY]}{\mathbb{E}[X^2]} = \frac{Cov[X, Y]}{\mathbb{V}[X]} = \frac{\sum_{i}{y_i x_i}}{\sum_{i}{x_i^2}}$. (we assumed $X$ and $Y$ both have mean 0)
+\\
+\\
+And we are now in a position to see how the least square linear regression model is really a smoothing of the data:
+
+$$
+\hat{\mu}(x) = \hat{b} x = \sum_i{y_i} \frac{x_i}{\sum_{j}{x_j^2}} x = \sum_i{y_i} \frac{x_i}{n \hat{\sigma}^2_X} x
+$$
+
+Where $\hat{\sigma}^2_X$ is the sample variance of $X$.
+
+The \textbf{intuition} is that our prediction is a weighted average of observed values $y_i$ of the dependent variable, where the weights are proportional to how far $x_i$ is from the center (relative to the variance), and proportional to the magnitude of $x$.
 
 
 \section{Statistical learning}
