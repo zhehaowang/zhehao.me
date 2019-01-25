@@ -454,15 +454,26 @@ $$
 
 Variance
 $$
-\mathbb{V}(X) = \mathbb{E}(x^2) - \mathbb{E}(x)^2
+\mathbb{V}[X] = \mathbb{E}[x^2] - \mathbb{E}[x]^2
+$$
+
+Derivation:
+
+\begin{align*}
+\mathbb{V}[X] &= \frac{1}{n} \sum_{i}{(x_i - \mathbb{E}[X])^2} \\
+              &= \frac{1}{n} \sum_{i}{x_i^2 - 2 \mathbb{E}[X] \cdot x_i + \mathbb{E}[X]^2} \\
+              &= \mathbb{E}[X^2] - 2 \cdot \mathbb{E}[X] \cdot \mathbb{E}[X] + \mathbb{E}[X]^2 \\
+              &= \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\end{align*}
+
+Immediate observations:
+
+$$
+\mathbb{V}[X - a] = \mathbb{V}[X]
 $$
 
 $$
-\mathbb{V}(X - a) = \mathbb{V}(X)
-$$
-
-$$
-\mathbb{E}(X - a) = \mathbb{E}(X) - a
+\mathbb{E}[X - a] = \mathbb{E}[X] - a
 $$
 
 Say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
@@ -479,10 +490,10 @@ $$
 
 Thus when $m = \mathbb{E}[X]$, $\derivative{\text{MSE}(m)}{m} = 0$.
 
-So the value we should use is the expectation.
+So the value $\mu$ we should use is the expectation.
 \\
 \\
-The expectation $\mu$ can be estimated from the sample ($y_1, \dots y_n$) mean.
+The expectation can be estimated from the mean of samples ($y_1, \dots y_n$).
 
 $$
 \hat{\mu} \equiv \frac{1}{n} \sum_{i = 1}^{n}{y_i}
@@ -503,7 +514,7 @@ $$
 \\
 \\
 Now instead of predicting one value for a random variable, we are given input $X$ and want to find a function $f: X \to Y$ s.t. the mean square error is minimal.
-This function is the \textbf{regression function}, and
+This optimal function is the \textbf{regression function}, and
 
 \begin{align*}
 \text{MSE}(f) &= \mathbb{E}[(Y - f(X))^2]                                   \\
@@ -523,12 +534,13 @@ $$
 \mu(X) + \epsilon \to Y
 $$
 
-When causal relationship $X \to Y$ cannot be assumed, the noise random variable can be dependent on $X$, thus the general form $Y|X = \mu(X) + \eta(X)$.
+When causal relationship $X \to Y$ cannot be assumed, the noise random variable can be dependent on $X$, thus the general form $Y|X = \mu(X) + \eta(X)$ (without loss of generality, $\eta(X)$'s expectation is 0).
 
 \subsection{Bias-variance trade-off}
 
 When $X$ takes only a finite set of values and we have enough sample points, we can reliably approximate a regression function (law of large number).
-But our sample points is almost always undersampled (e.g. when X is continuous), in which case we need interpolation, extrapolation and smoothing, and there are different methods to do these (different regression methods).
+
+But our sample points is almost always undersampled (e.g. when $X$ is continuous), in which case we need interpolation, extrapolation and smoothing, and there are different methods to do these (different regression methods).
 
 Suppose the true regression function is $\mu(x)$ and we use $\hat{\mu}$ to make prediction.\footnote{As seen later, the true Bayesian form, and our prediction function which hopes to be as close as possible.}
 
@@ -570,7 +582,7 @@ A method is \textbf{consistent} when both of these go to 0 as $n \to \infty$.
 There can be multiple consistent methods for the same problem, and their biases and variances don't have to go to 0 at the same rate.
 
 
-\subsection{Ordinary least squares linear regression as smoothing}
+\subsection{Ordinary least squares linear regression, linear smoothers}
 
 We choose to approximate $\mu(x)$ by $\alpha + \beta x$ and ask for the best $a$, $b$ of the those constants.
 
@@ -606,6 +618,76 @@ $$
 Where $\hat{\sigma}^2_X$ is the sample variance of $X$.
 
 The \textbf{intuition} is that our prediction is a weighted average of observed values $y_i$ of the dependent variable, where the weights are proportional to how far $x_i$ is from the center (relative to the variance), and proportional to the magnitude of $x$.
+
+The linear regression line is a special case of \textbf{linear smoothers}, which are estimates of the regression function with the following form:
+
+$$
+\hat{\mu}(x) = \sum_{i}{y_i \hat{w}(x_i, x)}
+$$
+
+They are called linear as the predictions are linear in the responses $y_i$, as functions of $x$ they are generally nonlinear.
+In linear regression's case, as shown earlier,
+
+$$
+\hat{w}(x_i, x) = \frac{x_i}{n \hat{\sigma}^2_X} x
+$$
+
+This ignores the distance between $x_i$ and $x$.
+
+\subsection{k-Nearest-Neighbor Regression}
+
+Consider \textbf{nearest-neighbor regression}, which is very sensitive to the distance between $x_i$ and $x$:
+
+$$
+\hat{w}(x_i, x) = 
+\begin{cases}
+1 ~ ~ ~ x_i ~ \text{nearest neighbor of} ~ x \\
+0 ~ ~ ~ \text{otherwise}
+\end{cases}
+$$
+
+This will include the noise into its prediction.
+We might instead do $k$-nearest neighbor regression (as noise tend to cancel each other out), where as we increase $k$ we get smoother functions, until $k = n$ where we get a constant.
+
+$$
+\hat{w}(x_i, x) = 
+\begin{cases}
+\frac{1}{k} ~ ~ ~ x_i ~ \text{one of the $k$ nearest neighbor of} ~ x \\
+0 ~ ~ ~ \text{otherwise}
+\end{cases}
+$$
+
+Because k-nearest-neighbors averages over only a fixed number of neighbors, each of which is a noisy sample, it always has some noise in its prediction, and is generally not consistent.
+
+\subsection{Kernel smoothers}
+
+With kNN regression each testing point is predicted using information from only a few data points, say we want to use all the training data like ordinary linear regression, but in a location-sensitive way.
+
+\textbf{Kernel smoothing} does this.
+We pick a kernel function $K(x, x)$ which satisfies
+\begin{itemize}
+  \item $K(x_i, x) \geq 0$
+  \item $K(x_i, x)$ depends only on the distance $x_i - x$, not the individual arguments. (Hence we can write $K$ as a one-argument function, $K(x_i - x)$)
+  \item $\int{x K(0, x) dx} = 0$ and
+  \item $0 < \int{x^2 K(0, x) dx} < \infty$
+\end{itemize}
+
+These conditions together imply $|x_i - x| \to \infty$, $K(x_i, x) \to 0$.\footnote{Example of such functions include the density of the uniform distribution $(-\frac{h}{2}, \frac{h}{2})$, and the density of the standard Gaussian $\mathbf{N}(0, \sqrt(h))$ distribution. $h$ can be any positive number and is called \textbf{bandwidth}, which controls the degree of smoothing, $h \to \infty$ we revert to taking the global mean, and $h \to 0$ results in spikier functions.}
+
+The Nadaraya-Watson estimate of the regression function is
+
+$$
+\hat{\mu}(x) = \sum_i{y_i \frac{K(x_i, x)}{\sum_j{K(x_j, x)}}}
+$$
+
+$K(x_i, x)$ is large if $x_i$ is close to $x$, so this places a lot of weight on training data points close to the point where we are trying to predict.
+
+% \subsection{General theory for linear smoothers}
+
+% \textbf{hat matrix} (how much influence observation $y_j$ had on teh smoother's fitted value for $\mu(x_i)$)
+
+% \textbf{degree of freedom}
+
 
 
 \section{Statistical learning}
