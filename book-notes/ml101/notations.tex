@@ -466,7 +466,7 @@ Derivation:
               &= \mathbb{E}[X^2] - \mathbb{E}[X]^2
 \end{align*}
 
-Immediate observations:
+Some properties:
 
 $$
 \mathbb{V}[X - a] = \mathbb{V}[X]
@@ -474,6 +474,14 @@ $$
 
 $$
 \mathbb{E}[X - a] = \mathbb{E}[X] - a
+$$
+
+$$
+\mathbb{V}[nX] = n^2 \mathbb{V}[X]
+$$
+
+$$
+\mathbb{V}[-X] = - \mathbb{V}[X]
 $$
 
 Say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
@@ -688,7 +696,35 @@ $K(x_i, x)$ is large if $x_i$ is close to $x$, so this places a lot of weight on
 
 % \textbf{degree of freedom}
 
+% Intercept
 
+% 
+
+\subsection{Uncorrelated, independent, Eve's law, Central Limit Theorem}
+
+Random variables $X$ and $Y$ are \textbf{independent}:
+$$
+F(X, Y) = F(X) F(Y)
+$$
+Where $F(X)$, $F(Y)$ are cumulative distribution functions of $X$, $Y$; and $F(X, Y)$ is the join cumulative distribution function,
+$$
+F(X, Y) = P(X \leq x, Y \leq y)
+$$
+\\
+\\
+Random variables $X$ and $Y$ are \textbf{uncorrelated}:
+$$
+Cov(X, Y) = 0
+$$
+Where the covariance $Cov(X, Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$
+\\
+\\
+\textbf{Eve's law}
+$$
+\mathbb{V}[Y] = \mathbb{E}[\mathbb{V}[Y | X]] + \mathbb{V}[\mathbb{E}[Y | X]]
+$$
+
+Correspondingly, some call the law of total expectation \textbf{Adam's law}.
 
 \section{Statistical learning}
 
