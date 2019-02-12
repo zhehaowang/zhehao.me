@@ -452,6 +452,52 @@ $$
 
 \subsection{Expectation, variance}
 
+Expectation
+
+$$
+\mathbb{E}[X] = \sum_{-\infty}^{+\infty}{ x P_{X}(x)}
+$$
+
+$$
+\mathbb{E}[\Phi(X)] = \sum_{-\infty}^{+\infty}{ \Phi(x) P_{X}(x)}
+$$
+
+$$
+\mathbb{E}[\Phi(X, Y)] = \sum_{-\infty}^{+\infty}{ \sum_{-\infty}^{+\infty}{ \Phi(x, y) } P_{X, Y}(x, y)}
+$$
+
+Where $\Phi$ is a function of random variables $X$ and $Y$, $P_{X}(x)$ denotes $P(X = x)$, and $P_{X, Y}(x, y)$ is the joint distribution of $X$ and $Y$ ($P_{X, Y}(x, y) = P(X = x ~\text{and}~ Y = y)$).
+\\
+\\
+\textbf{Chebyshev's inequality}
+
+% Conditional probability; Bayesian; Total probability; Joint distribution; density; cdf
+
+We have $\mathbb{E}(X^2) = \sum_{-\infty}^{+\infty}{ x^2 P_{X}(x)}$.
+
+Given any number $\epsilon > 0$, construct $X_1$ from $X$ s.t.
+$$
+X_1 =
+\begin{cases}
+0, & \text{if}~|X| \leq \epsilon \\
+\epsilon^2, & \text{if}~|X| > \epsilon
+\end{cases}
+$$
+Then obviously $X_1 \leq X^2$, and $\mathbb{E}[X_1] \leq \mathbb{E}[X^2]$, or equivalently
+
+$$
+\epsilon^2 P(|X| > \epsilon) \leq \mathbb{E}[X^2]
+$$
+
+Consequently
+
+$$
+P(|X| > \epsilon) \leq \frac{1}{\epsilon^2} \mathbb{E}[X^2]
+$$
+
+In particular if $\mathbb{E}[X^2] = 0$, then $P(|X| > \epsilon) = 0 \forall \epsilon > 0$ hence $X = 0$ with probability 1.
+\\
+\\
 Variance
 $$
 \mathbb{V}[X] = \mathbb{E}[x^2] - \mathbb{E}[x]^2
@@ -473,8 +519,21 @@ $$
 $$
 
 $$
+\mathbb{E}[cX] = c\mathbb{E}[X]
+$$
+
+$$
 \mathbb{E}[X - a] = \mathbb{E}[X] - a
 $$
+
+$$
+\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y]
+$$
+
+$$
+\mathbb{E}[X Y] = \mathbb{E}[X] \mathbb{E}[Y]
+$$
+if $X$ and $Y$ are indepedent.
 
 $$
 \mathbb{V}[nX] = n^2 \mathbb{V}[X]
@@ -699,6 +758,12 @@ $K(x_i, x)$ is large if $x_i$ is close to $x$, so this places a lot of weight on
 % Intercept
 
 % 
+
+% First and Second Borel Cantelli lemma
+
+% Null hypothesis, p-value, F-test, T-test
+
+
 
 \subsection{Uncorrelated, independent, Eve's law, Central Limit Theorem}
 
