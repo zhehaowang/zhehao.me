@@ -498,16 +498,16 @@ $$
 In particular if $\mathbb{E}[X^2] = 0$, then $P(|X| > \epsilon) = 0 \forall \epsilon > 0$ hence $X = 0$ with probability 1.
 \\
 \\
-Variance
+\textbf{Variance}
 $$
-\mathbb{V}[X] = \mathbb{E}[x^2] - \mathbb{E}[x]^2
+\mathbb{V}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[x^2] - \mathbb{E}[x]^2
 $$
 
-Derivation:
+Derivation (recall that $\mathbb{E}[X]$ is a constant):
 
 \begin{align*}
-\mathbb{V}[X] &= \frac{1}{n} \sum_{i}{(x_i - \mathbb{E}[X])^2} \\
-              &= \frac{1}{n} \sum_{i}{x_i^2 - 2 \mathbb{E}[X] \cdot x_i + \mathbb{E}[X]^2} \\
+\mathbb{V}[X] &= \mathbb{E}[(X - \mathbb{E}[X])^2] \\
+              &= \mathbb{E}[X^2 - 2 \mathbb{E}[X] \cdot X + \mathbb{E}[X]^2] \\
               &= \mathbb{E}[X^2] - 2 \cdot \mathbb{E}[X] \cdot \mathbb{E}[X] + \mathbb{E}[X]^2 \\
               &= \mathbb{E}[X^2] - \mathbb{E}[X]^2
 \end{align*}
@@ -543,7 +543,15 @@ $$
 \mathbb{V}[-X] = - \mathbb{V}[X]
 $$
 
-Say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
+$$
+\mathbb{V}[X + Y] = \mathbb{V}[X] + \mathbb{V}[Y]
+$$
+If $X$ and $Y$ are independent.
+
+It's then easy to show a ``normalized'' random variable $X' = \frac{X - \mathbb{E}[X]}{\sqrt{\mathbb{V}[X]}}$ satisfies $\mathbb{E}[X'] = 0$ and $\mathbb{V}[X'] = 1$.
+\\
+\\
+\textbf{Intuition of $\mathbb{E}$}: say we are to use one value $m$ to represent a random variable $X$, s.t. mean square error is minimized.
 
 \begin{align*}
 \text{MSE}(m) &= \mathbb{E}[(X - m)^2] \\
@@ -763,6 +771,60 @@ $K(x_i, x)$ is large if $x_i$ is close to $x$, so this places a lot of weight on
 
 % Null hypothesis, p-value, F-test, T-test
 
+\subsection{Bernoulli trials, Binomial and Poisson distributions, Normal distribution}
+
+A \textbf{Bernoulli trial} means identical independent experiments in each of which an event A may occur with probability $P(A)$.
+In the case of $n$ consecutive Bernoulli trials, each elementary event $\omega$ can be described by a sequence of $n$ 0s and 1s.
+Because of the independence of the trials, the probability of such an event $\omega$ with $k$ successes and $n - k$ failures is $p^k (1 - p)^{n - k}$ where $p$ is the probability of event $A$ in one trial.
+
+Let random variable $\xi$ denote the number of successes in $n$ Bernoulli trials, $\xi(\omega) = k$ if $k$ successes occur in the event $\omega$.
+
+$$
+P(\xi = k) = \binom{n}{k} p^k (1 - p)^{n - k} = \frac{n!}{k! (n - k)!} p^k (1 - p)^{n - k}
+$$
+
+This is known as the \textbf{binomial distribution}, and specified by two parameters $n$ and $p$.
+
+The random variable $\xi$ can be seen as the sum of $n$ independent random variables $\xi = \xi_1 + \dots \xi_n$, where each $\xi_i$ has $P(\xi_1 = 1) = p$ and $P(\xi_1 = 0) = 1 - p$.
+It's easy to show that $\mathbb{E}[\xi_i] = p$ and $\mathbb{V}[\xi_i] = p (1 - p)$, and $\mathbb{E}[\xi_i] = n p$, $\mathbb{V}[\xi_i] = n p (1 - p)$.
+
+Approximation when $n$ is large and $p$ is small.
+
+$$
+p_{\xi}(k) \approx \frac{(n p)^k}{k!} e^{- n p}
+$$
+
+A random variable $\xi$ taking integral values $0, 1, 2, \dots$ is said to have \textbf{Poisson distribution} if
+
+$$
+p_{\xi}(k) \approx \frac{a^k}{k!} e^{-a}
+$$
+
+The distribution is specified by a single positive parameter $a = \mathbb{E}[\xi]$.
+Poisson distribution is the same as the approximation of binomial distribution when the number of trials is large and probability of success is small.
+\\
+\\
+A \textbf{normal distribution} probability density follows the form
+
+$$
+p(x) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}
+$$
+
+And distribution function follows the form
+
+$$
+\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{x}{e^{-\frac{x^2}{2}} dx}
+$$
+
+This has expectation 0 and variance 1.
+
+More generally, a normal random variable is a random variable with probability density
+
+$$
+p(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x - a)^2}{2 \sigma^2}}
+$$
+
+It has expectation $a$ and variance $\sigma^2$.
 
 
 \subsection{Uncorrelated, independent, Eve's law, Central Limit Theorem}
@@ -771,7 +833,7 @@ Random variables $X$ and $Y$ are \textbf{independent}:
 $$
 F(X, Y) = F(X) F(Y)
 $$
-Where $F(X)$, $F(Y)$ are cumulative distribution functions of $X$, $Y$; and $F(X, Y)$ is the join cumulative distribution function,
+Where $F(X)$, $F(Y)$ are cumulative distribution functions of $X$, $Y$; and $F(X, Y)$ is the joint cumulative distribution function,
 $$
 F(X, Y) = P(X \leq x, Y \leq y)
 $$
