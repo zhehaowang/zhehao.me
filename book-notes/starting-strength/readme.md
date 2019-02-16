@@ -1,5 +1,9 @@
 # Starting Strength
 
+neuromuscular
+
+properly performed, full-range motion barbell exercises are essentially the functional expression of human skeletal and muscular anatomy under a load.
+
 ### Barbell
 
 Posterior chain training
