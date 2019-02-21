@@ -69,6 +69,28 @@ $$
 
 Meaning gradient on a certain direction vector $u$ is $f(x)$'s directional derivative on $u$.
 
+\subsection{Taylor expansion}
+
+Every infinite differentiable function can be approximated by a series of polynomials.
+
+Let $f(x)$ be a real function which is continuous on the closed interval $[a \dots b]$ and $n + 1$ times differentiable on the open interval $(a \dots b)$, let $\xi \in (a \dots b)$.
+
+Then given any $x \in (a \dots b)$, there exists some $\eta \in \mathbb{R} : x \leq \eta \leq \xi$ or $\xi \leq \eta \leq x$ such that:
+
+$$
+f(x) = \sum_{k = 0}^{n} \frac{1}{k!} (x - \xi)^k f^{(k)}(\xi) + R_n
+$$
+
+Where $R_n = \frac{1}{(n + 1)!} (x - \xi)^{n + 1} f^{(n + 1)}(\eta)$ is the error term.
+
+The expression
+
+$$
+f(x) = \sum_{n = 0}^{\infty} \frac{1}{n!} (x - \xi)^n f^{(n)}(\xi)
+$$
+
+where $n$ is taken to the limit is known as the Taylor series expansion of $f$ about $\xi$.
+
 \subsection{Vector norm}
 A norm is a function that assigns a stricly positive length or size to each vector in a vector space (except the zero vector which is assigned a length of 0).
 
