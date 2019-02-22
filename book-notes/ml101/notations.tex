@@ -453,21 +453,22 @@ Instead of a traditional algebraic variable that can be solved for one value, a 
 \subsection{Law of large numbers}
 \label{law-of-large-numbers}
 
-$X_i, X_2, \dots$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $E(X_1) = E(X_2) = \dots = \mu$, and
+$X_i, X_2, \dots$ is an infinite sequence of independent and identically distributed (iid) random variables with expected value $\mathbb{E}[X_1] = \mathbb{E}[X_2] = \dots = \mu$ and $\mathbb{V}[X_1] = \dots = \sigma^2$, and
 $$
-\mean{X}_n = \frac{1}{n}(X_1 + \dots + X_n) ~ \footnote{What does the sum of random variables mean? Seems that each $X_i$ here means 'sampled' values following the distribution defined by the random variable, like, the outcome of an experiment}
+\mean{X}_n = \frac{1}{n}(X_1 + \dots + X_n)
 $$
-
 
 \textbf{The weak law} states that for any positive number $\epsilon$
 $$
 \lim\limits_{n \to \infty}{Pr(|\mean{X}_n - \mu| > \epsilon)} = 0
 $$
+The weak law follows immediately from Chebychev's inequality.
 
 \textbf{The strong law} states that
 $$
 Pr(\lim\limits_{n \to \infty}{\mean{X}_n = \mu}) = 1
 $$
+\footnote{Or alternatively, $\lim\limits_{n \to \infty}{\frac{n(A)}{n}} = P(A)$}
 
 \textbf{Intuition}: law of large numbers is a theorem that describes the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.
 
@@ -874,6 +875,30 @@ $$
 $$
 
 Correspondingly, some call the law of total expectation \textbf{Adam's law}.
+
+\subsection{Generating function}
+
+Let $\xi$ be a discrete random variable taking values $0, 1, 2 \dots$ with probabilities $P_{\xi}(k) = Pr(\xi = k), k = 0, 1, 2\dots$, then the function
+
+$$
+F_{\xi}(z) = \sum_{k = 0}^{\infty} P_{\xi}(k) z^k, ~ |z| \leq 1
+$$
+
+is called the \textbf{generating function} of the random variable $\xi$.
+
+The probability distribution of the random variable $\xi$ is uniquely determined by its generating function $F_{\xi}(z)$:
+
+$$
+P_{\xi}(k) = \frac{1}{k!} F_{\xi}^{(k)}(0), ~ ~ k = 0, 1, 2 \dots
+$$
+
+Where $F_{\xi}^{(k)}(0)$ is the k-th derivative of $F_{\xi}^{(k)}(z)$.
+
+Since $\mathbb{E}[\Phi(x)] = \sigma_{k = -\infty}^{+\infty} \Phi(k) P(k)$, $F_{\xi}(z)$ at a fixed $z$ is the expectation of the random variable $\Phi(\xi) = z^{\xi}$:
+
+$$
+F_{\xi}(z) = \mathbb{E}[z^{\xi}], ~ ~ |z| \leq 1
+$$
 
 \section{Statistical learning}
 
