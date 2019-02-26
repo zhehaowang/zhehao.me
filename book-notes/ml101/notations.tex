@@ -944,12 +944,31 @@ Roughly speaking, \textbf{central limit theorem} asserts that the distribution o
 Suppose the sequence $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$ satisfies \textbf{Lyapunov condition}
 
 $$
-\lim_{n \to \infty}frac{1}{B^2_n} = \sum_{k = 1}^{n}{\mathbb{E}[(\xi_k - a_k)^2]} = 0
+\lim_{n \to \infty}\frac{1}{B^2_n} \sum_{k = 1}^{n}{\mathbb{E}[(\xi_k - a_k)^2]} = 0
 $$
 
 where $B^2_n = \mathbb{V}[S_n] = \sum_{k = 1}^{n}{\sigma_k^2}$
 
 Then the sequence of random variables satisfy the central limit theorem.
+
+
+\subsection{Markov chains}
+
+Consider a physical system with the following properties
+
+\begin{itemize}
+  \item Can occupy any of a finite or countably infinite number of states $\epsilon_1, \epsilon_2, \dots$
+  \item Starting from some initial state at time $t = 0$, change its state randomly at the times $t = 1, 2, \dots$. Let $\xi(t)$ denote the state of the system at time $t$, the evolution of the system can be described in steps $\xi(0) \to \xi(1) \dots$
+  \item At $t = 0$, the system occupies the state $\epsilon_i$ with initial probability $p^0_i = P(\xi(0) = \epsilon_i), i = 1, 2, \dots$
+  \item Suppose at $t = n$ the system is at state $\epsilon_i$, then the probability that the system goes into state $\epsilon_j$ at the next step is given by transition probability $p_{i,j} = P(\xi(n + 1) = \epsilon_j | \xi(n) = \epsilon_i)$, regardless of its behavior before time $n$.
+\end{itemize}
+
+A random process described by this model is a \textbf{Markov chain}.
+
+$p_ij$ can define a transition matrix $P$.
+Given $P(0) = I$ (unit matrix), $P(n) = P^n$.
+
+
 
 
 \section{Statistical learning}
