@@ -894,11 +894,63 @@ $$
 
 Where $F_{\xi}^{(k)}(0)$ is the k-th derivative of $F_{\xi}^{(k)}(z)$.
 
-Since $\mathbb{E}[\Phi(x)] = \sigma_{k = -\infty}^{+\infty} \Phi(k) P(k)$, $F_{\xi}(z)$ at a fixed $z$ is the expectation of the random variable $\Phi(\xi) = z^{\xi}$:
+Since $\mathbb{E}[\Phi(x)] = \sum_{k = -\infty}^{+\infty} \Phi(k) P(k)$, $F_{\xi}(z)$ at a fixed $z$ is the expectation of the random variable $\Phi(\xi) = z^{\xi}$:
 
 $$
 F_{\xi}(z) = \mathbb{E}[z^{\xi}], ~ ~ |z| \leq 1
 $$
+
+The sequence of probability distribution $P_n(k), ~n = 1, 2, \dots$ with generating functions $F_n(z), ~ n = 1, 2, \dots$ converges weakly to the limiting distribution $P(k)$ iff $\lim\limits_{n \to \infty} F_n(z) = F(z)$ where $F(z)$ is the generating function of $P(k)$.
+
+Given a real random variable $\xi$, \textbf{characteristic function} of $\xi$ is the function
+
+$$
+f_{\xi}(t) = \mathbb{E}[e^{i \xi t}], ~ -\infty < t < \infty
+$$
+
+For a discrete random variable the characteristic function $f_{\xi}(z)$ on the boundary of the unit circle $|z| = 1$, i.e.
+
+$$
+f_{\xi}(t) = F_{\xi}(e^{it}) = \sum_{k = 0}^{\infty}{ P_{\xi}(k) e^{ikt} }
+$$
+
+This represents $f_{\xi}(t)$ as Fourier series with probability $P(\xi = k)$ as its coefficients.
+
+For a continuous random variable, the characteristic function is the \textbf{Fourier transform} of the density $p_{\xi}(x)$:
+
+$$
+f_{\xi}(t) = \int_{-\infty}^{+\infty}{ P_{\xi}(x) e^{ixt} dx}
+$$
+
+In both cases, $P_{\xi}(k)$ is uniquely determined by the characteristic function.
+
+\subsection{Central limit theorem}
+
+Given a sequence of random variables $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$, consider the normalized sum
+
+$$
+S_n^* = \frac{S_n - \mathbb{E}[S_n]}{\sqrt{\mathbb{V}[S_n]}}
+$$
+
+Where $S_n = \sum_{k = 1}^{n}{\xi_k}$. Then the sequence $\xi_k, k = 1, 2, \dots$ is said to satisfy the \textbf{central limit theorem} if
+
+$$
+\lim_{n \to \infty}{P(x' \leq S^*_n \leq x'')} = \frac{1}{\sqrt{2 \pi}} \int_{x'}^{x''}{e^{-\frac{x^2}{2}} dx}
+$$
+\\
+\\
+Roughly speaking, \textbf{central limit theorem} asserts that the distribution of the sum of a large number of iid random varaibles is approximately normal.
+
+Suppose the sequence $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$ satisfies \textbf{Lyapunov condition}
+
+$$
+\lim_{n \to \infty}frac{1}{B^2_n} = \sum_{k = 1}^{n}{\mathbb{E}[(\xi_k - a_k)^2]} = 0
+$$
+
+where $B^2_n = \mathbb{V}[S_n] = \sum_{k = 1}^{n}{\sigma_k^2}$
+
+Then the sequence of random variables satisfy the central limit theorem.
+
 
 \section{Statistical learning}
 
