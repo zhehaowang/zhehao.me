@@ -30,7 +30,23 @@ An Egyptian noble would probably not consider travelling to Babylon with his wif
 
 Summerian writing. Catalogging. A scribe system.
 
+### Scientific revolution
 
+We know that we don't know.
+Falsifiability.
+Monarchs, social elites, and the like believe in the benefits of technological advancement and find their investment in such worthwhile. 
+
+* Imperialism, an amalgam of different cultures and without clear definition of borders. (Think Athenian, Roman, British empires)
+* Capitalism, whereas those before Adam Smith would have us believe the economy pie is limited in size and an increase of my share comes at a cost of decreasing those of others', capitalism would have us believe the pie grows by reinvesting earnings into growth. By encouraging consumption and (re)investment the economy grows.
+* Humanism, that of the liberal (individuality), socialism (collectivism), and evolutionary (facism) branches.
+
+Religion
+* Animism
+* Polytheism is generally acceptive to foreign beliefs / deities, e.g. the Romans didn't mind adding the Egyptian Isis to their Pantheon. What about Roman prosecution of Christianity? It was mostly a half-hearted effort, and early Christianity sometimes come with political insurgence. Polytheism usually features one ultimate power to whom there is no use in praying, e.g. as in Greek mythology each god has their speciality and take an interest in human affairs, but they all are subject to fate, which has no particular interest in humanity or gods. Or in Norse, that of Ragnarok. 
+* Monotheism is far more exclusive, and usually features one ultimate power who takes an interest in human affairs, e.g. the love of God for human. By the way, one key difference in Protestantism vs Catholicism is in how to ascend to heaven after death: Protestants would claim that God's love is so great that one can go to heaven as long as one has faith. Catholics would emphasize the importance of deeds: church activities, etc. Missionary.
+* Natural order religion, like Buddhism. Craving leads to lives being trapped in the cycle of karma. By giving up craving, treating pain and joy with indifference, one can achieve nirvana, the ultimate inner peace.
+
+World War II arguably is very much a war of religions: rather than different sects of a traditional religion such as Hussites vs Catholics or Sunnis vs Shiites, it's liberal humanism vs evolutionary humanism; and Cold War being liberal humanism vs social humanism.
 
 Seeing what-is often times make us take what-is as granted: there is no other way.
-There is every other way just that for which you don't have the eyes to see.
+One's lifespan is usually so short and horizon so limited that there is every other way which one may not have the eyes to see.
