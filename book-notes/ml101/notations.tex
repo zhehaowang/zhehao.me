@@ -960,16 +960,24 @@ Consider a physical system with the following properties
   \item Can occupy any of a finite or countably infinite number of states $\epsilon_1, \epsilon_2, \dots$
   \item Starting from some initial state at time $t = 0$, change its state randomly at the times $t = 1, 2, \dots$. Let $\xi(t)$ denote the state of the system at time $t$, the evolution of the system can be described in steps $\xi(0) \to \xi(1) \dots$
   \item At $t = 0$, the system occupies the state $\epsilon_i$ with initial probability $p^0_i = P(\xi(0) = \epsilon_i), i = 1, 2, \dots$
-  \item Suppose at $t = n$ the system is at state $\epsilon_i$, then the probability that the system goes into state $\epsilon_j$ at the next step is given by transition probability $p_{i,j} = P(\xi(n + 1) = \epsilon_j | \xi(n) = \epsilon_i)$, regardless of its behavior before time $n$.
+  \item Suppose at $t = n$ the system is at state $\epsilon_i$, then the probability that the system goes into state $\epsilon_j$ at the next step is given by transition probability $p_{ij} = P(\xi(n + 1) = \epsilon_j | \xi(n) = \epsilon_i)$, regardless of its behavior before time $n$.
 \end{itemize}
 
 A random process described by this model is a \textbf{Markov chain}.
 
-$p_ij$ can define a transition matrix $P$.
+$p_{ij}$ can define a transition matrix $P$.
 Given $P(0) = I$ (unit matrix), $P(n) = P^n$.
 
+A state is persistent if the probability of sooner or later returning to it is 1, or transient if the probability of sooner or later returning to it is less than 1.
 
+If a Markov chain has a finite number of states, each accessible (probability of going from src to dst is positive) from every other state, then the states are all persistent.
+\\
+\\
+A \textbf{continuous Markov process} has similar four conditions to the discrete one introduced before, just that transition probability is defined on continuous time $t$ and don't depend on depend on $s$.
 
+$$
+p_{ij}(t) = P(\xi(s + t) = \epsilon_j | \xi(s) = \epsilon_i) ~ ~ ~ i, ~j = 1, 2, \dots
+$$
 
 \section{Statistical learning}
 
