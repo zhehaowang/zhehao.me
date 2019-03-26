@@ -18,6 +18,8 @@ In men's meeting with gods at Mecone to decide sacrifice, Prometheus tried to tr
 Prometheus later stole fire and gave it back to men, for which act he was chained to a pillar and have his liver grown everyday to be eaten by an eagle. Zeus punished men, too, for Prometheus stealing fire, by giving men the first woman, named Pandora in Work and Days.
 Heracles rescued Prometheus from the chain.
 
+Greek gods have little care for human beings, 
+
 While these are from Theogony, many anecdotes / stories we hear today are actually from Ovid's metamorphoses.
 
 Demeter, Persephone, the Eleusinian Mysteries, seasons, and Greek view of life and death.
@@ -37,4 +39,20 @@ Apollo and Artemis
 Children of Zeus and Leto (who is of little mythological importance otherwise)
 Apollo him of medicine and plague, youth and sudden death (struck by the arrow of Apollo), all the creative arts (administers over the Muses), rationality, prophesy (delegated by Zeus), and later on associated with the Sun.
 Depicted as a male in 20s with bow and quiver showing that of typical youthful manly beauty.
+Pythia (prietess of the Oracle of Delphi) delivers the words of Apollo to those seeking prophesy, which are most of the time ambiguous in nature, e.g. Croesus of Lydia was told if he attacks the Persians he would destroy a great empire (that of his own).
+Motto at the Oracle of Delphi; know yourself, nothing in excess. Know yourself in the sense of knowing your limitations and not offend the god. (Queen of Thebes suggesting she should be worshipped for having 14 children while Leto only has two; and all her children were struck dead by Apollo and Artemis.)
+
+Artemis the huntress, goddess of animals, the untamed, women before marriage, and the young.
+Hestia, Artemis and Athena are chaste goddesses of Greek myths, in Artemis's case, it's potentially related with her representation of the untamed: sex is viewed as domination, and one Greek way of saying wife came from the word tamed.
+Her association with hunting is also related with protection of the young, which hunters often times do for sustainability.
+Most famous place of worship in Turkey; temple at Ephesus.
+
+Hermes and Dionysus
+Hermes God of exchange, of commerce, trading, thieves, beggars, boundaries, the messenger, and deliverers of souls to the underworld.
+Hermes invented the lyre from tortoise shells, and traded it with Apollo for a cattle he stole from Apollo in the first place.
+The pillar herma is associated with Hermes: herma represents boundaries (those of a market, e.g.) and usually depicts a bearded god with an erect phallus. The pillar is sacred and their mass destruction before Alcibiades's expedition to Syracuse was a serious matter that caused his investigation.
+
+Dionysus of madness, irrationality, frenzy, growth of wild plants and wine.
+Male worshippers Satyrs human with beast features such as years, horse tails, and later on goat below the waist, always in a frenzy; female worshipers maenad human women who has the strength to tear wild animals apart.
+Nietzsche find greek culture often times representing the contrast of Apollonian reason and Dionysian madness.
 
