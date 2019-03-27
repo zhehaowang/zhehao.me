@@ -55,4 +55,16 @@ The pillar herma is associated with Hermes: herma represents boundaries (those o
 Dionysus of madness, irrationality, frenzy, growth of wild plants and wine.
 Male worshippers Satyrs human with beast features such as years, horse tails, and later on goat below the waist, always in a frenzy; female worshipers maenad human women who has the strength to tear wild animals apart.
 Nietzsche find greek culture often times representing the contrast of Apollonian reason and Dionysian madness.
+Dionysus is often associated with tragic and comedian traditions of Athens, perhaps due to their origins in rituals and actors impersonating someone else bears some similarity to Dionysian irrationality.
+Euripides's Bacchae describes birth of Dionysus: Zeus in disguise bedded mortal woman Semele, whose nanny Hera disguised as out of jealousy and suggested Semele verify her partner is indeed a god not a pretender, by asking him to swear on the river styx to fulfill one wish of Semele's, which Zeus did. Semele asks him to reveal his true glory, which incinerated her. Zeus took her embryo Dionysus and nurtured him in his thigh from where Dionysus is born. He is thus sometimes referred to as the twice born. The Theban siblings of Semele refused to acknowledge Dionysus's divine status, for this slight Dionysus drove the women of Thebes mad and tore apart the siblings.
+
+Aphrodite of sexual passion.
+Quite a different concept as modern perception of love, in its being transient.
+Origined from Uranus's genitals in Theogony, or child of Zeus and Dione in Iliad.
+Aeneas son of Anchises and Aphrodite (Zeus giving Aphrodite a taste of her own medicine. Gods, men and animals are said to be unable to resist Aphrodite's power, except the three chaste goddesses). Homeric hymn to Aphrodite tells the story of Anchises and Aphrodite, who lied to the former of being a mortal woman. Aeneas being the hero of Aeneid and claimed ancestor of Romans.
+No good ever comes of the union between men and goddesses. Examples including Adonis killed for his relationship with Aphrodite, and Tithonus and Eos the goddess of dawn. Zeus agreed in Eos's plead to make Tithonus immortal but she forgot to ask for youth. Tithonus ages but never dies and eventually became just a babbling voice that Eos shut away.
+Sexual relationship between an older man and an adolescent young man is often seen as ok in greek myths, but not other forms of homosexuality.
+
+Maybe it does not make sense to ask the Greeks whether they believe in their gods, who are personifications of natural forces. To ask if an ancient Greek believes in Aphrodite would be like asking if he acknowledges the presence of sexual passion.
+Belief in god(s) could be very much a monotheistic thing.
 
