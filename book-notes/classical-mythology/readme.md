@@ -68,3 +68,28 @@ Sexual relationship between an older man and an adolescent young man is often se
 Maybe it does not make sense to ask the Greeks whether they believe in their gods, who are personifications of natural forces. To ask if an ancient Greek believes in Aphrodite would be like asking if he acknowledges the presence of sexual passion.
 Belief in god(s) could be very much a monotheistic thing.
 
+Minoan and Mycenaean civilzations
+Minoan civilization prospered on Crete in about 2000BC, its literature linear A and linear B were left, the latter was not yet deciphered.
+Mycenaean civilization prospered about 1600 to 1100BC, after which a Greek dark age followed: Mycenaean seemed to have lost their ability to create intricate artwork and magnificent cities. Trojan war and the heroic age was about this time, Homer's work, whose description of ancient Greek cities were verified by modern day archaeologists to match excavated Mycenaean cities, may very well be oral traditions that traces back to historic events during that time.
+
+The Five Ages
+Works and Days described the human race going through the golden age (rein of Cronus, no strife or turmoil, long lives), silver age (Zeus. Long childhood, 100 years lifespan, destroyed by Zeus for impiety), bronze age (Created by Zeus from ash tree (spear shaft). War like and violent, ended with Deucalion's flood), heroic age (an improvement compared with bronze age, heroes and the Trojan War) and iron age (Hesiod's time, there's no help against evil, and eventually the grim vision that babies will be born grey-haired due to worries). 
+
+Story of Theseus. Unifier of Attica. The test and quest pattern.
+Dual fathership, Aegis king of Athens and Poseidon: mated with the same woman on the same night.
+Aegis told Theseus's mother about a pair of sandals and a sword under a boulder, and that if she bores a son when the son is old enough to lift the boulder, collect the items and head to Athens.
+On his way he slew Procrustes, who insists travelers stay in his bed and that they must fit: too tall lop off their legs, too short stretch them.
+Aegis's then wife, Medea tried to poison Theseus but the plan was foiled by Theseus drawing his sword to cut the meat and Aegis recognizing the sword (common theme, reunion and the last minute). Medea escaped.
+Theseus then volunteered as tribute to Minos to feed the minotaur, whom he slew with the help of princess Ariadne (common theme, help of a young woman). The latter provided him with a ball of threads, the clue of Ariadne, to guide him out of the labyrinth.
+Theseus took her with him back on the ship to Athens, but apparently forgot about her on an island in the way. 
+Dionysus later rescued Ariadne, married her and made her a goddess. This is quite unusual and prompts assumptions that Ariadne was a Cretan goddess.
+Theseus also forgot about raising white sails as promised, causing Aegis's suicide.
+After becoming king he tried to marry three times. First being abducting the young Helen, then journeying with Pirithous (both conspired to marry daughters of Zeus, Theseus picked Helen and Pirithous picked Persephone) to the underworld to abduct Persephone, but tricked by Hades and got stuck on stone chairs only to be rescued later by Heracles (common theme in hero's justification: running into Heracles). (Pirithous was left in the underworld and Theseus returned to Athens to find Helen rescued by his brothers.)
+Theseus then abducted Hippolyta, queen of the Amazons (common theme in heroes' encounter), who died giving birth to Hippolytus. Theseus defeated Amazons trying to rescue their queen.
+In Euripides's play Hippolytus, Theseus then marries Phaedra, sister of Ariadne and daughter of Minos. Phaedra wanted Hippolytus, was refused due to the latter's oath of chastity, and hanged herself leaving a letter accusing Hippolytus of raping her.
+Theseus exiled Hippolytus and the latter died, after which Theseus learns of Phaedra's lies.
+
+The timeline of Theseus's story seems hopelessly confused: Minos lived three generations before the Trojan War, Heracles one generation before, yet Theseus encountered both and abducted Helen.
+Presumably Theseus held such importance in Athens that they needed to connect him with every major plot in classical myths.
+
+
