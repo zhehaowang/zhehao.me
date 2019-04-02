@@ -7,6 +7,10 @@
 // (primitive, self-sufficient) logic components and we want to combine them
 // to model more complex logic.
 
+// Ultimately this looks like inheritance from a template base in order to
+// decorate it, base is templated so that we can more concisely / flexibly glue
+// logical components.
+
 template <typename V>
 class MyValue {
   public:
