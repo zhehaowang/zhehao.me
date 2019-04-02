@@ -11,6 +11,9 @@
 // decorate it, base is templated so that we can more concisely / flexibly glue
 // logical components.
 
+// Note that neither error checking (e.g. undo without setting) nor multi-step
+// undo / redo is implemented.
+
 template <typename V>
 class MyValue {
   public:
