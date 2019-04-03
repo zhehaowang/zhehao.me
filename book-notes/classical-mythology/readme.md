@@ -91,5 +91,7 @@ Theseus exiled Hippolytus and the latter died, after which Theseus learns of Pha
 
 The timeline of Theseus's story seems hopelessly confused: Minos lived three generations before the Trojan War, Heracles one generation before, yet Theseus encountered both and abducted Helen.
 Presumably Theseus held such importance in Athens that they needed to connect him with every major plot in classical myths.
+Yet his origins may correspond with historical events: archaeologists uncovered a ritual / sport handling bulls, and Athens very well could be paying tribute to Minoan civilization in Theseus's time.
 
+Minotaur is the offspring of Minos's wife queen of Crete with a bull. Minos promised to offer the bull to Poseidon but instead offered a lesser animal. Poseidon enlisted the aid of Aphrodite to make the queen desire the bull, and the best artisan in Crete crafted her a disguise as a cow to mate with the bull and conceived Minotaur. The labyrinth in which Minotaur's locked is designed by the same artisan.
 
