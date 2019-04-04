@@ -111,3 +111,13 @@ His psyche then joined and Olympians and he married Hebe as a god.
 
 A man of great contrasts in his tragic life and ascension as a god, his great courage and rage, etc.
 
+Trojan War is the most important episode in classical mythology, and marks the end of heroic age.
+We have heroic accounts of sons of those who fought in Trojan War, but not grandchildren: the connections heroes had with gods had ended and the iron age had begun.
+Greeks believed the fall of Troy happened in 1184BC, at the same time the Mycenaean civilization waned.
+Over time the myths developed into a complex and timeline-confused system.
+Including Wedding of Thetis (a river goddess whose son is prophesied to be greater than the father, for which Zeus married her off to a human), Eris of discord not being invited and feeling offended, tossed the golden apple for which Hera, Athena and Aphrodite vied, and Zeus left Paris to judge.
+The family of Agamemnon and Menelaus and the former's sacrifice of his daughter.
+Homer did not mention these, but mentioned Aeneas and his prophesied escaped from Troy, which Virgil took note and claimed he as an ancestor of Romans.
+
+
+
