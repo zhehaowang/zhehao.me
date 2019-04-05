@@ -95,3 +95,29 @@ Yet his origins may correspond with historical events: archaeologists uncovered 
 
 Minotaur is the offspring of Minos's wife queen of Crete with a bull. Minos promised to offer the bull to Poseidon but instead offered a lesser animal. Poseidon enlisted the aid of Aphrodite to make the queen desire the bull, and the best artisan in Crete crafted her a disguise as a cow to mate with the bull and conceived Minotaur. The labyrinth in which Minotaur's locked is designed by the same artisan.
 
+Theseus's story represents that of a rite of adulthood of a male.
+
+Heracles. Pan Hellenic hero and god. Son of Zeus and a human mother Alcmene a descendant of Perseus.
+Life of hardship because of jealousy of Hera.
+Birth. Descendant of Perseus Zeus's decree to be king of Mycenae, trick of Hera, strangling the snakes
+A man of excessive appetite, sexuality (impregnated 50 daughters of a king in one night, many later Greek kings traces back to this e.g. king of Sparta) and rage. Depicted naked with his lion skin and club.
+Killing his wife Megara and his children in his rage.
+Told by the Pythia to accomplish 12 labors in service to his cousin the king of Mycenae to redeem himself and become immortal.
+The first 6 in Peloponnese related with animals, Nemean lion, nine-headed hydra, bringing back Artemis's hind, Erymanthian Boar, Augean stables, Stymphalian Birds
+The next 3 farther away, man-eating mares of Thrace, bull of Crete, Hippolyta's girdle (belt)
+The last 3 in the far west associated with death and immortality, driving back cattle of monster Geryon, golden apples of the goddesses daughters of the night guarded by a dragon, bringing back Cerberos the guarddog of the underworld.
+Marries Deianira afterwards, killed Nessus a centaur who attempted to rape Deianira with arrow poisoned by the blood of the hydra. Centaur persuades Deianira to keep his blood as a love potion when Heracles loses interest in her someday in the future, Deianira did and soaked a cloak in the centaur's blood. Heracles did lose interest in her, and Deianira brought out the cloak to Heracles which he wore, which tore his skins and exposed his bones. In great agony he threw himself upon a funeral pire and died.
+His psyche then joined and Olympians and he married Hebe as a god.
+
+A man of great contrasts in his tragic life and ascension as a god, his great courage and rage, etc.
+
+Trojan War is the most important episode in classical mythology, and marks the end of heroic age.
+We have heroic accounts of sons of those who fought in Trojan War, but not grandchildren: the connections heroes had with gods had ended and the iron age had begun.
+Greeks believed the fall of Troy happened in 1184BC, at the same time the Mycenaean civilization waned.
+Over time the myths developed into a complex and timeline-confused system.
+Including Wedding of Thetis (a river goddess whose son is prophesied to be greater than the father, for which Zeus married her off to a human), Eris of discord not being invited and feeling offended, tossed the golden apple for which Hera, Athena and Aphrodite vied, and Zeus left Paris to judge.
+The family of Agamemnon and Menelaus and the former's sacrifice of his daughter.
+Homer did not mention these, but mentioned Aeneas and his prophesied escaped from Troy, which Virgil took note and claimed he as an ancestor of Romans.
+
+
+
