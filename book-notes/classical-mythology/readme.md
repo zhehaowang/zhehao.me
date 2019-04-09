@@ -20,7 +20,7 @@ Heracles rescued Prometheus from the chain.
 
 Greek gods have little care for human beings, 
 
-While these are from Theogony, many anecdotes / stories we hear today are actually from Ovid's metamorphoses.
+While these are from Theogony, many anecdotes / stories we hear today are actually from Ovid's metamorphoses (e.g. Apollo and the nymph Daphne (the story of laurel), Phaethon son of Apollo asking to ride the chariot of the sun for a day, and Narcissus falling in love in his own reflection in water).
 
 Demeter, Persephone, the Eleusinian Mysteries, seasons, and Greek view of life and death.
 
@@ -116,8 +116,32 @@ We have heroic accounts of sons of those who fought in Trojan War, but not grand
 Greeks believed the fall of Troy happened in 1184BC, at the same time the Mycenaean civilization waned.
 Over time the myths developed into a complex and timeline-confused system.
 Including Wedding of Thetis (a river goddess whose son is prophesied to be greater than the father, for which Zeus married her off to a human), Eris of discord not being invited and feeling offended, tossed the golden apple for which Hera, Athena and Aphrodite vied, and Zeus left Paris to judge.
-The family of Agamemnon and Menelaus and the former's sacrifice of his daughter.
+The family of Agamemnon and Menelaus (Atreus) and the former's sacrifice of his daughter.
+The sack of Troy, the fate of Ajax, Cassandra, Priam, Agamemnon, Menelaus and Troy after the war.
 Homer did not mention these, but mentioned Aeneas and his prophesied escaped from Troy, which Virgil took note and claimed he as an ancestor of Romans.
 
+
+Tragic house of Atreus
+One of kinslaying and incest
+Tantalus; Pelops (served by his father to the gods and revived; tricks father-in-law in chariot race to win his daughter's hand in marriage, causing the death of the father-in-law in question); Atreus and Thyestes (wife of the former betrayed him for the latter, latter cheated in deciding kingship of Mycenae between the two, former took vengeance by exiling him and later inviting him back to a feast, during which he was served his children); Agamemnon (sacrificed his own daughter), Menelaus and Aegisthus (fathered by Thyestes on his own daughter, kills Menelaus, was killed by Oreste)
+Moral sins are passed on from fathers to sons.
+Story of Oreste is best told by Aeschylus's Oresteia, the only full surviving tragic trilogy of ancient Greece.
+The third act is the judgement of Oreste for killing his mother who murdered his father, with Apollo defending, Furies persecuting, 12 citizens of Athens in jury, and Athena as judge. Athena casted the vital vote to acquit Oreste.
+Oresteia in particular is written in 5th Century BC during Athens's transition from being ruled by the court of Areopagus to classical democracy. The play might have wanted to remind the people the importance that the court still serves, in judicial system as opposed to city politics.
+
+Format of Greek tragedy is usually a tragic trilogy followed by a comedy, where the three episodes of the trilogy are connected via same events / characters, or the same theme. Performed during the festival of Dionysus.
+The creativity freedom an author's given may be very different from those of today's playwrights: the theme / story is somewhat fixed and well known, but an author can add or twist particular details to serve his dramaturgy purposes. E.g. in Oresteia, to justify matricide, Clytemnestra as opposed to Aegisthus is described as the killer of Agamemnon.
+
+Commonly depicted tragedy involves a moral dillema that a character faces: e.g. Oreste needs to avenge his father and he also must not hurt his mother, but his mother murdered his father. Or Agamemnon needs to lead his army across the sea to do Menelaus and his house justice, but to do that he must sacrifice his daughter to appease Artemis.  
+Trying to evade fate but only falling in its traps instead was another common theme. E.g., Oedipus fated to kill his father and marry his mother. Modern interpretation tends to focus on the struggle between fate and free will in Oedipus's story (or Freud's far-fetched theory of the same name), though the concept of free will might have been foreign to ancient Greeks, whose language did not have a word for it.
+
+
+Inter-generational tension and anxiety about women sexuality are recurring themes in classical myths, in which males of the heavily patriarchal society is anxious about having heirs that are their own.
+Ancient Greeks might have believed that babies are not blood relatives of mothers: father does the work by planting seeds in the mother, like how plants were grown.
+
+
+Romans largely took Greek myths for their own (and rhetoric, philosophy, or culture in general).
+Julius Caesar traces his lineage to Aeneis thus to Aphrodite. Virgil would claim Aeneis is the ancestor of the Roman people, without contradicting the myth that Romulus founded Rome the city 400 years after the fall of Troy.
+Livy recounts the story of Romulus. Vergil, Horace, Livy and Ovid are authors during Augustus's reign, which saw a golden age for Roman literature. Ovid of these did not receive patronage of the emperor, due to his books on practical techniques of seduction being in conflict with the emperor's agenda to re-establish traditional morals and religion, punish extra marrital affairs, and encourage fertility.
 
 
