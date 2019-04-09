@@ -135,6 +135,8 @@ The creativity freedom an author's given may be very different from those of tod
 Commonly depicted tragedy involves a moral dillema that a character faces: e.g. Oreste needs to avenge his father and he also must not hurt his mother, but his mother murdered his father. Or Agamemnon needs to lead his army across the sea to do Menelaus and his house justice, but to do that he must sacrifice his daughter to appease Artemis.  
 Trying to evade fate but only falling in its traps instead was another common theme. E.g., Oedipus fated to kill his father and marry his mother. Modern interpretation tends to focus on the struggle between fate and free will in Oedipus's story (or Freud's far-fetched theory of the same name), though the concept of free will might have been foreign to ancient Greeks, whose language did not have a word for it.
 
+Amazons are a recurring encounter for heroes and the counter usually ends with heroes taming them (e.g. Heracles, Theseus), putting women in their proper place, as the patriarchal Greek society sees it.
+Medea is not an Amazon but another one of the dangerous, immoral yet attractive foreign woman figure, described as a witch from Colchis, married first to Jason (tore her brother to bits to slow down his father's pursuit of them for the stolen golden fleece, and later poisons Jason's and her own sons to hurt him) then to Aegis.
 
 Inter-generational tension and anxiety about women sexuality are recurring themes in classical myths, in which males of the heavily patriarchal society is anxious about having heirs that are their own.
 Ancient Greeks might have believed that babies are not blood relatives of mothers: father does the work by planting seeds in the mother, like how plants were grown.
