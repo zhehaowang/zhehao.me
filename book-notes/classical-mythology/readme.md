@@ -65,8 +65,8 @@ Aeneas son of Anchises and Aphrodite (Zeus giving Aphrodite a taste of her own m
 No good ever comes of the union between men and goddesses. Examples including Adonis killed for his relationship with Aphrodite, and Tithonus and Eos the goddess of dawn. Zeus agreed in Eos's plead to make Tithonus immortal but she forgot to ask for youth. Tithonus ages but never dies and eventually became just a babbling voice that Eos shut away.
 Sexual relationship between an older man and an adolescent young man is often seen as ok in greek myths, but not other forms of homosexuality.
 
-Maybe it does not make sense to ask the Greeks whether they believe in their gods, who are personifications of natural forces. To ask if an ancient Greek believes in Aphrodite would be like asking if he acknowledges the presence of sexual passion.
-Belief in god(s) could be very much a monotheistic thing.
+Maybe it does not make sense to question the Greeks whether they believe in their gods, who are personifications of natural forces. To ask if an ancient Greek believes in Aphrodite would be like asking if he acknowledges the presence of sexual passion.
+Belief in god(s) could be very much a monotheistic thing, and the perspective is usually quite different if someone outside a cultural group were to inspect that group's myths.
 
 Minoan and Mycenaean civilzations
 Minoan civilization prospered on Crete in about 2000BC, its literature linear A and linear B were left, the latter was not yet deciphered.
@@ -145,5 +145,7 @@ Ancient Greeks might have believed that babies are not blood relatives of mother
 Romans largely took Greek myths for their own (and rhetoric, philosophy, or culture in general).
 Julius Caesar traces his lineage to Aeneis thus to Aphrodite. Virgil would claim Aeneis is the ancestor of the Roman people, without contradicting the myth that Romulus founded Rome the city 400 years after the fall of Troy.
 Livy recounts the story of Romulus. Vergil, Horace, Livy and Ovid are authors during Augustus's reign, which saw a golden age for Roman literature. Ovid of these did not receive patronage of the emperor, due to his books on practical techniques of seduction being in conflict with the emperor's agenda to re-establish traditional morals and religion, punish extra marrital affairs, and encourage fertility.
+
+Shakespeare's work is influenced by Ovid's Metamorphosis, often times quotes and allusions in the former traces to stories in Metamorphosis. Ovid named his book Metamorphosis due to each story being related with turning from one form to another, though many stories barely reflect that.
 
 
