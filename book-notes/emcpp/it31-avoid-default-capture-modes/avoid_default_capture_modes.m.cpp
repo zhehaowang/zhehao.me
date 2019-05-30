@@ -19,6 +19,13 @@ public:
     });
   }
 
+  void appendFilter_ref(FilterContainer& filters) {
+    // this doesn't capture d_x, it captures 'this'!
+    filters.push_back([&](int value) {
+      return value % d_x == 0;
+    });
+  }
+
   void appendFilter_safe(FilterContainer& filters) {
     // this doesn't capture d_x, it captures 'this'!
     filters.push_back([d_x = d_x](int value) {
