@@ -13,9 +13,10 @@ Language Frontend --> Optimization --> Code Generation
 Modern compiler design focuses more on optimization, as opposed to supporting language frontend.
 (Dragon Book: Compilers Principles, Techniques and Tools, does not talk at all about optimization)
 
-LLVM IR (intermediate representation, distilled form of client program) (similarities between modern optimizers are much bigger than differences) is meant to be simple.
+LLVM IR (intermediate representation, distilled form of client program) is meant to be simple. (similarities between modern optimizers are much bigger than differences)
 
-Instructions
+##### Instructions
+
 LLVM IR control flow, blocks, labeled jumps
 LLVM IR data flow, single static assignment (SSA form, gcc / intel / ibm also uses this; SSA makes const propagation trivial; with SSA local data flow becomes straightforward); after something's defined, they cannot be reassigned / redefined; Phi node: where the data flew from (to reconcile / merge data defined in two branching blocks)
 
@@ -25,9 +26,21 @@ Optimizer does not just make your code fast.
 * **Collapse abstractions**. Three key abstractions: functions, calls, call graph; memory, loads and stores; loops
   * inlining is the single most important optimization in modern compilers. But don't confuse this with C++ keyword inline. Two different things.
     * simplifying call graph: given a call graph, first partition into strongly connected components. For each component, LLVM does bottom-up SCC based walk: start with an SCC without outgoing edges, inline the calls in there, consider this SCC as optimized, and then move up to another SCC (like what we do in a topological sort). Within one SCC since it's cyclic, there isn't much you can do other than trying starting with different nodes. gcc inliner does top-down. In reality both LLVM and GCC do a hybrid approach.
-    * collapsing wrappers: func a returns b(different order of arguments); `fancy_sort` for sort with special handling for 1 and 2 elements. Example: variadic template recursion with one less argument each time (tail recursion hash, e.g.)
-  * memory, pointer arithmetic, partitioning an object into isolated memory blocks. Memory optimizer boils down to finding some way to isolate a particular location in memory and doing a partial job of forming the SSA values (and track them through the control flow).
+    * collapsing wrappers: func a calls and returns b(different order of arguments); `fancy_sort` for sort with special handling for 1 and 2 elements. Example: variadic template recursion with one less argument each time (tail recursion hash, e.g.)
+  * memory, pointer arithmetic, partitioning an object into isolated memory blocks (breaking a structure into individual variables, and promote the individual variables to registers). Memory optimizer boils down to finding some way to isolate a particular location in memory (with partitioning being the easiest and the most predominent way) and doing a partial job of forming the SSA values (and track them through the control flow).
+  * loop optimization
+    * (side note C++ tmp linear algebra library eigen)
+    * LLVM loop canonical form. (preheader, loop and exit blocks)
+    * Unrolling loop into straight line code (if trip count is fixed, replace the loop with sequentially executed instructions)
+    * Move code out of loops, e.g. loading a variable in a loop but that variable does not change during the loop (loop invariant in a phi node; e.g. calling vector.size() inside a loop. You don't want programmers remembering to cache every such in local variables)
+    * Split the two when you have an if-else in a loop but the if-condition does not change during loop
+    * vectorize things to make the most out of your processor: widen and interleave the loops to leverage CPU pipeline. (if you have at least two iterations in your loop, do two iterations at the same time. Keep a scalar fallback of the origin loop to handle odd bits). Vectorization / software pipelining
+    * phase ordering matters: in what order do we carry out these optimizations matter. (some transformations are information preserving, e.g. unrolling, while others may lose information (e.g. the structure of a loop))
+    * some compilers infer your loop invariants from your asserts, in the future aliasing, annotations might be standardized to let you give hints to compilers about optimizing your loop (invariants, likely / unlikely)
 
+LLVM models atomic operations directly from C++ memory model. If generated code says non-atomic load, then LLVM knows we don't have the concern of multiple threads reading / writing this memory location at the same time.
+
+Know the trade-offs you are making when, e.g. manually unrolling / vectorizing your loop.
 
 
 
