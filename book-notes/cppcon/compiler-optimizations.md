@@ -40,7 +40,21 @@ Optimizer does not just make your code fast.
 
 LLVM models atomic operations directly from C++ memory model. If generated code says non-atomic load, then LLVM knows we don't have the concern of multiple threads reading / writing this memory location at the same time.
 
-Know the trade-offs you are making when, e.g. manually unrolling / vectorizing your loop.
+Know the trade-offs you are making when, e.g. manually unrolling / vectorizing your loop, job of a compiler is to let you write your code with the abstraction you are comfortable with.
 
+The compiler frontend does not do optimizations, except taking out dead code. Separation of concerns.
 
+When the abstractions are combined, it's where the compiler struggles the most.
+At any point you can mix fewer abstractions, consider doing so. E.g. calling a wrapper function with pass an integral value by reference. Compiler needs to optimize memory and inlining.
+Consider using return by value in this case instead.
 
+const qualified methods or const ref parameters have no utility for compiler optimization whatsoever. Both can be const_casted away.
+
+People often undervalue the cost of pinning something in memory, when considering passing by reference vs passing by value.
+
+Understand what compilers optimize, and work with the compiler.
+
+(JVM can do runtime optimization, profile the program as you run it, identify hotspots, and let jit makes a smarter decision the next time this code is ran. This is easier to do with a GC.)
+
+Sanitizers insert checks for bugs when you are compiling. UBSan e.g. checks for undefined behaviors.
+If you suspect your code is breaking because of a bug in compiler optimization, run your code through a sanitizer. If the sanitizer doesn't catch anything from your code, then it's either the sanitizer or the compiler's fault. Compiler does not optimize for it, if a sanitizer does not sanitize for it.
