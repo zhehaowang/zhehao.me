@@ -3,13 +3,13 @@
 ### Introduction
 
 * If were to choose between LR and PS, LR.
-* Does not modify original image. It logs your changes and shows you a preview.
+* LR does not modify original image. It logs your changes and shows you a preview.
 
 * Interface
   * Center: preview area, **g**rid view / loupe view (single image).
   * Top: Task bar (modules: lib, develop, slideshow / print / web: export).
   * Left panel: navigation / templates.
-  * Right panel: detailed to this module.
+  * Right panel: details of this module.
   * Bottom: toolbar (differs by module), film strip.
   * **Shift-Tab**: toggle all panels.
   * **i**: toggle camera info.
@@ -51,7 +51,7 @@
     * White balance (do this before you further adjusts your tone)
       * Temperature: Cooler --> Warmer (double click: reset)
       * Tint: Green --> Magenta
-      * as-shot / custom / in-camera white balancing profiles (raw only)
+      * as-shot / custom / in-camera white balancing profiles (available for raw only)
       * White-balance eye-dropper: pick a neutral-grey (like concrete) to auto adjust white balancing
     * Tone controls
       * Histogram: distribution of light and dark values.
