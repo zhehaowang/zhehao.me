@@ -33,3 +33,9 @@ vw.reserve(10);          // we reserve enough space for 10 Widgets but 0 have
 
 Compared with C-style arrays STL containers are more civilized. They create only as many copies as you ask for, and do it only when you direct them to. They use a default ctor when you say they should.
 Sure they make copies, but they are still a big step up from arrays.
+
+**Takeaways**
+
+* STL copies in, copies out, but does not make unnecessary copies.
+* Expensive copy can lead to STL operation being your bottleneck, and conventional copy can lead to wrong behavior in STL operation
+* `vector::reserve` only reserves space and does not call any constructor.

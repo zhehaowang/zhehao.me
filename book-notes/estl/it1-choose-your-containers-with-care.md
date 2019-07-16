@@ -25,3 +25,8 @@ Things to consider:
 * would it be helpful to have a sequence container with random access iterators where pointers and references to the data are not invalidated as long as nothing is erased and insertions take place only at the ends of the container? `deque` works for this exact case.
 
 These questions are hardly the end of the matter. E.g. this doesn't take into account different memory allocation strategies of different container types.
+
+**Takeaways**
+
+* Container choice should not only base on algorithmic complexity. Memory access pattern, ordering, iteration support, layout, transactional semantic, etc are often important as well.
+* Know your options. Contiguous vs node-based. Sequence vs associative. Hash-based associative vs order-based associative.

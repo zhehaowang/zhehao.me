@@ -32,3 +32,8 @@ No matter how you look at it, `size` and `splice` can't both be constant time.
 Different `list` implementation can make different tradeoff in `size` vs `splice` efficiency, so your `size` call may be linear.
 
 But no matter what happens, you can't go wrong if you call `empty()` instead of checking `size() == 0`.
+
+**Takeaway**
+
+* When checking if a container is empty, call `empty()` instead of `size() == 0`. `size()` for a container could be linear.
+* `list` `splice` and `size` cannot be both implemented in constant time.

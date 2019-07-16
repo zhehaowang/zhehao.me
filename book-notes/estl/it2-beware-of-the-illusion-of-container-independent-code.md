@@ -68,3 +68,9 @@ class CustomerList {
 };
 ```
 You can't write container-independent code in your implementation of `CustomerList`, but your clients might be able to, hence limiting the scope of change should you need to swap `list` out one day.
+
+**Takeaway**
+
+* Directly making your business logic container-independent is usually a trap: you'll be confined to the intersection of operations (with the same arguments) supported by different containers.
+* If you want to make your business logic container-independent, use encapsulation. Consider typedef'ing the container, or creating a class that encapsulates the container and only expose required operations.
+
