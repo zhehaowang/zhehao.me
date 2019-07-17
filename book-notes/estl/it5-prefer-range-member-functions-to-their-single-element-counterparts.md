@@ -80,4 +80,10 @@ For sequence containers using range member function is much more than just style
 
 Knowing which member functions support ranges makes it easier to recognize opportunities to use them.
 * range construction. all standard containers offer this. `container::container(InputIterator begin, InputIterator end)`
-* range insertion. all standard containers offer this. `container::insert(iterator position, InputIterator begin, InputIterator end)`
+* range insertion. all standard containers offer this. `container::insert(iterator position, InputIterator begin, InputIterator end)`. don't forget that some single element insertions aren't called `insert`: if you use a loop of `push_back`, `push_front`, or a copy algorithm passing `front_inserter`, `back_inserter` as parameter, consider switching to range insertion
+* range erasure. all standard containers offer this, though return type may differ for sequence and associative containers: `iterator container::erase(iterator begin, iterator end)`, or returning `void`.
+* range assignment. all standard sequence containers have this. `void container::assign(InputIterator begin, InputIterator end)`.
+
+**Takeaway**
+
+* When offered the choice of a loop of single element member functions (or what's essentially a loop like `copy` with `back_inserter`) vs one range member function call, choose the latter as the former is less readable and most of the time less efficient.
