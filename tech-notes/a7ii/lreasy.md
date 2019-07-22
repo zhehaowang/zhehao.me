@@ -57,15 +57,20 @@
       * Histogram: distribution of light and dark values.
         * x-axis: Black --> White. Each y-value represents the number of pixels with that grey value.
         * Spilling off the left or right edge means you are missing some detail, if so, the little triangle on the left/right corner of histogram will turn up. Clicking the triangle highlights the pixels spilling off.
-        * Different areas in the histogram has different descriptions: blacks, fill light, shadows, exposure, highlights, whites. Hovering over an area highlights the adjustment bar for the area.
-      * Phil's usual workflow with raw: adjust blacks down, try the exposure, then shadows (adjusting this up brings out details in shadowy parts), then highlights (recovers details from blown out areas) (to be updated with LR4 / CC)
-      * contrast: not Phil's favorite as its function can be achieved with the bars for each area, and more powerful adjustment can be made with tone curve.
+        * Different areas in the histogram has different descriptions: blacks, shadows, exposure, highlight, whites. Hovering over an area highlights the adjustment bar for the area.
+      * Phil's usual workflow with raw:
+        * start with exposure (midtone), get the basic darkness / brightness of your image. 
+        * contrast: not Phil's favorite as its function can be achieved with the bars for each area, and more powerful adjustment can be made with tone curve.
+        * highlights, like old highlight recovery; shadows, like old fill light tool
+        * whites adjusts the very brightest pixels, blacks the very darkest pixels
+        * all these dials now move in the same direction as the historgram: left darker, right brighter
+        * know that when significantly changing the exposure of parts of your image, it's going to increase noise
       * presence
         * clarity: contrast tool on the midtone (blurry --> edgy, a higher value may not be flattering for a group of people, but may be good for architecture).
         * saturation: the intensity / pureness of colors (turning up means blue becomes very blue)
         * vibrance: LR's smart version of saturation. (turning up it tries not to saturate colors that are already over saturated). Phil almost never uses saturation in LR, as vibrance is a smarter better control.
     * Vignette: to, e.g., keep the focus on your subject
-  * Tone curve: for contrast adjustment. Like Curves in Photoshop.
+  * Tone curve: for contrast adjustment. Like Curves in Photoshop. With per-channel curve adjustment.
     * Each sub-panel has a "toggle this panel on/off"
   * HSL: per-color hue / saturation / luminance adjustment
     * hue: the color itself. All the colors are mapped to angle values in a 2D circle (or think of it as a single slider selecting those angle values). With per-color hue, you can e.g. make your blue magenta.
@@ -90,8 +95,9 @@
     * Export sharpening
   * Lens correction
     * Shape of our lenses introduces distortion. The wider-angle the lens, the more distortion. (think fish-eye)
-    * Automatatic profile correction (can download / make a profile yourself)
+    * Automatatic profile correction (can download / make a profile yourself if your lens don't show up in the automatic list)
     * Usually when shooting portraits you want to be farther away from subject and use a telephoto lens, as opposed to staying close and use a wide angle lens, as the latter causes your subject's face to bulge towards the camera (noise too large, etc). Manual lens correction can actually adjust this: cranking distortion up creates an effect that makes it seems you are almost shooting with a longer-focal length lens.
+    * Chromatic aberation (defringe in manual): when there's sharp edge between dark and bright parts of an image, that edge sometimes has a magenta line, an artifact caused by the lens. When turned on, Lightroom tries to remove such artifacts.
   * Effects
     * Post-crop vignette. Most lens comes with a vignette, usually we correct that and add vignetting for a creative effect.
       * Midpoint: thickness
@@ -101,14 +107,23 @@
   * Camera calibration: e.g. if your camera usually applies too much magenta. Most people don't need to worry about this.
 
 * Tools strip / local adjustment
-  * Spot removal
-    * Cleaning blemishes off people, removal isolated little objects from simple background, dust on lenses
+  * Spot removal / advanced healing brush
+    * Cleaning blemishes off people, stray hair, removal of isolated little objects from simple background, dust on lenses
     * Healing (copy) / cloning mode (merge, e.g. for skin)
     * **h**: hide the little patch indication
+    * sometimes can serve a similar role as healing brush in photoshop
   * **Cmd + +/-**: adjust preview size
   * Graduated filter, like a graduated neutral density lens filter
     * E.g. to make a blown out sky less bright and more blue / more dramatic
     * End point gradient has 0-percent effect, starting point 100-percent effect
+    * note that the noise dial means noise reduction and to the right means adding noise reduction
+    * now comes with temperature and tint as well, useful e.g. when different parts of your image have different color temperature (flash vs natural light)
+    * Moire: interference effect between grid of your camera sensor and grid of some objects you are shooting (e.g. fabric). Moving this dial right reduces this effect.
+  * Radial filter: graduated filter but circular
+    * can serve as a off-center vignette, create depth-of-field like effect in post
+    * feather: soft / hard edge of the filter
+    * invert mask: adjust inside / outside the filter
+    * **Cmd + Option + drag**: creates a duplicate of the filter, can stack up the effect
   * Red eye removal tool
   * Adjustment brush
     * A, B: two brushes.
@@ -135,3 +150,17 @@
 * Output sharpening. Unless you plan to do further resharpen in a different program, leave sharpening on.
 * Watermark
 * Presets
+
+### Slideshow
+
+* from a collection
+* borders, background image, background music, music syncing, export
+
+### HDR, panorama
+
+* HDR
+    * camera automatic exposure bracketing: normal, one stop under exposed, one stop over exposed. merging 3 raws into 1.
+    * auto align, auto tone, deghosting (pick from one shot moving objects in between HDR shots)
+* Panorama
+    * stitching overlapping photos, auto detecting best projection, autocrop
+    * first merge, then adjust
