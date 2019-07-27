@@ -41,3 +41,45 @@ This is a very draconian restriction placed on STL allocators: they must not hav
 Note that the above is a runtime issue: allocator with state will compile just fine, but they may not run the way you expect them to.
 Standard actually says implementors are encouraged to supply libraries that support non-equal instances, in which case the semantics are implementation-defined, but this offers nothing to a user who cares about portability.
 
+If we compare the interface of `operator new` with `allocate<T>::allocate`:
+```
+void* operator new(size_t bytes);
+pointer allocator<T>::allocate(size_type numObjects);
+// "pointer" is a typedef that's virtually always T*
+```
+There's nothing wrong with this discrepancy, just that this inconsistency complicates development.
+Note the return type discrepancy: the `pointer` type returned doesn't really point to a `T` object, because no `T` object has yet been constructed. The assumption is that the caller will eventually construct one or more `T` objects in the memory it returns (possibly via `allocator<T>::construct`, `uninitialized_fill`, or some other forms `raw_storage_iterators`), though in the case of `vector::reserve` or `string::reserve`, this may never happen.
+
+The final curiosity of STL allocators is that most of the standard containers never make a single call to the allocators with which they are instantiated.
+```
+list<int> l; // same as list<int, allocator<int> >. allocator<int> is never
+             // asked to allocate memory.
+set<Widget, SAW> s; // no SAW will ever allocate memory
+```
+This oddity is true for `list`, `set`, `multiset`, and `multimap`, because these are node-based containers.
+When we need to insert a new node, we need memory for `ListNode` that contains `T` rather than an allocator who allocates `T`.
+std provides a way to do this:
+```
+template <typename T>
+class allocator {
+  public:
+    template <typename U>
+    struct rebind {
+        typedef allocator<U> other;
+    };
+};
+// the standard allocator is declared like this but it could be a user-written
+// allocator template, too
+```
+The type of allocator for `ListNode` that corresponds to the allocator we have for `T` is `Allocator::rebind<ListNode>::other`.
+
+Every allocator template `A` is expected to have a nested struct template called rebind, which takes a single type argument `U`, and defines a typedef, `other`, which is a name for `A<U>`. `list<T>` can then use `Allocator::rebind<ListNode>::other` to allocate `ListNode`, where `Allocator` is its allocator for `T`.
+
+Here's the list of things you need to remember if you ever write an STL allocator:
+* Make your allocator a template, with type parameter `T` representing the type of objects for which you are allocating memory
+* Provide typedefs `pointer` `reference`, but always have pointer be `T*`, and reference be `T&`
+* Never give your allocators per-object state. In general, allocators should have no non-static members
+* Remember that an allocator's `allocate` method are passed the number of objects for which memory is required, not the number of bytes needed. Also remember these functions return `T*` via `pointer` typedef, even though no `T` objects have yet been constructed
+* Be sure to provide the nested rebind template on which standard containers depend
+
+Most of this is boilerplate code that you don't want to write yourself. Start by looking at a good sample, then tinker with what you need to customize: notably `allocate` and `deallocate`.
