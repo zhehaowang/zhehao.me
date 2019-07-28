@@ -46,7 +46,30 @@ Many ways to achieve the same thing.
 
 ### Layer masks
 
+Many types of masks and different ways to use them.
+Layer masks protect parts of the image from changes and expose other parts to the change.
 
+Mask starts out white, meaning they are affected by the change.
+* Create a mask by painting black (black foreground color, brush tool **b**) on the mask to say these pixels are now transparent in this layer. Paint white to undo, **x** toggles foreground-background colors.
+* Alternatively, select with e.g. magic wand, **shift** to add, **option** to minus. When a selection is active, creating a layer will mask out the unselected areas.
+* Holding **option** while dragging a layer mask onto a different layer can create a copy of this mask on the destination layer.
+* The cut-out problem. If your selection has a hard edge due to bad selection, try feathering in 'Select-Modify-Feather', this blurs the edge of your selection on either side by the radius you gave.
+* to make an image black and white, do a black and white adjustment layer.
+
+### Removing background objects
+
+* Clone stamp tool: sample a part of your image as your paint, to paint it over other parts of your image. **option + click** to sample an area. Like healing brush in LR, but with more control. Paint in small strokes. (don't check "aligned", otherwise sample point stays clocked relative to your paint location). Resample often, soften your brush if painting areas with gradient colors.
+* Healing brush tool. **option + click** samples, result is a blur of sample and destination. Sometimes when close to an edge healing will bleed in color over the edge, try clone stamp in affected areas.
+* Content-aware fill in current version of photoshop may be better than both options above.
+* Selection with quick mask.
+  * Selecting an area makes it active (e.g. paint won't affect inactive areas. This makes working around details easier.)
+  * Selection mode: replace, add, subtract, intersection. **Cmd + D** to deselect.
+  * Lasso selection: free hand. Polygon lasso: freehand polygon. Magnetic lasso: snaps to a high-contrast edge (click to force point, otherwise snaps to an edge and places points automatically). **Delete** to get rid of erroneous points. 
+  * Quick mask mode: paint to select. When quick-mask on, highlights selection with color. Paint white to deselect.
+  * Save your elaborate selection! ('Select-Save Selection')
+  * **Cmd + I** invert selection
+  * **Cmd + Option + Shift + E** create a layer by combining all the layers below selected layer. Useful for doing an overall before vs after comparison 
+* Each bit of work should go on a different layer.
 
 * Curves layer: contrast
 * Hue / saturation layer
