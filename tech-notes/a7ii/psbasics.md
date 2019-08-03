@@ -71,5 +71,34 @@ Mask starts out white, meaning they are affected by the change.
   * **Cmd + Option + Shift + E** create a layer by combining all the layers below selected layer. Useful for doing an overall before vs after comparison 
 * Each bit of work should go on a different layer.
 
+### Portrait retouching
+
+* Eyebags / shades under the eyes: patch tools, draw a closed circle and drag. replaces source with resampled destination. Consider reducing opacity to make it more natural. Don't overdo it.
+* Healing brush wrinkles removal. Take a sample close to the working area to get the colors match. Use a soft edge brush when doing this.
+* **Cmd + Alt + Shift + E** after done with each part to merge all underlying into a copy and work on that new copy.
+* Bringing out the eyes / teeth whitening: convert blending mode of the new layer to screen, create a black layer mask on the new layer, paint the eyes white, and change opacity. Get a low opacity on this. Alternatively make a selection via painting in smart mask mode, create a hue and saturation adjustment layer, desaturate the yellow channel, don't go all the way down. Bring up the lightness in master channel
+* Cloning out blemishes in skin: clone stamp tool. Bring down opacity to smoothen skin, or full opacity to one click remove a blemish, or take out makeup edges
+* Skin softening: duplicate the merged layer twice. turn the lower one blend mode to lighten, apply gaussian blur (radius 25) (50 opacity); turn the upper one blend mode to darken, apply gaussian blur (radius 15) (50 - 75 opacity), make only these half opaque layers visible, merge them into one layer, adjust the opacity of that merged layer until the skin looks natural, then cut through the merged layer to reveal the sharp details. 100 opacity paint black to cut out the eyes, eye brows and teeth, but consider reducing the opacity when cutting out nose / skin edges.
+* If you are concerned about disk space, flatten the image before saving it. This loses all the individual steps / layers.
+
+### Cropping, resizing, and resampling
+
+* Crop tool (**C**), crop with width and height set
+* Straightening horizon: ruler tool, drag a supposedly straight line. Then Image->Rotate->Arbitrary. This preloads the angle of the ruler's drawn line. Or show grid, and rotate the photo to line up with a gridline: select all and free transform
+* Correcting distorted perspective (e.g. shooting a building from beneath it: with crop, check perspective, adjust the sides such that they are parellel with the edge of the building, then crop.
+  * In PS CC, use Perspective Crop tool, make a trapezoid shape with sides parallel to the building's edges.
+* Resizing an image by resampling. When you resample, you lose quality; both up sampling (interpolation) and down sampling (averaging).
+  * After you resample, sharpen your photo
+
+### Sharpening
+
+* Filter->Sharpen->Unsharp Mask (pretty subtle)
+  * amount: how much to sharpen, typically between 50 - 150 percent, the higher the value, the more sharpening will be applied.
+  * radius: how far out around any pixel the sharpening apply, typically 1 - 2 pixels. the higher the value, the more sharpening will be applied. This also has to do with the number of pixels in the original image.
+  * threshold: how different the two pixels side by side has to be, before that is considered an edge (sharpening algorithm tries to find the edges and increase the contrast of the edges). typically 4 - 10. the higher the value, the less sharpening will be applied.
+* View your image at 100% while sharpening. Things with hard edges / are geometrical could use more sharpening. Soft (think natural, feathered animals) / hard objects (think man-made, buildings).
+* Luminosity sharpening: sharpen your lights but not your colors. If you see sharpening bringing in color aberation, you might want to try luminosity sharpening to get rid of color aberation. After you apply your sharpening, fade unsharp mask, change mode to luminosity, and ok changes the sharpening you just did to apply only to luminosity.
+* You don't want to sharpen a person's skin. Do masking if you have time, if not and you still want to sharpen eyes, etc, sharpen just the channel that doesn't have too much details (in a person's case, often times red.)
+
 * Curves layer: contrast
 * Hue / saturation layer
