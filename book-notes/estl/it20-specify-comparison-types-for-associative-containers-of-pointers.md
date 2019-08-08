@@ -33,3 +33,22 @@ struct Dereference {
 
 transform(s.begin(), s.end(), ostream_iterator<string>(cout, "\n"), Dereference());
 ```
+
+The point is that any time you create a standard associative container of pointers, you must bear in mind that the container will be sorted by the value of the pointers.
+That is rarely what you want, so you'll almost always want to create your own functor class to serve as a comparison type.
+Note that it's a comparison type, not simply a comparison function, since `set`'s template expects a type, not a comparison function.
+
+If most of the time you are just going to dereference and compare, you can have a template like this:
+```
+struct DereferenceLess {
+    template <typename PtrType>
+    bool operator()(PtrType p1, PtrType p2) const {
+        return *p1 < *p2;
+    }
+};
+
+// we can then write
+set<string*, DereferenceLess> ssp;
+```
+
+Same goes for associative containers of smart pointers / iterators.
