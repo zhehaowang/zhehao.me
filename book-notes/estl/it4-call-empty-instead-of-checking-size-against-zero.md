@@ -9,15 +9,15 @@ Why can't list offer a constant-time size? Consider list splicing,
 
 ```cpp
 list<int> l1;
-list<int> li2;
+list<int> l2;
 
 l1.splice(
     l1.end(),
     l2,
     find(l2.begin(), l2.end(), 5),
     find(l2.rbegin(), l2.rend(), 10).base());
-// move all nodes in l2 from the occurrence of 5 through the last occurrence of
-// 10 to the end of l1. See it28 for `base()` call.
+// move all nodes in l2 from the first occurrence of 5 through the last
+// occurrence of 10 to the end of l1. See it28 for `base()` call.
 ```
 
 This code won't work unless `l2` contains a `10` somewhere beyond a `5`.
