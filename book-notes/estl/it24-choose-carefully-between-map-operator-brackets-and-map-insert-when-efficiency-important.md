@@ -54,3 +54,6 @@ efficientAddOrUpdate(MapType &m, const KeyArgType &k, const ValueArgType &v) {
 ```
 Note that `KeyArgType` and `ValueArgType` don't have to be the types stored in the `map`: they only need to be convertible to the types stored in the `map`.
 We could instead do `MapType::key_type` and `MapType::mapped_type` but that might force unnecessary type conversions.
+
+**Takeaways**
+* When efficiency is important, `map::operator[]` is proper for find and replace, and `map::insert` is proper for inserting a new element.
