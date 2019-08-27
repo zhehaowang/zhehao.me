@@ -8,8 +8,6 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import time
 
-### Assignment Owner: Tian Wang
-
 #######################################
 #### Normalization
 
