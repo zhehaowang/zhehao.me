@@ -15,11 +15,13 @@ if (i != widgetPtrs.end()) { ... }
 To find the first pointer to a `Widget` that is not interesting is not so straightforward.
 ```
 list<Widget*>::iterator i = find_if(
-    widgetPtrs.begin(), widgetPtrs.end(), not1(ptr_func(isInteresting)));
+    widgetPtrs.begin(), widgetPtrs.end(), not1(ptr_fun(isInteresting)));
 ```
 
 The only thing `ptr_fun` does is make some typedefs available.
 These typedefs are required by `not1`.
+If you don't care about adapting, with / without `ptr_fun` are the same, no runtime cost whatsoever.
+If you get confused when to use them and when not to, consider using it every time you pass a function to an STL algorithm.
 
 Each of the four standard function adapters (`not1`, `not2`, `bind1st`, `bind2nd`) requires the existence of certain typedefs.
 Function objects that provide the necessary typedefs are said to be adaptable.
