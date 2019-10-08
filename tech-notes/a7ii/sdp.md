@@ -1,6 +1,6 @@
 # SDP
 
-### Tips
+### Tips from the book
 
 * Take lots of pictures
 * Try different viewpoints
@@ -24,6 +24,36 @@ Outside opinions, no matter where they are from, are valuable.
 "Be there and think": the subject, the location, the perspective, the lighting, the timing, the weather, the mood, the pose, the clothes, the expression, the composition and the camera settings.
 
 "I'd rather you leave your camera in auto mode than become preoccupied with any one aspect of making a picture, especially the equipment and settings."
+
+### Tips from Turkey trip
+
+Before (an important day of) shooting
+* Check your lenses. Dirt spots / water stain from last time you should clean?
+* Reset your modes. Did you leave it on shutter priority + selfie timer + stabilization off for night photography on a tripod?
+* Do your research. If you are depicting a subject, how do you envision its look in your camera? Did you find the best angle and the best time?
+
+During shooting
+* Did you intend to have Exposure Compensation at non-0?
+* If you want / don't want the DoF effect, did you leave your aperture at a value that doesn't match your desire? Would the background be too blurred? Would part of the subject be blurred given your particular aperture? Do you want that, and do you want to take another with a different aperture? (Similarly, if you want / don't want motion).
+* Scan your edges. Are you clipping in / out anything you don't want / want?
+* If it's pitch black and you are on aperture priority, does the camera decide to adjust shutter speed too low for hand holding?
+* If using a zoom lens, know how the scene will look like given your particular focal length of choice.
+* Know how the scene will look like, and how it may turn out different from what your eyes see
+  * Dynamic range. Eyes are fantastic with dynamic range, and a digital camera is not. Could the contrast be too big for your camera? Is moving to shades, changing angle, or waiting viable?
+  * Undesirable objects. Our eyes see wide and far and do a remarkable (yet subjective!) job of focusing on what you want to see, as opposed to a camera clipping a rectangular scene with all the undesirable objects, all of which get magnified when seen afterwards. Your estimate of their effects on the subject post-shot? Can you move them out of your frame? Would that hurt the composition too much? Could you move / zoom? Would they be easy to get rid of in post processing?
+* Are you distracted by minor details and losing sense of the bigger picture? E.g.
+  * If you are depicting a person, her facial expression and body language is much more important than if the column in the background is perfectly upright.
+  * If you are depicting a flower, the lighting on its petals is more important than whether cutting off the mountain in the background would look aesthetically pleasing or not.
+  * If you are depicting an animal, did you capture its eyes, whether its eyes are in focus is more important than avoiding the trash bag in the background.
+  * Sure all the details matter, but focus on your subject and master your interaction with it first, before you mind the less important details of a shot.
+* Don't clog your picture with too many subjects. Think pigeons on a square.
+* If the situation allows, try different angles and settings!
+* Did you miss an unique opportunity to depict the scene differently? A flower next to a landmark? Inspect your surroundings, imagine how they will look like on your camera from different angles (lighting, composition, DoF), don't miss the opportunity just because your imagination is limited by constructing the a scene only from an angle our eyes usually see.
+
+After shooting
+* Rate and flag more aggressively. Be more assertive about your own work (and maybe in general!). Mark the ones you want to process in the first pass!
+* Be proactive / prompt about summarizing what you learn from each.
+* Reset your camera settings for tomorrow.
 
 ### Composition
 
