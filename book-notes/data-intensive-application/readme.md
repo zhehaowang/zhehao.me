@@ -83,4 +83,88 @@ Data intensive and compute intensive
 
 * Higher level query languages like SQL can be implemented as a pipeline of MapReduce operations, and there is nothing that constraints a SQL query to run on a single machine.
 
-* Graph-like data models
+* Graph-like data models (social graph, web graph, road networks, etc: where nodes are homogeneous; E.g. Facebook's social graph can have nodes as people, locations, events, etc)
+  * Property graphs
+    * Each node has a unique_id, incoming_vertices, outgoing_vertices, and a collection of key-value pairs
+    * Each vertice has a unique_id, head_vertex, tail_vertex, label, and a collection of key-value pairs
+    * Can store flexible information and good for extension
+    * Described in a relational schema it looks like the following
+```
+CREATE TABLE vertices (
+  vertex_id   integer PRIMARY KEY,
+  properties  json
+);
+CREATE TABLE edges (
+  edge_id     integer PRIMARY KEY,
+  tail_vertex integer REFERENCES vertices (vertex_id),
+  head_vertex integer REFERENCES vertices (vertex_id),
+  label       text,
+  properties  json
+);
+CREATE INDEX edge_tails ON edges (tail_vertex);
+CREATE INDEX edge_heads ON edges (head_vertex);
+
+; any can connect with any; with the indexes we can efficiently find head and
+; tail edges of a given vertex thus traversing the graph
+
+; we then insert entries like (in Cypher graph query language)
+
+CREATE
+  (USA:location    {name:'United States', type:'country'}),
+  (Europe:location {name:'Europe',        type:'continent'}),
+  (France:location {name:'France',        type:'country'}),
+  (Lucy:person     {name:'Lucy'}),
+  (France) -[:WITHIN]->  (Europe),
+  (Lucy)   -[:BORN_IN]-> (USA),
+  (Lucy)   -[:LIVE_IN]-> (France);
+
+; and the query of all people emigrated to Europe from the US looks like
+MATCH
+  (person) -[:BORN_IN]-> () -[:WITHIN*0]-> (us:location {name:'United States'}),
+  (person) -[:LIVE_IN]-> () -[:WITHIN*0]-> (eu:location {name:'Europe'})
+RETURN
+  person.name
+
+; find any vertex (call it person) that meets both conditions:
+;   has an outgoing BORN_IN edge to some vertex, from there you can follow any
+;   number of WITHIN edges until reaching a node of type location whose name
+;   property is "United States". Similar for the "Europe" analysis.
+;
+; the query optimizer then chooses the optimal way to execute this query (from
+; all persons, or the two regions, e.g. depending on where you have index)
+```
+    * Although it's possible to put a graph database in a relational database, supporting queries in such can be difficult as the number of joins is not known beforehand. (SQL supports `WITH RECURSIVE`, but is very clumsy)
+  * Triple-store graph model
+    * all information stored in three-part statement `(subject, predicate, object)`, where an object can be a value or another node. In case of value this means a property, in case of another node this means an edge.
+```
+(Turtle/N3)
+_:France a         :location;
+         :name     :"France";
+         :type     :country.
+_:Lucy   a         :person;
+         :name     :"Lucy";
+         :live_in _:France.
+...
+; this can alternatively be expressed in XML
+```
+  * Semantic web (independent from triple-store) proposes a Resource Description Framework under which websites publish data in a consistent format thus allowing different websites to be automatically combined into a web of data; like a graph database of the entire web.
+    * SPARQL query language operates on trip-stores using the RDF data model. Cypher's pattern matching above is borrowed from SPARQL. (difference being triple-store does not differentiate properties and edges thus both can be queried using the same syntax)
+
+* Are graph databases the second coming of network model (CODASYL)?
+  * No. CODASYL schema specifies what record types can be nested within which other record types. Graph databases allow any vertex to connect to any other. In CODASYL the only way to reach a node is via an access path, graph database allows query by / index on unique_id as well. CODASYL children of a record are an ordered set, graph databases have no such constraint on nodes and edges. In CODASYL all queries are imperative and easily broken by change in schema. Cypher or SPARQL queries are high-level.
+
+* Datalog. Foundation for later query languages.
+  * Similar data model as triple store, generalized to `predicate(subject, object)`. We define rules that depend on other rules or themselves.
+```
+Datalog / Prolog
+within_recursive(Location, Name) :- name(Location, Name).
+within_recursive(Location, Name) :- within(Location, via),
+                                    within_recursive(via, Name).
+migrated(Name, BornIn, LivingIn) :- name(person, Name),
+                                    born_in(person, bornloc),
+                                    within_recursive(bornloc, BornIn),
+                                    live_in(person, liveloc),
+                                    within_recursive(liveloc, LivingIn)
+?- migrated(Who, 'United States', 'Europe')
+```
+
