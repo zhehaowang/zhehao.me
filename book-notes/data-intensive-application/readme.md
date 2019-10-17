@@ -54,11 +54,11 @@ Data intensive and compute intensive
 
 * If we are to model one-to-many with SQL, the options are
   * separate table with foreign key
-  * latest SQL has structured data type support (e.g. xml / json). This comes with indexing / query support inside
+  * latest SQL has structured data type support (e.g. xml / json). This comes with indexing / query support inside. This is almost like a blend between document-based and relational
   * encode as json / xml and store encoded. Won't be able to index / query in this case
   * The resume use case (self-contained document; one person to many jobs)
     * One json object a row makes sense: document-oriented DB like MongoDB comes in handy
-    * This features a lack of schema and flexibility, and better locality
+    * This features a lack of schema, flexibility, and better locality
 
 * **normalization** in DB refers deduplicating human-meaningful information using one level of indirection: e.g. the neighborhood a person lives in should not be represented with a raw string, but rather an enum with another map from enum to neighborhood name string.
 
@@ -66,5 +66,21 @@ Data intensive and compute intensive
   * document-oriented storage can get awkward: we'd need app-level joins on several documents.
   * network model uses a tree-like structure with multiple parents, and software traverses the structure following along "access paths" like traversing a linked list. This makes it difficult to change data model and the software.
   * the relational model addresses this with separate tables and supporting arbitrary select and join conditions. Query optimization is abstracted away from app-level code.
+  * In dealing with many-to-many relationship, relational and document databases aren't fundamentally different: a unique id to identify the external record, called a foreign key and a document reference respectively.
 
+* Relational vs document databases today
+  * Schema flexibility, better performance due to locality, closer to the data structure of the application for document databases.
+  * Better support for join, many-to-one and many-to-many for relationship databases.
+  * Relational can employ the technique of shredding (splitting a document-like structure into multiple tables linked by a foreign key) to achieve a document-like structure, which is cumbersome to schema and complicates application code.
+  * Document cannot refer directly to a nested item within a document, instead you say the 2nd item in the list of positions for user 256 (like an access path).
+  * To model many-to-many in document, you can do denormalization but the application code need to do additional work to keep denormalized data consistent.
 
+* Schema-on-read (the reading application interprets / expects certain schema, like runtime type checking) and schema-on-write (the database enforcing some schema upon writing data, like static type checking in a compiled language). In general there is no right answer in terms of which is preferable. The difference is particularly noticeable when performing a schema change. Changing application code or migrating DB.
+
+* Managing locality. When you need large parts of data in the same document. Or in relational model, Spanner's interleaved table rows within a parent table. Similarly, column-family in Bigtable / Cassandra / HBase data model. 
+
+* When the relational model is introduced, SQL, a declarative way to query the data came with it, whereas others of its time queried databases primarily imperatively. The declarative approach follows relational algebra notions more closely, while the imperative way is more like telling the computer step by step what to do. Higher-level abstractions are often preferable as they are easier, more expressive, and the application query is decoupled from underlying database performance improvement.
+
+* Higher level query languages like SQL can be implemented as a pipeline of MapReduce operations, and there is nothing that constraints a SQL query to run on a single machine.
+
+* Graph-like data models
