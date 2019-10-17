@@ -167,4 +167,17 @@ migrated(Name, BornIn, LivingIn) :- name(person, Name),
                                     within_recursive(liveloc, LivingIn)
 ?- migrated(Who, 'United States', 'Europe')
 ```
+  * The Datalog approach is powerful in that rules can be combined and reused in different queries.
 
+##### Summary
+
+Data models.
+Hierarchical historically, relational came along to tackle many-to-many relation.
+
+Recent applications whose data model does not fit either, NoSQL, mostly diverged in **document** and **graph** databases.
+These don't usually enforce a schema on data they write, but has assumptions about data when reading.
+Each model comes with their own sets of query languages, SQL, MapReduce, Cypher, Datalog, MongoDB's pipeline, etc.
+
+Relational, document and graph are all widely used today, and one model can be emulated using another though the result is often awkward.
+
+Some ongoing research about data models try to find suitable ones for sequence similarity searches (genome data); PBs amount of data (particle physics); and full-text search indexes. 
