@@ -181,3 +181,64 @@ Each model comes with their own sets of query languages, SQL, MapReduce, Cypher,
 Relational, document and graph are all widely used today, and one model can be emulated using another though the result is often awkward.
 
 Some ongoing research about data models try to find suitable ones for sequence similarity searches (genome data); PBs amount of data (particle physics); and full-text search indexes. 
+
+# Storage and retrieval
+
+Database is all about storage and query.
+
+Log-based storage engines (an append-only sequence of records) and page-oriented storage engines.
+
+An index is an additional structure that is derived from the primary data. Adding and removing indexes does not affect the contents of the database, only performance of queries.
+Any kind of index usually slows down writes because the index also needs to be updated on-write.
+Thus databases typically let the application developer choose what to index on since they know the access pattern of the database best.
+
+### Log-based
+
+##### In-memory hash index
+
+A simple approach could be a log-structured storage where each record is `<key, value>` and a hash index `<hash(key), byte_offset_into_log>` is stored in main memory.
+Bitcask is one example does this, and is well suited for cases where key cardinality is low (fits in memory) but updated often (hence requiring fast writes).
+
+* To avoid only growing disk usage, we can chunk the log into segments of a certain size and when closing off on writing one segment we perform **compaction** where we only keep the most recent update to each key. We can also merge several segments together when performing compaction. While compaction is being performed we can continue to serve read and write requests using the old segment files. (compaction never modifies an existing segment files: the result is written to a new segment files). After compaction is done we switch read and write requests to using the newly produced segment file, and delete the old segments.
+
+* With a hash index each segment now needs its own hashmap index in memory, and when looking for a key we first search in the hashmap of the most recent segment, and if not found we go to the hashmap of the next most recent segment.
+
+* We usually store the log in binary format, append a special tombstone to indicate deletion of a record. To recover from a crash one could read all the segments to repopulate the hashmap index, which is slow. Bitcask stores a snapshot of each segment's hashmap on disk, which can be loaded into memory for faster recovery. To handle partially written records (e.g. crash while writing) Bitcask uses a checksum. For concurrency control we can allow only one writer thread to append to the current segment. Multiple threads can read at the same time.
+
+* Append-only log may seem wasteful, but as opposed to updating the record, append-only uses sequential write operations which are generally much faster than random writes, especially on magnetic spinning disk hard drives. Concurrency and crash recovery are also made much simpler if segment files are append-only or immutable. Merging old segments avoids the problem of data files getting fragmented over time.
+
+* Hash-based index should fit in memory: you could maintain a hashmap on disk but on-disk hashmap query requires a lot of random access IO, is expensive to grow when it becomes full, and hash collisions require fiddly logic. Hash-based index is also efficient when doing range queries. 
+
+##### SSTables and LSM tree
+
+Previously our stored records (key, value) pairs appear in the sequence they are written, **SSTable** (Sorted String Table) require that the sequence of (key, value) pairs is sorted by key.
+
+SSTables has several advantages over log segments with hash indexes:
+* Merging segments is simple and efficient even for file bigger than the available memory: starting at the head of all segments, each time copy over the lowest ordered-key over to the new file. This produces a merged segment file also sorted by key. If the same key appears in multiple input segments, we only need to keep the value from the most recent segment.
+* To find a particular key, we don't need to keep an index of all the keys in memory. Instead you can have an in-memory sparse index to tell you the offsets of some keys, and you can scan a range of two offsets to find if the key you are looking for is in.
+* Blocks of entries between every two sparse indices can be compressed, which reduces IO bandwidth.
+
+Constructing and maintaining SSTables:
+* We maintain an in-memory stored structure (**memtable**), say, a red-black tree, and write requests gets added to this tree.
+* When tree gets big enough we flush it into disk. While this tree is being flushed we can keep writing to a new memtable.
+* When querying we first look inside the memtable, then the most recent on-disk segment, then the next recent, etc.
+* From time to time run merge and compaction to combine segment files and to discard overwritten or deleted values.
+
+To recover from memtable crashes, as we write to memtable we also write to a log. This log doesn't need to be sorted by key as all it serves is crash recovery and can be discarded when a memtable gets flushed to disk.
+
+LevelDB and RocksDB use the algorithm described above.
+Similar storage engines are used in Cassandra and HBase, both were inspired by Bigtable paper which introduced the terms SSTable and memtable.
+Lucene (indexing engine for full-text search used by Elasticsearch and Solr) uses a similar method for storing its term dictionary.
+
+This merging and compacting indexing structure originally builds upon Log Structured Merge trees which was built upon earlier work on log-structured file systems.
+
+Optimization
+* Query can be slow: first memtable then segment-by-segment lookups. We can add a bloom filter to definitively tell if a key does not exist.
+* Size-tiered and level-tiered compaction: RocksDB and LevelDB use level-tier where key range is split into smaller SSTables and older data is moved into separate levels (_?_), HBase uses size-tier where newer and smaller SSTables get merged into older and larger ones. Cassandra supports both.
+
+The basic idea of LSM-trees / keeping a cascade of SSTables that are merged in the background is simple and effective. It scales well when data is much bigger than memory, supports range query well, and because all disk writes are sequential the LSM-tree can support remarkably high write throughput.
+
+### B-tree
+
+
+
