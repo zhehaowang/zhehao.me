@@ -192,7 +192,7 @@ An index is an additional structure that is derived from the primary data. Addin
 Any kind of index usually slows down writes because the index also needs to be updated on-write.
 Thus databases typically let the application developer choose what to index on since they know the access pattern of the database best.
 
-### Log-based
+### Log-structured indexes
 
 ##### In-memory hash index
 
@@ -238,7 +238,32 @@ Optimization
 
 The basic idea of LSM-trees / keeping a cascade of SSTables that are merged in the background is simple and effective. It scales well when data is much bigger than memory, supports range query well, and because all disk writes are sequential the LSM-tree can support remarkably high write throughput.
 
-### B-tree
+### B-tree indexes
 
+The most widely used indexing structure is B-tree. They remain the standard implementation in almost all relational databases, and many non-relational databases use them, too.
 
+Similar as SSTables, B-tree also sorts by key, but that's where the similarity ends.
+Log-structured indexes break the database down into variable-size segments and always write a segment sequentially, while B-trees break the database down to fixed-size blocks or pages, traditionally 4KB in size, and read / write one page at a time. This corresponds closely to the underlying hardware.
 
+One page is designated as root of the tree, root points to child pages where each child is responsible for a continuous range of keys. A leaf page can either contain the (key, value) inline or contains references to pages where the values can be found.
+Typically branching factor of a B-tree is several hundred.
+
+To update an existing value for an existing key, find the leaf page, change the page and write the page back to disk.
+Adding a new key may split an existing page into two. The split algorithm keeps the B-tree balanced.
+Most databases can fit into a B-tree that is three or four levels deep. (4KB pages 4 levels branching factor of 500 can store up to 256TB)
+
+The basic write operation of a B-tree is to overwrite a page on disk with new data, and it is assumed that the overwrite does not change the location of the page i.e. all references to the page remain intact when the page is overwritten.
+This is in stark contrast with LSM-trees where files are append-only and deleted but never modified in-place.
+
+A write causing a split will cause two children pages and parent page to be overwritten.
+This is a dangerous operation as a crash after some pages have been written leaves you with a corrupted index.
+In order to make B-tree resilient to crashes it includes a **write-ahead log**, an append-only file to which every B-tree modification must be written before it can be applied to the pages of the trees itself. This log is used to restore B-tree to a consistent state after crash.
+
+Concurrency control is also more complicated: a reader may see a tree in an inconsistent state without concurrency control. B-trees typically use **latches** (lightweight locks).
+Log-structured approaches are simpler in this regard, as all merging are done in the background without interfering with incoming queries; and atomically swap old segments for new segments from time to time.
+
+B-tree optimizations have been introduced over the years, e.g. copy-on-write pages where a modified page is written to a different location, and a new version of the parent pages in the tree is created pointing at the new location. Abbreviating keys in interior pages. Optimized storage layout such that leaf pages appear in sequential order on disk. Adding additional pointers such as left and right siblings. Fractal trees borrow some log-structured ideas to reduce disk seeks.
+
+### Comparison: B-tree and LSM-tree
+
+### Other indexes
