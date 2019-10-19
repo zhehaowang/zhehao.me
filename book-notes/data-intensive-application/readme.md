@@ -266,4 +266,81 @@ B-tree optimizations have been introduced over the years, e.g. copy-on-write pag
 
 ### Comparison: B-tree and LSM-tree
 
+As a rule of thumb, LSM-trees are typically faster in write, whereas B-trees are thought to be faster in reads (LSM-trees are thought as slow in this regard as potentially several SSTables at different stages of compression has to be checked).
+However benchmarks are generally inconclusive and sensitive to the details of workload.
+
+**Write amplification**: one write to the database would result in multiple writes to the disk over te course of the data's lifetime. E.g. compaction in LSM trees, B-trees overwriting an entire page even if only a few bytes changed. This is a concern for SSD as blocks can only be overwritten a limited number of times before wearing out.
+
+In high-write-workload scenarios, bottleneck might be the rate at which the database can write to disk, in which case write amplification directly affects performance.
+
+LSM-trees can typically sustain higher write workload than B-trees, because of lower write amplification (depends on workload and storage engine configuration), and also writing compact SSTable structures sequentially as opposed to overwriting several pages in the tree. This is particularly important for magnetic hard drives where random writes are far slower than sequential writes.
+
+LSM-trees typically have lower storage overhead. B-tree leaves some disk space unused due to fragmentation: e.g. when splitting. LSM trees are not page based and periodically compact SSTables to remove fragmentation, giving them typically lower storage overhead.
+
+Some SSDs internally use a log-structured algorithm to turn random writes into sequential writes hence nullifying the downsides of B-tree's random writes, but LSM's typically lower write amplification and reduced fragmentation still matters for throughput.
+
+One downside of LSM tree is expensive compactions affecting the performance of read/writes as a user request may need to wait for disk to finish a compaction. The impact on throughput and response is usually small, but at higher percentiles the response time of LSM-trees can be less predictable than that of B-trees.
+
+Also as compaction threads and the logging / flushing memtable to disk thread shares the write bandwith, the larger the database gets, the more write bandwidth compaction threads might use.
+If compaction cannot keep up with new writes, tbe number of unmerged segments grow until you run out of disk space, reads would become slow as well. This is a situation you want to monitor.
+
+B-trees also have a key at one specific location only while LSM trees can have the same key stored in multiple places. The former also made offering strong transactional semantics easier as what they can do is to lock the key range and attach those locks directly to the tree.
+
+B-trees are very ingrained in the database architecture of today's and aren't going away any time soon. LSM-trees are getting popular but you should assess given your workload to decide which is more suitable.
+
 ### Other indexes
+
+##### Seconary indexes
+
+The above discusses (key, value) indexes like a primary key in the relational model (unique identifier).
+Secondary indexes are very common (not unique) and both LSM-trees and B-trees can be used as secondary indexes.
+
+When storing records for each key we can store the value itself or a reference to somewhere else (known as a **heap file**), which uses no particular order, can be append-only or keep track of deleted entries and overwrite them.
+The heap file approach is common to deduplicate the actual data.
+
+When not changing the key, overwriting with a smaller value is easy but overwriting with a larger value will cause the value to be relocated, thus needing to update all references as well, or leave a forwarding pointer in its old heap location.
+
+Sometimes the extra hop from index to heap file is too much of a performance penalty for reads, so it can be desirable to store the indexed row directly within an index.
+This is called a **clustered index**, which the primary key of a table in MySQL's InnoDB storage engine is always a clustered index, and secondary indexes refer to the primary key rather than a heap file location.
+A compromise between a clustered index and a nonclustered (storing only references to the data within the index) is a **covering index** where some of a table's columns are stored with the index, allowing some queries to be answered by using the index alone.
+Covering and clustered index can speed up reads but introduce extra storage and overhead to writes. Transactional guarantee also becomes harder because of duplication.
+
+##### Multi-column indexes
+
+**Multi-column index** can be a **concatenated index** where it's concatenating a few keys, and it would allow querying by a number of prefix keys of the concatenated key.
+
+E.g., to support 2D geospatial data search, one option is to translate the 2 dimensions into a single number using a space-filling curve then use a B-tree, or more commonly specialized indexes such as R-trees are used.
+
+Another case is when needing to support filtering by multiple columns at the same time.
+
+##### Full-text searches and fuzzy indexes
+
+Fuzzy search within a certain edit distance, ignore the grammatical variations of the searched keyword.
+
+Lucene supports such and internally it uses an SSTable-like structure where the in-memory index is a finite state automaton over the characters in the keys, similar to a trie.
+This automaton can then be transformed to a Levenshtein automaton which supports efficient search for words within a given edit distance.
+
+##### Keeping everything in memory
+
+Compared with memory disks are awkward to deal with: you have to lay out data carefully if you want good performance on reads and writes.
+
+With memory getting cheaper keeping entire databases in memory becomes possible.
+memcached in-memory caching provides a solution when data durability is not required.
+
+When durability is required, an in-memory database can write a log to disk, writing peiodic snapshots to disk or replicating the in-memory state to other machines.
+Despite the disk interaction it's still considered an in-memory database because disk is only used as an append-only log for durability and reads are served entirely from memory.
+
+Writing to disk also has operational advantages where it's easier to backed up, inspected and analyzed by external utilities.
+Redis provides weak durability by writing to disk asynchronously.
+
+Counter-intuitively, the performance advantage of in-memory databases is not due to the fact they don't need to read from disks. Even a disk-based storage engine may never need to read from disk if you have enough memory as the OS caches recently used disk blocks anyway.
+Rather they can be faster as they avoid the overheads of encoding in-memory data structures in a form that can be written to disk.
+
+In-memory databases also provides data models that are difficult to implement with disk-based indexes, e.g. Redis offers a DB-like interface to various data structures such as priority queues and sets. Keeping all data in memory makes its implementation comparatively simple.
+
+In-memory databases can store data larger than memory without bringing back the overheads of using a disk, the **anti-caching** approach works by evicting the least recently used data to disk when there is not enough memory and loading it back in when accessed.
+This is similar to what OS does with swaps and virtual memory, but with more granularity e.g. individual records as opposed to memory pages, hence more efficient than what the OS does.
+This approach still requires the entire index to fit in memory
+
+### Transaction processing or analytics
+
