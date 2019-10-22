@@ -45,3 +45,38 @@ Meaning change over time, too. Silly used to mean blessed, and the German root s
 In this way, bear (to carry a burden) shares the same root as birth (th is grammaticalization of another word, like warmth for warm), and transfer / prefer (borrowed from Latin's proto-Indo-European root of bear, fer).
 
 Semantic narrow and widen, too. Meat used to mean all food but has specifically come to mean animal flesh. Bird used to be specific and foul was general but now the semantic of bird is widened.
+
+### Word order change
+
+* Modern languages have all combinations of (subject, verb, object) order.
+* Both SOV and SVO are very common, historically change from SOV to SVO has been common, while the other direction has been rare.
+  * Modern German, Turkish, old English, biblical Hebrew are all SOV languages, while modern English and modern Hebrew are SVO.
+  * Welsh, Irish Gaelic, Polynesian languages are VSO.
+  * OVS is rare, some South American native language uses it.
+  * An Australian native language has no fixed order. Suffix and context differentiate subject and object.
+* Language studies words, sounds, grammar and meaning change over time.
+
+### Change
+
+Language is constantly morphing, not for good or bad.
+Some directions of change are predictable: e.g. th in English to t, f, or s.
+Some semantic decay can be seen in lie/lay, infer/imply, hither/thither/whither, thou look'st/thee look, is shot/shotten, spit/spitten in modern English.
+Earlier pronounciation books (recorded sound became available only in the 1870s) suggested dismay/dismiss should be pronounced dizmay/dizmiss, and balcony has emphasis on co.
+Modern English says "a house is being built" while 19c English may say "a house is building"
+
+Example of change in Latin, of the Indo-European Italic language and the origin of Romance languages.
+The Roman Empire is unique in its efforts of Romanization: ancient empires, e.g. that of the Persians rarely impose that their language be the only language taught in conquered territory.
+
+Latin uses noun suffixes to indicate object, and doesn't have to, a, the, etc. Modern Romance languages dropped these noun suffixes. 
+
+Some common pattern of change, e.g. grass in Latin, herba, h is usually fragile in Romance language, French herbe, Spanish hierba (pronounced yierba), Italian erba, Portuguese relva, Romanian iarba.
+
+English is proto-Germanic and has undergone lots of changes, too. Shakespeare writes in a language that is very different from what is spoken today.
+Due to semantic drifts, Shakespeare translated to modern foreign languages can often be easier to understand.
+E.g. wherefore meant why, not where; wit meant knowledge, not as in witticism. (humor is fragile!)
+
+Jane Austen's language is also different from ours, e.g. "you are come at last", or "it would, would not it?" is perfectly normal in her time.
+
+Archaic Chinese evolved as well, several branches of modern Chinese can sound like completely different languages: a few major variations in mandarin, cantonese, shangainese, fujianese, taiwanese, gan, xiang, hakka language (ke'jia'hua)
+
+In English, present progress tense vs present habitual tense is pretty unique / nice: the "-ing" form of a verb like "I am eating" is not present in languages like French or German.
