@@ -344,3 +344,9 @@ This approach still requires the entire index to fit in memory
 
 ### Transaction processing or analytics
 
+The word **transaction** traces back to databases' early days for recording money changing hands, now it refers to a group of reads and writes that form a logical unit.
+A transaction needn't necessarily have **ACID** (atomicity, consistency, isolation and durability) properties, transaction processing just means allowing clients to make low-latency reads and writes as opposed to batch processing jobs which run only periodically.
+
+Over time we see two major query patterns for databases,
+* look up a small number of records by some key, using an index. Records are then inserted or updated based on the user's input. These application are usually interactive and became known as online transaction processing (OLTP).
+* scan over a huge number of records, reading only a few columns per record and calculates aggregate statistics (sum, avg, etc) rather than returning the raw data to user. These are known as online analytics processing (OLAP).
