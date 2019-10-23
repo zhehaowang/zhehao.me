@@ -382,5 +382,10 @@ This storage schema also makes filtering by a few column values easier: e.g. we 
 
 Cassandra and HBase offer column-families which they inherited from BigTable. Those would still be row-based storage as within each column family they store all columns from a row together, along with the row key and they don't use column compression. Hence the BigTable model is still mostly row-oriented.
 
+Column-oriented layouts also are good for making efficient uses of CPU cycles: CPU loads one L1-cache-ful of compressed column data, does some bitwise and/or without function calls (iterate through the data in a tight loop) on the compressed data directly. (single-instruction-multi-data/SIMD instructions on modern CPUs)
+This leverages **vectorized processing**.
+
+
+
 
 
