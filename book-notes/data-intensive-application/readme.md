@@ -350,3 +350,37 @@ A transaction needn't necessarily have **ACID** (atomicity, consistency, isolati
 Over time we see two major query patterns for databases,
 * look up a small number of records by some key, using an index. Records are then inserted or updated based on the user's input. These application are usually interactive and became known as online transaction processing (OLTP).
 * scan over a huge number of records, reading only a few columns per record and calculates aggregate statistics (sum, avg, etc) rather than returning the raw data to user. These are known as online analytics processing (OLAP).
+
+Relational DBs started out working fine for both OLTP and OLAP, over time some companies switched over to **data warehouse** for their OLAP workload.
+In some setups, the OLTP systems being latency sensitive and mission critical, does not serve analytics requests, a read-only copy of data extracted from the OLTP system transformed into an analysis friendly schema and cleaned up is loaded into the data warehouse. This process of loading OLTP data into OLAP warehouse is known as Extract-Transform-Load (ETL).
+
+Having a separate OLAP system allows optimization specific to its query pattern. 
+
+The data model of a data warehouse is most commonly relational as SQL is generally a good fit for analytics queries. MS SQL Server supports transaction processing and data warehousing in the same product however they are becoming increasingly two separate storage and query engines served through the same SQL interface.
+
+Open source SQL-on-Hadoop projects fall into the same data warehouse category: Apache Hive, Spark SQL, Cloudera Impala, Facebook Presto, Apache Tajo and Apache Drill. Some of them are based on Google Dremel.
+
+Data warehouses don't see a variety of data models as transaction processing DBs do.
+Most follow a star-schema where a giant central table (facts table) records events and foreign-key references to other tables (dimension tables) to e.g. normalize (dimension tables would record the who, what, where, how and why of an event).
+This is like a star where facts table sits in the center and connects to peripheral dimension tables.
+Snowflake schema is a variation of the star where dimensions are further broken down into subdimensions. They are more normalized but harder to work with.
+
+##### Column-oriented storage
+
+If you have trillion of rows in your facts table, storing and querying them efficiently becomes a problem.
+Fact tables are always over 100 columns wide but one query rarely accesses more than 4 or 5 of them at the same time.
+
+OLTP databases including document-based ones usually organize one row / document as a contiguous sequence of bytes, column-oriented storage instead stores all the values from each column together.
+E.g. each column of a facts table gets stored in its own file, such that when only accessing a few columns in a query we only read those files as opposed to reading all the columns then filter.
+Column-oriented storage layout requires each column file containing rows in the same order.
+
+Column-oriented storage often offers great opportunities for compression.
+**bitmap encoding** is often used. The cardinality of the set of distinct values in a column is often small compared with the number of rows.
+We then use a bitmap to represent the set of distinct values in a column (e.g. 200 countries in the world, 25B to store), and each distinct column value X would then correspond with a series of bits where we have 1 bit for each column and we'd have 1 if that column is X and 0 if not.
+For each column value X we'd then end up with a series of bits that are predominantly 0, and we can then apply run-length encoding (100 zeroes followed by 2 ones, ...) to further compress.
+This storage schema also makes filtering by a few column values easier: e.g. we apply a bitwise-or over all the series of bits of those column values and return the selected columns.
+
+Cassandra and HBase offer column-families which they inherited from BigTable. Those would still be row-based storage as within each column family they store all columns from a row together, along with the row key and they don't use column compression. Hence the BigTable model is still mostly row-oriented.
+
+
+
