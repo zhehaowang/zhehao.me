@@ -385,7 +385,33 @@ Cassandra and HBase offer column-families which they inherited from BigTable. Th
 Column-oriented layouts also are good for making efficient uses of CPU cycles: CPU loads one L1-cache-ful of compressed column data, does some bitwise and/or without function calls (iterate through the data in a tight loop) on the compressed data directly. (single-instruction-multi-data/SIMD instructions on modern CPUs)
 This leverages **vectorized processing**.
 
+In a column store it might be easiest to store data in the order they come in, as then insertion becomes simple append; it's also possible to impose an order as in an SSTable, note that fields of the same record needs to remain in the same k-th record in every column data file. Sorting would also help with compression especially for the first sort key.
+Vertica sorts a column-oriented storage in several ways: the data needs to have multiple copies anyway so why not sort them in different orders to answer different kinds of queries.
 
+Writing to column-oriented storage can be tricky, as insertion in the middle requires rewriting all column data files.
+LSM-trees don't have this constraint, column or row based, when enough writes have accumulated they are merged with the column files on disk and written to new files.
 
+##### Data cubes and materialized views
 
+Not every data warehouse is columnar, if queries often involve count, sum, avg, etc, we could cache some of the counts or sums that queries use most often.
+
+A view is often defined as the resulting table of some query.
+A **materialized view** is an actual copy of the query result written to disk (a denormalized copy of the data matching some conditions).
+When the underlying data changes the materialized view needs to be updated as well.
+They make writes more expensive which is why materialized view is not often seen in OLTP databases.
+
+A materialized data cube is a (denormalized and high-dimensional) materialized view with some aggregation statistics such that particular queries on those statistics are faster.
+
+### Summary
+
+How databases handle storage and retrieval internally.
+* OLTP / transaction processing workload: request volume is large, each touches few records, usually via some key / index, expect low-latency in response. Disk seek time is often the bottleneck here.
+  * Storage
+    * LSM-trees: append-only, immutable data files, SSTables, merge; systematically turn random-access writes to sequenetial writes, enabling higher write throughput
+    * B-trees: overwrite fixed sized pages in-place
+  * Indexing
+    * multi-index
+    * in-memory database
+* OLAP / analytics workload / data warehouse: lower volume, queries needing to read a large number of records. Disk bandwidth is bottleneck. Column-oriented storage is increasingly popular for this.
+  * Indexing are less relevant, instead compression becomes important
 
