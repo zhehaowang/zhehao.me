@@ -182,7 +182,7 @@ Relational, document and graph are all widely used today, and one model can be e
 
 Some ongoing research about data models try to find suitable ones for sequence similarity searches (genome data); PBs amount of data (particle physics); and full-text search indexes. 
 
-# Storage and retrieval
+# Chap 3. Storage and retrieval
 
 Database is all about storage and query.
 
@@ -414,4 +414,33 @@ How databases handle storage and retrieval internally.
     * in-memory database
 * OLAP / analytics workload / data warehouse: lower volume, queries needing to read a large number of records. Disk bandwidth is bottleneck. Column-oriented storage is increasingly popular for this.
   * Indexing are less relevant, instead compression becomes important
+
+# Chap 4. Encoding and Evolution
+
+Application change. Evolvability is important.
+Server software usually goes through staged rollout, client software upgrade are at the mercy of clients.
+Coexistence of old and new code makes backward and forward compatibility important. (new being able to work with old; old being able to work with new.)
+Forward compatibility is usually trickier as it requires old code to ignore additions new code did.
+
+Programs work with in-memory data structures as well as serialized / encoded data, when needing to transfer over the network (maybe, with the exception of memory mapped files).
+
+* Language-specific serialization formats: `java.io.Serializable`, `pickle`, etc. These are usually easy to code but
+  * they may be specific to that language
+  * in order to restore data in the same object types the decoder needs to able to instantiate arbitrary classes, which is a source of security problems
+  * versioning is often an after thought for these utilities
+  * efficiency is often an after thought. These encodings can be very bloated / CPU-inefficient to use
+For these reasons it's generally a bad idea to use the language's built-in serialization library for anything other than very transient purposes.
+
+### JSON, XML and binary variants
+
+JSON, XML, CSV are all textual formats, somewhat human-readable, and widely supported encodings.
+Some subtle problems besides superficial syntactic issues:
+* ambiguity around encoding of numbers. XML and CSV cannot differentiate a string of numbers and a number without referencing external schema. JSON can, but does not distinguish floats and integers and doesn't specify a floating point precision. An integer larger than 2\^53 cannot be exactly represented by IEEE 754 double precision float. Consequently JSON returned by Twitter's API includes tweet IDs twice, once as JSON number and once as decimal string, to work around the fact that number this large may not be correctly parsed by JS applications.
+* JSON and XML have good support for unicode character strings, but not binary strings. People get around this limitation by using base64 to encode the binary data, and this increases size.
+* JSON and XML both have optional schema support. XML schema is widely used, JSON not as much. In cases where a schema is not used, the decoding application potentially needs to hardcode the appropriate encoding / decoding logic.
+* CSV does not have schema, each column is up for interpretation. It's also vague e.g. what happens if a value contains a comma. Escaping has been formally specified but all parsers support them correctly.
+
+Despite these flaws these encodings will likely remain popular as data interchange formats.
+
+
 
