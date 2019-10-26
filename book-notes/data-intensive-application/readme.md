@@ -442,5 +442,62 @@ Some subtle problems besides superficial syntactic issues:
 
 Despite these flaws these encodings will likely remain popular as data interchange formats.
 
+Binary encoding has been developed for JSON and XML, since they don't prescribe a schema, they still need to include all the field names within encoded data.
+
+### Thrift and protobuf
+
+Apache Thrift and protobuf are binary encoding libraries that are based on the same principle.
+Both require a schema in an interface definition language (IDL), and come with a code generation tool that takes the schema and produces code in various languages that implement it.
+One big difference with binary encoding of JSON/XML is field names are not present in encoded data, instead field tags (numbers) are used, like normalization with a schema definition. 
+
+Protobuf binary encoding uses variable length integers and encodes very similarly to Thrift CompactProtocol (Thrift also has a BinaryProtocol which does not use variable length integer).
+Encoding is TLV.
+
+##### Handling schema evolution
+
+Add new fields to the schema provided that you give each field a new tag number.
+Forward compatibility: old code not recognizing the tag number can just ignore it.
+Backward compatibility: new code can still read old messages since tag number doesn't change, the only detail is that when adding a new field you cannot mark it required: they must be optional or have a default value.
+
+Removing is like adding with backward and forward compatibility concerns reversed: you cannot remove a field that is required, and you can never use the same tag again.
+
+Changing data types of fields may be possible, data can lose precision or become truncated.
+
+One peculiarity in Protobuf: there is no explicit array but instead a repeated marker (a third option along with required and optional) meaning something can appear 0 to N times (exactly 1 time, or 0 or 1 times).
+
+### Avro
+
+Avro is another encoding format different from Protobuf and Thrift, it is developed since Thrift was deemed not a good fit for Hadoop's use cases.
+
+Avro has an IDL to describe schema.
+The peculiarity is in Avro having no field tags or type indication in the encoded data: a string or an integer is a length prefix + data (UTF-8 or variable length integer encoding.)
+Being able to decode relies on going through the fields in the order that they appear in the schema, meaning the decoder can work only if using the exact same schema as encoder.
+
+In order to support schema evolution, the writer's schema and reader's schema don't have to be the same.
+When decoding, Avro resolves difference by looking at writer's schema and reader's schema side-by-side and translating the writer's schema into reader's schema.
+
+Field reordering can be reconciled, fields in writer's schema but not reader's will be ignored by decoder, and field in reader's but not writer's will be filled with default values in reader's schema.
+
+To maintain and backwards and forwards compatibility, you can then only add or remove fields with a default value.
+
+Avro doesn't have optional / required marker as protobuf and thrift do, it has default values and union types instead, where allowing a field to be null requires including null in a union type.
+
+In the context of Hadoop, Avro is often used for storing a large file of millions of records all encoded with the same schema. Hence the overhead of including that schema with the file is not huge.
+In a database where records are written at different times with different schema, Avro keeps a versioned schema in a schema database.
+When sending data over the network, Avro RPC protocol negotiates a shared schema between two parties.
+
+Why might this be preferable to Protobuf and Thrift's schema? Not having tag numbers makes Avro friendlier to dynamically generated schemas. E.g. in a case where you want to encode a table in a relational database, exporting it to Avro / Protobuf / Thrift and then the table schema changes, when exporting the newer version Protobuf Thrift versions have to be careful about field tag, while Avro has no such concern.
+
+Code generation is often useful for statically typed languages where the generated code allows type checking, while in dynamically typed language code generation is often frowned upon.
+
+Protobuf, Thrift and Avro schemas are simpler than XML/JSON schemas as the latter support more detailed validation rule like regexp, integer ranger, etc.
+
+### Pro of schemas
+
+These encodings are based on the idea introduced in ASN.1, used to define various network protocols and its binary encoding (DER) is still used to encode SSL certificates (X.509).
+
+Most relational database vendors also have their own proprietary binary encoding for their query protocol over the network, the database vendors usually then provides a driver (using the ODBC or JDBC APIs) that decodes data over the network.
+
+Binary encodings based on a schemas are viable compared to textual formats like JSON/XML, in particular, binary encoding is more compact (omitting field names), schema is a good form of documentation, keeping a database of schemas allows checking backward and forward compatible changes, and in statically typed languages generating code from schema allows compile time type checking.
 
 
