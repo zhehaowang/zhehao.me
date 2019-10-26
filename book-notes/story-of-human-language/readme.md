@@ -80,3 +80,19 @@ Jane Austen's language is also different from ours, e.g. "you are come at last",
 Archaic Chinese evolved as well, several branches of modern Chinese can sound like completely different languages: a few major variations in mandarin, cantonese, shangainese, fujianese, taiwanese, gan, xiang, hakka language (ke'jia'hua)
 
 In English, present progress tense vs present habitual tense is pretty unique / nice: the "-ing" form of a verb like "I am eating" is not present in languages like French or German.
+
+### Proto-Indo-European
+
+Studies showed the similarity between Sanskrit, Latin and ancient Greek, non of these spoken now.
+They trace back to the same ancestor, a proto-Indo-European language which is the ancestor of most languages in Europe (except Hungarian, Basque, Finnish, and a few others), Iran, and upper two-thirds of India (lower third was Dravidian language family).
+
+This was not a written language, and its original forms can be deduced from variations in today's descendant languages (sound, and more so in grammar).
+
+Proto-Indo-European is thought of to have started from Kurgan language of southern Russian steppes (others may claim Anatolia / Turkey), as genetic traces would suggest, as well as certain patterns and living descendants of this language tend to have common words for horse, wheels, but not oak, vine, or palm trees.
+
+German, English (and Swedish) are Germanic branches of Indo-European, where from Latin some common deviations include p --> f (pater to father), t --> th, etc. This is described in Grimm's Law.
+
+Latvian and Lithuanian, the Baltic branch of Indo-European, is thought to have undergone more conservative changes, and remain closer to the Indo-European root. (More so in Slavic languages, too)
+
+Armenian and Albanian, although Indo-European in origin, have borrowed more from neighboring languages and fewer words in common with the other branches of Indo-European languages.
+
