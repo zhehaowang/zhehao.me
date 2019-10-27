@@ -500,4 +500,97 @@ Most relational database vendors also have their own proprietary binary encoding
 
 Binary encodings based on a schemas are viable compared to textual formats like JSON/XML, in particular, binary encoding is more compact (omitting field names), schema is a good form of documentation, keeping a database of schemas allows checking backward and forward compatible changes, and in statically typed languages generating code from schema allows compile time type checking.
 
+### Modes of dataflow
 
+Usually data flows via databases, service calls, asynchronous message passing.
+
+##### Via databases
+
+Be mindful of forward and backward compatibility, forward compatibility, and when writer of an old version reads data written by a new version, writes on top of that, and being able to save that data back.
+
+Data outlives code: upgrading server software is fast, but data written long ago will still be there.
+Most databases avoid migration if possible due to its being expensive.
+
+Archiving (snapshotting) data usually uses the latest schema, and Avro object container files are a good fit (or in column-oriented analytical format).
+
+##### Via services
+
+Server defines an API, clients request data from it. The API is called a service.
+The approach is usually to decompose a larger application into smaller services by area of functionality, called a service-oriented architecture / microservices architecture.
+Key design goal being to make the application easy to change and maintain by making services independently deployable and evolvable.
+
+A **web service** is where HTTP is used as the underlying protocol of talking to the service.
+
+REST and SOAP are two popular approaches to web services. They are diametrically opposed in terms of philosophy.
+* REST is not a protocol but a design philosophy that builds upon the principles of HTTP, where it uses simple data formats, URLs for identifying resources, HTTP features for cache control, authentication and content type negotiation.
+An API designed with such in mind is called RESTful.
+* SOAP is an XML-based protocol for making network API requests. Although most commonly used over HTTP, it aims to be independent from HTTP and avoids using most HTTP features. API of a SOAP web service is described using Web Services Description Language, WSDL, an XML-based language. WSDL is not designed to be human-readable, users of SOAP rely heavily on tool support and code generation.
+
+Web services are the latest incarnation of a long line of technologies for making API requests over a network, based off the ideas of **RPC**, whuch tries to make a request to a remote service look the same as calling a function or method in your programming language.
+This may be fundamentally flawed in the sense that
+* a local function call is predictable and either succeeds or fails depending only on the parameters that are under your control. A network request is unpredictable.
+* a local function call either returns a result, or throws an exception, or never returns; a network request can have more outcome like returning without a result due to a timeout.
+* retrying a call that didn't respond in time may actually cause the action to happen twice in the remote, in which case idempotence needs to be built in. Local calls don't have this problem.
+* local function call times are more predictable while network delays can vary wildly.
+* a local function call can take in references efficiently, network call requires all actual data to be sent over the network.
+* the client and service may be implemented in different languages so RPC framework has to translate datatypes from one language into another, not a problem for local function calls.
+
+REST does not try to hide the fact that it goes through network. RPC libraries can be built using REST.
+
+With these flaws, RPC isn't going away in the short term.
+gRPC is an RPC implementation using protobuf, Thrift and Avro come with RPC support.
+
+The new generation of RPC framework is more explicit about a remote request being different from a local call: e.g. they may use futures / promises to encapsulate asynchronous actions that may fail.
+gRPC also supports streams with a call consisting of more than one request and response.
+
+Dataflow through services can be easier to involve than dataflow via database: you can assume servers are always upgraded first and clients after them. Hence responses need to be forward compatible and requests need to be backward compatible.
+
+Forward and backward compatibility properties of an RPC scheme are usually inherited from the encoding format they use: Thrift, gRPC, Avro RPC; SOAP's XML schemas; RESTful API usually uses JSON without a formally specified schema where adding optional request param and adding to response are usually changes that maintain compatibility.
+
+##### Message-passing dataflow
+
+Asynchronous message-passing systems are somewhere between RPC and databases.
+A client's request (message) is delivered to another process by going through an intermediary called a message broker (message queue, or message-oriented middleware).
+
+Compared with RPC, a message broker
+* can act as a buffer if the recipient is unavailable or overloaded, thus improving reliability
+* can automatically redeliver messages to a process that has crashed preventing messages being lost
+* avoids the sender needing to know the IP address and port number of the recipient
+* allows one message to be sent to multiple recipients
+* logically decouples the sender from the recipient
+
+However, a difference compared with RPC is that message-passing is usually one-way: a sender does not expect to receive a reply.
+A reply is possible via a different channel, and this communication pattern is asynchronous in that the sender doesn't wait for the message to be delivered but simply sends it and then forgets it.
+
+Recently, RabbitMQ, Apache Kafka, etc, have become popular message brokers.
+In general, message brokers are used as follows: one process sends a message to a named queue or topic, and the broker ensures the message is delivered to one or more consumers of or subscribers to the topic.
+There can be many producers and many consumers on the same topic.
+
+Message brokers typically don't enforce any particular data model and you can use encoding format.
+If the encoding is backward and forward compatible, you have the flexibility to change producers and consumers independently and deploy them in any order.
+
+The **actor model** is a programming model for concurrency in a single process.
+Rather than dealing directly with threads (race conditions, locking, etc), logic is encapsulated in actors.
+Each actor has some local states and communicates with other actors by sending and receiving asynchronous messages.
+Message delivery is not guaranteed.
+
+Distributed actor model uses this programming model on different nodes as there is less of a fundamental mismatch between local and remote communication when using the actor model.
+This model essentially integrates a message broker and the actor programming model.
+
+Some distributed actor model frameworks are Akka (Java's built-in serialization), Orleans, Erlang OTP.
+
+### Summary
+
+Encoding, their efficiency and evolvability impact.
+* Programming specific-specific encodings
+* Textual formats like JSON/XML/CSV. Optional schema. Can be vague about types.
+* Binary schema-driven formats like Thrift, Protobuf, Avro
+
+Modes of dataflow.
+* Via databases. Writer process encodes, reader process decodes.
+* Via RPC and RESTful APIs / SOAP. Client encodes request, decodes response, and the opposite for server.
+* Via asynchronous message passing (using message brokers or actors).
+
+Backward/forward compatibility and rolling upgrade are achievable with a bit care.
+
+Deployment should be incremental and frequent.
