@@ -90,7 +90,7 @@ This was not a written language, and its original forms can be deduced from vari
 
 Proto-Indo-European is thought of to have started from Kurgan language of southern Russian steppes (others may claim Anatolia / Turkey), as genetic traces would suggest, as well as certain patterns and living descendants of this language tend to have common words for horse, wheels, but not oak, vine, or palm trees.
 
-German, English (and Swedish) are Germanic branches of Indo-European, where from Latin some common deviations include p --> f (pater to father), t --> th, etc. This is described in Grimm's Law.
+German, English (and Swedish, Norwegian, Danish) are Germanic branches of Indo-European, where from Latin some common deviations include p --> f (pater to father), t --> th, etc. This is described in Grimm's Law.
 
 Latvian and Lithuanian, the Baltic branch of Indo-European, is thought to have undergone more conservative changes, and remain closer to the Indo-European root. (More so in Slavic languages, too)
 
