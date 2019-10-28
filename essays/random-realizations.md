@@ -53,3 +53,17 @@ Reach out. Ask. Praise. Appreciate. Voice your thoughts.
 
 Right, wrong, good, bad, it's all a matter of perspective.
 Keep an open mind. Know and appreciate that your perspective may not be one shared by others.
+
+
+* Maybe it's this particular feeling of having one's mind inspired that drew me close as it longed for food for thought. It almost reminds me an old friend and the way she used to kindle ideas from these ashes.
+* Come to think of it, perhaps I was naive and biased while she was right all along. In hindsight, perhaps her choices were for the best, delivered in a very tactful manner.
+
+* what I don't do well in
+  * convey your thoughts in a confident and clear way. Some fear seems to have been stopping us from doing so.
+  * I would think I'm not a cynic, not an inconsiderate person, not overly vain and not terrible at certain things, are those merely blissful illusions that the mind chose to weave for me?
+
+* Learn something new different every 30, 60, 90, 360 days? Improve in certain ways? Change, forming habits, a conscious influence, and a dedicated effort.
+
+* This mind seems to have lost some of its most treasured liveliness / imagination / daringness / humor, could one blame it on the burden of real life? Did things really take a downturn since this job? What exactly is this burden? Immigration? Work? Future? Is this something we should actively work to thwart?
+
+
