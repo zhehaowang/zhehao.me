@@ -61,9 +61,10 @@ Keep an open mind. Know and appreciate that your perspective may not be one shar
 * what I don't do well in
   * convey your thoughts in a confident and clear way. Some fear seems to have been stopping us from doing so.
   * I would think I'm not a cynic, not an inconsiderate person, not overly vain and not terrible at certain things, are those merely blissful illusions that the mind chose to weave for me?
+  * When to settle for a compromise, and when to aim only for the very best, how we balance?
 
 * Learn something new different every 30, 60, 90, 360 days? Improve in certain ways? Change, forming habits, a conscious influence, and a dedicated effort.
 
-* This mind seems to have lost some of its most treasured liveliness / imagination / daringness / humor, could one blame it on the burden of real life? Did things really take a downturn since this job? What exactly is this burden? Immigration? Work? Future? Is this something we should actively work to thwart?
+* This mind seems to have lost some of its most treasured liveliness / imagination / daringness / humor, could one blame it on the burden of real life? Did things really take a downturn since this job? What exactly is this burden? Immigration? Work? Future? Desire for a breakthrough? Routine? Is this something we should actively work to thwart?
 
 
