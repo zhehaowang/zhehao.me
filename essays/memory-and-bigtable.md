@@ -20,3 +20,5 @@ Takeaways,
 * Sleep is important
 * Consciously schedule / improve / review may help the compaction process
 * We can probably create some interactive experience to model this process! (and bring in the idea of reference counting where something is forever lost in our memory / history when nothing remembers it.)
+
+Or maybe this would be an excellent demonstration of a person inexperienced in one field trying to "project" his misguided thoughts onto another field where he thought he'd be more knowledgeable in. (what bias is this called?)
