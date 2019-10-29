@@ -594,3 +594,100 @@ Modes of dataflow.
 Backward/forward compatibility and rolling upgrade are achievable with a bit care.
 
 Deployment should be incremental and frequent.
+
+# Part II. Distributed data
+
+Part I deals with a single node, Part II deals with multiple where we may gain in scalability, fault tolerance / high availability and latency.
+
+Problem with scaling vertically (communication via shared memory) using a more powerful machine is cost grows non-linearly.
+Fault tolerance and latency are also issues with a single powerful node.
+Another approach is a shared disk architecture but contention and overhead of locking limit its scalability.
+
+Share nothing architecture / horizontally scaling are not necessarily the best solution for everything, while having advantages in cost of scaling, high availability and low latency (distributed to near where clients are), they usually add complexity for applications and sometimes limits the expressiveness of data model.
+
+Two common ways of distributing data across nodes
+* Replication. Same copy of data in different locations. Provides redundancy and helps improve performance.
+* Partitioning / sharding. Split a big dataset into smaller ones to be stored separately.
+
+# Chap 5. Replication
+
+Reasons for replication:
+* keep your data geographically close to your users,
+* allow the system to continue working even part of it have failed,
+* to scale out the number of machines that can serve read queries (thus increase read throughput)
+
+This chapter assumes your dataset is small enough to live in one machine.
+The complexity in replication lies in handling changes to replicated data.
+
+Algorithms for replicating changes across nodes: single-leader, multi-leader and leaderless.
+
+### Leaders and followers
+
+To ensure change gets to all replicas, the most common solution is leader-based replication (active / passive, master / slave replication).
+* One of the replicas is the leader (master / primary), all write requests must go through the leader, which first writes the new data to its local storage.
+* Whenever leader writes to its local storage, it sends the change to all of its followers (read replicas, slaves, secondaries, hot standbys) as a part of replication log or change stream. Each follower updates accordingly by applying the changes in the same order as they were processed by the leader.
+* a client read can be handled by the leader or any of the followers.
+
+This mode of replication is built-in for many relational DBs, MySQL, PostgreSQL, etc, and some non-relational DBs, MongoDB, Espresso, etc.
+This is not limited to distributed DBs, Kafka and RabbitMQ's high availability queues also use it.
+
+### Synchronous and asynchronous replication
+
+* Synchronous: the leader wait for a follower to confirm it received the write before reporting success to the user, and before making the write visible to other clients.
+  * Advantage: the follower is guaranteed to have an up-to-date copy of the data that is consistent with leader. If leader suddenly fails data is still available on the follower.
+  * Disadvantage: the write cannot be processed if the follower does not respond and the leader has to block all writes.
+  * It's impractical for all followers to be synchronous.
+* Asynchronous: leader does not wait for follower response before telling the user.
+
+Usually if you enable synchronous replication on database it's **semi-synchronous** where one of the followers receive synchronous updates and all others async.
+If the synchronous followers becomes slow, one of the async followers is made sync.
+This guarantees up-to-date data on at least two nodes.
+
+In practice leader-based replication is often configured to be full async where a write, even if confirmed by the leader, are not guaranteed to be durable.
+
+### Setting up new followers
+
+To spin up a new follower, full copy usually doesn't work as data is being written as we copy, while locking the DB means lowering availability.
+Usually we take a snapshot of the leader's DB at some point, copy this snapshot over, and the new follower then requests all the changes that have happened since the snapshot's taken, until it fully catches up.
+This requires the snapshot being assoicated with an exact location in leader's replication log, known as log sequence number, binlog coordinates.
+
+### Handling node outages
+
+* Follower-failure (catchup): each follower keeps a log of data changes it has received from leader. When a follower crashes, it picks up the last processed transaction from this log and request all the data changes since that.
+* Leader-failure (**failover**): one of the followers needs to be promoted leader, and clients need to be reconfigured to send their writes to the new leader, and other followers need to start consuming data changes from the new leader.
+  * Determining leader failure usually relies on heartbeat
+  * Electing a new leader is a consensus problem. Usually the replica with most up-to-date data changes from the leader is chosen to minimize data loss
+  * Reconfiguring the system to follow the new leader, and if old leader comes back, ensure it becomes a follower to the new leader.
+
+Failover is fraught with things that can go wrong:
+* With asynchronous replication, there can be writes from the leader before it failed that are not in the new leader. We could discard those unreplicated writes but this would violate client's durability assumption
+* Discarding writes is especially dangerous if other storage systems outside of the DB need to be coordinated with database content.
+* In some fault scenarios it could happen that two nodes believe they are the leader. As a safety catch some systems shut one down in this case, these need to be carefully designed as well so as to not shut both down.
+* deciding the right heartbeat timeout for a leader to be considered dead.
+
+### Implementation of replication logs
+
+* Statement-based replication. In a relational system each INSERT, UPDATE or DELETE is forwarded to followers. This has problems with
+  * calling nondeterministic function like NOW and RAND
+  * if statements depend on existing data in the column, they must be executed in exactly the same order on each replica
+  * statements with side effects (triggers, stored procedures, user-defined functions) may result in different side effects on different replica unless side effects are deterministic
+  * there are workarounds but other replication methods are usually preferred.
+
+* Write-ahead log shipping (in LSM trees this log is the main place for storage, in B-trees this is the write-ahead log for restoring to a consistent state after a crash)
+  * we can use the same log for replication: leader appends to its own log and also sends it across the network to followers.
+  * main disadvantage is log describes data on a very low level: like which bytes were changed in which disk blocks, this makes replication closely coupled to the storage engine. It's typically not possible to run different versions of the database software on the leader and followers.
+  * this advantage has a big operational impact: upgrade requires downtime. If this allows followers to run a newer version than the leader, then zero downtime upgrade can be achieved by upgrading some followers then perform a failover.
+
+* Logical (row-based) replication
+  * uses a different log format for replication than the log of the storage engine. The former's a logical log while the latter's a physical log.
+  * logical log for a relational DB is usually a sequence of records describing writes to tables at the granularity of a row: insert contains new values of all columns, delete cotntains the primary key or if no primary key old values of all columns, update contains the primary key (or enough info to uniquely identify a row) and the new values of all columns.
+  * a transaction that modifies several rows generates several such records followed by a record to indicate a commit. MySQL binlog uses such.
+  * this higher-level log allows leader and follower to run different storage engines.
+  * this log is easier for external applications to parse, e.g. transcribing data to a warehouse or for building caches, custom indexes. This is called **change data capture**.
+
+* Trigger-based replication
+  * the above are replications implemented by the database system. Sometimes you want more flexibility as an application, to e.g. replicate a subset of the data. Then replication then may be moved up to application level, or use triggers and stored procedures available in many relational DBs, which lets you register custom application code executed automatically when data changes.
+  * This usually has more overhead, is more error-prone but more flexible.
+
+### Problems with replication lag
+
