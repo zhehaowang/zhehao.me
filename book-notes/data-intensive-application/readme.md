@@ -691,3 +691,47 @@ Failover is fraught with things that can go wrong:
 
 ### Problems with replication lag
 
+Replication helps with availability, read throughput and latency.
+
+In a system with few writes and lots of reads one leader and many followers may seem ideal, though this system can only replicate asynchronously, meaning a client reading from an asynchronous follower may see out-of-date data: reading at the same time from leader and a follower may give different results, transiently.
+Without writes eventually they should converge, and this is known as **eventual consistency** where eventual is vague and can be arbitrarily long.
+
+##### Read your own writes
+
+Read-your-write-consistency / read-after-write-consistency is a guarantee that user will always see any updates they submitted themselves.
+To implement read-after-write-consistency, we could:
+* when reading something that the user might have modified, read it from leader, otherwise read from follower. This requires your system to be able to identify what the user can modify, e.g. profile of that user on a social media page, or
+* track the time of last update, and for a certain time (based on replication lag) after the last update make all reads from the leader, or
+* client can remember the timestamp of its most recent write, then the system can ensure that the replica serving any reads for that user reflects updates at least until that timestamp, and switch to a different replica or wait if that replica does not have this timestamp. This can be a logical timestamp that indicates the ordering of writes, or system clock where clock synchronization becomes critical
+
+Another complication arises when the same user is accessing your service from multiple devices.
+* Timestamp remembering becomes more difficult: this metadata needs to be centralized and known across devices
+* If your replicas are distributed across different data centers the user's multiple devices may connect to different data centers. If your approach requires reading from the leader you may first need to route requests from all of a user's devices to the same data center.
+
+##### Monotonic reads
+
+Another anomaly with asynchronous replication is user can see things moving back in time.
+Monotonic reads is a guarantee this does not happen, a guarantee stronger than eventual and weaker than strong consistency.
+
+One way to achieve this is make the user read always from the same replica, e.g. using a hash of the UserID, rather than randomly.
+However this needs to handle rerouting when that replica fails.
+
+##### Consistent prefix reads
+
+A third anomaly with asynchronous replication is violation of causality.
+Consistent prefix reads is a guarantee this does not happen, which says if a sequence of writes happens in a certain order, then anyone reading those writes will see them appear in the same order.
+
+This is a particular problem in sharded databases as if the database always applies writes in the same order, reads always read a consistent prefix and this cannot happen.
+But in many distributed databases different partitions operate independently so there is no global ordering of writes.
+One solution is to make sure any writes causally related to each other are written to the same partition, but in some applications that cannot be done efficiently.
+
+
+When working with an eventually consistent system it's important to consider what if replication lag gets long, and what kind of consistency guarantee you need to provide to users.
+Application code can manually perform some operations on the leader to provide a stronger guarantee than the underlying DB, but this is error prone and complex, and it'd be ideal if application doesn't need to worry about consistency and can trust their DB to do the right thing.
+This is why transactions exist: they provide stronger guarantees from the database such that applications can be simpler.
+
+When moving away from a single node to multi node many dropped transactions, claiming they are too expensive or hurts availability too much, and eventual consistency is the only guarantee.
+This is true to some extent, but an oversimplified statement.
+
+### Multi-leader replication
+
