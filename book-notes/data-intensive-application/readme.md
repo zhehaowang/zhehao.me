@@ -757,3 +757,24 @@ Realtime collaborative editing such as Google Doc poses a similar problem, where
 You could make a user wait until another has finished editing (holding a lock), which would be similar to single-leader replications with transactions on the leader.
 For faster collaboration you'll want to make the unit of change very small and avoid locking, which brings the challenges of multi-leader replication including requiring conflict resolution.
 
+### Handling write conflicts
+
+Imagine two users modifying the same thing at the same time, in a single-leader system, the second write (ordering is deterministic) can be either blocked or rejected while the first is ongoing.
+
+You could make the replication synchronous to handle this, but this breaks the main advantage of multi-leader replication: allowing each replica to accept writes independently.
+
+##### Conflict avoidance
+
+Best way to deal with conflicts is to avoid them: if the application can ensure all writes for a particular record go through the same leader (the social media profile example), then conflicts cannot occur.
+
+In some cases you have to change the designated leader for a record, due to datacenter failure or user having moved, in which case concurrent writes on different leaders needs to be dealt with again.
+
+##### Converging towards a consistent state
+
+In a multi-leader setup if each leader were to just apply writes in the order they receive them, eventual consistency cannot be guaranteed in that writes can have different orders getting to different leaders.
+We'll want a convergent way which can be achieved with:
+* give each write a unique ID (random number, timestamp, UUID, hash, etc) and pick the write with the highest ID as the winner. If timestamp is used this is known as last write wins, a popular approach but prone to data loss.
+* give each replica a unique ID and let writes originated at a higher-numbered replica always take precedence. This also implies data loss.
+* somehow merge them, e.g. order them alphabetically then concatenate.
+* record the conflict in an explicit data structure that preserves all information and write application code that resolves the conflict at some later time (perhaps by prompting the user).
+
