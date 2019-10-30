@@ -735,3 +735,25 @@ This is true to some extent, but an oversimplified statement.
 
 ### Multi-leader replication
 
+A multi-leader configuration (master-master, active/active replication) allows more than one node to accept writes.
+Each leader in this setup simultaneously acts as a follower to other leaders.
+
+It rarely makes sense to use a multi-leader setup in a single datacenter as the benefits rarely outweighs the added complexity.
+With multiple data centers this can serve as an alternative to having all your writes go through a leader in one data center.
+* Perceived performance may be better in this case as user writes can be handled by the data center closest to them, and the inter-datacenter network delay is hidden from them. Having all writes go through one node may defeat the purpose of multi-data center.
+* This can tolerate data center outage.
+* This is more tolerant of network problems as inter-data center connections usually go through the Internet and is much more error prone than local network within a data center: a temporary network outage does not prevent writes from being made.
+
+Some databases support multi-leader configuration by default, but it often implemented by external tools over commercials DBs.
+
+Multi-leader comes with a big downside of the same data can be concurrently modified in two different data centers, and those writes have to have their conflicts resolved.
+
+Multi-leader can be quite dangerous due to configuration pitfalls and surprising interaction with other DB features such as autoincrementing keys, triggers and integrity constraints.
+
+
+Clients with offline operation support is essentially a multi-leader replication, as when offline the client's local DB acts as a leader that can accept writes.
+
+Realtime collaborative editing such as Google Doc poses a similar problem, where the user edits can be written to the local web browser acting as a leader.
+You could make a user wait until another has finished editing (holding a lock), which would be similar to single-leader replications with transactions on the leader.
+For faster collaboration you'll want to make the unit of change very small and avoid locking, which brings the challenges of multi-leader replication including requiring conflict resolution.
+
