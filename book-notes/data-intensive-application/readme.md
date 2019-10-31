@@ -778,3 +778,68 @@ We'll want a convergent way which can be achieved with:
 * somehow merge them, e.g. order them alphabetically then concatenate.
 * record the conflict in an explicit data structure that preserves all information and write application code that resolves the conflict at some later time (perhaps by prompting the user).
 
+##### Custom conflict resolution logic
+
+Conflict resolution in multi-leader systems are often application-specific, and these systems would let application supply their custom logic for conflict resolution, which gets executed either on-write or on-read. In latter's case all conflicting versions are written and given to the reader the next time they are read, the reader resolves automatically / manually, and the result gets written back.
+
+Note that conflict resolution usually applies at the level of an individual row or document, not for an entire transaction.
+A transaction with several writes usually have each of these writes considered separately for conflict resolution.
+
+Conflict resolution is error-prone, Amazon is often cited as having surprising effects due to this.
+* This inspired research in **CRDT** (conflict-free replicated datatypes), a family of data structures for sets, maps, ordered lists, counters, etc that can be updated concurrently by multiple users and automatically resolve conflicts in reasonable ways.
+* Mergeable persistent data structure tracks history explicitly, similarly to git, and uses a three-way merge function. (whereas CRDT uses two way merge)
+* Operational transformation is the algorithm behind Google docs, designed particularly for concurrent editing of an ordered list of items, such as the list of characters that constitute a document.
+
+##### Multi-leader replication topologies
+
+With more than two leaders, various replication topologies are possible, circular, star, all-to-all, etc.
+
+In circular and star a replication passes through several nodes before reaching all replicas.
+Nodes forward data and to prevent infinite replication loops each node is given a unique identifier and in the replication log each write is tagged with the identifiers of all nodes it passed through, and a node won't apply changes that are already tagged with its own tag.
+
+Node failure in a circular or star topology interrupting replication flow is also a bigger issue than in a more densely connected topology.
+
+All-to-all topologies may have issues with some replication messages overtaking others, like causality being violated because different paths gets causally related messages over at different times.
+Simply adding a timestamp won't fix it as timestamp cannot be assumed to be in sync all the time.
+
+To order these correctly version-vector can be used.
+Many multi-leader replication aren't implemented carefully and it's worth checking your DB's docs and test to ensure it actually provides the guarantees you believe it to have.
+
+### Leaderless replication
+
+Dynamo is an example of this where a client can write to any nodes.
+Riak, Cassandra are open-source leaderless replication systems inspired by Dynamo.
+
+There is no concept of failover in a leaderless replication system.
+The client writes to multiple replicas and as long as enough number of replicas returned success the write is considered successful by the client.
+The client also reads from multiple replicas and in parallel and version numbers are used to decide which value is newer.
+
+When an unavailable node comes back online, to get up-to-date data to it we could use read repair, where a client makes a read from several nodes in parallel and detect stale response, in which case they write the newer value back to that relica. This works well for values that are frequently read.
+
+Many data stores also have an anti-entropy process that constantly looks for differences in data between replicas and copies over missing data from one replica to another. This may have signifcant delays.
+
+##### Quorums for reading and writing
+
+If there are n replicas, every write must be confirmed by w to be considered successful, and we must query at least r nodes for each read. 
+As long as w + r > n we expect to get up-to-date value when reading, because at least one we read from must be up to date.
+Reads and writes that obey this are called quorum reads and writes.
+A typical setup is to let n be an odd number and r, w be n/2 rounded up.
+When fewer nodes returned success the read or write operation returns error.
+
+Lowering w + r below n will make you likely to read stale values, but allows higher availability and lower latency.
+
+Although quorums appear to guarantee that a read returns the latest written value, in practice it's not so simple due to edge cases.
+Dynamo-sstyle databases are generally optimized for use cases that can tolerate eventual consistency, and r + w shouldn't be taken as guarantees.
+In particular you usually don't get read-your-writes, monotonic-reads, consistent-prefix-reads, as they require transactions or consensus.
+
+##### Monitoring staleness
+
+For leader-based replication because leaders and followers apply the write in the same order, you can typically monitor the amount of replication lag.
+In leaderless replication there is no fixed order in which writes are applied, making monitoring more difficult.
+
+Eventual consistency is a deliberately vague guarantee, but for operability it's important to be able to quantify eventual.
+
+##### Sloppy quorums and hinted handoff
+
+
+
