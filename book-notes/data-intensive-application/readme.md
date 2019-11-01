@@ -1,29 +1,31 @@
 # Designing Data Intensive Applications
 
-### Chap 1. Reliability, scalability and maintainability
+# Chap 1. Reliability, scalability and maintainability
 
-Data intensive and compute intensive
+Data intensive vs compute intensive
 
-##### Reliability
+### Reliability
 
 * Fault and failure
 * Hardware error, usually uncorrelated and handled by redundancy
 * Software error, usually happens when certain assumptions about the system don't hold any more. Correlated and cascading and harder to debug
 * Human error
 
-##### Scalability
+### Scalability
 
 * Defining load
 
-**The Twitter example: to handle large fanout large read workload problem**
+##### The Twitter example: to handle large fanout large read workload problem
+
 * Relational query approach
 * Fanout queue approach
 
-* Measuring performance
-  * Percentiles
-  * Load parameters
-  * Head of line blocking
-  * Tail latency amplification
+##### Measuring performance
+
+* Percentiles
+* Load parameters
+* Head of line blocking
+* Tail latency amplification
 
 * Conventional wisdom for scaling databases or stateful data systems is to scale up (grow tall, as opposed to scale out / grow wide) until you hit a limit (Think ComDB2)
 * Elasticity
@@ -841,5 +843,72 @@ Eventual consistency is a deliberately vague guarantee, but for operability it's
 
 ##### Sloppy quorums and hinted handoff
 
+Leaderless databases with appropriately configured quoroms can tolerate failures without failover as well as slowness, since as long as w / r nodes returned the operation succeeds.
+This makes them appealing for high-availability low-latency workload, and one that can occasionally tolerate stale reads.
 
+This scheme as described is not tolerant to network partition, during which it's likely fewer than w or r reachable nodes remain and a quorum cannot be reached.
 
+Designers face a tradeoff in this case: block off all reads / writes, or let writes proceed anyway to nodes that are reachable but aren't among the n nodes on which they value usually lives.
+
+The latter is **sloppy quorum**: reads and writes still require r and w successful responses, but those may include nodes that aren't among the designated n home nodes for a value.
+
+Once the partition is fixed, any writes that one node temporarily accepted on behalf of another are sent to the appropriate home nodes, this is called **hinted handoff**.
+
+Sloppy quorum is particularly useful for increasing write availability, the database can accept writes as long as any w nodes are available.
+This also means even when w + r > n, you cannot be sure to read the latest value for a key, as the value may have been temporarily written to some nodes outside of n.
+
+Hence sloppy quorum isn't a quorum but a durability assurance.
+Sloppy quorum are optional in all common Dynamo implementations (Riak, Cassandra, Voldemort).
+
+##### Multi-data center operation
+
+Leaderless replication is also useful for multi-datacenter operation, since it is designed to handle conflicting concurrent writes, network interruptions, and latency spikes.
+
+Cassandra usually have the number of replicas n in all data centers, each write is sent to all replica but only w needs to acknowledge, and these are usually all from local data centers so the client is unaffected by inter-data center links.
+
+### Detecting concurrent writes
+
+Dynamo-style DBs allows several clients to write to the same key, and conflicts can occur during writes, read repair or hinted handoff.
+
+If each node simply overwrote the value for a key whenever it received a write request from a client, we could end up in an eventually inconsistent state.
+The replicas should converge towards some value, and if you as the application developer want to avoid losing data, you usually need to know a lot about the internals of your database's conflict handling.
+
+##### Last write wins
+
+Concurrent writes don't have a natural ordering so we force arbitrary orders on them, e.g. attach a timestamp to each write and pick the biggest timestamp as the most recent. This conflict resolution LWW is the only support resolution in Cassandra.
+
+LWW achieves eventual convergence but at the cost of durability. It may even drop writes that are not concurrent due to time drift.
+
+If losing data is unacceptable LWW is a poor mechanism for conflict resolution, the only safe way to use LWW is to ensure a key is written only once and immutable thereafter. E.g. a recommended way of using Cassandra is to use a UUID as the key, thus giving each write operation a unique key.
+
+##### "Happens-before" relationship and concurrency
+
+How to decide if two writes are concurrent: an operation A happens before another operation B if B knows about A or depends on A or builds upon A in some way.
+Whether one operation happens before another is the key to defining what concurrency means.
+Two can be said to be concurrent if neither knows about the other.
+
+Note that concurrent here does not necessarily mean happening at the same physical time as with clocks in distributed system it's usually quite difficult to tell two things happening at the same time.
+
+(From a physics perspective, if information cannot travel faster than the speed of light, then two events sufficiently far away from each other cannot possibly affect each other if the time delta of them happening is lower than the time light would take to propagate from one location to another.)
+
+##### Capturing "happens-before"
+
+Imagine a single server with multiple writers,
+* Server maintains a version number for every key, increments the version every time that key is written, and stores the new version number along with the value written.
+* When a client reads a key the server returns all values that have not been overwritten as well as the lastest version number. A client must read a key before writing.
+* When a client writes a key it must include the version number from the previous read (as an indication of what I've already seen), and it must merge together all the values it received in the prior read.
+* When the server receives a write with a particular version number, it can overwrite all values with that version number or below (since it knows that they have been merged into the new value), but it must keep all values with a higher version number (because those values are concurrent with the incoming write)
+
+Essentially, when a write includes the version number from a prior read, that tells us which previous state the write is based on.
+
+##### Merging concurrently written values
+
+The above algorithm ensures nothing is silently dropped, but it unfortunately requires the clients to do extra work to merge the concurrently written values (siblings) before writing another.
+
+Merging siblings is essentially the same problem as conflict resolution in multi-leader replication as discussed before.
+
+You could merge by taking one value based on a timestamp (losing data), take a union of all siblings, or if you allow clients to also remove, union won't do the right thing and the system must leave a marker (tombstone) with the appropriate version number to indicate that the item has been removed when merging siblings.
+
+As merging siblings in application code is complex and error-prone, some data structures try to perform this automatically, e.g. CRDTs.
+
+##### Version vectors
