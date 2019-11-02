@@ -935,3 +935,100 @@ Three major approaches to replication:
 The effects of replication lag and different consistency models: eventual, read-your-write, read-monotonic, consistent-prefix-reads.
 
 In multi-leader and leaderless system, ways to reconcile write conflicts. LWW, version-vectors based merge.
+
+# Chap 6. Partitioning
+
+A partition in this chapter is called a shard in MongoDB, Elasticsearch, SolrCloud, a region in HBase, a tablet in Bigtable, a vnode in Cassandra and Riak, and a vBucket in Couchbase.
+
+In effect each partition is a small database of its own, although the database may support operations that touch multiple partitions at the same time.
+
+The main reason for wanting partitioning is scalability. Large complex queries can potentially be parallelized across many nodes.
+Different partitions can be placed on different nodes in a shared nothing cluster.
+
+The fundamentals of partitioning apply to both kinds of workloads.
+
+### Partitioning and replication
+
+Partitioning is usually combined with replication so that copies of each partition are stored on multiple nodes.
+Even though each record belongs to exactly one partition, it may still be stored on multiple different nodes for fault tolerance.
+
+Each partition's leader is assigned to one node, and each node can be the leader for some partitions and a follower for other partitions.
+
+The choice of partitioning scheme is mostly independent from the choice of replication scheme, so this chapter ignores replication.
+
+### Partitioning of Key-Value data
+
+Goal: spread the data and the query load evenly across nodes.
+
+A skewed partitioning makes partitioning less effective in that some partitions serve more than others (hot spot).
+
+We can randomly assign, which is unideal in that we don't know which node a particular queried item is on and we have to query all nodes in parallel.
+
+##### Partitioning by key range
+
+Partitioning by a sorted key is used by Bigtable, its open source equivalent HBase, and earlier MongoDB.
+
+With each partition we keep keys in sorted orders, advantage being range scans are easy, downside being certain access patterns can lead to hot spots (think a process keeps writing real world clock time sensor readings to a timestamp partitioned database. In this case you need something other than timestamp as the first element of the key, e.g. the sensor name. Now if you want all sensor levels over a time range, multiple queries are needed).
+
+##### Partitioning by key hash
+
+A good hash function takes skewed data and makes it uniformly distributed.
+For partitioning purposes they need not be cryptographically strong, MD5, murmur3, Fowler-Noll-Vo functions are all used.
+Each partition would now serve a range of hashes as opposed to keys.
+This technique is good at distributing keys fairly among partitions.
+Boundaries are evenly spaced, or chosen pseudo-randomly.
+
+**Consistent hashing** uses randomly chosen partition doundaries to avoid the need for central control or distributed consensus.
+This approach actually doesn't work very well for databases so it's rarely used in practice.
+
+Using hash means the sorted order of keys is lost.
+Range queries on primary keys are not supported by Riak, Couchbase or Voldemort, and in MongoDB enabling hash-based partitioning means range queries will be sent to all partitions.
+
+Cassandra does a compromise between the two partitioning strategies: a table can be declared with a compound primary key of several columns, the first part of that key is hashed to determine the partition, and the others are used as a concatenated index for sorting data in Cassandra's SSTable.
+A query can therefore specify the partitioning key and do range queries on the other columns with a fixed partitioning key.
+
+This enables an elegant data model for one-to-many relationships, like a social media site where a user has many updates, the partitioning key is the user ID, and we could then query the user's feed within a time range.
+
+##### Skewed workloads and relieving hot spots
+
+Think of unusual cases of a celebrity on social media, with user ID hash-based key all their query would still fall onto the same partition.
+
+Today's DB typically doesn't handle this automatically, application can reduce the skew if it knows one key to be very hot, by appending a random number to the key (1 digit gives you 10 partitions), with downsides being read now needs to do additional work to read from all partitions.
+This also requires additional bookkeeping.
+
+### Partitioning and secondary indexes
+
+If data is over accessed by primary key we can determine the partition from that key.
+
+The problem is more complicated with secondary indexes involved.
+A secondary index usually doesn't identify a record uniquely but rather is a way of searching for occurrences of a particular value.
+
+Secondary indexes are the bread and butter of relational DBS and they are common in document databases, too.
+Many key-value stores such as HBase and Voldemort have completely avoided them, some started adding them, and they are the raison d'etre of search servers such as Solr and Elasticsearch.
+
+The problem is they don't map neatly to partitions, and two main approaches are document-based partitioning and term-based partitioning.
+
+##### Document-based partitioning
+
+Each partition maintains its own secondary indexes covering only documents in that partition (i.e. a local index).
+(e.g. map each secondary key's value to the primary keys of records living in this partition)
+
+So querying by secondary index would mean sending a query to all partitions, and combine the results you get back.
+
+This approach to querying a partitioned database is sometimes known as **scatter/gather**, and it can make read queries on secondary indexes quite expensive.
+
+Despite this it is widely used in Cassandra, MongoDB, Riak, Elasticsearch and SolrCloud.
+
+##### Term-based partitioning
+
+Rather than having local indexes as above, we can a global index that covers all data in all partitions and partition that global index to different nodes (by key range, or hash).
+
+The term (full-text indexes) we are looking for decides which partition the global index is on, we read the index from that partition and figure out the primary keys of records we need to query.
+
+Reads now only needs to request from partitions containing the term it wants (as well as the global index), but writes are slower as a writing to a single document may now affect multiple partitions of the index (every term in the document might be on a different partition).
+
+This would also require a distributed transaction across all partitions affected by a write (to keep data and indexes on different partitions in sync), which many don't support.
+In practice updates to a global secondary indexes are often asynchronous, as in Dynamo.
+
+### Rebalancing partitions
+
