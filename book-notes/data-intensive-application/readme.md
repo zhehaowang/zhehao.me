@@ -912,3 +912,26 @@ You could merge by taking one value based on a timestamp (losing data), take a u
 As merging siblings in application code is complex and error-prone, some data structures try to perform this automatically, e.g. CRDTs.
 
 ##### Version vectors
+
+Scaling the algorithm to multiple replicas, we need to use a version per key as well as per replica.
+Each replica increments its own version number when processing a write, while also keeping track of version numbers it saw from other replicas. This indicates what to overwrite and what to keep as siblings.
+
+The collection of version numbers from all the replicas is called a **version vector**, they are sent from the replica to the client when read, and sent back to the database when a value is subsequently written.
+Version vector allows the DB to tell which writes are causal and which are concurrent.
+
+Riak's dotted version vector is probably the most used, which it calls a causal context.
+
+Similar to the single-replica example, the application may need to merge siblings.
+
+### Summary
+
+Replication can serve these goals: high availability, disconnected operations, lower latency, scale better.
+
+Three major approaches to replication:
+* single-leader, write all goes to leader, read can be served from any. Reads might be stale. Easy to understand and implement.
+* multi-leader, write sent to one of several leaders, leaders propagate changes to each other and followers. More robust but harder to reason and provides only weak consistency guarantees.
+* leaderless, read and write both from several nodes, to detect and correct nodes with stale data.
+
+The effects of replication lag and different consistency models: eventual, read-your-write, read-monotonic, consistent-prefix-reads.
+
+In multi-leader and leaderless system, ways to reconcile write conflicts. LWW, version-vectors based merge.
