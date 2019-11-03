@@ -96,3 +96,6 @@ Latvian and Lithuanian, the Baltic branch of Indo-European, is thought to have u
 
 Armenian and Albanian, although Indo-European in origin, have borrowed more from neighboring languages and fewer words in common with the other branches of Indo-European languages.
 
+Comparative reconstruction: decuding the original form of a proto-Indo-European word from several modern day / extinct descendants.
+The general methodology seems to combine the more uncommon features from later variants (some common forms of decay / patterns of change have been noted), as those, especially if appearing in multiple descendants in different geolocations, are more unlikely to be the results of coincidental change the multiple descendants all went through.
+
