@@ -99,3 +99,8 @@ Armenian and Albanian, although Indo-European in origin, have borrowed more from
 Comparative reconstruction: decuding the original form of a proto-Indo-European word from several modern day / extinct descendants.
 The general methodology seems to combine the more uncommon features from later variants (some common forms of decay / patterns of change have been noted), as those, especially if appearing in multiple descendants in different geolocations, are more unlikely to be the results of coincidental change the multiple descendants all went through.
 
+### Some peculiarities 
+
+Semitic languages (of Afro-Asiatic language family, Hebrew, Arabic, Ethiopian, etc). Tri-consonantal root with vowel variations
+
+Japanese, Southeast Asian languages, Chinese, numeral classifier, sounds like la ba me to help convey meaning, no distinction between he, she, it in sound, and generally more contextual than English.
