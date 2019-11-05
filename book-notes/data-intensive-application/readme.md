@@ -1150,4 +1150,62 @@ By design each partition operates mostly independently which allows a partitione
 
 # Chap 7. Transactions
 
+Many things can go wrong in a distributed data system, failing in the middle of a write, may crash at any time, network can partition, several clients can overwrite each others' changes, may read data that's partially written, race conditions, etc.
 
+Transactions have been the mechanism of choice for simplifying these issues: they simplify the programming model for applications accessing a DB.
+Transactions group a series of reads and writes into one logical unit to be executed as one: the entire batch either succeeds or fails.
+
+Transactions make application not need to worry about partial failures.
+Not every application needs transactions.
+
+This chapter discusses read committed, snapshot isolation, and serializability.
+These concepts apply to distributed storage as well as single node.
+
+Transactions have been the main casualty of the no-SQL movement.
+There emerged a popular belief that transactions are the antihesis of scalability. This is not necessarily true.
+
+### ACID
+
+The safety guarantees provided by transactions are described by **ACID** (atomicity, consistency, isolation, durability.)
+In practice one database's implementation of ACID does not equal another's. E.g. isolation can be quite ambiguous.
+
+Systems not meeting ACID (vague) are sometimes called BASE (basically available, soft state, eventual consistency), an even vaguer term.
+
+Atomicity (atomic operation), in the context of multi-threaded program, means another thread cannot see the the half-finished operation of another.
+In ACID atomicity does not have to do with multiple processes trying to access data at the same time (that is isolation).
+
+In ACID **atomicity** means if among several writes one fails at some point, the database must discard or undo any writes it has made so far in that transaction.
+
+**Consistency** is a terribly overloaded term.
+* Replica consistency refers to eventual consistency, read-after-write, monotonic-read, consistent-prefix-read.
+* Consistent hashing is an approach to partitioning some systems use for rebalancing.
+* CAP theorem consistency means lineariazability
+* ACID consistency means an application-specific notion of database being in a good-state.
+
+ACID consistency means some invariants about your data must always be true. (like in an accounting system credits and debits must balance.)
+This then becomes an application-specific definition.
+The application may rely on the DB's atomicity and isolation properties to achieve consistency, this is not up to the DB alone and C from ACID should be tossed.
+
+ACID **isolation** means concurrently executing transactions are isolated from each other.
+The classic database textbooks formalize isolation as serializability meaning each transaction can pretend it's the only transaction running on the DB, though in reality there might be several running at the same time.
+
+ACID **durability** is a promise that data a transaction wrote successfully will not be forgotten.
+It usually involves writing to hard drive as well as a write-ahead log for recovery and a DB reporting a transaction as successful only after successful log write.
+Perfect durability (reliability) does not exist, there are risk-reduction techniques but take any theoretical guarantee with a grain of salt.
+
+Durability historically meant writing to a disk, but now has been adapted to mean replication.
+
+### Single and multi-object operations
+
+Atomicity and isolation describe what should happen if clients make transactions: all-or-nothing, concurrent transactions shouldn't interfere with each other (another transaction should not see half written results of this transaction)
+
+This usually requires some way to tell which reads and writes are in the same transaction, relational database uses `begin transaction` and `commit`.
+Many non-relational DBs don't have a way of grouping operations together, even with a multi-object API in the same statement, it doesn't necessarily mean that statement guarantees all-or-nothing.
+
+Atomicity and isolation apply to single-object writes as well, imagine a disk failure when halfway through writing a large object.
+What does the storage engine guarantee in this case?
+It'd be very confusing if no guarantees are provided, so storage engines typically provide atomicity and isolation on the level of a single object on one node, which can be implemented with a write-ahead log (atomicity) and a lock on each object (isolation).
+
+Some databases also provide an atomic increment operation, and a compare-and-set operation.
+
+These single-object atomicity and isolation guarantees aren't the usual sense of ACID A and I: they usually refer to grouping multi-object modifications into one unit of execution.
