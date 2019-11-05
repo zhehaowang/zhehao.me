@@ -59,7 +59,7 @@ Keep an open mind. Know and appreciate that your perspective may not be one shar
 * Come to think of it, perhaps I was naive and biased while she was right all along. In hindsight, perhaps her choices were for the best, delivered in a very tactful manner.
 
 * what I don't do well in
-  * convey your thoughts in a confident and clear way. Some fear seems to have been stopping us from doing so.
+  * convey your thoughts in a confident and clear way. Some fear seems to have been holding us back.
   * I would think I'm not a cynic, not an inconsiderate person, not overly vain and not terrible at certain things, are those merely blissful illusions that the mind chose to weave for me?
   * When to settle for a compromise, and when to aim only for the very best, how we balance?
 
