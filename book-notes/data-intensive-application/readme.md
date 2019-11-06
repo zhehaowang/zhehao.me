@@ -1209,3 +1209,73 @@ It'd be very confusing if no guarantees are provided, so storage engines typical
 Some databases also provide an atomic increment operation, and a compare-and-set operation.
 
 These single-object atomicity and isolation guarantees aren't the usual sense of ACID A and I: they usually refer to grouping multi-object modifications into one unit of execution.
+
+In many cases multiple objects need to be coordinated, updates with foreign keys in relational model, updating denormalized fields in document model, and updating secondary indexes.
+Implementing these without transactions is possible, but error handling is made difficult.
+
+A key feature of a transaction is that it can be aborted and safely retried if an error occurred.
+
+Although retrying an aborted transaction is a simple and effective error handling mechanism, it isn't perfect in that
+* transaction may have actually succeeded but network failed to deliver the success message. You'll be redoing the transaction in this case which would require an application-level deduplication mechanism
+* if error is due to overload retrying is going to make matters worse without reasonable exponential backoff / number limits.
+* it's only worth retrying after transient errors, retrying after permanent error is pointless.
+* if the transaction is not side effect free the side effect could happen twice.
+* if a client fails while retrying what it's trying to write is lost.
+
+### Weak isolation levels
+
+Race conditions come into play when one transaction reads / writes data that is concurrently modified by another transaction.
+Concurrency can be difficult to reason about and debug.
+For this reason databases have long tried to hide concurrency issues from application developer by providing isolation.
+
+**Serializable isolation** is a guarantee that transactions have the same effect as if run one at a time.
+This comes at a performance price, one which many DBs don't want to pay.
+
+##### Read committed
+
+**Read committed** is the most basic level of transaction isolation. It makes two guarantees: when reading from DB, you will only see data that have been committed (no dirty reads), when writing to the DB you will only overwrite data that has been committed (no dirty writes).
+
+Read committed does not prevent e.g. two transactions incrementing the same counter but the counter ends up being incremented only once. (first read, second read, both get the same value and did not dirty read, first write incremented, commit, then second write incremented, commit, the later commit did not dirty write)
+
+Most commonly databases prevent dirty writes by using row-level locks: modifying a row / document requires holding a lock on it, and it must then hold the lock until the transaction is committed or aborted.
+
+No dirty read can be enforced by having readers acquire the same lock while they read, this affects performance.
+And instead most databases prevent dirty reads by remembering the old committed value and the new value set by the transaction currently holding the write lock, and while write transaction is ongoing it returns the old committed value to readers.
+
+##### Snapshot isolation and repeatable reads
+
+Imagine a user transferring money between her 2 bank accounts, one transaction does two writes: acct1 += 100 (1), acct2 -= 100 (2), commit, another transaction does two reads of acct1 (3) and acct2 (4), commit, with read committed isolation if we have sequence 3 1 2 4 the read is going to see acct1 without the +100 and acct2 with the -100.
+Such a read is **unrepeatable** (or **read skew**) in that doing the read transaction again after the write is committed will give the expected result.
+
+**Snapshot isolation** is the most common solution, idea being each transaction reads from a consistent snapshot of the database, meaning the transaction sees all the data that was committed in the DB at the start of the transaction, even if the data is subsequently changed by another transaction, each transaction sees only the old data from the particular point in time.
+
+This makes integrity checks possible which would otherwise be difficult with just read committed isolation.
+
+Implementing snapshot isolation also uses a writer lock but read does not require locks.
+Read is built upon a generalized approach in read committed: as the DB must potentially keep several different committed versions of an object, as various in-progress transactions may need to see the state of the DB at different points in time.
+This is known as **multi-version concurrency control (MVCC)**
+
+Still, readers don't block writers and writers don't block readers.
+
+Each transaction is usually given a unique increasing ID, and each write is tagged with transaction ID (created by transaction X, deleted by transaction Y. An update is delete + creates).
+Deleted aren't immediately gone but garbage collected later.
+
+When a transaction reads, the transactio IDs are used decide which objects are visible (essentially a long enough history of writes to the object, and find the latest committed point in history that was before your read transaction).
+* At the start of each transaction, DB makes a list of all other transactions in progress at the time. Any writes those transactions have made are ignored (even if they become committed later).
+* Any writes made by aborted transactions are ignored.
+* Any writes made by transactions with a later transaction ID (started after the current transaction) are ignored.
+* All other writes are visible to the application's queries.
+
+How do indexes work in a multi-version DB?
+We could have it point to all versions of an object and require an index query to filter out versions not visible to the current transaction. 
+
+With a B-tree implementation, indexing multiple versions could look like a append-only/copy-on-write B-tree that does not overwrite pages of the tree when updated, but creates a copy of each modified page.
+Parent pages up to the root of the tree are copied to point to the new versions of child pages. Pages not affected by a write need not be copied.
+Every write then creates a new B-tree root and a particular root is a consistent snapshot of the database at the point in time when it was created.
+This approach requires a background process for compaction and garbage collection.
+
+Repeatable read can be a confusing term in SQL standards. Some use repeatable reads to refer serializability.
+
+##### Preventing lost updates
+
+
