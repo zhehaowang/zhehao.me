@@ -1278,4 +1278,28 @@ Repeatable read can be a confusing term in SQL standards. Some use repeatable re
 
 ##### Preventing lost updates
 
+Dirty write is only one type of write conflicts that can happen.
+Another is the lost update problem, as illustrated in the incrementing two counters case. (an read-update-write cycle, parse-change-write-back a json object, two users editting the same wiki at the same time, etc)
+
+**Atomic write operation** is one solution, which removes the need of read-update-write cycles in application code, which are usually the best if your code can be expressed in such.
+
+Mongo supports atomic operations for making local modifications of a json document, and redis provides atomic operation to update a data structure like priority queue.
+They are usually implemented with an exclusive lock on the object such that when read, other reads are also blocked.
+Another option is to force all atomic operations on a single thread.
+
+**Explicit locking** is another approach if the DB's built-in atomic operations don't provide the needed functionality.
+This works but can be hard to get right.
+
+**Automatically detecting lost updates**, as opposed to forcing serial like in previous approaches, this allows parallel and tries to detect lost update and when detected, forces one transmission to abort and retry.
+This check can be performed efficiently in conjunction with snapshot isolation.
+
+Some DBs instead provide a **compare-and-set** operation: this avoids lost updates by allowing an update to happen only if the value has not changed since you last read it.
+If current value does not match what you previously read, this forces an abort and the read-modify-write cycle has to be retried.
+
+In a replicated scenario, lost updates can happen on different nodes.
+Locks and compare-and-set assume there is a single up-to-date copy of the data, which cannot be guaranteed in a multi-leader / leaderless replication.
+
+Instead they allow concurrent writes to create siblings, and use application code or special data structures to resolve and merge them.
+
+Atomic operations can work well in a replicated context, especially if they are commutative (they can be applied in different orders and get the same result).
 
