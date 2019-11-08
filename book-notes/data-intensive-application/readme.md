@@ -1303,3 +1303,81 @@ Instead they allow concurrent writes to create siblings, and use application cod
 
 Atomic operations can work well in a replicated context, especially if they are commutative (they can be applied in different orders and get the same result).
 
+##### Write skew and phantoms
+
+Imagine you have a hospital where at least one person has to be present oncall, and a person can give up oncall if at least there is another oncall.
+
+Now the only two persons oncall update their individual records to give up oncall at the same time, and the system could end up with 0 persons oncall.
+
+This is a **write skew**, not a dirty write or lost update, since the two transactions are updating two different objects.
+This can be thought of a generalization of the lost update problem: two transactions read the same objects, then update some objects (different in this case, same  in the case of dirty writes or lost updates).
+
+Automatically preventing write skew requires true serializable isolation.
+
+Some DB provides constraints (foreign keys constraints, or restrictions on a particular value).
+Most don't have support for constraint involving multiple objects but one may be implemented with materialized views or triggers.
+
+Without true serializable isolation level your best option is to explicitly lock all the rows the transaction depends on.
+
+Enforcing two users cannot claim the same username in a snapshot isolation DB has the same problem, fortunately unique constraint is a simple solution here where the DB will reject the second transaction.
+
+All these examples follows a similar pattern: read-check condition-write, where the write could change the condition checked in step 2.
+In the first example we can lock everything read in step 1, and in the second we are checking for absence and we can't attach a lock to anything.
+An approach called **materializing conflicts** would have us create locks in advance for non-existent objects.
+This is error-prone and leaks a concurrency mechanism into application model.
+
+The effect where a write in one transaction changes the result of a search query in another transaction is called a **phantom**.
+Snapshot isolation prevents phantoms in read-only queries, but read-write transactions can still have phantoms that led to write skew.
+
+### Serializability
+
+Looking at some application code it's hard to tell if it's safe to run at a particular isolation level, and there are no tools to help detect race conditions.
+
+The simple answer has been use serializable isolation, which was usually regarded as the highest isolation level.
+
+Historically on a single node serializable isolation was implemented with actual serial execution, two phase locking, or optimistic concurrency control techniques such as serializable snapshot isolation.
+
+##### Actual serial execution
+
+Remove concurrency entirely.
+Only recently have designers decided a single-threaded loop for executing transactions was feasible.
+Two developments caused this: RAM has become cheap enough that it's often feasible to keep the entire dataset in memory, executions become much faster due to no disk involvement. DB designers realized OLTP reads and writes are usually small. By contrast analytical workloads are usually large and read-only, they can run a consistent snapshot outside of the serial execution loop. 
+
+Redis, Datomic has support for this. In order to make the most of the single thread, transactions need to be structured differently from their traditional form.
+Systems with single-threaded serial transaction processing don't allow interactive multi-statement transactions, instead the application must submit the entire transaction code to the DB ahead of time, as a **stored procedure**, to prevent the single thread waiting on the back and forth network transmission cost of interactive queries in the same transaction. (every transaction has to be small and fast)
+
+Stored procedure has existed for some time in relational databases, and they've been part of SQL for long. They've a bad reputaion for different vendors using their own languages (Oracle PL, SQL server T-SQL, Redis Lua, Datomic Java), code running in a DB being difficult to manage / test / deploy / integrate with a monitor system, and a DB is often much more performance sensitive than an application server and a badly written stored procedure can mean more trouble.
+
+Executing all transactions serially made concurrency control simpler, but limits the transaction throughput to the speed of a single CPU core on a single machine, this can be a bottleneck for a high write throughput system.
+
+To scale to multiple CPU cores, you can partition your data such that each transaction only needs to read and write data in one partition served by one CPU core.
+For any transaction needing to access multiple partitions the database must coordinate the transaction across all the partitions it touches, and the stored procedure needs to be performed in lock step across all partitions to ensure serializability across the system.
+Data with multiple secondary indexes is particularly difficult.
+
+##### Two phase locking
+
+For around 30 years there was only one algorithm widely used for serializability: 2PL.
+Note that 2PL is completely different from 2 phase commit, 2PC.
+
+To prevent dirty writes, we have when two concurrent transactions trying to write the same object, the lock ensures the second writer wait till the first one has finished or aborted before it may continue.
+
+Two phase locking's lock requirement is much stronger.
+Several transactions are allowed to read the same object concurrently, but as soon as anyone wants to write an object, exclusive access is required.
+* If transaction A has read an object and transaction B wants to write that object, B has to wait till A commits or aborts before it can continue.
+* If transaction A has written an object and transaction B wants to read that object, B has to wait until A commits or aborts before it can continue.
+
+In 2PL writers don't just block other writers, they also block readers and vice-versa.
+This captures the key difference with snapshot isolation where readers never block writers and writers never block readers.
+
+MySQL and SQL server use 2PL to implement serializable isolation level.
+
+Blocking of readers and writers is implemented by having a lock on each object in the DB, the lock can be either in exclusive mode or shared mode.
+* To read an object, the transaction has to acquire the lock in shared mode (not owned by any exclusive)
+* To write to an object, the transaction has to acquire the lock in exclusive mode (not owned by any exclusive or shared)
+* If a transaction first reads then writes, it may upgrade its shared lock to an exclusive lock, a process that works the same way as getting an exclusive lock directly.
+* After a transaction has acquired the lock it must continue to hold the lock until the end of the transaction. This is where the name two-phase came from, first phase is when the locks are acquired, second phase where all locks are released at the end of a transaction.
+
+Deadlock can happen with 2PL (they can also happen in lock-based read committed isolation level, but much more rarely), in which case the DB automatically detects and abort one of the transactions.
+The aborted is later retried by the DB.
+
+Big downside of 2PL is performance, due to locking overhead and reduced concurrency.
