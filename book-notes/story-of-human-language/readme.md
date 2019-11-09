@@ -104,3 +104,14 @@ The general methodology seems to combine the more uncommon features from later v
 Semitic languages (of Afro-Asiatic language family, Hebrew, Arabic, Ethiopian, etc). Tri-consonantal root with vowel variations
 
 Japanese, Southeast Asian languages, Chinese, numeral classifier, sounds like la ba me to help convey meaning, no distinction between he, she, it in sound, and generally more contextual than English.
+
+### Tracing language families
+
+Tracing the source of a language family: usually the area with the largest diversity, Austronesian languages, spoken east of Australia, Polynesian, Indonesia, Malaysia and Madagascar (!) is thus thought to have originated from Taiwan, as three of the four sub families in Austronesian have their presence in Taiwan.
+
+Similarly, Bantu languages (Swahili, Xhosa, etc) spoken south of the Sahara are thought to have started from Cameroon and east Nigeria.
+
+Khoisan languages (click languages) spoken in southwestern Africa may have been the descendent of the first human language, as its families are very diverse, and the raison d'etre of some features like clicks would otherwise be hard to deduce.
+
+Native American languages are extremely diverse in regions like California and further south but not in Alaska, even though Archaeological evidence points to native Americans having migrated across the Bering Strait.
+This correlates with climate change in that native Alaskans languages are those spoken by the people from down south who repopulated that area, after the ice age.
