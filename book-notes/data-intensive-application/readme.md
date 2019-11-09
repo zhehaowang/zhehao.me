@@ -1381,3 +1381,70 @@ Deadlock can happen with 2PL (they can also happen in lock-based read committed 
 The aborted is later retried by the DB.
 
 Big downside of 2PL is performance, due to locking overhead and reduced concurrency.
+
+To prevent phantom writes, we may need **predicate locks** which rather than belonging to a particular row in a table, it belongs to all objects that match some search conditions.
+If a transaction wants to read / write an object matching the predicate, it must acquire the shared / exclusive predicate lock as well. Same goes for transactions trying to insert / delete.
+Predicate locks apply even to objects that don't yet exist in the database.
+
+If two-phase locking includes predicate locks, the DB prevents all forms of write skews and other race conditions, making it serializable.
+
+Predicate locks don't perform well, instead most DB with 2PL implement **index-range locking**, a simplified approximation of predicate locks (they lock a bigger range of objects than necessary by locking all objects associated with an index range, but they have lower overheads).
+
+If there are no suitable index where a range lock can be attached, then the DB can fall back on entire table locking, it's safe but bad for performance.
+
+##### Serializable Snapshot Isolation
+
+Serializable isolation and good performance seem at odds with each other.
+SSI may be able to change that.
+
+2PL is a **pessimistic concurrency control** mechanism, based on the principle that if anything might possibly go wrong, it's better to wait until the situation is safe again before doing anything.
+
+Serial execution in a sense is pessimistic to the extreme.
+
+By contrast, SSI is an **optimistic concurrency control** technique.
+Optimistic in that it lets transactions continue and hope everything will turn out alright, and when a transaction wants to commit, the DB checks whether anything bad happened.
+If so, one has to be aborted and retried.
+
+This is an old idea and performs badly if there is high contention.
+However if there is enough spare capacity and contention is not too high, optimistic might be able to outperform pessimistic ones.
+
+Contention can be reduced with commutative atomic operations. (when it doesn't matter which one is committed first.)
+
+Earlier the write skew happened due to trasaction having acted on an outdated premise (query result might have changed), we could detect these transactions and abort them.
+There are two cases:
+* detecting reads of a stale MVCC object version (uncommitted write occurred before the read)
+To prevent this anomaly, the database needs to track when a transaction ignores another transactions writes due to MVCC visibility rules.
+When the transaction wants to commit, the database checks whether any of the ignored writes have now been committed. If so the transaction must be aborted.
+* detecting writes that affect prior reads (the write occurs after the read)
+An index keeps track of ongoing transactions that have read it, and when a transaction writes to the database it must look in the indexes for any other ongoing transactions that have read the affected data.
+It notifies those transactions the data they read may not be up-to-date (consequently they may or may not need to be aborted and retried).
+
+To decide the granularity at which transactions' reads and and writes are tracked, there is the tradeoff between bookkeeping overhead and aborting more transactions than necessary.
+
+The big advantage over 2PL is one transaction does not need to block waiting for locks held by another transaction.
+In particular, read-only queries can run on a consistent snapshot without requiring any locks, which is appealing for read-heavy loads.
+
+Compared to serial execution SSI is not limited to the throughput of a single CPU core.
+Serialization conflict detection can be distributed.
+Transactions can read and write data in multiple partitioning while ensuring serializable isolation.
+
+Performance SSI is affected by the rate of aborts, and SSI requires read-write transactions to be fairly short.
+SSI is probably less sensitive to slow transactions than 2PL or serial execution.
+
+### Summary
+
+Transactions are an abstraction layer that allows an application to pretend that certain concurrent problems and faults don't exist: a large class of errors is reduced down to a simple transaction abort and the application just needs to retry.
+
+Isolation level, read committed, snapshot isolation / repeatable read, serializable.
+* Dirty reads, dirty writes, guaranteed by >= read committed
+* Read skew, guaranteed by >= snapshot isolation, usually implemented with MVCC
+* Lost updates, some snapshot isolation implementation prevent this, others require a manual lock (`SELECT FOR UPDATE`)
+* Write skew (read-check premise-write), only serializable isolation prevents this anomaly
+* Phantom read (one transaction reads results matching a condition, another writes that affects the results of the query). Snapshot isolation can prevent straightforward phantom reads, but phantoms in the context of write skew needs the likes of index-range locks.
+
+Only serializable prevents all these issues, when using a weaker isolation level application needs additional logic (e.g. explicit locking) to protect against these.
+
+Three ways to implement serializable.
+* actual serial execution
+* 2PL (pessimistic)
+* SSI (optimistic)
