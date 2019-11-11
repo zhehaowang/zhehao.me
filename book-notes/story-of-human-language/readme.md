@@ -130,7 +130,7 @@ Often times a grammatical / structural similarity demonstrates a higher likeliho
 Each language is a bundle of different variants.
 What became canon for a country is often times more geopolitical than intrinsic to the language itself.
 
-Italian of the Tuscany variant, English of the London variant, French of the Ile-de-France variant became canon not because they are superior to that of Sicily, Kent, or Provencal in any way, rather from decisions of the past (e.g. nationalism, in forging a national identity, one particular variant is picked and standardized, that of the ruling class / with the most political / military power became canon.)
+Italian of the Tuscany variant, English of the London variant, French of the Ile-de-France variant became canon not because they are superior to that of Sicily, Kent, or Provencal in any way, rather from decisions of the past (e.g. nationalism, in forging a unified national identity, one particular variant is picked and standardized, that of the ruling class / with the most political / military power became canon.)
 
 Such canon change over time, court Russian was once Ukrainian due to the power center being in Kiev, then that of Moscow and Ukranian considered a peasant dialect (USSR time), to modern times where Ukrainian is considered its own language.
 
@@ -139,6 +139,7 @@ Written records suggest 500 years ago it would've been really difficult for a Lo
 Similarly, those we consider different languages today sometimes sit better as variants of the same bundle: Scandinavian languages Swedish, Danish and Norwegian being quite similar to each other. Erdu and Hindi being quite similar (grammar, and sometimes vocabulary) but backed by different writing systems (Erdu uses an Arabic-like writing, Hindi uses Devanagari writing system) and considered different due to historical enmity.
 Moldovan vs Romanian is similar, when Moldova was an SSR of the Soviet Union, it's tasked to come up with a Moldovan language backed by Cyrillic alphabets as opposed to Romania's Latin alphabets, but the underlying are very similar.
 
-On the other hand, different dialects of Chinese are often as different as French / Spanish is. (Or Arabic spoken in Morocco vs in Syria)
+On the other hand, different (seven) dialects of Chinese are often as different as French / Spanish is. (Or Arabic spoken in Morocco vs in Syria)
 In the Chinese and the Arabic case the writing system is the same, but pronunciation can be vastly different, and sometimes even grammar.
 They are considered dialects more often due to geopolitical / nationalism reasons, than anything intrinsic to the language itself.
+
