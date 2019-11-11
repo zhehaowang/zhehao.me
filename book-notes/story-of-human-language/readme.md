@@ -115,3 +115,30 @@ Khoisan languages (click languages) spoken in southwestern Africa may have been 
 
 Native American languages are extremely diverse in regions like California and further south but not in Alaska, even though Archaeological evidence points to native Americans having migrated across the Bering Strait.
 This correlates with climate change in that native Alaskans languages are those spoken by the people from down south who repopulated that area, after the ice age.
+
+### Cases for and against proto-world
+
+Language dates back 150k to 50k years, writing only dates back 6k, the further the deduction the more difficulty in comparative reconstruction.
+
+The proto-world may be on to something, that there might have been one language that was the ancestor of all (or a proto-euro-asian ancestor), but so far the theory and deduction seems shaky.
+
+Some similarities are purely by chance, e.g. in English and Japanese, while others are harder to explain, e.g. a dialect of Nepal and a Papua New Guinea language.
+Often times a grammatical / structural similarity demonstrates a higher likelihood of two languages sharing the same root (than pure pronunciation coincidences.)
+
+### Dialects
+
+Each language is a bundle of different variants.
+What became canon for a country is often times more geopolitical than intrinsic to the language itself.
+
+Italian of the Tuscany variant, English of the London variant, French of the Ile-de-France variant became canon not because they are superior to that of Sicily, Kent, or Provencal in any way, rather from decisions of the past (e.g. nationalism, in forging a national identity, one particular variant is picked and standardized, that of the ruling class / with the most political / military power became canon.)
+
+Such canon change over time, court Russian was once Ukrainian due to the power center being in Kiev, then that of Moscow and Ukranian considered a peasant dialect (USSR time), to modern times where Ukrainian is considered its own language.
+
+Written records suggest 500 years ago it would've been really difficult for a London English speaker to understand a Kent English speaker, even though the grammar / underlying structure are very much shared, the pronunciation can be fairly different.
+
+Similarly, those we consider different languages today sometimes sit better as variants of the same bundle: Scandinavian languages Swedish, Danish and Norwegian being quite similar to each other. Erdu and Hindi being quite similar (grammar, and sometimes vocabulary) but backed by different writing systems (Erdu uses an Arabic-like writing, Hindi uses Devanagari writing system) and considered different due to historical enmity.
+Moldovan vs Romanian is similar, when Moldova was an SSR of the Soviet Union, it's tasked to come up with a Moldovan language backed by Cyrillic alphabets as opposed to Romania's Latin alphabets, but the underlying are very similar.
+
+On the other hand, different dialects of Chinese are often as different as French / Spanish is. (Or Arabic spoken in Morocco vs in Syria)
+In the Chinese and the Arabic case the writing system is the same, but pronunciation can be vastly different, and sometimes even grammar.
+They are considered dialects more often due to geopolitical / nationalism reasons, than anything intrinsic to the language itself.
