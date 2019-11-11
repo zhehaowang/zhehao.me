@@ -72,3 +72,5 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 * Our perspectives are often shaped by the limited knowledge and experience we have. We take what we are used to for granted, and any development longer than the lifespan or the radius of a human being can be hard for the particular being to comprehend. Realize this and keep an open mind. (Sapiens, Languages)
 
 * First try to make progress, then seek breakthroughs. Are you running away from your problems? What better time than now to face and overcome them?
+
+* Much like a civlization, an individual goes through periods of rise and fall / ebb and flow. Some started out brilliant at school, early on in their career, but later see their talents and potentials buried in the daily routine, shackled by tradition. Keep a mindset of change and growth, and enjoy the process.
