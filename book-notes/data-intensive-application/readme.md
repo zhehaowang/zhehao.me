@@ -1448,3 +1448,59 @@ Three ways to implement serializable.
 * actual serial execution
 * 2PL (pessimistic)
 * SSI (optimistic)
+
+# Chap 8. The Trouble with Distributed Systems
+
+This chapter turns our pessimism to maximum, and assume everything that can go wrong will go wrong, except Byzantine failures.
+
+### Faults and partial failures
+
+An individual computer with good software is usually fully deterministic: either fully functional or completely broken, not something in between.
+
+This is a deliberate choice in the design of computers, if an internal fault happens, we prefer it to crash completely rather than returning a wrong results, because the latter are hard to deal with: it hides away the physical reality on which they are implemented.
+
+Distributed systems are completely different, nondeterministic partial failures are possible, which makes distributed systems hard to work with.
+
+Two extremes of building large-scale computing systems, high-performance computer with thousands of cores, or cloud computing usually with multi-tenant datacenters, commodity computers connected with IP network and elastic resource allocation.
+
+The first approach deals with errors usually with regular snapshotting.
+If a node fails the entire cluster halts and recovers from a snapshot, this is more like a single-node approach of error handling.
+This chapter focuses on the failure handling of the second type.
+Difference being
+the second type of applications is often expected to be **online**, in that they need to be available to serve users with low latency at any time.
+Unlike a supercomputer where each node is rather reliable, the commercial hardware has much higher error rates. It becomes reasonable to assume at any time in point something is always broken, and the system needs to be able to tolerate failed nodes (useful also for rolling upgrade, restarts, uninterrupted services). 
+Network is often IP and Ethernet based arranged in **Clos topologies** to provide high bisection bandwidth.
+Geographically distributed deployment where inter-datacenter is usually slow and unreliable.
+
+We build a (reasonably) reliable system from unreliable components. (think error-correcting codes, reliability in TCP, etc)
+
+In distributed systems, suspicion, pessimism, and paranoia pay off.
+
+### Unreliable networks
+
+Share-nothing architecture (not the only way but by far predominant).
+
+Loss packet switched network. Delay, loss, one end (temporarily) stop responding, etc are all possible.
+The sender can't tell whether the packet was delivered (with a possibly dropped ack then yes).
+
+The usual way to handle this is timeout. Wait some time until you give up and try again.
+
+Handling network faults doesn't necessarily mean tolerating them: you could just deliver an error message, but you do need to know how your software reacts to network problems and ensure they can recover.
+It may make sense ti deliberately trigger network problems to test (Chaos monkey)
+
+### Detecting faults. Timeouts. Undetected delays
+
+Many systems need to automatically detect faulty nodes.
+It's sometimes hard to do. TCP ports refusing connection can get you back a RST or FIN, but the node can crash mid request. If application process fails a script can detect and tell other nodes if the host OS is still working. The router may give you back an ICMP destination unreachable if the node you are trying to get to is unreachable. Hardware failure can also be detected at switch hardware level if you cam query the management interface of the switches.
+
+If you want to be sure a request was successful, you need a positive ACK from the application itself.
+NACK is useful for speedy detection but they cannot be relied upon.
+You can wait for timeout, retry a few times, and declare dead if no response.
+
+There is no simple answer to how to set the timeout.
+
+Premature declaration of a node being down is problematic (places additional load (cascading failure possibility), potentially duplicated operation).
+
+Imagine you have a network transmission time upperbound of d and processing time upperbound of r, then 2d + r seems a reasonable timeout, but most systems in reality don't have these guarantees.
+If your timeout is low, it only takes a transient spike in round-trip time to throw the system off balance.
+
