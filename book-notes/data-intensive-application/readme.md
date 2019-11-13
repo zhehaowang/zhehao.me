@@ -1504,3 +1504,32 @@ Premature declaration of a node being down is problematic (places additional loa
 Imagine you have a network transmission time upperbound of d and processing time upperbound of r, then 2d + r seems a reasonable timeout, but most systems in reality don't have these guarantees.
 If your timeout is low, it only takes a transient spike in round-trip time to throw the system off balance.
 
+Many can queue a network packet: switch queueing, receiver OS queueing, sender queueing (e.g. due to TCP flow control).
+
+TCP packet loss can cause further delay in OS waiting for retransmission and retransmitted packet to be acknowledged.
+
+UDP is a good choice in situations where delayed data is worthless, e.g. videoconferencing and VoIP.
+
+Better than a a configured constant timeouts, systems can continuously measure response times and their variability (jitter), and automatically adjust timeouts according to observed response time distribution.
+TCP retransmission timeouts works this way, as does Phi Accrual failure detector in Cassandra.
+
+### Synchronous network vs asynchronous
+
+Telephone networks (synchronous) are circuit switched, a circuit (a fixed route) is established between the two parties throughout the call, much more reliable and does not suffer from queueing, as the 16B space for the call have already been reserved in the next hop of the network (during a call each side is guaranteed to be able to send exactly 16B of audio every 250ms).
+Because the network has no queueing, the maximum end-to-end delay is fixed: a bounded delay.
+
+TCP/IP network is packet switched as they are optimized for bursty traffic.
+Audio/video call has a stable data rate, while web browsing can have a variable data rate: TCP/IP tries to deliver as fast as possible.
+
+There has been attempts to build hybrid of packet switching and circuit switching such as Asynchronous Transfer Mode (ATM network), a competitor of Ethernet's.
+It implements end-to-end flow control at link layer which reduces the need for queueing in the network, though it can still suffer from congestion and cause delays.
+With careful use of quality of service (QoS, prioritization and scheduling of packets) and admission control (rate-limiting senders), it's possible to emulate circuit switching on packet switching networks or provide statistically bounded delay.
+
+More generally, latency guarantees are achievable in certain environments, if resources are statically partitioned: dividing network link statically as described above, or allocating a static number of CPU cycles to each thread.
+These come at the cost of reducing utilization. Multi-tenancy with dynamic resource partitioning provides better utilization, making it cheaper but with the downside of variable delay.
+
+Variable delays in networks are not a law of nature, but simply the result of a cost/benefit tradeoff.
+Currently deployed technology does not allow us to make any guarantees about delays or reliability of the network.
+
+### Unreliable clocks
+
