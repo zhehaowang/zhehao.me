@@ -1533,3 +1533,38 @@ Currently deployed technology does not allow us to make any guarantees about del
 
 ### Unreliable clocks
 
+Time is tricky business in a distributed system: communication is not instantaneous, each machine has its own clock, usually a quatz crystal oscillator.
+These are not perfectly accurate and each machine may have its own notion of time.
+
+It is possible to sync time to some degree, most commonly with NTP, which allows the computer clock to be adjusted according to the time reported by a group of servers.
+The servers in turn get their time from a more accurate time source, such as a GPS receiver.
+
+##### Monotonic clock and time-of-day clock
+
+Modern computer has at least these two kinds and they serve different purposes.
+Time-of-day clock / wall clock time gets you time according to some calendar, `clock_gettime(CLOCK_REALTIME)` call on Linux, gets you number of seconds since the epoch UTC 1970 Jan 1 midnight according to Gregorian calendar, not counting leap seconds.
+
+Time-of-day clocks are usually sync'ed with NTP, some oddities include, e.g. when a local clock is too ahead it may jump back in time to a previous point.
+These jumps make time-of-day clock unsuitable for measuring elapsed time, historically they are also very coarse grained.
+
+Monotonic clock is suitable for measuring time interval, such as a timeout or a service's response time.
+`clock_gettime(CLOCK_MONOTONIC)` on Linux is monotonic clock. These clocks are guaranteed to move forward.
+The absolute value of monotonic clock is meaningless, and monotonic clocks are not synchronized across machines.
+It also makes no sense to compare the monotonic clock time from two different computers.
+
+On a multi-CPU system, there may be a separate timer per CPU which is not synchronized with other CPUs.
+OS tries to compensate for this discrepancy but one should take this guarantee of monotonicity with a grain of salt.
+
+NTP may adjust the frequency at which the monotonic clock moves forward (by 0.05%) if it detects that the computer's local quartz is moving faster or slower than the NTP server, but it cannot cause monotonic clock to jump forwards or backwards.
+
+Clocks drift (run faster or slower than it should) depending on the temperature.
+Google assumes a clock drift of 200 parts per million for its servers, an equivalent of 6ms drift for a clock that is resync'ed with a server every 30s. This limits the best possible accuracy you can have, for wall clocks.
+If a computer's clock differs too much from an NTP server, it may refuse to synchronize, or the local clock will be forcibly reset (consequently any applications will see a jump forward / backward in time).
+NTP synchronization can also only be as good as the network delay.
+NTP clients are robust enough to query a number of configured servers and discard outliers.
+Leap seconds result in a minute being 59s or 61s long, which could mess up systems not designed with leap seconds in mind.
+
+It is possible to achieve very good accuracy if you care about it sufficiently to invest significant resources, e.g. mifid ii draft requires all HFT to synchronize their clocks to within 100ms of UTC to help detect market manipulation.
+Such precision can be achieved using GPS receivers, precision time protocol, ahd careful deployment.
+
+
