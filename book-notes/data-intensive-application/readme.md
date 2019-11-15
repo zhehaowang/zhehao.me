@@ -1570,14 +1570,34 @@ Such precision can be achieved using GPS receivers, precision time protocol, and
 If you use software that requires synchronized clocks it is essential that you also carefully monitor the clock offsets between all the machines.
 Any node whose clock drifts too far from the others should be declared dead and removed from the cluster.
 
+##### Timestamp for ordering events
+
 Using synchronized wall clock to order events in distributed systems is not advisable.
 In a multi-leader system drift between nodes can cause the replicas to not be eventually consistent without further intervention. (no matter if using leader timestamp or client timestamp, if multi-clients)
 Use logical clocks for this purpose, which are based on incrementing counters rather than an oscillating quartz crystal.
+
+##### Clock reading as confidence interval
 
 Clock readings (over the network / compared with a server whose time this syncs to) is more like a range of times within a confidence interval.
 `clock_gettime()` return value doesn't tell you the expected error of a timestamp, and you don't know the confidence interval, Google's TrueTime API in spanner explicitly reports the confidence interval on the local clock.
 It returns two values `[earliest, latest]`, whose width depends on how long it has been since the local quartz clock was last sync'ed with a more accurate clock source.
 
+##### Synchronized clocks for global snapshots transaction ID
 
+Recall that in snapshot isolation each transaction has a motonically increasing ID and if B reads a value written by A, B should have a transaction ID higher than that of A's.
+Generating a monotonically increasing ID in a distributed system with lots of small rapid transactions can be challenging.
+Synchronized clock with good enough accuracy can be used to generate this ID, and Spanner implements snapshot isolation across data centers this way: with time returning a confidence interval, if two intervals don't overlap then we know in which order those two times are.
+In order to ensure transaction timestamp reflects causality, Spanner deliberately waits for the length of confidence interval before committing a read-write transaction, so any transaction that can read this data happens at a sufficiently later time so that their confidence intervals don't overlap.
+Hence Spanner needs to keep the interval as small as possible to minimize wait time, and for this reason Google deploys a GPS receiver or atomic clock in each data center, allowing clocks to be synchronized within 7ms.
 
+##### Process pauses
+
+Assume we've a single leader system, how does a leader know it's still leader and not proclaimed dead by others?
+We can let the leader hold a lease, a lock with timeout.
+To be leader the node has to renew lease before it expires.
+
+Imagine a process renews its lease 10s before expiry (which should not be the wall clock time of a different node who set it), but the last request processing took longer than that, then by the time the request finishes this node would no longer hold the lease.
+A pause like this can happen if mark-and-sweep GC runs long enough, virtual machine suspension and resume, context switches, slow disk access, OS swapping in-memory and on-disk vram pages frequently (thrashing), a process receiving a SIGSTOP followed by a late SIGCONT.
+
+A node in a distributed system must assume that its execution can be paused for a significant length of time at any time even in the middle of execution.
 
