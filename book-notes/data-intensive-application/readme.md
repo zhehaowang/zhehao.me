@@ -1542,7 +1542,7 @@ The servers in turn get their time from a more accurate time source, such as a G
 ##### Monotonic clock and time-of-day clock
 
 Modern computer has at least these two kinds and they serve different purposes.
-Time-of-day clock / wall clock time gets you time according to some calendar, `clock_gettime(CLOCK_REALTIME)` call on Linux, gets you number of seconds since the epoch UTC 1970 Jan 1 midnight according to Gregorian calendar, not counting leap seconds.
+Time-of-day clock / wall clock time gets you time according to some calendar, `clock_gettime(CLOCK_REALTIME)` call on Linux, gets you number of seconds since the epoch UTC 1970 Jan 1 midnight according to Gregorian calendar, not counting leap seconds (a day may not have exactly 86400 seconds).
 
 Time-of-day clocks are usually sync'ed with NTP, some oddities include, e.g. when a local clock is too ahead it may jump back in time to a previous point.
 These jumps make time-of-day clock unsuitable for measuring elapsed time, historically they are also very coarse grained.
@@ -1565,6 +1565,19 @@ NTP clients are robust enough to query a number of configured servers and discar
 Leap seconds result in a minute being 59s or 61s long, which could mess up systems not designed with leap seconds in mind.
 
 It is possible to achieve very good accuracy if you care about it sufficiently to invest significant resources, e.g. mifid ii draft requires all HFT to synchronize their clocks to within 100ms of UTC to help detect market manipulation.
-Such precision can be achieved using GPS receivers, precision time protocol, ahd careful deployment.
+Such precision can be achieved using GPS receivers, precision time protocol, and careful deployment.
+
+If you use software that requires synchronized clocks it is essential that you also carefully monitor the clock offsets between all the machines.
+Any node whose clock drifts too far from the others should be declared dead and removed from the cluster.
+
+Using synchronized wall clock to order events in distributed systems is not advisable.
+In a multi-leader system drift between nodes can cause the replicas to not be eventually consistent without further intervention. (no matter if using leader timestamp or client timestamp, if multi-clients)
+Use logical clocks for this purpose, which are based on incrementing counters rather than an oscillating quartz crystal.
+
+Clock readings (over the network / compared with a server whose time this syncs to) is more like a range of times within a confidence interval.
+`clock_gettime()` return value doesn't tell you the expected error of a timestamp, and you don't know the confidence interval, Google's TrueTime API in spanner explicitly reports the confidence interval on the local clock.
+It returns two values `[earliest, latest]`, whose width depends on how long it has been since the local quartz clock was last sync'ed with a more accurate clock source.
+
+
 
 
