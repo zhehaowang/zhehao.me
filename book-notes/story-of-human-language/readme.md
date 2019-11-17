@@ -143,3 +143,10 @@ On the other hand, different (seven) dialects of Chinese are often as different 
 In the Chinese and the Arabic case the writing system is the same, but pronunciation can be vastly different, and sometimes even grammar.
 They are considered dialects more often due to geopolitical / nationalism reasons, than anything intrinsic to the language itself.
 
+Dialect continuum: it's sometimes hard to decide the line between one dialect or another, as each one differs with the one next door only by a little, but looking far enough the two become distinct enough.
+These then become a collection of dialect whose diversification happens on a continuous scale.
+
+Diglossia is a condition where two languages or two variants of the same language are used in the same geolocation by the same people, usually divided into a high-low variants.
+Not that the high is superior in any sense, just that having different variants spoken in different contexts is a common phenomenon.
+Examples include standard Arabic as the Quran is written in, and Egyptian Arabic which is used colloquially and very different; Hochdeutsch and Swiss German; English (h) and French (l) in old Quebec; French (h) and Russian (l) in Anna Karenina; and in English itself where some words are more formal while others more colloquial but they mean the same thing: kids / children, bag / parcel, go back / return, etc.
+Some states have triglossia e.g. Java Island where high, middle and low Javanese may sound very different and used in different contexts.
