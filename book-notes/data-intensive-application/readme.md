@@ -1601,3 +1601,89 @@ A pause like this can happen if mark-and-sweep GC runs long enough, virtual mach
 
 A node in a distributed system must assume that its execution can be paused for a significant length of time at any time even in the middle of execution.
 
+##### Response time guarantees, limiting the impact of GC
+
+Processes can pause for unbounded time as shown before.
+On the other hand hard real time systems have a specified deadline by which the software must respond.
+Providing real-time guarantees in a system requires support from all levels of software stack: a real time operating system (**RTOS**) that allows processes to be scheduled with a guaranteed allocation of CPU time in specified interval is needed. Library functions need to document worst-case execution time. Dynamic memory allocation may be restricted or disallowed algother. An enormous of testing is required to guarantee the requirements being met.
+
+These places a lot of constraints on programming languages, libraries and tooling. Real-time systems often have lower throughput as they have to prioritize timely response above all else.
+
+For most server-side data systems, real-time guarantee is not economical.
+Consequently they must suffer pauses and clock instability.
+
+To limit the pause from mark-and-sweep GC, an emerging idea is to treat GC pause like brief outage of the node and let other nodes handle requests.
+If a node needs to GC soon it stops taking in requests and GCs after finishing up.
+Some trading systems do this.
+A variant of the idea is to only GC short lived objects (cheap to GC) and restart periodically.
+
+### Knowledge, truth, and lies
+
+Reasoning about distributed system can be hard as you don't know the state of other nodes for sure: the only way is to ask them via a not always reliable network.
+
+In a distributed system we can state the assumptions we are making about the behavior (the system model) and design the actual system in such a way that it meets those assumptions.
+
+A node cannot necessarily trust its own judgment of a situation: it may think itself alive as it can hear from other nodes, but other nodes cannot hear from it and declare it dead. (similarly, think itself a leader, a holder of a lease, etc)
+Instead the truth is defined by the majority, a quorum that requires a minimum number of votes.
+Most quorums require a majority number of votes as there cannot be a differing quorum at the same time.
+
+Frequently a system requires there be only one of something. E.g. a single leader, only one node holding a lock, globally unique username.
+Say a node grabs a lease to write something, then GCs itself, lease expires during GC and is granted to another node, the GC'ed node coming back may resume its write operation thinking itself still holding the lease. This is problematic and happened for HBase. 
+
+**Fencing token** is a technique that can address this: each time the lock server grants a lease it also returns a fencing token, a number incremented by the lock service, we then require every client's write request to the storage service to include the current fencing token, and the storage service will reject old fencing tokens if it has already seen a newer one.
+
+ZooKeeper can be used a lock service, with the transaction ID or node version as monotonically increasing candidates for fencing token.
+
+##### Byzantine faults
+
+This book assumes nodes are unreliable but honest.
+Distributed system problems become much harder if there is a risk of nodes lying.
+
+A system is Byzantine fault-tolerant, if it continues to operate correctly even if some of nodes are not obeying the protocol.
+
+Flight control systems typically need to be Byzantine fault tolerant due to radiation corrupting physical hardware.
+With multiple participating organization a system may need to be Byzantine fault tolerant, blockchain tries to address such.
+
+In most server-side data systems the cost of deploying Byzantine fault tolerant solutions make them impracticable.
+In a client/server architecture if we assume untrustworthy clients the servers can usually perform validation to decide what's allowed.
+
+Most Byzantine fault tolerant algorithms require a super majority of more than two-thirds of the nodes to be functioning correctly.
+In scenarios if a malicious attacker can compromise software running on other nodes then Byzantine fault tolerance won't help, and traditional mechanisms (authentication, access control, encryption, firewalls) continue to be the main protection against attackers.
+
+Weak forms of lying / unreliability handling is pragmatic and doesn't require full-blown Byzantine fault tolerant solutions.
+TCP checksums, user input sanitization, setting up redundant NTP servers are good examples.
+
+##### System model and reality. Algorithm correctness. Safety and liveness
+
+A **system model** is an abstraction that describes what things an algorithm may assume (formalizes the kinds of faults that we expect to happen in a system.)
+
+Timing-assumptions-wise 3 system models are in common use: synchronous (bounded network delay, processes pauses, and clock error), partially synchronous (most of the time bounded, realistic for many systems), asynchronous (no timing assumptions, in fact we don't even have a clock and cannot use timeouts).
+
+Node-failure-wise 3 system models are in common use: crash-stop faults (node fails in one way -- crashing, and does not come back), crash-recovery faults (crash may happen at any time, a node may also come back after some time. Nodes are presumed to have persistent storage so pre-crash state can be captured but in-memory states are lost), Byzantine faults (nodes can do anything).
+
+For modeling real systems partially synchronous model with crash-recovery is most common.
+
+Correctness of an algorithm under these models are described by its properties: e.g. sorting algorithm should have all elements sorted.
+Fencing tokens generation should have uniqueness, monotonic sequence, and availability (node who requests a fencing token and does not crash should eventually get a token)
+
+An algorithm is correct if in some system model it always satisfies its properties in all situations that we assume may occur in that system model.
+
+Two kinds of properties: in the fencing token example unique and monotonic are safety, and availability is liveness.
+
+**Safety** means nothing bad happens (if violated we can point at a particular point in time at which it's broken, and a violation cannot be undone), and **liveness** mean something good happens eventually (may not hold at some point in time, but there is always hope that it may be satisfied in the future).
+
+Distinguishing between safety and liveness helps with dealing with difficult system models.
+
+Theoretical, abstract system models are quite useful, even though in practice a real system can violate the assumptions of an abstract model, making empirical testing equally important.
+
+# Summary
+
+This chapter covers what could go wrong in a distributed system: lossy network, clock out of sync, process pause.
+Alternatives that guarantee these don't happen throughout the stack do exist, but are usually costly.
+
+Partial failure can occur is the defining characteristic of distributed systems.
+
+If you can simply keep things on a single machine, it is generally worth doing so.
+However, scalability, fault tolerance and low latency can make distributed systems desirable.
+
+
