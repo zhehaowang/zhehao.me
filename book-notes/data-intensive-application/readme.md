@@ -1307,7 +1307,7 @@ Atomic operations can work well in a replicated context, especially if they are 
 
 Imagine you have a hospital where at least one person has to be present oncall, and a person can give up oncall if at least there is another oncall.
 
-Now the only two persons oncall update their individual records to give up oncall at the same time, and the system could end up with 0 persons oncall.
+Now the only two persons oncall update their individual records to give up oncall at the same time (check if there is another person on-call using a count(select) on all, if so, give up its own on-call), and the system could end up with 0 persons oncall.
 
 This is a **write skew**, not a dirty write or lost update, since the two transactions are updating two different objects.
 This can be thought of a generalization of the lost update problem: two transactions read the same objects, then update some objects (different in this case, same  in the case of dirty writes or lost updates).
@@ -1686,4 +1686,37 @@ Partial failure can occur is the defining characteristic of distributed systems.
 If you can simply keep things on a single machine, it is generally worth doing so.
 However, scalability, fault tolerance and low latency can make distributed systems desirable.
 
+# Chap 9. Consistency and consensus
 
+Given the problems in distributed systems introduced in chap 8, one good way of tackling them is to find general purpose abstractions with useful guarantees, implement them once, and let application run under those guarantees.
+
+Transaction is one such guarantee that hides underlying concurrency and crashes, and provides acid to the application.
+
+**Consensus** is another such guarantee: getting nodes to agree on something.
+
+### Consistency models, linearizability
+
+Recall **linearizability** (atomic consistency, strong consistency, immediate consistency, external consistency), the strongest form of consistency where we make the system appear as if there is only one copy of the data and all operations on it are atomic.
+
+Linearizability requires the data written by a completed write call to be immediately available for all subsequent read calls.
+Read after write is done must then reflect the written result, read concurrent with write can return the result before or after the write, but once result after write is returned, subsequent reads must return the result after write.
+
+Linearizability vs serializability:
+* the former is a recency guarantee on reads and writes of a register (one individual object), so it does not prevent problems like write skew.
+* the latter is an isolation property of transactions where each transaction may read and write multiple objects. It guarantees that transactions behave the same as if they had executed in some serial order. It is Ok for that serial order to be different from the order in which transactions were actually run.
+
+A database providing both serializability and linearizability is known as strict serializability or strong one-copy serializability. 2PL and actual serial execution are typically linearizable. Serializable snapshot isolation is not linearizable by design.
+
+Linearizability is useful in the following scenarios:
+* locking and leader election. In a single leader system one way to elect a leader is to use a lock. Every node that starts up tries to acquire a lock, and the one that succeeds becomes the leader. No matter how this is implemented it must be linearizable: all nodes must agree which node owns the lock otherwise the lock is useless. Coordination service like ZooKeeper use consensus algorithms to implement linearizability in a fault-tolerant way, and are often used for locking and leader election implementation.
+* uniqueness guarantee. The situation is similar to a lock: when a user registers for a service (with a unique username) you can think of them acquiring a lock on their chosen username. A hard uniqueness constraint typically requires linearizability. Foreign key or attribute constraints can be implemented without requiring linearizability.
+* cross-channel timing dependencies. 
+
+##### Implementing linearizability
+
+To implement linearizability one way is to just have one copy of the data, which is not fault tolerant.
+We need replications and revisiting different replication mechanisms:
+* single-leader replication is linearizable if reading from leader or synchronously updated followers
+* consensus algorithms bear a resemblance to single-leader replication. They also implement linearizable storage safely.
+* multi-leader replication systems are generally not linearizable: write conflicts resolution are typically an artifact of lacking a single copy of data.
+* leaderless replication systems like Dynamo claim strong consistency by requiring w + r > n. This is not quite true. LWW conflict resolution based on time-of-day clock are not linearizable as clock timestamps cannot be guaranteed to consistent with actual event timing due to clock skews. Sloppy quorum also ruins linearizability. Even with strict quorum this is not necessarily true. To make strict quorum linearizable, a reader must perform read repair synchronously before returning results to the application and a writer must read the latest state of a quorum of nodes before sending its writes.
