@@ -1720,3 +1720,27 @@ We need replications and revisiting different replication mechanisms:
 * consensus algorithms bear a resemblance to single-leader replication. They also implement linearizable storage safely.
 * multi-leader replication systems are generally not linearizable: write conflicts resolution are typically an artifact of lacking a single copy of data.
 * leaderless replication systems like Dynamo claim strong consistency by requiring w + r > n. This is not quite true. LWW conflict resolution based on time-of-day clock are not linearizable as clock timestamps cannot be guaranteed to consistent with actual event timing due to clock skews. Sloppy quorum also ruins linearizability. Even with strict quorum this is not necessarily true. To make strict quorum linearizable, a reader must perform read repair synchronously before returning results to the application and a writer must read the latest state of a quorum of nodes before sending its writes.
+
+##### The cost of linearizability, CAP theorem
+
+When partition happens, pick one out of consistency (linearizability) or availability.
+* If your application requires linearizability and some replicas are disconnected from the other replicas due to a network problem, then some replicas cannot process requests while they are disconnected: they must either wait until the network problem is fixed, or return error (become unavailable)
+* If your application does not require linearizability then it can be written in a way that each replica can process requests independently, even if it is disconnected from other replicas (e.g. multi-leader). In this case the application can remain available in the face of a network problem, but its behavior is not linearizable.
+
+All in all, there is a lot of misunderstanding about CAP and many so-called highly available systems actually don't meet CAP's idiosyncratic definition of availability.
+
+CAP as formally defined is of very narrow scope: it only considers one consistency model (linearizability) and one kind of fault (network partition).
+It doesn't say anything about network delays, dead nodes, or other tradeoffs, thus although historically influential, CAP has little practical value for designing systems.
+CAP has also been superseded by more impossibility and more precise results in distributed systems.
+
+Although linearizability is a useful guarantee, surprisingly few systems are linearizable: RAM on a modern CPU is not in the face of multi-threading race conditions (unless a memory barrier or fence is used).
+
+Reason for this is each CPU core having its own cache, and memory access first goes to the cache, then changes are asynchronously written to memory. This creates multiple copies and with asynchronous updates, linearizability is lost.
+The reason to drop linearizability in this case has nothing to do with CAP, but for performance.
+The same is true for many distributed databases that don't provide linearizability: they sacrifice it for performance, not so much for fault tolerance.
+
+Linearizability is slow.
+Can it be made fast? The answer is perhaps no. Research has shown if you want linearizability, response time of reads and writes is least proportional to the uncertainty of delays in the network.
+In a network with highly variable delays, the response time for linearizability is inevitably going to be high.
+
+Weaker consistency systems, however, can be made faster.
