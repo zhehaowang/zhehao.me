@@ -1744,3 +1744,94 @@ Can it be made fast? The answer is perhaps no. Research has shown if you want li
 In a network with highly variable delays, the response time for linearizability is inevitably going to be high.
 
 Weaker consistency systems, however, can be made faster.
+
+### Ordering guarantees
+
+The definition of linearizability (behaves as if there is only a single copy of the data and every operation takes effect atomically) implies that operations are executed in some well-defined order. 
+Ordering has been an important theme, single leader addresses this; serializability is about ensuring transactions are as if they are executed in some sequential order, timestamps introduced during clock synchronization is another attempt at determining which happened first.
+
+There is deep theoretical connection between ordering, linearizability and consensus.
+
+##### Ordering and causality
+
+Ordering helps preserve causality.
+Consistency level consistent prefix reads is about causality.
+One read/write knowing about another is another expression of causality.
+Read skew is a violation of causality (the answer can be seen but not the question).
+A consistent snapshot in Snapshot Isolation means consistent with causality: if it contains an answer it must contain a question.
+
+Causality imposes on an ordering of events: cause comes before effect.
+
+A system is **causally consistent** if it obeys the ordering imposed by causality, e.g. snapshot isolation provides causal consistency.
+
+A **total order** allows any two elements to be compared, a causal order is not a total order. (integer space has a total order, sets don't. Sets are partially ordered, by subset / superset.)
+
+Linearizability has a total order of operations (one copy, all atomic).
+
+Causality in distributed systems may have two operations being concurrent: two events can be ordered if they are causally related, otherwise they are incomparable, this means causality defines a partial order.
+
+Git history is very much like a graph of causal dependencies.
+
+Linearizability is thus stronger than causal consistency (linearizability implies causality)
+Causal consistency is the strongest possible consistency model that does not slow down due to network delays and remains available in the face of network failure.
+
+The technique for determining which operation happened before which is similar to earlier discussion in detecting concurrent writes in a leaderless datastore.
+In order to determine causal ordering, the database needs to know which version of the data was read by the application, this is why earlier discussion had the version number from the prior operation being passed back to the database on a write.
+SSI conflict detection uses a similar idea: when a transaction wants to commit, the DB checks whether the version of the data that it read is still up to date, to this end, the DB keeps track of which data has been read by which transaction.
+
+##### Sequence number ordering
+
+If there is a logical clock that generates a unique sequence number for each operation, then the sequence numbers define a total ordering.
+In particular we can create sequence numbers in a total order that is consistent with causality.
+
+In single-leader replication, the replication log defines a total order of write operations that is consistent with causality. The leader can generate a sequence number for each write event in the log.
+
+Without a single-leader, various methods are used in practice: each node generates its independent set (one odd, another even); sufficiently high resolution time-of-day clock can be used; preallocate a block of sequence numbers for each node.
+These methods all have the problem of the sequence numbers they generate are not consistent with causality: one node being faster than another breaks the first, clock skew breaks the second, and preallocating block breaks causality in that a later block is always ranked later.
+
+The above are inconsistent with causality but **Lamport timestamp**, a pair (counter, nodeID) is.
+Uniqueness is obvious, total ordering is defined first order by counter value then node ID, and the key idea is every node keeps track of the maximum counter value it has seen so far, and includes that maximum on every request. When a node receives a request or response with the maximum value greater than its own counter value, it immediately increases its own counter to that maximum.
+
+As long as the maximum counter value is carried along with every operation, this scheme ensures that the ordering from the Lamport timestamps is consistent with causality, because every causal dependency results in an increased timestamp.
+
+Version vectors are different from Lamport timestamps: version vectors can distinguish whether two operations are concurrent or causally dependent, whereas Lamport timestamp always enforce a total ordering. You cannot tell two operations are concurrent or causally dependent from Lamport timestamp, but they are more compact than version vectors.
+
+Total ordering as enforced by Lamport timestamp can be not sufficient: when enforcing unique username, you can use Lamport timestamp to decide which operation to register the same username came later and reject that, but this happens after the fact. (you have to check with every other node to find out which timestamps it has generated, and cannot guarantee if one node is unreachable. This hurts availability.)
+
+The problem is total ordering emerges only after you have collected all the operations.
+The idea of knowing when your total order is finalized is captured in the section below.
+
+##### Total order broadcast
+
+Total order broadcast / atomic broadcast is usually described as a protocol for exchanging messages between nodes where two safety properties need to be satisfied:
+* reliable delivery: if a message is delivered to one node, it is delivered to all nodes
+* totally ordered delivery: messages are delivered to every node in the same order
+
+ZooKeeper implements total order broadcast.
+Total order broadcast is exactly what one needs for DB replication: if every message represents a write to the DB, and every replica processes the same writes in the same order, then the replicas will remain consistent with each other. This principle is known as **state machine replication**.
+
+Total order broadcast can be used to implement serializable transactions, if every message represents a deterministic transaction to be executed as a stored procedure ad if every node processes those messages in the same order then partitions and replicas of the DB are kept consistent with each other.
+
+An important aspect of total order broadcast is that order is fixed at the time the messages are delivered: a node cannot retroactively insert a message into earlier position in the order if subsequent messages have already been delivered. This fact makes total order broadcast stronger than timestamp ordering.
+
+Total order broadcast is also useful for implementing a lock service that provides fencing tokens, request to acquire a lock is appended as a message to the log and all messages are sequentially ordered in the order they appear in the log, and the sequence number can then serve as a fencing token as it's monotonically increasing.
+ZooKeeper zxid is one such sequence number.
+
+(Partitioned databases with a single leader per partition often maintain ordering only per partition, and they cannot consistency guarantees across partitions e.g. consistent snapshots, foreign key references. Total ordering across all partitions is possible but requires additional coordination)
+
+##### Linearizability and total order broadcast
+
+Linearizability is not quite the same as total order broadcast.
+
+If you have total order broadcast, you can build linearizable storage on top of it.
+Imagine we have a total order broadcast log, when writing to a key, we first append the desire to write to the log, and then when we commit the write we only do so if we see our attempt to write happens first since the last committed write happened in log. If so we commit, otherwise we abort. (a linearizable compare-and-set)
+
+This ensures linearizable writes and a similar approach can be used to implement serializable multi-object transactions on top of a log.
+
+This (asynchronous update) procedure does not guarantee linearizable reads, one can read a stale value. (This write linearizability provides sequential consistency / timeline consistency, slightly weaker than linearizability.)
+
+To make reads linearizable we can do: sequencing reads through the log by appending a message reading the log, and performing actual read when the message is delivered back to you; if the log allows you to fetch the position of the last log message in a linearizable way, you can query that position wait for all entries up to that point to be delivered, then perform the read; you can make your read from a replica that is synchronously updated on writes and is thus sure to be up to date.
+
+We can also build total order broadcast from linearizable storage.
+
+
