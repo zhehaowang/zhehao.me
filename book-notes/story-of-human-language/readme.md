@@ -159,3 +159,26 @@ The H is not necessarily always more complicated than the L, it is so in some ca
 Writing is almost orthogonal to speaking, the former being something one goes through formal training to acquire, and the latter being more of a biological instinct.
 The written language is almost always very different from the spoken one: more composition, more structure, bigger vocabulary, longer, etc. The start of Hebrew Bible may be a good example of when writing mimicing the spoken language as the former was not yet too developed. The written language in Gibbon's work, on the other hand, would demonstrate a style that is very distinct from a spoken language.
 Not that either is superior in any way as both can be elegant.
+
+English as it is today is influenced by rules people like Lowth introduced (somewhat arbitrarily), think peculiarities like "you were (was)", "aren't I (am not I)", "to whom (to who)", meaning of double negative (ain't got nothing).
+Based on their notion of Latin and Greek are superior languages, any change / decay in the language is undesirable, and that grammar should always be logical.
+
+### Borrow and mixing
+
+Languages borrow and mix, both words and grammar.
+English in particular is a bastard language in the sense that most of the vocabulary today is borrowed.
+1 percent from old English, and the rest from old Norse dating back to the Viking invasions, Norman dating to William the Conqueror, and Latin / Greek dating to later when English became a language of learning.
+
+The shorter and more widely used words often are different and rooted in old English, while the longer ones for something specific and complex are usually quite similar with French, etc.
+
+This borrowing creates interesting effects like doublets of words and the high / low variant, e.g. beef and cow, pork and pig.
+
+There isn't a language quite like English like the similarity between different Slavic languages or Portuguese with Spanish, the closest is probably Dutch but that's still a long way off.
+
+Grammar, too, are borrowed.
+An example being the Indo-European language like Hindi coming into contact with Dravidian language in the south and being impacted by its SOV ordering.
+
+Code-switching of switching languages mid-sentence (following a particular set of rules) is a sign of a bilingual person with dual cultural background, and another process in which grammar of one language can be introduced into another, and new languages be born. (E.g. a language in Ecuador that is a mix of Quechua and Spanish)
+
+How the modern education teaches languages (books on grammar, memorizing words, speaking after some teacher) is not how language has been learnt in the past.
+And the learning process of hearing and repeating in the past presumably contributed to the much borrowing and mixing we see today as well.
