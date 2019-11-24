@@ -182,3 +182,23 @@ Code-switching of switching languages mid-sentence (following a particular set o
 
 How the modern education teaches languages (books on grammar, memorizing words, speaking after some teacher) is not how language has been learnt in the past.
 And the learning process of hearing and repeating in the past presumably contributed to the much borrowing and mixing we see today as well.
+
+Languages mix and borrow in a symbiotic-like fashion. The branches of a bush mix and form a net.
+
+Language areas, where languages of different family draw features from each other and became closer in terms of grammar and words. Examples being Bulkan area where Romanian is of Romance sub-family of Indo-European, Albanian of Albanian sub-family, and Bulgarian of Slavic sub-family, yet Romanian adopted having the/a behind the noun unlike other Romance languages but like Albanian, and Bulgarian got the/a in the first place which is unlike other Slavic languages.
+
+Another area is Sino-sphere where Tai-Kadai (Laotian and Thai), Austro-Asiatic drew from Sino-Tibetan.
+
+### Complexities in languages
+
+Languages develop complexities that are not quite necessary for being able to clearly express.
+E.g. has done perfect tense in English (event happened in the past having impact on current, a peculiar feature to mostly European languages), gender (masculine and feminine) forms, factual marker (needing to differentiate a fact you see, heard or hearsay with an ending to the word) etc.
+Such usually comes from grammaticalization.
+
+There is no defined standard what is needed to clearly express in a language, but each language picks up a few features such as tones, endings, factual markers, tenses, etc.
+
+All languages are complex but not equally so.
+The case usually is that the more secluded the language, the more complicated it gets.
+An example being Tsez, a language spoken by tens of thousands in the Caucasus, where the sound involves waggling the back of your throat, has four genders, (on verb and adjectives when they don't start with a consonant) 
+
+Children has amazing imitation skills in picking up these complexities in languages, and beyond a certain point such a language would be very difficult to learn.
