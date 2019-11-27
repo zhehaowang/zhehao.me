@@ -159,3 +159,46 @@ The H is not necessarily always more complicated than the L, it is so in some ca
 Writing is almost orthogonal to speaking, the former being something one goes through formal training to acquire, and the latter being more of a biological instinct.
 The written language is almost always very different from the spoken one: more composition, more structure, bigger vocabulary, longer, etc. The start of Hebrew Bible may be a good example of when writing mimicing the spoken language as the former was not yet too developed. The written language in Gibbon's work, on the other hand, would demonstrate a style that is very distinct from a spoken language.
 Not that either is superior in any way as both can be elegant.
+
+English as it is today is influenced by rules people like Lowth introduced (somewhat arbitrarily), think peculiarities like "you were (was)", "aren't I (am not I)", "to whom (to who)", meaning of double negative (ain't got nothing).
+Based on their notion of Latin and Greek are superior languages, any change / decay in the language is undesirable, and that grammar should always be logical.
+
+### Borrow and mixing
+
+Languages borrow and mix, both words and grammar.
+English in particular is a bastard language in the sense that most of the vocabulary today is borrowed.
+1 percent from old English, and the rest from old Norse dating back to the Viking invasions, Norman dating to William the Conqueror, and Latin / Greek dating to later when English became a language of learning.
+
+The shorter and more widely used words often are different and rooted in old English, while the longer ones for something specific and complex are usually quite similar with French, etc.
+
+This borrowing creates interesting effects like doublets of words and the high / low variant, e.g. beef and cow, pork and pig.
+
+There isn't a language quite like English like the similarity between different Slavic languages or Portuguese with Spanish, the closest is probably Dutch but that's still a long way off.
+
+Grammar, too, are borrowed.
+An example being the Indo-European language like Hindi coming into contact with Dravidian language in the south and being impacted by its SOV ordering.
+
+Code-switching of switching languages mid-sentence (following a particular set of rules) is a sign of a bilingual person with dual cultural background, and another process in which grammar of one language can be introduced into another, and new languages be born. (E.g. a language in Ecuador that is a mix of Quechua and Spanish)
+
+How the modern education teaches languages (books on grammar, memorizing words, speaking after some teacher) is not how language has been learnt in the past.
+And the learning process of hearing and repeating in the past presumably contributed to the much borrowing and mixing we see today as well.
+
+Languages mix and borrow in a symbiotic-like fashion. The branches of a bush mix and form a net.
+
+Language areas, where languages of different family draw features from each other and became closer in terms of grammar and words. Examples being Bulkan area where Romanian is of Romance sub-family of Indo-European, Albanian of Albanian sub-family, and Bulgarian of Slavic sub-family, yet Romanian adopted having the/a behind the noun unlike other Romance languages but like Albanian, and Bulgarian got the/a in the first place which is unlike other Slavic languages.
+
+Another area is Sino-sphere where Tai-Kadai (Laotian and Thai), Austro-Asiatic drew from Sino-Tibetan.
+
+### Complexities in languages
+
+Languages develop complexities that are not quite necessary for being able to clearly express.
+E.g. has done perfect tense in English (event happened in the past having impact on current, a peculiar feature to mostly European languages), gender (masculine and feminine) forms, factual marker (needing to differentiate a fact you see, heard or hearsay with an ending to the word) etc.
+Such usually comes from grammaticalization.
+
+There is no defined standard what is needed to clearly express in a language, but each language picks up a few features such as tones, endings, factual markers, tenses, etc.
+
+All languages are complex but not equally so.
+The case usually is that the more secluded the language, the more complicated it gets.
+An example being Tsez, a language spoken by tens of thousands in the Caucasus, where the sound involves waggling the back of your throat, has four genders, (on verb and adjectives when they don't start with a consonant) 
+
+Children has amazing imitation skills in picking up these complexities in languages, and beyond a certain point such a language would be very difficult to learn.
