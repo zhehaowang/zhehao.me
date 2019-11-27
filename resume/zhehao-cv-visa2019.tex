@@ -1,0 +1,193 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+
+\usepackage[left=1in,top=0.4in,right=1in,bottom=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage{bibentry}
+\usepackage{xstring}
+
+% Quick workaround as I'm the only person with last name Wang
+% The solution without xstring is having trouble with spaces in names;
+% Solution suggested here: http://tex.stackexchange.com/questions/33330/make-one-authors-name-bold-every-time-it-shows-up-in-the-bibliography 
+\def\FormatName#1{%
+  \IfSubStr{#1}{Wang}{\textbf{#1}}{#1}%
+}
+
+\name{Zhehao Wang}
+\address{zwang@hudson-trading.com}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work Experience}
+
+\begin{rSubsection}{Hudson River Trading}{Dec 2018 - Present}{Algorithm Engineer}{}
+\item \textbf{Global Equities Market Making Team}
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] Design, implement and problem-shoot strategies in an automated trading platform (C++).
+\item[--] Optimize low latency live trading, improve performance and throughput of automated trading strategies (C++).
+\item[--] Apply and utilize computer modeling to forecast the performance of investment vehicles and improve trading algorithms (C++, Python).
+\item[--] Implement software protocols and interfaces to support trading on new markets, and maintaining proprietary software tools to manage trading operations across exchanges (C++, Python).
+\end{itemize}
+
+\end{rSubsection}
+
+\begin{rSubsection}{Bloomberg LP}{Jun 2017 - Dec 2018}{Software Engineer}{}
+\item \textbf{Derivatives Pricing Team}
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] Build microservice which provides structured product loading functionality as a software service (C++).
+\item[--] Expand and maintain Bloomberg Terminal and API pricing coverage for financial products in emerging markets (C++).
+\item[--] Design and implement a distributed logging service and automated tests integrated with pricing engine (Python, C++).
+\end{itemize}
+
+\end{rSubsection}
+
+\begin{rSubsection}{UCLA}{Feb 2014 - May 2017}{Software Engineer, Graduate Student Researcher}{}
+\item \textbf{Named Data Networking} (NDN) future Internet architecture project, funded by the NSF
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] Design trust and bootstrap, device discovery, and application publish/subscribe in a smart home context (C++, Python, JavaScript, C\#).
+\item[--] Design and implement a mobile health application to demonstrate data encryption and verification in a content-centric network (Java).
+\item[--] Design and implement a multiplayer online game for distributed synchronization study in a content-centric network (C\#).
+
+\end{itemize}
+
+\item \textbf{Future of Storytelling} project
+
+\begin{itemize}[noitemsep,topsep=-6pt,leftmargin=1em]
+\item[--] Implement a markup parser to turn screenwriting languages into webpage with active components (HTML, JavaScript, Python).
+\item[--] Implement roleplaying game experience with participants receiving realtime feed from Google Glass (Java, JavaScript).
+\end{itemize}
+
+\end{rSubsection}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+{\bf University of California, Los Angeles} \hfill {Sep 2015 - Apr 2017} \\ 
+M.S. in Computer Science \\
+\itab{Advisor:} \tab{Lixia Zhang} \\
+\itab{GPA:} \tab{3.9/4} 
+
+{\bf Xi'an Jiaotong University, China} \hfill {Sep 2010 - Jun 2014} \\ 
+B.S. in Computer Science \\
+\itab{Major GPA:} \tab{89/100}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Skills \& Profiles}
+
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{3ex}} l }
+Programming Languages & C++ (proficient), Python (proficient), JavaScript, C\#, Matlab \\
+Github repository & https://github.com/zhehaowang \\
+% Shrink linkedin profile if possible
+Linkedin profile & https://www.linkedin.com/in/zhehao-wang-15739869 \\
+\end{tabular}
+
+\end{rSection}
+
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS SECTION
+%----------------------------------------------------------------------------------------
+
+% \begin{rSection}{Publications}
+
+% \nocite{*}
+% \bibliographystyle{abbrv-mybold}
+% \nobibliography{zhehao-cv}
+% \bibentry{cloudless}
+
+% \bibentry{ndnfit}
+
+% \bibentry{ndn-real-time}
+
+% \end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	AWARDS AND SCHOLARSHIPS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Awards \& Scholarships}
+
+Outstanding Senior Student of Xi'an Jiaotong University (10\%)\hfill 2014 \\
+Meritorious Winner of International Mathematical Contest in Modeling \hfill 2013 \\
+UCLA-CSST Scholarship \hfill 2013 \\
+3$^{rd}$ Class Award in ACM Competition of Xi'an Jiaotong University \hfill 2011 \\
+
+\end{rSection}
+
+\end{document}
+
+
+% Zhehao Wang
+% 424-333-8516
+% zhehao@cs.ucla.edu
+
+% ** Education
+% University of California, Los Angeles 
+% Sep 2015 - Present 
+% M.S. in Computer Science (Expected graduation: Mar 2017
+% Advisor: Lixia Zhang
+% GPA: 3.9/4 
+
+% Xi'an Jiaotong University, China
+% Sep 2010 - Jun 2014
+% B.E. in Computer Science
+% Major GPA: 89/100
+
+% ** Skills & Profiles
+
+% Languages: Python (proficient), JavaScript (proficient), C, C++, C\#, Matlab
+% Github repository: https://github.com/zhehaowang
+% Linkedin profile: https://www.linkedin.com/in/zhehao-wang-15739869
+
+% ** Experience
+
+% The Center for Research in Engineering, Media and Performance, UCLA
+% Feb 2014 - Present
+% Graduate student researcher; Staff software developer (through Aug, 2015)
+
+%  - Named Data Networking (NDN) future Internet architecture project, funded by the NSF
+%    -- NDN building management system (Python), which receives, aggregates and visualizes data from UCLA's campus system
+%    -- NDNFit (Java, Android), a mobile health application investigating security in NDN
+%    -- NDN multiplayer game (C#, Unity) exploring peer-to-peer synchronization in online games
+%    -- Chat application for the NDN tutorial in the 2nd ACM Conference on Information-Centric Networking
+%    -- Performance improvements for NDNFS (C, Fuse), a file system that supports data access from remote
+
+%  - Future of Storytelling project, funded by Google
+%    -- Fountainhead, a markup parser for a screenwriting language that generates a webpage, which uses web components and NDN for real-time show control
+%    -- Los Atlantis project website (http://the-archive.la), for user registration, online performance watching and real-time interaction
+%    -- Adminstrator website (JS, Google API) for GracePlains, which creates a live roleplaying game experience with Google Glass
+
+% National Institute of Standards and Technology
+% Jul 2016 - Sep 2016
+% Guest researcher
+%  - NDN building manangement system simulation and visualization
+%  - Division and team presentations on NDN architecture and application building blocks
+
+% ** Awards & Scholarships
+
+% Outstanding Senior Student of Xi'an Jiaotong University (10%) 2014
+% Meritorious Winner of International Mathematical Contest in Modelling 2013
+% UCLA-CSST Scholarship (9000 USD) 2013
+% 3rd Class Award in ACM Competition of Xi'an Jiaotong University 2011
+
