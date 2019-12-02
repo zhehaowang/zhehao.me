@@ -1834,6 +1834,15 @@ To make reads linearizable we can do: sequencing reads through the log by append
 
 We can also build total order broadcast from linearizable storage.
 
+Assume you have a lineariable register that stores an int and has an atomic increment-and-get operation, for every message you want to send through total order broadcast, you increment-and-get the linearizable integer, and then attach the value you got from the register as a sequence number to the message. Resend lost messages and let the recipients apply the messages consecutively by sequence number.
+
+Unlike Lamport clocks, the numbers you get from incrementing the linearizable register form a sequence without gaps.
+Seeing a gap in the sequence number means the recipient need to wait, and this is the key difference between total order broadcast and timestamp ordering.
+
+If things never fail, building a linearizable increment-and-get is easy: you could keep it in a variable on one node, when dealing with failure, in general you end up with a consensus algorithm to generate linearizable sequence number generator.
+
+It can be proved that a linearizable compare-and-set (or increment-and-get) register and total order broadcast are both equivalent to consensus, and the solution for one can be transformed into that for another.
+
 ### Consensus
 
 Getting nodes to agree is a subtle but important problem in leader election, atomic commits, etc.
