@@ -1860,3 +1860,6 @@ In case of multi-nodes being involved, e.g. term-partitioned secondary index (wh
 Commits are irrevocable (as implied by read-committed consistency).
 A node must commit when it is certain all other nodes involved in the transaction are going to commit.
 This is where 2PC comes in.
+
+
+
