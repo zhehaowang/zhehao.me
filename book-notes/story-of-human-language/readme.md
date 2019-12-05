@@ -255,3 +255,40 @@ This includes Cantonese traders speaking English (where Pidgin came from), 18th 
 
 The Russo-Norsk language in particular has no markings, verb conjugations, one preposition, no gender, very simple pronunciation, 300 words with a few for different alcohol.
 
+### Creoles
+
+Every language traces back to something and Creoles are instances where new language gets created from pidgins.
+Note that Creole doesn't specifically refer to Creoles of European and native American origins.
+
+When pidgin speakers do not go home and keep speaking their pidgins, over time due to the need to express themself in nuanced ways a language gets built back up from stripped down versions that is a pidgin (having a full language is part of being human).
+
+Example include Tokpissen (business talk) in Papua New Guinea, its Lingua Franca.
+British South Sea plantation brought over population from New Guinea and this language is developed, propagated back to the islands, and became a way people from different islands speaking different aberiginal languages can communicate.
+
+Lousiana French Creole, Haitian English Creole, Guyana English Creole, West African and (dying) Indian Portuguese Creole, Uganda Arabic Creoles are all examples of such.
+
+Most Creoles are created from colonization and slave trade.
+
+They differ from dialects of the language in that the grammar and how the vocabulary are used are different enough that listeners to a Creole cannot tell what the original language was and how it evolved to the point of the Creole.
+
+Saramarkan Creole in Suriname (Carribean Creole resulted from slave trade) has a hybrid European vocabulary.
+Slaves on the planatation (run by the English then the Dutch, with a mix of Portuguese Jews fleeing the inquisition and an Angola (West Africa) influence) developed this language.
+It developed simple tones (something no pidgins have), a particular grammar that involves different forms of "to be" and nuances that are hardly necessary for conveying meaning unambiguously, and a marker indicating something fallen / being thrown finishing its trajectory.
+
+Hawaiin English Creole has a grammar that developed from the Chinese, Japanese and Phillipino planatation worker pidgin.
+
+Bio-programme hypothesis: Bickerton claims if there is a universal grammar, Creole languages would reflect this grammar without all the complexities of a traditional language developed over time (almost all of which has, e.g. either tones or prefixes / suffixes).
+This is again controversial.
+
+Creoles are often times more streamlined than traditional languages that developed (maybe accidental) gunks over time, and could reflect what a language needs, or even the first language, if there was one.
+
+Creole is a continuum concept (as languages and dialects), there is the language that gave it its words, a deepest Creole, and many variants in between.
+Afrikaans is e.g. more streamlined than Dutch (e.g. no gender), but not a full Creole.
+
+### Black English
+
+A dialect of English, not any bastardization, nor a Creole or an African language.
+
+Slangs are just the icing, it's also a unique sound system (th and f) and grammar (dropping "to be", "be" being a habitual marker not a present marker).
+
+
