@@ -8,6 +8,7 @@
   * Analogous to pupil.
   * Measured by. f/x, the smaller x, the bigger aperture (more light is let in), the more background blur (see depth-of-field). (e.g. f/1.8 - f/22). f/2.8 lets in 4 times as much light as f/5.6. Typically each f stop steps are arranged by a factor of `sqrt(2)`, meaning each step brings in double the amount of light, and your shutter speed can get cut by half, while iso remains unchanged to get the same exposure. A f/3.5-f/5.6 on a zoom lens says at minimum / maximum focal lengths, what the lowest f stop numbers are.
   * Userful for controlling background blur. (as a lower f stop number gives you shallower DoF)
+  * Under the same scenario, two different lenses with the same f stop number should let in the same amount of light onto the sensor. Light in lens with longer focal lengths has to travel farther to get to the sensor, meaning with the same f-stop number, a longer focal length lens has to let in more light at the lens to achieve the goal of letting the same amount of light through to the sensor. Therefore f stop number is a combination of focal length and diameter of the hole letting in light.
 * Shutter Priority (S). Front dial controls shutter (camera controls aperture, iso)
   * How long the shutter is open for. You can shoot in smallest shutter period possible, in which case camera will likely dial up iso, resulting in noises. To capture fast moving objects you generally want faster shutter speed.
   * Measured by seconds. E.g. 1/60s.
@@ -147,14 +148,49 @@ DoF can be used to
 
 ### Lenses
 
-Our eyes are used to seeing the world at around 50mm focal length, phone cameras capture images around 30mm.
+Focal length and aperture are the key aspects of a lens.
+Focal length is the distance between the lens and the sensor where parallel light into the lens would converge on one point.
+(Or moving the sensor until the image of an object from infinitely far away is clearest on the sensor)
+Hence typically the longer the focal length, the longer the lens is physically.
+
+An object of width and height x in a 50mm focal distance lens will have 2x width and height in a 100mm focal distance lens.
+
+Each film size has a range of focal length that is considered standard for it, with longer ones considered telephoto and shorter ones considered wide-angle. For 35mm full frame cameras, 40-60mm lenses are considered standard.
+Our eyes see the world as an around 50mm focal length lens on a 35mm film would. 50mm is about the length of diameter on 35mm film.
+Phone cameras capture images as an around 30mm lens on 35mm film would.
 To go below that with a short focal length wide-angle or a telephoto focal length can often reflect the world in ways our eyes were not used to seeing.
+
 Wide-angle lens may make it harder to compose the image, a lot will be in your field of view, and you have a larger depth of field.
 With a telephoto lens you are going to remove a lot of the context, e.g. creating an abstract image. Telephoto lens also pull distant things together.
 
 Similarly, we are used to seeing the world 1.2m to 1.7m above the ground. When you get the camera lower or higher than that, it could also reflect the world in ways our eyes were not used to seeing.
 
 If you are out and don't have the lens of the desired focal length with you, think differently and compose differently, move around, experiment.
+
+You probably don't need a >200 lens unless for certain professional use cases.
+These are expensive and usually need external stabilization (think reciprocal rule), and good air condition.
+Consider a teleconverter instead if you shoot objects far away occasionally. They are cheaper, easier to carry but offers a lower quality and may need additional exposure compensation.
+
+Zoom lenses are usually pricier, bulkier, and less clear than a prime lens at the prime lens' focal distance.
+
+Don't point your telephoto lens at the sun directly.
+
+When manual focusing with zoom lens, try focusing at the maximum zoom (+ MF assist), then adjust the focal length.
+
+Macro lens: where objects are replicated on camera about 1:1.
+
+* Lens flare
+* Perspective distortion
+* Perspective projection distortion (linear distortion?)
+
+### Different types of camera
+
+* Brownie
+* 35mm rangefinder (auto / manual)
+* 35mm slr
+* 120mm slr
+* Polaroid
+* Double lens system
 
 ### Misc
 

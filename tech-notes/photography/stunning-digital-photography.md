@@ -33,6 +33,7 @@ Before (an important day of) shooting
 * Do your research. If you are depicting a subject, how do you envision its look in your camera? Did you find the best angle and the best time?
 
 During shooting
+* What is your subject? What helps with focusing the attention of your audience on the subject? What elements are included in the frame? Do they help or hurt with depicting the subject?
 * Did you intend to have Exposure Compensation at non-0?
 * If you want / don't want the DoF effect, did you leave your aperture at a value that doesn't match your desire? Would the background be too blurred? Would part of the subject be blurred given your particular aperture? Do you want that, and do you want to take another with a different aperture? (Similarly, if you want / don't want motion).
 * Scan your edges. Are you clipping in / out anything you don't want / want?
@@ -51,13 +52,26 @@ During shooting
 * Did you miss an unique opportunity to depict the scene differently? A flower next to a landmark? Inspect your surroundings, imagine how they will look like on your camera from different angles (lighting, composition, DoF), don't miss the opportunity just because your imagination is limited by constructing the a scene only from an angle our eyes usually see.
 
 After shooting
-* Rate and flag more aggressively. Be more assertive about your own work (and maybe in general!). Mark the ones you want to process in the first pass!
+* Pick the ones that depict the subject best and have the cleanest view.
+* Rate and flag more aggressively. Be more assertive about your own work (and maybe in general!). Mark the ones you want to process in the first pass.
 * Be proactive / prompt about summarizing what you learn from each.
 * Reset your camera settings for tomorrow.
 
+### General
+
+* Subject
+  * Each photograph should have one and only one subject
+  * Elements in a good photograph should help guide the audience's attention to the subject
+  * A good photograph should be clean and simple: elements that are left in should be beneficial towards depicting your subject
+  * When you consider a subject and elements to help convey it, also consider from a higher level what are the concepts you want to depict. E.g. children with youthfulness / childhood / innocence, wedding with love / happiness, etc. These can be depicted with lighting, composition, facial expression, character movement, etc
+
+* Observation
+  * Observe your backyard with curiosity and unfamiliarity like a tourist would.
+
 ### Composition
 
-What do you want to convey? What is the story you are trying to tell?
+What do you want to convey?
+What is the story you are trying to tell?
 What is your subject, and what are some visual cues in the image?
 
 Some things to consider,
