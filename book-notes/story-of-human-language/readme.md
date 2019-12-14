@@ -291,4 +291,19 @@ A dialect of English, not any bastardization, nor a Creole or an African languag
 
 Slangs are just the icing, it's also a unique sound system (th and f) and grammar (dropping "to be", "be" being a habitual marker not a present marker).
 
+### Language death
 
+Today we are at a point where there are fewer languages than any other point in human history.
+Over 10k languages became about 6k, and 96% of world's population speak one of the big 20 languages (Chinese, Spanish, English, Hindi, Arabic, Portuguese, Bengali, Russian, Japanese, Lahnda (Punjabi), Javanese, German, Korean, French, Telugu (Indian), Marathi (Indian), Turkish, Tamil (Indian), Vietnamese, Erdu)
+
+Projection suggests 500 of the 6k languages would remain in 2100.
+
+Among the 300 native American languages, over 200 are not passed on or spoken by anyone any more.
+
+The process of death for a language is usually it reverting to pidgin, vocabulary shrinks, structure melts away, finally it devolves into dust. (think immigrants' children)
+
+It takes about one generation for a language to not be passed on and die.
+
+Why should one care?
+Is diversity always nice-to-have?
+Languages may project things abbout our culture and mind (assumption), which is a complex issue.
