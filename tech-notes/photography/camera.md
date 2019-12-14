@@ -16,7 +16,8 @@
   * Distinguish your desirable motion blur with undesirable ones of the subject; distinguish camera shake with motion blur (background moves or not)
   * Reciprocal rule, shutter speed at 1/(your focal length), depends on the individual and image stabilization. May not be applicable for modern technology.
   * Too fast and you may have flash sync problem. Flash does not fully fire at your high shutter speed.
-  * Experiment. In general portraits / still animals 1/30 - 1/250; soaring birds 1/1000 - 1/2000; kids sports 1/125 - 1/250; adult sports 1/500 - 1/1000; star trails 5mins+ (usually the longer the better) etc
+  * Experiment. In general portraits / still animals 1/30 - 1/250; soaring birds 1/1000 - 1/2000; kids sports 1/125 - 1/250; adult sports 1/500 - 1/1000; star trails 5mins+ (usually the longer the better) etc.
+  * The speed, angle, and distance of the moving object, and the focal length of your lens should all be factors when deciding your shutter speed (to convey / negate movement)
 * Manual mode (M). Front dial controls aperture. Back dial controls shutter speed. (camera controls iso by default, unless you turn that off as well.)
   * Can switch to bulb mode, where shutter can open for more than 30s by holding. (E.g. night sky)
   * When you need to control background blur and freeze movement.
@@ -153,6 +154,9 @@ Focal length is the distance between the lens and the sensor where parallel ligh
 (Or moving the sensor until the image of an object from infinitely far away is clearest on the sensor)
 Hence typically the longer the focal length, the longer the lens is physically.
 
+Typically objects on the focal plane (at a certain distance away) are clearest, and objects x meters before and 2x meters after the focal plane would also appear to be in focus, where x is a factor of your to focal plane, apperture, and lens focal length.
+Prime full manual lens usually have a Depth of Field ring which demonstrates the above.
+
 An object of width and height x in a 50mm focal distance lens will have 2x width and height in a 100mm focal distance lens.
 
 Each film size has a range of focal length that is considered standard for it, with longer ones considered telephoto and shorter ones considered wide-angle. For 35mm full frame cameras, 40-60mm lenses are considered standard.
@@ -179,9 +183,15 @@ When manual focusing with zoom lens, try focusing at the maximum zoom (+ MF assi
 
 Macro lens: where objects are replicated on camera about 1:1.
 
-* Lens flare
-* Perspective distortion
-* Perspective projection distortion (linear distortion?)
+* Lens flare. Hoods are a good way to counter, alternatively, switch to a different angle. Lens has chemical coating to also reduce flare, to avoid damaging the coating when wiping, don't use coarse material like cotton / fiber reusable lens wipe.
+* Perspective distortion.
+Transformation of an object and its surrounding areas that makes it look significantly different from what it would look like with a normal focal length.
+Determined by the distance at which the image is captured and viewed, and is due to angle of view of the image (at capture) being wider or narrower than angle of view of the image being viewed.
+  * Extension distortion / wide angle distortion is the effect of shooting close up with wide angle lens, where objects closer to the lens appear abnormally larger than the objects farther away: distance is extended. (Magnifies distance. Think shooting portraits close up with a wide-angle lens and the nose usually appears abnormally large).
+  * Compression distortion / telephoto distortion is the effect of shooting distant objects with a telephoto lens, where objects closer appear abnormally small, and objects farther away appear abnormally large. Distance is collapsed. (Flattens the distance)
+  * Note that this perspective change is caused by distance, not the lens per se. Two shots of the same scene with different lenses will appear to have the same distortion effect. Just that wide angle lens have a wider field of view so we typically shoot closer, and extension distortion is observed when shooting closer.
+  * Side view mirrors on a car demonstrates a similar distortion effect.
+* Projection distortion, similar to perspective distortion, parallel lines far away appear to converge to one point, as distance gets collapsed when viewing far away. This is typical when shooting, e.g. a long corridor, railway, and a building from down below.
 
 ### Different types of camera
 
