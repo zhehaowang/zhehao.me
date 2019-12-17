@@ -1716,7 +1716,7 @@ Linearizability is useful in the following scenarios:
 
 To implement linearizability one way is to just have one copy of the data, which is not fault tolerant.
 We need replications and revisiting different replication mechanisms:
-* single-leader replication is linearizable if reading from leader or synchronously updated followers
+* single-leader replication is linearizable if reading from leader or synchronously updated followers.
 * consensus algorithms bear a resemblance to single-leader replication. They also implement linearizable storage safely.
 * multi-leader replication systems are generally not linearizable: write conflicts resolution are typically an artifact of lacking a single copy of data.
 * leaderless replication systems like Dynamo claim strong consistency by requiring w + r > n. This is not quite true. LWW conflict resolution based on time-of-day clock are not linearizable as clock timestamps cannot be guaranteed to consistent with actual event timing due to clock skews. Sloppy quorum also ruins linearizability. Even with strict quorum this is not necessarily true. To make strict quorum linearizable, a reader must perform read repair synchronously before returning results to the application and a writer must read the latest state of a quorum of nodes before sending its writes.
@@ -1861,5 +1861,33 @@ Commits are irrevocable (as implied by read-committed consistency).
 A node must commit when it is certain all other nodes involved in the transaction are going to commit.
 This is where 2PC comes in.
 
+Differentiate 2PC with 2PL: latter is for achieving serializable isolation, and former is for atomic commit to distributed nodes.
 
+2PC uses an extra component: coordinator  / transaction manager.
+
+The workflow is
+* Write: Coordinator write to individual nodes
+* Prepare: Coordinator asks each node to be ready for commit (after which node promises to commit without actually committing)
+  * If a node replies with "yes ready to commit", there's no turning back from this decision: it must commit if later the Coordinator tells it to
+* Commit: Upon hearing back from all nodes that they are ready for commit, the Coordinator tells all to commit
+  * If failure to commit happens at this stage, the coordinator must retry until succeeds, there's no turning back, wait for a participant recovery if needed
+
+Two points of no-return in the workflow: a node cannot refuse to commit later on if it has replied to Coordinator that it will commit if told, and once Coordinator makes the decision to commit the decision is irrevocable.
+
+In case of a Coordinator crash,
+* if it happens before "prepare", participant can abort.
+* if it happens after participant replying yes, then the participant cannot abort unilaterally: it has to wait for Coordinator recovery. This is why the Coordinator must write its commit / abort decision to its write-ahead log so that when recovering it knows what its decision was.
+In other words, commit point in 2PC comes down to a single node (Coordinator) deciding to commit or abort.
+
+2PC is blocking atomic commit as nodes potentially have to wait for coordinator recovery.
+
+3PC can make this process asynchronous but 3PC assumes bounded network response time and bounded node response time: in general non blocking commit requires a perfect failure detector, a reliable mechanism to detect crashes.
+
+### Distributed transaction
+
+2PC provides an important atomicity guarantee but cause operational problems, kills performance, and promises more than it can deliver.
+
+Distributed transactions comes in
+* Database internal distributed transaction: all nodes running the same software
+* Heterogeneous distributed transaction: nodes run different software or even some running DB others running message brokers
 
