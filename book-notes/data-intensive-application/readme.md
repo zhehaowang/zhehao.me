@@ -1844,3 +1844,22 @@ If things never fail, building a linearizable increment-and-get is easy: you cou
 It can be proved that a linearizable compare-and-set (or increment-and-get) register and total order broadcast are both equivalent to consensus, and the solution for one can be transformed into that for another.
 
 ### Consensus
+
+Getting nodes to agree is a subtle but important problem in leader election, atomic commits, etc.
+
+**FLP result** claims no algorithm is always able to reach consensus if risking a node crash, in the _asynchronous system model_ where a deterministic algorithm cannot use clocks or timeout (e.g. to detect crashes).
+
+**2-Phase Commit** (2PC) is a simple form of consensus, which can be used for atomicity in multiple-object transactions, e.g. when updating a secondary index.
+
+In a single-node write scenario, atomicity can be achieved by first making the written data durable in a write-ahead log, then write the commit record.
+Crash-recovery would consider the write committed / aborted if seeing / not seeing the commit record at the end.
+
+In case of multi-nodes being involved, e.g. term-partitioned secondary index (where the secondary index can live on a different node from where the data is), we can't just do write data - commit record sequence for each node.
+(Note that most NoSQL DBs don't support distributed transactions, but clustered relational DBs do.)
+
+Commits are irrevocable (as implied by read-committed consistency).
+A node must commit when it is certain all other nodes involved in the transaction are going to commit.
+This is where 2PC comes in.
+
+
+

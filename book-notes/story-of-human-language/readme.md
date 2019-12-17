@@ -202,3 +202,108 @@ The case usually is that the more secluded the language, the more complicated it
 An example being Tsez, a language spoken by tens of thousands in the Caucasus, where the sound involves waggling the back of your throat, has four genders, (on verb and adjectives when they don't start with a consonant) 
 
 Children has amazing imitation skills in picking up these complexities in languages, and beyond a certain point such a language would be very difficult to learn.
+
+Languages simplify due to external influence, e.g. a particular group of adults learning the language.
+Real Javanese was formed around the time of different ethnic groups coming to learn the language, as was Mandarin Chinese which was deemed simpler than Chinese dialects for its reduced variants in tones and possible consonant endings.
+Mandarin came around a time when groups of Tibetans, Mongolians, etc adults came to northern China to learn the language.
+The Mandarin simplification was not as extreme as that of Real Javanese.
+
+### Proto-Germanic and English
+
+German, English, Dutch, Faroese and Frisian are derived from proto-Germanic family.
+One of the characteristics of this family, compared with other branches of Indo-European, is its emphasis is usually on the first syllable, making endings particularly vulnerable to being dropped.
+Modern English keep very few case endings, including 's' and more commonly used ones like "him", "whom", etc.
+
+Proto-Germanic traces two thirds of its words back to proto-Indo-European, and the other third is unknown, including words like "sheep".
+One theory attributes the rest to Semitic influence. There were records of Semitic speaking sailors in Northern Europe.
+Some similarity in words exist, and sometimes the verb transformation reflects the tri-consonantal root with vowel variations seen in Semitic languages (e.g. think - thought).
+Grim's law could also be related with Semitic influence.
+
+Old English is much like German, also being SOV, the change from old English likely was due to invasion of old Norse speakers.
+They settled in, learnt the language half-heartedly and following a learning methodology very different from today's, and resulted in changes (simplifications) in the English grammar.
+
+### Language and culture / psycology of a people
+
+Suppear-Warf hypothesis claims grammar channels the way people think.
+This is luring but unproven.
+The current belief is that language is largely not indexed to culture, and its transformation is unconnected with culture.
+
+Warf's example was standard average European language (Germanic, Romance languages) vs native American language Hopi.
+The latter has one word for all flying objects except birds, differentiates water you use and water you see, doesn't have tense which supposedly reflects native American's cyclical view of time.
+
+The theory largely thought the likes of English being crude and Hopi sophisticated, the typical trend in linguistic study of his time.
+
+Examples for the theory includes empirical observations but not proofs. Honorific distinctions in Japanese, Korean, reflecting the respect hierarchies in these cultures.
+Also more often than not French speakers think of tables as female in cartoons due to gender markers in the language.
+Speakers of a language that does not differentiate blue/green (glu) seem to take more effort differentiating these two colors, and those who have two yellows take less effort to differentiate different yellows.
+
+Problems with the hypothesis include Warf being wrong about Hopi whose view of time is not cyclical but record-based and the language does have some time markers.
+And counter examples include inalienable possessive marking usually not found in languages spoken by the capitalist world but rather those in the Amazon jungles.
+Another being fly, crawl, float are all move with different particles as opposed to their own words in Navajo, a traditionally nomadic people.
+
+Navajo differentiates handling of objects depending on the shape and form of something, this fact did not seem to make the speakers more likely to differentiate objects by form and shape as opposed to color and size. Something else does.
+
+The theory of languages reflecting culture has never been proven.
+
+### Pidgin
+
+A particular group of people learning a language to get by, also resulting in a much simplified combination of the two languages.
+
+Them making systematic mistakes which evolved into implicit rules in the bastard version of the language.
+
+This includes Cantonese traders speaking English (where Pidgin came from), 18th Century native American English, a Russo-Norsk language spoken by Russian traders spending their summers in Norway.
+
+The Russo-Norsk language in particular has no markings, verb conjugations, one preposition, no gender, very simple pronunciation, 300 words with a few for different alcohol.
+
+### Creoles
+
+Every language traces back to something and Creoles are instances where new language gets created from pidgins.
+Note that Creole doesn't specifically refer to Creoles of European and native American origins.
+
+When pidgin speakers do not go home and keep speaking their pidgins, over time due to the need to express themself in nuanced ways a language gets built back up from stripped down versions that is a pidgin (having a full language is part of being human).
+
+Example include Tokpissen (business talk) in Papua New Guinea, its Lingua Franca.
+British South Sea plantation brought over population from New Guinea and this language is developed, propagated back to the islands, and became a way people from different islands speaking different aberiginal languages can communicate.
+
+Lousiana French Creole, Haitian English Creole, Guyana English Creole, West African and (dying) Indian Portuguese Creole, Uganda Arabic Creoles are all examples of such.
+
+Most Creoles are created from colonization and slave trade.
+
+They differ from dialects of the language in that the grammar and how the vocabulary are used are different enough that listeners to a Creole cannot tell what the original language was and how it evolved to the point of the Creole.
+
+Saramarkan Creole in Suriname (Carribean Creole resulted from slave trade) has a hybrid European vocabulary.
+Slaves on the planatation (run by the English then the Dutch, with a mix of Portuguese Jews fleeing the inquisition and an Angola (West Africa) influence) developed this language.
+It developed simple tones (something no pidgins have), a particular grammar that involves different forms of "to be" and nuances that are hardly necessary for conveying meaning unambiguously, and a marker indicating something fallen / being thrown finishing its trajectory.
+
+Hawaiin English Creole has a grammar that developed from the Chinese, Japanese and Phillipino planatation worker pidgin.
+
+Bio-programme hypothesis: Bickerton claims if there is a universal grammar, Creole languages would reflect this grammar without all the complexities of a traditional language developed over time (almost all of which has, e.g. either tones or prefixes / suffixes).
+This is again controversial.
+
+Creoles are often times more streamlined than traditional languages that developed (maybe accidental) gunks over time, and could reflect what a language needs, or even the first language, if there was one.
+
+Creole is a continuum concept (as languages and dialects), there is the language that gave it its words, a deepest Creole, and many variants in between.
+Afrikaans is e.g. more streamlined than Dutch (e.g. no gender), but not a full Creole.
+
+### Black English
+
+A dialect of English, not any bastardization, nor a Creole or an African language.
+
+Slangs are just the icing, it's also a unique sound system (th and f) and grammar (dropping "to be", "be" being a habitual marker not a present marker).
+
+### Language death
+
+Today we are at a point where there are fewer languages than any other point in human history.
+Over 10k languages became about 6k, and 96% of world's population speak one of the big 20 languages (Chinese, Spanish, English, Hindi, Arabic, Portuguese, Bengali, Russian, Japanese, Lahnda (Punjabi), Javanese, German, Korean, French, Telugu (Indian), Marathi (Indian), Turkish, Tamil (Indian), Vietnamese, Erdu)
+
+Projection suggests 500 of the 6k languages would remain in 2100.
+
+Among the 300 native American languages, over 200 are not passed on or spoken by anyone any more.
+
+The process of death for a language is usually it reverting to pidgin, vocabulary shrinks, structure melts away, finally it devolves into dust. (think immigrants' children)
+
+It takes about one generation for a language to not be passed on and die.
+
+Why should one care?
+Is diversity always nice-to-have?
+Languages may project things abbout our culture and mind (assumption), which is a complex issue.

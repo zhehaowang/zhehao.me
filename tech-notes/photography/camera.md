@@ -8,6 +8,7 @@
   * Analogous to pupil.
   * Measured by. f/x, the smaller x, the bigger aperture (more light is let in), the more background blur (see depth-of-field). (e.g. f/1.8 - f/22). f/2.8 lets in 4 times as much light as f/5.6. Typically each f stop steps are arranged by a factor of `sqrt(2)`, meaning each step brings in double the amount of light, and your shutter speed can get cut by half, while iso remains unchanged to get the same exposure. A f/3.5-f/5.6 on a zoom lens says at minimum / maximum focal lengths, what the lowest f stop numbers are.
   * Userful for controlling background blur. (as a lower f stop number gives you shallower DoF)
+  * Under the same scenario, two different lenses with the same f stop number should let in the same amount of light onto the sensor. Light in lens with longer focal lengths has to travel farther to get to the sensor, meaning with the same f-stop number, a longer focal length lens has to let in more light at the lens to achieve the goal of letting the same amount of light through to the sensor. Therefore f stop number is a combination of focal length and diameter of the hole letting in light.
 * Shutter Priority (S). Front dial controls shutter (camera controls aperture, iso)
   * How long the shutter is open for. You can shoot in smallest shutter period possible, in which case camera will likely dial up iso, resulting in noises. To capture fast moving objects you generally want faster shutter speed.
   * Measured by seconds. E.g. 1/60s.
@@ -15,7 +16,8 @@
   * Distinguish your desirable motion blur with undesirable ones of the subject; distinguish camera shake with motion blur (background moves or not)
   * Reciprocal rule, shutter speed at 1/(your focal length), depends on the individual and image stabilization. May not be applicable for modern technology.
   * Too fast and you may have flash sync problem. Flash does not fully fire at your high shutter speed.
-  * Experiment. In general portraits / still animals 1/30 - 1/250; soaring birds 1/1000 - 1/2000; kids sports 1/125 - 1/250; adult sports 1/500 - 1/1000; star trails 5mins+ (usually the longer the better) etc
+  * Experiment. In general portraits / still animals 1/30 - 1/250; soaring birds 1/1000 - 1/2000; kids sports 1/125 - 1/250; adult sports 1/500 - 1/1000; star trails 5mins+ (usually the longer the better) etc.
+  * The speed, angle, and distance of the moving object, and the focal length of your lens should all be factors when deciding your shutter speed (to convey / negate movement)
 * Manual mode (M). Front dial controls aperture. Back dial controls shutter speed. (camera controls iso by default, unless you turn that off as well.)
   * Can switch to bulb mode, where shutter can open for more than 30s by holding. (E.g. night sky)
   * When you need to control background blur and freeze movement.
@@ -147,14 +149,58 @@ DoF can be used to
 
 ### Lenses
 
-Our eyes are used to seeing the world at around 50mm focal length, phone cameras capture images around 30mm.
+Focal length and aperture are the key aspects of a lens.
+Focal length is the distance between the lens and the sensor where parallel light into the lens would converge on one point.
+(Or moving the sensor until the image of an object from infinitely far away is clearest on the sensor)
+Hence typically the longer the focal length, the longer the lens is physically.
+
+Typically objects on the focal plane (at a certain distance away) are clearest, and objects x meters before and 2x meters after the focal plane would also appear to be in focus, where x is a factor of your to focal plane, apperture, and lens focal length.
+Prime full manual lens usually have a Depth of Field ring which demonstrates the above.
+
+An object of width and height x in a 50mm focal distance lens will have 2x width and height in a 100mm focal distance lens.
+
+Each film size has a range of focal length that is considered standard for it, with longer ones considered telephoto and shorter ones considered wide-angle. For 35mm full frame cameras, 40-60mm lenses are considered standard.
+Our eyes see the world as an around 50mm focal length lens on a 35mm film would. 50mm is about the length of diameter on 35mm film.
+Phone cameras capture images as an around 30mm lens on 35mm film would.
 To go below that with a short focal length wide-angle or a telephoto focal length can often reflect the world in ways our eyes were not used to seeing.
+
 Wide-angle lens may make it harder to compose the image, a lot will be in your field of view, and you have a larger depth of field.
 With a telephoto lens you are going to remove a lot of the context, e.g. creating an abstract image. Telephoto lens also pull distant things together.
 
 Similarly, we are used to seeing the world 1.2m to 1.7m above the ground. When you get the camera lower or higher than that, it could also reflect the world in ways our eyes were not used to seeing.
 
 If you are out and don't have the lens of the desired focal length with you, think differently and compose differently, move around, experiment.
+
+You probably don't need a >200 lens unless for certain professional use cases.
+These are expensive and usually need external stabilization (think reciprocal rule), and good air condition.
+Consider a teleconverter instead if you shoot objects far away occasionally. They are cheaper, easier to carry but offers a lower quality and may need additional exposure compensation.
+
+Zoom lenses are usually pricier, bulkier, and less clear than a prime lens at the prime lens' focal distance.
+
+Don't point your telephoto lens at the sun directly.
+
+When manual focusing with zoom lens, try focusing at the maximum zoom (+ MF assist), then adjust the focal length.
+
+Macro lens: where objects are replicated on camera about 1:1.
+
+* Lens flare. Hoods are a good way to counter, alternatively, switch to a different angle. Lens has chemical coating to also reduce flare, to avoid damaging the coating when wiping, don't use coarse material like cotton / fiber reusable lens wipe.
+* Perspective distortion.
+Transformation of an object and its surrounding areas that makes it look significantly different from what it would look like with a normal focal length.
+Determined by the distance at which the image is captured and viewed, and is due to angle of view of the image (at capture) being wider or narrower than angle of view of the image being viewed.
+  * Extension distortion / wide angle distortion is the effect of shooting close up with wide angle lens, where objects closer to the lens appear abnormally larger than the objects farther away: distance is extended. (Magnifies distance. Think shooting portraits close up with a wide-angle lens and the nose usually appears abnormally large).
+  * Compression distortion / telephoto distortion is the effect of shooting distant objects with a telephoto lens, where objects closer appear abnormally small, and objects farther away appear abnormally large. Distance is collapsed. (Flattens the distance)
+  * Note that this perspective change is caused by distance, not the lens per se. Two shots of the same scene with different lenses will appear to have the same distortion effect. Just that wide angle lens have a wider field of view so we typically shoot closer, and extension distortion is observed when shooting closer.
+  * Side view mirrors on a car demonstrates a similar distortion effect.
+* Projection distortion, similar to perspective distortion, parallel lines far away appear to converge to one point, as distance gets collapsed when viewing far away. This is typical when shooting, e.g. a long corridor, railway, and a building from down below.
+
+### Different types of camera
+
+* Brownie
+* 35mm rangefinder (auto / manual)
+* 35mm slr
+* 120mm slr
+* Polaroid
+* Double lens system
 
 ### Misc
 
