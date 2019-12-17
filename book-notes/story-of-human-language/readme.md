@@ -307,3 +307,30 @@ It takes about one generation for a language to not be passed on and die.
 Why should one care?
 Is diversity always nice-to-have?
 Languages may project things abbout our culture and mind (assumption), which is a complex issue.
+
+### Language revival, artificial languages
+
+Once it needs revival, it's already dead.
+
+Known efforts include Celtic languages like Welsh Gaelic, Irish Gaelic, Breton.
+New Zealand Maori, Hawaiian, Mohawk.
+
+In the near future chance of all people speaking English as their first language is very unlikely (for most as a second language)
+To preserve all 6K languages is also unlikely: urbanization hastened the death of smaller languages due to them not being written and sometimes not seen as a language.
+Also languages are hard, especially dying small ones, in reality there is little context to use them.
+
+Hebrew saw a successful revival effort from being only for liturgical uses to an everyday language, this has to do with Israel being a special situation and Hebrew being well preserved in literature.
+
+Artificial languages (including sign languages) are created since 1800s with a universal language goal in mind. Most have died.
+
+Volapuk invented by a Bulgarian priest is one such example, based on Romance and Germanic languages and very complex. The creator thought the complexity in languages a necessity, and not accidental.
+
+Esperanto is still sort-of alive this day with 1 million speakers. It's based off of the creator witnessing animosity between Russian, Polish Yiddish and German-speaking ethnic groups.
+Creator also has the notion that Romance and Germanic languages should be the base for a universal language.
+Esperanto is much easier with 16 rules: nouns end with -o, adjectives end with -a, verbs with -i, present tense with -as, past with -is, future with -os, conditional -us, command -u, etc.
+
+### Finale
+
+The series try to focus more on how change is inherent to a language, with the opinion that systems are more important than collections and individual etymology.
+
+Languages are dynamic, symbiotic, and hallmarks of being human.
