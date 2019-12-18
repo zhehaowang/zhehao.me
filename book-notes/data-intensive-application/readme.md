@@ -1179,7 +1179,7 @@ In ACID **atomicity** means if among several writes one fails at some point, the
 **Consistency** is a terribly overloaded term.
 * Replica consistency refers to eventual consistency, read-after-write, monotonic-read, consistent-prefix-read.
 * Consistent hashing is an approach to partitioning some systems use for rebalancing.
-* CAP theorem consistency means lineariazability
+* CAP theorem consistency means linearizability
 * ACID consistency means an application-specific notion of database being in a good-state.
 
 ACID consistency means some invariants about your data must always be true. (like in an accounting system credits and debits must balance.)
@@ -1889,5 +1889,63 @@ In other words, commit point in 2PC comes down to a single node (Coordinator) de
 
 Distributed transactions comes in
 * Database internal distributed transaction: all nodes running the same software
-* Heterogeneous distributed transaction: nodes run different software or even some running DB others running message brokers
+* Heterogeneous distributed transaction: nodes run different software or even some running DB others running message brokers. A lot more challenging.
 
+**Exactly once message processing** between heterogeneous systems allows systems to be integrated in powerful ways, e.g. message from a message queue can be acknowledged as processed if and only if the database transaction for processing the message was successfully committed.
+This can be implemented by atomically committing the message acknowledgement and the database writes in a single transaction. With distributed transaction support this can be achieved when the two are not on the same machine.
+Such a distributed transaction is only possible if all systems affected by the transaction are able to use the same atomic commit protocol.
+
+XA is a standard for implementing 2PC across heterogeneous technologies. A series of language API bindings interacting with a Coordinator (and a Coordinator library implementation).
+
+In case of a Coordinator crash, participants are stuck in their transaction, they cannot move on as database transaction usually take a row-level exclusive lock on any row they modify to prevent dirty writes and DB cannot release those locks until the transaction commits or aborts.
+
+To counter potentially waiting for Coordinator forever, many XA implementation allows a participant to unilaterally decide to abort, which can break atomicity.
+
+XA either has Coordinator being a single point of failure, or Coordinator faces the same distributed transaction problem: its distributed log becomes a database requiring replica consistency etc.
+
+XA works across systems, and is necessarily a lowest common denominator, and cannot detect deadlocks, or implement Serializable Snapshot Isolation.
+
+### Fault tolerant consensus
+
+The consensus problem is normally formalized as: one or more nodes may propose values, and the consensus algorithm decides on one of those values.
+It must satisfy the properties:
+* uniform agreement (no two nodes decide differently; safety),
+* integrity (no nodes decide twice; safety),
+* validity (if a node decides some value v, then v was proposed by some node; safety),
+* termination (every node that does not crash has to eventually decide some value; liveness)
+
+If you don't care about fault tolerance, then satisfying the first three principles is easy: you can hardcode one node to be the dictator and let that node make all of the decisions. Should it fail then the system is stuck (fourth property is violated).
+2PC with its Coordinator does just the above, and violated termination property.
+Termination property formalizes the idea of fault tolerance.
+
+If all nodes crash and none are running then it is not possible for an algorithm to decide anything.
+It can be proved that any consensus algorithm requires at least a majority of nodes to be functioning correctly in order to assure termination.
+
+Many consensus algorithm assume that there no Byzantine faults.
+(It is possible to make consensus robust against Byzantine faults as long as fewer than one-third of the nodes are Byzantine faulty.)
+
+Best known consensus algorithms are Viewstamped Replication, Paxos, Raft and Zab.
+Most of these actually don't use the formal definition here of agreeing on one value while satisfying the properties, instaed they decide on a sequence of values, which makes them also total order broadcast algorithms.
+
+Total order broadcast requires messages to be delivered exactly once in the same order to all nodes. This is equivalent to performing several rounds of consensus: each round nodes first propose what message they to send next and then decide on the next message to be delivered (same message, same order - agreement, no duplicate - integrity, message not corrupted - validity, messages are not lost - termination).
+
+Viewstamped Replication, Raft, Multi-Paxos and Zab implement total order broadcast directly, Paxos implements one-value-at-a-time consensus.
+
+##### Single leader replication and consensus
+
+Isnt' Chap 5's single leader replication essentially total order broadcast? The answer comes down to how the leader is chosen. If manually chosen, then you have a total order broadcast of the not-fault-tolerant way: termination is violated as without manual intervention progress isn't made in case of leader failure.
+
+Automatic leader election + failover and promoting a new leader brings us closer to total order broadcast / consensus.
+There's a problem however: the split brain issue in which two nodes think themselves the leader at the same time.
+We then have to have all nodes agree on who the leader is to achieve consensus, and to have all nodes agree is itself a consensus problem.
+
+All of the consensus protocols discussed so far internally use a leader in some form, but they don't guarantee the leader being unique.
+Instead they make a weaker guarantee: the protocols define an epoch number (ballot number - Paxos, view number - Viewstamped Replication, term number - Raft) and guarantee within each epoch the leader is unique.
+
+
+
+(_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
+(_is linearizability the strongest form for replica consistency? The furthest in line in eventual, read-your-write, consistency-prefix-read, causal?_)
+(_does linearizability imply atomicity? how does it not imply serializable isolation? the weakest form of isolation, read committed, also implies no dirty writes. Is atomicity any more than no dirty reads, no dirty writes / read committed?_)
+(_are distributed transactions and replica consistency connected problems?_)
+(_does full write broadcast and r+w>total_nodes achieve linearizability?_)
