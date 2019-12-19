@@ -1933,7 +1933,7 @@ Viewstamped Replication, Raft, Multi-Paxos and Zab implement total order broadca
 
 ##### Single leader replication and consensus
 
-Isnt' Chap 5's single leader replication essentially total order broadcast? The answer comes down to how the leader is chosen. If manually chosen, then you have a total order broadcast of the not-fault-tolerant way: termination is violated as without manual intervention progress isn't made in case of leader failure.
+Isn't Chap 5's single leader replication essentially total order broadcast? The answer comes down to how the leader is chosen. If manually chosen, then you have a total order broadcast of the not-fault-tolerant way: termination is violated as without manual intervention progress isn't made in case of leader failure.
 
 Automatic leader election + failover and promoting a new leader brings us closer to total order broadcast / consensus.
 There's a problem however: the split brain issue in which two nodes think themselves the leader at the same time.
@@ -1942,6 +1942,81 @@ We then have to have all nodes agree on who the leader is to achieve consensus, 
 All of the consensus protocols discussed so far internally use a leader in some form, but they don't guarantee the leader being unique.
 Instead they make a weaker guarantee: the protocols define an epoch number (ballot number - Paxos, view number - Viewstamped Replication, term number - Raft) and guarantee within each epoch the leader is unique.
 
+Every time current leader is thought to be dead, a vote is started to elect a new leader.
+This election is given an incremented epoch number (totally ordered and monotonically increasing). If leader from the last epoch wasn't dead after all then leader with the higher epoch number prevails.
+
+Before a leader is allowed to decide anything, it must first check there isn't another leader with a higher epoch number.
+To do so it must collect votes from a quorum of nodes: for every decision a leader wants to make, it must send the proposed value to the other nodes and wait for a quorum of nodes to respond in favor of the proposal.
+The quorum typically consists of a majority of nodes. A node votes in favor of a leader's proposal only if it is not aware of any other leader with a higher epoch.
+
+Two rounds of voting: choosing a leader, then on its proposal.
+Key insight is quorum for these two votes must overlap. Thus if the vote on a proposal does not reveal any higher-numbered epoch.
+
+Difference with 2PC is that Coordinator is not previously selected, and going ahead requires votes from a majority but not every node.
+
+##### Limitations
+
+Consensus provides useful properties to distributed where everything is uncertain, can be used to implement linearizable atomic operations / total order broadcast in a fault tolerant way.
+However they are not used everywhere because of the benefits coming at a cost.
+* The process by which nodes votes on proposals before they are decided is a kind of synchronous replication.
+* Consensus systems always require a majority to operate. 3 to tolerate 1 failure, 5 to tolerate 2.
+* Most consensus algorithms assume a fixed set of nodes that participate in voting, meaning you can't add or remove nodes in the cluster. Dynamic membership extensions would allow the above but they are much less well understood.
+* Consensus systems generally rely on timeouts to detect failed nodes and can be hard to apply in environments with highly variable network delays such as geographically distributed systems. Frequent reelection in such cases could cause the system to end up spending more time choosing a leader than doing useful work.
+* Sometimes consensus algorithms are particularly sensitive to network problems. Raft has been shown to bounce leaders often if one particular network link is consistently unreliable.
+
+### Membership and coordination services
+
+ZooKeeper, etcd are often described as described as distributed key-value stores or coordination and configuration services.
+
+They offer APIs looking like reading / writing value for a given key and iterating over keys.
+
+As an application developer it is rare for one to directly interact with ZooKeeper, instead one would rely on it via other projects: HBase, Kafka, Hadoop YARN all rely on ZooKeeper running in the background.
+
+ZooKeeper and etcd are designed to hold small amounts of data that can fit entirely in memory.
+You wouldn't want to store all your application's data here, and this small amount of data is replicated across all nodes using a fault-tolerant total order broadcast algorithm. (each message broadcasted is a write to DB and applying writes in the same order provides consistency across replicas)
+
+ZooKeeper is modeled after Google Chubby, implementing total order broadcast and other features like
+* Linearizable atomic operations. A lock can be implemented using an atomic compare-and-set. The consensus protocol guarantees the operation is atomic and linearizable even upon node failure. A distributed lock is usually implemented as a lease which has an expiry so that it's eventually released in case of client failure.
+* Total ordering of operations. ZooKeeper can provide fencing token as a monotonically increasing number (increases every time a lock is acquired). ZooKeeper provides this by total ordering all operations and giving each a monotonically increasing transaction ID and version number.
+* Failure detection. Clients maintain a long-lived session on ZooKeeper servers, and the client and server periodically exchange heartbeats to check the other node is still alive. If heartbeats cease for a duration longer than the session timeout, ZooKeeper declares the session dead. Any locks held by a session can be configured to be automatically released when session times out.
+* Change notification. Clients can read locks and values created by another and also watch for changes. E.g. it can find out when a client joins / fails via notifications.
+
+Out of these only linearizable atomic operations requires consensus, but the rest makes ZooKeeper useful for distributed coordination.
+
+One example where ZooKeeper / Chubby model works well is when you want a leader elected from several instances of a process or service. Useful for single-leader DB and also job scheduler, etc.
+
+Another example is when you have partitioned resource and need to decide which partition to assign to which node and rebalance load when new nodes join / leave (can be implemented with ZooKeeper atomic operations and notifications).
+
+Libraries like Apache Curator provide higher-level tools on top of ZooKeeper client API.
+
+An application may grow from running on a single node to thousands of nodes.
+Majority vote over this many would be inefficient so instead ZooKeeper is configured to run on a fixed number of nodes (3, 5).
+Normally the kind of data managed by ZooKeeper is quite slow changing (on the timescale of minutes / hours. Tools like Apache Bookkeeper can be used for faster changing state of the application)
+
+Another use case is service discovery (find the IP address to talk to for a service).
+It is less clear whether service discovery actually requires consensus. DNS is the traditional way of looking up IP address for a service name, it uses multiple layers of caching and DNS reads are absolutely not linearizable.
+
+Leader election does require consensus. Some consensus systems support read-only caching replicas to log the decision of consensus but not actively participate in voting, to help other nodes.
+
+ZooKeeper etc can be seen as part of research into membership services: deciding which nodes are currently active. With unbounded network delay it's not possible to reliably detect whether another node has failed. But if you decide failure with consensus nodes can come to an agreement about which nodes should be considered alive.
+With membership determined and agreed upon, choosing a leader can be simply choosing the lowest numbered among current members.
+
+### Summary
+
+The consistency model linearizability, where replicated data appears as though there is only one copy, and all actions act on it atomically.
+Causality is a weaker consistency model where not everything has to be in a single, totally ordered timeline, version history can be a timeline with branching and merging.
+
+With causal ordering things like no two users can claim the same username still cannot be implemented distributedly, which led to consensus.
+
+A wide range of problem are equivalent to consensus: linearizable compare-and-set (register decides to set or abort based on comparison of given value and current value), atomic transaction commit (db deciding whether to commit or abort), total order broadcast, locks and leases (deciding which client holds it), membership / coordination, uniqueness constraint.
+
+These are straightforward with a single leader, but if the leader fails the system stops making progress.
+To handle the situation we can wait for leader to recover (2PC), manual failover, choose a new leader automatically (consensus problem).
+
+If you find yourself wanting one of the above reducible to consensus and you want it to be fault tolerant, try tools like ZooKeeper.
+
+Not every system requires consensus: leaderless and multi-leader replication systems typically don't use global consensus: maybe it's Ok when multiple leaders don't agree, we may be able to merge branching version histories.
+
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
@@ -1949,3 +2024,4 @@ Instead they make a weaker guarantee: the protocols define an epoch number (ball
 (_does linearizability imply atomicity? how does it not imply serializable isolation? the weakest form of isolation, read committed, also implies no dirty writes. Is atomicity any more than no dirty reads, no dirty writes / read committed?_)
 (_are distributed transactions and replica consistency connected problems?_)
 (_does full write broadcast and r+w>total_nodes achieve linearizability?_)
+(_does 2PC give you anything on top of synchronous single-leader replication?_)
