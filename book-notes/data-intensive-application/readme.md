@@ -2017,6 +2017,31 @@ If you find yourself wanting one of the above reducible to consensus and you wan
 
 Not every system requires consensus: leaderless and multi-leader replication systems typically don't use global consensus: maybe it's Ok when multiple leaders don't agree, we may be able to merge branching version histories.
 
+# Part 3 Derived data
+
+* Systems of records: source of truth, if there is any discrepancy between another system and the system of record, system of record's data is by definition the correct one. Written once and typically normalized.
+* Derived data systems: process / transform existing data in some way. If you lose it you can always regenerate it. E.g. cache. Technically redundant but good for read performance.
+Being clear about which is which helps bring clarity on a confusing system.
+
+Whether the DB stores systems of records or derived data is up to your application and how you use such data.
+
+# Chap 10 Batch Processing
+
+The first two parts talk about request / response, in an online system triggered by user (**services**). Response time is important.
+
+A different system is an offline system / **batch processing system**, taking in a large amount of input data, runs a job to process it, and may take a while. Usually scheduled periodically. Throughput is important.
+
+**Stream processing system** is something in between, a near-real-time processing system. Operates on events shortly after they happen.
+
+MapReduce is a batch processing algorithm, and was subsequently implemented in Hadoop, CouchDB, MongoDB.
+
+Batch processing is a very old form of computing, and MapReduce bears an uncanny resemblance to the electromechanical IBM card-sorting machines.
+
+### Batch processing with Unix tools
+
+
+
+
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
