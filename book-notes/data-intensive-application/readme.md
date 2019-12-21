@@ -2039,9 +2039,31 @@ Batch processing is a very old form of computing, and MapReduce bears an uncanny
 
 ### Batch processing with Unix tools
 
+`awk '{print $x}'`, `uniq -c`, `sort -r -n`, `sed`, `grep`, `xargs`, etc. Powerful and performs well, worth learning.
 
+Linux `sort` automatically handles larger than memory workload by spilling to disk, and automatically parallelizes sorting across multiple CPU cores.
+A chain of Unix commands easily scales to a large dataset without running out of memory.
 
+Note that mergesort has sequential access patterns that perform well on disks (remember that optimizing for sequential IO was a recurring theme earlier.)
 
+Unix pipes reflects well the design philosophy of Unix:
+* make each program do one thing well (to do a new job, build afresh rather than complicating the old with features),
+* expect the output of every program to be the input to another, yet unknown, program (don't clutter output with extraneous information, don't insist on interactive input, avoid stringently columnar or binary formats),
+* design and build to be tried early, ideally within weeks, don't hesitate to throw away the clumsy part and rebuild,
+* use tools in preference to unskilled help to lighten a programming task, even if you have to detour to build the tools and expect to throw some of them out after using them
+
+(automation, rapid prototyping, incremental iteration, friendly to experimentation, breaking down large projects into manageable chunks; very much like Agile of today's.)
+
+Many Unix programs can be joined together in flexible ways, Unix expects output of one to be input of another i.e. exposing a uniform interface, to achieve this composability.
+On Unix that interface is a file descriptor, can be a device driver, network socket, communication channel to another program (unix sockets, stdin, etc), having all these share an interface is quite remarkable.
+By convention, many of Unix program will treat this sequence of bytes from a file descriptor as ascii.
+
+Another characteristic of Unix tools is their use of stdin and stdout: a program can read / write files if it needs to, but the Unix approach works best if the tool doesn't worry about file paths and instead interact with stdin / stdout, so that logic and writing are separated: the program doesn't care about where the input is coming and where the output goes to. (somewhat similar to the ideas loose coupling, late binding, and inversion of control)
+stdin and stdout have limitations, e.g. program with multiple inputs / outputs will be tricky, and you can't pipe your output to a network connection, etc.
+
+Part of what makes Unix tools so successful is they make it easy to see what's going on: input is immutable, output can be piped to less for inspection, you can write the output of pipeline stages to a file and use that as the starting point for the next stage, allowing you to restart the later stage without rerunning the entire pipeline.
+
+The biggest limitation of Unix tools is they only run on a single machine, and this is where the likes of Hadoop come in.
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
