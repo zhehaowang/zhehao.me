@@ -2101,6 +2101,70 @@ MapReduce discards partial output of a failed job, and dependent jobs can only s
 A number of workflow schedulers are introduced for Hadoop to handle this dependency diagram.
 These need good tooling support to manage complex dependency diagrams / dataflows.
 
+##### Reduce-side joins and grouping
+
+It's common for a data record to have an association with another: via foreign key in a relational model, document reference in a document model, or an edge in a graph model.
+Join happens when you need both sides of the reference.
+Denormalization can reduce the need for joins.
+
+In a DB with index joins typically involve multiple index-based lookups.
+MapReduce jobs has no indexes conventionally, it scans the entirety of input files.
+
+Joins in the context of batch processing means resolving all occurrences of some association within a dataset.
+
+An example problem for a MapReduce job is given user click-stream records identified by an user ID, associate each record with user details stored in a remote users DB (think denormalization, stars schema is also related).
+A common approach is for the job to take a copy of the user database and put it on the same distributed file system the map job is running on.
+
+One set of mappers would go through partitioned click-stream records, extracting the user ID as key and relevant info, another set of mappers would go through the user DB also extracting the user ID as key and other relevant info.
+The MapReduce framework would then partition mapper output by key in sorted order, and user record with the same ID ends up on the same reducer adjacent to each other, and the reducer can perform join logic easily. (Secondary sort can even make these key value pairs appear in a certain order.)
+This algorithm is known as a **sort-merge-join**.
+
+The key emitted by mapper in this case is almost like an address designating which reducer this goes to.
+
+MapReduce framework separates the physical communication and failure handling aspect from application logic.
+
+Besides join, another common pattern is group-by.
+The simplest way to set this up is to let mappers use grouping key as key. Grouping and joining look similar in MapReduce.
+
+The pattern of bringing all records with the same key to the same place breaks down if very large amount of data are associated with the same key (linchpin objects, hot keys), and the process of collecting all data related with that key leads to skew / hot spot.
+
+If join input has hot keys, Pig's skewed join algorithm first runs a sampling to job to decide which keys are hot, and mapper sends a record associated with a hot key to a randomly chosen reducer instead of a deterministic one (records relating to the hot key would also be replicated over all reducers).
+And you can add another MapReduce job to aggregate the (more compact) results that the randomly chosen reducers produced.
+
+Hive takes a different approach to handling hot keys, it requires hot keys to specified explicitly in table schema, and it uses a map-side join for that key when joining.
+
+##### Map-side joins
+
+The above performs join logic in the reducers, and mappers prepare the input data.
+This has the advantage of not needing to make any assumptions about the input data's properties / structure.
+Downside is sorting, copying to reducers and merging reducer results can be expensive.
+
+You can perform faster map-side joins if you know certain things about the data.
+No reducers would be needed.
+
+The simplest way, **broadcast-hash-join** is when a large dataset is joined with a dataset small enough to be loaded entirely into memory of each mapper.
+The mapper can then load the join-dataset into memory, and as it goes through its chunk of records it can perform join and produce joined output.
+Pig, Hive, Impala, etc all support this.
+
+If the inputs to map-side joins are partitioned in the same way as user DB is, then hash join can be applied to each partition independently.
+Each mapper only needs to load the partition of DB that would contain records relevant to its input records. This is a **partitioned map join**.
+
+If input is not only partitioned the same way but also sorted the same way, then a **map-side merge join** is possible, and user DB partition does not have to fit entirely into mapper's memory.
+
+In the Hadoop ecosystem, this kind of metadata about the partitioning of datasets is often maintained in HCatalog and the Hive metastore.
+
+Note map-side join outputs chunks of output files sorted in the same order as the chunks of input, and reduce-side join is chunks of records partitioned and sorted by the join key.
+
+##### Output of batch workflows
+
+Recall transaction processing workload with analytics workload have different characteristics.
+
+Batch processing fits more in analytics, but not quite analytics.
+
+MapReduce was originally introduced to build indexes for Google's search engine (and remains a good way to build indexes for Lucene / Solr), Google has moved away from this.
+
+Building document-partitioned indexes parallelizes very well. Since querying a search index is a read-only operation, these index files are immutable once created unless source documents change.
+
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
