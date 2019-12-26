@@ -2163,7 +2163,74 @@ Batch processing fits more in analytics, but not quite analytics.
 
 MapReduce was originally introduced to build indexes for Google's search engine (and remains a good way to build indexes for Lucene / Solr), Google has moved away from this.
 
-Building document-partitioned indexes parallelizes very well. Since querying a search index is a read-only operation, these index files are immutable once created unless source documents change.
+Building document-partitioned indexes (and building classifier systems and recommendation systems) parallelizes very well. Since querying a search index is a read-only operation, these index files are immutable once created unless source documents change.
+
+The output of such jobs is usually some database where a web interface would query and separate from the Hadoop infrastructure.
+
+Writing directly to the DB from your Mapper or Reducer job may be a bad idea since
+* Making a network request per record is not performant, even if the client library supports batching.
+* MapReduce jobs often run in parallel and all mappers and reducers writing to the same DB concurrently may overwhelm it.
+* Finally MapReduce provides a clean all-or-nothing guarantee for job output, however, writing to an external system from inside a job produces visible side-effect, and you have to worry about results of partial execution being available to the rest of the system.
+
+MapReduce jobs output handling follows Unix philosophy by treating input as immutable and avoiding side effects such as writing to a DB.
+* This minimizes irreversibility, makes rollback easier (only code rollback is needed, not database, too).
+* Makes retrying a partial failed job easier.
+* The same set of files can be used as input for various jobs.
+* And like Unix tools, this separate logic from wiring.
+
+### Comparing Hadoop to Distributed Databases
+
+Hadoop is like a distributed version of Unix where HDFS is the file system and MapReduce a (sorted-shuffling) distributed implementation of Unix process.
+
+The ideas of MapReduce has been present in so-called massively parallel processing (MPP) databases for a while.
+But MapReduce + distributed file system provides something much more like a general purpose OS.
+
+##### Diversity of storage
+
+Some difference between MapReduce and MPP DBs include DBs require you to structure data according to a particular model, Hadoop opens up possibility of indiscriminately dumping data into HDFS and only later figure out how to process it further.
+
+The idea is similar to a **data warehouse**: simply bringing data from various parts of a large organization together in one place is valuable, and careful schema design slows this process down.
+This shifts the burden of interpretting data to the consumer / schema-on-read. (the sushi principle: raw data is better)
+
+##### Diversity of processing models
+
+MPP databases are monolithic, with query planning, scheduling and execution optimized for specific needs of the DB (e.g. supporting SQL queries).
+If you are building recommendation systems and full text search indexes then merely SQL is usually not enough.
+MapReduce provided the ability to easily run custom code over large dataset. You can build SQL with MapReduce (Hive did this), and much more.
+
+Subsequently people found MapReduce performed too badly for some types of processing, so various other processing models have been developed over Hadoop.
+
+The Hadoop ecosystem includes both random-access OLTP databases such as HBase (open source BigTable with SSTable and LSM trees), as well as MPP-style analytic DBs like Impala. Neither uses MapReduce, but both use HDFS.
+
+##### Designing for frequent faults
+
+MPP databases usually let user resubmit the entire query upon failure (this is fine for typically seconds / minutes long analytic jobs), while MapReduce allows retrying at the granularity of a job.
+MPP DBs also prefer keeping as much data in memory as possible, while MapReduce is more eager to write to disk.
+
+This is related with Google's environment of mixed-use datacenters in which online production services and offline batch jobs run on the same machines and every task has a resource allocation enforced using containers.
+This architecture allows non-production / low-priority jobs to overclaim resources to improve the utilization of machines. As MapReduce runs at low priority they are prone to being preempted by higher priority processes needing their resource, relying less on in-memory states and more on writing to disk is preferable.
+Current open source schedulers uses preemption less.
+
+### Beyond MapReduce
+
+MapReduce is only one programming model for distributed systems.
+MapReduce provides a simple abstraction over a distributed filesystem, but is laborious to use.
+Pig, Hive, Cascading, Crunch are abstractions over MapReduce to address the hard-to-useness.
+
+MapReduce is general and robust, but other tools can be magnitudes faster for certain kinds of processing.
+
+##### Materialization of intermediate state
+
+MapReduce chain jobs by writing the first to file and having the second pick up from where the file is written.
+
+This makes sense if the result of first should be made widely available and reused as input to different jobs, but not when output of one job is only ever used as input to one other job (intermediate state).
+This materialization of internal state differs from piping Unix commands. This has following downsides:
+* A MapReduce job can start when all tasks in the preceding jobs have completed, whereas processes connected by a Unix pipe can start at the same time, with output consumed as soon as it's produced. This having to wait contributes to having more stragglers in execution and slows down the pipeline.
+* Mappers are often redundant: they read back the same file that was just written by a reducer and prepare it for the next stage of partitioning and sorting: if the reducer output was partitioned and sorted in the same way as mapper output then reducers could be chained together directly without interleaving with mapper stages.
+* Storing intermediate state in a distributed file system (who replicates them) is often overkill for temporary data.
+
+##### Dataflow engines
+
 
 
 
