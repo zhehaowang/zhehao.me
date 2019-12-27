@@ -2231,6 +2231,53 @@ This materialization of internal state differs from piping Unix commands. This h
 
 ##### Dataflow engines
 
+To address the above issues, several execution engines for distributed batch computations were developed, including Spark, Tez and Flink.
+
+They handle an entire workflow as one job, rather than breaking it up into independent subjobs.
+
+They explicitly model the flow of data through several processing stages, hence they are known as dataflow engines.
+Like MapReduce, they work by repeatedly calling a user-defined function to process one record at a time on a single thread.
+They parallelize work by partitioning inputs, and they copy the output of one function over the network to become the input to another function.
+
+Unlike MapReduce these functions (operators) don't have the strict roles of Map and Reduce, but instead can be assembled in more flexible ways.
+* One option is to repartition and sort records by key, like in shuffle stage of MapReduce. This enables sort-merge-join and grouping as MapReduce would.
+* Another possibility is to take several inputs and to partition them in the same way but skip the sorting. This saves effort on partitioned hash joins where partitioning is important but the order is not as hash randomizes it anyway
+* For broadcast hash joins the same output from one operator can be sent to all partitions of the join operator.
+
+This processing engine style offers advantages over MapReduce:
+* Expensive work like sorting only need to be performed where it is required.
+* No unnecessary Map tasks.
+* Because all joins and data dependencies in a workflow are explicitly declared, the scheduler has an overview of what data is required where, so it can make locality optimizations.
+* It is usually sufficient for intermediate state between operators to be kept in memory or written to a local disk, which requires less IO than writing to HDFS. MapReduce uses this optimization for Mapper output but dataflow engines generalize it to all intermediate state.
+* Operators can start as soon as input is ready, no need to wait for for the entire preceding stage to finish before the next one starts.
+* Existing JVM processes can be reused to run new operators, reducing startup overheads compared to MapReduce which launches a new JVM for each task.
+
+They can implement the same thing as MapReduce and usually significantly faster.
+Workflows implemented in Pig, Hive or Cascading can switch from MapReduce to Tez or Spark with simple configuration changes.
+
+Tez is a fairly thin library relying on YARN shuffle service for copying data between nodes whereas Spark and Flink are big frameworks with their own network communication layer, scheduler and user-facing API.
+
+
+Fault-tolerance is easy in MapReduce due to full materialization of intermediate states.
+The dataflow engines avoid writing intermediate states to HDFS, so they retry from an earlier latest stage (possibly from original input on HDFS) where intermediate data is still available.
+
+To enable this recomputation, the framework must keep track of how a given piece of data is computed: inputs and operators applied to it.
+Spark uses **Resilient Distributed Dataset** (RDD) to keep track of ancestry of data, while Flink checkpoints operator state. 
+
+When recomputing data it's important to know whether computation is deterministic. (Partial result was computed and delivered to downstream, then upstream fails and if the delivered results can vary between retries then the downstream needs to be killed and restarted as well).
+
+It's better to deterministic but nondeterministic behavior creeps in via unordered container iteration, probablistic algorithms, system clock usage, etc.
+
+
+Returning to the Unix analogy, MapReduce is like writing the result of each step to a temporary file, dataflow engines look more like Unix pipes.
+
+A sorting operation inevitably needs to consume the entire input before producing any output, any operator that requires sorting will thus need to accumulate state.
+
+In terms of job output storage, like MapReduce, HDFS is still usually the destination instead of building DB writes into user defined functions.
+
+##### Graph and iterative processing
+
+Think graphs in analytics workload. E.g. PageRank.
 
 
 
