@@ -2277,7 +2277,54 @@ In terms of job output storage, like MapReduce, HDFS is still usually the destin
 
 ##### Graph and iterative processing
 
-Think graphs in analytics workload. E.g. PageRank.
+Think graphs in analytics workload. E.g. PageRank (estimate the popularity of a webpage based on what other web pages link to it).
+
+Many graph algorithms are expressed by traversing one edge at a time, joining one vertex with an adjacent vertex in order to propagate information, and repeating until no edges to follow or some convergence.
+This repeating until done cannot be expressed in plain MapReduce, and is thus often implemented in an iterative style:
+* External scheduler runs a batch process to calculate one step of the algorithm
+* Batch finishes, scheduler checks whether the iterative algorithm has finished
+* If not, run another round of batch process
+
+This is often inefficient.
+
+Bulk synchronous parallel model of computation has become popular as a result.
+Apache Giraph, Spark's GraphX, and Google Pregel model.
+
+In Pregel, one vertex can send a message to another vertex, and typically those messages are sent along the edges in a graph: in each iteration, a function is called for each vertex, passing the function all the messages that were sent to that vertex, a bit similar to the actor model, if you think of each vertex as an actor except that vertex state and messages between vertices are fault-tolerant and durable.
+
+Fault tolerance in Pregel is achieved by periodically checkpointing the state of all vertices at the end of an iteration.
+
+The framework decides which vertex executes on which nodes, when a vertex sends messages to other vertices, it simply sends a vertexID.
+
+##### High level APIs and languages
+
+Since MapReduce the execution engines have matured, by now the infrastructure has become robust enough to store and process petabytes of data on over 10k machines.
+Physically operating batch processes at such scale has been considered more or less solved, attention has turned to other areas: improving programming model, efficiency of processing and broadening the set of problems these technologies can solve.
+
+E.g. declarative query languages; specialization for different domains.
+
+### Summary
+
+Unix tools and philosophy.
+
+MapReduce, and data flow engines.
+
+Two problems each distributed batch processing frameworks need to solve:
+* Partitioning (MapReduce partitions according to input file blocks, output of mappers is repartitioned, sorted and merged into a configurable number of reducer partitions; post MapReduce dataflow engines try to avoid sorting unless required, but otherwise take a broadly similar approach to partitioning.)
+* Fault tolerance (MapReduce frequently writes to disks and materializes internal states. Dataflow engines perform less materialization; deterministic operators heko reduce the amount of data that needs to be recomputed)
+
+Join algorithms in MapReduce:
+* Sort merge joins
+* Broadcast hash joins
+* Partitioned hash joins
+
+Distributed batch processing engines have a deliberately restricted programming model; callback functions such as mappers and reducers are assumed to be stateless and have no visible side effects.
+
+Batch processing job derives some output from bounded immutable input, and a job knows when it has finished reading the entire input.
+Next chapter turns to stream processing where the input is unbounded and a job is never complete.
+
+# Chapter 11. Stream Processing
+
 
 
 
