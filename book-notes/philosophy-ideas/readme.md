@@ -1,6 +1,6 @@
 # The Great Ideas of Philosophy
 
-Questions of Knowledge, Conduct, and Governance.
+Questions of **Knowledge**, **Conduct**, and **Governance**.
 
 ### Did the Greeks invent it all
 
@@ -17,6 +17,7 @@ Egyptians and Persians would have been better suited in that regard.
 
 Greek religion tends to have an estrangement: Gods are revered but aloof and indifferent towards our matters.
 The fundamental questions of being would not be something you consult the Oracle for, but rather left to reason about by ourselves.
+We ourselves need to make order (classification) out of the chaos of this world.
 The state would be religious but without a state religion.
 
 Imagine us as puppets made by the Gods with various cords in it, these cords, reflecting pleasure, pain and emotions pull us in different directions.

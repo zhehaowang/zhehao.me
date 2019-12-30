@@ -21,14 +21,18 @@ Give me a week without XXX.
 * **Scratching**: the first steps of a creative act are like groping in the dark, random and chaotic, feverish and fearful.
 Scratch for ideas through reading, everyday conversation, people's handiwork, mentors and heroes, and nature.
 
-Ideas can be acted upon in four ways, generate the idea: from memories or experience or activities; retain it in your memory or your box; inspect it, to study it and make inferences; transform it, alter it in some way to suit your higher purpose.
+Ideas can be acted upon in four ways,
+* generate the idea: from memories or experience or activities
+* retain it in your memory or your box
+* inspect it, to study it and make inferences
+* transform it, alter it in some way to suit your higher purpose
 
 Be in shape. Scratching takes longer when you are not.
 Scratch in the best places.
 Don't scratch the same place twice.
 Maintain the white hot pitch.
 
-* **Be prepared** for accidents. They will happen. Have a plan in mind when you get down to work, but also know what to do if that plan falls apart. Meanwhile, there is a fine line between planning and overplanning: you never want planning to inhibit the natural evolution of your work.
+* **Be prepared for accidents**. They will happen. Have a plan in mind when you get down to work, but also know what to do if that plan falls apart. Meanwhile, there is a fine line between planning and overplanning: you never want planning to inhibit the natural evolution of your work.
 
 * Identify the **spine** of your work: the first strong idea as you scratch, then develop it into the spine of your work.
 
