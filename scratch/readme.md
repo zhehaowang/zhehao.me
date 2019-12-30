@@ -29,8 +29,12 @@ As each matures their development effort will be tracked in dedicated docs and r
 
 # Reference
 
-* The Creative Habit:
+* Scratching:
 
-Scratching as the first step of a creative act is like groping in the dark, random and chaotic, feverish and fearful.
+The Creative Habit: **Scratching** as the first step of a creative act is like groping in the dark, random and chaotic, feverish and fearful.
 
 We scratch for ideas through reading, everyday conversation, people's handiwork, mentors and heroes, and nature.
+
+* The dashboard is named The Box:
+
+The same book made the claim "before you think out of the box, start with a box: **an organizational system** that helps consolidate your work and ideas."
