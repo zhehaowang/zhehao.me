@@ -37,8 +37,21 @@ This appears to be a compounded effect of the following
 * not understanding the subject matter well enough in the first place, hoping to be better balanced in item2
 * not having an established compaction schedule. Historically we had issue-tracker implemented, but the habit was never formed and the strict curve in the first iteration appeared too much overhead to actually implement. Compaction often seems less cool than picking up new things, which makes it more critical for us to establish well thought-out procedures to carry them out.
 
+### Personal finance
+
+If one's life would be long enough for law of large numbers to kick in, presumably following an established (hopefully backed) investment strategy would pay off.
+This is something we should get into habit of doing for longer term our financial well being.
+Until dollar cost averaging on a total stock index has been found to be ineffective, should we just follow this strategy?
+
+### Health
+
+Ergonomics, exercise, cleanliness, tidying up your room, good sleeping habits all matter.
+Think in the longer term, invest in the future.
+
 ### Day-to-day
 
-Empirical observation would suggest most biggest factors in loss of efficiency are usually distractions, not wanting to start, and having not rested well enough.
+Empirical observation would suggest most biggest factors in loss of efficiency are usually distractions and illness.
+
+Distraction comes in the form of not wanting to start, and often correlated to not having rested well enough.
 
 It'd be useful to identify instances of each, and regulate our behavior in reasonable ways.
