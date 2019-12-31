@@ -30,7 +30,7 @@ Know your use case and its bottlenecks, and make tradeoffs from there.
 
 ### Simplicity
 
-A system too hard to use is a useless / worthless system.
+"A complex system that works is invariably found to have evolved from a simple system that works. The inverse proposition also appears to be true: a complex system designed from scratch never works and cannot be made to work".
 
 Simplicity comes from knowing what things our system needs to do and not being over-ambitious: do one thing and do it well (single responsibility), plan for some changes but not all of them.
 
@@ -124,6 +124,8 @@ When sure about something, it does not hurt to also experiment.
 
 Do the mental exercise, but always be prepared to get your hands dirty and write the code.
 
+Undeterminism.
+
 ### One level of indirection
 
 Lixia, a prominent researcher in Internet architecture and my advisor, once brought up the idea that one level of indirection is a powerful tool in engineering.
@@ -132,6 +134,7 @@ Over time, we saw many falling into this pattern.
 
 * DNS offers a level of indirection for addressing, such that application level need not hard code IP addresses, which would be bound to a specific physical interface.
 * Normalization / denormalization in database schema design is a level of indirection: when storing enumerables (e.g. neighborhood in someone's profile), do we store them as plain text in the user table, or an ID that can be cross referenced with a dedicated mapping to plain text.
+* A message broker is a level of indirection: to handle producers coming and going, have them both talk to the broker as opposed to directly to each other.
 * A pointer / reference is one level of indirection: with these the underlying object can now be mutated in-place, or shared by many.
 
 There is, however, no universal answer to the question "should we or should we not apply a level of indirection".
