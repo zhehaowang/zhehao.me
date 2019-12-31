@@ -51,3 +51,54 @@ Pi, e, sqrt(-1) has no place in Pythagoreanism?
 Sophia, wisdom itself; and Pythagoras considered himself a philosopher, as he strived to and have befriended wisdom itself.
 
 Elegance and simplicity expressed in mathematical, formulaic equation.
+
+### What is there
+
+A metaphysical question.
+
+Real object, perception and distortion, what is beyond there.
+
+If our senses (always) lie, how would we know reality.
+
+Aristotle notes that they have just completed a systematic consideration of nature / the physical world, and what is natural.
+
+Centuries later people notes his work after the physics treatise as metaphysics: after the physics / natural science work.
+
+**Metaphysics** deals with the subject of real existence.
+* What is there: **ontology** (being, the branch of metaphysics that deals with reality and existence. After change, does the original still exist? Cause and effect. Are there minds and thoughts, or just peculiar states of the brain, are they merely terms hankering to superstitution? Does what really exists vary being by being i.e. sensory apparatus? What sort of being am I? What am I made of, made for?)
+* Our modes of knowing: **epistemology**. Epistemological (systematic, organization and principle of facts) questions: are senses wrong? If so, what is right? Abstract rationality of Pythagoras? Customs? Religion? Epistemology is the study, criticism and refinements of our modes of knowing. Epistemic justification.
+
+Is there heaven? Is there such a thing as goodness? Is there a moral reality and objectivity? Is there real beauty? Is there truth? Is there right or wrong?
+
+The conclusion we reach is more or less based on the method we choose, often times blindly, by habit, social condition or conventional wisdom.
+There tends to be a vicious circularity, between the claim (ontology) and the methods (epistemology).
+
+Certainly the harmony and balance Greek perceived as beautiful, is not the same as what medieval artists found beautiful in their depiction of human form.
+Yet the Greeks philosophers were unaware of the shifting.
+
+**Democritus**: ultimate reality is but an incredibly large of atoms. Atoms and the space in between (the void).
+Everything is ultimately reducible to that level. What we see as flowers, buildings, animals are but ephemeral, different in atomic composition.
+The soul is a finer kind of atomics structure.
+
+Earth, air, fire and water.
+
+Can we even answer the ontological questions? Beautiful or ugly? True or false? Moral or not?
+
+**Heraclitus**: "no one descends twice in the same river". Sees nothing but flux and change.
+
+**Protagoras**: Socratic-contemporary. Founding father of **Sophist** thought.
+"Man is the measure of all things."
+Judgment of any form, must have some grounding, and that grounding can only be the experiences of a lifetime, we cannot take an epistemological position external to our own human ways of thought and feeling.
+If there is a standard independent of human nature, we cannot even comprehend it.
+
+Hence, is pursuing truth a misguided objective? Each person is the measure of all things. Truth is subjective. We are not equipped to comprehend it, even if there might be objective.
+
+About the gods, I cannot say if they are or how they are constituted in shape, the unclarity of the subject and the shortness of human lives.
+I can write you about what I see and hear and touch, but I cannot write you about the gods.
+
+**Socrates** spends much of his work disputing the Sophists: much can be questioned about the claim.
+Each man not only is not the measure of all things, we are generally very poor in understanding ourselves.
+With him philosophy becomes a humanizing and humanistic enterprise (the human condition), from which there is no retreat.
+
+
+
