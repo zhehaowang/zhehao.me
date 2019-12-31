@@ -2467,6 +2467,17 @@ Log-based is then more similar to batch processing in the sense that derived dat
 
 This allows easier experimentation and recovery, making log-based message brokers a good tool for integrating dataflow within an organization.
 
+### Databases and streams
+
+Log based message broker applies the idea of databases to message brokers, the reverse is doable, too.
+
+The event in the message broker in question, is now a DB write.
+A replication log is a stream of database write events, produced by the leader as it processes transactions.
+
+State machine replication in total order broadcast is another case of a stream of events in which each replica processes the same set sequence of events in the same order, to arrive at the same final state.
+
+
+
 
 
 
