@@ -86,7 +86,7 @@ Can we even answer the ontological questions? Beautiful or ugly? True or false? 
 
 **Heraclitus**: "no one descends twice in the same river". Sees nothing but flux and change.
 
-**Protagoras**: Socratic-contemporary. Founding father of **Sophist** thought.
+**Protagoras**: pre-Socratic. Founding father of **Sophist** thought.
 "Man is the measure of all things."
 Judgment of any form, must have some grounding, and that grounding can only be the experiences of a lifetime, we cannot take an epistemological position external to our own human ways of thought and feeling.
 If there is a standard independent of human nature, we cannot even comprehend it.
@@ -100,5 +100,25 @@ I can write you about what I see and hear and touch, but I cannot write you abou
 Each man not only is not the measure of all things, we are generally very poor in understanding ourselves.
 With him philosophy becomes a humanizing and humanistic enterprise (the human condition), from which there is no retreat.
 
+### Greek tragedian on men's fate
 
+Dance is important in Homer, Ovid and other classical authors. Dance of cranes Theseus.
 
+Chorus + Dance + Participants and preliterate history and moral thought.
+
+Out of possibility of drama comes the dispute and dialogue.
+Philosophy may have come from cultural activities such as drama.
+The thought refining itself.
+
+The human condition as understood by the dramatists.
+Is Medea a murderess, or are her motives irresistable? (Her sorcery practices are of Chthonic and pre-Olympian. When we surrender reason to passion, chaos ensues.)
+What about the trial of Orestes?
+The debate on Nomos (norm, natural law). Antigone. Is the law of kings higher, or the nature that sisters should bury brothers?
+
+Euripides heroic characters are very much human.
+At the end of day, character is destiny.
+
+Aristotle's view on women, vs that of Greek tragedians.
+Aristotle's view on tragedy: bad things happening to good people.
+
+If there's an all seeing and all loving god, why such evil and injustice around us?
