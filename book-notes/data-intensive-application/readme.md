@@ -2476,7 +2476,78 @@ A replication log is a stream of database write events, produced by the leader a
 
 State machine replication in total order broadcast is another case of a stream of events in which each replica processes the same set sequence of events in the same order, to arrive at the same final state.
 
+##### Keeping systems in sync
 
+There can be multiple copies of the same data stored to serve different needs, in a cache, a full-text index, a data warehouse, etc.
+
+With data warehouse this synchronization is usually performed by ETL processes, often by taking a full copy of a database, transforming it, and bulk loaded into the data warehouse, by a batch processing job.
+
+If periodic dump / batch processing is too slow, an alternative is **dual write**, the application code explicitly writes to each system when data changes, sometimes concurrent updates to them.
+
+Dual writes can have race conditions arising from multiple clients trying to write at the same time, leaving different subsystems different views which won't converge over time.
+
+Another is fault tolerance problem: writing to one failed but another succeeded, leaving the two subsystems permanently out-of-sync.
+
+Ensuring both succeed or fail here is a case of the atomic commit problem, which is expensive to solve (e.g. with 2PC)
+
+These problems could be avoided if only one leader exists among the subsystems.
+
+This can be achieved with **change data capture**, the process of observing all data changes written to a database and replicating the change to other systems, with changes as a stream.
+
+This essentially makes one database the leader, and others are followers listening to fanout from a message broker.
+The communication is asynchronous: database does not wait for consumer's response before committing the data.
+
+DB triggers, or change log parsing can be used to implement change data capture.
+
+LinkedIn Databus, Facebook Wormhole, Kafka Connect framework all offer CDC for various databases.
+
+Keeping the entire DB change log for this reason would be too much space and too much time to play through, instead we use a snapshot + offsets.
+
+One can also do log compaction on records, with a CDC, whenever it sees the same key, the previous value is replaced.
+
+More and more DBs are exposing CDC API as opposed to retrofitting their implementation.
+
+Kafka Connect is an effort to integrate CDC tools for a wide range of database systems with Kafka.
+
+##### Event sourcing
+
+CDC is similar to **event sourcing** in domain driven design community.
+While both having a log, event sourcing applies the idea at a different level of abstraction:
+* CDC users use the DB in a mutable way, (low level) log is extracted and its effects replicated, writer tothe DB does not know it's doing CDC underneath
+* Event sourcing application logic is built on the basis of immutable events written to the log. Events are designed to reflect things at the application level and not low level state changes.
+
+Event sourcing is a powerful technique by making it easier to evolve application over time, and understanding why something happened.
+
+Replaying the event log gives the current state of the system.
+Log compaction are handled differently in CDC and event sourcing systems:
+* CDC log events usually contain brand new values for a key and log compaction can discard previous events
+* Event sourcing events are modeled at a higher level, later events usually don't overwrite previous events
+
+The event sourcing philosophy is careful to distinguish between events and commands.
+
+User request comes as a command which may fail integrity condition checks, if command validation is successful, it becomes a durable and immutable event / fact.
+
+A consumer of event streams is not allowed to reject events, thus any validation of commands need to happen synchronously before it becomes an event, e.g. by using a serializable transaction that atomically validates and publishes.
+
+##### State, streams and immutability
+
+Immutability of input files enables replaying in batch processing, immutability also makes event sourcing and change data capture powerful.
+
+States change is the result of events that mutated it over time.
+If you store the changelog durably, that simply has the effect of making the state reproducible, and it becomes easier to reason about the flow of data through a system.
+From this perspective the database is a cached subset of the log, i.e. the latest record values in log, and the truth is the log.
+
+Immutability in DBs is an old idea. An accountant's ledger is immutable. Immutable events also capture more information than just current state.
+
+You can also derive different read-oriented representations from the same log of events, making it easier to evolve your application over time (e.g. building new optimized view of some data)
+
+Storing data becomes easier if you don't have to worry about its access pattern (complex schema design, indexing, storage engines are results of access pattern).
+Having an immutable log gives you a lot of flexibility by separating the form in which data is written from the form it is read by allowing several different read views.
+This is known as **command query responsibility segregation**.
+
+The traditional approach to database and schema design is based on the fallacy that data must be written in the same form as it will be queried.
+
+Debates about normalization and denormalization become largely irrelevant if you can translate data from write-optimized event log to a read-optimized application state. It entirely makes sense to denormalize data in the read-optimized views, as the translation process will keep data consistent with event log.
 
 
 
