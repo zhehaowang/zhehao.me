@@ -2549,7 +2549,16 @@ The traditional approach to database and schema design is based on the fallacy t
 
 Debates about normalization and denormalization become largely irrelevant if you can translate data from write-optimized event log to a read-optimized application state. It entirely makes sense to denormalize data in the read-optimized views, as the translation process will keep data consistent with event log.
 
+The biggest downside to event sourcing / change data capture is building derived view is usually asynchronous.
+Read-your-write consistency cannot be achieved if user writes to log and reads from derived view.
 
+You could have the log update and derived view update in one transaciton, but this would require both to be in the same system, or have distributed transaction support in heterogeneous systems; or one could use total order broadcast.
+
+Concurrency is also made simpler in that multi-object transactions can now be one event that describes the user action, and different derived views build from it.
+
+If the event log and application state (processing an event for user on partition A only requires partition A of the application state), then a straightforward single-threaded log consumer needs no concurrency control for writes. (actual serial execution removes the need to define a serial order in a partition.)
+
+##### Limitation of immutability
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
