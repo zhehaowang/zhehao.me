@@ -2560,6 +2560,13 @@ If the event log and application state (processing an event for user on partitio
 
 ##### Limitation of immutability
 
+Maintaining an immutable history for all changes can be expensive for workloads with lots of updates and deletes on a small dataset, in size and fragmentation.
+Compaction and garbage collection becomes key for robustness.
+
+There may also be regulatory cases requiring data to be deleted (shunning / excision, one can't just append a delete event, history actually needs to be rewritten).
+True deletion is surprisingly hard due to replication and hardware storage mechanism. It's more like making it hard to retrieve the data, yet one still has to try.
+
+
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
 (_is linearizability the strongest form for replica consistency? The furthest in line in eventual, read-your-write, consistency-prefix-read, causal?_)
