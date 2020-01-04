@@ -122,3 +122,19 @@ Aristotle's view on women, vs that of Greek tragedians.
 Aristotle's view on tragedy: bad things happening to good people.
 
 If there's an all seeing and all loving god, why such evil and injustice around us?
+
+### Herodotus and history
+
+Herodotus's Histories attributes war to irreconcilable differences in value.
+Legions are moved with words and symbols.
+
+Histories describes various people's dress, weapon, food, economonies and religious belief, to give a full perspective on events of historical significance, as opposed to mythology where such accounts on humanistic details are often glossed over.
+
+Herodotus would suggest to account for events of historical significance, perspectives on sociology, pyschology beyond mere chronology is required.
+And his teaching, or that of history, would be meaningful beyond ethnicity, and calls onto the roots of humanity itself.
+
+Histories has clear distinctions for Herodotus's own opinions, opinions he has heard and facts.
+
+His work, however, has many inaccurate accounts to establish some morals on the question of conduct. E.g. the emblematic meeting between Croesus and Solon, where the happiest men are established to be Kleobis and Biton, two sons who yoked themselves to their mother's cart, such that their mother, a priestess, would not be late for the festival of Hera.
+They died peacefully after the deed.
+Solon would claim only after one's story is complete can one be judged whether their lives being happy or not, and human happiness is not dependent on wealth.
