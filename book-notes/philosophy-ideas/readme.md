@@ -173,3 +173,28 @@ If it is possible to know something, know that you know it, and know the methodo
 What about our values? Are they just relative, opinions and prejudices? What about governance, how should we be governed? Are the core precepts of Athenian democracy to be questioned?
 
 Socrates would question Athenian democracy which Aristotle would later defend, claiming the collective wisdom is more likely to make good decisions as opposed to the strength of one, and the weaknesses are likely to cancel each other out.
+
+### Plato and the search for Truth
+
+To be able to arrive at any truth, one first defeats the skepticism claim that nothing can definitively be known.
+
+Plato's Meno deals with the search for Truth, where Socrates converses with Meno, a noble from an area with strong Sophist presence, on whether virtue comes from teaching, or nature.
+
+Socrates in Meno instructs by guiding the barbarian servant boy of Meno's to discovering the Pythagoras theorem.
+And claims knowledge is a form of reminiscence, where, through philosophical guidance, one is no longer clouded by the sensory systems of the material world, and recalls the Truth that the soul had always known.
+
+Hence Plato establishes that **Truth** is different from **facts**, where the former is eternal, not sensory, and cannot come by perceptions, and the latter is ephemeral, material, and as Heraclitus would claim, always in flux, as the material world would be.
+
+Facts are various forms of rectilinear triangles drawn on the sand (flux, ephemeral, and material), and Truth is Pythagorean theorem that a^2 + b^2 = c^2 is the true form of rectilinear triangle. (Aristotle would argue this is Platonic and not Socratic. Plato's work is also divided by later scholars into early, mid, and late where some ideas came earlier are later revised.)
+
+How is Truth acquired? One has it intuitively. The gift of rationality.
+
+Plato draws much from Pythagoras, in illustrating Truth with his discovery, and in transmigration of souls where he would claim with death, the soul is liberated.
+
+Plato considers mathematical Truth an example of knowledge we know for certainty, and where the skepticists are wrong, but the debate would continue with evolution on both sides.
+
+To Plato the problem then becomes identifying mathematics-like Truth, and it can be discovered by **the dialectical approach**, to achieve something abstract and uncover what one has always possessed but became clouded by the material world.
+
+To this end, it is also thought that the discovery of Truth has naught to do with experience, and the experience of many do not necessarily draw us any closer to Truth, than the experience of one.
+On this ground Socrates would question the basis of Athenian democracy.
+
