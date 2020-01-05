@@ -82,11 +82,41 @@ Check if eyes are properly lit, will properly reflect (catch light). Don't just 
 * Manual mode. GN value / flash index (max light output)
 
 * When using flash, your shutter speed no longer decides exposure, as flash is typically on, for, say 1/9000s. Aperture and iso can.
-  * Aperture = GN-value * fraction * sqrt(ISO / 100) / distance (meters)
+  * Aperture = GN-value * fraction * sqrt(ISO / 100) / distance (meters); (almost no other sources of light)
 
 * Front curtain sync, rear curtain sync. Flash activates when shutter's about to open / close. Matters for moving objects.
 * High speed sync. Usually the fastest shutter speed to work with flash is 1/200s to 1/250s, unless high speed sync is turned on. High speed sync comes at the cost of exposure, you get 1/4 to 1/8 exposure at maximum.
 * Flash focal length. Coverage. Wide-angle (weaker) / telephoto (stronger).
+* Often times a flash diffuser might be desirable, not directly flashing in the subject's face.
 
-Rembrandt lighting.
+* Rembrandt lighting.
+Main light 45 degrees to the model's face on the left or right, creating a triangular highlight on the other side of the cheek.
+* Circular lighting.
+Directional and circular highlight around the model's chin.
+* Butterfly lighting.
+Main light right in front of model and taller than model, cheekbones create shadows and the model appears thinner and more 3D.
+* Directional lighting.
+Half highlight, half shadow, usually for men.
+* Contour lighting.
+Back lighting, contour of the model in highlight.
+
+Portraiture slightly over exposed is arguably Ok (skin may seem more clear), landscape slightly under exposed is arguably Ok (you don't want to lose details).
+
+### Posture
+
+* Know what you want to convey, collect good ones and think
+* Center of mass
+  * Standing, center of mass on one foot, not both. Back foot typically, the curve. E.g. try legs crossed (female), stepping on something with one foot (male)
+  * Sitting, center of mass on hips / legs, usually moves the audience's attention away from belly
+* Spine in a straight line is usually awkward. Try e.g. curved S back line (if possible, lean against something and avoid a C back line). Subject's waist should show **curve**, try avoiding hiding the waistline behind arms / hands (makes the waist seem wider), try creating a gap between arm and waistline.
+* Hands **natural**, try holding onto something
+* Walls, create a gap between the model's waistline / hips. Relaxed
+* Try moving hips, waistline further away from your camera (model leaning forward), make the model seem slimmer.
+* Chest stretched, as if deep breath
+* Neck, try showing clavicle (if slim). Shoulders a bit to the back, head stretched up but don't raise the chin (tilt chin back).
+* Facial expression. Clear eyes. Focus on something? Focus one's eyes on some objects away; focus one's mind on something (counting?). Close / rest one's eyes then open? Look inside the lens / penetrate the lens for your image, shutter opening and closing?
+
+* When you are not depicting a subject's body / posture, consider have their eyes interact with the camera / be a bit livelier in expression, as the posture notes above doesn't really apply
+* Point of first contact of your audience with your photo
+* The strength, style, age of your subject. The above does not hold for kids, aged folks, etc.
 
