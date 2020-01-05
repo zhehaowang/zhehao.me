@@ -184,3 +184,5 @@ Necessity will continue to be the mother of invention."
 "Everyday you don't practice you are one day further from being good."
 -- Ben Hogan, quoted by Twyla Tharp in the Creative Habit
 
+"The unexamined life is not worth living."
+-- Socrates
