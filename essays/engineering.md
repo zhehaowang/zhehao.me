@@ -99,6 +99,8 @@ When someone amazes us with their ability to think outside the box and to come u
 
 "Before we learn to think outside a box, learn to think inside one."
 
+In some sense, experience may seem like the ability to simulate the situation accurately without needing to have actually experimented, or gauging the counterfactual.
+
 Our repertoire of knowledge and toolkit is that box.
 
 Knowledge comes in many levels.

@@ -109,7 +109,12 @@ Portraiture slightly over exposed is arguably Ok (skin may seem more clear), lan
   * Standing, center of mass on one foot, not both. Back foot typically, the curve. E.g. try legs crossed (female), stepping on something with one foot (male)
   * Sitting, center of mass on hips / legs, usually moves the audience's attention away from belly
 * Spine in a straight line is usually awkward. Try e.g. curved S back line (if possible, lean against something and avoid a C back line). Subject's waist should show **curve**, try avoiding hiding the waistline behind arms / hands (makes the waist seem wider), try creating a gap between arm and waistline.
-* Hands **natural**, try holding onto something
+* Hands **natural**
+  * Criteria: waist line should be visible
+  * Gestures: one hand gesture (other hand hanging naturally), both hands gesture (balanced, frame-like emphasis effect). Gestures welcoming (palms facing subject), or rejective (palm facing lens)
+  * Placement: onto body / head / shoulders / chest / legs / holding onto skirts, etc; frame; hold onto something (natural); pointing at something; holding against something; angle wise, don't point the subject's elbow at the camera (first point of contact).
+  * Female fingers should appear long, elegant and relaxed (curved fingers, show tips and joints, converging / about equal distance: order, (usually, slightly) sideways of the hand facing camera, try avoiding wrist being perpendicular, show 5 if possible); male fingers can curve more, or hold fists (converge / equal distance). When leaving hand in pocket, don't leave the thumb hanging out.
+
 * Walls, create a gap between the model's waistline / hips. Relaxed
 * Try moving hips, waistline further away from your camera (model leaning forward), make the model seem slimmer.
 * Chest stretched, as if deep breath
