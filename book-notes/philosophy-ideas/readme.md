@@ -138,3 +138,38 @@ Histories has clear distinctions for Herodotus's own opinions, opinions he has h
 His work, however, has many inaccurate accounts to establish some morals on the question of conduct. E.g. the emblematic meeting between Croesus and Solon, where the happiest men are established to be Kleobis and Biton, two sons who yoked themselves to their mother's cart, such that their mother, a priestess, would not be late for the festival of Hera.
 They died peacefully after the deed.
 Solon would claim only after one's story is complete can one be judged whether their lives being happy or not, and human happiness is not dependent on wealth.
+
+### Socrates on the examined life
+
+Teaching of Socrates is preserved by Zenophon and Plato (broad shoulders), who claims to be the mere scribe but his works are much more a portrayal of his and Socrates's thoughts via Socrates's mouth, than mere description.
+
+Socrates lived in a time when Athens lost a long war against Sparta, and as a loyal faithful soldier of Athens, his thoughts are very often on the practical side, what went wrong with Athens, in matters of educating the youth, of conduct and government.
+The Dialogues are conducted by the losing side, which often explains him taking a Spartan view on the matters above.
+
+Socrates described himself as a gadfly asking those confident in their thoughts, reminding us of the gadfly sent by Zeus to unseat Bellerophon from Pegasus, an analogy for unseating the confident writers.
+
+He was well trained by his Sophist teachers (sophistical teaching), known for their skills in debate and rhetorics and to expose the ignorance of the interlocuter via whimsical and deft conversations.
+
+Yet Socrates aimed to defeat the skepticism and cynicism, claiming that there is something we can truly know, and knowing that our methodology of knowing is sound, contrasting his thoughts from those of Pythagoras.
+
+St. Augustine would consider Socrates the only true philosopher, one committed to living and dying by his own philosophy, the inquiries he perceived as true, and the cause of reason, not like Pyrrho / Pyrrhonism (a school of skepticism).
+
+Socrates was found guilty of failure to respect the Gods, despite him being a reverential person, and corrupting the youth. The Symposium, which has inquires on the nature of love, ended with Socrates returning home alone.
+
+Neither charges were truthful, and Socrates had the choice of death or exile (ostracism of at least 10 yrs, on which Pericles was also charged), and choose the former (hemlock poisoning) in defense of his thoughts, and the rule of law (the public expression of rational thoughts, reason without passion).
+
+A Homeric ending (think Hector "breaker of horses") where upon death, he uttered "will you remember to pay the debt".
+
+Socrates would teach "the unexamined life is not worth living".
+What is wrong with the unexamined?
+Socrates would describe it as a screen on which events are laid out and not a lived life, as prisoners living in a cave watching parapets on which the shadows of puppets are cast, where all they see is shadows and illusion.
+
+Examine, in the sense of interpretation of meaning of events, integration of experience, subject to the refinements through self criticism and introspection, and making the thought whole.
+
+This connects back to the motto at the Oracle of Delphi "know thyself", meaning knowing what it means to be a human being? Beyond the biology, constituents, etc.
+The Socratic agenda would argue against skepticism and cynicism, and realizing the interconnectedness between matters of knowledge, conducts and governance.
+Dealing first with knowledge and establishing a good philosophical basis that there is something we can know, one kernel of truth we can know (if we can't know anything as the skepticists claim, then the life is uselessly examined, prejudices and self deceptions).
+If it is possible to know something, know that you know it, and know the methodology of knowing it, then we can inquire into what kind of life is right for beings such as ourselves? Happiness and pleasure? Are they the same for all people, all cultures?
+What about our values? Are they just relative, opinions and prejudices? What about governance, how should we be governed? Are the core precepts of Athenian democracy to be questioned?
+
+Socrates would question Athenian democracy which Aristotle would later defend, claiming the collective wisdom is more likely to make good decisions as opposed to the strength of one, and the weaknesses are likely to cancel each other out.
