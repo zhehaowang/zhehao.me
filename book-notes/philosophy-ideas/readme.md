@@ -52,7 +52,7 @@ Sophia, wisdom itself; and Pythagoras considered himself a philosopher, as he st
 
 Elegance and simplicity expressed in mathematical, formulaic equation.
 
-### What is there
+### What is there (metaphysics)
 
 A metaphysical question.
 
