@@ -143,7 +143,7 @@ Solon would claim only after one's story is complete can one be judged whether t
 
 Teaching of Socrates is preserved by Zenophon and Plato (broad shoulders), who claims to be the mere scribe but his works are much more a portrayal of his and Socrates's thoughts via Socrates's mouth, than mere description.
 
-Socrates lived in a time when Athens lost a long war against Sparta, and as a loyal faithful soldier of Athens, his thoughts are very often on the practical side, what went wrong with Athens, in matters of educating the youth, of conduct and government.
+Socrates lived in a time when Athens lost the Peloponnesian War against Sparta, and as a loyal faithful soldier of Athens, his thoughts are very often on the practical side, what went wrong with Athens, in matters of educating the youth, of conduct and government.
 The Dialogues are conducted by the losing side, which often explains him taking a Spartan view on the matters above.
 
 Socrates described himself as a gadfly asking those confident in their thoughts, reminding us of the gadfly sent by Zeus to unseat Bellerophon from Pegasus, an analogy for unseating the confident writers.
@@ -198,3 +198,54 @@ To Plato the problem then becomes identifying mathematics-like Truth, and it can
 To this end, it is also thought that the discovery of Truth has naught to do with experience, and the experience of many do not necessarily draw us any closer to Truth, than the experience of one.
 On this ground Socrates would question the basis of Athenian democracy.
 
+### Can virtue be taught (Plato's Protagoras)
+
+Problem of conduct, to each his own? Vicious, hedonistic?
+Is there truth to ethics, morality? Is there moral objectivity?
+
+The Socratic / Platonic school would combat the skepticists in the above domain, claiming the problem of conduct is not to be solved at the level of merely personal desire.
+The same argumentative approach to knowledge should be applied.
+
+How life should be lived? What kind of life is right for beings such as ourselves?
+
+Plato's Protagoras.
+
+Setting: Protagoras is in town, a young 30s Socrates put several questions to Hippocrates (not the physician) who woke him up to this news.
+
+Socrates then raises the questions to Protagoras, who eloquently discourses on virtue, conduct, etc.
+Socrates and Protagoras then engaged in Socratic dialectical method, and hard to say who had the upper hand.
+
+What do you want to be, that makes you want to study under Protagoras?
+Protagoras claims moral excellence.
+
+What is virtue? (Justice, temperance, courage, wisdom, etc, what are they? Parts of virtue? Parts in what sense?)
+Is virtue teachable?
+
+Both men agree knowledge is the greatest, and there must be knowledge first, before there is virtue.
+Knowledge known in some non-sensory way.
+
+How do we teach anybody anything?
+We teach by providing sensible, visible, ostensive objects.
+Anything taught by showing, cannot be universal.
+What do you point to, to say that is virtue, to teach virtue?
+
+The teaching of technique, vs the teaching of Sophia?
+
+You can't show the universal, but you can show an instance of it.
+Perhaps we can teach virtue by pointing to persons practicing virtue.
+Point Leonidas at Thermopylae to a one year old, and he wouldn't be able to comprehend.
+
+Socrates argues to the conclusion virtue cannot be taught as such.
+Perhaps the knowledge (wisdom), attained by philosophical reflection, is the grounding of virtue. This is teachable.
+The one-year-olds aren't ready for it, many aren't ready for it in their entire lives.
+
+The students must have been prepared (to be receptive of such lessons), then you may find such persons resonating to the virtuous act, when it presents itself.
+
+What kind of preparation is necessary, for one to be considered ready for instructions by the virtuous?
+This is discussed in The Republic.
+
+Theaetetus is another piece where Protagoras is a central figure, and claims men is the measure of all things. I will do things that please me.
+At the end of the day, the problem of conduct is a problem of principle, something universally right.
+
+The Socratic approach to knowledge would claim each man is not the measure of all things.
+There is a measure of all things, and it's the task of each man to understand that measure and apply it properly.
