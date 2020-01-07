@@ -2566,6 +2566,58 @@ Compaction and garbage collection becomes key for robustness.
 There may also be regulatory cases requiring data to be deleted (shunning / excision, one can't just append a delete event, history actually needs to be rewritten).
 True deletion is surprisingly hard due to replication and hardware storage mechanism. It's more like making it hard to retrieve the data, yet one still has to try.
 
+### Processing Streams
+
+##### How are streams used
+
+The above discusses where streams come from and how they are transported.
+Common things that happen in processing the stream include
+* writing to DB, cache, search index, or some storage system.
+* push events to users, realtime dashboard, emails, etc.
+* produce an output stream from inputs and pipe it to another.
+
+Use case 3 is in many ways similar to the batch workflow / dataflow engines, with one crucial difference being stream never ends. Implications include sorting no longer makes sense, and sort-merge-joins cannot be applied.
+Fault tolerance mechanism also need to change: batch job running for minutes can be restarted, stream cannot simply be replayed from start which may be years ago.
+
+Common uses include
+* Complex events processing, where queries are stored long term and events from input streams continuously pass through queries and find matching ones. (like Herald rules)
+* Stream analytics: like complex events processing, but usually measuring the rate / stats of some type of events. (like GUTS, Apache Storm, Spark Streaming, Kafka Streaming, Google Cloud Dataflow)
+* Maintaining materialized views (a derived alternative view for certain query patterns. Difference from above being the view usually stretches back to the beginning of time as opposed to stats in a time window, which Kafka Streams also supports)
+* Search on streams: like complex events processing (multi-event patterns), there is also complex search for individual events (Elasticsearch offers this. Index queries such that the number of queries run is lower than number of events times the number of queries)
+* RPC systems, e.g. in the actor model (for managing concurrency and distributed execution of communicating modules)
+
+### Reasoning about time
+
+"The average over last 5 minutes" can be surprisingly tricky.
+
+A batch process rarely cares about system wall clock time, the time at which the process is run has nothing to do with the time when the events happened.
+On the other hand many stream processing frameworks use local system clock on the processing machine to determine windowing, which is simple but can break down if there is significant lag between event occurrence and being processed.
+
+Confusing event time and processing time can lead to bad data.
+
+A tricky problem with defining window in terms of event time is that you can never be sure when you have received all of events for a particular window or whether there are more events to come (delays, stragglers, out-of-order).
+Broadly you have two options:
+* ignore stragglers, and track the amount of stragglers dropped and warn if that number gets high
+* publish a correction, you may also need to retract the previous output
+
+In some cases it is possible to use a special message to indicate from now on there will be no messages with a timestamp earlier than t, but tracking such from multiple producers stamping with their own local time might be tricky.
+
+Taking a step back, which point in time should we use?
+If we rely on user's device clock they might be wrong, drift, etc.
+
+We could log three timestamps: device time at which the event occurred, device time at which the event is sent to server (in case user device was not connected for a long time), server time of when the server receives the event.
+Use the difference of the latter two to estimate the server time of the first one, assuming network delay is negligible compared with the difference between device and server clocks.
+
+##### Types of window
+
+* Tumbling window. Fixed length, non-overlapping (0 - 4, 5 - 9, etc). Each event belongs to exactly one window
+* Hopping window. Fixed length, overlapping (0 - 4, 1 - 5, etc). This provides smoothing over several windows
+* Sliding window. Fixed length, any events occuring within window-size of each other would occur in the same window. This is typically implemented with a buffer of events sorted by time and removing them when they expire
+* Session window. Variable length, a window of all events in a session as defined by the application
+
+### Stream joins
+
+
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
