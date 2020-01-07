@@ -74,3 +74,9 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 * First try to make progress, then seek breakthroughs. Are you running away from your problems? What better time than now to face and overcome them?
 
 * Much like a civlization, an individual goes through periods of rise and fall / ebb and flow. Some started out brilliant at school, early on in their career, but later see their talents and potentials buried in the daily routine, shackled by tradition. Keep a mindset of change and growth, and enjoy the process.
+
+* Probablistic, statistical
+
+* Things we are systematically bad at
+
+* De javu and is math useful? is math olympiad useful? Is skepticism trying to take the easy way out?
