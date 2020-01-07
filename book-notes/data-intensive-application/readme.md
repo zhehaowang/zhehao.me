@@ -2617,7 +2617,69 @@ Use the difference of the latter two to estimate the server time of the first on
 
 ### Stream joins
 
+* Stream-stream join, e.g. correlating user search keyword and url click in the same session. Variable delay in between. Note that annotating url click with search query isn't enough as that does not include cases where search resulted in no click, important for your click-through rate. To achieve this stream processor requires states, e.g. keyed by session ID and kept for (an arbitrary) 1 hour
+* Stream-table join (stream enrichment). Consider caching a copy of the database into the stream processor. Similar to hash-join in map-side joins. The cached copy likely requires updates, which can be achieved with listening to change data capture. This is actually similar to stream-stream join where the CDC stream reaches back to the beginning of time.
+* Table-table join (materialized view maintenance). Imagine the goal is to maintain a materialized view (one's twitter feeds, a timeline cache, where a stream of tweets is joined with follow relationship; the timeline corresponds to the join of tables in a relational database (a view updated by stream change).)
 
+These all require the stream processor to maintain some state on one join input, and query that state on messages from the other join input.
+
+Time order of events that maintain the state can be important: if the user updates his profile, which activity events are joined with the old profile and which with the new?
+
+If ordering of events across streams is undetermined, the join becomes nondeterministic.
+This issue is known as **slowly changing dimension**, and is often addressed with explicitly versioning: each time the user profile changes it is given a new version identifier and events include the version identifier to join on.
+This makes join deterministic, but log compaction is no longer possible as all versions are retained.
+
+### Fault tolerance
+
+Restarting for fault tolerance in a side-effect-free batch processing achieves exactly-once semantics (more accurately, effectively-once as each record is processed effectively once)
+
+##### Microbatching and checkpointing
+
+Break the stream into small blocks and treat each like a miniature batch process (**Microbatching in Spark Streaming**, creates implicit tumbling window).
+
+Or you can trigger checkpointing without a fixed time window, which Apache Flink does.
+
+Side effects will not be exactly-once.
+
+##### Atomic commit revisited
+
+S.t. side effects are exactly-once.
+
+This is an atomic commit approach which is used in Google Cloud Dataflow and Apache Kafka.
+This was efficient enough within the system itself (not needing to be heterogenous, keep the transactions internal by managing both state changes and messaging within the stream processing framework; Overhead of transaction amortized by processing several input messages within a single transaction).
+
+##### Idempotence
+
+Alternative to distributed transactions, we can have operations be idempotent, or made idempotent with some metadata (e.g. Kafka stream offset, and consumer of stream only update on offset values not seen before; this requires replay on crash in the same order, processing to be deterministic, and no other node may concurrently update the same value).
+
+When failing over from one processing node to another, fencing may be required to prevent interference.
+
+##### Rebuilding state after a failure
+
+States such as windowed aggregations (counters, averages, etc) can be kept in a remote datastore, or local to the stream processor and replicated periodically.
+Kafka streams replicate state changes by sending them to a dedicated Kafka topic with log compaction, similar to CDC.
+
+Just replay may be faster, and the trade-offs such as this depend on performance characteristic of your system.
+
+### Summary
+
+Stream processing is similar to batch processing on unbounded input.
+From this perspective, message brokers and event logs serve as the streaming equivalent of a filesystem.
+
+* JMS-style message broker. Broker assigns individual messages to consumers, consumers acks, broker then deletes. Old message cannot be read after processed.
+* Log-based message broker. Broker assigns all messages in a partition to the same consumer node, and always delivers in the same order. Parallelism through partitioning, and consumers track their progress by checkpointing the offset of the last message they have processed. Messages are retained on disk and can be reread if needed.
+
+Log-based is like DB replication log and LSM-trees. Particularly appropriate for derived view generation from input streams.
+
+Where streams come from. Change data capture. Event sourcing.
+
+Representing database as streams.
+
+Purposes of stream processing (processing streams section).
+
+Reasoning about time. Different types of stream joins.
+
+Fault tolerance with microbatching, checkpointing, transactions or idempotent writes.
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
