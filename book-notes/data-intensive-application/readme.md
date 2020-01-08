@@ -2681,6 +2681,61 @@ Reasoning about time. Different types of stream joins.
 
 Fault tolerance with microbatching, checkpointing, transactions or idempotent writes.
 
+# The Future of Data Systems
+
+Even so called general purpose database is designed for a particular usage pattern.
+Know your usage pattern, and how it maps to the tools you use.
+
+Cobbling together different pieces to achieve certain functionality is important.
+
+"In my experience 99% of people only need X" probably says more about the experience of the speaker than the actual usefulness of the technology.
+
+### Combining specialized tools by deriving data
+
+If it is possible for you to funnel all user input through a single system that decides on an ordering of all writes, (generate the rest derived via CDC, or event sourcing), then it becomes much easier to derive other representations of the the data by processing the writes in the same order.
+Plus idempotence makes it easy to recover from faults.
+
+##### CDC vs distributed transactions
+
+Both can achieve the goal of keeping data in different systems in sync, distributed transaction usually provide linearizability, which implies the likes of reading your writes, while CDC are usually updated asynchronously and make no such guarantee.
+
+In the absence of widespread support for a good distributed transaction protocol, log-based derived data is probably the most promising approach for integrating different data systems.
+
+However different levels of consistency guarantees can be quite useful.
+
+Single leader, partitioned if needed, in which case order of events in two partitions can be ambiguous;
+Geographically distributed likely requires a leader in each location, which implies undefined ordering of events that originate in two different datacenters.
+
+In formal terms, deciding on a total order of events is known as total order broadcast, which is equivalent to consensus.
+
+Most consensus algorithms are designed for situations in which the throughput of a single node is sufficient to process the entire stream of events, and these algorithms do not provide a mechanism for multiple nodes to share the work of ordering of events.
+
+### Batch and stream processing
+
+Batch processing has a quite strong functional flavor: it encourages deterministic, pure functions whose output depends only on input and has no side effects.
+Inputs are immutable and outputs are append-only.
+
+This makes reasoning about dataflow, as well as fault-tolerance easy.
+
+##### Reprocessing data for application evolution 
+
+Stream and batch processing are both useful in schema evolution.
+
+Derived views allow gradual migration: you can maintain both versions of the derived view, as you migrate, it's almost like railway gauge migration (pythonpolyglot), where different track distances are standardized by having a third rail such that trains for both gauges can run.
+
+##### The lambda architecture
+
+Combining batch processing and stream processing: say, run Hadoop MapReduce and Storm side-by-side.
+
+Stream processor consumes the events and quickly produces an approximate update to the view, and the batch processor later consumes the same set of events and produces a corrected version.
+
+This somewhat duplicated work has its shortcomings.
+Recent work overcomes this by having batch computations and stream computations implemented in the same system.
+
+### Unbundling databases
+
+
+
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)
 (_is linearizability the strongest form for replica consistency? The furthest in line in eventual, read-your-write, consistency-prefix-read, causal?_)
