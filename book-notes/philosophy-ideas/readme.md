@@ -249,3 +249,70 @@ At the end of the day, the problem of conduct is a problem of principle, somethi
 
 The Socratic approach to knowledge would claim each man is not the measure of all things.
 There is a measure of all things, and it's the task of each man to understand that measure and apply it properly.
+
+### Plato's Republic
+
+Late-middle dialogue.
+
+Russell on the Republic: fascist and imperialistic.
+
+Foundational work in political science.
+Tied to the considerations of statecraft are observations on moral, justice, weakness of human, hence somewhat foundational in psychology.
+
+Sepheles, near death and ponders on wealth.
+Polymarchus, what it means to be just is to pay one's debt.
+
+Can an unjust person be happy and make great progress?
+
+Thrasymachus: strong should prey on the weak.
+
+Glaucon: what is goodness? Three classes
+* Things that are good in and of themselves. Harmless pleasures.
+* Things that are good in themselves but also for the consequences that arise from such good. Knowledge, health.
+* Pursued for the same of their results. Gymnastics, money making.
+
+Where is justice placed?
+Socrates: the first, where things are pursued for their intrinsic value, not for consequences.
+
+Glaucon, Adeimantus: Those seem just may not be just.
+Virtue may arise purely from fear of punishment and desire of reward, not for the sake of being virtuous.
+
+Example of Ring of Gyges (invisibility, used to commit unjust).
+
+Being just may be for reputation, not for the sake of justice.
+
+Socrates suggests to inspect the state instead, so that we can seek justice on an enlarged scale, rather than on each flimsy individuals.
+
+No claim can be made towards politics, without understanding human nature.
+
+Guardians. Elimination of greed, no payments. Shared partners. Marriage "lottery" in festivals but actually chosen breeders. Breed the guardians. Pure eugenics.
+
+Problem of knowledge.
+Allegory of the cave. Being shackled and faced with parapets with projections, shadowy illusions. Each man his own measure.
+Imagine one breaks out, discovers the outside and realized what they've perceived as true are merely halluciatory experience.
+This one goes back to share his experience, the others wouldn't be able to comprehend and instead thought him as blinded by the light.
+
+Being bound by our material selves, resisting transcendance, believing whatever we see and only what we see.
+Ignorance is darkness. See the reality behind the appearance of shadowy illusions. To appreciate / comprehend Leonidas at Thermopylae, one needs to be preconditioned.
+
+The eyes and ears never record the truth, and what they do pick up will never be parlayed into the truth.
+Being experientialist, while missing the point of life, not even understanding life has a point.
+
+There are some things that only be seen under the light of philosophical examination / the wise man's guidance.
+
+Problem of knowledge then gets us back to the search of truth, of the relationship as the relationships constitute the true form of things.
+
+What is a good government is then answered in terms of relationship: between the ruled and the rulers, laws, where authority is vested and for what purpose.
+Justice is also perceived as the the harmonious relationship among the rational, the passionate, the emotional dispositions of the soul.
+
+Also behavioral theory e.g. children has to be protected from vulgar music but exposed to martial music.
+
+How should we behave? How should we live our lives?
+We are corporeal, inclined towards pleasure and avoid pains.
+We are like charioteers standing on two horses, a good horse and a vicious one, a metaphor also found in India. 
+
+A will capable of resolving us to follow the right course.
+The will itself cannot decide what the right course is, desire knows only one course: to fulfill itself.
+How then do we discover the right course: through rational power. Supremacy of reason in determining what we ought to do. Reason as shown in mathematical proportion, harmony, balance. The guide and goal of life. Avoid excess.
+
+The Pythagorean numerological balance is the resemblance of truth.
