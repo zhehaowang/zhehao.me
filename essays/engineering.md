@@ -165,7 +165,9 @@ Seeing it through.
 
 ### The first principles
 
-
+Rectilinear triangle.
+Truth and knowledge.
+Internalization of knowledge.
 
 ### Routine and habits
 

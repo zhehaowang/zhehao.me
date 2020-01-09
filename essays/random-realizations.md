@@ -77,6 +77,8 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 
 * Probablistic, statistical
 
+* The unstructured life is not worth living, for some.
+
 * Things we are systematically bad at
 
 * De javu and is math useful? is math olympiad useful? Is skepticism trying to take the easy way out?
