@@ -1,117 +1,124 @@
 # Clean architecture
 
-### Part 1
+# Part 1
 
-##### Goal
+### Goal of architecture
 
-Goal of architecture: to minimize human resources required to build and maintain the required system
+**To minimize human resources required to build and maintain the required system.**
 
-A good indication of a badly designed system: look at the cost of each line of code, and the productivity of each engineer over time
+A good indication of a badly designed system: tremendous cost of each line of code, and low productivity of engineer over time.
 
-"And yet, despite all their heroics, overtime, and dedication, they simply aren’t getting much of anything done anymore. All their effort has been diverted away from features and is now consumed with managing the mess. Their job, such as it is, has changed into moving the mess from one place to the next, and the next, and the next, so that they can add one more meager little feature."
+_"And yet, despite all their heroics, overtime, and dedication, they simply aren’t getting much of anything done anymore. All their effort has been diverted away from features and is now consumed with managing the mess. Their job, such as it is, has changed into moving the mess from one place to the next, and the next, and the next, so that they can add one more meager little feature."_
 
-"And so the developers never switch modes. They can’t go back and clean things up because they’ve got to get the next feature done, and the next, and the next, and the next. And so the mess builds, and productivity continues its asymptotic approach toward zero."
+_"And so the developers never switch modes. They can’t go back and clean things up because they’ve got to get the next feature done, and the next, and the next, and the next. And so the mess builds, and productivity continues its asymptotic approach toward zero."_
 
-##### The only way to go fast is to go well
+### The only way to go fast is to go well
 
-* The misconception of going faster by spending less time in design
-"The bigger lie that developers buy into is the notion that writing messy code makes them go fast in the short term, and just slows them down in the long term. Developers who accept this lie exhibit the hare’s overconfidence in their ability to switch modes from making messes to cleaning up messes sometime in the future, but they also make a simple error of fact. The fact is that making messes is always slower than staying clean, no matter which time scale you are using."
+The misconception of going faster by spending less time in design:
 
-"The only way to go fast, is to go well."
+_"The bigger lie that developers buy into is the notion that writing messy code makes them go fast in the short term, and just slows them down in the long term. Developers who accept this lie exhibit the hare’s overconfidence in their ability to switch modes from making messes to cleaning up messes sometime in the future, but they also make a simple error of fact. The fact is that making messes is always slower than staying clean, no matter which time scale you are using."_
 
-And making matters worse
+And making matters worse:
 
-"Their overconfidence will drive the redesign into the same mess as the original project."
+_"Their overconfidence will drive the redesign into the same mess as the original project."_
 
-##### Two values of a program: behavior and architecture
+### Two values of a program: behavior and architecture
 
-Behavior: programmers are hired to make machines behave in a way that makes or saves money for the stakeholders.
+**Behavior**: programmers are hired to make machines behave in a way that makes or saves money for the stakeholders.
 
-"To fulfill its purpose, software must be soft—that is, it must be easy to change. When the stakeholders change their minds about a feature, that change should be simple and easy to make. The difficulty in making such a change should be proportional only to the scope of the change, and not to the shape of the change."
+_"To fulfill its purpose, software must be soft—that is, it must be easy to change. When the stakeholders change their minds about a feature, that change should be simple and easy to make. The difficulty in making such a change should be proportional only to the scope of the change, and not to the shape of the change."_
 
-"From the stakeholders’ point of view, they are simply providing a stream of changes of roughly similar scope. From the developers’ point of view, the stakeholders are giving them a stream of jigsaw puzzle pieces that they must fit into a puzzle of ever-increasing complexity. Each new request is harder to fit than the last, because the shape of the system does not match the shape of the request."
+_"From the stakeholders’ point of view, they are simply providing a stream of changes of roughly similar scope. From the developers’ point of view, the stakeholders are giving them a stream of jigsaw puzzle pieces that they must fit into a puzzle of ever-increasing complexity. Each new request is harder to fit than the last, because the shape of the system does not match the shape of the request."_
 
-"The problem, of course, is the architecture of the system. The more this architecture prefers one shape over another, the more likely new features will be harder and harder to fit into that structure. Therefore architectures should be as shape agnostic are practical."
+_"The problem, of course, is the architecture of the system. The more this architecture prefers one shape over another, the more likely new features will be harder and harder to fit into that structure. Therefore architectures should be as shape agnostic are practical."_
 
-Argument: architecture is the more important value. Consider the two extremes, something that works but cannot be changed is useless facing changing requirements; while something that doesn't work but can be easily changed can be changed.
+**Argument**, architecture is the more important value. Consider the two extremes, something that works but cannot be changed is useless facing changing requirements; while something that doesn't work but can be easily changed can be changed.
 
-"You may not find this argument convincing. After all, there’s no such thing as a program that is impossible to change. However, there are systems that are practically impossible to change, because the cost of change exceeds the benefit of change. Many systems reach that point in some of their features or configurations."
+_"You may not find this argument convincing. After all, there’s no such thing as a program that is impossible to change. However, there are systems that are practically impossible to change, because the cost of change exceeds the benefit of change. Many systems reach that point in some of their features or configurations."_
 
-"I have two kinds of problems, the urgent and the important. The urgent are not important, and the important are never urgent." --Eisenhower
+_"I have two kinds of problems, the urgent and the important. The urgent are not important, and the important are never urgent." --Eisenhower_
 
-"The dilemma for software developers is that business managers are not equipped to evaluate the importance of architecture. That’s what software developers were hired to do. Therefore it is the responsibility of the software development team to assert the importance of architecture over the urgency of features."
+_"The dilemma for software developers is that business managers are not equipped to evaluate the importance of architecture. That’s what software developers were hired to do. Therefore it is the responsibility of the software development team to assert the importance of architecture over the urgency of features."_
 
-"Fulfilling this responsibility means wading into a fight—or perhaps a better word is “struggle.” Frankly, that’s always the way these things are done. The development team has to struggle for what they believe to be best for the company, and so do the management team, and the marketing team, and the sales team, and the operations team. It’s always a struggle."
+_"Fulfilling this responsibility means wading into a fight—or perhaps a better word is “struggle.” Frankly, that’s always the way these things are done. The development team has to struggle for what they believe to be best for the company, and so do the management team, and the marketing team, and the sales team, and the operations team. It’s always a struggle."_
 
-"Just remember: If architecture comes last, then the system will become ever more costly to develop, and eventually change will become practically impossible for part or all of the system. If that is allowed to happen, it means the software development team did not fight hard enough for what they knew was necessary."
+_"Just remember: If architecture comes last, then the system will become ever more costly to develop, and eventually change will become practically impossible for part or all of the system. If that is allowed to happen, it means the software development team did not fight hard enough for what they knew was necessary."_
 
-### Part 2
+# Part 2
 
-Paradigms of programming
+### Paradigms of programming
 
-**Structured programming**: impose discipline on direct transfer of control
+* **Structured programming**: impose discipline on direct transfer of control
+* **OOP**: impose discipline on indirect transfer of control
+* **Functional**: impose discipline upon assignment
 
-**OOP**: impose discipline on indirect transfer of control
+Each of these paradigms takes something away from us.
 
-**Functional**: impose discipline upon assignment
+Note how well the three aligns with the big concerns of architecture: function, separation of components, data management.
 
-Each of these paradigms takes something away from us
+### Structured programming
 
-Note how well the three aligns with the big concerns of architecture: function, separation of components, data management
+Goto not in the context of if / while makes a program hard to decompose into smaller units, making proof by divide and conquer hard.
 
-##### Structured programming
+Structured programming allows modules to be recursively decomposed into provable units.
 
-Goto not in the context of if / while makes a program hard to decompose into smaller units, making proof by divide and conquer hard
+Falsifiable / testable:
 
-Structured programming allows modules to be recursively decomposed into provable units
+_"Tests can prove a program incorrect, but not correct. Software is like scientific laws, we show correctness by failing to prove incorrectness, despite our best efforts."_
 
-"Tests can prove a program incorrect, but not correct. Software is like scientific laws, we show correctness by failing to prove incorrectness, despite our best efforts."
-
-falsifiable (testable)
-
-##### OOP
+### OOP
 
 What's really the point?
 
-Encapsulation? C's forward declaration (where data members of a struct need not be declared in header) can achieve hiding members and implementation from clients; C++ breaks this kind of encapsulation
+* Encapsulation? C's forward declaration (where data members of a struct need not be declared in header) can achieve hiding members and implementation from clients; C++ breaks this kind of encapsulation
+* Inheritance? In C if one struct A is a pure superset of another B, A can masquerade as B (C-style cast of `A*` to `B*`). Such trickery is how C++ implements single inheritance as well.
+* Polymorphism? C can achieve polymorphism as well. E.g. the definition of STDIN, how does a console `getchar()` call know which device is STDIN?  (**?**)
 
-Inheritance? In C if one struct A is a pure superset of another B, A can masquerade as B (C-style cast of A\* to B\*). Such trickery is how C++ implements single inheritance as well.
+Unix require that every IO device driver provide five standard functions with same function signatures.
+`open`, `close`, `read`, `write`, `seek`.
 
-<mark>review, implement</mark>
-Polymorphism? C can achieve polymorphism as well. E.g. the definition of STDIN, how does a console getchar() call know which device is STDIN?
-Unix require that every IO device driver provide five standard functions with same function signatures. open, close, read, write, seek
-FILE is a struct with members that are pointers to the above function signatures. STDIN can then be pointer to FILE, who was populated with console's implementation of the above five functions.
-This approach is not that different from C++'d vtable polymorphism. While polymorphism is achievable in C, C++ makes it more convenient and safer.
+`FILE` is a struct with members that are pointers to the above function signatures. STDIN can then be pointer to FILE, who was populated with console's implementation of the above five functions.
+
+This approach is not that different from C++'s vtable polymorphism.
+While polymorphism is achievable in C, C++ makes it more convenient and safer.
 
 This "plugin" architecture of device drivers makes programs device independent.
 
 **Dependency inversion**: the source code dependency (of an inheritance relationship) points in the opposite direction compared to the flow of control (where a high-level function needs to know the source of a lower-level function in order to call it).
+
 This means any source code dependency, no matter where it is, can be inverted. And one is not constrained to organizing dependencies aligned to the flow of control.
+
 With the dependencies organized via an interface and plugged in, one also achieves independent deployability and independent developability.
+
 (_Having compile dependency being opposite to runtime dependency is dependency inversion_)
 
-What is OO to an architect: "OO is the ability, through the use of polymorphism, to gain absolute control over every source code dependency in the system. It allows the architect to create a plugin architecture, in which modules that contain high-level policies are independent of modules that contain low-level details. The low-level details are relegated to plugin modules that can be deployed and developed independently from the modules that contain high-level policies."
+What is OO to an architect:
 
-##### Functional programming
+_"OO is the ability, through the use of polymorphism, to gain absolute control over every source code dependency in the system. It allows the architect to create a plugin architecture, in which modules that contain high-level policies are independent of modules that contain low-level details. The low-level details are relegated to plugin modules that can be deployed and developed independently from the modules that contain high-level policies."_
 
-* Immutability:
+### Functional programming
+
+* Immutability
 
 Variables in functional languages do not vary.
+
 Why would immutability be a concern: race conditions, deadlocks, concurrent update problems are all due to mutable variables.
-Mutability in Clojure: functional languages like Clojure can allow mutable variables, but only mutated under very strict conditions that are enforced by swap!, which uses a traditional compare and swap (?) algorithm.
+
+Mutability in Clojure: functional languages like Clojure can allow mutable variables, but only mutated under very strict conditions that are enforced by swap!, which uses a traditional compare and swap algorithm.
+
 Thus, a well-structured program can be modeled in a functional language by segregating its variables into mutable and immutable ones. And it'd be wise to push as much as possible into immutable area.
 
-* Event sourcing:
+* Event sourcing
 
-"The limits of storage and processing power have been rapidly receding from view. Nowadays it is common for processors to execute billions of instructions per second and to have billions of bytes of RAM. The more memory we have, and the faster our machines are, the less we need mutable state."
+_"The limits of storage and processing power have been rapidly receding from view. Nowadays it is common for processors to execute billions of instructions per second and to have billions of bytes of RAM. The more memory we have, and the faster our machines are, the less we need mutable state."_
 
-"As a simple example, imagine a banking application that maintains the account balances of its customers. It mutates those balances when deposit and withdrawal transactions are executed."
+_"As a simple example, imagine a banking application that maintains the account balances of its customers. It mutates those balances when deposit and withdrawal transactions are executed. Now imagine that instead of storing the account balances, we store only the transactions. Whenever anyone wants to know the balance of an account, we simply add up all the transactions for that account, from the beginning of time. This scheme requires no mutable variables."_
 
-"Now imagine that instead of storing the account balances, we store only the transactions. Whenever anyone wants to know the balance of an account, we simply add up all the transactions for that account, from the beginning of time. This scheme requires no mutable variables."
+_"If this still sounds absurd, it might help if you remembered that this is precisely the way your source code control system works."_
 
-"If this still sounds absurd, it might help if you remembered that this is precisely the way your source code control system works." (that, and also BigTable, those that are based on log structured merge trees)
+(BigTable, those that are based on log structured merge trees; Change data capture and building derived views from log; Kafka and log-based message brokers are all ideas along this line.)
 
-### Part 3
+# Part 3
 
 The principle of SOLID for module (mid) level software design (component, in BDE terms).
 Goal: tolerate change, easy to understand, create basis of components that can be used in many software systems.
