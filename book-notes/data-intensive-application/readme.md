@@ -2734,7 +2734,71 @@ Recent work overcomes this by having batch computations and stream computations 
 
 ### Unbundling databases
 
+The similarities between operating system and databases are worth exploring.
+At their core both are information management systems, stored at file or records level. Hadoop is presented earlier as somewhat like a distributed Unix.
 
+OS hides away the hardware, provides files, pipes, whereas distributed databases hides away the disk storage, concurrency, crash recovery, and provides distributed transactions, SQL, etc.
+
+The author would like to interpret NoSQL movement as wanting to apply a Unix-esque approach of low-level abstractions to the domain of distributed OLTP data storage.
+
+##### Composing data storage technologies
+
+Secondary indexes, materialized views, replication logs, full-text search indexes.
+
+There are parallels between these database features and the derived data systems that people are building with batch and stream processors.
+(In a sense they are almost like elaborate implementations of triggers, stored procedures and materialized view maintenance routines.)
+
+* Federated database: unifying reads. One unified query interface for a wide variety of underlying storage engines and processing methods.
+* Unbundled database: unifying writes. Make it easy to plug together storage systems (e.g. through change data capture and event logs) is like unbundling a database's index-maintenance features in a way that can synchronize writes across disparate technologies.
+
+The author thinks the traditional approach to synchronizing writes, requiring distributed transactions across heterogeneous systems, is the wrong solution compared with change data capture.
+
+The big advantage of log-based integration is loose coupling between the various components.
+Outages are easier to isolate and handle, and different components can be developed, improved and maintained independent of each other.
+
+The advantage of unbundling and composition only come into picture when there is no single piece of software that satisfies all your requirements.
+
+##### What's missing
+
+The tools for composing data systems are getting better, but the author thinks a major part is missing: an unbundled equivalent of Unix shell, i.e. a high-level language for composing storage and processing system in a simple and declarative way.
+Like `mysql | elasticsearch` which is like an unbundled way of `CREATE INDEX`.
+
+##### Designing applications around dataflow
+
+Like formula in an excel sheet (derived view) that automatically updates when a dependent cell changes, derived data view should have the same.
+
+Application code as a derivation function. (triggers, stored procedures, user-defined functions which often came as an afterthought)
+
+Separation of code and state. Like web servers who typically put states in DB and have code hosted by a web server running in cluster management tools like Kubernetes, Docker, etc.
+
+Thinking about applications in terms of dataflow implies renegotiating the relationship between application code and state management.
+Instead of thinking DB as passive variable modified by the application, we think much more about the interplay and collaboration between states, state changes and code that processes them.
+
+Comparing this with a micro-service approach, e.g. when a user makes a purchase of goods priced in one currency but paid in another currency, the microservice approach the code that processes transaction would query an exchange-rate service to obtain the current exchange rate; in the dataflow approach purchase processing would be one stream processor, exchange rate would be another stream processor and the above becomes a join (local cached rate query; time-dependent join)
+
+### Observing derived state
+
+The read path and write path encompass the whole journey of data.
+Write path, caching, eager evaluation. Read path, lazy evaluation.
+The derived dataset (materialized view, cache) is the place where the two paths meet, and there is a trade-off between the amount of work needing to be done at read or write time.
+
+Stateful, offline-capable clients. On-device state becomes a cached version (a materialized view) of that on the server.
+The offline device, once reconnected, will behave like reading off of an offset in a log-based message broker.
+
+Websockets, EventSource API gave http server pushing capability, who otherwise had been a simple polling protocol.
+
+This extends the write path all the way to the end user, in which case we need to rethink building of many of our systems: moving away from request/response interaction and toward publish/subscribe dataflow. Keep an open mind on both as a designer of data systems.
+
+##### Reads are events, too
+
+It's possible to have event log only store writes to the database, but also possible to have it store read events as well.
+In some cases reads (queries) contain information to be stored and analyzed. Writing reads makes it easier to track causal dependencies.
+
+##### Using stream processors to implement multi-partition data processing
+
+Probably simpler to use a DB that provides multi-partition query joins, but more customizable and flexible to implement this with stream processors.
+
+### Aiming for correctness
 
 
 (_is no dirty writes an atomicity, consistency (linearizability) and isolation guarantee?_)

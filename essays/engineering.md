@@ -158,7 +158,14 @@ Maintenance.
 Operational.
 Documentation.
 
-### The first princples
+Communication.
+Work ethic.
+Advocation.
+Seeing it through.
+
+### The first principles
+
+
 
 ### Routine and habits
 
