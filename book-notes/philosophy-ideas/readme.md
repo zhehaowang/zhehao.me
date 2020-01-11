@@ -316,3 +316,43 @@ The will itself cannot decide what the right course is, desire knows only one co
 How then do we discover the right course: through rational power. Supremacy of reason in determining what we ought to do. Reason as shown in mathematical proportion, harmony, balance. The guide and goal of life. Avoid excess.
 
 The Pythagorean numerological balance is the resemblance of truth.
+
+### Hippocrates of Kos and Greek medicine
+
+Contemporary of Socrates.
+
+Plato -> Aristotle (whose father was a physician), movement in the direction of natural science
+
+Secularize and analyze a subject that is generally related with religion and customs.
+
+Greek medicine is close to modern practices in its being scientific, realizes diet, hereditary disposition as causes for conditions. (Health as related with the state of the body, as opposed to religion and customs.)
+
+Pythagoras' sect of medical views: treat the body with vegetarianism, ritual performance (musical harmony), exercises.
+
+Hellenic civilization objectified itself (and the natural world), for the purpose of critical scrutiny.
+Secularizing of knowledge, as opposed to realizations brought by prophets.
+
+Hippocratic writers are religious, but they hold the religious account constant.
+They provide a science that is liberated from religious orthodoxy.
+Hippocratic medicine is not necessarily superior to Egyptian medicine, which dates even earlier, but it is based on an entirely different set of suppositions.
+
+Once a society confers upon a selected group ultimate epistemological authority, on core questions arising from the problem of knowledge, the nearly inevitable result is philosophical paralysis: positions become quite hardened, and the only work left for scholars is to interpret the words of the wise.
+The debate is no longer about knowledge and truth, but how a text or holy maxim is to be understood.
+
+Empirical. Empiricist. The Greek word "observation".
+Science is an empirical enterprise.
+
+Hippocratic writers describe themselves as empirical, as their treatment is based off of clinical observation, naturalizing the natural world.
+
+How is apoplexy understood?
+Eastern Christianity, influenced by Greek thoughts, perceives it as a viral attack on the body (empirical).
+Western Christianity, much more (theological) theory driven, perceives it as retribution for the victim's wickedness (divine, spiritual intervention).
+
+Hippocratic writers correctly identified the brain as the central organ that processes sensory information, being correct whereas Aristotle was not (heart, while brain controls the temperature of the blood).
+
+The celebrated figures of this age (Socrates, Hippocrates, Aristotle, etc), were a conspicuous minority.
+This would be an uncommon group in any age. The mass of the people has a deep suspicion towards philosophers.
+The perspective developed by these few was not widely shared.
+
+There was a perfectionist idea wide spread in Greek civilization. In rhetorics, tragedy, physical competitions, architecture, works of art, etc.
+Similarly in mathematics and philosophy.
