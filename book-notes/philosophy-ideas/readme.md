@@ -327,7 +327,9 @@ Secularize and analyze a subject that is generally related with religion and cus
 
 Greek medicine is close to modern practices in its being scientific, realizes diet, hereditary disposition as causes for conditions. (Health as related with the state of the body, as opposed to religion and customs.)
 
-Pythagoras' sect of medical views: treat the body with vegetarianism, ritual performance (musical harmony), exercises.
+Few (or perhaps none) of the writings of Hippocratic school were by Hippocrates himself.
+
+Pythagoras' sect of medical views: treat the body with vegetarianism, ritual performance (musical harmony) and exercises.
 
 Hellenic civilization objectified itself (and the natural world), for the purpose of critical scrutiny.
 Secularizing of knowledge, as opposed to realizations brought by prophets.
@@ -354,5 +356,96 @@ The celebrated figures of this age (Socrates, Hippocrates, Aristotle, etc), were
 This would be an uncommon group in any age. The mass of the people has a deep suspicion towards philosophers.
 The perspective developed by these few was not widely shared.
 
-There was a perfectionist idea wide spread in Greek civilization. In rhetorics, tragedy, physical competitions, architecture, works of art, etc.
+There was a perfectionist idea wide spread in Hellenistic civilization. In rhetorics, tragedy, physical competitions, architecture, works of art, etc.
 Similarly in mathematics and philosophy.
+
+Hellenism bequeathed this pursuit to later societies.
+
+### Aristotle on the knowable
+
+Aristotle has so much original, hence so much criticism in those that come after.
+
+His role in logic, biology, physics, natural science, political science and metaphysics are fundamental.
+
+He spent 20yrs in Plato's Academy, where some small fractions of his teachings are present in Plato's dialogues.
+
+Aristotle's **Metaphysics** proposed many thoughts different from Socratic and Platonic view.
+
+It offered a presentation of pre-Socratic and Socratic schools of thoughts, serving as a good account of the history of philosophy and Hellenic thoughts in general.
+
+Aristotle usually inspects the historical work done, what is left wanting, and goes from there.
+
+##### On senses
+
+Metaphysics opens with
+
+_"All men by nature desire to know. An indication of this is the delight we take in our senses"_
+
+This sets a fundamentally different tone from Platonic's dismissiveness towards senses.
+**Nature produces nothing without a purpose**, and senses do not exist to deceive creatures.
+Perception must be the starting point of knowledge.
+
+##### On classification
+
+Aristotle proposes different perceptual modes of knowledge.
+
+What's the fundamental power (Greek word Dynamics) in which a living thing has life?
+* Nutritive. A living creature has the means to absorb nutritions from its surroundings to sustain itself.
+* Reproductive. A living species can reproduce.
+* Locomotive. Some living creatures have the power to move. Some plants don't.
+* Sensation. The ability to act knowingly / consciously. Animals possess this.
+* Rationality. The (soul / psyche / power) of reason / a special rationality / cognitive power to allow beings to grasp universal propositions: all men must die, vs that men died. Our laws is another example of generality.
+
+Aristotle also differs knowing from Plato.
+As opposed to Plato's Meno in which he talks about facts and Truth with the latter being awakening something we inherently know via dialectical methods.
+
+Aristotle claims there are two modes of knowing,
+* The angles of a triangle sums up to 180 by measurement. This is by experience and factual.
+* By definition. This is episteme and appeals to generality.
+
+##### On the cause
+
+_"Happy is the man who knows the cause of things"_
+
+What's the cause of a statue?
+* On the **material level**, there's the stone. It couldn't have existed otherwise.
+* A statue possesses certain features to differentiate it from just any stone. This is the cause on the **formal level**.
+* Then there's the **efficient cause** of one blow after another by the sculptor, where each blow is the cause for the next.
+* Finally how do you know where to hit the material? You have to know what you aim to achieve. Then the **ultimate / final cause** is that intelligent design.
+
+Final in time, first in conception.
+
+Unless you have an intelligent plan to begin with, otherwise nothing will come about.
+(Greek telos. A teleological explanation, identifying the purposes, plans, designs and goals)
+
+Teleological does not assume sentient beings.
+Evolutionary theory is teleological, where wings, mating behavior, etc serve specific purposes.
+
+We do not understand something fully unless we know **all four modalities**.
+The number of things we know are based on the questions we ask:
+* does it exist? 
+* If it does, to what degree?
+* In what relation does it stand to other things?
+* What is it for? 
+
+The central point of Aristotelian program are these four causes / questions, in domain of knowledge, politics, ethics, etc.
+
+In politics, what is the polis for?
+
+In ethics, what kind of being am I? How do the actions of my mine either realize what is potential within me, or stultify such potentials? What am I here for (my potentials?) How do I live my life to honor the central fact of my being?
+
+Living things of the universe fit in a plan.
+Nothing with pattern or design comes about accidentally.
+
+_"If the art of shipbuilding were in the wood, ships would exist by nature."_
+
+Ask the ultimate question: what is it for?
+To know in this sense, is to comprehend far more than anything conveyed by the mere composition of the object.
+
+What are atoms for?
+Knowing all are made of atoms is pure materiality, and does not rise to the level of episteme.
+
+Aristotle's explanation is usually universal (by and large, in general) and deterministic.
+E.g. his view on scientific theory needs to be general, where the explained event is a particular instance.
+
+
