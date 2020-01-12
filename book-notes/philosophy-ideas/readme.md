@@ -363,11 +363,11 @@ Hellenism bequeathed this pursuit to later societies.
 
 ### Aristotle on the knowable
 
-Aristotle has so much original, hence so much criticism in those that come after.
+Aristotle has so much original, hence so much criticism from those who came after.
 
 His role in logic, biology, physics, natural science, political science and metaphysics are fundamental.
 
-He spent 20yrs in Plato's Academy, where some small fractions of his teachings are present in Plato's dialogues.
+He spent 20yrs in Plato's Academy, where some small fraction of his teachings are present in Plato's dialogues.
 
 Aristotle's **Metaphysics** proposed many thoughts different from Socratic and Platonic view.
 
@@ -381,7 +381,7 @@ Metaphysics opens with
 
 _"All men by nature desire to know. An indication of this is the delight we take in our senses"_
 
-This sets a fundamentally different tone from Platonic's dismissiveness towards senses.
+This sets a fundamentally different tone from a Platonic dismissiveness towards senses.
 **Nature produces nothing without a purpose**, and senses do not exist to deceive creatures.
 Perception must be the starting point of knowledge.
 
@@ -396,11 +396,11 @@ What's the fundamental power (Greek word Dynamics) in which a living thing has l
 * Sensation. The ability to act knowingly / consciously. Animals possess this.
 * Rationality. The (soul / psyche / power) of reason / a special rationality / cognitive power to allow beings to grasp universal propositions: all men must die, vs that men died. Our laws is another example of generality.
 
-Aristotle also differs knowing from Plato.
+Aristotle's view on knowing also differs from Plato's.
 As opposed to Plato's Meno in which he talks about facts and Truth with the latter being awakening something we inherently know via dialectical methods.
 
-Aristotle claims there are two modes of knowing,
-* The angles of a triangle sums up to 180 by measurement. This is by experience and factual.
+Aristotle claims there are two modes of knowing, e.g. the angles of a triangle sums up to 180
+* By measurement. This is by experience and factual.
 * By definition. This is episteme and appeals to generality.
 
 ##### On the cause
