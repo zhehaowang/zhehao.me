@@ -448,4 +448,61 @@ Knowing all are made of atoms is pure materiality, and does not rise to the leve
 Aristotle's explanation is usually universal (by and large, in general) and deterministic.
 E.g. his view on scientific theory needs to be general, where the explained event is a particular instance.
 
+### Aristotle on Friendship
 
+Men are by nature social and political.
+
+Bees and swans are social by nature, too.
+
+The natural Aristotle question (what is it for) then becomes:
+What's the point of us grouping ourselves together?
+What purpose is served by the tendency towards complex (and larger scale) social and political lives?
+
+Why go beyond small tribal communities? Why a polis?
+Self-defense? Large communities are destroyed left and right.
+Trade? Tribal communities, too, trade.
+
+Discussed in the Nicomachean Ethics and the Eudemian Ethics.
+
+Friendship is first inspected in the two works of Ethics.
+* Friendship can be formed for pleasure, including sensual pleasure, which Aristotle is not against. These pleasure have an ephemeral feature about them.
+* Friendship can be based on utility. A and B are useful for each other. These, too, are often ephemeral.
+These friendships are self-regarding, selfishly motivated
+* There is also friendship formed on Teleia-philia ("completed / perfected" friendship). Shared by the friends is a set of morals and values. What A wants for B and is good for B for the sake of B. A constructive relationship that is preserved and celebrated. Friendship conduced to goodness / moral excellence itself, and usually lasts a lifetime. Aristotle considers this kind of friendship to be not common.
+
+The above is obtained by two who are equally worthy, few among the general populace.
+Some would argue then the polis would be too small with those that meet this moral standard.
+
+How unequal would the two parties need to be for such friendship to be impossible?
+The inequality between humans and gods.
+
+An example, an audience with good taste enjoying a performance. The audience does not have the training of the performers, but there is mutual respect and each understands what is best and good in the other, for the other in the other's sake.
+
+Then you could form a polis without people being morally equal.
+
+What is virtue?
+It's a disposition / inclination to act towards certain ends and avoid other ends.
+
+Virtue is to be understood in two senses
+* Intellectual excellence. Science, artistic, technical, central to a creative life. These are not innate, and come from learning, discipline and practice.
+* Moral excellence. These are habitual forms of activity, and are reinforced by discplined practice as well. Receding Platonic's view of men of gold, silver and bronze, borrowed from Hesiod. (A program of research directed at the world as we know it.)
+
+Is anger (first word in Illiad) good or bad?
+Natured equipped us with such emotions, it'd be wrong to say such emotions are pathological.
+The right question then becomes what should be one's disposition towards anger? What should one be angry for?
+
+To become angry when virtue triumphs vice is bad.
+
+The virtue is the middle ground of extreme excess and extreme defect.
+Courage is the mid point between heedlessness and cowardice.
+The middle route is the best (opposing excess, common in Greek thoughts).
+
+Those who are fit to rule are those of virtue who are fit for friendship.
+
+Aristotle claims in the order of things, the polis precedes families (the pattern of obligation parents have towards children and vice versa) and entities (identification of the individual, bound up with familial and political life).
+
+The life of the hearthless, stateless, lawless men is the worst imaginable life.
+A productive life involves familial and political duties and obligations.
+
+Aristotle displays a suspiciousness towards radical democratic forms of rule.
+His ideal model could be that a constitutional monarchy, where the rule of law is determinated, and those who determine the law function as friends.
