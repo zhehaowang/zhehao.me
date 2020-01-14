@@ -32,6 +32,10 @@ When generalizing to the first principle, especially the principles of high-leve
 This perhaps echos with Plato's observation in Meno that truth is not something taught, rather something we inherently know but (sometimes dormant and) awakened via dialectical discourse.
 The realization seems one such process of the truth, or the first principle being awakened.
 
+How are principles formulated? Does dialectical methods apply to natural sciences? Does it not carry practical implications?
+
 What about the principle of financial investment? Designing a distributed system? Living a healthy and productive life? Interacting with people? Effective communication? Music composition? Poetry? Decision making?
 
-Is the principle different from the key things to uphold such that the art is declared to be performed in an agreeable way?
+Is the principle different from the key features to uphold such that the art is declared to be performed in an agreeable way?
+Or is the principle a key universal observation about an objective phenomenon, from which effects of such phenomenon, or those like it can be deduced?
+Are these different? Does the difference imply anything?
