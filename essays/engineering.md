@@ -1,8 +1,8 @@
 # Recurring themes in software engineering
 
-This year marks the end of a decade since I wrote my first line of code, and two years and a half since I became a professional software engineer.
+2019 marks the end of a decade since I wrote my first line of code, and two years and a half since I became a professional software engineer.
 
-Along the process some recurring themes are discovered, lessons learnt, realizations made, and this summary intends to be a discourse on these observations on a meta-engineering level (i.e. a collection of commonalities and general methodology).
+Along the process some recurring themes are observed, lessons learnt, realizations made, and this summary intends to be a discourse on these observations on a meta-engineering level (i.e. a collection of commonalities and general methodology).
 
 The hope is that when faced with an engineering problem, one can see the alternatives easier, make better judgment calls, and think architecturally when it is needed.
 
