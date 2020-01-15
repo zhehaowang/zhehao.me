@@ -1,4 +1,4 @@
-# Language
+# The Story of Human Language
 
 Language is not the same as communication / imitation (both in the latter animals can do, but the former seems unique and genetically programmed to homo sapiens).
 
