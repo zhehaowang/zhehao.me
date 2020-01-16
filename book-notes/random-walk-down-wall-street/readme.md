@@ -1,3 +1,5 @@
+# Random Walk down Wall Street
+
 # Part I: stocks and their valuation
 
 ### Firm foundation theory, intrinsic value
@@ -11,38 +13,39 @@ Styles and fashions in investors’ evaluations of securities can and often do p
 The stock market at times conforms well to the castle-in-the-air theory.
 For this reason, the game of investing can be extremely dangerous.
 
-Another lesson that cries out for attention is that investors should be very wary of purchasing today’s hot "new issue.
+Another lesson that cries out for attention is that investors should be very wary of purchasing today’s hot "new issue".
 Most initial public offerings underperform the stock market as a whole.
 And if you buy the new issue after it begins trading, usually at a higher price, you are even more certain to lose.
 Investors would be well advised to treat new issues with a healthy dose of skepticism.
 Certainly investors in the past have built many castles in the air with IPOs.
 Remember that the major sellers of the stock of IPOs are the managers of the companies themselves.
-They try to time their sales to coincide with a peak in the prosperity of their companies or with the height of investor enthusiasm for some current fad. In such cases, the urge to get on the bandwagon—even in high-growth industries—produced a profitless prosperity for investors.
+They try to time their sales to coincide with a peak in the prosperity of their companies or with the height of investor enthusiasm for some current fad.
+In such cases, the urge to get on the bandwagon—even in high-growth industries—produced a profitless prosperity for investors.
 
-Res tantum valet quantum vendi potest. (A thing is worth only what someone else will pay for it.)
+_"Res tantum valet quantum vendi potest."_
+
+(A thing is worth only what someone else will pay for it.)
 
 ### Dutch tulips bubble
 
-**How futures contract made money**
+**Example: how futures contract made money**
 
 The market engineers complex contracts to serve those seeking capital or investment outlets (or investors trying hard to part with their money).
 
 ### The tronics, biotech, and dotcom bubble
 
-**Concept stocks**
-The issues of a company with few or no earnings but a good story to tell and great potential.
-Speculative and risky.
+**Concept stocks**: the issues of a company with few or no earnings but a good story to tell and great potential. Speculative and risky.
 
-**How merger creates illusion of growth**
-
+**Example: how merger creates illusion of growth**
 
 ### The housing bubble
 
 ##### Mortgage backed security
 
-For banks handing out mortgages, instead of the originate and hold system 30 years ago, it's now originate and distribute: mortgage loans were originated by the banks, who only holds them for a few days, until they could be sold to an investment banker.
+For banks handing out mortgages, instead of the originate-and-hold system 30 years ago, it's now originate-and-distribute: mortgage loans were originated by the banks, who only holds them for a few days, until they could be sold to an investment banker.
 The investment banker would then assemble packages of these mortgages and issue mortgage backed securities, derivative bonds "securitized" by the underlying mortgages.
-These collateralized securities relied on the payments of interest and principal from the underlying mortgages to esrvice the interest payment on the new mortgage-backed bonds that were issued.
+
+These collateralized securities relied on the payments of interest and principal from the underlying mortgages to service the interest payment on the new mortgage-backed bonds that were issued.
 Making matters more complicated, there are multiple bonds issued against a package of mortgages.
 Different tranches with different claim priorities.
 
@@ -56,6 +59,7 @@ CDS were sold as insurance policy on the mortgage-backed bonds, where one party 
 CDS traded in the market can be 10 times the value of the underlying, making today's financial system very much riskier and interconnected.
 
 CDS being unregulated, and the mortgage originator facing a smaller risk (they only hold it for a few days before passing it on), led to looser and looser borrowing standards.
+
 Increasingly, lenders did not even bother to ask for documentation about ability to pay.
 Money for housing was freely available, and housing prices rose rapidly.
 
@@ -73,7 +77,7 @@ Eventually mortgages buyers took became far more valuable than the house, and so
 
 ### Are the markets efficient
 
-Markets can occasionally be irrational, but eventually it corrects itself: true value is recognized, and this is the main lesson investors must heed.
+**Markets can occasionally be irrational, but eventually it corrects itself: true value is recognized, and this is the main lesson investors must heed.**
 
 And true value, as stated in firm foundation theory, depends on the estimations of earning power of the company many years in the future.
 
@@ -101,7 +105,8 @@ The claim is that stock price movement (in the short term) is a random process (
 
 Technical methods cannot be used to make useful investment strategies, and not one has consistently outperformed the simple buy-and-hold, with fees and taxes in mind.
 This is the foundamental conclusion of the random walk theory.
-Stock prices cannot be predicted on the basis of past stock prices.
+
+**Stock prices cannot be predicted on the basis of past stock prices.**
 
 ### Fundamentals analysis
 
@@ -237,7 +242,7 @@ The core of every portfolio should consist of low cost, tax efficient, broad bas
 * Learn how to dodge the tax collector: IRA, Roth IRA (works well if you expect to pay more taxes after you retire, or if your income is low enough for pretax Roth IRA contribution), pension plans, 529 (college).
 * Understand your investment objectives: the risk you are willing to take. Ordered in increasing risk and returns: bank accounts, money market funds, bank certificate of deposit, TILs, high quality corporate bonds, diversified portfolio of blue-chip US or developed country stocks, real estate (and REIT), diversified portfolio of smaller growth company stocks, diversified portfolio of emerging market stocks, gold, collectibles.
 * Own your own home if you can possibly afford it. Also consider real estate investment trusts (REITs). They have produced returns comparable to common stocks, provide good diversification, and hedge against inflation.
-* When navigating bond investment, zero-coupon bonds can be useful to fund future liabilities, no-load bond fund can be appropriate vehicles, tax-exempt bonds can be useful to high tax bracket investors, and inflation linked bonds can be a good way to maintain real purchasing power. Historiclly junk bonds gross yield premium has more than compensated for actual default experience.
+* When navigating bond investment, zero-coupon bonds can be useful to fund future liabilities, no-load bond fund can be appropriate vehicles, tax-exempt bonds can be useful to high tax bracket investors, and inflation linked bonds can be a good way to maintain real purchasing power. Historically junk bonds gross yield premium has more than compensated for actual default experience.
 * Tiptoe through the fields of gold, collectibles, and other investments. The book also recommends steering clear of hedge-fund, private equity and venture-capital funds. These are not for individual investors.
 * Remember investment costs aren't random: some are lower than others.
 * Avoid sinkholes and stumbling blocks: diversify your investment steps.
@@ -265,7 +270,7 @@ How do you go about buying stocks? Three ways
 # A final word
 
 Broad diversification, annual rebalancing, using index funds, and staying the course.
-The first decade of 2000 was a trying time where US total stock market funds lost money. But follow the simple rules and timeless lessons epoused in this bookm are you likely to do just fine even during the toughest of times.
+The first decade of 2000 was a trying time where US total stock market funds lost money. But follow the simple rules and timeless lessons espoused in this book you are likely to do just fine even during the toughest of times.
 
 # Appendix: derivatives
 
@@ -281,4 +286,4 @@ Essentially, leverage its utility in transfering risk / hedging.
 
 * (Commodity) futures. Factors: interest rate, term, storage cost, convenience yield
 * Options. Factors: exercise price, underlying stock price, expiration date (valid exercise period), volatility of the stock (the more volatile the stock the more valuable the option), interest rates.
-One can use binomial formula to decide the price of an option by finding the perfectly hedged portion of a share such that the payoff is the same if the price goes up or down. Black-Scholes model is a multi-term binomial where a tree-like price-probability is used to determine the price.
+One can use binomial formula to decide the price of an option by finding the perfectly hedged portion of a share such that the payoff is the same if the price goes up or down. **Black-Scholes model** is a multi-term binomial where a tree-like price-probability is used to determine the price.
