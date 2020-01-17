@@ -1,4 +1,4 @@
-# Consider replacing associative containers with sorted vectors
+### Consider replacing associative containers with sorted vectors
 
 For many applications, the expected constant-time lookups of hashed containers are preferable to the guaranteed logarithmic-time lookups of `set` and `map`.
 Even if you want logarithmic time lookup, associative containers may still perform worse than a sorted vector.

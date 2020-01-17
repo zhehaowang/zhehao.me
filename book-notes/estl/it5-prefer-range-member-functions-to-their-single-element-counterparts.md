@@ -1,4 +1,4 @@
-# Prefer range member functions to their single element counterparts
+### Prefer range member functions to their single element counterparts
 
 Given two vectors, what's the easiest way to make `v1`'s content the same as the second half of `v2`'s (assume `v2` has even number of elements)?
 

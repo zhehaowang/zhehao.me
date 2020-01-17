@@ -1,4 +1,4 @@
-# Specify comparison types for associative containers of pointers
+### Specify comparison types for associative containers of pointers
 
 Imagine you've a `set<string*> s` with `s.insert(new string("abc"))`, when iterating over `s` you should not expect your string to come out in alphabetical order as `set` sorts it on `less<string*>` as opposed to `less<string>`.
 

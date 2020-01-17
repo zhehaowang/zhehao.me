@@ -1,4 +1,4 @@
-# Beware of the illusion of container-independent code
+### Beware of the illusion of container-independent code
 
 The STL is based on generalization: arrays generalized into containers and parameterized on the types of objects they contain. Functions are generalized into algorithms and parameterized on the types of iterators they use. Pointers are generalized into iterators and parameterized on the type of objects they point to.
 

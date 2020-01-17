@@ -1,4 +1,4 @@
-# Item 46. Consider function objects instead of functions as algorithm parameters
+### Item 46. Consider function objects instead of functions as algorithm parameters
 
 It's not generally true that as the level of abstraction gets higher, the efficiency of the generated code gets lower.
 

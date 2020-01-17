@@ -1,4 +1,4 @@
-# Use swap trick to trim excessive capacity
+### Use swap trick to trim excessive capacity
 
 Erasing from a `vector` does not reduce its capacity.
 

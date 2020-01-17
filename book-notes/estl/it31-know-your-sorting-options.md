@@ -1,4 +1,4 @@
-# Know your sorting options
+### Know your sorting options
 
 When it comes to sorting, `sort` is not your only option.
 If, say, you only need to identify 20 best Widgets, you can do `partial_sort`.

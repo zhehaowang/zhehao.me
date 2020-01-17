@@ -1,4 +1,4 @@
-# Item 45. Distinguish among `count`, `find`, `binary_search`, `lower_bound`, `upper_bound` and `equal_range`
+### Item 45. Distinguish among `count`, `find`, `binary_search`, `lower_bound`, `upper_bound` and `equal_range`
 
 Suppose you want to look up something from a container or a pair of iterators.
 

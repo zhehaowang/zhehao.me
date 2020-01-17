@@ -1,6 +1,6 @@
-# Algorithms
+### Algorithms
 
-# Make sure destination ranges are big enough
+### Make sure destination ranges are big enough
 
 Containers expand automatically when we go over its capacity, but not algorithms!
 

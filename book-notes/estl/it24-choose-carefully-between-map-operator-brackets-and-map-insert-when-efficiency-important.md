@@ -1,4 +1,4 @@
-# Choose carefully between `map::operator[]` and `map::insert` when efficiency is important
+### Choose carefully between `map::operator[]` and `map::insert` when efficiency is important
 
 ```
 class Widget {

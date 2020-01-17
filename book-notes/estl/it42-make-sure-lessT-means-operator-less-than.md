@@ -1,4 +1,4 @@
-# Make sure `less<T>` means `operator<`
+### Make sure `less<T>` means `operator<`
 
 `less<T>`, by default, does its work by calling `T::operator<`, one could, however, sever this tie:
 ```

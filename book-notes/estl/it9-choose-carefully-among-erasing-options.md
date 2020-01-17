@@ -1,4 +1,4 @@
-# Choose carefully among erasing options
+### Choose carefully among erasing options
 
 Say you have a container `Container<int> c` and you want to remove all entries with value 19 from the container, different containers have different ways to do it.
 

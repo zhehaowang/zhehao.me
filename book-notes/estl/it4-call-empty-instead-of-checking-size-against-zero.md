@@ -1,4 +1,4 @@
-# Call empty instead of checking size against zero
+### Call empty instead of checking size against zero
 
 For any container, writing `if (c.size() == 0)` is essentially equivalent to writing `if (c.empty())`.
 `empty()` is typically implemented as an inline function that simply returns whether size is 0.

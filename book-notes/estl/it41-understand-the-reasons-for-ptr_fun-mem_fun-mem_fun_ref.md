@@ -1,4 +1,4 @@
-# Understand the reasons for `ptr_fun`, `mem_fun` and `mem_fun_ref`
+### Understand the reasons for `ptr_fun`, `mem_fun` and `mem_fun_ref`
 
 What do they do anyway?
 

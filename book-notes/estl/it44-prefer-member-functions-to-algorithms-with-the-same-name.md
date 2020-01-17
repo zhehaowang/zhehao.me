@@ -1,4 +1,4 @@
-# Prefer member functions to algorithms with the same name
+### Prefer member functions to algorithms with the same name
 
 Sorted associative containers offer `count`, `find`, `lower_bound`, `upper_bound` and `equal_range`.
 `list` offers `remove`, `remove_if`, `unique`, `sort`, `merge` and `reverse`.

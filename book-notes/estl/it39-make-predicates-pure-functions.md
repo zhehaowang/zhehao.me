@@ -1,4 +1,4 @@
-# Make predicates pure functions
+### Make predicates pure functions
 
 A **predicate** is a function that returns `bool` or something implicitly convertable to `bool`.
 STL uses predicates a lot, e.g. `find_if` takes a predicate, comparisons for standard associative containers are also predicates.

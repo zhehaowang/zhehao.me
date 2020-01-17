@@ -1,4 +1,4 @@
-# Item 35: implement simple case insensitive string comparisons via mismatch or lexicographical compare
+### Item 35: implement simple case insensitive string comparisons via mismatch or lexicographical compare
 
 Using stl to perform case-insensitive string comparisons can be easy or hard.
 Implement what `strcmp` does is easy, if you want to be able to handle other languages except English is hard.

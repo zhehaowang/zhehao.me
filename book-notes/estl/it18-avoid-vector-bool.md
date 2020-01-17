@@ -1,4 +1,4 @@
-# Avoid `vector<bool>`
+### Avoid `vector<bool>`
 
 A `vector<bool>` is not an STL container. And it doesn't hold bools.
 

@@ -1,4 +1,4 @@
-# Have realistic expectations of thread-safety of STL containers
+### Have realistic expectations of thread-safety of STL containers
 
 STL threadsafety may vary from implementation to implementation.
 

@@ -1,4 +1,4 @@
-# Always have comparison functions return false for equal values
+### Always have comparison functions return false for equal values
 
 Imagine we have this
 ```

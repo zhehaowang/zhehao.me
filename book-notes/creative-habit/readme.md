@@ -1,4 +1,6 @@
-# The Creative Habit -- Twyla Tharp
+# The Creative Habit
+
+Twyla Tharp
 
 **Being creative is a full-time job with its daily patterns.**
 

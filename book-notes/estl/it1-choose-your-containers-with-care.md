@@ -1,6 +1,6 @@
-# Choose your containers with care
+### Choose your containers with care
 
-### Know your options
+##### Know your options
 
 * STL sequence containers: `vector`, `string`, `deque`, `list`
 * STL associative containers: `set`, `multiset`, `map`, `multimap`

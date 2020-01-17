@@ -1,4 +1,4 @@
-# Be on alert for most vexing parse
+### Be on alert for most vexing parse
 
 Suppose you have a file of ints and you'd like to copy those ints into a list.
 This seems reasonable.

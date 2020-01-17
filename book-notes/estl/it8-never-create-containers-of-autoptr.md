@@ -1,4 +1,4 @@
-# Never create containers of `auto_ptr`
+### Never create containers of `auto_ptr`
 
 Code attempting to create containers of `auto_ptr` should not compile, the standardization committee took trouble to prohibit such.
 But many work with STL platforms that don't reject such, or even see them as an easy approach to resource management.

@@ -1,4 +1,4 @@
-# Design functor classes for pass-by-value
+### Design functor classes for pass-by-value
 
 In C/C++ you can pass a function using pointers to functions
 

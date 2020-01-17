@@ -1,4 +1,4 @@
-# Item 47. Avoid producing write-only code
+### Item 47. Avoid producing write-only code
 
 Suppose you have a task to get rid of all the elements in a given `vector<int>` whose value is smaller than `x`, except that elements preceding the last occurrence of a value at least as big as `y` should be retained.
 

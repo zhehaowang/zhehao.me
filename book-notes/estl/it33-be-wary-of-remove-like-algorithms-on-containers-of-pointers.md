@@ -1,4 +1,4 @@
-# Item 33: be wary of `remove`-like algorithms on containers of pointers
+### Item 33: be wary of `remove`-like algorithms on containers of pointers
 
 Consider this
 ```

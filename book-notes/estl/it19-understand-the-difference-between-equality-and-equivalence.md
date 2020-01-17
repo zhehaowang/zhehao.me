@@ -1,8 +1,8 @@
-# (Sorted) Associative containers
+### (Sorted) Associative containers
 
 Sorted. View their content through the lens of equivalence instead of equality.
 
-# Understand the difference between equality and equivalence
+### Understand the difference between equality and equivalence
 
 `find` algorithm and `set::insert` are representative of many methods that decide if two values are the same.
 `find`'s definition of the same is equality based on `operator==`.

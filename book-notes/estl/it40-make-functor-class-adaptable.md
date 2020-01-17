@@ -1,4 +1,4 @@
-# Make functor classes adaptable
+### Make functor classes adaptable
 
 Suppose I have a list of `Widget`s and a function to determine if such a pointer identifies an interesting `Widget`.
 To find the first pointer to an interesting `Widget` is easy.

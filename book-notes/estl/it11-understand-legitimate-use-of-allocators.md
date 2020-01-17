@@ -1,4 +1,4 @@
-# Understand the legitimate use of allocators
+### Understand the legitimate use of allocators
 
 One of the following scenarios usually calls for a custom allocator
 * You've benchmarked, profiled and experimented your way to the conclusion that default STL memory manager `allocator<T>` is too slow, wastes memory or suffers excessive fragmentation for your STL needs, and you are certain you can do a better job yourself

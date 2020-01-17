@@ -1,4 +1,4 @@
-# Consider `istreambuf_iterator` for character-by-character input
+### Consider `istreambuf_iterator` for character-by-character input
 
 Suppose you want to copy a text file into a string object,
 ```

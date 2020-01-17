@@ -1,4 +1,4 @@
-# Use `accumulate` or `for_each` to summarize ranges
+### Use `accumulate` or `for_each` to summarize ranges
 
 `count` `count_if` `min_element` `max_element` can all summarize a range into a single number.
 But if you need to summarize a range in some custom manner, try `accumulate` in `<numeric>`.

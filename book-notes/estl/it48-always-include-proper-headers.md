@@ -1,4 +1,4 @@
-# Item 48. Always `#include` proper headers
+### Item 48. Always `#include` proper headers
 
 Software that compiles on one platform may require additional `#include` directives on others.
 

@@ -1,4 +1,4 @@
-# Be aware of string implementation variations
+### Be aware of string implementation variations
 
 There are many string implementations.
 

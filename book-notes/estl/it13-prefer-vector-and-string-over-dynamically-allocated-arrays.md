@@ -1,4 +1,4 @@
-# Prefer `vector` and `string` over dynamically allocated arrays
+### Prefer `vector` and `string` over dynamically allocated arrays
 
 When you use a dynamic allocation, you'll need to make sure `delete` happens exactly once, and right form of `delete` / `delete[]` happens.
 

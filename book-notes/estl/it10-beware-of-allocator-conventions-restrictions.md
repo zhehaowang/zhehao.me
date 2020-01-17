@@ -1,4 +1,4 @@
-# Be aware of allocator conventions and restrictions
+### Be aware of allocator conventions and restrictions
 
 Allocators were originally introduced to allow library designers to ignore distinctions between near and far pointers in certain 16-bit OS (e.g. DOS).
 They were then designed to facilitate the development of memory managers that are full-fledged objects, but it turned out that led to degradations in parts of the STL.

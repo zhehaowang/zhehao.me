@@ -1,4 +1,4 @@
-# Know how to pass `string` and `vector` to legacy API
+### Know how to pass `string` and `vector` to legacy API
 
 C API exists and will exist.
 

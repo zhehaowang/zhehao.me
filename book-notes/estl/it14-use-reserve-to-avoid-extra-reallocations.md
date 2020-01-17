@@ -1,4 +1,4 @@
-# Use reserve to avoid extra reallocations
+### Use reserve to avoid extra reallocations
 
 STL containers automatically grow to accommodate data you give it (until `max_size`).
 For `vector` and `string`, growth is handled by doing a moral equivalent of `realloc` whenever more space is needed.

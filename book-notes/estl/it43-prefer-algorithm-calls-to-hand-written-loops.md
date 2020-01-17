@@ -1,6 +1,6 @@
-# Programming with the STL
+### Programming with the STL
 
-# Prefer algorithm calls to hand-written loops
+### Prefer algorithm calls to hand-written loops
 
 Internally, algorithms are loops.
 Many things doable with a loop can be rewritten to use algorithms. E.g.
