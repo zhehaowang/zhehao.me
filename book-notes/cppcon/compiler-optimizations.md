@@ -1,14 +1,14 @@
 ### Compilers Optimization
 
 * Why C++: performance
-* C++ does not make your code fast magically, it gives you tremendous amount of control
-* It also gives you really powerful compiler optimizations. It may feel like magic, but it really isn't
+  * C++ does not make your code fast magically, it gives you tremendous amount of control
+  * It also gives you really powerful compiler optimizations. It may feel like magic, but it really isn't
 
-Goal of this talk
-* Understand how to work efficiently with a compiler, and how your code is optimized.
-* Understanding performance means understanding what compilers do.
+* Goal of this talk
+  * Understand how to work efficiently with a compiler, and how your code is optimized.
+  * Understanding performance means understanding what compilers do.
 
-Language Frontend --> Optimization --> Code Generation
+* Language Frontend --> Optimization --> Code Generation
 
 Modern compiler design focuses more on optimization, as opposed to supporting language frontend.
 (Dragon Book: Compilers Principles, Techniques and Tools, does not talk at all about optimization)
@@ -18,6 +18,7 @@ LLVM IR (intermediate representation, distilled form of client program) is meant
 ##### Instructions
 
 LLVM IR control flow, blocks, labeled jumps
+
 LLVM IR data flow, single static assignment (SSA form, gcc / intel / ibm also uses this; SSA makes const propagation trivial; with SSA local data flow becomes straightforward); after something's defined, they cannot be reassigned / redefined; Phi node: where the data flew from (to reconcile / merge data defined in two branching blocks)
 
 Optimizer does not just make your code fast.
