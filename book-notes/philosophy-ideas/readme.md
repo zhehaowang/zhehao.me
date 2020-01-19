@@ -466,7 +466,7 @@ Discussed in the Nicomachean Ethics and the Eudemian Ethics.
 
 Friendship is first inspected in the two works of Ethics.
 * Friendship can be formed for pleasure, including sensual pleasure, which Aristotle is not against. These pleasure have an ephemeral feature about them.
-* Friendship can be based on utility. A and B are useful for each other. These, too, are often ephemeral.
+* Friendship can be based on utility (utilitarian). A and B are useful for each other. These, too, are often ephemeral.
 These friendships are self-regarding, selfishly motivated
 * There is also friendship formed on Teleia-philia ("completed / perfected" friendship). Shared by the friends is a set of morals and values. What A wants for B and is good for B for the sake of B. A constructive relationship that is preserved and celebrated. Friendship conduced to goodness / moral excellence itself, and usually lasts a lifetime. Aristotle considers this kind of friendship to be not common.
 
@@ -478,7 +478,7 @@ The inequality between humans and gods.
 
 An example, an audience with good taste enjoying a performance. The audience does not have the training of the performers, but there is mutual respect and each understands what is best and good in the other, for the other in the other's sake.
 
-Then you could form a polis without people being morally equal.
+Then you could form a polis without all people being morally equal.
 
 What is virtue?
 It's a disposition / inclination to act towards certain ends and avoid other ends.
@@ -506,3 +506,59 @@ A productive life involves familial and political duties and obligations.
 
 Aristotle displays a suspiciousness towards radical democratic forms of rule.
 His ideal model could be that a constitutional monarchy, where the rule of law is determinated, and those who determine the law function as friends.
+
+### Aristotle on the perfect life
+
+Discussed in the Nicomachean Ethics and the Eudemian Ethics.
+
+Episteme, the intellectual virtues by which we are able to comprehend the cause of things.
+
+The perfect life, one that guided by scientific, systematic knowledge.
+
+We are artistic objects of self-defining, self-creating nature.
+To get a work of art ever more complete.
+
+Make the right kind of choices, based on good reasons.
+Good reasons for acting, our actions not merely reactions.
+
+Sound and defensible reasons for action is a form of wisdom and knowledge.
+Prudential knowledge.
+Philosophically wise -> Sophia 
+Practically wise -> Phronesis, making good choices
+
+The right life contemplates the best, what is worth thinking about.
+By contemplating on the stock market, you may be lowering your thoughts to the transient, episodic and culturally defined.
+
+Why should one aspire to moral excellence?
+Why should one be courageous and temperate?
+
+A regress of questions until it makes no sense to ask why that:
+* Why see a doctor?
+* Why you want to be in health?
+* Why you want to hold on to your job?
+* ...
+* Ultimately everything we do we do for happiness - **eudaimonia**.
+
+Not in a hedonistic sense.
+What does Aristotle mean by eudaimonia?
+Not peak emotional experience, or a transient state, but a mode of **flourishing life**, something unique for rational beings and beyond basic instincts.
+
+What does eudaimonia entail?
+It's an open question and the two Ethics offer different alternatives.
+
+To lose eudaimonia is like ridding a being of its defining attribute: fish out of water, birds cannot fly, and man without his rationality / contemplating on the best of things.
+
+What you do you do for the sheer fulfillment arising from doing it, is like the life on the isle of the blessed, that of the Olympians.
+Like children at play.
+One that approximates eudaimonia.
+
+This contemplative life should not be a life of inactivity or isolation, as we are by nature social and political.
+
+Fitness - harmonia <-> discordia
+Music - melodia
+
+Aristotle see the rule of law as the rule of reason, laws based on punishment are tyrannical laws.
+Good laws calls upon us to do things that make us better, not stop us from doing things for fear of punishment; we see in the law something we see in good friends.
+
+Are the life of the law giver and the disinterested contemplative wise man competing (activity and decisive action / contemplation and study)?
+That's the dillema faced by all, who weigh the contemplation of choices between the first things and making the world conform to one's best judgments.
