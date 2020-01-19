@@ -562,3 +562,53 @@ Good laws calls upon us to do things that make us better, not stop us from doing
 
 Are the life of the law giver and the disinterested contemplative wise man competing (activity and decisive action / contemplation and study)?
 That's the dillema faced by all, who weigh the contemplation of choices between the first things and making the world conform to one's best judgments.
+
+### Rome, Stoics, Rule of Law
+
+Aristotle left Athens after the death of Alexander.
+The city would not sin against philosophy a second time.
+
+Aristotle and Plato had strong influence on Stoic thoughts.
+Rule of law, reason and rationality.
+
+Zeno, father of Stoicism, 300BC. Epicurus, father of Epicureanism.
+Early, middle (Epictetus) and late (Seneca, Marcus Aurelius) Stoicism.
+Owing much to the Socratic / Platonic / Aristotelian school.
+
+Stoic ontology is physicalistic in a subtle way.
+Plato, for something to exist it must be able to act or be acted upon.
+Non-physical entities (such as space, time) must be accounted for in discussion of physical reality.
+Individual man has ontological meaning, but not the collection mankind.
+
+**A law-governed cosmos.**
+Reality is governed by law, human affairs and daily life should be governed by law, the hegemonicon of reason that regulates life.
+Quite different from a tyrannical law. Law is what a rational being would find justifiable, similar to Aristotle's view.
+
+Wisdom and knowledge are good intrinsically.
+Wealth, good breeding are not intrinsically good but may be utilitarian or useless.
+
+Nature of law and morals, rational, proportionate, unprejudiced.
+Power of abstraction and comprehension => Liberty.
+Liberty is not anarchy, but conforming one's actions to a principle, not dictatorial instincts.
+
+**Apatheia**, (not quite apathetic / morose) an active, systematic and disciplined principle of not to invest importance in things at the emotional level.
+
+Mucius Scaevola, tried to assassinate an enemy Etruscan king, and upon failure, told the bravery and willingness to sacrifice of Romans, and stretched his right arm to be burned.
+
+_"Never say of anything that I've lost it, only that I've given it back."_
+-- Epictetus
+
+Cicero was a critic of Stoicism, but his work on law incorporated much essential to Stoic teaching.
+
+Evil is to go against your nature, that of men being rationality.
+Irrationality is an evil.
+
+Epicureanism may have left the impression of _"eat drink and be merry for tomorrow you shall die"_, though the actual teaching of Epicurus was conservative in terms of social life and quite contrary, it's rather don't need something so much that its absence causes pain and suffering and quite close to Apatheia.
+
+Stoicism requires us participate in the affairs of the state, to be law givers, interact with the public world, Epicureanism would have us remove ourselves from the polis or politics, imagine living in the suburbs with a close group of friends.
+Epicureanism would reduce the likelihood of pain and suffering, defer death as long as one can.
+Epicureanism on friendship, a form of self defense against the slings and arrows of misfortune.
+Materialistic, our choices are our own to make, liberated from abstract stricture Stoicism imposed.
+
+Stoicism guides Roman education and Roman sensibilities.
+Neither Stoicism nor Epicureanism would not agree with the decadence of late Roman Empire.
