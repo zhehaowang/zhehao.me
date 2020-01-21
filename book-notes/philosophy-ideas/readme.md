@@ -608,7 +608,57 @@ Epicureanism may have left the impression of _"eat drink and be merry for tomorr
 Stoicism requires us participate in the affairs of the state, to be law givers, interact with the public world, Epicureanism would have us remove ourselves from the polis or politics, imagine living in the suburbs with a close group of friends.
 Epicureanism would reduce the likelihood of pain and suffering, defer death as long as one can.
 Epicureanism on friendship, a form of self defense against the slings and arrows of misfortune.
-Materialistic, our choices are our own to make, liberated from abstract stricture Stoicism imposed.
+Atomic materialistic, our choices are our own to make, liberated from abstract stricture Stoicism imposed.
 
 Stoicism guides Roman education and Roman sensibilities.
 Neither Stoicism nor Epicureanism would not agree with the decadence of late Roman Empire.
+
+### Stocism to Christianity
+
+Philo of Alexandria, contemporary of Jesus, whose work connects Old Testament text with Greek philosophy.
+
+Christianity is not merely a development out of Judaism.
+
+Early Christian teaching is intellectually rich and convincing.
+Saint Paul's writing draws from Stoic teaching.
+A belief being a natural inclination.
+There should not be unbridgeable gap between the teachings of faith and teachings of (pagan) philosophy.
+
+Stoic philosophy creates this bridge.
+
+Contrary to the Christian / Judaism / Islamic God, the "God" of Stoics is not a personal being concerned with human welfare, but a powerful divine fire of sorts working through physical and material modes of operations.
+This divine Fire, however, is rational and immortal in its nature.
+
+Arguments for universal brotherhood and wrongfulness of cruelty towards slaves are based off of Stoic notion of human rationality. Slaves are of same elements that made up any rational human being (same Oikos).
+
+Jews and Christians deny the materiality of this God.
+This is reconciled by God becoming incarnated in the form of a human being who will teach lessons and guide the distracted human race to be redeemed through his sacrifice.
+
+The immaterial incarnating himself materially, into what Stoics regarded as Logos (natural law).
+Consult the ten commandments to comprehend what God demands of us.
+
+On a Christian account no one is of greater moral worth than the other, whatever their socio-economical status, titles and achievements.
+This might have a substantial effect on people who are oppressed, controlled, dismissed because of their birth, language, skills and position in the world.
+None of that counts for anything fundamentally, you are all children of a providential God, who has created the cosmos, and it is good.
+An ordered, reasonable cosmos fitting for the language-using ordered, rational being which reflects in its rationality nothing less than the image of God himself.
+
+Early Christian fathers are Neo-Platoists and reflect much of Platonic teaching.
+
+This brings more problem:
+* Given this providential God, what about all the evil in the world? War and crimes, fall of Rome? How come things are in the state they are in, us being the rational creatures but bogged down in ignorance and pettiness?
+* If there is this God whose will is unopposable, then my fate is determined and God knows everything I'm going to do with my life. Is this an echo of the Greek sense of fate? A fatalistic doctrine?
+
+The Stoic Apatheia becomes the reconciliation between oneself and the will of God.
+A willingness to die for what he believes in and a willingness to recognize the fate of the flesh are distinct from the fate of the soul.
+
+Anti-intellectualism in early Christianity.
+What is required for one to live the right sort of life, is nothing more than the teaching of Christ.
+We need not speculate any longer on the meaning of all things.
+
+As these were the teachings of Jesus Christ, they are the last words on all things true, and coming after the pagan philosophies, they were not available to them who did not have the benefit of Jesus Christ.
+All of this philosophy was a distraction we can safely move past.
+Rome is not falling for its lack of philosophical teaching, and Christianity has to base off of something more resistant to change, on truths that are not mere productions of philosophy but creation of divinity, made available to us by the Grace of God.
+
+Not an anti-intellectualism with a sneer, but that of an enlightened group towards a less enlightened community, the former saying we can have patience with them and understand the mistakes they make, and we are under no obligation to repeat their modes of thoughts conduct.
+
+There was a bridge from Stoicism to Christianity, once you got to the side of a Christian, to a considerable extent, philosophy was left on the other side, for better or worse.
