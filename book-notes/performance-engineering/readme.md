@@ -64,6 +64,45 @@ This course allows you to print performance money, and focuses on multicore perf
 
 GPU, file system, network performance are really important in real life, and some lessons can be learnt from optimizing CPU performance / memory access pattern.
 
+### Bentley rules for optimizing work
+
+Bentley's book on performance optimization.
+
+* Data structure
+  * Packing and encoding
+  * Augmentation (store more metadata / auxiliary data)
+  * Precomputation (e.g. computing binomial coefficient / n-choose-k, or precompute a pascal triangle. Correspondence with binomial coefficients.)
+  * Compile-time initialization, metaprogramming (write a program that writes your program).
+  * Caching
+  * Sparsity (avoid storage and computation on zeroes; Compressed Sparse Row (CSR, storage is (number of rows + number of non-zero elements)) for storing matrix with lots of 0s. Matrix multiplication will change as well. Similarly, a static sparse graph can be represented in CSR, if we think of the matrix as representing graph connectivity.)
+
+* Logic
+  * Compile-time constant folding and propagation
+  * Common subexpression elimination
+  * Algebraic identities (replace more expensive algebraic expressions with equivalents that cost less)
+  * Short circuiting
+  * Ordering test (more frequent that leads to short circuiting -> least frequent)
+  * Fast path
+  * Combining tests
+
+* Loops
+  * Hoisting (avoid recomputing loop-invariant repeatedly within the loop)
+  * Sentinels (dummy value in a data structure to simplify boundary conditions checking, e.g. loop exits. Interesting sum of integers overflow check.)
+  * Loop unrolling (full and partial, reduce number of control instructions, easier pipelining, enables more compiler optimizations; overdoing this might pollute instruction cache, having bigger loop body initially also diminishes this)
+  * Loop fusion / jamming. (Combine multiple loops with the same index range)
+  * Eliminating wasted iterations (modify loop bounds to avoid executing over empty loop bodies)
+
+* Functions
+  * Inlining
+  * Tail recursion elimination: replace the tail recursive call of a function with a branch to save one function call overhead (_tail call elimination seems easier to follow, tail recursion elimination seem to do the same thing tho the quicksort example_)
+  * Coarsen recursion: increase the size of base case to reduce function call overheads
+
+**Advice**
+* Avoid premature optimization
+* Regression performance testing.
+* Reducing work doesn't necessarily reduce running time, but is often a good heuristic.
+* Look at assembly to decide if the compiler optimized something away.
+
 (_why does 3 layers of cache imply 12 loops when doing tiling?_)
 
 (_why does the recursive version look like that in slides?_)
