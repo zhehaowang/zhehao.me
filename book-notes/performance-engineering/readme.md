@@ -103,6 +103,75 @@ Bentley's book on performance optimization.
 * Reducing work doesn't necessarily reduce running time, but is often a good heuristic.
 * Look at assembly to decide if the compiler optimized something away.
 
+### Bit hacks
+
+Signed representation (same rule as unsigned representation sigma of geometric series, except treating MSB as - MSB * `2^(n - 1)`.
+
+Two's complement identity, `x + ~x = -1`, `-x = ~x + 1`
+* set the k-th bit `y = x | (1 << k)`
+* clear the k-th bit `y = x & ~(1 << k)`
+* toggle the k-th bit `y = x ^ (1 << k)`
+* extract a bitfield `y = (x & mask) >> shift`, mask like `0b1100` and same length as x, in which case shift is the number of 0s to the right, 2.
+* set a bitfield `x = (x & ~mask) | (y << shift)`, mask and shift like above, y should occupy fewer digits than the mask covers, so for safety, do `x = (x & ~mask) | ((y << shift) & mask)`
+* swap. `x = x ^ y; y = x ^ y; x = x ^ y`, xor is its own inverse. This is poor at exploiting instruction level parallelism due to sequential dependency here, hence likely to perform worse than the temp variable solution
+* find min. Performance issue with the default branching solution is a mispredicted branch empties processor pipeline (which the compiler is usually smart enough to optimize the unpredictable branch, but not always). `r = y ^ ((x ^ y) & - (x < y))`
+  * Predictable (true/false cases are more skewed and not almost 50/50) vs unpredictable branches.
+  * The one unpredictable branch in merging two sorted arrays can benefit from branchless comparison. Not necessarily the case for `clang -O3`, who does the optimization (with a branchless cmove) better than you.
+* modular addition `(x + y) % n`, assuming both x and y are `[0, n)`, rather expensive division unless n is a power of 2. `z = x + y; r = (z < n) ? z : z - n` has an unpredictable branch. `z = x + y; r = z - (n & -(z >= n))`, same idea as getting min of two.
+* rounding up to a power of 2
+```cpp
+uint64_t n = xxx;
+--n;               // so that this works for n = 2^k.
+n |= n >> 1;
+n |= n >> 2;
+n |= n >> 4;
+n |= n >> 8;
+n |= n >> 16;
+n |= n >> 32;
+++n;
+```
+* least significant 1 in x. `r = x & (-x)`, due to `-x = (~x) + 1`.
+  *  To find the index of that least significant 1 (find `lg(n)` where `n` is a power of 2), multiply by deBruijn constant and shift according to a deBruijn sequence. We can prove for any length, there is a deBruijn sequence. This is how you would do it before a hardware instruction to do this came out.
+```
+e.g. k = 3
+00011101
+(cyclic)
+000        - 0, 0
+ 001       - 1, 1
+  011      - 2, 3
+   111     - 3, 7
+    110    - 4, 6
+     101   - 5, 5
+      010  - 6, 2
+       100 - 7, 4
+convert[8] = {0, 1, 6, 2, 7, 5, 4, 3}
+idx == debruijn[convert[idx]]
+```
+* N queens count number of valid ways. Board representation in backtracking search. For this problem, a more compact solution is to use a down vector of 8 bits, two diagonal vectors of `(8 * 2 - 1)` bits each. When a field in the bit vector is 1, it means there is a queen covering that column or diagonal.
+* Count the number of 1 bits in x
+```cpp
+for (r = 0; x != 0; ++r) {
+    x &= x - 1;
+}
+```
+Or use table look up, need to go to memory for table lookup
+```cpp
+static const int count[256] = {0, 1, 1, 2, 1, 2, 2, 3, ..., 8};
+for (int r = 0; x != 0; x >>= 8) {
+    r += count[x & 0xFF];
+}
+```
+Or parallel divide-and-conquer, use 5 masks of `(01)_32` (01 repeated 32 times), `(0011)_16`, `(00001111)_8`, `((0)_8(1)_8)_4`, ...`x = x & m0 + (x >> 1) & m0` gives you the number of 1 bits in every 2 bits, then do `x = x & m1 + (x >> 2) & m1` (or when not needing to worry about overflow, `x = (x + (x >> 4)) & m2`) gives you the number of 1 bits in every 4 bits, do this for all masks to "fold" and get the number of 1 bits in the original number.
+There is a hardware popcount instruction today as well, which is faster than the above.
+
+[Check out more](https://graphics.stanford.edu/~seander/bithacks.html)
+
+
+
+`__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
+
+Signed and unsigned shift (_what does signed shift do?_)
+
 (_why does 3 layers of cache imply 12 loops when doing tiling?_)
 
 (_why does the recursive version look like that in slides?_)
