@@ -74,7 +74,7 @@ Data intensive vs compute intensive
   * Schema flexibility, better performance due to locality, closer to the data structure of the application for document databases.
   * Better support for join, many-to-one and many-to-many for relationship databases.
   * Relational can employ the technique of shredding (splitting a document-like structure into multiple tables linked by a foreign key) to achieve a document-like structure, which is cumbersome to schema and complicates application code.
-  * Document cannot refer directly to a nested item within a document, instead you say the 2nd item in the list of positions for user 256 (like an access path).
+  * Document cannot refer directly to a nested item within a document, instead you say the 2nd item in the list of positions for user 256 (like an access path). (_?_)
   * To model many-to-many in document, you can do denormalization but the application code need to do additional work to keep denormalized data consistent.
 
 * Schema-on-read (the reading application interprets / expects certain schema, like runtime type checking) and schema-on-write (the database enforcing some schema upon writing data, like static type checking in a compiled language). In general there is no right answer in terms of which is preferable. The difference is particularly noticeable when performing a schema change. Changing application code or migrating DB.
@@ -85,13 +85,13 @@ Data intensive vs compute intensive
 
 * Higher level query languages like SQL can be implemented as a pipeline of MapReduce operations, and there is nothing that constraints a SQL query to run on a single machine.
 
-* Graph-like data models (social graph, web graph, road networks, etc: where nodes are homogeneous; E.g. Facebook's social graph can have nodes as people, locations, events, etc)
+* Graph-like data models (social graph, web graph, road networks, etc: where nodes are homogeneous (_?_); E.g. Facebook's social graph can have nodes as people, locations, events, etc)
   * Property graphs
     * Each node has a unique_id, incoming_vertices, outgoing_vertices, and a collection of key-value pairs
     * Each vertice has a unique_id, head_vertex, tail_vertex, label, and a collection of key-value pairs
     * Can store flexible information and good for extension
     * Described in a relational schema it looks like the following
-```
+```sql
 CREATE TABLE vertices (
   vertex_id   integer PRIMARY KEY,
   properties  json

@@ -166,7 +166,100 @@ There is a hardware popcount instruction today as well, which is faster than the
 
 [Check out more](https://graphics.stanford.edu/~seander/bithacks.html)
 
+### Assembly language and computer architecture
 
+* Preprocessing (`clang -E`, gives .i), simple text replacement
+* Compiling (`clang -S`, gives .s assembly code),
+* Assembling (`clang -c`, gives .o object file), roughly one-to-one to the `.s`. `objdump -S ` produces disassembly of machine code (especially if binary is compiled with debug symbols)
+* Linking (`ld`, gives the final executable)
+
+general purpose registers (x86-64 64 bits; rax - 64 bit name, eax - 32 bit name, ax - 16 bit name, ah/al - 8 bit name. Aliased)
+rsp - stack pointer
+rbp - base of the frame
+flag register, RFLAGS, CF - carry, ZF - zero, SF - sign, OF - overflow
+program counter register
+xmm, ymm vector registers
+
+Instructions
+
+addl %edi, %ecx : add the two, store in ecx (dest comes second, at&t syntax (used by objdump etc). Intel syntax, dest comes first)
+subl %edi, %ecx : ecx - edi => ecx
+
+mov (copy)
+cmov (conditional move)
+movs, movz (sign or zero extension, when moving from a 32bit register to a 64bit register)
+tes, jmp, j<condition>,
+call, ret
+
+Opcode suffix
+movq -16(%rbp), %rax. q: quad words, 8 bytes.
+l or d, double word
+b: byte
+w: word
+s: single precision
+d: double precision
+t: extended precision
+
+Sign extension / zero-extension
+movzbl: z - extend with zeros, first is byte long, second is double word
+movsbl: s - preserve the sign, first is byte long, second is double word
+
+cmpq $4096, %14: q - double word   (sets flag in flags register)
+jne: the jump should only be taken if the arguments of the previous comparison are not equal (by looking at flags register)
+Condition codes: a, ae, c, e, ge, ne, o, z
+
+Addressing modes
+
+at most one operand may specify a memory address.
+* direct addressing modes
+  * immediate, $172 constant
+  * register, %rcx (single cycle)
+  * memory, movq 0x600, %rdi (hundreds of cycles)
+* indirect addressing mode
+  * register indirect, movq (%rax), %rdi
+  * register indexed,  movq 172(%rax), %rdi
+  * instruction pointer relative, movq 172(%rip), %rdi
+* base indexed scale displacement, most general form of x86 addressing
+  * movq 172(%rdi, %rdx, 8), %rax : base + index * scale + displacement : displacement(base, index, scale)
+
+jmp can take a label, exact address, or relative address
+
+Assembly idioms
+* xor %rax, %rax: clear %rax
+*
+```s
+test %rcx, %rcx     ; test is bitwise-and, discard the result, preserving the RFLAGS register (sets 0 if 0)
+je 400c0a           ; this means jump if %rcx holds the value 0
+...
+test %rax, %rax
+cmovne              ; conditional move if %rax holds non-0
+```
+* `nop`, `nop A`, `data16` are all x84-64 ISA no-op instructions
+```
+data16 data16 data16 nopw %cs:0x0(%rax, %rax, 1); the effect is do nothing. This is typically compiler doing instruction alignment optimization
+```
+
+Floating point and vector hardware
+* SSE uses two-letter suffixes (ss, sd: one single-precision / double-precision floating point value; ps, pd: vector (packed / vector) single-precision / double-precision value)
+* SSE / AVX / x87 opcodes; generally AVX, AVX2, AVX3 extends the support in SSE (3 operands, wider vector registers)  (`addpd`, floating point packed SSE; `paddq`, integer packed SSE; `vaddpd`,  `vpaddq`, AVX instructions)
+* Vector units do SIMD, processor issues the same instruction to all vector units. They act in lock step.
+
+Architecture
+* Simplified: five stage processor. Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory (MA), Write back (WB). These are stacked together as a pipeline.
+* Intel Haswell microarchitecture has 14-19 pipeline stages
+
+* Computer architects aim to improve processor performance by two means: parallelism (instruction-level parallelism (ILP), vectorization, multicore), and locality (e.g. caching).
+* ILP, try to avoid stalls due to dependency hazards:
+  * structural hazards, two instructions attempt to use the same unit at the same time,
+  * data hazard, when the result of an instruction depends on the result of a prior instruction in the pipeline,
+  * control hazard: the next instruction can be true / false branch of a conditional jump
+* In data hazards, we have
+  * true-dependence (2nd instruction reads what 1st writes),
+  * anti-dependence (2nd writes what 1st reads),
+  * output-depence (1st and 2nd both write to the same location)
+* Complex operations, integer / floating point div are variable cycles, integer mult, floating point add - 3 cycles; floating point multiply, fused-floating-point-multiply-add 5 cycles. Separate functional units are usually introduced for complex operations such as floating point arithmetic. Fetch multiple instructions at the same time to keep different functional units busy.
+* Bypassing and renaming for data hazard
+* Branching prediction and speculative execution for control hazard. On Haswell, a mispredicted branch costs about 15-20 cycles.
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
