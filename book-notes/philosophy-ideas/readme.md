@@ -662,3 +662,45 @@ Rome is not falling for its lack of philosophical teaching, and Christianity has
 Not an anti-intellectualism with a sneer, but that of an enlightened group towards a less enlightened community, the former saying we can have patience with them and understand the mistakes they make, and we are under no obligation to repeat their modes of thoughts conduct.
 
 There was a bridge from Stoicism to Christianity, once you got to the side of a Christian, to a considerable extent, philosophy was left on the other side, for better or worse.
+
+### Roman Law
+
+Ancient Greek law is highly developed, nonetheless if there is a contribution the Roman world made to civilization and the history of ideas (acknowledging its debts to Greek law), that contribution is Roman law.
+For its development, precision, refinement, promalgation.
+
+Keystone in western civilization.
+Life of freedom under the governance of the law.
+
+12 tables of Rome, Romans rumored to take counsel from Solon in Athens
+
+Cicero on Laws.
+What is the essence of law?
+
+There seem to be certain universal precepts that are honored without exception across different jurisdictions.
+This Cicero calls these precepts the law of nations / peoples.
+The explanation Cicero offers for this universality is that it arises from something within human nature itself: something essential to the rational being.
+
+Later called, **the natural law**, and associated with Thomas Aquinas.
+
+_"Ignorance of the law excuses no one."_
+Not to know this much is part of being a defective being.
+
+Aristotle also describes the universality of core principles.
+He uses Sophocles's Antigone and Creon to illustrate this.
+
+The law of Rome lived on to the conquering barbarians, e.g. Visigoths.
+
+The Institutes of Justinian. The Justinian Code.
+_"The law of nature is a law instilled by nature, in all creatures."_
+Stoicism influence.
+
+There is a side of multiculturalism that casts certain people to be fundamentally different from other people that the two can hardly make sense to each other.
+Stocism and Aristotle would both reject this.
+Fundamental unifying force according to which we have a shared psychology and a common humanity, which the law appeals to.
+
+There is a great level of heterogeneity between different culture, and Rome was not convinced that level of heterogeneity rises to rationality itself, and therefore of all people, whatever their customs be, are fitful for the rule of law, and can be brought up to be worthy of the rule of the law.
+
+The debts of British Common Law, American Constitution, Napoleonic Codes, etc to the Roman law are apparent.
+Our conceptions of justice, liberty, the dignity of the individual at least when the individual appears before the bars, are developments of a Greek philosophical foundation and Roman lawyers.
+
+An orderly process in which a disinterested judge can weigh evidence, examine claimants and arrive at a judgment that is conformable not to the popular will but to reason and reasonableness.
