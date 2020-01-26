@@ -192,7 +192,8 @@ tes, jmp, j<condition>,
 call, ret
 
 Opcode suffix
-movq -16(%rbp), %rax. q: quad words, 8 bytes.
+movq -16(%rbp), %rax. 
+q: quad words, 8 bytes.
 l or d, double word
 b: byte
 w: word
@@ -244,6 +245,8 @@ Floating point and vector hardware
 * SSE / AVX / x87 opcodes; generally AVX, AVX2, AVX3 extends the support in SSE (3 operands, wider vector registers)  (`addpd`, floating point packed SSE; `paddq`, integer packed SSE; `vaddpd`,  `vpaddq`, AVX instructions)
 * Vector units do SIMD, processor issues the same instruction to all vector units. They act in lock step.
 
+lea load effective address, sometimes used to do +- arithmetic
+
 Architecture
 * Simplified: five stage processor. Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory (MA), Write back (WB). These are stacked together as a pipeline.
 * Intel Haswell microarchitecture has 14-19 pipeline stages
@@ -260,6 +263,90 @@ Architecture
 * Complex operations, integer / floating point div are variable cycles, integer mult, floating point add - 3 cycles; floating point multiply, fused-floating-point-multiply-add 5 cycles. Separate functional units are usually introduced for complex operations such as floating point arithmetic. Fetch multiple instructions at the same time to keep different functional units busy.
 * Bypassing and renaming for data hazard
 * Branching prediction and speculative execution for control hazard. On Haswell, a mispredicted branch costs about 15-20 cycles.
+
+### C to Assembly
+
+##### C code to LLVM IR
+
+`clang -S -emit-llvm`, emits llvm IR, before the IR gets translated into assembly.
+
+`<Destination Operand> = <Op Code> <Source Operands>`
+C-like, in unlimited registers (like C vars), no implicit RFLAGS, explicit types (e..g `i64`)
+
+Arrays `[<number> x <type>]`
+Vectors `< <number> x <type> >`
+Structs `{<type>, ...}`
+Pointers `<pointer>*`
+
+Function parameters implicitly `%0, %1, ...`
+
+Basic blocks and control flow graphs
+
+Conditional `br <predicate> <true label> <false label>`; `br <unconditional label>`
+
+The **static single assignment** (SSA) invariant: each instruction defines the value of a register at most once.
+
+`phi` instruction arises commonly when you are dealing with loops, as loop induction variable changes when you execute the loop.
+
+`%9 = phi i64 [%14, %8], [0, %6]`, depending on from where you enter this block, the register 9 can have different values. From block 6: register 9 = 0. From block 8: register 9 = register 14.
+
+`phi` instruction doesn't map to particular assembly instruction, it exists to solve a representational problem in LLVM.
+
+LLVM IR attributes
+* align n, describes alignment of read from memory
+* noalias (restrict), readonly (const)
+
+##### LLVM IR to assembly
+
+LLVM IR is structurally similar to assembly.
+
+The compiler then needs to
+* Select actual assembly instructions.
+* Allocate which general purpose registers to hold values.
+* Coordinate function calls.
+
+Layout of a program / memory segments (high --> low virtual address)
+```
++---------------------------+
+| stack (grows down)        |
++---------------------------+
+| heap (grows up)           |
++---------------------------+
+| bss  (uninitialized data) |
++---------------------------+
+| data (initialized)        |
++---------------------------+
+| text (code)               |
++---------------------------+
+```
+
+Assembler directives: segment directives, storage directives, scope and linkage directives
+
+Stack: return address, register states, local vars and function params that don't fit in registers
+
+Linux x86-64 calling convention:
+* Organizes stack into frames, `%rbp` points to the top of the current stack frame, `%rsp` points to the bottom of the current stack frame.
+* `call` pushes instruction pointer `%rip` onto the stack and jumps to the operand (address of the function), `ret` pops `%rip` from the stack and returns to the caller.
+* callee saves registers `%rbx` `%rbp` `%r12-%r15`, all other registers are caller-saved.
+* `%rax` return val, `%rdi, %rsi, %rdx, %rcx, %r8, %r9` first to sixth args, `%xmm` for floating point args, etc
+
+
+In particular, a stack frame when A calls B calls C
+```
++---------------------------+ ---------------
+| args from A to B          |              |
+|    (linkage block)        |              |
++---------------------------+              |
+| A's return address        |              |
++---------------------------+           B's frame
+| A's base pointer          |              |
++---------------------------+ <== %rbp     |
+| B's local vars            |              |
++---------------------------+              |
+| args from B to C          |              |
++---------------------------+ <== %rsp ------
+```
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
