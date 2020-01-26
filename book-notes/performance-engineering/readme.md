@@ -347,10 +347,57 @@ In particular, a stack frame when A calls B calls C
 +---------------------------+ <== %rsp ------
 ```
 
+### Multicore programming
+
+By Moore's law, transistor count is still growing (number of transistors doubles every two years).
+But clock speed is bound at about 4GHz.
+
+Leakage current. Transistors kept getting smaller but we are unable to keep reducing the voltage while having reliable switching. Because of being unable to reduce voltage, power density would grow to nearly that of a nuclear reactor.
+
+The extra transistors are consequently put into multiple cores.
+
+##### Chip multiprocessor / multicore architecture
+
+Cache coherence, making sure the values in different processor caches are consistent across updates.
+
+MSI protocol is one protocol to manage cache coherence.
+Each cache line (64B) is labeled with a state.
+* Modified, no other caches contain this block in M or S states
+* Shared
+* Invalid, same as cache block not being in the cache
+
+Before a cache modifies a location, the hardware first invalidates all other copies.
+(When a processor wants to set a cache line currently in S state, it turns that cache line in other processors into I state, and set this cache line to M state. M or S states can be read from directly, I state means this block has to be fetched from main memory or another processor.)
+
+Frequent invalidation by multiple processors (hardware is going to guarantee ordering) lead to a performance bottleneck, invalidation storm.
+
+##### Concurrency platforms
+
+`pthread_create`, `pthread_join` (waits for the specified thread to finish)
+
+Creating a thread typically takes `>10^4` cycles. (thread pool can help)
+`pthread` api can get in the way of your business logic, hurts modularity / simplicity, needs argument marshalling (mapping arguments to a struct and pass by `void*`), etc.
+
+Threading building block. Intel C++ library. Task abstractions, concurrent containers, parallel for and reduce as templates. Locks and atomic updates.
+
+OpenMP. Linguistic extension in the form of compiler pragmas to specify which parts to parallelize. Underneath is pthreads.
+
+Cilk. Linguistic extension. (`cilk_for` (on independent iterations), `cilk_spawn`, `cilk_sync`, similarity with `async/await` in JS?). Theoretically efficient work-stealing scheduler. Hyperobjects.
+
+Cilk reducers can be defined for monoids, algebraic structures with an associative binary operation and an identity element.
+
+Cilk doesn't command parallel execution, they grant permission for parallel execution (expresses logical parallelism).
+The Cilk runtime scheduler (which the binary links) maps the executing program onto cores dynamically at runtime.
+The serial elision version (`#define cilk_for for; #define cilk_spawn; #define cilk_sync`) is a viable program.
+
+Cilk sanitizer and multicore scalability tooling.
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
 Signed and unsigned shift (_what does signed shift do?_)
+
+(Log time Fibonacci number algorithm)
 
 (_why does 3 layers of cache imply 12 loops when doing tiling?_)
 
