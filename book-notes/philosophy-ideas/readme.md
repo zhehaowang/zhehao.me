@@ -704,3 +704,30 @@ The debts of British Common Law, American Constitution, Napoleonic Codes, etc to
 Our conceptions of justice, liberty, the dignity of the individual at least when the individual appears before the bars, are developments of a Greek philosophical foundation and Roman lawyers.
 
 An orderly process in which a disinterested judge can weigh evidence, examine claimants and arrive at a judgment that is conformable not to the popular will but to reason and reasonableness.
+
+### Augustine on Human Nature
+
+St Augustine (354 - 430), the City of God, Confessions (what changed him, the sources of his confusion and his salvation in faith).
+
+Lays the philosophical foundation for much of Christianity.
+Studied Cicero. Professor of rhetoric at the imperial court in Milan, contemporary of St Ambrose.
+
+Reflecting on the disciplined anti-intellectualism of early Christians: being skeptical about the ancient pagan's work on philosophy being the right guide, as he already has the right guide: the life and teaching of Jesus Christ.
+
+The likelihood of success of a faith is greatly reduced if it has officially anti-intellectual attitudes.
+A properous religion is usually promalgated by teaching, a set of practices performed by the intellectuals schooled in the way of the world.
+
+Augustine recovers the philosophical wisdom of the ancient, and uses it to fortify the teachings of the church.
+
+Ascent towards knowledge is impelled by a sincere love of God allowing one to reach heights otherwise unreachable.
+True wisdom is nothing but fear of God.
+
+Augustinian solution to the problems of evil, if God is all-loving, omniscient and omnipotent; if there is no free will, how can I be held accountable for what I do.
+
+How do you know about God?
+In most forms we know from experience. But having accepted God is immaterial, how can God be known to exist epistemologically at all?
+Augustine takes a dialectical approach not unlike Plato's Meno.
+
+You can perceive a square, but not a triliagon (thousand-sided), but you can conceive of (understand) one.
+You are capable of knowing by conception, what you cannot know by perception.
+And you can conceive of God although not perceive one.
