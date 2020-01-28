@@ -382,7 +382,7 @@ Threading building block. Intel C++ library. Task abstractions, concurrent conta
 
 OpenMP. Linguistic extension in the form of compiler pragmas to specify which parts to parallelize. Underneath is pthreads.
 
-Cilk. Linguistic extension. (`cilk_for` (on independent iterations), `cilk_spawn`, `cilk_sync`, similarity with `async/await` in JS?). Theoretically efficient work-stealing scheduler. Hyperobjects.
+Cilk. Linguistic extension. (`cilk_for` (have to be applied on independent iterations, otherwise result might be wrong. `cilk` does not check for independence between iteractions, a separate Cilk race detector can do `-fsanitize=cilk`, if the serial elision version can possibly give a different result than the parallel version), `cilk_spawn`, `cilk_sync`, similarity with `async/await` in JS?). Theoretically efficient work-stealing scheduler. Hyperobjects.
 
 Cilk reducers can be defined for monoids, algebraic structures with an associative binary operation and an identity element.
 
@@ -391,6 +391,65 @@ The Cilk runtime scheduler (which the binary links) maps the executing program o
 The serial elision version (`#define cilk_for for; #define cilk_spawn; #define cilk_sync`) is a viable program.
 
 Cilk sanitizer and multicore scalability tooling.
+
+### Races and parallelism
+
+Race conditions are the bane of parallelism.
+
+Determinancy race: two logically parallel instructions access the same memory location and at least one performs a write (read-write, write-write).
+
+Two sections of code are independent if no determinancy race between them.
+
+Depending on alignment and compiler optimization level, updating `x.a` and `x.b` may have a race condition (similar goes for bitfields)
+```c
+struct X {
+    char a;
+    char b;
+} x;
+```
+
+Cilk execution model and computation DAG.
+Strand (vertice, a sequence of instructions not containing a spawn, sync or return from spawn); spawn, call, return and continue edges; 
+
+**Amdahl's law**, if 50% of your program is parallel and the other 50% is serial, you can't get a more than 2x speedup no matter how many cores you have to run your program.
+
+##### Quantifying parallelism
+
+* Count the number of nodes in an execution DAG that has to execute sequentially. This gives a pretty loose upper-bound.
+* `T_p` execution time on P processors. `T_1 = work`, `T_infinity = span` (the longest sequential path)
+  * `T_p >= T_1 / p`, work law
+  * `T_p >= T_q >= T_infinity`, where `q >= p`, span law
+* Series composition, `T_1(A Union B) = T_1(A) + T_1(B)`, `T_infinity(A Union B) = T_infinity(A) + T_infinity(B)`
+* Parallel composition, `T_1(A Union B) = T_1(A) + T_1(B)`, `T_infinity(A Union B) = max(T_infinity(A), T_infinity(B))`
+* `speedup = T_1 / T_p`, `T_1 / T_p < P` sublinear speedup, `T_1 / T_p = P` perfect / linear speedup. Superlinear speedup is possible, but not in this model due to work law.
+* `parallelism = T_1 / T_infinity`, the number of processors if perfect speedup (by the laws above). Using more than `parallelism` number of cores would only yield marginal gains. Cilk scale calculates and plots this.
+
+Example: parallel `quicksort` (derive this by looking at overall complexity (work) and sequential path complexity (span)) and parallel recursive fibonacci.
+
+Work-efficient parallel algorithm.
+
+##### Scheduling theory
+
+Cilk uses a distributed scheduler.
+It maps strands onto processors.
+
+Greedy scheduler.
+
+* Complete step: number of ready nodes (all dependencies have been finished) N > number of processors P. Greedy scheduler runs any P strands out of the N ready ones.
+* Incomplete setp: run all of them.
+
+* Greedy scheduler achieves `T_p <= T_1 / p + T_infinity` (max number of complete steps + max number of incomplete steps).
+* Corollary: any greedy scheduler achieves within a factor of 2 of optimal.
+* Corollary: any greedy scheduler achieves near-perfect linear speedup whenever `T_1 / T_infinity >> p`. `T_1 / P T_infinity`: parallel slackness.
+
+Cilk's work-stealing scheduler achieves `T_p = T_1 / p + O(T_infinity)`, in practice usually `T_p = T_1 / p + T_infinity`.
+Each processor maintains a deque of ready strands, whenever a processor runs out of work, it steals a random processor's work.
+
+Corollary: with sufficient parallelism, workers steal infrequently and we have a linear speed-up. 
+
+Cactus stack. Theory on stack space bound. (_?_)
+
+
 
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
