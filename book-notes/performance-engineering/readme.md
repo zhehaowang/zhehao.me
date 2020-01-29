@@ -449,6 +449,33 @@ Corollary: with sufficient parallelism, workers steal infrequently and we have a
 
 Cactus stack. Theory on stack space bound. (_?_)
 
+### Analysis of multi-threaded algorithms
+
+The Master Method for divide-and-conquer algorithm complexity analysis. Proof.
+
+The more general solution is the Akra-Bazzi method.
+
+Example: Cilk for matrix transpose. Recursive spawn and sync when doing a `cilk_for` outer loop, work: `theta_(n^2)`, span: `theta_(n)`, parallelism: `theta_(n)`. When doing a `cilk_for` on inner loop as well, span becomes `theta_(lg_n) + theta_(lg_n) + 1` where the first two terms are loop control.
+
+Coarsening parallel loops with Cilk pragma, reducing parallel function call overheads.
+
+Work and span with spawn and return overhead considered. Vector add `cilk_for` example. G: grain size. I: one addition. S: spawning and returning overhead.
+`T_1 = n I + (n / G - 1) S`
+`T_infinity = G I + lg(n / G) S`
+
+We want `G >> S / I` such that `T_1` is dominated by the actual work, the first term.
+
+Parallel performance tips
+* Minimize the span to maximize parallelism. Generally you want 10x more parallelism than processors for near perfect linear speedup
+* If you have enough parallelism, trade some of that to reduce work overhead
+* Use divide-and-conquer recursion or parallel loops rather than spawning one small thing after another
+* Ensure work per spawn is relatively large
+* Generally better to parallelize outer loops than inner loops 
+* Watch out for scheduling overhead
+
+Matrix multiplication example.
+Row-major representation.
+Strassen's worthwhile doing for sufficiently large matrices.
 
 
 
