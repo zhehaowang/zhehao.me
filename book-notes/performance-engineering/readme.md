@@ -245,7 +245,7 @@ Floating point and vector hardware
 * SSE / AVX / x87 opcodes; generally AVX, AVX2, AVX3 extends the support in SSE (3 operands, wider vector registers)  (`addpd`, floating point packed SSE; `paddq`, integer packed SSE; `vaddpd`,  `vpaddq`, AVX instructions)
 * Vector units do SIMD, processor issues the same instruction to all vector units. They act in lock step.
 
-lea load effective address, sometimes used to do +- arithmetic
+lea load effective address, do the calculation but don't actually load memory, sometimes used to do +- arithmetic
 
 Architecture
 * Simplified: five stage processor. Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory (MA), Write back (WB). These are stacked together as a pipeline.
@@ -477,6 +477,75 @@ Matrix multiplication example.
 Row-major representation.
 Strassen's worthwhile doing for sufficiently large matrices.
 
+### What compiler can and cannot do
+
+C/C++/Rust/Swift/Haskell/Julia == compiled ==> LLVM IR == (often times) LLVM optimizer ==> optimized LLVM IR
+
+The optimizer works in a series of transformation passes (in a certain order).
+
+`-Rpass=<string>` get reports on what the specified pass regex did.
+
+A lot of the transformation corresponds with the new Bentley rules discussed earlier, out of which compiler rarely or does not do
+* creating a fast path (logic)
+* coarsening (functions)
+* sentinels (loops)
+* most data structure optimizations (it does a different set of data structure optimizations, like)
+  * register allocation
+  * memory to registers
+  * scalar replacement of aggregates
+  * alignment
+And restrictions apply when:
+* ordering tests (logic)
+* Combining tests (logic)
+* Loop fusion (loop)
+
+Most compiler optimization happens in IR, but not all, e.g.
+* `uint * 8` in C ==> `l shift by 3` in IR ==> `lea (,%src_reg,8), %dst_reg` in asm
+* `uint * 15` in C ==> `* 15` in IR ==> `lea (%reg1,%reg1,4), %reg2; lea (%reg2,%reg2,2), %reg3` in asm
+* `uint / 71` in C ==> `/ 71` in IR ==> `magic_number = (2^38 / 71 + 1); mul magic_number; r shift 38` in asm, since multiply is faster than division.
+
+Hacker's Delight. Full of bittricks.
+
+##### Some example optimizations
+
+Optimizing a scalar value:
+* replace stack-allocated variables with the copy in the register (hence the often times seen `optimized out` in gdb when printing stack variables) (O0 --> O1 does this)
+
+Optimizing a structure:
+* you may not be able to store all the data of a structure in registers, but optimizing it as a pack of scalars and applying the technique above still works (O0 --> O1 does this)
+
+Optimization often makes generated IR look much simpler.
+
+Optimizing function calls (the following usually happens at O2 or higher):
+* Inlining.
+  * Moving the body of the function to the caller, which often enables more optimization, e.g. removing the need to pack data into a structure to be passed and immediately unpacked in the callee. These try to eliminate the cost of the function abstraction
+  * Why not eliminate all function calls?
+    * Recursion can be hard to inline (except recursive tail call).
+    * Compiler cannot inline a function defined in a different translation unit, except when using whole program optimization
+    * Bloating code size, hurting instruction cache locality.
+  * Compiler makes a best guess based on heuristics such as function size to decide what functions to inline. `__attribute__((always_inline))` `__attribute__((no_inline))` to tell compiler what to inline. **Link Time Optimization** (LTO) enables whole program optimization. The `inline` keyword provides a hint.
+
+* Loop optimization
+  * Accounts for most of execution time in programs
+  * Hoisting (loop invariant code motion / licm)
+
+Consider this code
+```cpp
+void times(double* A, double* B, int mult, int length) {
+    // vector arithmetic, A = A + B * mult
+    for (int i = 0; i < length; ++i) {
+        A[i] += B[i] * mult;
+    }
+}
+```
+Does this vectorize?
+Answer is yes and no.
+Compiler generates two branches for whether A and B overlap due to uncertainty about aliasing: does A and B overlap?
+If yes, no vectorize; if no, vectorize.
+
+Many compiler optimizations act conservatively when memory aliasing is possible.
+Compiler tries hard to analyze alias: clang uses metadata to track alias information derived from multiple sources, but in general alias analysis is undecidable.
+You can help by annotating your pointers `restrict`. `const` helps, too.
 
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
