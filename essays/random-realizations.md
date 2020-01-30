@@ -4,7 +4,18 @@ Although we are young, and the cost of making sub-optimal choices is relatively 
 Now that I think of it, miss the chance to go to Tsinghua / CMU / Google / ... once, we probably miss it for life.
 The impact magnifies over time, leading one down different paths in life...maybe diverging farther from the goal we set out to achieve, if there ever were one.
 At some point one settles down, becomes satisfied and loses the mettle.
-When that day comes and I think back, I just want to reassure myself I did everything I could, and worked hard for everything I believed right.
+When that day comes, I just want to reassure myself I did everything I could, and worked hard for everything I believed right.
+
+Some say for portrait sketching, it takes three months learning from a teacher, to command the same amount of skills as one would learn by oneself in three years.
+Skimming through some MIT open courses left me with the impression: you may not have realized how far you may already be behind those younger than yourself.
+Of course one should account for some level of hindsight bias: knowing what you know now and what would have helped, it's easy to be biased in your judgment of how valuable the content is.
+Yet it is impossible to experience the counterfactual.
+My hope is to gauge the future, through experience and introspection, such that we can commit to what's important, and hopefully, not to be left with a feeling that we may already be very much behind.
+This very well should mean stepping out of the comfort zone and taking on the things we were systematically bad at: overcoming the fear of communicating with someone whom we deem more accomplished than ourselves, not indulging the inclination to sulk and ponder by ourselves, the tendency of avoiding (monetary) cost and taking an organized and disciplined approach towards our work.
+Also this would suggest do things effectively: in learning, building software, exercise, etc.
+
+Perhaps the status of an immigrant in this country helps in this regard, as well as being in the company of many elites: we are near constantly reminded of how much we need to improve, and what might go wrong if we become laxed in our efforts.
+It would not be end of the world if such were not to be, but we should nonetheless give it our best on what we deemed worthy.
 
 At a game, as well as at other things: a big difference is whether there is a purpose in mind.
 Today I’ve a goal to improve my skills.
