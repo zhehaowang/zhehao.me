@@ -33,3 +33,12 @@ The ultimate purpose of habits is to solve the problems in life with as little e
 
 Habit can be broke down into a feedback loop with four steps, cue, craving, response, and reward.
 Make it obvious, make it attractive, make it easy, make it satisfying.
+
+### Make it obvious
+
+Identify your habits. Those that you do so much that they become automatic and escapes your notice.
+What is lined up with who you want to become, and what is not?
+
+When starting a new habit, specify time and location.
+Implementation intention. Be specific. Don't be vague, like eating healthier.
+Habit stacking: pair a new habit with a current habit.
