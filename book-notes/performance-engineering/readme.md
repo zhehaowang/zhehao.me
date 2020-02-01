@@ -547,6 +547,80 @@ Many compiler optimizations act conservatively when memory aliasing is possible.
 Compiler tries hard to analyze alias: clang uses metadata to track alias information derived from multiple sources, but in general alias analysis is undecidable.
 You can help by annotating your pointers `restrict`. `const` helps, too.
 
+### Timing and measurement
+
+mergesort running time analysis; several peaks; machine changing clock frequency. (Dynamic Voltage and Frequency Scaling feature of processor, to reduce power consumption)
+
+`Power` is proportional to `C V^2 f`, C is the dynamic capacitance (area of circuitry * activity (how many bits are moving)), V is supply voltage, f is clock frequency
+
+How to reliably measure in the face of the above?
+
+##### Quiescing systems
+
+Before increasing the quality of the product, let's first reliably reproduce similar products first.
+Go after the variance first.
+
+If you can reduce variability, you can compensate for systematic and random measurement errors.
+
+Source of variability: daemons, interrupts, code and data alignment (if code goes across page boundaries, then TLB miss on the page can have a big impact), thread placement (system uses core 0 to do its own stuff, so don't do your measurement on it), runtime scheduler (when multicore), hyperthreading (simultaneous multithreading, two instruction streams through the same functional unit at the same time with different registers. x1.2 speedup), multi-tenancy (other people using the system), DVFS, turboboost (when processor only has one core running, have that core run at a higher frequency), network traffic.
+
+Unquiesced system with all the above, the worst run can be 25% slower than the fastest run.
+
+Turning all the above off you get about the same value every run.
+
+Making sure no other jobs, shut down daemons and crons, disconnect the network, don't fiddle with the mouse (200 interrupts / s), for serial jobs don't run on core 0 where interrupt handlers are usually run, turn off hyperthreading, dvfs, turboboost, use cpuset (manually map threads to cores) etc.
+
+There is no way to get completely deterministic results in modern hardware, due to memory errors: when you access DRAM, it's possible an alpha particle collide with one of the bits and flips it. Hardware detects this error and uses one cycle to correct it. This effect is undeterministic. (Scheduler, branch prediction, caches, etc are deterministic algorithms)
+
+If your change causes code alignment change, it can have big impact on your performance even though your change may seem performance-agnostic.
+Changing the order in which `*.o` files appear on the linker command line can have a larger effect than going between `-O2` and `-O3`.
+A program's name (ends up in an environment variables ending up on call stack) can affect its speed (e.g. cause critical data to go on two lines)!
+
+Now compiler does a lot of alignment, e.g. for function starts to be aligned with the start of a cache line (hence changing one function won't mess with the cache alignment of another function). `-align-all-functions`, `-align-all-blocks` (as llvm labeled blocks, may bloat your binary), `-align-all-nofallthru-blocks`.
+
+Aligned code can usually reduce variance, but may give worse performance.
+
+##### Tools for measurement
+
+* `time` command, you can't time something very short with time.
+  * real wall clock time
+  * CPU user mode (code outside kernel) time running your process
+  * CPU kernel mode time running your process
+* Instrument the program. E.g. `clock_gettime`, `rdtsc()`, or with compiler support (these may change the timing)
+  * `clock_gettime(monotonic)`, takes about 80ns, guarantees never to run backwards. Good reliable numbers. 
+  * `rdtsc()` read timestamp counter instruction, takes about 32ns. `rdtsc()` may give different answers to different cores on the machine (tsc is processor by processor basis). Sometimes `tsc` runs backwards, and `tsc` may not progress at a constant speed, hence converting clock cycles to seconds can be tricky.
+  * `gettimeofday()`, ms precision, can run backwards.
+* Interrupt the program. E.g. gdb and `ctrl+c` at random intervals, similar idea is used to implement Poor Man's Profiler, automate this and you get `gprof`. `gprof` samples 100 times a second.
+* Exploit hardware and OS support. `perf`
+  * `libpfm4` virtualizes all hardware counters: `perf stat` uses this. There are many esoteric hardware counters, often they are not well documented.
+  * LLC miss * cache line size used to be how much memory was loaded from DRAM. But prefetching (fetch into cache and doesn't update LLC miss counter) is not counted.
+* Simulate the program. `cachegrind` (much slower, repeatable and accurate, and your simulator doesn't necessarily model everything. It's great for cache misses.)
+
+A good strategy is triangulation: take more than one measurement in different ways and make sure they are telling the same story.
+
+##### Performance modeling
+
+Have a model to interpret your numbers, don't just give or trust your numbers.
+If you can't measure performance reliably, it's hard to make small changes that add up.
+
+Suppose you measure the performance of a deterministic program 100 times on a computer with some interfering background noise. What statistics is the best way to measure raw performance?
+Arithmetic mean?
+Geometric mean? (arithmetic mean of the logs. Take the product of n numbers and get nth root)
+Harmonic mean?
+Median?
+Maximum?
+Minimum (best at noise rejection)?
+
+Does it ever make sense to take the arithmetic mean of a bunch of ratios?
+The ratio of the means is not the mean of the ratios. Try geometric mean.
+
+What's a good strategy to compare two programs which one being faster, given a slightly noisy measurement?
+Try n head-to-head comparisons between A and B.
+Consider the null hypothesis that B beats A, calculate the p-value (if B beats A, what is the probability that we'd observe that A beats B more often than we did). If the p-value is low, we can accept that A beats B.
+
+Fitting to a model. Overfitting.
+
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
