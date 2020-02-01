@@ -36,9 +36,27 @@ Make it obvious, make it attractive, make it easy, make it satisfying.
 
 ### Make it obvious
 
-Identify your habits. Those that you do so much that they become automatic and escapes your notice.
+Identify your habits. Habit scorecard. Those that you do so much that they become automatic and escapes your notice.
 What is lined up with who you want to become, and what is not?
 
 When starting a new habit, specify time and location.
 Implementation intention. Be specific. Don't be vague, like eating healthier.
 Habit stacking: pair a new habit with a current habit.
+
+##### Motivation is overrated. Environment matters more
+
+Small changes in context can lead to large changes in behavior over time.
+Every habit is initiated by a cue. We are more likely to notice cues that stand out.
+Make cues to a good habit obvious in your environment.
+Easier to build new habits in new environment because you are not fighting old cues.
+
+##### Secret to self control
+
+Make the environment / cues that induce bad habits invisible.
+People with high self control tend to spend less time in tempting situations.
+It's easier to avoid temptations than to resist them.
+One of the practical ways to eliminate bad habits is to reduce the exposure to the cue that causes it.
+Self control is short term strategy, not long one.
+
+### Make it attractive
+
