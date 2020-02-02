@@ -676,6 +676,96 @@ Hence C can't have a general purpose garbage collector that works well.
 
 Topics in dynamic memory allocation include buddy system, variants of mark-and-sweep, generational garbage collection (scanning over younger objects first, since often objects are short lived), real-time garbage collection (correctness issues when garbage collectors don't stop the world and run in background), multithreaded garbage collection, 
 
+### Parallel storage allocation
+
+##### `mmap` and `malloc`
+
+`void* malloc(size_t s)`, `void* memalign(size_t a, size_t s)`, `void free(void *)`
+
+`mmap` system call usually treat some file on disk as part of memory, so that when you write something to memory it also backs up on disk.
+`mmap` the kernel finds a contiguous unused region in address space of the application large enough to hold the requested size, modifies page table, and creates necessary virtual memory management structures within the OS to make user's access to this area legal so that accesses won't result in a segfault.
+
+`mmap` is **lazy** in that it does not immediately allocate physical memory for the requested allocation. Instead it populates page table pointing to a special zero page and marks that as read only. The first write will then result in a page fault, upon which OS allocates a physical page, modifies the page table, and restarts the instruction.
+
+You can `mmap` a TB virtual memory from a machine with a GB of RAM, and a process can die from running out of physical memory after the `mmap` call.
+
+`malloc` (C library call) uses `mmap` (system call) to get more memory from OS.
+It's going to attempt to satisfy user requests for heap storage by reusing freed memory whenever possible, and when necessary it uses `mmap` to expand the size of user's heap storage.
+`mmap` is heavy weight and works on a page granularity.
+
+##### Address translation
+
+**Address translation**: given a virtual address (virtual page #, offset), look in **page table** for (virtual page #, physical frame #) mapping, physical frame # corresponds to a location in DRAM. +offset on that location gives you the physical memory location.
+
+If a virtual page does not reside in physical memory (entry in page table but the physical page has been moved out), a page fault occurs, in which case the OS checks if the process has permission to look at the memory region, if so, it places the entry into page table, otherwise it segfaults.
+
+If a translation is not found for the virtual address, the virtual address is invalid and OS sends a segfault to the offending program.
+
+Page table lookup is expensive, and its lookup results are cached in TLB.
+
+When r/w on the translated physical memory, we first check if it's loaded in CPU cache. If not, turn to DRAM.
+
+Modern hardware lets you do TLB access and L1 access in parallel, so L1 uses virtual memory address.
+
+##### Stack of parallel execution
+
+Serial C/C++ program stack is a walk on the call tree, parents can pass pointer to stack location to children, but not other way round. For children to allocate something for parent, it can do so on the heap, or on parent's stack.
+
+**Cactus stack** supports multiple views of the stack in parallel.
+Say A spawns B and C in parallel, then A's stack space is not copied.
+Cactus stack can be implemented by having each parallel spawn work off another stack (pool of linear stack)
+```
++---+
+| A |
++---+
+|   |
+|   |
++---+
+ |
+ |------|
++---+  +---+
+| B |  | C |
+|   |  |   |
++---+  |   |
+|   |  |   |
++---+  +---+
+```
+Or use heap to implement: use heap to allocate a stack frame.
+Space bound of P-workers: `S_p <= p * S_1`, where `S_1` is the stack memory usage of a serial execution.
+Hea-based cactus can have poor interoperability with compiled library code.
+
+Parallel divide and conquer matrix multiplication example.
+
+##### Heap allocator metrics
+
+Allocator **speed**: optimize for small blocks (larger blocks this cost of allocation gets amortized away).
+
+User footprint (U), allocator footprint (A)
+
+**Fragmentation** (F) = Allocator Footprint / User Footprint
+
+Allocator Footprint grows monotonically for many allocators, as they don't necessarily give back the page to the OS due to the cost.
+
+Fragmentation of binned freelist is `F_v = O(log_2(U))`
+
+**Space overhead**: allocator bookkeeping data structure overhead
+
+**Internal fragmentation**, **external fragmentation**, **blowup** (parallel allocator overhead over a serial allocator).
+
+##### Parallel heap allocation strategies
+
+* Global heap (default `malloc` strategy). All threads share the same heap, accesses are mediated by a mutex or lock-free synchronization. Low blowup: 1, slow: synchronization overhead, lock contention can hurt scalability.
+* Local heap. Fast: no synchronization required, suffers from memory drift, allocators aren't smart enough to reuse space from another heap. Potentially unbounded blowup. (Each thread has its own heap and freelist, when one thread frees, the freed space goes to the freelist of freeing thread, not the allocating thread)
+* Local heap with local ownership, such that when freed, the freed space goes to the freelist of the allocating thread. Freeing remote objects then requires synchronization. Local allocation and free is fast. `Blowup <= p`. Resilience to false sharing.
+
+**False sharing**: when multiple processors access different locations but they happen to be on the same cache line. This increases cache line thrashing. General approach to avoid this is padding.
+**True sharing**: when multiple processors access the same location.
+
+* Hoard allocator: P local heaps, 1 global heap. Memory organized into superblocks of size S. Superblocks are moved between local heaps and global heaps: local heap gets and returns from global heap, global heap gets from OS. Fast, scalable, bounded blowup, resistence to false sharing. Bounded blowup.
+
+* jemalloc
+* SuperMalloc
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
