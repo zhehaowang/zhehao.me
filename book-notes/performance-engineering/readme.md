@@ -307,18 +307,21 @@ The compiler then needs to
 
 Layout of a program / memory segments (high --> low virtual address)
 ```
-+---------------------------+
-| stack (grows down)        |
-+---------------------------+
-| heap (grows up)           |
-+---------------------------+
-| bss  (uninitialized data) |
-+---------------------------+
-| data (initialized)        |
-+---------------------------+
-| text (code)               |
-+---------------------------+
++------------------------------------------------------+
+| stack (grows down)                                   |
++------------------------------------------------------+
+| heap (grows up)                                      |
++------------------------------------------------------+
+| bss  (uninitialized data, initialized to 0 at start) |
++------------------------------------------------------+
+| data (initialized, global, static data)              |
++------------------------------------------------------+
+| text (code)                                          |
++------------------------------------------------------+
 ```
+Stack and heap won't hit each other in practice, as we use 64b virtual address space.
+
+When putting huge chunks of precomputed consts to your program, your startup loading time might be higher.
 
 Assembler directives: segment directives, storage directives, scope and linkage directives
 
@@ -620,6 +623,58 @@ Consider the null hypothesis that B beats A, calculate the p-value (if B beats A
 
 Fitting to a model. Overfitting.
 
+### Storage allocation
+
+Stack: array and pointer. Can overflow. Pointer +- when allocating or freeing. Very fast. `theta(1)` time. Limitation: you can only free the last thing you allocated.
+
+##### Heap
+
+For a language without garbage collector, programmer has to manually manage memory (leaks, dangling pointers, double freeing (UB). Address sanitizer (compiler instrumentation) and valgrind (virtual machine with JIT, tends to catch fewer bugs) can help).
+
+##### Fixed size allocation
+
+* Freelist. Every piece has the same size, unused storage has a pointer to the next unused block. (Alternatively, use a bit to tell if a piece is used).
+* To alloc, grap the head of the list, modify the list head to next. To free, point the block's next to list head, then set list head to point to the block. `theta(1)` time alloc and free. Good temporal locality: last thing you freed is the first thing you allocate. Poor spatial locality: **external fragmentation** (blocks of used memory are all over the place, consequently TLB (page table cache) and disk thrashing can be problematic). 
+
+Mitigating external fragmentation:
+* Keep a free list per disk page, allocate from the freelist of the fullest page. VRAM can swap out a completely empty page. Based on the observation that two pages filled 90-10 (skewed) is better than two pages filled 50-50 (even) (higher likelihood two random accesses will hit the same page).
+
+##### Variable size heap allocation
+
+**Internal fragmentation**: wasted space within a block.
+
+One variant of a memory allocator:
+
+Binned freelist, combats internal fragmentation.
+Bin `k` holds a freelist of memory blocks of size `2^k`.
+
+When alloc size `m`, check the freelist of `roundup(lg_2(m))`, if nonempty, return the head and move the new head.
+Otherwise go to the next bigger freelist, allocate from its head, break the allocated bigger chunk and attach the now smaller free ones to the earlier freelists.
+
+`sbrk`, `mmap`: ask the OS for more memory so your storage allocator, e.g. the scheme above, can use it.
+
+Why not never free? Given we have 64b virtual memory address space.
+External fragmentation, low TLB hit rate and disk thrashing is going to be bad.
+
+Suppose the maximum amount of heap memory used by a program is `M` and the heap is managed by a binned freelist, then the upper bound of virtual memory consumed is `O(M lg_2(M))`.
+
+Binned freelist is `theta(1)` competitive with the optimal allocator (who knows all the requests in the future) (assuming no coalescing). (the constant factor is 6)
+
+**Coalescing**: splicing together adjacent small free blocks into a larger block. No theoretical bounds known.
+
+##### Garbage collectors
+
+Three types of memory objects: roots (globals, stack objects, etc), live, dead
+
+In general in order for garbage collector to work, you need to have garbage collector identifying pointers. This requires strong typing, C's weak typing on ptrs/ints won't do.
+Also need to prohibit doing pointer arithmetic.
+Hence C can't have a general purpose garbage collector that works well.
+
+* Reference counting. A cycle (or those referenced by something in a cycle) is never collected. Efficient and simple to implement. 
+* Mark and sweep. A Graph (V, E) of all objects and directed edges representing one referencing another. Mark: BFS from roots, mark all reachable from roots. Sweep: scan over memory to free all unmarked objects. Scanning over can be expensive and this doesn't deal with fragmentation.
+* Stop and copy. Instead of BFS and marking, copy the object over as we do BFS. After BFS, free all the source. This addresses fragmentation. This invalidates pointers, to address this we can instead keep a pointer in the source to the copied destination when removing from the source, and adjust the pointers after copying. This is linear to the number of objects, pointers and space you are copying over.
+
+Topics in dynamic memory allocation include buddy system, variants of mark-and-sweep, generational garbage collection (scanning over younger objects first, since often objects are short lived), real-time garbage collection (correctness issues when garbage collectors don't stop the world and run in background), multithreaded garbage collection, 
 
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
