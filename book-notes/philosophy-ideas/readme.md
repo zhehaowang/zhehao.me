@@ -315,6 +315,8 @@ A will capable of resolving us to follow the right course.
 The will itself cannot decide what the right course is, desire knows only one course: to fulfill itself.
 How then do we discover the right course: through rational power. Supremacy of reason in determining what we ought to do. Reason as shown in mathematical proportion, harmony, balance. The guide and goal of life. Avoid excess.
 
+Until kings become philosophers and philosophers become kings, there would be no justice in the world.
+
 The Pythagorean numerological balance is the resemblance of truth.
 
 ### Hippocrates of Kos and Greek medicine
@@ -731,3 +733,42 @@ Augustine takes a dialectical approach not unlike Plato's Meno.
 You can perceive a square, but not a triliagon (thousand-sided), but you can conceive of (understand) one.
 You are capable of knowing by conception, what you cannot know by perception.
 And you can conceive of God although not perceive one.
+
+### Islam
+
+632AD, Mohammad, Quran.
+Quran, though believed to be unchanged since conception (product of God), did evolve over time (excavation in Yemen).
+
+The Prophet says each verse in the Quran has 7 meanings, the first is literal, the last is only known to God.
+
+Islamic faith is at once a culture, an ethics, a mode of philosophical inquiry and a commitment to a reflective life.
+That there are those who would fashion its teaching into hate and destruction is a painful development in recent history, making it difficult to evaluate the tradition itself with respect it earned over the course of centuries.
+
+The west may not have been able to recollect the Aristotelian and Platonic canon, without the work of Islamic scholars 10th C and onwards.
+
+We are inclined to think 650 - 850 as Dark Age, is because we see very little by way of philosophical development, critical thinking or originality, those produced by thought, argument, discourse and recorded in text.
+
+The eastern world saw development, Byzantine preserved and promulgated much work from classical antiquity, and the Islamic world carreied this on.
+The early Islamic scholars put an Islamic spin on classical western political, natural scientific and philosophical writings. Inspired from the teachings of the Prophet.
+
+Islamic philosophical inquiries in 10th, 11th and 12th C.
+Al Farabi, reconcile Platonic and Aristotelian thought with the teachings of the Prophet.
+Avicenna, commentates on Aristotle Metaphysics. A means to demystify the natural world.
+
+Eastern medicine traces back to Hipprocratic naturalistic / scientific approach.
+Western medicine of the same time treats disease and disorders symbols of sins.
+
+The conquest of Islam enrolled the Islamic world in Greek classroom.
+
+How does a religion solidify its position?
+By developing an official set of canon and teachings that constitutes the way things are.
+
+The medieval view on the world we live in is that ultimately it's a metaphor for another world eternal and changeless; and all that matters isn't and becomes transient.
+
+The greatest threat to the continuation of the great debate (on knowledge, conduct and governance) is orthodoxy (the right way to see things such that any other way is wrong): at the end of the day, faith is all that matters.
+The debate becomes an insult to the faithful and the faith.
+Too much philosophy weakens the faith.
+
+What Islam achieved (or the challenge of Islam guaranteed), though it did not set out to do this, was that the long debate would be revived, that there is more than one book to consult, more than one set of prophecies and more than one prophet who was graced with the words of God.
+
+The scholarly and contemplative life that the Quran requires of the faithful, is a life compatible with the long debate.
