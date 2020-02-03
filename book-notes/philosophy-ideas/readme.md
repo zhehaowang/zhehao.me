@@ -772,3 +772,32 @@ Too much philosophy weakens the faith.
 What Islam achieved (or the challenge of Islam guaranteed), though it did not set out to do this, was that the long debate would be revived, that there is more than one book to consult, more than one set of prophecies and more than one prophet who was graced with the words of God.
 
 The scholarly and contemplative life that the Quran requires of the faithful, is a life compatible with the long debate.
+
+### Secular knowledge, the idea of university
+
+800AD, Charlemagne, Holy Roman Empire.
+Civic duties, rights of the (poor) people, promote teaching, reduce illiteracy, , bringing in teachers from England and Ireland, preservation of classical scholarship, Christianizing.
+Divine right of kings, court language Latin.
+
+Alcuin, Latinist, Classicist, head of palace school, brought literacy to European clergy, abbey schools.
+
+Seven liberal arts, Hugo of St Victor
+Initially the trivium: grammar, rhetoric and logic.
+Then the quadrivium: arithmetic, Music, Geometry, Astronomy.
+
+Universitas, initially means a guild of students.
+Cathedral of Paris abbey school, taught seven liberal arts.
+
+University and the contemplative life.
+The university back in the days had its practical functions, laws, rhetorics, grammar, medicine (somewhat similar to earlier trade schools in Bologna, Italy), but also a different set of scholarly objectives: lectures, debate on ideas and philosophical introspection.
+
+University of Oxford.
+
+The place that invents the methods of invention.
+
+University, gothic churches, chivalry.
+
+Chivalric knight as a secular priest, one who does God's bidding.
+Politeness his strength, reserved and complete control of his emotions.
+The only insult is an insult to honor.
+Chivalry is a great civilizing influences in the history of western civilization.
