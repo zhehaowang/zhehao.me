@@ -60,3 +60,25 @@ Self control is short term strategy, not long one.
 
 ### Make it attractive
 
+We've gotten better at pushing our buttons, junk food, video games, porn, etc.
+
+The more attractive something is, the more likely it becomes a habit.
+Habits are dopamine driven feedback loops, when dopamine rises, so does our motivation to act.
+It is the anticipation of a reward, not the fulfillment, that gets us to get action.
+Temptation bundling is one strategy to make something more attractive. Pair something you want to do with something you need to do.
+
+##### The role of family and friends
+
+The culture we live in determines what habits are praised and approved.
+We tend to adopt those habits because of our strong desire to fit in.
+We tend to imitate three groups, the close, the many and the powerful.
+Join a culture where your desired behavior is the normal behavior, and you already have something in common with the group.
+If a behavior will get approval and praise, we'll likely find it attractive.
+
+##### Finding and fixing your bad habits
+
+Make bad habits unattractive.
+Every behavior has a surface level craving and a deeper motive.
+Your habits are modern day solutions to ancient desires. The cause of your habits is the prediction that precedes them.
+Habits are attractive when we associate them with positive feelings. Create a motivation ritual by doing something enjoy immediately before a difficult habit.
+
