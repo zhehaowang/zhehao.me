@@ -766,6 +766,40 @@ Fragmentation of binned freelist is `F_v = O(log_2(U))`
 * jemalloc
 * SuperMalloc
 
+### Cilk runtime system
+
+Cilk expresses logical parallelism.
+
+Cilk library / runtime system.
+
+##### Design goals
+
+The problem (think from the execution DAG):
+A single worker needs to execute the code serially, steal (thieves needs to pick up state where the victim processor left off; thieves also need to handle mixture of spawned and called functions; this should also have minimal overhead), sync (wait only on nested subcomputation), cactus stack for parallel workers.
+
+Linear speedup is desirable, for which we need ample parallelism (`T_1 / T_infinity >> p`) and high work efficiency.
+
+Cilk runtime system adopts work first principle: optimize for the ordinary serial execution, at the expense of some additional computation in steals.
+
+##### Implementing worker deque
+
+The worker deque is an external structure with pointers to stack frame.
+Cilk worker maintains head and tail to the deque.
+Stealable frames maintain a local structure to store information needed to resume when stolen.
+
+Spawning function, spawn helper, detach, `setjmp`.
+
+##### Stealing computation
+
+Deque synchronization. THE protocol (thief always grabs the lock, worker pops the deque optimistically). `longjmp` stealing register states, returns with the specified value from the `setjmp` that set the buffer area with (_is this similar to `fork`?_).
+
+Cactus stack (thief's `%rbp` points to victim spawning function stack, `%rsp` points to the start of its own stack. Disables repurposing `%rbp` compiler optimization)
+
+##### Sync
+
+Full frame trees keep track of which subcomputations are outstandings (pointers to parents frames and number of child frames.)
+Processors work on active full frames.
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
