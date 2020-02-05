@@ -800,6 +800,75 @@ Cactus stack (thief's `%rbp` points to victim spawning function stack, `%rsp` po
 Full frame trees keep track of which subcomputations are outstandings (pointers to parents frames and number of child frames.)
 Processors work on active full frames.
 
+### Cache efficient algorithms
+
+Processor specification, e.g.
+L1d, L1i (private to a processor core): 32KB, assoc 8, 2ns
+L2 (private to a processor core): 256KB, assoc 8, 4ns
+LLC (shared across processor cores): 30MB, assoc 20, 6ns
+Main memory: 50ns
+64B line
+
+Cache coherenece, e.g. MSI cache protocol. Verification / correctness proof.
+
+##### Cache design
+
+**Fully associative cache**: a cache block can reside anywhere in the cache.
+To find a block in cache, search the entire cache for the tag (high bits of the address space). This may be slow.
+Eviction policy, e.g. LRU.
+
+**Direct-map cache**: each block in the address space can only go to a determined location in cache (a block's **set**.
+Given an address, cacheline size of `B`, cache size of `M`, use the last `log_2(B)` bits to decide offset, middle `log_2(M / B)` bits to decide the set, where in the cache this block can go to, and higher `address_space_length - log_2(M)` bits to decide the tag, check this to tell whether a physical address is in cache or not).
+
+This is faster in telling whether a line in cache or not. This is bad in conflict miss: cache has empty space, but you may have to keep evicting things because they map to the same set.
+
+**Set associative cache** (hybrid): each block in physical memory can go to any space in the set it maps to. Each set has a few empty spots.
+Given an address, cacheline size of `B`, cache size of `M`, `k`-way associativity, use the last `log_2(B)` bits to decide offset, `log_2(M / kB)` for the set, and `address_space_length - log_2(M / k)` for tag.
+
+To find a block in cache, `k` locations within the set must be searched.
+
+The assoc / associativity above is the number `k`.
+
+##### Cache misses
+
+* **Cold miss**, first time the cache block is accessed.
+* **Capacity miss**, the previous cached copy would have been evicted even using a fully associative cache. Improve spatial and temporal locality to bring this down.
+* **Conflict miss**, as described in direct-map cache, conflict in the same set while cache still has space. (think accessing a column in row-major-order matrix; consider padding or copying a smaller section over)
+* **Sharing miss**, true sharing miss, multiple processors are accessing the same data on the same cache line, at least one is modifying. False sharing miss, two processors accessing different data on the same cache line, at least one is modifying.
+
+##### Ideal cache model
+
+Omniscient about future accesses.
+
+Measures work W (all operations) and cache misses Q. Ideally we want low Q without incurring too much overhead on W.
+
+**LRU lemma**: suppose that an algorithm incurs Q cache missies on an ideal cache of size `M`, then on a fully-associative cache of `2M` that uses LRU, it incurs at most 2Q cache misses.
+The implication is that optimal cache and LRU cache differs at most by a constant factor.
+
+First theoretically good algorithm, then engineer for performance.
+
+Lemma: even if our data is divided into segments (of arbitrary length), as long as the average length of the segments is large enough (i.e. larger than a cache line), then the number of cache misses is just a constant factor (3) worse than reading a single array (of all segments combined).
+
+##### Example: matrix multiplication cache analysis.
+
+Tall cache assumption (for analysis): the number of cache lines is bigger than the size `B`. (`B^2 < cM` where `c <= 1` is a constant)
+(TLB as a cache may not satisfy this assumption)
+
+Under the above assumption and `(i, j, k)` iteration sequence, `theta(n^3)` cache misses as dominated by cache misses in B.
+`(i, k, j)` gives `theta(n^3) / B`
+
+**Tiling** into `(n / s)^3` (6 nested for loops) subproblems optimizes the above by another `sqrt(M)`, tune `s` such that `s = theta(sqrt(M))`.
+The `s` is not portable in that it is cache-size dependent.
+
+Recursive divide-and-conquer matrix multiplication (coarsen the leaf level problem fits in cache) gets the same asymptotic number of cache misses.
+The resulting algorithm is **cache-oblivious**, in that there is no parameter `s` to tune.
+
+The best cache-oblivious code to date work on arbitrary rectangular matrices and perform binary splitting (instead of 8-way) on the largest of i, j and k.
+
+Parallel analysis.
+
+
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
