@@ -905,6 +905,98 @@ Funnelsort, optimal cache oblivious sorting.
 
 Cache oblivious data structures
 
+### Non deterministic parallel programming
+
+Define determinism. Every memory location is updated with the same sequence of values in every executon.
+There are other definitions of determinism.
+
+Never write non-deterministic parallel program. If you must, come up with a test strategy.
+Though you might get better performance sometimes with non-deterministic programs.
+
+Good testing strategies:
+* turn off nondeterminism. malloc randomized address for security (you can't deterministically exploit buffer overflow). There is compiler flag / debugging mode that does not have this on.
+* record and replay
+* encapsulate the nondeterminism
+* analysis tools
+
+##### Types of races
+
+Example: concurrent chaining hash table
+* Standard approach to this is to make a sequence of instructions atomic (a critical section). Implemented with a mutex.
+```
+slot = hash(x->key);
+// lock
+x->next = table[slot].head;
+table[slot].head = x;
+// unlock
+```
+
+Recall: **determinacy race**. With mutexes, by definition you still have a determinacy race (concurrent access on the lock). (Hence any program with a mutex are nondeterministic by definition and does not have cilksan guarantee finding determinacy races.)
+
+A **data race** occurs when two logically parallel instructions holding no locks in common access the same memory location and at least one of the instruction is a write. Data-race-free programs obey atomicity constraints, but since acquiring a lock is nondeterministic, they still have determinacy race.
+
+No data races is not equal to not having bugs. E.g.
+```
+slot = hash(x->key);
+// lock
+x->next = table[slot].head;
+// unlock
+// lock
+table[slot].head = x;
+// unlock
+```
+
+**Benign races**. E.g. example the set of digits in an array. (sequence of setting and resetting bitfields don't matter, unless in code it looks like setting bytes but architectures actually fetches word, masks a set and writes word back.). Some argue no determinacy races are benign.
+
+##### Implementing mutex
+
+Properties:
+* yielding / spinning.
+* re-entrant / non-re-entrant. A re-entrant lock allows thread holding it to reenter. Non-re-entrant (faster) deadlocks in this scenario.
+* fair / unfair. A fair mutex puts waiting threads on a FIFO queue and unblocks whoever waited longest. Unfair mutex can unblock anyone (starvation).
+
+Simple **spinning mutex** using atomic `xchg` in assembly. `try_get; xchg; test_acquire`. The first part does not help with correctness but helps with performance, because `xchg` instruction involves a write, which requires MSI protocol to broadcast an invalidation, two processors would incur a broadcast storm trying to acquire the lock.
+
+Simple **yielding mutex** in assembly. Replace `pause` (there for unknown intel implementation reasons) in `try_get` with a `yield`.
+
+**Competitive mutex**.
+Competing goals: you want to acquire the lock as soon as it's free (spin), but you don't want to busy spin too much (yielding).
+Considering processor context switching frequency: 60/s or 100/s, you could spin for as long as a context switch takes (about 10ms, on the order of disk access), then yield.
+You never wait longer than twice the optimal time in this strategy. (If the mutex is released while spinning, optimal; if the mutex is released while yielding, `<=2x` optimal)
+Ski rental problem: renting until equal to the price of buying.
+
+A clever randomized algorithm can achieve a competitive ratio of `e / e^-1 = 1.58`.
+
+##### Deadlock
+
+Holding more than one lock at a time can be dangerous.
+Conditions for deadlock: mutual exclusion, nonpreemption, circular waiting.
+Remove any of these constraint can remove deadlock.
+Dining philosophers.
+Live locks possibility of yielding one when cannot get the other (and the requirement of a random delay).
+
+Assume that we can linearly order the mutexes, then always grab `L_i` before attempting to hold `L_j` for `i < j` breaks the potential deadlock. (_does this echo with 2PL somewhat?_)
+
+Example: deadlocking Cilk with one lock (for Cilk, only hold mutexes within strands).
+
+##### Transactional memory
+
+Example: concurrent Gaussian elimination (in matrix and graph)
+
+Specify in code `atomic` like you do `begin transaction; ...; end` and expect your memory to behave atomically.
+
+Conflict, contention resolution, forward progress, throughput.
+
+Algorithm L
+* Finite ownership array: an array of queueing mutex which supports acquire, try_acquire, release
+  * owner function maps the memory space U to indexes in the lock (say, with a hash)
+  * to lock location x in memory, acquire `lock[h(x)]` where `h` is the owner function
+* Release sort reacquire
+  * Before accessing a memory location `x`, try to acquire `lock[h(x)]` greedily. On conflict, roll back the transaction without releasing locks, release all locks with indexes higher than `h[x]`, acquire `lock[h(x)]`, blocking if already held. Require the released blocks in sorted order, blocking if already held, then restart transaction. (_only holding locks that are smaller, and each time I restart I lock one larger lock?_)
+
+##### Convoying
+
+
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
