@@ -95,6 +95,7 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
   * Balancing digging and asking
   * Getting your questions answered
   * Interacting in a group
+  * Acknowledging our shortcomings, being wrong, being open and frank about our weakness and that we are confused, appearing smart / knowledgeable / superior
 
 * De javu and is math useful? is math olympiad useful?
 
