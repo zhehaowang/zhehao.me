@@ -91,5 +91,17 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 * The unstructured life is not worth living, for some.
 
 * Things we are systematically bad at
+  * Communicating with those who we deemed superior
+  * Balancing digging and asking
+  * Getting your questions answered
+  * Interacting in a group
 
-* De javu and is math useful? is math olympiad useful? Is skepticism trying to take the easy way out?
+* De javu and is math useful? is math olympiad useful?
+
+* Is skepticism trying to take the easy way out?
+
+* Know the level you need to know at, and one level lower
+
+* We've had more than our share of documents with questions and answers, plans and schedules. We should perhaps focus on why they did not achieve what they meant to, as a start, I think we need to be very specific with our questions, and be systematic in answering them / getting them answered.
+
+* MIT is difficult. Few things worthwhile are. Taking on these challenges is, too, how you escape your comfort zone.

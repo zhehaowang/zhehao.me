@@ -165,6 +165,15 @@ Work ethic.
 Advocation.
 Seeing it through.
 
+
+### Prioritization, and keeping the bigger picture in sight
+
+Any work of reasonable enough scale will have different areas it can expand to.
+
+### Ask (specific) questions, and answer them
+
+It might be true that the natural state is to be confused.
+
 ### Routine and habits
 
 
