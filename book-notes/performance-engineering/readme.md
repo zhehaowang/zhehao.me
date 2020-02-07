@@ -838,7 +838,7 @@ The assoc / associativity above is the number `k`.
 
 ##### Ideal cache model
 
-Omniscient about future accesses.
+Omniscient about future accesses (and replacement), fully associative.
 
 Measures work W (all operations) and cache misses Q. Ideally we want low Q without incurring too much overhead on W.
 
@@ -866,8 +866,44 @@ The resulting algorithm is **cache-oblivious**, in that there is no parameter `s
 The best cache-oblivious code to date work on arbitrary rectangular matrices and perform binary splitting (instead of 8-way) on the largest of i, j and k.
 
 Parallel analysis.
+Conclusion with Cilk: to optimize the cilk-paralleled version's cache performance, optimize the cache performance of the serial version.
 
+### Cache oblivious algorithms
 
+Code has no knowledge of cache size. Cache-aware algorithms, code has knowledge of cache size, etc.
+
+##### Example: heat diffusion algorithm
+
+Differential equation.
+
+1-dimension diffusion differential equation
+```
+du / dt = alpha * (d^2 u / d x ^ 2)
+```
+
+Finite-difference approximation method
+
+Stencil computation (the above becomes a 3-point stencil, where each time t moves up, `u[t + 1][x]` is determined by `u[t][x - 1]`, `u[t][x]`, `u[t][x + 1]`).
+* Looping approach.
+* Recursive divide and conquer approach, trapezoid approach. Time and space cuts.
+* Parallel space cuts. Multiple non-overlapping trapezoids at the same time.
+
+Impediments to speedup
+* insufficient parallelism (Diagnosed with work and span analysis)
+* scheduling overhead (Diagnosed with work and span analysis)
+* lack of memory width (Run p copies of the serial program in parallel to see if they slow down)
+* contention (locking and true/false sharing) (Harder to diagnose)
+
+##### Example: cache efficient sorting
+
+* Merge: `theta(n)` work complexity, `theta(n/B)` cache complexity
+* Mergesort
+  * `Q(n) = 2 Q(n / 2) + theta(n / B)`. This gives `theta(n log_2(n / M) / B)`, where we stop at leaves of size `n = cM` for `c <= 1`
+  * Improve with multi-way (`R`-way) merging (tournament tree). Same work. This gives another `log_M` cache saving. This is no longer cache oblivious as `R` is cache-size related.
+
+Funnelsort, optimal cache oblivious sorting. 
+
+Cache oblivious data structures
 
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
