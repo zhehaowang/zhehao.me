@@ -7,7 +7,7 @@
 Stock valuation depends on the estimations of earning power of the company many years in the future.
 (PV of cashflows a company is able to earn in the future for its investors)
 
-### Castle-in-the-air theory, mass psycology
+### Castle-in-the-air theory, mass psychology
 
 Styles and fashions in investors’ evaluations of securities can and often do play a critical role in the pricing of securities.
 The stock market at times conforms well to the castle-in-the-air theory.
