@@ -996,7 +996,113 @@ Algorithm L
 
 ##### Convoying
 
+### Synchronization without locks
 
+##### Memory models
+
+Sequential consistency:
+* the sequence of instructions as defined by a processor's program are interleaved with corresponding sequences defined by the other processors' programs to produce a global linear order of all instructions.
+* A load instruction receives the value stored to the address by the most recent store instruction that precedes the load, according to the linear order.
+
+Imagine initially `a = b = 0`. Then
+Processor 0:
+```s
+mov 1, a     # store
+mov b, %ebx  # load
+```
+Processor 1:
+```s
+mov 1, b     # store
+mov a, %eax  # load
+```
+Is it possible for `%eax` and `%ebx` both to have the values 0, after the above are executed in parallel?
+
+With sequential consistency, no.
+But no modern machines implement sequential consistency.
+
+##### Mutual exclusion without locks
+
+(Or special instructions like test-and-set, compare-and-swap, xchg, load-linked-store-conditional)
+
+Can mutual exclusion be implemented with load and store as the only memory operations?
+It can, as long as the system is sequentially consistent.
+
+Peterson's algorithm.
+```
+widget x; // protected variable
+
+```
+Happens before and proof by contradiction.
+Starvation freedom.
+Peterson's algorithm cannot be applied to more than 2 parallel code paths.
+
+##### Relaxed memory consistency
+
+And why some say "never synchronize through memory".
+
+Hardware and compilers actively reorder instructions.
+
+Consider
+```s
+mov 1, a     # store
+mov b, %ebx  # load
+```
+Why might you want to order a load before a store?
+Because load you'll have to wait for it to finish before using the result, not for store.
+Hence higher performance by covering load latency - instruction level parallelism.
+This reordering matters not when there is no concurrency (as long as `a != b`).
+
+In terms of how this reordering happens in hardware:
+There is a queue (per-processor store buffer) between processor and memory system: buffers writes.
+Load bypass takes priority over store buffer. This can be problematic when you are loading something in the store buffer, and the load checks store buffer first.
+
+x86 has its own total store order.
+* Loads not reordered with loads.
+* Stores not reordered with stores.
+* Stores not reordered with prior loads.
+* Load may be reordered before a prior store to a different location.
+* Store, lock respect a global total order.
+* Memory ordering preserves transitive visibility (causality).
+
+Instruction reordering violates sequential consistency.
+Load-before-store reordering can break Peterson's algorithm, too.
+
+**Memory barrier** (memory fence) is a hardware action that enforces an ordering constraint between the instructions before and after the fence. (Typical cost like an L2 cache access).
+Lock instructions implicitly has memory fence.
+With memory fence `atomic_thread_fence()` (and to make sure compiler doesn't reorder or optimize your variables to be stored only in registers, use compiler fence and volatile variables; alternatively, C11 `atomic_load` and `atomic_store`) Peterson's algorithm achieves critical section when relaxed memory consistency.
+
+Theorem: any n-thread deadlock-free mutual exclusion algorithms using only load and store requires `Omega(n)` space.
+On modern hardware, you also have to use memory fence or atomic compare-and-swap.
+
+##### compare-and-swap
+
+`cmpxchg` asm, `atomic_compare_exchange_strong` C function.
+```cpp
+bool cas(T *x, T old, T new) {  // atomic, implicit fence
+    if (*x == old) {
+        *x = new;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// then lock, unlock becomes
+void lock(int *lock_var) {
+    while (!cas(lock_var, false, true));
+}
+
+void unlock(int *lock_var) {
+    *lock_var = false;
+}
+```
+
+Lock free algorithms.
+Example, when `cas` can outperform `lock`.
+
+
+
+Do sequentially consistent in memory model and causal consistent in distributed system mean the same thing?
 
 `__restrict` keyword can give the compiler more freedom to do optimizations, knowing this is the only pointer pointing to the data.
 
