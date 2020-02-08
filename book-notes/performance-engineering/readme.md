@@ -1027,14 +1027,42 @@ But no modern machines implement sequential consistency.
 Can mutual exclusion be implemented with load and store as the only memory operations?
 It can, as long as the system is sequentially consistent.
 
-Peterson's algorithm.
-```
-widget x; // protected variable
+**Peterson's algorithm**.
+```cpp
+Widget x; // protected variable
+bool a_wants = false;
+bool b_wants = false;
+char turn = 0;
+
+// processor A
+{
+    a_wants = true;
+    turn = 'b';
+    while (b_wants && turn == 'b') {};
+    // critical section
+    x.doSomething();
+    // end critical section
+
+    a_wants = false;
+}
+
+// processor B
+{
+    b_wants = true;
+    turn = 'a';
+    while (a_wants && turn == 'a') {};
+    // critical section
+    x.doSomething();
+    // end critical section
+
+    b_wants = false;
+}
 
 ```
 Happens before and proof by contradiction.
-Starvation freedom.
+(intuition: the last turn setter waits; works if only one wants; starvation freedom.)
 Peterson's algorithm cannot be applied to more than 2 parallel code paths.
+
 
 ##### Relaxed memory consistency
 
