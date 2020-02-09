@@ -1128,6 +1128,25 @@ void unlock(int *lock_var) {
 Lock free algorithms.
 Example, when `cas` can outperform `lock`.
 
+### Domain specific language and autotuning
+
+DSL, higher level of abstraction.
+
+Graph algorithm:
+* topology-driven algorithms, applied on the entire graph; e.g. building a recommendation system
+* data-driven algorithms, starting and ending at certain nodes; e.g. shortest path
+Push traversal, pull traversal. Partitioning for parallelism, locality.
+
+**Optimization tradeoff space**: locality, parallelism, work-efficiency.
+
+GraphIt decouples algorithm (what) from optimization (how) for graph applications.
+
+Halide image processing DSL and compiler, also decouples algorithm from scheduler / optimization. Used in e.g. Youtube and ios Photoshop. Trials and errors.
+
+* OpenTuner
+Tuning: model based, heuristics based (e.g. if number of elements < 16, use insertion sort, otherwise use parallel quicksort), exhaustive search, autotuning (define the space of acceptable values, choose a value at random, evaluate performance, if performance doesn't satisfy requirement, choose another value and try again. Hillclimb.)
+
+
 
 
 Do sequentially consistent in memory model and causal consistent in distributed system mean the same thing?
