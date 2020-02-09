@@ -365,6 +365,8 @@ Hellenism bequeathed this pursuit to later societies.
 
 ### Aristotle on the knowable
 
+The Lyceum.
+
 Aristotle has so much original, hence so much criticism from those who came after.
 
 His role in logic, biology, physics, natural science, political science and metaphysics are fundamental.
@@ -801,3 +803,43 @@ Chivalric knight as a secular priest, one who does God's bidding.
 Politeness his strength, reserved and complete control of his emotions.
 The only insult is an insult to honor.
 Chivalry is a great civilizing influences in the history of western civilization.
+
+### The reappearance of experimental science
+
+Renaissance.
+What was it that once was alive then died and reborn in Florence 14th Century.
+Textbook's claim of classical ideals of ancient Greece and Roman is unsatisfying.
+There was profound differences between Hellenic and Roman civilization and Florence in the 14th Century.
+
+Rebirth of learning and classical thoughts of Plato / Aristotle is found more in Islamic and Greek scholars of 11th Century.
+
+Abelard, Heloise, Sic et Non, revival of the philosophical program (on metaphysics, theology, ethics. Radical nominalism, universals are nothing but class names; radical realism, universals must be real as there otherwise can't be individuals that possess the relative attributes.).
+
+Revival of experimental science.
+Scientific achievements of the Hellenic world. Aristotle, Hippocrates, Theodorus of Samos, etc, are no stranger to sciences.
+
+Robert Grosseteste, on Aristotle's ethics and physics, created an interest in science at Oxford.
+Roger Bacon and experimental science, Opus Majus.
+
+Scholasticism attempts to reconcile the Christian doctrines and Aristotelian logic.
+The scientific inquiry becomes a mode by which we know God.
+It's an obligation on the Christian conscience to know God, and to know God is to know God through his works, leading to scientific and naturalistic inquiries of nature.
+Also an inquiry into our nature, because by way of imago dei, to know oneself is to know something of God.
+
+Thomas Aquinas, Christian faith and the facts of natural science can't be in conflict as both reach the truth about the same creation.
+
+Opus Majus.
+_"I now wish to unfold the principles of experimental science, since without experience nothing can be sufficiently known. For there are two modes of acquiring knowledge, namely by reasoning and experience. Reasoning draws a conclusion and makes us grant the conclusion, but does not make the conclusion certain, nor does it remove doubt so that the mind may rest on the intuition of truth, unless the mind discovers it by the path of experience."_
+
+Experimentation. Systematic, discplined observation, under conditions you have more or less control things, so you are certain what you are looking at.
+Roger Bacon's experiments includes decomposition of light into prismatic colors, making spectacles.
+He comments on the sin of ignorance and the need for the clergy to be scientifically informed.
+
+What's more important than finding, is the method of finding itself.
+
+Dun Scotus, drawing generality from sensory observations, like a frequentist probability approach.
+
+The labors of medieval scholarship, particularly within the context of the university, the corpus of scholastic teaching and thought, methodology, criticism and analysis will revive the tradition of the west.
+
+Every age is confident in its perspective being the "modern" perspective.
+When we get confident in our science and religion, that we have everything nailed down, move in front of a mirror and think "I may be hopelessly wrong", and in that, we may very well be right.
