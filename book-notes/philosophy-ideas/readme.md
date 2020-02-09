@@ -843,3 +843,49 @@ The labors of medieval scholarship, particularly within the context of the unive
 
 Every age is confident in its perspective being the "modern" perspective.
 When we get confident in our science and religion, that we have everything nailed down, move in front of a mirror and think "I may be hopelessly wrong", and in that, we may very well be right.
+
+### Scholasticism and the theory of natural law
+
+Thomas Aquinas, 13th Century, Dr of the Church. Scholastic philosophy.
+Catholic philosophy and natural law, regards Aristotle as the philosopher.
+
+Law as the expression of the rational order itself.
+
+Summa Theologica. Like Sic et Non, begins with a question and presents the for and against.
+His position on human nature: man is a composite of body and soul (hylomorphism).
+
+On knowledge: differentiates the human and the divine intellect.
+The human intellect functions as a whole.
+
+Freedom of the will. If one can't choose reward and to avoid punishment, then reward and punishment would not work at all.
+Man judges on the basis of the reason, apprehending what should be done. Upon which lies his basis on law.
+
+Is law ruled by reason?
+Law is a rule and measure of acts whereby man is induced to act. The rule's first principle is reason.
+Consistent with Aristotle's position on the generality of human nature.
+Based on this nature, what kind of rule of law is right for entities of this kind?
+Instead of a descriptive psychology approach.
+
+Considers Aristotle's treatise on virtue (episteme) lacking in the central Christian mission, to know the divine essence of God.
+
+Salvation was not something Aristotelian Ethics need to do with, but Thomas Aquinas's work had to: the Christian sense of **charity**, sharing, sympathy, forgiving, exercising restraint and **faith**.
+
+The problem of conduct to Thomas Aquinas is reconciliation with the eternal law.
+To know God, love God, and become worthy of God's presence in the next life, none of these would be in Aristotle's teaching.
+
+**Natural law theory** (similar to Aristotle, Cicero and Roman law):
+_"The law is an ordinance of reason promulgated by one who has responsibility for the good of the community."_
+
+Law appeals to the rational side of our essential nature, not a set of mechanical constraint.
+Law is natural to creatures of a certain kind.
+The right and just law demands what a rational being would demand of himself were there not competing influences.
+
+The culprit is desire.
+The pleasures of the moment temporarily trumps the rule of reason.
+
+Responsibilities of parenthood, to the church, desire the good and shun evil.
+
+We develop the moral and intellectual virtues by study and contemplation.
+We also must develop theological virtues so that the form of life we live matches up properly with the life of Jesus, one abundant in charity and the epitome of faith and divine providence that gave all hope to an eternal future that would cancel out the frustrations and disappointments of earthly life, and reward us for the commitment and devotion that we have made during those years of earthly life.
+
+Thomas Aquinas's life turned away from writing. An examined life that found words incapable of expressing truths inherently known by the grace of God.
