@@ -1146,6 +1146,38 @@ Halide image processing DSL and compiler, also decouples algorithm from schedule
 * OpenTuner
 Tuning: model based, heuristics based (e.g. if number of elements < 16, use insertion sort, otherwise use parallel quicksort), exhaustive search, autotuning (define the space of acceptable values, choose a value at random, evaluate performance, if performance doesn't satisfy requirement, choose another value and try again. Hillclimb.)
 
+### Speculative parallelism
+
+Guess you can do stuff in parallel, occasionally things will go wrong.
+
+Example: thresholding a sum: is the sum of an unsigned integer array larger than a threshold or not?
+Ideas for optimization
+* Check and early break (predictable branch short circuiting)
+* Unrolling loop and one check per several
+* Parallelizing: divide and conquer sim. With an abort flag (whose `set` results in a benign race) to short circuit (why check abort flag before setting it)
+
+**Speculative parallelism** occurs when a program spawns some parallel work that might not be performed in a serial execution.
+**Rule of thumb**: don't spawn speculative work unless there is no other opportunity for parallelism and there is a good chance the speculative work will end up being needed.
+
+##### Game Tree Search
+
+**Min-Max Search**.
+Two players. Game tree represents all moves within a given search **ply** (depth).
+Max chooses the max-scoring one among its children, and Min chooses min scoring one among its children.
+**Alpha-Beta strategy**. `[alpha, beta]` range.
+For a game tree with branching `b` and depth `d`, an alpha-beta search with moves searched in best-first order examines exactly `b^[floor(d/2)] + b^[ceiling(d/2)] - 1` nodes at ply `d`.
+
+**Principal variation search** pruning. Scout search, improve pruning over alpha-beta.
+Alpha-beta and principal variation search depend on putting the best moves at the front to trigger an early cut-off (best-first order).
+
+[Optimizations](https://www.chessprogramming.org/): transposition table. (`map[board_status] = score`). Zobrist hashing can be updated incrementally. Killer-move table (chess killer heuristic). Best-move table. Null-move pruning. Futility pruning. Late move reduction. Opening book. Iterative deepening (for move ordering information).
+
+##### Parallel Alpha-Beta Strategy
+
+Young siblings wait algorithm.
+
+
+
 
 
 
