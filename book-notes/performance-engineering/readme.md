@@ -1176,8 +1176,41 @@ Alpha-beta and principal variation search depend on putting the best moves at th
 
 Young siblings wait algorithm.
 
+### Tuning a TSP algorithm
 
+Recursive generation.
+* Iterative bit counting solution (+1). 
+* Recursive solution (divide into last bit 0 and last bit 1)
 
+Algorithm 1: `n!` all permutations (swap) recursion
+
+External optimizations:
+* `gcc -O3`: x25 faster vs no optimization
+* Faster hardware: x150 faster compared with 20 yrs ago
+
+Internal optimizations:
+* distance table lookup as opposed to dist calc on the fly. 3x.
+* Fix a start, Nx.
+* Carry forward a partial sum as opposed to recomputing sum. `(1 + e)`x
+
+Exponential growth: `n! ~ 2^(n lg(n)) ~ (n / e) ^ n`
+
+Pruning search space:
+
+Example. Given 1..9, find all permutation such that first m digits are divisble by m.
+* Pruning: even in even digits, odd in odd digits, 5 in position 5. 600x search space reduction.
+
+Pruning TSP:
+* if sum already larger than current known minsum, don't continue. >100x speedup.
+* if sum + lower bound for remaining cities > minsum, don't continue. The lower bound can be minimum spanning tree of remaining. >100x speedup.
+* cache lazy-evaluated MST. >10x speedup.
+
+In performance engineering, your intuition is often times wrong. Experiment.
+
+Smarter search:
+* better starting tour: start with a greedy nearest neighbor
+
+Presumably, state of the art TSP does the above optimizations better, and can solve >10k nodes optimally.
 
 
 
