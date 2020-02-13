@@ -1212,6 +1212,40 @@ Smarter search:
 
 Presumably, state of the art TSP does the above optimizations better, and can solve >10k nodes optimally.
 
+### Graph optimization
+
+Graph representations:
+* adjacency matrix (`O(|V|^2)`),
+* edge list (`O(|E|)`),
+* adjacency list (`O(|V| + |E|)`),
+* Compressed sparse row: offsets array, edges array (`O(|V| + |E|)`). To store weights, have an additional array, or preferably, have the weights interleaved,
+
+Complexity of adding / removing an edge, finding all neighbors, finding if a vertex w is a neighbor of v.
+
+CSR is not a good choice when needing to update the graph, but good for static graph algorithms.
+
+Properties of real world graphs (twitter, web, search),
+* billions of edges and vertices, ~500GB for search, ~10GB for Twitter.
+* sparse
+* degrees are skewed (power law degree distribution) (implies load imbalance issues if just parallelize by vertices)
+
+##### BFS
+
+Serial algorithm. Work: `O(|V| + |E|)`. Cache misses analysis. Bit vector visited to improve cache performance.
+
+Parallel algorithm. Parallelize over nodes in the frontier. Beware of races (non-determinism with `compare-and-swap`) and load balancing. One frontier needs to be finished iterating, before moving on to the next frontier. Span analysis.
+
+Direction optimization for BFS.
+
+Frontier representation.
+
+Ligra graph framework.
+
+##### Graph compression and ordering
+
+Further compression on top of CSR. Variable length encoding.
+
+
 
 
 Do sequentially consistent in memory model and causal consistent in distributed system mean the same thing?
