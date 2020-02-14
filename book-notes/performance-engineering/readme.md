@@ -1245,6 +1245,30 @@ Ligra graph framework.
 
 Further compression on top of CSR. Variable length encoding.
 
+### High performance in dynamic languages
+
+Fast fourier transformation, FFTW.
+
+Julia.
+* High level, interactive, general-purpose, for technical work but as fast as C.
+* Most of Julia is implemented in Julia.
+* Dynamically typed using inference + specialization. Abstract types (hierarchy).
+* Multiple dispatch (all the argument types (e.g. `method(object, x, y)`) decide the method, as opposed to single dispatch as `object.method(x, y)`.)
+* Type instability (ideally, return type should be known at compile time. `sqrt` always return `double`, even if on a perfect square. This means `sqrt(-1)` returns an error, instead of a complex value, as doing the latter would mean type is determined at runtime. This instability propagates, and eventually the language might end up relying boxes and runtime type tags, and this hurts performance.)
+* Parametric polymorphism (similar to C++ templates with constraint that the supplied type, e.g. has to be a subtype of something)
+
+Python integer never overflows, this means `x + 1` cannot be compiled into one instruction, this could also hurt performance.
+
+Python numba compiler looks at arguments, type specializes, calls llvm, and compiles the function into llvm code. Only works primitive types (native and numpy, not arbitrary user numeric types).
+
+Implementation of Python lists: pointers to boxes (of a type tag and a value), this can't be as fast a C loop over array of doubles.
+NumPy array does this.
+NumPy array sum uses SIMD instructions, and will be faster than naive C for loop sum.
+Python `sum` will for faster than loop and `operator+` (due to caching `operator+`?)
+
+PyPy, tracing JIT for python with more implemented in Python as opposed to C.
+
+
 
 
 
