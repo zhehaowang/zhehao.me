@@ -3,6 +3,9 @@
 #include <fstream>
 #include <cmath>
 #include <limits>
+#include <utility>
+#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
@@ -17,24 +20,40 @@ using namespace std;
 
 class TSPMSTHeuristic {
   private:
-    // get the MST total distance for nodes [seq.size() - length, seq.size()]
+    // get the MST total distance for nodes [seq.size() - length, seq.size())
     // Prim, greedy algorithm
+    // to be verified
     double getMST(int length) const {
-        int startIdx = seq.size() - length;
-        vector<pair<double, bool>> dists(length, make_pair(std::numeric_limits<double>::max(), false));
-
-        double totalMSTLength = 0;
-        int visitedCnt = 1;
-        dists[0] = {0, true};
-        while (visitedCnt < length) {
-            for (int i = 0; i < length; ++i) {
-                if (dists[i].second) {
-                    continue;
-                }
-                
-            }
+        if (length <= 1) {
+            return 0;
         }
 
+        int startIdx = seq.size() - length;
+
+        using DistId = pair<double, int>;
+        std::vector<DistId> remaining;
+        remaining.reserve(length);
+        
+        for (int i = startIdx; i < seq.size(); ++i) {
+            remaining.emplace_back(std::numeric_limits<double>::max(), seq[i].id);
+        }
+        remaining.back().first = 0;
+
+        double totalMSTLength = 0;
+        while (!remaining.empty()) {
+            totalMSTLength += remaining.back().first;
+            int topId = remaining.back().second;
+            remaining.pop_back();
+
+            for (auto it = remaining.begin(); it != remaining.end(); ++it) {
+                it->first = std::min(it->first, getDistance(seq[topId], seq[it->second]));
+            }
+            std::sort(remaining.begin(), remaining.end(), std::greater<DistId>());
+            // for (int i = 0; i < remaining.size(); ++i) {
+            //     cout << remaining[i].first << " " << remaining[i].second << "\n";
+            // }
+            // cout << "\n";
+        }
 
         return totalMSTLength;
     }
@@ -63,7 +82,7 @@ class TSPMSTHeuristic {
             for (int i = seq.size() - length; i < seq.size(); ++i) {
                 currentTotalDistance += getDistance(seq[i], seq[seq.size() - length - 1]);
                 swap(i, seq.size() - length);
-                if (currentTotalDistance + getMST(length) < shortest) {
+                if (currentTotalDistance + getMST(length - 1) < shortest) {
                     traverse(length - 1);
                 }
                 swap(seq.size() - length, i);
@@ -89,6 +108,7 @@ class TSPMSTHeuristic {
     vector<City> seq;
     double* distances = nullptr;
     double currentTotalDistance = 0;
+    // unordered_map<int, double> mstCache;
 
   public:
     TSPMSTHeuristic(const vector<City>& in) : seq(in) {
