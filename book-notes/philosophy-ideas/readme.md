@@ -889,3 +889,42 @@ We develop the moral and intellectual virtues by study and contemplation.
 We also must develop theological virtues so that the form of life we live matches up properly with the life of Jesus, one abundant in charity and the epitome of faith and divine providence that gave all hope to an eternal future that would cancel out the frustrations and disappointments of earthly life, and reward us for the commitment and devotion that we have made during those years of earthly life.
 
 Thomas Aquinas's life turned away from writing. An examined life that found words incapable of expressing truths inherently known by the grace of God.
+
+### The Renaissance - was there one?
+
+Florence in the 1400s.
+Feudal world to urban lives.
+
+Alberti on architecture.
+What it is about a city that makes it the right place to live: a place where we (organic and reasonable beings) learn lessons and realize possibilities.
+Isolation of classes cemented by architectural division?
+
+Pope Nicholas V. The Papacy became a center of Greek thought.
+
+Bruni. History of Florence. Biographies of Aristotle, Cicero, Dante and Petrarch.
+
+Petrarch. Letters of Cicero. Skeptical towards the ancient philosophers. Not quite recovering the ancient perspective.
+
+Dante. Beatrice. Vita Nuova. to write of her as never before had been writteon of a woman.
+Perfective love which he found in Scholastic philosophy.
+The Divine Comedy. The last great Romance of high medieval.
+
+Florentines thought of them as recovering the lost world view of the Athenian and Romans, which they thought devoted to humanizing and humanistic arts, centered around human nature and what was right for it.
+Music, statue, architecture, poetry, song, drama, the secular life.
+Humanists, humanistic studies.
+
+School of Athens, Raphael, the secular knowledge. Medieval world view.
+
+An age that looks in both directions at the same time.
+
+Martin Luther, Bible translation into German. The rejection of Scholastic Roman Catholic Church and promotion of Evangelical Christianity.
+Reformation of the pious life. Condemn Rome, try the Pope, reject his authority.
+
+Erasmus. In Praise of Folly. Wrote with contempt against church's practices and stands.
+
+The renaissance conception of virtue, compared with Aristotle's notion, is more external and publicly observable, e.g. patronage to artists.
+There was no lack of patrons of arts and scholarly studies, the Medicis, Cosimo de Medici.
+
+Renaissance produced no philosophers of abiding significance.
+There were gifted teachers and translators, but not the defining feature of the Hellenic world: its philosophical power and originality of philosophy.
+No Greek pagan's work was needed, to tell one how to live one's life.
