@@ -928,3 +928,36 @@ There was no lack of patrons of arts and scholarly studies, the Medicis, Cosimo 
 Renaissance produced no philosophers of abiding significance.
 There were gifted teachers and translators, but not the defining feature of the Hellenic world: its philosophical power and originality of philosophy.
 No Greek pagan's work was needed, to tell one how to live one's life.
+
+### Witch prosecutions
+
+Witch hunts of 1400s - 1700s.
+
+Reflection of the intellectual ethos of a period, ongoing in times of scientific development, of Descartes, Newton and Galileo.
+
+Every age has its witches, and a theory that confirms the fact that the targeted are the right ones.
+Laws have long dealt with witches and witchcraft, and old ideas have great staying power when they play into our most cherished prejudices.
+
+White witchery. Ancient Roman Laws charges the witches responsible for death of cattles, etc, judged based on the damage done.
+The law did not specifically care about the sources of the power, but more about the act and its consequences.
+
+Christian morals praise and blame are reserved for the actions who have control over. (Emphasis on moral freedom.)
+Mens rea, intention to commit a crime: the mind itself must have been corrupted.
+
+Power above nature has two sources, God and the devil.
+If the source of the witch's supernatural power is the devil, then it matters not what she does is minute or colossal, or for good or for evil.
+
+In some Medieval courts, the defendant could choose trial, ordeal or compurgation (a person would be acquitted if X number of persons swear to God his innocence).
+
+* The accusatorial procedure. Court acts on accusation. Defendant face accusers.
+* The inquisitorial procedure. The court is actively involved in gathering evidence and investigating facts about the case (non-adversarial).
+
+Malleus Maleficarum, treatise on witchcraft and demonology.
+To say there is no witchcraft is heresy.
+The witch may have an advocate, who may face excommunication for defending the witch.
+Evidence includes the tear test: not weeping upon hearing Bible verses that would make a good Christian weep, like Mary's love for his dying son.
+The floatation test: float the witch on blessed water. Sink: innocent. Float: rejected by the water and guilty.
+The pricking test: pricking the body to find where the devil left his mark.
+
+How easily wrong-headed theory gaining support from undeveloped science can wreak misery and shame.
+We must be careful with our theories.
