@@ -941,7 +941,7 @@ Laws have long dealt with witches and witchcraft, and old ideas have great stayi
 White witchery. Ancient Roman Laws charges the witches responsible for death of cattles, etc, judged based on the damage done.
 The law did not specifically care about the sources of the power, but more about the act and its consequences.
 
-Christian morals praise and blame are reserved for the actions who have control over. (Emphasis on moral freedom.)
+Christian morals praise and blame are reserved for the actions one has control over. (Emphasis on moral freedom.)
 Mens rea, intention to commit a crime: the mind itself must have been corrupted.
 
 Power above nature has two sources, God and the devil.
@@ -961,3 +961,35 @@ The pricking test: pricking the body to find where the devil left his mark.
 
 How easily wrong-headed theory gaining support from undeveloped science can wreak misery and shame.
 We must be careful with our theories.
+
+### Francis Bacon and Authority of Experience
+
+18th Century looked upon the science of Bacon and Newton in 17th Century as the source of their enlightenment.
+
+Lord Chancellor. Bribery charge. Stylish writer. Moral and juridical essayist.
+Elizabethan Age, expansionist and prosperous period, patron of explorers and scientists. The Reformation of Protestants.
+Rival of Edward Coke. Common Law of England.
+
+Rejection of the proposition that because an idea has been around for a long time, it somehow has proved itself.
+Challenge of orthodoxies.
+
+**Novum Organum**.
+The new method of Bacon that has never been tried before: method of invention and discovery by experience. Experimental science. Disciplined and systematic observations compiled and stored into "the table of discovery".
+Pursuit of knowledge through the guide of experience, not the authority of texts. New epistemological view.
+Move on from Aristotle and the ancient world. Progress.
+
+Two kinds of experimental work,
+* Experimenta lucifera. Light giving. Uncover the causal relationship in the natural world. _"Whatever deserves to exist, deserves to be known"_. No realm of inquiry is ruled out a priori. Create order out of chaos. Observe what there is. Porcupine research, "Baconian fact gathering".
+* Experimenta fructifera. Fruit-bearing experiments. Bacon was not an impressive experimentalist himself.
+
+Inspired from Bacon, Popper and falsifiability to assess scientific theory. No number of confirmation will confirm a universal law. Falsification is proposed instead of verification of universal laws.
+
+Operations of the mind. The philosophy of humanity. Psychology.
+In moral thought, ethics, civics following the naturalist tradition of Aristotle. Man in the aggregate. Sociology.
+As well as biological, medical tradition of Hippocrates.
+
+The New Method is not something new to the world. Galen of 2nd Century had theories on how experiments should be conducted.
+
+Bacon laid the foundations for a tradition to be relied on throughout the years to come, a clarity of the right method that the Scholastic period and Renaissance did not have.
+
+_"Words are simply representatives of things in the external world. If you are interested in the external world, go in to that world. Don't sit around talking like a lover falls in love with a picture."_
