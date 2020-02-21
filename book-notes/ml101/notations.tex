@@ -472,6 +472,8 @@ $$
 
 \textbf{Intuition}: law of large numbers is a theorem that describes the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed.
 
+In other words, when $n$ becomes large enough, average is a good i.e. consistent estimator of expectation.
+
 
 \subsection{Expectation, variance}
 
@@ -941,6 +943,8 @@ $$
 \\
 Roughly speaking, \textbf{central limit theorem} asserts that the distribution of the sum of a large number of iid random varaibles is approximately normal.
 
+\textbf{Intuition}: LLN states that average is a consistent estimator of expectation when $n$ is large enough, CLT says how good it is.
+
 Suppose the sequence $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$ satisfies \textbf{Lyapunov condition}
 
 $$
@@ -951,6 +955,24 @@ where $B^2_n = \mathbb{V}[S_n] = \sum_{k = 1}^{n}{\sigma_k^2}$
 
 Then the sequence of random variables satisfy the central limit theorem.
 
+\subsection{Hoeffding's inequality}
+
+Let $n$ be a positive integer and $X, X_1, ..., X_n$ be i.i.d r.v. s.t. $X \in [a, b]$. Let $\mu = E[X]$. Then for all $\epsilon > 0$,
+
+$$
+P(|\bar{X_n} - \mu| \geq \epsilon) \leq 2 e^{-\frac{2 n \epsilon^2}{(b - a)^2}}
+$$
+
+\textbf{Intuition}: average of bounded i.i.d r.v.'s probability distribution function is bounded by a Gaussian distribution (thinner tails) (even without n approaching infinity).
+
+\subsection{Different types of convergence}
+
+\begin{itemize}
+  \item Almost surely (a.s.) convergence
+  \item Convergence in probability
+  \item Convergence in $L^p$
+  \item Convergence in distribution
+\end{itemize}
 
 \subsection{Markov chains}
 

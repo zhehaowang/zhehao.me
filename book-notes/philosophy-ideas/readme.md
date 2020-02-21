@@ -561,7 +561,7 @@ This contemplative life should not be a life of inactivity or isolation, as we a
 Fitness - harmonia <-> discordia
 Music - melodia
 
-Aristotle see the rule of law as the rule of reason, laws based on punishment are tyrannical laws.
+Aristotle sees the rule of law as the rule of reason, laws based on punishment are tyrannical laws.
 Good laws calls upon us to do things that make us better, not stop us from doing things for fear of punishment; we see in the law something we see in good friends.
 
 Are the life of the law giver and the disinterested contemplative wise man competing (activity and decisive action / contemplation and study)?
@@ -604,7 +604,7 @@ _"Never say of anything that I've lost it, only that I've given it back."_
 
 Cicero was a critic of Stoicism, but his work on law incorporated much essential to Stoic teaching.
 
-Evil is to go against your nature, that of men being rationality.
+Evil is to go against your nature, and the nature of men being rationality.
 Irrationality is an evil.
 
 Epicureanism may have left the impression of _"eat drink and be merry for tomorrow you shall die"_, though the actual teaching of Epicurus was conservative in terms of social life and quite contrary, it's rather don't need something so much that its absence causes pain and suffering and quite close to Apatheia.
@@ -615,7 +615,7 @@ Epicureanism on friendship, a form of self defense against the slings and arrows
 Atomic materialistic, our choices are our own to make, liberated from abstract stricture Stoicism imposed.
 
 Stoicism guides Roman education and Roman sensibilities.
-Neither Stoicism nor Epicureanism would not agree with the decadence of late Roman Empire.
+Neither Stoicism nor Epicureanism would agree with the decadence of late Roman Empire.
 
 ### Stocism to Christianity
 
@@ -623,8 +623,8 @@ Philo of Alexandria, contemporary of Jesus, whose work connects Old Testament te
 
 Christianity is not merely a development out of Judaism.
 
-Early Christian teaching is intellectually rich and convincing.
-Saint Paul's writing draws from Stoic teaching.
+Early Christian teaching was intellectually rich and convincing.
+Saint Paul's writing drew from Stoic teaching.
 A belief being a natural inclination.
 There should not be unbridgeable gap between the teachings of faith and teachings of (pagan) philosophy.
 
@@ -633,7 +633,8 @@ Stoic philosophy creates this bridge.
 Contrary to the Christian / Judaism / Islamic God, the "God" of Stoics is not a personal being concerned with human welfare, but a powerful divine fire of sorts working through physical and material modes of operations.
 This divine Fire, however, is rational and immortal in its nature.
 
-Arguments for universal brotherhood and wrongfulness of cruelty towards slaves are based off of Stoic notion of human rationality. Slaves are of same elements that made up any rational human being (same Oikos).
+Arguments for universal brotherhood and wrongfulness of cruelty towards slaves are based off of Stoic notion of human rationality.
+Slaves are of same elements that made up any rational human being (same Oikos).
 
 Jews and Christians deny the materiality of this God.
 This is reconciled by God becoming incarnated in the form of a human being who will teach lessons and guide the distracted human race to be redeemed through his sacrifice.
@@ -641,7 +642,7 @@ This is reconciled by God becoming incarnated in the form of a human being who w
 The immaterial incarnating himself materially, into what Stoics regarded as Logos (natural law).
 Consult the ten commandments to comprehend what God demands of us.
 
-On a Christian account no one is of greater moral worth than the other, whatever their socio-economical status, titles and achievements.
+On a Christian account no one is of greater moral worth than the other, whatever their socio-economic status, titles and achievements.
 This might have a substantial effect on people who are oppressed, controlled, dismissed because of their birth, language, skills and position in the world.
 None of that counts for anything fundamentally, you are all children of a providential God, who has created the cosmos, and it is good.
 An ordered, reasonable cosmos fitting for the language-using ordered, rational being which reflects in its rationality nothing less than the image of God himself.
@@ -660,28 +661,28 @@ What is required for one to live the right sort of life, is nothing more than th
 We need not speculate any longer on the meaning of all things.
 
 As these were the teachings of Jesus Christ, they are the last words on all things true, and coming after the pagan philosophies, they were not available to them who did not have the benefit of Jesus Christ.
-All of this philosophy was a distraction we can safely move past.
+All of their philosophy was a distraction we can safely move past.
 Rome is not falling for its lack of philosophical teaching, and Christianity has to base off of something more resistant to change, on truths that are not mere productions of philosophy but creation of divinity, made available to us by the Grace of God.
 
-Not an anti-intellectualism with a sneer, but that of an enlightened group towards a less enlightened community, the former saying we can have patience with them and understand the mistakes they make, and we are under no obligation to repeat their modes of thoughts conduct.
+Not an anti-intellectualism with a sneer, but that of an enlightened group towards a less enlightened community, the former saying we can have patience with them and understand the mistakes they make, and we are under no obligation to repeat their modes of thoughts or conduct.
 
 There was a bridge from Stoicism to Christianity, once you got to the side of a Christian, to a considerable extent, philosophy was left on the other side, for better or worse.
 
 ### Roman Law
 
 Ancient Greek law is highly developed, nonetheless if there is a contribution the Roman world made to civilization and the history of ideas (acknowledging its debts to Greek law), that contribution is Roman law.
-For its development, precision, refinement, promalgation.
+For its development, precision, refinement, promulgation.
 
 Keystone in western civilization.
 Life of freedom under the governance of the law.
 
-12 tables of Rome, Romans rumored to take counsel from Solon in Athens
+12 tables of Rome, Romans rumored to take counsel from Solon in Athens.
 
 Cicero on Laws.
 What is the essence of law?
 
 There seem to be certain universal precepts that are honored without exception across different jurisdictions.
-This Cicero calls these precepts the law of nations / peoples.
+Cicero calls these precepts the law of nations / peoples.
 The explanation Cicero offers for this universality is that it arises from something within human nature itself: something essential to the rational being.
 
 Later called, **the natural law**, and associated with Thomas Aquinas.
@@ -698,11 +699,10 @@ The Institutes of Justinian. The Justinian Code.
 _"The law of nature is a law instilled by nature, in all creatures."_
 Stoicism influence.
 
-There is a side of multiculturalism that casts certain people to be fundamentally different from other people that the two can hardly make sense to each other.
-Stocism and Aristotle would both reject this.
+Stocism and Aristotle would both reject that there is a side of multiculturalism that casts certain people to be fundamentally different from other people that the two can hardly make sense to each other.
 Fundamental unifying force according to which we have a shared psychology and a common humanity, which the law appeals to.
 
-There is a great level of heterogeneity between different culture, and Rome was not convinced that level of heterogeneity rises to rationality itself, and therefore of all people, whatever their customs be, are fitful for the rule of law, and can be brought up to be worthy of the rule of the law.
+There is a great level of heterogeneity between different culture, and Rome was not convinced that level of heterogeneity rises to rationality itself, and therefore of all people, whatever their customs be, are fitful for the rule of law, and can be brought up to be worthy of the rule of law.
 
 The debts of British Common Law, American Constitution, Napoleonic Codes, etc to the Roman law are apparent.
 Our conceptions of justice, liberty, the dignity of the individual at least when the individual appears before the bars, are developments of a Greek philosophical foundation and Roman lawyers.
@@ -713,13 +713,13 @@ An orderly process in which a disinterested judge can weigh evidence, examine cl
 
 St Augustine (354 - 430), the City of God, Confessions (what changed him, the sources of his confusion and his salvation in faith).
 
-Lays the philosophical foundation for much of Christianity.
+Laid the philosophical foundation for much of Christianity.
 Studied Cicero. Professor of rhetoric at the imperial court in Milan, contemporary of St Ambrose.
 
 Reflecting on the disciplined anti-intellectualism of early Christians: being skeptical about the ancient pagan's work on philosophy being the right guide, as he already has the right guide: the life and teaching of Jesus Christ.
 
 The likelihood of success of a faith is greatly reduced if it has officially anti-intellectual attitudes.
-A properous religion is usually promalgated by teaching, a set of practices performed by the intellectuals schooled in the way of the world.
+A properous religion is usually promulgated by teaching, a set of practices performed by the intellectuals schooled in the way of the world.
 
 Augustine recovers the philosophical wisdom of the ancient, and uses it to fortify the teachings of the church.
 
@@ -744,13 +744,13 @@ Quran, though believed to be unchanged since conception (product of God), did ev
 The Prophet says each verse in the Quran has 7 meanings, the first is literal, the last is only known to God.
 
 Islamic faith is at once a culture, an ethics, a mode of philosophical inquiry and a commitment to a reflective life.
-That there are those who would fashion its teaching into hate and destruction is a painful development in recent history, making it difficult to evaluate the tradition itself with respect it earned over the course of centuries.
+That there are those who would fashion its teaching into hate and destruction is a painful development in recent history, making it difficult to evaluate the tradition itself and the respect it earned over the course of centuries.
 
 The west may not have been able to recollect the Aristotelian and Platonic canon, without the work of Islamic scholars 10th C and onwards.
 
-We are inclined to think 650 - 850 as Dark Age, is because we see very little by way of philosophical development, critical thinking or originality, those produced by thought, argument, discourse and recorded in text.
+We are inclined to think 650 - 850 as Dark Age, because we see very little by way of philosophical development, critical thinking or originality, those produced by thought, argument, discourse and recorded in text.
 
-The eastern world saw development, Byzantine preserved and promulgated much work from classical antiquity, and the Islamic world carreied this on.
+The eastern world saw development, Byzantine preserved and promulgated much work from classical antiquity, and the Islamic world carried this on.
 The early Islamic scholars put an Islamic spin on classical western political, natural scientific and philosophical writings. Inspired from the teachings of the Prophet.
 
 Islamic philosophical inquiries in 10th, 11th and 12th C.
@@ -758,16 +758,16 @@ Al Farabi, reconcile Platonic and Aristotelian thought with the teachings of the
 Avicenna, commentates on Aristotle Metaphysics. A means to demystify the natural world.
 
 Eastern medicine traces back to Hipprocratic naturalistic / scientific approach.
-Western medicine of the same time treats disease and disorders symbols of sins.
+Western medicine of the same time regards disease and disorders as symbols of sins.
 
 The conquest of Islam enrolled the Islamic world in Greek classroom.
 
 How does a religion solidify its position?
 By developing an official set of canon and teachings that constitutes the way things are.
 
-The medieval view on the world we live in is that ultimately it's a metaphor for another world eternal and changeless; and all that matters isn't and becomes transient.
+The medieval view on the world we live in is that ultimately it's a metaphor for another world eternal and changeless.
 
-The greatest threat to the continuation of the great debate (on knowledge, conduct and governance) is orthodoxy (the right way to see things such that any other way is wrong): at the end of the day, faith is all that matters.
+The greatest threat to the continuation of the great debate (on knowledge, conduct and governance) is **orthodoxy** (the right way to see things such that any other way is wrong): e.g. at the end of the day, faith is all that matters.
 The debate becomes an insult to the faithful and the faith.
 Too much philosophy weakens the faith.
 
@@ -778,14 +778,14 @@ The scholarly and contemplative life that the Quran requires of the faithful, is
 ### Secular knowledge, the idea of university
 
 800AD, Charlemagne, Holy Roman Empire.
-Civic duties, rights of the (poor) people, promote teaching, reduce illiteracy, , bringing in teachers from England and Ireland, preservation of classical scholarship, Christianizing.
+Civic duties, rights of the (poor) people, promote teaching, reduce illiteracy, bring in teachers from England and Ireland, preservation of classical scholarship, Christianization.
 Divine right of kings, court language Latin.
 
 Alcuin, Latinist, Classicist, head of palace school, brought literacy to European clergy, abbey schools.
 
-Seven liberal arts, Hugo of St Victor
+Seven liberal arts, Hugo of St Victor.
 Initially the trivium: grammar, rhetoric and logic.
-Then the quadrivium: arithmetic, Music, Geometry, Astronomy.
+Then the quadrivium: arithmetic, music, geometry, astronomy.
 
 Universitas, initially means a guild of students.
 Cathedral of Paris abbey school, taught seven liberal arts.
@@ -826,13 +826,13 @@ The scientific inquiry becomes a mode by which we know God.
 It's an obligation on the Christian conscience to know God, and to know God is to know God through his works, leading to scientific and naturalistic inquiries of nature.
 Also an inquiry into our nature, because by way of imago dei, to know oneself is to know something of God.
 
-Thomas Aquinas, Christian faith and the facts of natural science can't be in conflict as both reach the truth about the same creation.
+Thomas Aquinas. Christian faith and the facts of natural science can't be in conflict as both reach the truth about the same creation.
 
 Opus Majus.
 _"I now wish to unfold the principles of experimental science, since without experience nothing can be sufficiently known. For there are two modes of acquiring knowledge, namely by reasoning and experience. Reasoning draws a conclusion and makes us grant the conclusion, but does not make the conclusion certain, nor does it remove doubt so that the mind may rest on the intuition of truth, unless the mind discovers it by the path of experience."_
 
-Experimentation. Systematic, discplined observation, under conditions you have more or less control things, so you are certain what you are looking at.
-Roger Bacon's experiments includes decomposition of light into prismatic colors, making spectacles.
+Experimentation. Systematic, discplined observation, under conditions you have more or less control, so you are certain what you are looking at.
+Roger Bacon's experiments includes decomposition of light into prismatic colors and making spectacles.
 He comments on the sin of ignorance and the need for the clergy to be scientifically informed.
 
 What's more important than finding, is the method of finding itself.
@@ -846,27 +846,25 @@ When we get confident in our science and religion, that we have everything naile
 
 ### Scholasticism and the theory of natural law
 
-Thomas Aquinas, 13th Century, Dr of the Church. Scholastic philosophy.
-Catholic philosophy and natural law, regards Aristotle as the philosopher.
+Thomas Aquinas, 13th Century, Doctor of the Church. Scholastic philosophy.
+Catholic philosophy and natural law, regards Aristotle as "the philosopher".
 
 Law as the expression of the rational order itself.
 
 Summa Theologica. Like Sic et Non, begins with a question and presents the for and against.
-His position on human nature: man is a composite of body and soul (hylomorphism).
 
-On knowledge: differentiates the human and the divine intellect.
+His position on human nature: man is a composite of body and soul (hylomorphism).
+On knowledge: differentiate the human and the divine intellect.
 The human intellect functions as a whole.
 
 Freedom of the will. If one can't choose reward and to avoid punishment, then reward and punishment would not work at all.
 Man judges on the basis of the reason, apprehending what should be done. Upon which lies his basis on law.
 
-Is law ruled by reason?
 Law is a rule and measure of acts whereby man is induced to act. The rule's first principle is reason.
 Consistent with Aristotle's position on the generality of human nature.
 Based on this nature, what kind of rule of law is right for entities of this kind?
-Instead of a descriptive psychology approach.
 
-Considers Aristotle's treatise on virtue (episteme) lacking in the central Christian mission, to know the divine essence of God.
+Aquinas found Aristotle's treatise on virtue (episteme) lacking in the central Christian mission, to know the divine essence of God.
 
 Salvation was not something Aristotelian Ethics need to do with, but Thomas Aquinas's work had to: the Christian sense of **charity**, sharing, sympathy, forgiving, exercising restraint and **faith**.
 
@@ -883,7 +881,7 @@ The right and just law demands what a rational being would demand of himself wer
 The culprit is desire.
 The pleasures of the moment temporarily trumps the rule of reason.
 
-Responsibilities of parenthood, to the church, desire the good and shun evil.
+Responsibilities of parenthood, to the church, desire good and shun evil.
 
 We develop the moral and intellectual virtues by study and contemplation.
 We also must develop theological virtues so that the form of life we live matches up properly with the life of Jesus, one abundant in charity and the epitome of faith and divine providence that gave all hope to an eternal future that would cancel out the frustrations and disappointments of earthly life, and reward us for the commitment and devotion that we have made during those years of earthly life.
@@ -897,7 +895,7 @@ Feudal world to urban lives.
 
 Alberti on architecture.
 What it is about a city that makes it the right place to live: a place where we (organic and reasonable beings) learn lessons and realize possibilities.
-Isolation of classes cemented by architectural division?
+Isolation of classes cemented by architectural division.
 
 Pope Nicholas V. The Papacy became a center of Greek thought.
 
@@ -905,15 +903,15 @@ Bruni. History of Florence. Biographies of Aristotle, Cicero, Dante and Petrarch
 
 Petrarch. Letters of Cicero. Skeptical towards the ancient philosophers. Not quite recovering the ancient perspective.
 
-Dante. Beatrice. Vita Nuova. to write of her as never before had been writteon of a woman.
+Dante. Beatrice. Vita Nuova. to write of her as never before had been written of a woman.
 Perfective love which he found in Scholastic philosophy.
 The Divine Comedy. The last great Romance of high medieval.
 
-Florentines thought of them as recovering the lost world view of the Athenian and Romans, which they thought devoted to humanizing and humanistic arts, centered around human nature and what was right for it.
+Florentines thought of themselves as recovering the lost world view of the Athenian and Romans, which they thought devoted to humanizing and humanistic arts, centered around human nature and what was right for it.
 Music, statue, architecture, poetry, song, drama, the secular life.
 Humanists, humanistic studies.
 
-School of Athens, Raphael, the secular knowledge. Medieval world view.
+School of Athens. Raphael, the secular knowledge. Medieval world view.
 
 An age that looks in both directions at the same time.
 
@@ -931,64 +929,65 @@ No Greek pagan's work was needed, to tell one how to live one's life.
 
 ### Witch prosecutions
 
-Witch hunts of 1400s - 1700s.
+Witch hunts of 1400s - 1700s does reflect the intellectual ethos of a period.
+Witches were burnt well into times of scientific development, of Descartes, Newton and Galileo.
 
-Reflection of the intellectual ethos of a period, ongoing in times of scientific development, of Descartes, Newton and Galileo.
-
-Every age has its witches, and a theory that confirms the fact that the targeted are the right ones.
+Every age has its witches, as well as a theory that confirms the fact that the targeted are the right ones.
 Laws have long dealt with witches and witchcraft, and old ideas have great staying power when they play into our most cherished prejudices.
 
-White witchery. Ancient Roman Laws charges the witches responsible for death of cattles, etc, judged based on the damage done.
-The law did not specifically care about the sources of the power, but more about the act and its consequences.
+White witchery.
+Ancient Roman Law prosecuted witches responsible for death of cattles, etc, who are judged based on the damage done, not about the sources of the power, just the act and its consequences.
 
 Christian morals praise and blame are reserved for the actions one has control over. (Emphasis on moral freedom.)
 Mens rea, intention to commit a crime: the mind itself must have been corrupted.
 
-Power above nature has two sources, God and the devil.
+Power above nature has two sources, the God and the devil.
 If the source of the witch's supernatural power is the devil, then it matters not what she does is minute or colossal, or for good or for evil.
 
 In some Medieval courts, the defendant could choose trial, ordeal or compurgation (a person would be acquitted if X number of persons swear to God his innocence).
+Not so for witch trials. The witch may have an advocate, who may face excommunication for defending the witch.
 
 * The accusatorial procedure. Court acts on accusation. Defendant face accusers.
 * The inquisitorial procedure. The court is actively involved in gathering evidence and investigating facts about the case (non-adversarial).
 
-Malleus Maleficarum, treatise on witchcraft and demonology.
-To say there is no witchcraft is heresy.
-The witch may have an advocate, who may face excommunication for defending the witch.
-Evidence includes the tear test: not weeping upon hearing Bible verses that would make a good Christian weep, like Mary's love for his dying son.
-The floatation test: float the witch on blessed water. Sink: innocent. Float: rejected by the water and guilty.
-The pricking test: pricking the body to find where the devil left his mark.
+Malleus Maleficarum, treatise on witchcraft and demonology, claims to say there is no witchcraft is heresy.
+Evidence includes
+* tear test: not weeping upon hearing Bible verses that would make a good Christian weep, like Mary's love for his dying son.
+* The floatation test: float the witch on blessed water. Sink: innocent. Float: rejected by the water and guilty.
+* The pricking test: pricking the body to find where the devil left his mark.
 
-How easily wrong-headed theory gaining support from undeveloped science can wreak misery and shame.
+We should realize how easily wrong-headed theory gaining support from undeveloped science can wreak misery and shame.
 We must be careful with our theories.
 
 ### Francis Bacon and Authority of Experience
 
 18th Century looked upon the science of Bacon and Newton in 17th Century as the source of their enlightenment.
 
-Lord Chancellor. Bribery charge. Stylish writer. Moral and juridical essayist.
-Elizabethan Age, expansionist and prosperous period, patron of explorers and scientists. The Reformation of Protestants.
+Bacon was Lord Chancellor, later dismissed on bribery charge. A stylish writer. Moral and juridical essayist.
+His time, the Elizabethan Age, was an expansionist and prosperous period. The queen was a patron of explorers and scientists.
 Rival of Edward Coke. Common Law of England.
 
-Rejection of the proposition that because an idea has been around for a long time, it somehow has proved itself.
+Bacon rejected the proposition that because an idea has been around for a long time, it somehow has proved itself.
 Challenge of orthodoxies.
 
-**Novum Organum**.
-The new method of Bacon that has never been tried before: method of invention and discovery by experience. Experimental science. Disciplined and systematic observations compiled and stored into "the table of discovery".
+**Novum Organum** (the new method) of Bacon that has never been tried before: method of invention and discovery by experience. Experimental science.
+Disciplined and systematic observations compiled and stored into "the table of discovery".
 Pursuit of knowledge through the guide of experience, not the authority of texts. New epistemological view.
-Move on from Aristotle and the ancient world. Progress.
+
+His view moved on from Aristotle and the ancient world.
 
 Two kinds of experimental work,
-* Experimenta lucifera. Light giving. Uncover the causal relationship in the natural world. _"Whatever deserves to exist, deserves to be known"_. No realm of inquiry is ruled out a priori. Create order out of chaos. Observe what there is. Porcupine research, "Baconian fact gathering".
+* Experimenta lucifera. Light giving. Uncover the causal relationship in the natural world. _"Whatever deserves to exist, deserves to be known"_. No realm of inquiry is ruled out a priori. Create order out of chaos. Observe what there is. Modern times sometimes use "Baconian fact gathering" negatively, like directionless experiments.
 * Experimenta fructifera. Fruit-bearing experiments. Bacon was not an impressive experimentalist himself.
 
 Inspired from Bacon, Popper and falsifiability to assess scientific theory. No number of confirmation will confirm a universal law. Falsification is proposed instead of verification of universal laws.
 
 Operations of the mind. The philosophy of humanity. Psychology.
-In moral thought, ethics, civics following the naturalist tradition of Aristotle. Man in the aggregate. Sociology.
-As well as biological, medical tradition of Hippocrates.
+In moral thought, ethics, civics Bacon's work followed the naturalist tradition of Aristotle. Man in the aggregate. Sociology.
+In biological, medical fields, the Hippocratic tradition.
 
-The New Method is not something new to the world. Galen of 2nd Century had theories on how experiments should be conducted.
+The New Method is not something new to the world.
+Galen of 2nd Century had theories on how experiments should be conducted.
 
 Bacon laid the foundations for a tradition to be relied on throughout the years to come, a clarity of the right method that the Scholastic period and Renaissance did not have.
 
