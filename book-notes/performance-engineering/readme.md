@@ -1256,6 +1256,9 @@ Julia.
 * Multiple dispatch (all the argument types (e.g. `method(object, x, y)`) decide the method, as opposed to single dispatch as `object.method(x, y)`.)
 * Type instability (ideally, return type should be known at compile time. `sqrt` always return `double`, even if on a perfect square. This means `sqrt(-1)` returns an error, instead of a complex value, as doing the latter would mean type is determined at runtime. This instability propagates, and eventually the language might end up relying boxes and runtime type tags, and this hurts performance.)
 * Parametric polymorphism (similar to C++ templates with constraint that the supplied type, e.g. has to be a subtype of something)
+* All concrete types are final (otherwise the size cannot be known at compile time. Python does not enforce this, hence it's not possible to implement NumPy in Python.)
+* Macros and meta programming
+* Parallel facilities
 
 Python integer never overflows, this means `x + 1` cannot be compiled into one instruction, this could also hurt performance.
 
