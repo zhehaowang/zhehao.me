@@ -994,3 +994,66 @@ Bacon laid the foundations for a tradition to be relied on throughout the years 
 _"Words are simply representatives of things in the external world. If you are interested in the external world, go in to that world. Don't sit around talking like a lover falls in love with a picture."_
 
 In challenging orthodoxies, are we establishing new orthodoxies?
+
+### Descartes and the authority of reason
+
+17th Century.
+Contemporary of Galileo and Bruno.
+Jesuit school education. Founder of analytical geometry, philosopher, mercenary.
+Father of modern philosophy.
+
+_"I think therefore I am."_
+Cogito, ergo sum.
+
+Rules for the direction of the mind.
+
+How does one find the right method that would spare one from self deception and superstition, but also from the melancholy state of a total skeptic?
+
+* **Discourse on method**
+* **Meditations on first philosophy**
+
+_"The power of forming good judgment and of distinguishing the truth from the false, is by nature equal in all man. But to be possessed of good mental powers is not sufficient, the principle matter is to apply them well."_
+
+What is the method of discovery? The guide to truth?
+History? History is a guide, but not an answer. Men who spend so much time in distant lands become strangers in their own country. All that one can glean would be generality subject to disagreement.
+Philosophy? Philosophers scarcely agree with each other on any major point.
+Mathematics? Abstract tool of analysis that is not entirely clear if you can map it to physical reality.
+
+For Descartes, the right method begins with a skeptical disposition: a profession of ignorance.
+What I think I know is probably laden with error, misapprehension and confusion.
+
+With this orientation, one is committed to accepting nothing, unless it can prevail on me as an idea of such power and clarity and indubitability, that I'm simply powerless to doubt it.
+The analytical and axiomatic approach.
+
+Anything that is not presented as an object of knowledge, e.g. objects of perception, could be delusion, and is not be accepted.
+"My eyes are blue" (external to the mind) is subject to deception.
+Thinking (as opposed to perception), however, is different.
+
+_"Thinking is another attribute of the soul, and here I discover what properly belongs to myself. This alone is inseparable from me. I am, therefore, precisely speaking, only a thinking thing, that is mind, or reason"_.
+
+"I think, therefore I am", is then an epistemological claim, a method by which to be sure of one is not deceived.
+The necessary precondition even for total skepticism.
+
+This method which begins with a thesis followed by good reasons that doubt its validity, then rational replies to the various objections, and the resting conclusion presented with clear and compelling force echoes with Sic et Non of medieval philosophy.
+In this sense, he was the father of modern philosophy, as well as the last great scholastic philosopher.
+
+* Accept nothing as true, accept what presents itself with a clarity and vividness that is irresistable.
+* Divide each problem into steps as small as possible.
+* Work from the solution of the smaller steps, then tackle the bigger problem and reach the general solution.
+* Test the general solution with persistence. Try to falsify the general solution.
+
+Philosophy of the mind (abstract, logical thoughts).
+**The mind-body problem** then becomes central to Descartes, whose discrepancy Aristotle saw, but the ancient philosophers did not expand on.
+How the immaterial, mental thing controls the moving, physical things?
+Would it be possible that something about the body can cause the mind to think? No to Descartes.
+
+Descartes, too, raises the question of whether it being possible to build a machine which would mimic our behavior so closely that we cannot tell it from a real person.
+
+He claims no, as it would not attain the idea of God, it would not be able to frame abstract concepts, and it could not creatively use language.
+
+The above would also be the marks of us rational and thinking beings: the rational, creative and discursive powers not at the level of perception, feeling or behavior, but rather the abstract and rational thought such as one sees in mathematics.
+
+His take on the mind-body problem then becomes that the mind has an independent standing.
+
+A theory of innate ideas. Something publicly and universally known cannot be known purely as a result of sensory experience, but some innate, intuitive, a priori mental power.
+(If sensory experiences are all that occupy the mind and all knowledge of the external world are by way of the sensory organs, then all that we could possibly know are our own experiences, sights, sounds, tastes, odors, and there is no basis to assume there is an external material world that is causally bringing me sensations. Everyone does know that the sensations are caused by the external material world impinging on the sense, therefore the above-stated innate power exists: the idea of matter must be something immiment in thought itself.)
