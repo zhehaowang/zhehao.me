@@ -49,13 +49,6 @@ $$
 
 \subsection{Directional derivative}
 
-\textbf{Homework notation}
-$$
-f'(x; u) = \lim\limits_{h \to 0}{\frac{f(x + hu) - f(x)}{h}}
-$$
-
-\textbf{Wikipedias notation}
-
 $$
 \bigtriangledown_v f(\vec{x}) = \lim\limits_{h \to 0}{\frac{f(\vec{x} + h\vec{v}) - f(\vec{x})}{h}}
 $$
@@ -172,7 +165,7 @@ $$
 \norm{x} = \sqrt{\langle x , x \rangle}
 $$
 
-\textbf{Parallelogram law} states that a norm can be written in terms of an inner product on $\mathbb{V} ~iff~ \forall x, x' \in \mathbb{V}$,
+\textbf{Parallelogram law} states that a norm can be written in terms of an inner product on $\mathbb{V}$ iff $\forall x, x' \in \mathbb{V}$,
 
 $$
 2 \norm{x}^2 + 2 \norm{x'}^2 = \norm{x + x'}^2 + \norm{x - x'}^2
@@ -967,12 +960,18 @@ $$
 
 \subsection{Different types of convergence}
 
+Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be deterministic)
+
 \begin{itemize}
-  \item Almost surely (a.s.) convergence
-  \item Convergence in probability
-  \item Convergence in $L^p$
-  \item Convergence in distribution
+  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
+  \item Convergence in probability: $T_n \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
+  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
+  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbb{P}[T \leq x]$
 \end{itemize}
+
+\textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
+One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
+Two implies four: if you converge in probability, you converge in distribution.
 
 \subsection{Markov chains}
 

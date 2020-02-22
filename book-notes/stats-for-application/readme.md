@@ -37,3 +37,6 @@ E --> \frac{1}{n} \Sigma_{i = 1}^{n}
 ```
 
 Example question: assume iid `x_i, ..., x_n` where `x_i ~ N(mu, sigma^2)`. Given a list of sample data points, find a good estimator for `mu` and `sigma^2`.
+
+LLN, what it says 
+
