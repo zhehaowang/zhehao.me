@@ -992,3 +992,5 @@ Galen of 2nd Century had theories on how experiments should be conducted.
 Bacon laid the foundations for a tradition to be relied on throughout the years to come, a clarity of the right method that the Scholastic period and Renaissance did not have.
 
 _"Words are simply representatives of things in the external world. If you are interested in the external world, go in to that world. Don't sit around talking like a lover falls in love with a picture."_
+
+In challenging orthodoxies, are we establishing new orthodoxies?
