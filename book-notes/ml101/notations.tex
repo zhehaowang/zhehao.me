@@ -973,6 +973,27 @@ Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be determin
 One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
 Two implies four: if you converge in probability, you converge in distribution.
 
+One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
+If $U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} U}$ and
+$V_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V}$, then
+
+$$
+V_n + U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V + U}
+$$
+
+$$
+V_n U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V  U}
+$$
+
+\textbf{Continuous mapping theorem}.
+
+Same goes for division if $V \neq 0$.
+Strong LLN suggests almost surely convergence, and weak LLN suggests convergence in probability.
+
+\textbf{Slutsky's theorem} suggests under certain scenario, you can combine two sequences when one converges in probability and the other converges in distribution.
+
+By Slutsky, we have the Delta method, which allows us to apply functions on sequence of r.v. in CLT.
+
 \subsection{Markov chains}
 
 Consider a physical system with the following properties
