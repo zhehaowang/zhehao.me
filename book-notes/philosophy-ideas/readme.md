@@ -1057,3 +1057,43 @@ His take on the mind-body problem then becomes that the mind has an independent 
 
 A theory of innate ideas. Something publicly and universally known cannot be known purely as a result of sensory experience, but some innate, intuitive, a priori mental power.
 (If sensory experiences are all that occupy the mind and all knowledge of the external world are by way of the sensory organs, then all that we could possibly know are our own experiences, sights, sounds, tastes, odors, and there is no basis to assume there is an external material world that is causally bringing me sensations. Everyone does know that the sensations are caused by the external material world impinging on the sense, therefore the above-stated innate power exists: the idea of matter must be something immiment in thought itself.)
+
+### Newton and science
+
+1643 - 1727. Cambridge, Trinity College. Taught Plato, Aristotle, law, theologies at school, and read Descartes, Kepler, Hobbs, Copernicus and Galileo.
+
+**Certain philosophical questions**.
+_"Plato is my friend, Aristotle is my friend, but my best friend is truth."_
+Derived his interest in maths from astrology.
+Plague caused suspension of studies in Cambridge, and made the most genius discoveries.
+
+Secular, forward-looking and analytically rigorous methods.
+One not in the thrall of ancient wisdom or scholastic niceties.
+Novel instruments, methods of mathematical analyses.
+Model for succeeding generations of scientists. Remarkably productive.
+
+Newton was profoundly interested in the scripture, not as utterly secular as 18th Century propaganda would have it.
+
+**Principia Mathematica**
+Universal gravitation, motion of bodies, mass of the sun, motion of the tides and stars.
+Corrected Kepler's theory of motion.
+
+Calculus. **Mathematized / quantified**, maths as an applied method in astronomy and dynamics, and as a mode of discovery.
+The relation between maths and physics, obvious now because of Newton, but not to his predecessors.
+
+Revolutionary change in understanding of science and methods.
+We become knowledge gathering and theory testing entities.
+Far more than just building on earlier observations (if on anyone, more on Galileo's foundational work than anybody else).
+
+Reduce the complex problem. (ideal mass, abstract the object to a point.)
+Introduced the idea to **simplify** to an ideal world which can be used to test theories and conjectures in the real world. The role of **the idealized model**. (The ancient Greeks did not view problems as collection of parts.)
+Theoretical science at their best.
+
+Interest in alchemy. Hundreds of pages unpublished on the subject.
+
+A lifelong student of the bible, Newton believed the harmony and lawfulness he discovered were reflections of perfection of God's creation.
+Seeing the compatibility between the scientific discovery and church's teaching were common for scientists of his time.
+
+The Royal Society of London, on the account of no one's words.
+The crown became patrons of scientists, it turns to science to investigate the claim of a woman giving birth to a sheep, whereas earlier clergyman would be sent instead.
+Useful knowledge not enthralled by canon.
