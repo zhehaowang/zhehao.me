@@ -284,3 +284,56 @@ Ovid of these did not receive patronage of the emperor, due to his books on prac
 
 Shakespeare's work is influenced by Ovid's Metamorphosis, often times quotes and allusions in the former traces to stories in Metamorphosis.
 Ovid named his book Metamorphosis due to each story being related with turning from one form to another, though many stories barely reflect that.
+
+### Norse mythology
+
+Not classical per se, but rather a collection of stories from mostly Prose Edda. (Poetic Edda is a different piece that most likely traces back to similar origins.)
+
+Odin Allfather, he who sacrificed himself to himself, hang off of Yggdrasil the world tree, and discovered runes.
+Sacrificed one eye for wisdom to his uncle, Mimir the guardian of wisdom.
+Odin is wisest of all gods, and commonly associated with two ravens thought and memory, his arm ring Draupnir that reproduces itself, and his spear Gungnir, oaths sworn on which are deemed sacred.
+Odin's hall Valhalla would host the worthy dead warriors, the einherjar, who are brought by the valkyrie to Valhalla to drink and feast and battle all day, and to follow Odin to the battleground of Ragnarok.
+
+Loki is the child of giants and Odin's blood brother. Mischievous, dangerous and master of plots and schemes. The gods turn to him when something goes wrong, or they need to solve problems.
+
+Frigg wife of Odin, mother of Balder and Hod, stepmother to Thor, Heimdall, Tyr, Bragi, Vidar, Vali.
+
+Thor the thunder god and mightiest of Aesir. His belt Megingjörð gives him power, and he wields Mjölnir, a one-handed hammer that shrinks and enlarges, always hits its foe after being tossed, and comes back.
+
+Men were made by Odin and his brothers from ash and elm trees (ask and embla), men and women respectively.
+
+The nine worlds of Yggdrasil are connected by its root, including realm of men, jotunn, gods, light elves, helheim, etc.
+
+Jötunn which some translates to giants are beings no less powerful than Aesirs themselves.
+Notable ones include Skaði wife of Njord of Vanir, the stranger and his horse Svaðilfari who built the wall of Asgard and was deceived by the gods, mother of Fenrir, Jörmungandr and Hel by Loki, etc.
+
+Mjölnir was gifted to Thor by the dwarf brothers Brokkr and Eitri.
+The events were triggered by Loki stealing Thor's wife, Sif's hair.
+A contest is then held between the brothers and the sons of Ivaldi to produce the most magnificent gifts to the gods, including Gullinbursti the golden boar and Skíðblaðnir the foldable and always fair wind ship for Frey, Mjölnir and Sif's golden hair for Thor, and Gungnir and Draupnir for Odin.
+
+Loki fathered Hel, Jörmungandr and Fenrir with the giantess Angrboða. Hel whose face was half living, half dead; Jörmungandr the venomous midgard serpent, and Fenrir the evergrowing and hungry wolf.
+The gods traveled to Jötunheimr to bring the ones prophecied for the doom of the gods back. Jörmungandr is tossed into the ocean, Hel sent to the realm of the dead who did not ascend to Valhalla, and Fenrir bound by the silk-like chains Gleipnir made by dwarves from bird's spittle, mountain's root, fish's breath, women's beard, bear's sinews and sound of cat's footfall, hence these items can no longer be found in our world.
+Odin and the gods promised Fenrir that they are testing the chain on him and would release him if he's unable to break free, and as a sign of good faith the war god Tyr put his hand in Fenrir. Fenrir was deceived and bit off Tyr's right hand.
+
+Mead of poetry was produced from the blood of Kvasir.
+Kvasir was created by the gods from the spits of Aesirs and Vanirs after a truce between both. Kvasir knows and can answer everything.
+In his travels evil dwarf brothers murdered him and brewed mead from his blood. The mead was later held by a giant, and Odin stole mead for the gods from his daughter.
+
+The events of Ragnarok were set forth with the death of the fair Balder.
+Balder saw himself in Hel's realm in his dreams. His mother asked everything in the world, plant, metals, and living creatures to swear to not harm Balder. They did, and spears tossed at Balder would deflect, and disease would avoid Balder.
+She asked all except mistletoe, deemed too insignificant.
+Loki learnt of this, and brewed poison from mistletoe.
+The gods were having fun tossing weapons at Balder seeing them deflected, Hod the blind god and Balder's brother missed the fun. Loki instructed him to shoot Balder with arrow dipped in mistletoe poison, and Balder died.
+
+Hel agreed to release Balder if all beings in the living world want him back, and Loki disguised as an old woman was the only one who said no.
+
+Loki taunted the gods at the autumn feast, and was later captured by the fishnet he invented, when disguised as a salmon. He was bound by the entrails of his son with his wife Sigyn, and Skaði placed a serpent atop him.
+Sigyn would hold a bowl above his head and catch the venom dripping from the serpent. When Sigyn moved away to empty the bowl, Loki would wriggle from the pain of venom dripping on his body, and the earth would shake.
+
+Ragnarok is heralded by Fimbulwinter, a winter longer and colder than any.
+During which Fenrir would escape his bound, as will Loki. Loki would lead legions of Hel atop the ship Naglfar, made from fingernails of the dead, and with the frost giant Hrym and the fire giant Surtr, battle the Aesirs and the einherjar led by Odin.
+Odin will be devoured by Fenrir. Vidar Odin's son would split Fenrir's jaw and killing him.
+Frey will fall to Surtr's flaming sword, Thor would kill Jörmungandr and die from its venom, Tyr and the hound Garm will kill each other, as will Heimdall and Loki.
+
+Balder and Hod would return from Hel, Vidar and Vali Odin's sons will live, as will Thor's sons Magni and Modi.
+A man and woman, life and life's desire, hiding in Yggdrasil, would also survive and become the ancestors of mankind, and a new age would begin.
