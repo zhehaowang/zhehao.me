@@ -40,3 +40,19 @@ Example question: assume iid `x_i, ..., x_n` where `x_i ~ N(mu, sigma^2)`. Given
 
 LLN, what it says 
 
+### Parametric inference
+
+Probability mass function: describe discrete probability distribution.
+
+**The ultimate goal of statistics is to say what distribution your data comes from.**
+
+Say, you have 20 data points, number of siblings (including self) a person has to estimate 7 parameters (pmf representing those with 1, 2, ...>7 siblings), then you probably can't estimate all of them well.
+Try modeling a Poisson distribution instead, where you estimate one parameter lambda.
+
+**The purpose of modeling is to restrict the space of possible distributions to a subspace that is possible for me to estimate.**
+
+The problem then becomes the lambda you are trying to estimate is not just a simple mean.
+
+Your job as a statistician is to inject as much knowledge about the question, such that the data has to do a minimal job, henceforth you'll need less data.
+
+Statistical experiments.

@@ -1026,6 +1026,36 @@ In general, the Degrees of Freedom of an estimate of a parameter are equal to th
 
 Hence most of the time sample variance has $N - 1$ degrees of freedom, $N$ random points minus the 1 intermediate step, the sample mean.
 
+\subsection{Statistical experiment}
+
+The ultimate goal of statistics is to say what distribution your data comes from.
+
+The purpose of modeling is to restrict the space of possible distributions to a subspace that is possible for me to estimate.
+All models are wrong, some models are useful.
+
+A \textbf{statistical experiment} is the pair $(E, \{ \mathbb{P}_theta \}_{\theta \in \Theta})$, where $E$ is a set, the \textbf{sample space} (the possible values my observations can take), and each of $P_theta$ is a probability distribution
+(e.g. $Poiss(\theta)$, $Bernoulli(\theta)$, etc. $\theta$ is a parameter set, it can be a pair, a couple of numbers, etc. The point is, once $\theta$ is known, you know the distribution perfectly.)
+
+Well specified means for an observation $X$, $\exists \theta \in \Theta$ where $X ~ \mathbb{P}(\theta)$. This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_n$).
+
+$\theta$ ($\theta^*$) is the true parameter we want to estimate.
+$\theta$ may have physical links to the phenomenon, like in linear regression, it suggests how sensitive it is to a dimension.
+
+A \textbf{parametric model / statistics} is where $\theta$ has finite number of values $\theta_d$, and all $\theta_d \in \mathbb{R}$.
+
+Non-parametric estimation can be, e.g. when you have infinite numbers in $\theta$ to estimate, or when $\theta$ is a function.
+
+Example models:
+\begin{itemize}
+  \item A Bernoulli trial is a pair $(\{0, 1\}, { Ber(p) }_{p \in (0, 1)})$.
+  \item An exponential trial is a pair $((0, +]\infty), { Exp(\lambda) }_{\lambda > 0})$.
+  \item A Poisson trial is a pair $(\mathbb{N}, { Poiss(\lambda) }_{\lambda > 0})$.
+  \item A normal distribution is a pair $(\mathbb{R}, { \mathbf{N}(\mu, \sigma^2) }_{\mu \in \mathbb{R}, \sigma^2 > 0})$
+  \item A Gaussian with known distribution (imagine machine parts with manufacturer labeled standard deviation), $(\mathbb{R}, { \mathbf{N}(\mu, \sigma^2) }_{\mu \in \mathbb{R}})$, compared with previous, the parameter space only need to specify $\mu$, as $\sigma^2$ is known
+  \item Censored data (imagine asking people's salary and getting answers like 5 figures). Given an indicator function $I$ ($X = I(Y > 5)$, meaning $X = 1$ if $Y > 5$ else $X = 0$), and $Y ~ Exp(\lambda)$, then we have $(\{0, 1\}, \{ Ber(e^{-5 \lambda}) \}_{\lambda > 0})$, the parameter space can also be expressed in $p$, the $\lambda$ comes from integral of exponential on $(5, \lambda)$.
+  \item Or an arbitrary pmf (probability mass function) for a sample space of $1 \dots 100$.
+\end{itemize}
+
 \subsection{Markov chains}
 
 Consider a physical system with the following properties
