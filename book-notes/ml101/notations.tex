@@ -973,6 +973,14 @@ Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be determin
 One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
 Two implies four: if you converge in probability, you converge in distribution.
 
+\textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
+
+$$
+T_n \overset{a.s. / \mathbb{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} T} \implies f(T_n) \overset{a.s. / \mathbb{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} f(T)}
+$$
+
+\textbf{Intuition}: apply a continuous function on the sequence of r.v. and convergence still holds.
+
 One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
 If $U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} U}$ and
 $V_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V}$, then
@@ -985,14 +993,38 @@ $$
 V_n U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V  U}
 $$
 
-\textbf{Continuous mapping theorem}.
-
 Same goes for division if $V \neq 0$.
 Strong LLN suggests almost surely convergence, and weak LLN suggests convergence in probability.
 
 \textbf{Slutsky's theorem} suggests under certain scenario, you can combine two sequences when one converges in probability and the other converges in distribution.
 
-By Slutsky, we have the Delta method, which allows us to apply functions on sequence of r.v. in CLT.
+By Slutsky, we have the \textbf{Delta method}, which allows us to apply functions on sequence of r.v. in CLT. I.e.
+
+Let $(Z_n)_{n \geq 1}$ be a sequence of r.v. that asymptotically normal around $\theta$, i.e. satisfies
+$$
+\sqrt{n} (Z_n - \theta) \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, \sigma^2)}
+$$
+
+Let $g: \mathbb{R} \rightarrow \mathbb{R}$ be continuously differentiable at the point $\theta$, then $g(Z_n)$ is also asymptotically normal, more precisely
+$$
+\sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, g'(\theta)^2 \sigma^2)}
+$$
+
+\subsection{Confidence interval}
+
+Given observations $x_1, \dots, x_n$ and a \textbf{confidence level} $\gamma$, a valid \textbf{confidence interval} has a $\gamma$ probability of containing the true underlying parameter.
+
+\textbf{Intuition}: you are given samples and want to understand something about the underlying distribution, in particular, you have sample mean and want to understand something about population mean.
+Given a level of confidence $x\%$, you want to find the interval which contains the population mean with $x\%$.
+When dealing with normal distribution, confidence interval depends on whether population standard deviation is known or estimated with sample standard deviation. If not, then student's T distribution is used as the critical value.
+
+\subsection{Degree of freedom}
+
+The number of values in the final calculation of a statistic that are free to vary without violating constraints.
+
+In general, the Degrees of Freedom of an estimate of a parameter are equal to the number of independent score that go into the estimate minus the number of parameters used as intermediate steps in the estimation of the parameter itself.
+
+Hence most of the time sample variance has $N - 1$ degrees of freedom, $N$ random points minus the 1 intermediate step, the sample mean.
 
 \subsection{Markov chains}
 
