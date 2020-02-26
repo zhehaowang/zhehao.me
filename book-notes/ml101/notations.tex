@@ -1036,7 +1036,7 @@ All models are wrong, some models are useful.
 A \textbf{statistical experiment} is the pair $(E, \{ \mathbb{P}_theta \}_{\theta \in \Theta})$, where $E$ is a set, the \textbf{sample space} (the possible values my observations can take), and each of $P_theta$ is a probability distribution
 (e.g. $Poiss(\theta)$, $Bernoulli(\theta)$, etc. $\theta$ is a parameter set, it can be a pair, a couple of numbers, etc. The point is, once $\theta$ is known, you know the distribution perfectly.)
 
-Well specified means for an observation $X$, $\exists \theta \in \Theta$ where $X ~ \mathbb{P}(\theta)$. This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_n$).
+Well specified means for an observation $X$, $\exists \theta \in \Theta$ where $X \sim \mathbb{P}(\theta)$. This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_n$).
 
 $\theta$ ($\theta^*$) is the true parameter we want to estimate.
 $\theta$ may have physical links to the phenomenon, like in linear regression, it suggests how sensitive it is to a dimension.
@@ -1047,14 +1047,51 @@ Non-parametric estimation can be, e.g. when you have infinite numbers in $\theta
 
 Example models:
 \begin{itemize}
-  \item A Bernoulli trial is a pair $(\{0, 1\}, { Ber(p) }_{p \in (0, 1)})$.
-  \item An exponential trial is a pair $((0, +]\infty), { Exp(\lambda) }_{\lambda > 0})$.
-  \item A Poisson trial is a pair $(\mathbb{N}, { Poiss(\lambda) }_{\lambda > 0})$.
-  \item A normal distribution is a pair $(\mathbb{R}, { \mathbf{N}(\mu, \sigma^2) }_{\mu \in \mathbb{R}, \sigma^2 > 0})$
+  \item A Bernoulli trial is a pair $(\{0, 1\}, \{ Ber(p) \}_{p \in (0, 1)})$.
+  \item An exponential trial is a pair $((0, +]\infty), \{ Exp(\lambda) \}_{\lambda > 0})$.
+  \item A Poisson trial is a pair $(\mathbb{N}, \{ Poiss(\lambda) \}_{\lambda > 0})$.
+  \item A normal distribution is a pair $(\mathbb{R}, \{ \mathbf{N}(\mu, \sigma^2) \}_{\mu \in \mathbb{R}, \sigma^2 > 0})$
   \item A Gaussian with known distribution (imagine machine parts with manufacturer labeled standard deviation), $(\mathbb{R}, { \mathbf{N}(\mu, \sigma^2) }_{\mu \in \mathbb{R}})$, compared with previous, the parameter space only need to specify $\mu$, as $\sigma^2$ is known
-  \item Censored data (imagine asking people's salary and getting answers like 5 figures). Given an indicator function $I$ ($X = I(Y > 5)$, meaning $X = 1$ if $Y > 5$ else $X = 0$), and $Y ~ Exp(\lambda)$, then we have $(\{0, 1\}, \{ Ber(e^{-5 \lambda}) \}_{\lambda > 0})$, the parameter space can also be expressed in $p$, the $\lambda$ comes from integral of exponential on $(5, \lambda)$.
+  \item Censored data (imagine asking people's salary and getting answers like 5 figures). Given an indicator function $I$ ($X = I(Y > 5)$, meaning $X = 1$ if $Y > 5$ else $X = 0$), and $Y \sim Exp(\lambda)$, then we have $(\{0, 1\}, \{ Ber(e^{-5 \lambda}) \}_{\lambda > 0})$, the parameter space can also be expressed in $p$, the $\lambda$ comes from integral of exponential on $(5, \lambda)$.
+  \item A uniform distribution $X \sim \mathbf{U}([0, \theta])$, $\theta > 0$ is a pair $([0, +\infty), \{ Unf(\theta) \}_{\theta > 0})$. Note that the sample space is not $[0, \theta]$ as it should not depend on $\theta$.
   \item Or an arbitrary pmf (probability mass function) for a sample space of $1 \dots 100$.
 \end{itemize}
+
+The parameter $\theta$ is called \textbf{identified / identifiable} (in this model) iff the map $ \theta in \Theta \to \mathbb{P}_{\theta}$ is \textbf{injective}. I.e.
+
+$$
+\theta \neq \theta' \implies \mathbb{P}_{\theta} \neq \mathbb{P}_{\theta'}
+$$
+
+\textbf{Intuition}: it could be the case that two different $\theta$s can give me the exact same probabilities, in which case $\theta$ is not identifiable (even with infinite amount of data). In the above examples the parameters are identifiable.
+
+($\mathbf{N}(\mu, \sigma^2)$ minus $\mu$ then divide by $\sigma$ gives you standard Gaussian.)
+
+Given a statistical model, we want to estimate $\theta$.
+
+An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\theta}(X_1, \dots, X_n)$ a.k.a statistic.
+(e.g. average, max, etc. Measurable means that given data, you can compute it, it does not depend on $\theta$. Things that are implicitly defined, such as sup or inf, are not measurable.)
+
+An estimator is \textbf{weakly consistent} if it converges in probability to $\theta$, or strongly consistent if it converges almost surely.
+(When you get more data, the estimator converges to the true parameters.)
+
+The \textbf{bias} of an estimator is how far the $\hat{\theta}$ it gets is from $\theta$: $\mathbf{E}[\hat{\theta}] - \theta$.
+If the above is zero, estimator is unbiased. (If I were to repeat the experiment over and over again, on average we get the true parameter. But often times you don't get to repeat the experiment.)
+
+However being unbiased is not the only thing we are after: consider a Bernoulli distribution, for $n$ i.i.d data points, by linearality $\mathbf{E}[\bar{X_n}] = \frac{1}{n} \Sigma_{i=1}^{n}{\mathbf{E}[X_i]} = \mathbf{E}[X_1] = p$.
+This is saying the bias of $n$ data points is as good as $1$ data point.
+
+Hence we also have \textbf{quadratic risk} of $\hat{\theta}$, $\mathbf{E}[|\hat{\theta} - \theta|^2]$.
+If this goes to $0$ as $n \to \infty$, then this is saying $\hat{\theta} \overset{L^2}{\underset{n \rightarrow \infty}{\longrightarrow}} \theta$, and this implies convergence in probablity, hence $\hat{\theta}$ is weakly consistent.
+So going back to the Bernoulli example, $\mathbf{E}[\bar{X_n}]$ is consistent as $n \to \infty$, but $\mathbf{E}[X_1]$ is not.
+
+This \textbf{quadratic risk} is the sum of bias and variance.
+
+\begin{align*}
+   \mathbf{E}[|\hat{\theta} - \theta|^2] &= \mathbf{E}[(\hat{\theta} - \mathbf{E}[\hat{\theta}] + \mathbf{E}[\hat{\theta}] - \theta)^2] \\
+                                         &= \mathbf{E}[(\hat{\theta} - \mathbf{E}(\hat{\theta}))^2] + (\mathbf{E}[\hat{\theta}] - \theta)^2 \\
+                                         &= \mathbf{V}(\hat{\theta}) + bias^2
+\end{align*}
 
 \subsection{Markov chains}
 
