@@ -963,10 +963,10 @@ $$
 Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be deterministic)
 
 \begin{itemize}
-  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
-  \item Convergence in probability: $T_n \overset{\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
-  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
-  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbb{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbb{P}[T \leq x]$
+  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
+  \item Convergence in probability: $T_n \overset{\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
+  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
+  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbf{P}[T \leq x]$
 \end{itemize}
 
 \textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
@@ -976,21 +976,21 @@ Two implies four: if you converge in probability, you converge in distribution.
 \textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
 
 $$
-T_n \overset{a.s. / \mathbb{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} T} \implies f(T_n) \overset{a.s. / \mathbb{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} f(T)}
+T_n \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} T} \implies f(T_n) \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} f(T)}
 $$
 
 \textbf{Intuition}: apply a continuous function on the sequence of r.v. and convergence still holds.
 
 One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
-If $U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} U}$ and
-$V_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V}$, then
+If $U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} U}$ and
+$V_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V}$, then
 
 $$
-V_n + U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V + U}
+V_n + U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V + U}
 $$
 
 $$
-V_n U_n \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V  U}
+V_n U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V  U}
 $$
 
 Same goes for division if $V \neq 0$.
@@ -1002,12 +1002,12 @@ By Slutsky, we have the \textbf{Delta method}, which allows us to apply function
 
 Let $(Z_n)_{n \geq 1}$ be a sequence of r.v. that asymptotically normal around $\theta$, i.e. satisfies
 $$
-\sqrt{n} (Z_n - \theta) \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, \sigma^2)}
+\sqrt{n} (Z_n - \theta) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, \sigma^2)}
 $$
 
 Let $g: \mathbb{R} \rightarrow \mathbb{R}$ be continuously differentiable at the point $\theta$, then $g(Z_n)$ is also asymptotically normal, more precisely
 $$
-\sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbb{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, g'(\theta)^2 \sigma^2)}
+\sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, g'(\theta)^2 \sigma^2)}
 $$
 
 \subsection{Confidence interval}
@@ -1022,7 +1022,7 @@ When dealing with normal distribution, confidence interval depends on whether po
 
 The number of values in the final calculation of a statistic that are free to vary without violating constraints.
 
-In general, the Degrees of Freedom of an estimate of a parameter are equal to the number of independent score that go into the estimate minus the number of parameters used as intermediate steps in the estimation of the parameter itself.
+In general, the \textbf{Degrees of Freedom} of an estimate of a parameter are equal to the number of independent score that go into the estimate minus the number of parameters used as intermediate steps in the estimation of the parameter itself.
 
 Hence most of the time sample variance has $N - 1$ degrees of freedom, $N$ random points minus the 1 intermediate step, the sample mean.
 
@@ -1030,25 +1030,27 @@ Hence most of the time sample variance has $N - 1$ degrees of freedom, $N$ rando
 
 The ultimate goal of statistics is to say what distribution your data comes from.
 
-The purpose of modeling is to restrict the space of possible distributions to a subspace that is possible for me to estimate.
-All models are wrong, some models are useful.
+The purpose of modeling is to restrict the space of possible distributions to a subspace that is possible to estimate.
+\\
+In that sense, all models are wrong, some models are useful.
 
-A \textbf{statistical experiment} is the pair $(E, \{ \mathbb{P}_theta \}_{\theta \in \Theta})$, where $E$ is a set, the \textbf{sample space} (the possible values my observations can take), and each of $P_theta$ is a probability distribution
+A \textbf{statistical experiment} is the pair $(E, \{ \mathbf{P}_{\theta} \}_{\theta \in \Theta})$, where $E$ is a set, the \textbf{sample space} (the possible values my observations can take), and each of $P_{\theta}$ is a probability distribution
 (e.g. $Poiss(\theta)$, $Bernoulli(\theta)$, etc. $\theta$ is a parameter set, it can be a pair, a couple of numbers, etc. The point is, once $\theta$ is known, you know the distribution perfectly.)
-
-Well specified means for an observation $X$, $\exists \theta \in \Theta$ where $X \sim \mathbb{P}(\theta)$. This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_n$).
-
+\\
+\textbf{Well specified} means for an observation $X$, $\exists \theta \in \Theta$ where $X \sim \mathbf{P}(\theta)$.
+This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_n$).
+\\
 $\theta$ ($\theta^*$) is the true parameter we want to estimate.
 $\theta$ may have physical links to the phenomenon, like in linear regression, it suggests how sensitive it is to a dimension.
-
+\\
 A \textbf{parametric model / statistics} is where $\theta$ has finite number of values $\theta_d$, and all $\theta_d \in \mathbb{R}$.
-
+\\
 Non-parametric estimation can be, e.g. when you have infinite numbers in $\theta$ to estimate, or when $\theta$ is a function.
-
+\\
 Example models:
 \begin{itemize}
   \item A Bernoulli trial is a pair $(\{0, 1\}, \{ Ber(p) \}_{p \in (0, 1)})$.
-  \item An exponential trial is a pair $((0, +]\infty), \{ Exp(\lambda) \}_{\lambda > 0})$.
+  \item An exponential trial is a pair $((0, +\infty]), \{ Exp(\lambda) \}_{\lambda > 0})$.
   \item A Poisson trial is a pair $(\mathbb{N}, \{ Poiss(\lambda) \}_{\lambda > 0})$.
   \item A normal distribution is a pair $(\mathbb{R}, \{ \mathbf{N}(\mu, \sigma^2) \}_{\mu \in \mathbb{R}, \sigma^2 > 0})$
   \item A Gaussian with known distribution (imagine machine parts with manufacturer labeled standard deviation), $(\mathbb{R}, { \mathbf{N}(\mu, \sigma^2) }_{\mu \in \mathbb{R}})$, compared with previous, the parameter space only need to specify $\mu$, as $\sigma^2$ is known
@@ -1057,10 +1059,10 @@ Example models:
   \item Or an arbitrary pmf (probability mass function) for a sample space of $1 \dots 100$.
 \end{itemize}
 
-The parameter $\theta$ is called \textbf{identified / identifiable} (in this model) iff the map $ \theta in \Theta \to \mathbb{P}_{\theta}$ is \textbf{injective}. I.e.
+The parameter $\theta$ is called \textbf{identified / identifiable} (in this model) iff the map $ \theta \in \Theta \to \mathbf{P}_{\theta}$ is \textbf{injective}. I.e.
 
 $$
-\theta \neq \theta' \implies \mathbb{P}_{\theta} \neq \mathbb{P}_{\theta'}
+\theta \neq \theta' \implies \mathbf{P}_{\theta} \neq \mathbf{P}_{\theta'}
 $$
 
 \textbf{Intuition}: it could be the case that two different $\theta$s can give me the exact same probabilities, in which case $\theta$ is not identifiable (even with infinite amount of data). In the above examples the parameters are identifiable.
@@ -1075,23 +1077,28 @@ An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\the
 An estimator is \textbf{weakly consistent} if it converges in probability to $\theta$, or strongly consistent if it converges almost surely.
 (When you get more data, the estimator converges to the true parameters.)
 
-The \textbf{bias} of an estimator is how far the $\hat{\theta}$ it gets is from $\theta$: $\mathbf{E}[\hat{\theta}] - \theta$.
+The \textbf{bias} of an estimator is how far the $\hat{\theta}$ it gets is from $\theta$: $\mathbb{E}[\hat{\theta}] - \theta$.
 If the above is zero, estimator is unbiased. (If I were to repeat the experiment over and over again, on average we get the true parameter. But often times you don't get to repeat the experiment.)
 
-However being unbiased is not the only thing we are after: consider a Bernoulli distribution, for $n$ i.i.d data points, by linearality $\mathbf{E}[\bar{X_n}] = \frac{1}{n} \Sigma_{i=1}^{n}{\mathbf{E}[X_i]} = \mathbf{E}[X_1] = p$.
+However being unbiased is not the only thing we are after: consider a Bernoulli distribution, for $n$ i.i.d data points, by linearality $\mathbb{E}[\bar{X_n}] = \frac{1}{n} \Sigma_{i=1}^{n}{\mathbb{E}[X_i]} = \mathbb{E}[X_1] = p$.
 This is saying the bias of $n$ data points is as good as $1$ data point.
 
-Hence we also have \textbf{quadratic risk} of $\hat{\theta}$, $\mathbf{E}[|\hat{\theta} - \theta|^2]$.
+Hence we also have \textbf{quadratic risk} of $\hat{\theta}$, $\mathbb{E}[|\hat{\theta} - \theta|^2]$.
 If this goes to $0$ as $n \to \infty$, then this is saying $\hat{\theta} \overset{L^2}{\underset{n \rightarrow \infty}{\longrightarrow}} \theta$, and this implies convergence in probablity, hence $\hat{\theta}$ is weakly consistent.
-So going back to the Bernoulli example, $\mathbf{E}[\bar{X_n}]$ is consistent as $n \to \infty$, but $\mathbf{E}[X_1]$ is not.
+So going back to the Bernoulli example, $\mathbb{E}[\bar{X_n}]$ is consistent as $n \to \infty$, but $\mathbb{E}[X_1]$ is not.
 
 This \textbf{quadratic risk} is the sum of bias and variance.
 
 \begin{align*}
-   \mathbf{E}[|\hat{\theta} - \theta|^2] &= \mathbf{E}[(\hat{\theta} - \mathbf{E}[\hat{\theta}] + \mathbf{E}[\hat{\theta}] - \theta)^2] \\
-                                         &= \mathbf{E}[(\hat{\theta} - \mathbf{E}(\hat{\theta}))^2] + (\mathbf{E}[\hat{\theta}] - \theta)^2 \\
+   \mathbb{E}[|\hat{\theta} - \theta|^2] &= \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}] + \mathbb{E}[\hat{\theta}] - \theta)^2] \\
+                                         &= \mathbb{E}[(\hat{\theta} - \mathbb{E}(\hat{\theta}))^2] + (\mathbb{E}[\hat{\theta}] - \theta)^2 \\
                                          &= \mathbf{V}(\hat{\theta}) + bias^2
 \end{align*}
+
+\subsection{Maximum likelihood estimation}
+
+
+
 
 \subsection{Markov chains}
 
