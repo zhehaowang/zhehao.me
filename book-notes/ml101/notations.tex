@@ -1010,14 +1010,6 @@ $$
 \sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, g'(\theta)^2 \sigma^2)}
 $$
 
-\subsection{Confidence interval}
-
-Given observations $x_1, \dots, x_n$ and a \textbf{confidence level} $\gamma$, a valid \textbf{confidence interval} has a $\gamma$ probability of containing the true underlying parameter.
-
-\textbf{Intuition}: you are given samples and want to understand something about the underlying distribution, in particular, you have sample mean and want to understand something about population mean.
-Given a level of confidence $x\%$, you want to find the interval which contains the population mean with $x\%$.
-When dealing with normal distribution, confidence interval depends on whether population standard deviation is known or estimated with sample standard deviation. If not, then student's T distribution is used as the critical value.
-
 \subsection{Degree of freedom}
 
 The number of values in the final calculation of a statistic that are free to vary without violating constraints.
@@ -1083,11 +1075,11 @@ If the above is zero, estimator is unbiased. (If I were to repeat the experiment
 However being unbiased is not the only thing we are after: consider a Bernoulli distribution, for $n$ i.i.d data points, by linearality $\mathbb{E}[\bar{X_n}] = \frac{1}{n} \Sigma_{i=1}^{n}{\mathbb{E}[X_i]} = \mathbb{E}[X_1] = p$.
 This is saying the bias of $n$ data points is as good as $1$ data point.
 
-Hence we also have \textbf{quadratic risk} of $\hat{\theta}$, $\mathbb{E}[|\hat{\theta} - \theta|^2]$.
+Hence we also have \textbf{(quadratic) risk} of $\hat{\theta}$, $\mathbb{E}[|\hat{\theta} - \theta|^2]$.
 If this goes to $0$ as $n \to \infty$, then this is saying $\hat{\theta} \overset{L^2}{\underset{n \rightarrow \infty}{\longrightarrow}} \theta$, and this implies convergence in probablity, hence $\hat{\theta}$ is weakly consistent.
 So going back to the Bernoulli example, $\mathbb{E}[\bar{X_n}]$ is consistent as $n \to \infty$, but $\mathbb{E}[X_1]$ is not.
 
-This \textbf{quadratic risk} is the sum of bias and variance.
+This risk is the sum of bias and variance.
 
 \begin{align*}
    \mathbb{E}[|\hat{\theta} - \theta|^2] &= \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}] + \mathbb{E}[\hat{\theta}] - \theta)^2] \\
@@ -1095,10 +1087,44 @@ This \textbf{quadratic risk} is the sum of bias and variance.
                                          &= \mathbf{V}(\hat{\theta}) + bias^2
 \end{align*}
 
+E.g. given $X_1 \dots X_n \sim Ber(\theta)$,
+\begin{itemize}
+  \item the estimator $\bar{X_n}$ has 0 bias and $\frac{1}{n} \theta (1 - \theta)$ variance. Its risk is the sum of the two.
+  \item the estimator 0.5 has bias $(0.5 - \theta)$ and variance $0$.
+  \item the estimator $X_1$ has bias 0 and variance $\theta (1 - \theta)$. In this sense the first estimator has smaller risk.
+\end{itemize}
+
+Bias variance tradeoff happens all the time especially in high dimensional and non-parametric estimations.
+
+\subsection{Confidence interval}
+
+Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a statistical model based on observations $X_1, \dots X_n$ and assume $\Theta \subseteq \mathbb{R}$.
+
+Let $\alpha \in (0, 1)$, \textbf{confidence interval} of level $1 - \alpha$ for $\theta$ means any random (i.e. depending on $X_1 \dots X_n$) interval $\mathit{I}$ whose boundaries do not depend on $\theta$ and such that
+$$
+\mathbb{P}_{\theta}[\mathit{I} \ni \theta] \geq 1 - \alpha, ~ ~ \forall \theta \in \Theta
+$$
+
+Confidence interval of asymptotic level $(1 - \alpha)$ for $\theta$ means any random (i.e. depending on $X_1 \dots X_n$) interval $\mathit{I}$ whose boundaries do not depend on $\theta$ and such that
+$$
+\lim_{n \to \infty} \mathbb{P}_{\theta}[\mathit{I} \ni \theta] \geq 1 - \alpha, ~ ~ \forall \theta \in \Theta
+$$
+(when you use CLT.)
+
+\textbf{Intuition}: you are given samples and want to understand something about the underlying distribution, in particular, you have sample mean and want to understand something about population mean.
+Given a level of confidence $x\%$, you want to find the interval which contains the population mean with $x\%$.
+When dealing with normal distribution, confidence interval depends on whether population standard deviation is known or estimated with sample standard deviation. If not, then student's T distribution is used as the critical value.
+
 \subsection{Maximum likelihood estimation}
 
+Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a associated with i.i.d r.v. $X_1, \dots X_n$ and assume $\exists \theta^* \in \Theta$ such that $X_i \sim \mathbb{P}_{\theta^*}$: $\theta^*$ is the true parameter.
 
+Statistician's goal is, given $X_1, \dots X_n$, find an estimator $\hat{\theta} = \hat{\theta}(X_1, \dots X_n)$ such that $\mathbb{P}_{\hat{\theta}}$ is close to $\mathbb{P}_{\theta^*}$. This means
+$|\mathbb{P}_{\hat{\theta}}(A) - \mathbb{P}_{\theta^*}(A)|$ is small for all $A \subset E$.
 
+The total variation distance is then defined as $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = max| \mathbb{P}_{\theta}(A) - \mathbb{P}_{\theta'}(A) | ~ \forall A \subset E$
+
+This can then be translated to sum on the two pmf for discrete r.v., or integral on two density functions for continuous r.v..
 
 \subsection{Markov chains}
 
@@ -1133,7 +1159,7 @@ Let $\mathbf{X}$ denote the input space, $\mathbf{Y}$ denote the output space, a
 
 A \textbf{decision function / prediction function} $f: \mathbf{X} \to \mathbf{A}$ maps an input to an action.
 
-A \textbf{loss function} $\mathit{l}: \mathbf{A} \times \mathbf{Y} \to \mathbf{R}$ evaluates an action in the context of an output, and maps the error to a real.
+A \textbf{loss function} $\mathit{l}: \mathbf{A} \times \mathbf{Y} \to \mathbb{R}$ evaluates an action in the context of an output, and maps the error to a real.
 In traditional problems we can usually assume action has no effect on the output (like stock market prediction).
 
 \subsection{Risk, Bayesian function, empirical risk}
