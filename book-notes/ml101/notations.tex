@@ -1122,9 +1122,31 @@ Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a associated with i.i.
 Statistician's goal is, given $X_1, \dots X_n$, find an estimator $\hat{\theta} = \hat{\theta}(X_1, \dots X_n)$ such that $\mathbb{P}_{\hat{\theta}}$ is close to $\mathbb{P}_{\theta^*}$. This means
 $|\mathbb{P}_{\hat{\theta}}(A) - \mathbb{P}_{\theta^*}(A)|$ is small for all $A \subset E$.
 
-The total variation distance is then defined as $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = max| \mathbb{P}_{\theta}(A) - \mathbb{P}_{\theta'}(A) | ~ \forall A \subset E$
+The total variation distance is then defined as $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = max| \mathbb{P}_{\theta}(A) - \mathbb{P}_{\theta'}(A) | ~ ~ \forall A \subset E$
 
 This can then be translated to sum on the two pmf for discrete r.v., or integral on two density functions for continuous r.v..
+
+Given the PMF of $X$: $\mathbb{P}_{\theta} (X = x) = p_{\theta}(x)$ for all $x \in E$,
+$$
+p_{\theta}(x) \geq 0, ~ \sum_{x \in E} p_{\theta}(x) = 1
+$$
+
+The total variation distance between $\mathbb{P}_{\theta}$ and $\mathbb{P}_{\theta'}$ is a function of PMF's $p_{\theta}$ and $p_{\theta'}$:
+
+$$
+TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \frac{1}{2} \sum_{x \in E} (p_{\theta}(x) - p_{\theta'}(x))
+$$
+
+And in the continuous case $f_{\theta}$ being the density function,
+
+$$
+TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \frac{1}{2} \int_{E} |f_{\theta}(x) - f_{\theta'}(x)| dx
+$$
+
+Properties of total variation distance include: symmetric, non-negative, definite ($TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = 0 \implies \mathbb{P}_{\theta} = \mathbb{P}_{\theta'}$), and triangle inequality $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) \leq TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta''}) + TV(\mathbb{P}_{\theta'}, \mathbb{P}_{\theta''})$
+
+These implies total variation is a \textbf{distance}.
+We then want to minimize the total variation distance of $\theta$ and $\theta^*$. We build an estiamator $\hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'})$ for all $\theta \in \Theta$, then find $\hat{\theta}$ that minimizes function $\theta \to \hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'})$.
 
 \subsection{Markov chains}
 
