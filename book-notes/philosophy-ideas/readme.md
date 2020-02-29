@@ -1060,7 +1060,7 @@ A theory of innate ideas. Something publicly and universally known cannot be kno
 
 ### Newton and science
 
-1643 - 1727. Cambridge, Trinity College. Taught Plato, Aristotle, law, theologies at school, and read Descartes, Kepler, Hobbs, Copernicus and Galileo.
+1643 - 1727. Cambridge, Trinity College. Was taught Plato, Aristotle, law, theologies at school, and read Descartes, Kepler, Hobbs, Copernicus and Galileo.
 
 **Certain philosophical questions**.
 _"Plato is my friend, Aristotle is my friend, but my best friend is truth."_
@@ -1097,3 +1097,58 @@ Seeing the compatibility between the scientific discovery and church's teaching 
 The Royal Society of London, on the account of no one's words.
 The crown became patrons of scientists, it turns to science to investigate the claim of a woman giving birth to a sheep, whereas earlier clergyman would be sent instead.
 Useful knowledge not enthralled by canon.
+
+### Hobbes and the social machine
+
+Thomas Hobbes, contemporary of Galileo, Newton, Descartes, of the beheading of Charles I, rise of the Lord Protector Cromwell, and restoration of monarchy.
+
+Implication of developed science no Hobbes:
+If all the universe can be reduced to systematic laws, then society itself can be embraced by the same rational approach to problem solving.
+
+Authorative translation of Thucydides. Against radical democracy. Royalist.
+Secretary to Francis Bacon, hence Baconian (and Galileo) influence.
+
+**Leviathan**.
+Social and civic engineering, minimize warfare / friction / civil strife.
+Free will, determinism, and nature of human nature.
+
+God has made nature conforming to the laws of mechanics, why should anything, society included, be different.
+Eliminating absurdity from our thinking, Baconian challenge of ancient orthodoxies.
+
+The approach of Hobbes is similar to that of Galileo's in physics, compositive and resolutive: breaking down complex phenomena into parts and building up again through systematic investigation.
+
+Speech is central.
+We engage in loose talk, and failed to distinguish real bodies, and material things.
+Confusions are fundamentally grammatical and linguistic.
+These are habits that must be relinquished, if there is going to be a scientific understanding of how society is to be structured and maintained.
+
+The metaphorical mode of thinking Hobbes accused the scholastics to be guilty of, not the Hobbesian realist approach to civics.
+Hobbesian reality is the physical reality.
+Man is a material entity in a material world. Nothing transcendental.
+
+Society is a collection of such entities. Complex system of matter and motion. Involuntary motion (instinctive and reflexive) and intentional motion (of motives and desires).
+
+The root motives and desires are grounded in pleasure and pain, a hedonistic view in psychology.
+The ultimate motive is survival, not eudaimonia, or eternal salvation.
+Morally sound and virtuous life, is all about seeking pleasure and avoiding pain and (a violent) death.
+
+Reduce reason itself to linguistic process, reducible to adding and subtracting, "reckon".
+
+Man is by nature a self-defending, self-interested and selfish animal, not as Aristotle's view of social animal, and that self-interest is why man enters society.
+
+It's not just by collectivizing that we gain security, rather when we enter society, we gain security by conferring upon someone, some group sufficient power and authority to be able to protect what we deem our own greatest interests.
+Leviathan, the state, and our allegiance to it lasts as long as the state is capable of protecting us, our interest, and our life.
+This is a long way from Aristotle's view of polis.
+
+How can we reduce civil strife then?
+By giving political power to the sovereign acting in the interest of the commonwealth.
+The individuals within the commonwealth do not have equal power: _"the value or worth of a man is his price"_ (a person's worth his market value: what others are willing to pay for his power. Hobbesian "honor".)
+
+On reward and punishment, the sovereign has such power, and it is in virtue of that power, we are moved.
+Unless stopped by some impediment, we move towards reward and avoid punishment, that is what chivalry, honor, courage and duty are all about.
+It is the sovereign with sufficient resources, making enjoying the pleasures of disobedience too heavy a price to pay.
+
+A pernicious idea, but great nonetheless.
+
+Hobbes critique of Descartes: the only thing we can know for certainty are physical material processes that are subject to observations and systematic scientific studies.
+The ultimate ontology, is an ontology of matter.
