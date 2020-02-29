@@ -1144,10 +1144,45 @@ $$
 TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \frac{1}{2} \int_{E} |f_{\theta}(x) - f_{\theta'}(x)| dx
 $$
 
-Properties of total variation distance include: symmetric, non-negative, definite ($TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = 0 \implies \mathbb{P}_{\theta} = \mathbb{P}_{\theta'}$), and triangle inequality $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) \leq TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta''}) + TV(\mathbb{P}_{\theta'}, \mathbb{P}_{\theta''})$
+\textbf{Properties} of total variation distance include:
+symmetric,
+non-negative,
+definite ($TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = 0 \implies \mathbb{P}_{\theta} = \mathbb{P}_{\theta'}$), and
+triangle inequality $TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) \leq TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta''}) + TV(\mathbb{P}_{\theta'}, \mathbb{P}_{\theta''})$
 
 These implies total variation is a \textbf{distance}.
-We then want to minimize the total variation distance of $\theta$ and $\theta^*$. We build an estiamator $\hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'})$ for all $\theta \in \Theta$, then find $\hat{\theta}$ that minimizes function $\theta \to \hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'})$.
+We then want to minimize the total variation distance of $\theta$ and $\theta*$, but we don't know $\theta*$.
+We build an estimator $\hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta*})$ for all $\theta \in \Theta$.
+Then find $\hat{\theta}$ that minimizes function $\theta \to \hat{TV}(\mathbb{P}_{\theta}, \mathbb{P}_{\theta*})$.
+
+The problem then becomes building the above estimator.
+\\
+\\
+\textbf{Kullback-Leibler (KL) divergence} between two distributions is defined by the following.
+Discrete:
+
+$$
+KL(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \sum_{x \in E} p_{\theta}(x) log(\frac{p_{\theta}(x)}{p_{\theta'}(x)})
+$$
+
+Or continuous:
+
+$$
+KL(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \int_E f_{\theta}(x) log(\frac{f_{\theta}(x)}{f_{\theta'}(x)}) dx
+$$
+
+KL makes the distance (e.g. between two Gaussians) easy to compute. KL is not symmetric, and it is not a distance, but definite property still holds.
+KL looks just like the density of the function log division.
+
+And,
+$$
+KL(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \mathbb{E}_{\theta*}[log(\frac{p_{\theta*}(X)}{p_{\theta}(X)})] = \mathbb{E}_{\theta*}[log(p_{\theta*}(X)] - \mathbb{E}_{\theta*}[log(p_{\theta}(X)]
+$$
+The first term is constant (to $\theta$ change), and the second term can be estimated with LLN, and we get
+$$
+\hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta}) = \text{constant} - \frac{1}{n} \sum_{i=1}^{n}{log(p_{\theta}(X_i))}
+$$
+We still don't know the constant / first term yet, but the minimizer $\theta$ of $\hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta})$ is the same no matter the constant.
 
 \subsection{Markov chains}
 
