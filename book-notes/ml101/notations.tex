@@ -921,22 +921,23 @@ In both cases, $P_{\xi}(k)$ is uniquely determined by the characteristic functio
 
 \subsection{Central limit theorem}
 
-Given a sequence of random variables $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$, consider the normalized sum
+Given a sequence of i.i.d r.v. $X_i, i = 1, 2, \dots, n$ with mean $\mu = \mathbb{E}[X]$ and variance $\sigma^2 = \mathbb{V}[X]$, the weak and strong laws of large number says
 
 $$
-S_n^* = \frac{S_n - \mathbb{E}[S_n]}{\sqrt{\mathbb{V}[S_n]}}
+\bar{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i \overset{\mathbb{P}, a.s.}{\underset{n \rightarrow \infty}{\longrightarrow}} \mu
 $$
 
-Where $S_n = \sum_{k = 1}^{n}{\xi_k}$. Then the sequence $\xi_k, k = 1, 2, \dots$ is said to satisfy the \textbf{central limit theorem} if
+And central limit theorem says
 
 $$
-\lim_{n \to \infty}{P(x' \leq S^*_n \leq x'')} = \frac{1}{\sqrt{2 \pi}} \int_{x'}^{x''}{e^{-\frac{x^2}{2}} dx}
+\sqrt{n} \frac{\bar{X_n} - \mu}{\sigma} \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathit{N}(0, 1)
 $$
 \\
 \\
-Roughly speaking, \textbf{central limit theorem} asserts that the distribution of the sum of a large number of iid random varaibles is approximately normal.
 
-\textbf{Intuition}: LLN states that average is a consistent estimator of expectation when $n$ is large enough, CLT says how good it is.
+\textbf{Intuition}: LLN states that average is a consistent estimator of expectation when $n$ is large enough.
+CLT says how good it is, and that the distribution of the sum of a large number of iid random varaibles is approximately normal.
+\\
 
 Suppose the sequence $\xi_k, k = 1, 2, \dots$ with finite means $a_k = \mathbb{E}[\xi_k]$ and variance $\sigma^2_{k} = \mathbb{V}[\xi_k]$ satisfies \textbf{Lyapunov condition}
 
@@ -963,10 +964,10 @@ $$
 Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be deterministic)
 
 \begin{itemize}
-  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
-  \item Convergence in probability: $T_n \overset{\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
-  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
-  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow} T}$ iff $\mathbf{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbf{P}[T \leq x]$
+  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
+  \item Convergence in probability: $T_n \overset{\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
+  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
+  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbf{P}[T \leq x]$
 \end{itemize}
 
 \textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
@@ -976,21 +977,21 @@ Two implies four: if you converge in probability, you converge in distribution.
 \textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
 
 $$
-T_n \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} T} \implies f(T_n) \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow} f(T)}
+T_n \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T \implies f(T_n) \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} f(T)
 $$
 
 \textbf{Intuition}: apply a continuous function on the sequence of r.v. and convergence still holds.
 
 One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
-If $U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} U}$ and
-$V_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V}$, then
+If $U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} U$ and
+$V_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V$, then
 
 $$
-V_n + U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V + U}
+V_n + U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V + U
 $$
 
 $$
-V_n U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} V  U}
+V_n U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V U
 $$
 
 Same goes for division if $V \neq 0$.
@@ -1002,12 +1003,12 @@ By Slutsky, we have the \textbf{Delta method}, which allows us to apply function
 
 Let $(Z_n)_{n \geq 1}$ be a sequence of r.v. that asymptotically normal around $\theta$, i.e. satisfies
 $$
-\sqrt{n} (Z_n - \theta) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, \sigma^2)}
+\sqrt{n} (Z_n - \theta) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathbf{N}(0, \sigma^2)
 $$
 
 Let $g: \mathbb{R} \rightarrow \mathbb{R}$ be continuously differentiable at the point $\theta$, then $g(Z_n)$ is also asymptotically normal, more precisely
 $$
-\sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow} \mathbf{N}(0, g'(\theta)^2 \sigma^2)}
+\sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathbf{N}(0, g'(\theta)^2 \sigma^2)
 $$
 
 \subsection{Degree of freedom}
