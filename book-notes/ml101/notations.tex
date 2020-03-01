@@ -315,6 +315,32 @@ A function $f$ is \textbf{strictly convex} if the line segment connecting any tw
   \item When a function is strictly convex, if there is a local minimum, then it is the unique global minimum.
 \end{itemize}
 
+For a multivariate twice differentiable function, $h : \Theta \subset \mathbb{R}^d \to \mathbb{R}$, $d \geq 2$, the gradient vector is
+
+$$
+\bigtriangledown h(\theta) = 
+\begin{pmatrix}
+\langle \frac{\partial h}{\partial \theta_1} (\theta) \\
+\dots \\
+\langle \frac{\partial h}{\partial \theta_d} (\theta) \\
+\end{pmatrix}
+$$
+
+A \textbf{Hessian matrix} of that function is
+
+$$
+\bigtriangledown^2 h(\theta) = 
+\begin{pmatrix}
+\langle \frac{\partial^2 h}{\partial \theta_1 \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_1 \partial \theta_d} (\theta) \\
+\dots \\
+\langle \frac{\partial^2 h}{\partial \theta_d \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_d \partial \theta_d} (\theta) \\
+\end{pmatrix}
+$$
+
+$h$ is concave $\implies x^T \bigtriangledown^2 h(\theta) x \leq 0 ~ \forall x \in \mathbb{R}^d, \theta \in \Theta$.
+
+$h$ is strictly concave $\implies x^T \bigtriangledown^2 h(\theta) x < 0 ~ \forall x \in \mathbb{R}^d, \theta \in \Theta$.
+
 \subsection{The general optimization problem}
 
 \textbf{Standard form}: minimize $f_0(x)$ subject to $f_i(x) \leq 0, ~ i = 1, \dots m$, $h_i(x) = 0, ~ i = 1, \dots m$.\footnote{Assuming the intersections of domains of all $f_i$ and $h_i$ is not empty.}
@@ -1183,6 +1209,14 @@ $$
 \hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta}) = \text{constant} - \frac{1}{n} \sum_{i=1}^{n}{log(p_{\theta}(X_i))}
 $$
 We still don't know the constant / first term yet, but the minimizer $\theta$ of $\hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta})$ is the same no matter the constant.
+
+$$
+\argmin{\theta \in \Theta} \hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta}) \iff \argmax{\theta in \Theta} \prod_{i = 1}^{n} p_{\theta}(X_i)
+$$
+This is the \textbf{maximum likelihood principle}.
+
+\textbf{Intuition}: the multiplicative form we arrived at is the joint density of $X_1 \dots n$. Imagine the model is a Gaussian centered at $\theta*$, and we have only one observation at $\theta'$, then the maximum likehood estimator is going to estimate a Gaussian centered around $\theta'$.
+Then if we have $n$ points, we are just multiplying the values mapped onto the vertical line of different $\theta$s, and finding the $\theta$ such that the product is maximized.
 
 \subsection{Markov chains}
 
