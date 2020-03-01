@@ -1152,3 +1152,51 @@ A pernicious idea, but great nonetheless.
 
 Hobbes critique of Descartes: the only thing we can know for certainty are physical material processes that are subject to observations and systematic scientific studies.
 The ultimate ontology, is an ontology of matter.
+
+### Locke's Newtonian science of the mind
+
+John Locke (1632 - 1704, younger contemporary of Newton's): Newtonian psychology.
+Trained as a physician. One of the few to be elected to the Royal Society for his philosophical contributions.
+
+One of the most influential in modern history. Parliamentary pedigree, opposite to that of Hobbes's.
+
+Scientific approach to the mind and the society. British empiricism. Started with Bacon, featuring Locke, Hume, Mills, etc.
+
+Newtonian science develops a simple model and then approach the physical problem through observation.
+Newtonian science's ontology: begin with an assumption that the ultimate constituents of reality are not visible things but small corpuscular things (light, e.g., is made of such).
+Complex phenomenons are to be resolved into elementary (atomic) components.
+
+**Essay on human understanding.**
+How the mind comes to be furnished at all?
+He does not accept the theory of innate ideas, i.e. _"the soul received in its very first being"_.
+
+Locke, however, does accept some original acts of the mind, e.g. the law of contradiction, and other forms of logic. **Intuitive knowledge**.
+There are other undisputable truths in all cases, such as geometric proofs, but such has to be proven and requires an argument. This is **demonstrative knowledge**.
+
+All ideas (the complex contents of human understanding) come from sensation (sensory acts / channels) or reflection.
+From experience.
+
+The thought experiment **Molyneux's problem**: a person born blind can feel the differences between shapes such as spheres and cubes, could he, after gaining sight, distinguish those by sight alone?
+Locke's empiricism says no.
+
+Complex ideas consists of elementary sensations, which are held together by an associational process like gravitation.
+We learn by association. Those we experience frequently together become associated.
+
+Locke then faces the skeptical challenges of how truthful the senses are.
+
+**Dualistic epistemology** was found in Locke. Realist when we perceive certain objects in the world. Phenomenalist when it comes to other properties of the real world.
+The lectern example. Its **primary quality**, hardness. What is there actually and can be reported by the sensory organs accurately. The hardness is made up from atomic elements that are hard.
+The color is not: a brown lectern is not made up from atomic elements that are brown. This is a **secondary quality**, produced by that object but is not something in that object itself.
+
+Locke also differentiates between two essences.
+We do not have the perceptive power to know the corpuscular elements directly, and that is the **real essence** of an object.
+The real elements of the object is what stimulates and brings about experience. On the basis of these experiences, we classify things (designate name to things, the **nominal essence**.)
+
+This leaves room for skeptical claims of our knowledge: real world objects are mediated by sensations, and can never be known for what they really are.
+One might challenge this with the claim that one really knows oneself. The cells in my body are ever being replaced, but my identity does not change, what is the essence of self?
+
+Plutarch says the ancient philosophers argued about the same thing: over time **Theseus's ship** are reinforced with new planks: at what point is it no longer considered Theseus's ship?
+
+Locke regards self / personal identity as a collection of experiences, memories, held together by the process of associations.
+
+Scriblerians, including Alexander Pope and Jonathan Swift, attacked this theory, as philosophy run amock: Jack kills Bill and by the time Bill hits the ground he is already a different person when attacked by Jack, and you can't even have a court trial on this.
