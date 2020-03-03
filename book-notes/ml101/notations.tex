@@ -1211,12 +1211,32 @@ $$
 We still don't know the constant / first term yet, but the minimizer $\theta$ of $\hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta})$ is the same no matter the constant.
 
 $$
-\argmin{\theta \in \Theta} \hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta}) \iff \argmax{\theta in \Theta} \prod_{i = 1}^{n} p_{\theta}(X_i)
+\argmin_{\theta \in \Theta} \hat{KL}(\mathbb{P}_{\theta*}, \mathbb{P}_{\theta}) \iff \argmax_{\theta \in \Theta} \prod_{i = 1}^{n} p_{\theta}(X_i)
 $$
 This is the \textbf{maximum likelihood principle}.
 
 \textbf{Intuition}: the multiplicative form we arrived at is the joint density of $X_1 \dots n$. Imagine the model is a Gaussian centered at $\theta*$, and we have only one observation at $\theta'$, then the maximum likehood estimator is going to estimate a Gaussian centered around $\theta'$.
 Then if we have $n$ points, we are just multiplying the values mapped onto the vertical line of different $\theta$s, and finding the $\theta$ such that the product is maximized.
+
+In the real world maxmimum likelihood estimators often don't have a closed form, hence the many optimizations in machine learning.
+\\
+\\
+The \textbf{likelihood of a model} $(E, (\mathbb{P}_{\theta})_{\theta \in \Theta})$ associated with a sample of i.i.d r.v $X_1, \dots X_n$ can then be defined as
+\begin{align*}
+L_n : E^n \times \Theta & \to \mathbb{R} \\
+(x_1, \dots, x_n, \theta) & \to \mathbb{P}_{\theta}[X_1 = x_1, \dots, X_n = x_n]
+\end{align*}
+If $E$ is discrete.
+
+\begin{align*}
+  L_n : E^n \times \Theta & \to \mathbb{R} \\
+  (x_1, \dots, x_n, \theta) & \to \prod_{i=1}^{n} f_{\theta}(x_i)
+\end{align*}
+where $f$ is the density. If $E$ is continuous.
+This can be derived from KL divergence.
+
+Example: likelihood of a Bernoulli model (discrete), Gaussian (continuous).
+
 
 \subsection{Markov chains}
 
