@@ -320,9 +320,9 @@ For a multivariate twice differentiable function, $h : \Theta \subset \mathbb{R}
 $$
 \bigtriangledown h(\theta) = 
 \begin{pmatrix}
-\langle \frac{\partial h}{\partial \theta_1} (\theta) \\
+\frac{\partial h}{\partial \theta_1} (\theta) \\
 \dots \\
-\langle \frac{\partial h}{\partial \theta_d} (\theta) \\
+\frac{\partial h}{\partial \theta_d} (\theta) \\
 \end{pmatrix}
 $$
 
@@ -331,9 +331,9 @@ A \textbf{Hessian matrix} of that function is
 $$
 \bigtriangledown^2 h(\theta) = 
 \begin{pmatrix}
-\langle \frac{\partial^2 h}{\partial \theta_1 \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_1 \partial \theta_d} (\theta) \\
+\frac{\partial^2 h}{\partial \theta_1 \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_1 \partial \theta_d} (\theta) \\
 \dots \\
-\langle \frac{\partial^2 h}{\partial \theta_d \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_d \partial \theta_d} (\theta) \\
+\frac{\partial^2 h}{\partial \theta_d \partial \theta_1} (\theta) \dots \frac{\partial^2 h}{\partial \theta_d \partial \theta_d} (\theta) \\
 \end{pmatrix}
 $$
 
@@ -1235,8 +1235,37 @@ If $E$ is discrete.
 where $f$ is the density. If $E$ is continuous.
 This can be derived from KL divergence.
 
-Example: likelihood of a Bernoulli model (discrete), Gaussian (continuous).
+Example: likelihood of a Bernoulli model (discrete), Gaussian (continuous)
 
+In stats, you first design your estimator as a function of random variables, then you get data and plug them in.
+(Keep the random variables for as long as you can.)
+
+The \textbf{maximum likelihood estimator} of $\theta$ is defined as
+
+$$
+\hat{\theta}^{MLE}_n = \argmax_{\theta \in \Theta} L(X_1, \dots, X_n, \theta)
+$$
+In practice, we use the log likelihood estimator as argmax is the same
+$$
+\hat{\theta}^{MLE}_n = \argmax_{\theta \in \Theta} log ~ L(X_1, \dots, X_n, \theta)
+$$
+
+Maximum likelihood estimation is what's driving our intuition, e.g. when we use the average to estimate the $p$ of a Bernoulli trial.
+\\
+\\
+The \textbf{Fisher information} of a statistical model $l(\theta) = log ~ L_1(X, \theta)$ is defined as
+\begin{align*}
+I(\theta) &= \mathbb{E}[\bigtriangledown l(\theta) \bigtriangledown l(\theta)^T] - \mathbb{E}[\bigtriangledown l(\theta)] \mathbb{E}[\bigtriangledown l(\theta)]^T \\
+          &= - \mathbb{E}[\bigtriangledown^2 l(\theta)]
+\end{align*}
+Assuming $l$ is twice differentiable.
+
+\textbf{Intuition} what Fisher information says is the more curvy the distribution is, the flatter it is when your estimator is around maximum, and the less sensitive we are to fluctuations (and the larger Fisher information).
+
+If $\theta \subset \mathbb{R}$, we get:
+$$
+I(\theta) = var[l'(\theta)] = - \mathbb{E}[l''(\theta)]
+$$
 
 \subsection{Markov chains}
 
