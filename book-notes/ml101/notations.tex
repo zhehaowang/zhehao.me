@@ -1251,6 +1251,8 @@ $$
 $$
 
 Maximum likelihood estimation is what's driving our intuition, e.g. when we use the average to estimate the $p$ of a Bernoulli trial.
+
+MLE minimizes KL divergence.
 \\
 \\
 The \textbf{Fisher information} of a statistical model $l(\theta) = log ~ L_1(X, \theta)$ is defined as
@@ -1260,12 +1262,27 @@ I(\theta) &= \mathbb{E}[\bigtriangledown l(\theta) \bigtriangledown l(\theta)^T]
 \end{align*}
 Assuming $l$ is twice differentiable.
 
-\textbf{Intuition} what Fisher information says is the more curvy the distribution is, the flatter it is when your estimator is around maximum, and the less sensitive we are to fluctuations (and the larger Fisher information).
-
 If $\theta \subset \mathbb{R}$, we get:
 $$
-I(\theta) = var[l'(\theta)] = - \mathbb{E}[l''(\theta)]
+I(\theta) = var[l'(\theta)] = - \mathbb{E}[l''(\theta)] = \int \frac{(\frac{\partial{f_{\theta}(x)}}{\partial \theta})^2}{f_{\theta}(x)} dx
 $$
+
+\textbf{Intuition} what Fisher information says is the more curvy the distribution is, the flatter it is when your estimator is around maximum, and the less sensitive we are to fluctuations (and the larger Fisher information, i.e. how much information of $\theta$ your model has).
+
+Let $\theta^* \in \Theta$, assume the model is identified, $\forall \theta \in \Theta$, the support of $\mathbb{P}_{\theta}$ does not depend on $\theta$, $\theta^*$ is not on the boundary of $\Theta$, $I(\theta)$ is invertible in a neighborhood of $\theta^*$, then
+$\hat{\theta}^{MLE}_{n}$ satisfies
+$$
+\hat{\theta}^{MLE}_{n} \overset{\mathbb{P}}{\underset{n \to \infty}{\longrightarrow}} \theta^* ~ ~ w.r.t ~ \mathbb{P}_{\theta^*}
+$$
+MLE converges in probability to $\theta*$. Bias goes to 0.
+
+$$
+\sqrt(n) (\hat{\theta}^{MLE}_{n} - \theta^*) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} ~ ~ \mathit{N}(0, I(\theta^*)^{-1}) w.r.t ~ \mathbb{P}_{\theta^*}
+$$
+MLE minus $\theta^*$ converges in distribution to normal distribution. $\theta^*$ may not even have a closed form, and we still have the same properties of an average. CLT-like.
+Variance is measured by Fisher information.
+
+\subsection{Method of moments}
 
 \subsection{Markov chains}
 
