@@ -1,7 +1,8 @@
 
 Flow and spontaneity.
 
-Improv performers as players on the same team, not vying for control, seeking discord or anything. You and your interlocutter are working together to make the experience enjoyable for both.
+Improv performers as players on the same team, not vying for control or seeking discord.
+You and your interlocutter are working together to make the experience enjoyable for both.
 
 Yes, and...Not just yes.
 Yes, really...Not no.
@@ -20,3 +21,12 @@ Mind the details. Where the details are in the other person's answer?
 No "no". Avoid confrontational, defensive, close-minded responses.
 
 Create motion in the topic. Weather, and the topics that can derive from, or are loosely related with weather.
+
+Don't take yourself too seriously. Don't take the topic too seriously.
+Talking about generic stuff (weather, work, current events) is easy, talking about controversial and less obvious topics could spark interest.
+People are not as easily offended by certain topics. Maybe they are, use your best judgment but in general it seems helpful for us to loosen up.
+Try less generic topics, spark conversation, play the devil's advocate.
+
+Think on your feet.
+Casual conversations need not be bound by an agenda, you are not here to show you are a walking encyclopedia, which is not fun.
+Practice random topics, and imagining one word from another and making a story out of them.

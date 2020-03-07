@@ -269,7 +269,7 @@ Thrasymachus: strong should prey on the weak.
 Glaucon: what is goodness? Three classes
 * Things that are good in and of themselves. Harmless pleasures.
 * Things that are good in themselves but also for the consequences that arise from such good. Knowledge, health.
-* Pursued for the same of their results. Gymnastics, money making.
+* Pursued for the sake of their results. Gymnastics, money making.
 
 Where is justice placed?
 Socrates: the first, where things are pursued for their intrinsic value, not for consequences.
