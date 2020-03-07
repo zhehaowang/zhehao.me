@@ -1200,3 +1200,51 @@ Plutarch says the ancient philosophers argued about the same thing: over time **
 Locke regards self / personal identity as a collection of experiences, memories, held together by the process of associations.
 
 Scriblerians, including Alexander Pope and Jonathan Swift, attacked this theory, as philosophy run amock: Jack kills Bill and by the time Bill hits the ground he is already a different person when attacked by Jack, and you can't even have a court trial on this.
+
+### The challenge of materialism
+
+The mind-body problem.
+
+No matter, never mind. Classic materialist position.
+
+No mind, never matter. The material world presupposes a thinking entity.
+
+Locke's radical empiricism seems to underestimate the creativity of the mind.
+Tabula rasa theory: men are born blank slate and all knowledge came from knowledge / experience.
+
+Leibniz. Calculus, statesman, probability theory, rationalist philosopher.
+
+**New essays on human understanding**. Challenges Locke's empiricism.
+Leibniz interprets Locke as "nothing is in the mind at all, except what is first in the senses". From Medieval Scholasticism of Duns Scotus.
+Leibniz's point would be, "except intelligence itself".
+
+It's not just a collection of sensations pulled together to form elementary ideas, then complex ideas, rather, there can't be a mind that's empty, mind is an integrative, creative, collective set of powers. The mind, self-awareness, self-reflection pre-exists experiences.
+
+Thought experiment: make a device like this, but make it huge, what would you see?
+Leibniz would claim you can find machinery, but not a perception or an idea.
+All perceptional experiences are **qualia**, the actual feel of things, and cannot be found in the machine shop.
+Reality is not reducible to crude matter.
+
+This is the **rationalist** rebuttal of empiricism: mind is active.
+Perception is grounded in apperception, or self-reflecting power.
+A materialist reductionist strategy is not going to work.
+
+Bishop George Berkeley (Barclay), optics, mathematician, philosopher, immaterialism, critique of materialism and skepticism. Berkeley the university is named after him.
+
+If a tree is to fall and no one is there to hear it, does its fall make a sound?
+**A treatise concerning the principles of human knowledge.**
+
+Materialism is a fatally flawed explanation.
+Distinction between contents of my mental life and myself that is I know these to be in my mind.
+There are no de-personalized ideas. Every idea is someone's idea.
+
+So long as they are not actually perceived by me, or do no exist in my mind or that of any other created spirit, they must have no existence at all or subsist in some mind of an eternal spirit.
+No primary, secondary qualities like Locke's.
+
+Yet the world remains as it's always been, it's not a fiction or a figment, it's filled with all the properties seen and experienced.
+His thesis does not undermines the physical mechanical principles. The laws of science are summaries of experience, their reduction to a set of rules does not constitute the discovery of some real unperceived cause.
+
+**"esse est percipi"**: to be is to be perceived.
+
+Does the dark side of moon exist then? Or the peak of the tallest mountain yet to be climbed?
+The material world subsists in the mind who made it, but it also subsists in its parts and particulars of those who have experience of the world. No mind, no matter.
