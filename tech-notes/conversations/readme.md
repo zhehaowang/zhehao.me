@@ -30,3 +30,9 @@ Try less generic topics, spark conversation, play the devil's advocate.
 Think on your feet.
 Casual conversations need not be bound by an agenda, you are not here to show you are a walking encyclopedia, which is not fun.
 Practice random topics, and imagining one word from another and making a story out of them.
+
+Help your interlocutter.
+
+Callback. Inside jokes, and shows you are paying attention.
+
+Listen. It's not the same as waiting for your turn to speak. Listen attentively. 2:1.
