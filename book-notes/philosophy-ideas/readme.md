@@ -1248,3 +1248,53 @@ His thesis does not undermines the physical mechanical principles. The laws of s
 
 Does the dark side of moon exist then? Or the peak of the tallest mountain yet to be climbed?
 The material world subsists in the mind who made it, but it also subsists in its parts and particulars of those who have experience of the world. No mind, no matter.
+
+### Hume, psychologizing morality and causation
+
+David Hume (18c), central figure in Scottish Enlightenment.
+Contemporary of Rousseau, Adam Smith, etc. Celebrity in the salons of Paris, great conversationalist.
+One of the most important writers to have written in the English language.
+
+A period of great achievement in Scottish law, medicine, economics, art, scholarship, science.
+Edinburgh Athens of the north.
+(Adam Smith, etc are of the same period.)
+
+**History of England**, 5 volumes.
+
+**Treatise of Human Nature**, 3 volumes. Profound though regarded by Hume as immature work. Set out to defeat skepticism. But Hume earned his reputation as a skepticist.
+**An enquiry concerning the principles of morals**.
+
+Stoic teaching.
+
+Moral philosophy of Hutcheson (British sentimentalist tradition), counters Hobbes with the constitutive nature of our being, having core sentiments that establish what we value, e.g. benevolence.
+Naturalized moral theory, not abstract or transcendental.
+
+Hutcheson takes a religious ground, and Hume takes an entirely naturalistic perspective.
+
+Philosophy is not outside the human condition, it's part of the human condition.
+Hume is influenced by Bacon and Berkeley's empiricism, and argues that the mind consists of sensory organs, and the external world makes sensory impressions on the mind.
+
+There is some external physical world capable of exciting senses, but contents of the mind are just copies of what's occurring at the level of sensation.
+We never have immediate knowledge of the external world, but only via this intermediary namely our perceptual capabilities. The naturalization of epistemology and morals.
+This view has a shard of skepticism in it.
+Hume has a Darwinian view of the external world, and this was before Darwin's time.
+
+Hume is dubious about causes: the basis upon which we can ever know about causes.
+Core principles of (Locke's) association: repetition is a principle of association (when A and B occur together often enough.)
+Causation is then what the mind assigns to constantly conjoin experiences.
+
+_"anything may be the cause of anything."_
+Point being, the concept causation are habitual mental processes, not something recorded in the external world.
+Psychologized causality (and morality).
+
+Hume ties morality to the constitution of our (common) nature.
+
+Maximization of pleasure and minimizing pain.
+Hume is not skeptical about morality, but would reject all forms of moral realism.
+Hume claims what we are maximizing here is "utility", among the first to use this term. "Utilitarianism".
+
+Reason then becomes the deliberative means of securing what the appetite and passions require.
+
+This does not sound controversial in that we are children of Humes: the essential function of government are in utilitarian terms, and the world as we know it is created by our mental machinery (and not God).
+
+Hume's problem of induction: future has no obligation to mimic the past, and any inference we make about the future based on past experience has no rational warrants.
