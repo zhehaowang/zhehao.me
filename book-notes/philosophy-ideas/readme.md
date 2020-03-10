@@ -269,7 +269,7 @@ Thrasymachus: strong should prey on the weak.
 Glaucon: what is goodness? Three classes
 * Things that are good in and of themselves. Harmless pleasures.
 * Things that are good in themselves but also for the consequences that arise from such good. Knowledge, health.
-* Pursued for the same of their results. Gymnastics, money making.
+* Pursued for the sake of their results. Gymnastics, money making.
 
 Where is justice placed?
 Socrates: the first, where things are pursued for their intrinsic value, not for consequences.
@@ -1200,3 +1200,101 @@ Plutarch says the ancient philosophers argued about the same thing: over time **
 Locke regards self / personal identity as a collection of experiences, memories, held together by the process of associations.
 
 Scriblerians, including Alexander Pope and Jonathan Swift, attacked this theory, as philosophy run amock: Jack kills Bill and by the time Bill hits the ground he is already a different person when attacked by Jack, and you can't even have a court trial on this.
+
+### The challenge of materialism
+
+The mind-body problem.
+
+No matter, never mind. Classic materialist position.
+
+No mind, never matter. The material world presupposes a thinking entity.
+
+Locke's radical empiricism seems to underestimate the creativity of the mind.
+Tabula rasa theory: men are born blank slate and all knowledge came from knowledge / experience.
+
+Leibniz. Calculus, statesman, probability theory, rationalist philosopher.
+
+**New essays on human understanding**. Challenges Locke's empiricism.
+Leibniz interprets Locke as "nothing is in the mind at all, except what is first in the senses". From Medieval Scholasticism of Duns Scotus.
+Leibniz's point would be, "except intelligence itself".
+
+It's not just a collection of sensations pulled together to form elementary ideas, then complex ideas, rather, there can't be a mind that's empty, mind is an integrative, creative, collective set of powers. The mind, self-awareness, self-reflection pre-exists experiences.
+
+Thought experiment: make a device like this, but make it huge, what would you see?
+Leibniz would claim you can find machinery, but not a perception or an idea.
+All perceptional experiences are **qualia**, the actual feel of things, and cannot be found in the machine shop.
+Reality is not reducible to crude matter.
+
+This is the **rationalist** rebuttal of empiricism: mind is active.
+Perception is grounded in apperception, or self-reflecting power.
+A materialist reductionist strategy is not going to work.
+
+Bishop George Berkeley (Barclay), optics, mathematician, philosopher, immaterialism, critique of materialism and skepticism. Berkeley the university is named after him.
+
+If a tree is to fall and no one is there to hear it, does its fall make a sound?
+**A treatise concerning the principles of human knowledge.**
+
+Materialism is a fatally flawed explanation.
+Distinction between contents of my mental life and myself that is I know these to be in my mind.
+There are no de-personalized ideas. Every idea is someone's idea.
+
+So long as they are not actually perceived by me, or do no exist in my mind or that of any other created spirit, they must have no existence at all or subsist in some mind of an eternal spirit.
+No primary, secondary qualities like Locke's.
+
+Yet the world remains as it's always been, it's not a fiction or a figment, it's filled with all the properties seen and experienced.
+His thesis does not undermines the physical mechanical principles. The laws of science are summaries of experience, their reduction to a set of rules does not constitute the discovery of some real unperceived cause.
+
+**"esse est percipi"**: to be is to be perceived.
+
+Does the dark side of moon exist then? Or the peak of the tallest mountain yet to be climbed?
+The material world subsists in the mind who made it, but it also subsists in its parts and particulars of those who have experience of the world. No mind, no matter.
+
+### Hume, psychologizing morality and causation
+
+David Hume (18c), central figure in Scottish Enlightenment.
+Contemporary of Rousseau, Adam Smith, etc. Celebrity in the salons of Paris, great conversationalist.
+One of the most important writers to have written in the English language.
+
+A period of great achievement in Scottish law, medicine, economics, art, scholarship, science.
+Edinburgh Athens of the north.
+(Adam Smith, etc are of the same period.)
+
+**History of England**, 5 volumes.
+
+**Treatise of Human Nature**, 3 volumes. Profound though regarded by Hume as immature work. Set out to defeat skepticism. But Hume earned his reputation as a skepticist.
+**An enquiry concerning the principles of morals**.
+
+Stoic teaching.
+
+Moral philosophy of Hutcheson (British sentimentalist tradition), counters Hobbes with the constitutive nature of our being, having core sentiments that establish what we value, e.g. benevolence.
+Naturalized moral theory, not abstract or transcendental.
+
+Hutcheson takes a religious ground, and Hume takes an entirely naturalistic perspective.
+
+Philosophy is not outside the human condition, it's part of the human condition.
+Hume is influenced by Bacon and Berkeley's empiricism, and argues that the mind consists of sensory organs, and the external world makes sensory impressions on the mind.
+
+There is some external physical world capable of exciting senses, but contents of the mind are just copies of what's occurring at the level of sensation.
+We never have immediate knowledge of the external world, but only via this intermediary namely our perceptual capabilities. The naturalization of epistemology and morals.
+This view has a shard of skepticism in it.
+Hume has a Darwinian view of the external world, and this was before Darwin's time.
+
+Hume is dubious about causes: the basis upon which we can ever know about causes.
+Core principles of (Locke's) association: repetition is a principle of association (when A and B occur together often enough.)
+Causation is then what the mind assigns to constantly conjoin experiences.
+
+_"anything may be the cause of anything."_
+Point being, the concept causation are habitual mental processes, not something recorded in the external world.
+Psychologized causality (and morality).
+
+Hume ties morality to the constitution of our (common) nature.
+
+Maximization of pleasure and minimizing pain.
+Hume is not skeptical about morality, but would reject all forms of moral realism.
+Hume claims what we are maximizing here is "utility", among the first to use this term. "Utilitarianism".
+
+Reason then becomes the deliberative means of securing what the appetite and passions require.
+
+This does not sound controversial in that we are children of Humes: the essential function of government are in utilitarian terms, and the world as we know it is created by our mental machinery (and not God).
+
+Hume's problem of induction: future has no obligation to mimic the past, and any inference we make about the future based on past experience has no rational warrants.
