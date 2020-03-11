@@ -1284,6 +1284,111 @@ Variance is measured by Fisher information.
 
 \subsection{Method of moments}
 
+\subsection{Weierstrass approximation theorem}
+
+Let $f$ be a continuous function on the internal $[a, b]$ then for any $\epsilon > 0$ there exists $a_0, a_1, \dots, a_d \in \mathbb{R}$ such that
+
+$$
+max_{x \in [a, b]}(|f(x) - \sum_{k = 0}^{d}{a_k x^k}|) < \epsilon
+$$
+
+\textbf{Intuition}: continuous functions can be arbitarily well approximated by polynomials.
+
+To estimate $\theta_*$ with $\theta$ (assuming identifiable), if
+
+\begin{align*}
+\int h(x) f_{\theta^*}(x) dx &= \int h(x) f_{\theta}(x) dx \\
+                             &= \mathbb{E}_{\theta^*}[h(X)] \\
+                             &\approx \frac{1}{n} \sum_{i=1}^{n} h(X_i)
+\end{align*}
+
+for all bounded continuous functions $h$, then $\theta = \theta^*$.
+
+And what Weierstrass approximation theorem tells us is we don't need to look at all $h(x)$, only $d + 1$ polynomial functions to the $d$ would work.
+
+The quantity $m_{k}(\theta) = \int x^k f_{\theta}(x) dx = \mathbb{E}_{\theta}[X^k]$ is the $k$th \textbf{moment} of $\mathbb{P}(\theta)$.
+
+Mean is therefore the first moment. Variance is second moment minus first squared.
+
+\subsection{Gaussian quadrature}
+
+Imagine we have a discrete $E$ with $r$ possible values and are looking at a PMF.
+
+Then
+
+$$
+m_k = \mathbb{E}[X^k] = \sum_{j = 1}^{r} {p(x_j) x_j^k}
+$$
+
+and $\sum_{j = 1}^{r} p(x_j) = 1$ with unknowns $p(x_j)$.
+
+And we can write it in compact form:
+
+$$
+\begin{pmatrix}
+x_1^1 \dots x_r^1 \\
+\dots \\
+x_1^{r-1} \dots x_r^{r-1} \\
+1 \dots 1
+\end{pmatrix}
+\begin{pmatrix}
+  p(x_1) \\
+  \dots  \\
+  p(x_r)
+\end{pmatrix} = 
+\begin{pmatrix}
+  m_1 \\
+  \dots  \\
+  m_{r - 1} \\
+  1
+\end{pmatrix}
+$$
+
+Using Vandermonde determinant we can check the $x$ matrix is invertible. (as $x_i$ and $x_j$ are all different: they are the different values your r.v. can take.)
+
+So given the moments, there is a unique PMF that has these moments, which can be recovered from the inverse of $x$ matrix.
+
+Rule of thumb is if $\theta \in \Theta \subset \mathbb{R}^d$, we need $d$ moments.
+
+\subsection{Method of moments}
+
+Let $X_1, ... , X_n$ be an i.i.d. sample associated with a statistical model $(E, (\mathbb{P}_{\theta})_{\theta \in \Theta})$.
+Assume that $\theta \subseteq \mathbb{R}^d$, for some $d \geq 1$.
+
+Population moment is $m_k(\theta) = \mathbb{E}_{\theta}[X^k], ~ 1 \leq k \leq d$.
+Empirical moment is $\hat{m_k} = \bar{X^k_n} = \frac{1}{n} \sum_{i=1}^{n} X_i^k, ~ 1 \leq k \leq d$.
+
+Let $\phi : \Theta \subset \mathbb{R}^d \to \mathbb{R}^d$ and $\theta = (m_1(\theta), \dots, m_d(\theta))$.
+
+Assume $\phi$ is one to one, then $\theta = \phi^{-1} (m_1(\theta), \dots, m_d(\theta))$ and \textbf{moments estimator} of $\theta$ is
+
+$$
+\hat{\theta_n^{MM}} = \phi^{-1}(\hat{m_1}, \dots, \hat{m_d})
+$$
+
+provided it exists.
+
+If $\phi^{-1}$ is very steep, then this estimator is not very good.
+
+LLN suggests $\hat{\theta_n^{MM}}$ is weakly / strongly consistent.
+
+CLT suggests $\sqrt{n} (\hat{M} - M(\theta)) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} \mathit{N}(0, \Sigma(\theta))$ (w.r.t $\mathbb{P}_{\theta}$).
+
+Hence by Delta Method,
+
+$$
+\sqrt{n} (\hat{\theta^{MM}_n} - \theta) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} \mathit{N}(0, \Gamma(\theta))
+$$
+
+Where $\Gamma(\theta) = [\bigtriangledown \phi^{-1} M(\theta)]^T \Sigma(\theta) [\bigtriangledown \phi^{-1} M(\theta)]$.
+\\
+
+\textbf{Condition number} of a matrix.
+
+MLE is typically more accurate than moment estimator, in terms of quadratic risk.
+Moments is fairly doable, though MLE is sometimes intractable.
+If likelihood is not concave, then method of moments can start you in the right peak to the maxima.
+
 \subsection{Markov chains}
 
 Consider a physical system with the following properties
