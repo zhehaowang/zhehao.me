@@ -36,3 +36,16 @@ Help your interlocutter.
 Callback. Inside jokes, and shows you are paying attention.
 
 Listen. It's not the same as waiting for your turn to speak. Listen attentively. 2:1.
+
+HPM when you don't have something to say. H - personal experience with one element in the other person's dialogue, P - opinion, M - metaphor.
+Use them but use them cautiously, try H Q Q Q M Q Q Q...
+
+
+Try to flow before you try to be funny.
+
+In a conversation, our attention could be split between paying attention to the other person and thinking up a response. Focus on the former.
+
+
+The siren. Standing out physically. Voice and delivery. Dazzle and harmonious. Theatricality. Danger. Element of fear / mercurial mood. Unknown. A touch of madness. Irrationality.
+
+The rake.
