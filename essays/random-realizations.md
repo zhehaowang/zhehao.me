@@ -105,4 +105,9 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 
 * We've had more than our share of documents with questions and answers, plans and schedules. We should perhaps focus on why they did not achieve what they meant to, as a start, I think we need to be very specific with our questions, and be systematic in answering them / getting them answered.
 
-* MIT is difficult. Few things worthwhile are. Taking on these challenges is, too, how you escape your comfort zone.
+* MIT is difficult. Few things worthwhile are not. Taking on these challenges is, too, how you escape your comfort zone.
+
+* Each of us carries inside us an ideal, a craving, an agenda. Something buried in us early on in our journey. By appealing to which we are most easily swayed. What is it that we seek? Is it acknowledgement, power, friendship, wealth, chivalric virtues, intellectual connections, leisure, thrills and adventures, love and attention, among many? Whatever we seek, know that
+  * we do not expect it to remain constant in the days to come, hence we should be constantly on the lookout / introspection
+  * it is likely a compound of multiple dimensions and factors intertwined
+  * this craving could shape our perspective, so much as to cast ludicrous lights upon those of others. Observe, gather evidence, reason from first principles i.e. our nature, don't assume prematurely, and don't judge. Us of this age and living in this culture are perhaps sorely lacking in such aspects, that self expression and individualism are much better developed than the skill and patience of observation. We cannot live the past, thus all the more reason to know and to reflect. We each are given a golden apple and a choice to make, and youth perhaps is that apple. Perhaps Paris did make the best choice.

@@ -48,4 +48,10 @@ In a conversation, our attention could be split between paying attention to the 
 
 The siren. Standing out physically. Voice and delivery. Dazzle and harmonious. Theatricality. Danger. Element of fear / mercurial mood. Unknown. A touch of madness. Irrationality.
 
-The rake.
+The rake. The dangerous.
+
+Each of us carries inside us an ideal: either of what we would like to become, or what we want another person to be for us. This ideal traces to our earliest years, what others could not give us, or what we could not give ourselves.
+We may seek danger, or to be nobler, kinder, chivalrous, something we feel is missing inside us.
+Atune to what is missing inside you.
+The key is to observe. The ideal can often be concealed in contradiction.
+
