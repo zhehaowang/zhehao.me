@@ -1298,3 +1298,36 @@ Reason then becomes the deliberative means of securing what the appetite and pas
 This does not sound controversial in that we are children of Humes: the essential function of government are in utilitarian terms, and the world as we know it is created by our mental machinery (and not God).
 
 Hume's problem of induction: future has no obligation to mimic the past, and any inference we make about the future based on past experience has no rational warrants.
+
+### Thomas Reid, the Scottish School
+
+Thomas Reid. Common sense philosophy. Willingness to live by his own philosophy. Contemporary critic of Hume.
+Master of optics, maths and astronomy.
+Scottish thought was profoundly influential in the founding of the US.
+
+An inquiry into the human mind. 1764.
+In any significant conflicts between the dictates of common sense and the productions of philosophical imagination, it is the latter which has to yield.
+
+The principle of common sense, not the prevailing opinion of the crowd or settled ethos of a community, but rather that which we have an obligation to take for granted, in all of the ordinary affairs of life.
+Necessary preconditions for thought and action.
+
+The prevailing theory, of Locke and the scholastics before him, had been that the external world cannot be directly known, but rather mediated through our senses (and presented to us as copies).
+Reid found this idea and how it was reached worrisome. Example: visual perception of rectilinear triangle projected onto a spherical surface.
+Reid intends to take a Baconian / Newtonian experimental approach in this matter, as opposed to theorizing to which philosophers are prone.
+
+Reid rejects Hume's theory on causation.
+Conjoined events may be not causation, just correlations.
+No set of observations or events taking place in the external world, could possibly lead to a concept like A causes B.
+The concept of causation is an inference we make, based on our knowledge of ourselves as having an active power to do something. (Us having the power such as closing our eyes and darken the world, and projecting this power onto the world is how causation came about.)
+
+On Hume's moral theory that passion rules reason, Reid does not think we are pleasure-seeking pain-avoiding organisms, rather we are rational entities first, and seek benefits in the long run or benefits us as a whole.
+
+Psychological theory of morality.
+Belief that our actions are in our power.
+
+An artificial language must be grounded in a natural language (facial expressions, sounds you find in the animal kingdom).
+
+On personal identity, Reid does not think it a collection of memories (Locke), or a bundle of perceptions (Hume).
+
+_"Conjectures and theories are the creature of men, and will always be found to unlike the creature of God. A just interpretation of nature is the only sound philosophy Orthodoxy."_
+Whatever we add of our own, is of no authority.
