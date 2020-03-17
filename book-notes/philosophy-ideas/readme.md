@@ -1331,3 +1331,55 @@ On personal identity, Reid does not think it a collection of memories (Locke), o
 
 _"Conjectures and theories are the creature of men, and will always be found to unlike the creature of God. A just interpretation of nature is the only sound philosophy Orthodoxy."_
 Whatever we add of our own, is of no authority.
+
+### France and the Philosophes
+
+_"My works are the issue of pure and simple experience, who is the one true mistress"_
+Leonardo da Vinci
+
+Similar thoughts can be found in Voltaire: the light of experience casts sufficient illumination for us to understand to the nature of our difficulties, and guide us out of the labyrinth.
+
+Voltaire traveled to London and wrote on the English people, on Newtonian vs the Cartesian systems.
+
+If philosophy has a purpose in human life, presumably it should be to help us figure out problems of essentially civic, social, moral and intellectual nature.
+In this sense, the French salon Philosophes invited the world to the long debate.
+
+For everything God gives us, he takes two things back.
+With democratizing of philosophy, comes the populist and rhetoricals.
+
+**Diderot's Encyclopédie**.
+Utter secularization of knowledge. Authority of experience, science and common sense over traditional modes of authority, e.g. that of church.
+
+d'Alembert, Voltaire, Rousseau, Montesquieu, Holbach et al all contributed to Diderot's work, which perhaps served as the best material for public education since Charlemagne's time.
+
+Voltaire. Like Descartes, was educated by Jesuits. Served in the Bastille for criticizing government, and later exiled to England. Admires the English people.
+
+If a thing exists, it exists in some degrees. It can then be measured. If it can be measured, it can be known.
+Enthusiam for calculus, all forms of machinery.
+
+Rousseau. On the peripheral of glittering wits / fashionable salons. Tortured and misunderstood person, and paranoid towards the end of his life.
+Against the attention to science and technology, Rousseau looks to nature in the raw, unanalyzed. Spare the resolutive and compositive methods of the tickering classes.
+Against the vaunted rationalism of the Enlightenment, its contempt for superstitution and reverenece for high civilization, Rousseau draws his attention to the inauthentic lives constrained and corrupted by civilization.
+The romantic rebellion. Same tool of high culture and literature astuteness that is the hallmark of the Enlightenment.
+
+**Rousseau's Emile**, on Education, civilization works to the disadvantage of what is most authentic about us. The process of civilizing someone is to strip him of natural tendencies and sentiments. It hardens and renders indifferent its beneficiary.
+Against traditional authority.
+
+**The Social Contract** 1762, _"Man is born free, and he is everywhere in chains. One thinks oneself the master of others and still remains a greater slave than they. How did this come about."_
+The chained mind by orthodoxy and rendered incapable.
+Naturalism and a concession to nature. Skepticism towards habitual modes of conduct and human contrivances.
+
+**La Mettrie and Man a Machine**. Physician. A polemic.
+_"it is not enough for a wise man to study nature and truth. He should dare stay truthful for the benefit of the few who are willing and able to think. As for the rest, who are voluntarily slaves of prejudice, they can do no more than a frog can fly."_
+Claims man is a complicated machine. The soul is an enlightened machine, still a mechanical contrivance.
+
+Translation of Locke in French.
+The sentient statue.
+
+Helvetius. Environmentalist.
+
+Condorcet. Sketch for a historical picture of the human mind. Hopefulness in the union of the sciences and the society.
+Integral calculus, probability and decision theory. Secretary of the Academy. Revoluntionary. Died in prison.
+
+18th Century claimed revival of the classics, but not quite compatible of the classical world view, one of harmony and propotion, everything has its place and function, a search for the absolute and everything good can be preserved.
+The idea of progress in the 18th Century however, suggests what is stationary is stagnant, and the future is under no obligation to mimic the past. Liberate human imagination.
