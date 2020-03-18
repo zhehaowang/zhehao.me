@@ -56,3 +56,7 @@ The less we use the B, the better in terms of burnish.
 
 If you find yourself pressing your pencil too hard for the value, then it might be the pencil itself telling you it's too hard for the task.
 On the other hand, if you find yourself having to hold your breath to get a lighter value, then the pencil is too soft.
+
+Drawing a value scale, start soft and in a test area. Blending tools generally darkens. Squint to check.
+Always sharpen your pencil.
+
