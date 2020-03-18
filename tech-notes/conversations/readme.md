@@ -55,3 +55,7 @@ We may seek danger, or to be nobler, kinder, chivalrous, something we feel is mi
 Atune to what is missing inside you.
 The key is to observe. The ideal can often be concealed in contradiction.
 
+
+The coquette. Self-sufficient, confident, aloof, plays hot and cold (or just cold). Self-sufficiency and confidence attracts. Andy Warhol, Narcissus, Josephine Bonaparte.
+
+The charmer. Focus the attention on your subject and appeal to your subject's ego and self consciousness. Humble and polite. Wait for the right time. Zhou Enlai, Benjamin Disraeli.
