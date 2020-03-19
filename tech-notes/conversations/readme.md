@@ -56,6 +56,9 @@ Atune to what is missing inside you.
 The key is to observe. The ideal can often be concealed in contradiction.
 Casanova.
 
+The coquette. Self-sufficient, confident, aloof, plays hot and cold (or just cold). Self-sufficiency and confidence attracts. Andy Warhol, Narcissus, Josephine Bonaparte.
+
+The charmer. Focus the attention on your subject and appeal to your subject's ego and self consciousness. Humble and polite. Wait for the right time. Zhou Enlai, Benjamin Disraeli.
 Dandy. In our society most conform, these show an insolent side and stand out. Often outlandish in their appearance, and embodies some traits of the opposite gender. Lou Salome.
 
 Naturals. Child-like naivete reflected in their actions, thoughts but not openly professed. Charlie Chaplin. Genji.
