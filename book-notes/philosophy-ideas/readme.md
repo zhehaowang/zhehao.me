@@ -1383,3 +1383,46 @@ Integral calculus, probability and decision theory. Secretary of the Academy. Re
 
 18th Century claimed revival of the classics, but not quite compatible of the classical world view, one of harmony and propotion, everything has its place and function, a search for the absolute and everything good can be preserved.
 The idea of progress in the 18th Century however, suggests what is stationary is stagnant, and the future is under no obligation to mimic the past. Liberate human imagination.
+
+### Federalist papers and the great experiment
+
+The Federalist papers, James Madison, Alexander Hamilton, John Jay notes on the proceedings of conventions of founding fathers (delegates of various states), confidential initially to the media. 1787 draft, 85 letters published under the name "Publius".
+Designed chiefly to win New York to the ratification of the constitution.
+
+Political philosophy contribution with realistic and practical wisdom.
+A set of templates for a national government, compared with the work of the contemporary Rousseau, (and earlier) Locke, Hume, Montesquieu, etc, on whose work the authors are well read.
+
+Hamilton proposed president for life with veto power, which seemed nearly tyrannical.
+Madison was a key figure to the constitution and American politics. Reformed Princeton's curriculum, from where he graduated. Promulgater of Scottish common sense philosophy. Naturalist, scientific and progressive.
+
+Madison answers **"what is a republic"**: when government's power is derived entirely from its people. _"When it is administered by persons holding their offices during pleasure for limited period or during good behavior"_. (serve at the people's pleasure and required to uphold standards of conduct acceptable to those who are governed.)
+
+The closer something comes to approximating this sense of the republic, the sooner it dies.
+Those who it make are puritanical republic: power is delegated by the people, not held and wielded by them.
+A republican system of this sort can _"refine and enlarge public views, by passing them through the medium of a chosen body of citizens, whose wisdom may best discern the true interest of their country, and whose patriotism and love of justice will be least likely to sacrifice it to temporary or partial considerations."_
+
+And a critical number of representatives must be elected, for the smaller the number, the greater the opportunity for cabals.
+
+In Federalist Papers, Hamilton's critique on Montesquieu demonstrates a general suspicion towards theoretical ways of solving practical problems.
+The tension between the two arises from the need for a central government able to secure the finances and defenses of the nation, and the jealously guarded freedom of the individual states.
+What is the difference between paying taxes to the British, vs paying taxes to a government within the national boundaries. Is one tyranny being replaced with another?
+
+The point of a constitution is to constitute a nation, to give it centrality. 
+_"The federal and state governments are in fact different trustees of the people, constituted with different powers, designed for different purposes...The ultimate authority resides in the people alone, and that it will not depend merely on the comparative ambition and the address of different governments."_
+
+Montesquieu: despotism - the required disposition is fear, monarchy - honor, republican - cultivation of virtue. Natural aristocrats by character, not by birth.
+
+Madison discusses the failed republics of Greece and Rome, lifetime senates appointments, the tendency of citizens to misplace their interest under the enthusiam of the moment.
+_"As the cool and deliberate sense of the community ought, in all governments, and actually will, in all free governments, ultimately prevail over the views of its rulers; so there are particular moments in public affairs when the people, stimulated by some irregular passion, or some illicit advantage, or misled by the artful misrepresentations of interested men, may call for measures which they themselves will afterwards be the most ready to lament and condemn."_
+
+Human nature can be occasionally fickle, foolish, and gullible. The right form of government cannot rid human of such nature, but can control them long enough for a person to engage in the lifelong mission of self correction.
+
+The Federalist Papers demonstrated an utter respect by the authors for the people whose allegiance they seek to cultivate.
+The Federalist Papers achieved philosophy with a civic face. Citizens need to take himself and his missions seriously. All passion spent, self governance is risky business, and power without virtue is a sure path to a life without a point.
+
+What sort of virtue is needed in this republic?
+Opinions of the founding fathers differ, but agree on this experiment on self governance presupposes an instructed population, products of a good education with a point, and the point being the development of citizens.
+The responsible, informed, inner-directed, virtuous person. A matter of character, not of vocational or professional skills.
+And that character is forged by observing good example, and public education, which Jefferson thought to be the foundation of this.
+
+A worthy government works to create virtuous, self-governing citizens, whose efforts are a lifelong labor.
