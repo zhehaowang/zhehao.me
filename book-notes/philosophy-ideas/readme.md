@@ -1426,3 +1426,62 @@ The responsible, informed, inner-directed, virtuous person. A matter of characte
 And that character is forged by observing good example, and public education, which Jefferson thought to be the foundation of this.
 
 A worthy government works to create virtuous, self-governing citizens, whose efforts are a lifelong labor.
+
+### Enlightenment and Kant on freedom
+
+What can I know? What ought I to do? What can I hope?
+Questions to which Immanuel Kant (1724 - 1804) devoted most of his adult life. Empiricist.
+
+Immanuel Kant: what is enlightenment? **Intellectual freedom**. Express one's own ideas rather than echo'ing the thoughts of others.
+_"Enlightenment is man's emergence from his self-incurred immaturity."_
+The freedom to question, to make public use of one's reason in all matters.
+
+**Critique of pure reason**: not criticizing but analyzing the assets and limitation of its subject, pure reason, i.e. nature and limits of reason itself.
+Where reason trails off, what else is there and what can we hope for? (Knowledge)
+Kant claims to have awakened from his dogmatic absorption in David Hume, and thus this work.
+Hume: everything we know is product of experience. Causation, habitual mode of all action.
+Kant agrees, but claims it's a mistake to assume because our knowledge **arises from** experience, that our knowledge **is grounded in** experience.
+But in terms of Hume's causation, we cannot see or feel time, there cannot be succession / conjunction unless time is present as a categorical framework for all experience.
+
+Time is a necessary precondition for temporal ordering, but not given by any experience, i.e. time is not a stimulus on sense organs or learned through experience.
+Cognitive holdings that are not results of experience are what Kant deemed **"pure" / non-empirical**.
+This critique deals with such cognitive holdings such as time.
+
+Space as such is also not given by experience, but also something that is present for there to be experience at all.
+
+Thus, Kant thinks time and space pure "intuitions", i.e. a priori to all experiences as described by Hume.
+Causation then is not just a habit of the mind, but must be grounded in something more foundamental, that which experience itself cannot convey.
+All of epistemic claims have certain forms of properties, that they all take place in some categorical framework such as time and space.
+
+The analytics of concepts: Kant claims all knowledge involve some judgment, formed within a universal categorical framework.
+
+Such categories (of human understanding) involve
+* Quantity (one, many, all; unity, plurality, totality. Nothing about the senses can convey totality, such as the number infinity cannot be learned by counting.)
+* Quality.
+* Modality (something is actually the case, possibly the case, or necessarily the case. Experience also cannot convey necessity.)
+* Relation.
+
+Kant argues the above categories are not just what our minds use to describe experiences / particularity of our nerve systems, but rather necessary frameworks / forms for all epistemic framework within which there can be understanding / experience.
+
+**Hume's fork**: two classes of things we can know about, relations among ideas vs matters of fact.
+All bachelors are unmarried, is an example of the former. **Analytical propositions**, whose truth can be known entirely independent of experience, i.e. known a priori. 
+Bill is wearing shoes, is an example of the latter. **Synthetic propositions**, whose truth cannot be known prior to the experience / a priori.
+
+Kant's rebuttal on the above is by pure intuitions of space and time. All empirical statements we make will have certain properties that can be established a priori, by way of the pure intuitions of time and space, and pure categories of understanding.
+Hence a part of that synthetic proposition can be known a priori: you experience takes place in some framework.
+
+In a sense, the Kantian pure intuition and categories are prerequisites for Hume's experience to work.
+
+What we know of the external world factually takes the form of phenomena, objects of perception.
+But there is something behind this realm of phenomena (Kantian **realm of noumena**), and the question is how accurately does the mental representation of reality we have reflect the actual reality?
+We cannot penetrate the phenoma to the noumenal level, and this places a limit on what we can know, and the validity of knowledge we can claim.
+
+**Critique of practical reason**: grounding of ethics. Principles by which choices are made among morally weighty consequences. (Conduct)
+Kant's moral theory shows influence from Reid.
+
+**Critique of judgment**: grounding of aethestics. (what is harmonious, what is apt, etc)
+
+All three works are difficult in German or English.
+Kant was not well-traveled, and is said to be a well-humored and affable person, not in his philosophical work though.
+
+
