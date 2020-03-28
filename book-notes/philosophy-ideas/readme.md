@@ -1484,4 +1484,58 @@ Kant's moral theory shows influence from Reid.
 All three works are difficult in German or English.
 Kant was not well-traveled, and is said to be a well-humored and affable person, not in his philosophical work though.
 
+### Moral science and the natural world
 
+Hume's moral theory: our moral reasoning are based on sentiments, emotions and utility.
+Ground on which we judge good or bad is not some abstract moral concept, but how the certain events affect us cellularly / physiologically.
+_"Moral distinctions not derived from reason."_
+**Moral matches up with utilitarian pleasure, with roots extending back to Epicureanism. Utilitarianism**
+
+Events are judged bad only because we react to them that way (generally based on their utility, pleasure).
+
+Moral philosophy is then not to deduce first moral principles, but to come to grip with human nature, and to recognize the challenges that nature faces, in a complex world.
+
+
+Kant's moral theory: **deontological theories**, deon, duty in Greek. A principal adversary to utilitarianism.
+
+Certain moral precepts are unconditional. Certain actions are right or wrong under whatever circumstances.
+Utilities, sentiment, and emotions are irrelevant.
+Deontological theories reject the idea that something is right because it happens to achieve good outcomes, or in your heart you know it's right.
+
+The fact that humans are natural objects does not imply that they are no more than this.
+Human beings are also rational beings: they occupy the intelligible realm, in which we account for events not due to physical causes, but rather reason.
+
+Other aspect of Kant's moral theory: **autonomy of the will**: there is no moral at all if we don't have the freedom to act or not act.
+There must be sufficient freedom for us to be charged of wrongdoing, or praised for virtuous actions.
+
+Kant claims the above cannot be proved empirically.
+In **Critique of Practical Reason**, Kant claims our conscious awareness of a moral law grants a concept of freedom. There are such moral laws, as otherwise the concept of freedom would not be intelligible. The means by which the concept of freedom is reached is rational, not empirical, and cannot be proved scientifically.
+A scientific proof (on atomic determinism), in a sense, is contrary to the idea of freedom (autonomous and subject to moral laws).
+
+An automous person, in Greek, is not a lawless person, but rather whose freedom is governed by the laws he gives himself.
+
+_"A free will and a will subject to moral laws are one and the same."_
+
+**Hypothetical imperative** (hunger, thirst, frustration, Humian desires): if you were to achieve this specific outcome, then you must do that.
+Grounded in our natural being where we are subject to the natural laws of science.
+
+To contrast with hypothetical imperative, Kant proposes **categorical imperative**: an action being objectively necessary in itself, without any other purpose, i.e. without any other end.
+
+Goal of happiness cannot be obtained by willing it, the required virtue is prudence. 
+
+And what Kant sets up to say here is that Humian moral theory is really concerned with things that are outside morality, i.e. the hypothetical imperatives, without moral freedom. This is somewhat similar to Aristotle's view.
+
+Kant's moral precepts are universally applicable. They carry with them categorical imperative, which asserts its own moral authority, not based off of some consequences.
+
+On Kant's account, infants, or one whose nerves are flawed in such sense (insanity), are not moral beings, as they don't possess rationality.
+Then under the same account, an insane person (or one lacking the authority of the will) is not among those fit for the rule of law, and is not subject to moral law.
+
+The categorical imperative, summarized as _"act in such a way that the maxim of your action (i.e. the principle upon which your action is based), would (if you were able) be instituted as a universal law of nature"._
+
+_"Man is never means to an end, but an end in themselves."_ Kant uses this to propose to never lie.
+
+(John Stewart Mill would claim Kant's argument can justify an insane arsonist establishing burning all as a universal precept, though this would appear to derive from misunderstanding Kant's argument.)
+
+Kant's epitaph, "the moral laws within him, and the starry sky above him".
+
+Kant's moral theory, not for pleasure, or easing pain, but for doing the right thing, and thus instantiating ourselves as moral beings.
