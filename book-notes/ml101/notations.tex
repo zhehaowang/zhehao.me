@@ -945,6 +945,21 @@ $$
 
 In both cases, $P_{\xi}(k)$ is uniquely determined by the characteristic function.
 
+\subsection{Different types of convergence}
+
+Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be deterministic)
+
+\begin{itemize}
+  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
+  \item Convergence in probability: $T_n \overset{\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
+  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
+  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbf{P}[T \leq x]$
+\end{itemize}
+
+\textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
+One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
+Two implies four: if you converge in probability, you converge in distribution.
+
 \subsection{Central limit theorem}
 
 Given a sequence of i.i.d r.v. $X_i, i = 1, 2, \dots, n$ with mean $\mu = \mathbb{E}[X]$ and variance $\sigma^2 = \mathbb{V}[X]$, the weak and strong laws of large number says
@@ -984,21 +999,6 @@ P(|\bar{X_n} - \mu| \geq \epsilon) \leq 2 e^{-\frac{2 n \epsilon^2}{(b - a)^2}}
 $$
 
 \textbf{Intuition}: average of bounded i.i.d r.v.'s probability distribution function is bounded by a Gaussian distribution (thinner tails) (even without n approaching infinity).
-
-\subsection{Different types of convergence}
-
-Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be deterministic)
-
-\begin{itemize}
-  \item Almost surely (a.s.) convergence: $T_n \overset{a.s.}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[\{ \omega : T_n(\omega) \underset{n \rightarrow \infty}{\longrightarrow} T(\omega)\}] = 1$
-  \item Convergence in probability: $T_n \overset{\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T| \geq \epsilon] \underset{n \rightarrow \infty}{\longrightarrow} 0, \forall \epsilon > 0$
-  \item Convergence in $L^p$: $T_n \overset{(L^p)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[|T_n - T|^p] \underset{n \rightarrow \infty}{\longrightarrow} 0$
-  \item Convergence in distribution $L^p$: $T_n \overset{(d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T$ iff $\mathbf{P}[T_n \leq x] \underset{n \rightarrow \infty}{\longrightarrow} \mathbf{P}[T \leq x]$
-\end{itemize}
-
-\textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
-One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
-Two implies four: if you converge in probability, you converge in distribution.
 
 \textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
 
