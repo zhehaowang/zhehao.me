@@ -1539,3 +1539,33 @@ _"Man is never means to an end, but an end in themselves."_ Kant uses this to pr
 Kant's epitaph, "the moral laws within him, and the starry sky above him".
 
 Kant's moral theory, not for pleasure, or easing pain, but for doing the right thing, and thus instantiating ourselves as moral beings.
+
+### Phrenology
+
+Enlightenment also saw revival of atomic theory, corpuscular science of Newton's.
+The mindset then was optimistic: no problem is so complex as to beyond the reach of science.
+They would argue to discover the nature of human nature, one must understand the subject to be a scientific one of the brain.
+Phrenology is one such study.
+
+Lavater and Physiognomy: maps one's face to one's character.
+
+Franz Joseph Gall, father of phrenology.
+The theory would claim, e.g. one can judge all talents by observing physical appearance, or a surgeon can gauge one's cranial skull to learn one's morals, characters, etc.
+The Church banned this school of thought which led to atheism.
+
+Goethe, Edison also held phrenology beliefs.
+
+Gall received best medical education of his time, was not a charlatan, and did research on fetuses to study phrenology.
+Gall also differentiated brain grey and white matters, a functional anatomy of the brain. A pioneer in comparative structural anatomy.
+
+(Phren, Greek for mind. Gall claims this to be the incontestable truth of the science of the mind).
+
+Gall identified 27 basic faculties of the mind, each associated with a specific organ of the brain. (a modular theory of the mind；e.g. one's destructiveness is somewhere above the ear. Understanding of causality somewhere in the forehead.). Later comers added more.
+Gall also claims heavier brain mass indicates higher faculty in aspects.
+Gall claims mental and moral differences between people trace back to differences in structure of the brain.
+Experience matters, but the ultimate factor is genetic, like Hesiod's men of gold, bronze and iron.
+
+Later critics of phrenology performed experiments where brains of an animal were cut open, certain areas removed, and the animal is sewn back together to observe what deficiencies they have.
+
+Phrenology, although pseudo-scientific, contributed to rescuing philosophy of the mind from being speculative to physical and clinical sciences.
+The theory died in the second half of the 20th century.
