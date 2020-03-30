@@ -1569,3 +1569,48 @@ Later critics of phrenology performed experiments where brains of an animal were
 
 Phrenology, although pseudo-scientific, contributed to rescuing philosophy of the mind from being speculative to physical and clinical sciences.
 The theory died in the second half of the 20th century.
+
+### Romanticism
+
+Romanticism of the 19th C.
+
+Even though it may be a rejection, or a reaction to enlightenment, it traces back to enlightenment.
+
+Rejecting superstition, reserving experience alone as the final authority, nature at the center of philosophical concerns.
+Nature of law, human, belief, government, the world and the cosmos.
+Against the authority of scripture or revelation, rank and title, over-analytical scholasticism, sloppy acceptance of canon.
+
+Rousseau, a religion of nature. Liberate perception.
+**Reveries of a Solitary Walker**. Merging with fields and flowers.
+
+Kant's view contrasts the proposal of Rousseau's:
+If systematic observation on which science depends reveals only phenomenal reality and not Kant's noumenal reality, then science has built in limitations, and may be another obstacle to the truth of things.
+Human nature, the intelligible realm, cannot be adequately understood by the causation order of the sciences, but only through the rational introspective thoughtful being who discovers himself a being with free will.
+The way to get behind the observations, is then through this freedom.
+
+Consider Gothic novels like Frankenstein and the Castle of Otranto, or Fuseli's Nightmare. Romanticism conveys the sense of the mystery behind the reality, that gets uncovered through art and literature.
+
+Romantic rebellion against the line and angle precision, and the pretension to knowledge of the scientific community, the mixed bounty of a industrial revolution that began as a servant but now stands as a master of the human condition.
+
+Goethe, painter, botanist, playwright, poet, statesman. Romanticism.
+**Farbenlehre**, long book on color vision. Critique on the Newtonian theory of light as an experience.
+Goethe takes a step back and examines the perception of beauty. Perception have inventive powers, and can defy physics.
+What defines human nature would not be the rigidity of science.
+
+**Faust**, two parts, the optimistic Goethe had him saved by angels.
+Dr Faustus, 15c, a magician, alchemist, knowledgeable, studious, gentleman, to whom life has lost its meaning, he knows everything, master of scripture. Made a deal with the devil to possess supernatural knowledge and power.
+Goethe's version has a wager between God and Satan, and Faust's devotion to religion was replaced with devotion to science. Yet all his studies has not revealed the truth to things.
+Love, power, romance, passion, ocean of turmoil and possibilities. What would you sell your soul for? Mephistopheles.
+
+_"He only earns his freedom and existence who daily conquers them anew"_.
+Faust, the man who went through everything, placed this ideal of freedom at the highest.
+
+Schiller. **Letters Upon The Aesthetic Education of Man**. _"Man is never so authentically himself than when at play"_.
+Romanticists are well read in classics.
+Eudaimonia, divinity within us expresses itself most fully when what we are doing, we are doing for the sheer intrinsic worth of the activity itself, not for anything external to it.
+Authenticity of play.
+In a sense, to professionalize an activity, is to transfer it from play to business.
+
+Romanticism is about passion, the authentic commitment, not a gift of reason. What we do when we are free, and what we do to be free.
+In play, we discover our authentic self.
+Go through a world of wonder, wondering.
