@@ -2,37 +2,36 @@
 
 Nov 10, 2018
 
-
 ### Preface
 
-It always surprises me how futile the attempts were to refrain from looking back, especially on a fine Saturday morning in office, overlooking the Central Park and having the entire floor to myself.
+It always surprises me how futile the attempts were to refrain from looking back, especially on a fine Saturday morning in the Bloomberg office, overlooking the Central Park with the entire floor to myself.
 
-Often times the thoughts revolve around how much has changed and the naivete of my past (and current) self, that the regular feeling of deja vu started to convince me I was trapped in a labyrinth making little progress in terms of "real" realizations.
+Often times the thoughts revolved around how much has changed and the naivete of my past (and current) self, that the recurring feelings of deja vu started to convince me of being trapped in a labyrinth making little progress in terms of authentic realizations.
 
-Perhaps such is the process of making realizations, however we don't enter the labyrinth empty-handed.
-We dive in this time equipped with a ball of thread like what Theseus was given, in an attempt to jot down the fine details of our thoughts, through which we derive the core values and principles.
+Perhaps such is the process of coming to realizations, however, we intend not to enter the labyrinth empty-handed.
+We dive in equipped with Ariadne's thread, in an attempt to jot down the fine details of the process, through which we derive our core values and principles.
 
 ### External conditions
 
-Recent events reinforced the realization that much of my fate is not in my own hands.
-For the first time in my last five years as an immigrant to this country, I saw how limited my freedom is, in pursuing what I deemed worthy, due to the restrictions in switching employers and traveling abroad.
+Recent events reinforced the notion that much of my fate is not in my own hands.
+As an immigrant to this country, I saw how limited my freedom is, in pursuing what I deemed worthy, due to the restrictions in switching employers and traveling abroad.
 
 This may be a moment when I should swallow my pride, fear and anxiety, and accept it for what it is, as the serenity prayer would preach.
-On one hand, to live and learn is but the best option we have, and on the other hand, there is something to be salvaged out of every misfortune, and it is exactly through such we evaluate ourselves, steer our goals and harden our resolve.
+To live and learn is but the best option we have, and there is something to be salvaged from every misfortune, and it is through such we evaluate ourselves, steer our goals and harden our resolve.
 
 In these endeavors, know that we do not bow to the whims of external conditions.
-I hold firm the belief that one's true excellence is decoupled from external conditions.
+I hold firm the belief that one's excellence is decoupled from external conditions.
 
 The goal is to master my own fate.
-The way there is through the pursuit of knowledge.
+The way is through the pursuit of knowledge.
 And in the pursuit I aim to stay true to the virtues below, and to weather the storms with faith and temperance.
 
 ### Pursuit of knowledge
 
-We often times pondered, what it means to really know something, and among all the arts in this world, what would be worth knowing.
+We often times pondered, what it means to know something, and among all the arts in this world, what would be worth knowing.
 
 The majority of my life was spent as a student, yet among the things I was taught, I cannot say I learnt most of them.
-One can read a book, audit a course, labor in pratices, yet all of these are ways of obtaining knowledge, mostly irrelevant with evaluating whether our goal of learning something is achieved.
+One can read a book, audit a course, labor in pratices, while all of these are ways of obtaining knowledge, they can be irrelevant when evaluating whether our goal of learning something is achieved.
 
 I often times see these feats from those considered masters of their arts:
 * To be able to explain it to a community, both from a high level and in-depth, in order to cater to different interest and skill levels of the audience.
