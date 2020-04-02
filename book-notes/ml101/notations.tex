@@ -959,6 +959,30 @@ Let $(T_n)_{n \geq 1}$ be a sequence of r.v. and $T$ a r.v. ($T$ can be determin
 \textbf{Intuition}: the first is very strong. It says if you measure one under whatever observation ($\omega$), it's almost the same as if you measure the other.
 One implies two. For three if you converge in $L^p$ you also converge in $L^q$ for all $q < p$.
 Two implies four: if you converge in probability, you converge in distribution.
+\\
+\\
+\textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
+
+$$
+T_n \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T \implies f(T_n) \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} f(T)
+$$
+
+\textbf{Intuition}: apply a continuous function on the sequence of r.v. and convergence still holds.
+
+One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
+If $U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} U$ and
+$V_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V$, then
+
+$$
+V_n + U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V + U
+$$
+
+$$
+V_n U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V U
+$$
+
+Same goes for division if $V \neq 0$.
+Strong LLN suggests almost surely convergence, and weak LLN suggests convergence in probability.
 
 \subsection{Central limit theorem}
 
@@ -989,40 +1013,8 @@ $$
 where $B^2_n = \mathbb{V}[S_n] = \sum_{k = 1}^{n}{\sigma_k^2}$
 
 Then the sequence of random variables satisfy the central limit theorem.
-
-\subsection{Hoeffding's inequality}
-
-Let $n$ be a positive integer and $X, X_1, ..., X_n$ be i.i.d r.v. s.t. $X \in [a, b]$. Let $\mu = E[X]$. Then for all $\epsilon > 0$,
-
-$$
-P(|\bar{X_n} - \mu| \geq \epsilon) \leq 2 e^{-\frac{2 n \epsilon^2}{(b - a)^2}}
-$$
-
-\textbf{Intuition}: average of bounded i.i.d r.v.'s probability distribution function is bounded by a Gaussian distribution (thinner tails) (even without n approaching infinity).
-
-\textbf{Continuous mapping theorem}: if $f$ is a continuous function, then
-
-$$
-T_n \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} T \implies f(T_n) \overset{a.s. / \mathbf{P} / (d)}{\underset{n \rightarrow \infty}{\longrightarrow}} f(T)
-$$
-
-\textbf{Intuition}: apply a continuous function on the sequence of r.v. and convergence still holds.
-
-One can add, multiply, divide, limit, etc, when converge almost surely and in probability.
-If $U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} U$ and
-$V_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V$, then
-
-$$
-V_n + U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V + U
-$$
-
-$$
-V_n U_n \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} V U
-$$
-
-Same goes for division if $V \neq 0$.
-Strong LLN suggests almost surely convergence, and weak LLN suggests convergence in probability.
-
+\\
+\\
 \textbf{Slutsky's theorem} suggests under certain scenario, you can combine two sequences when one converges in probability and the other converges in distribution.
 
 By Slutsky, we have the \textbf{Delta method}, which allows us to apply functions on sequence of r.v. in CLT. I.e.
@@ -1036,6 +1028,16 @@ Let $g: \mathbb{R} \rightarrow \mathbb{R}$ be continuously differentiable at the
 $$
 \sqrt{n} (g(Z_n) - g(\theta)) \overset{a.s./\mathbf{P}}{\underset{n \rightarrow \infty}{\longrightarrow}} \mathbf{N}(0, g'(\theta)^2 \sigma^2)
 $$
+
+\subsection{Hoeffding's inequality}
+
+Let $n$ be a positive integer and $X, X_1, ..., X_n$ be i.i.d r.v. s.t. $X \in [a, b]$. Let $\mu = E[X]$. Then for all $\epsilon > 0$,
+
+$$
+P(|\bar{X_n} - \mu| \geq \epsilon) \leq 2 e^{-\frac{2 n \epsilon^2}{(b - a)^2}}
+$$
+
+\textbf{Intuition}: average of bounded i.i.d r.v.'s probability distribution function is bounded by a Gaussian distribution (thinner tails) (even without n approaching infinity).
 
 \subsection{Degree of freedom}
 
@@ -1144,7 +1146,7 @@ When dealing with normal distribution, confidence interval depends on whether po
 
 \subsection{Maximum likelihood estimation}
 
-Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a associated with i.i.d r.v. $X_1, \dots X_n$ and assume $\exists \theta^* \in \Theta$ such that $X_i \sim \mathbb{P}_{\theta^*}$: $\theta^*$ is the true parameter.
+Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a statistical model associated with i.i.d r.v. $X_1, \dots X_n$ and assume $\exists \theta^* \in \Theta$ such that $X_i \sim \mathbb{P}_{\theta^*}$: $\theta^*$ is the true parameter.
 
 Statistician's goal is, given $X_1, \dots X_n$, find an estimator $\hat{\theta} = \hat{\theta}(X_1, \dots X_n)$ such that $\mathbb{P}_{\hat{\theta}}$ is close to $\mathbb{P}_{\theta^*}$. This means
 $|\mathbb{P}_{\hat{\theta}}(A) - \mathbb{P}_{\theta^*}(A)|$ is small for all $A \subset E$.
@@ -1161,7 +1163,7 @@ $$
 The total variation distance between $\mathbb{P}_{\theta}$ and $\mathbb{P}_{\theta'}$ is a function of PMF's $p_{\theta}$ and $p_{\theta'}$:
 
 $$
-TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \frac{1}{2} \sum_{x \in E} (p_{\theta}(x) - p_{\theta'}(x))
+TV(\mathbb{P}_{\theta}, \mathbb{P}_{\theta'}) = \frac{1}{2} \sum_{x \in E} |p_{\theta}(x) - p_{\theta'}(x)|
 $$
 
 And in the continuous case $f_{\theta}$ being the density function,
