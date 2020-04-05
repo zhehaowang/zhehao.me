@@ -1614,3 +1614,40 @@ In a sense, to professionalize an activity, is to transfer it from play to busin
 Romanticism is about passion, the authentic commitment, not a gift of reason. What we do when we are free, and what we do to be free.
 In play, we discover our authentic self.
 Go through a world of wonder, wondering.
+
+### Hegel and history
+
+Classicicism and romanticism world views.
+
+Born 1770, geared for unexciting theological studies. German romantic idealism.
+Defender of freedom, rejecton of the past. German ideology being influenced by the French revolution.
+
+**The Phenomenology of Spirit (Mind)**
+His mission: _"the systematic development of truth in scientific form can alone be the true shape in which truth exists. To help to bring philosophy nearer to the form of science – that goal where it can lay aside the name of love of knowledge and be actual knowledge – that is what I have set before me."_
+
+Hegel acknowledges Descartes to be the thinker who revived the very foundation on which philosophy is based: knowledge in all its forms is but the unity of thought and being. Universal doubt as an absolute beginning. Make abolition of all determinations the first condition of philosophy.
+
+Rejection of mechanistic sciences.
+Hegel admires Newton's work, but also thinks Newtonian science makes Locke's philosophy nearly official: the pursuit of perceptual modes of knowledge, and shunning of deep metaphysical considerations are product of Newtonian science mode of thinking. Physics, beware of metaphysics; science, beware of thought.
+
+Thoughtless application of thought itself may confuse us that we have witnessed reality as such, when in reality we merely recovered the product of a method.
+The true is the whole, and there are no parts of truth.
+Hegel also claims science doesn't actually explain anything: they describe what is, but not why things are the way they are.
+
+Hegel (Fichte)'s triad **thesis, antithesis, synthesis**. (Dialectical method of Hegel, first idea, second idea that rejects the first, and third idea that reconciles both). Progress through conflict, reality arising through opposing tendencies. Freedom arises from such conflicts: in the attempt to constrain yourself, you become conscious of your freedom.
+Ultimate reality is that of idea. The starting point of philosophy being the transcendental ego.
+
+Explanations based on causes vs explanations based on reason.
+
+Romanticism contains nothing if not the idea of struggle, which produces newer and ultimately better forms of thought.
+
+History. Are we to assume these are accidental set of occurrences, or does it patently point to a plan or a scheme of some kind? Progressive development of an evolutionary nature.
+There is reason in human history. **Reason in History**. History is a creation by reason.
+The Absolute idea is the identity of the theoretical and practical idea. All else is error, confusion, caprice, transitoriness. The Absolute idea itself is being, all-knowing, truth.
+
+Hegel's political philosophy, _"the state is the realization of the ethical idea, the true state is the ethical whole and the realization of freedom. The state is the march of the God through the world."_
+
+Fichte, German nationalism, preserve German cultural ideology in the face of the French challenge.
+Moral development of the human race.
+The stage of perfected sinfulness, acting for the sheer sake of expressing freedom against any ground of constraint, opposition or coercion.
+Only when one abandons individuality, which is materiality itself, can there be an eternal life.
