@@ -1064,7 +1064,7 @@ This is a strong assumption. ($X$ is just any one among the i.i.d $X_1, \dots X_
 $\theta$ ($\theta^*$) is the true parameter we want to estimate.
 $\theta$ may have physical links to the phenomenon, like in linear regression, it suggests how sensitive it is to a dimension.
 \\
-A \textbf{parametric model / statistics} is where $\theta$ has finite number of values $\theta_d$, and all $\theta_d \in \mathbb{R}$.
+A \textbf{parametric model} is where $\theta$ has finite number of values $\theta_d$, and all $\theta_d \in \mathbb{R}$.
 \\
 Non-parametric estimation can be, e.g. when you have infinite numbers in $\theta$ to estimate, or when $\theta$ is a function.
 \\
@@ -1092,7 +1092,7 @@ $$
 
 Given a statistical model, we want to estimate $\theta$.
 
-An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\theta}(X_1, \dots, X_n)$ a.k.a statistic.
+An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\theta}(X_1, \dots, X_n)$ a.k.a a \textbf{statistic}.
 (e.g. average, max, etc. Measurable means that given data, you can compute it, it does not depend on $\theta$. Things that are implicitly defined, such as sup or inf, are not measurable.)
 
 An estimator is \textbf{weakly consistent} if it converges in probability to $\theta$, or strongly consistent if it converges almost surely.
@@ -1393,7 +1393,49 @@ If likelihood is not concave, then method of moments can start you in the right 
 
 \subsection{Parametric hypothesis testing}
 
+Example:
+\begin{itemize}
+\item A coin is tossed X times, and heads are obtained Y times. Can we conclude the coin is significantly unfair?
+\item Drug testing. A control group is given placebo, and a test group given a cough syrup. Measure the number of coughs of both groups, and how much does their mean need to differ, for us to conclude the cough syrup is effective?
+\end{itemize}
 
+Consider a sample $X_1, \dots X_n$ of i.i.d r.v. and a statistical model $(E, (\mathbb{P}_\theta)_{\theta \in \Theta})$.
+
+Let $\Theta_0$ and $\Theta_1$ be disjoint subsets of $\Theta$. (anything that's in $\Theta$ but not either $\Theta_0$ or $\Theta_1$ we are not going to make any statement about those cases.)
+
+Consider the two hypotheses, $H_0 : \theta \in \Theta_0$ and $H_0 : \theta \in \Theta_1$.
+
+$H_0$ is the \textbf{null hypothesis} (\textit{the status quo}), $H_1$ is the \textbf{alternative hypothesis} (\textit{scientific discovery that goes against status quo}).
+
+If we believe true $\theta$ is in either $\Theta_0$ or $\Theta_1$, we may want to test $H_0$ against $H_1$, and decide whether to reject $H_0$ (\textit{look for evidence against $H_0$ in the data}).
+
+\textit{The role of $H_0$ and $H_1$ are not equivalent. By default, we fail to reject $H_0$.}
+\\
+\\
+A \textbf{test} is a statistic (\textit{a function we compute on the data, in this case, an indicator function}) $\psi \in \{0, 1\}$ s.t. if $\psi = 0$, $H_0$ is not rejected, and if $\psi = 1$, $H_0$ is rejected.
+\\
+\\
+In the coin example, $H_0: p = \frac{1}{2}$, $H_1: p \neq \frac{1}{2}$.
+
+$$
+\psi = I\{|\sqrt{n} \frac{\bar{X_n} - .5}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}| > C\}
+$$
+
+for some $C > 0$. (\textit{above this threshold, this is likely from a Gaussian, below, this is unlikely from a Gaussian.})
+
+\textbf{Rejection region} $R_{\psi} = { x \in E^n : \psi(x) = 1}$.
+
+\textbf{Type 1 Error}: rejecting $H_0$ when it is actually true. Actually status quo but I claim a discovery.
+
+\textbf{Type 2 Error}: not rejecting $H_0$ although $H_1$ is actually true.
+
+The \textbf{power of a test $\psi$} is $\pi_{\psi} = \argmin_{\theta \in \Theta_1} (1 - \beta_{\psi}(\theta))$ where $\beta_{\psi}$ is the probability of Type 2 Error.
+(\textit{Under the worst case, the likelihood of us correctly rejecting the null hypothesis.})
+
+Example, in a court where subject is innocent unless proven guilty, Type I is judging an innocent subject guilty, and Type II is judging a guilty person innocent.
+There is tradeoff between Type I and Type II error, think judging everyone innocent vs judging everyone guilty, and this is a multi-objective optimization, in which case the best one can do is usually combining the different objectives using ad hoc heuristics.
+
+In statistics, the usual criteria is to constrain Type I error to be at most $5\%$ (and minimize Type II from there).
 
 \subsection{Markov chains}
 
