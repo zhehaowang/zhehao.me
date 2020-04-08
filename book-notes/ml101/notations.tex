@@ -1092,7 +1092,7 @@ $$
 
 Given a statistical model, we want to estimate $\theta$.
 
-An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\theta}(X_1, \dots, X_n)$ a.k.a a \textbf{statistic}.
+An \textbf{estimator} is a measurable function of data $\hat{\theta} = \hat{\theta}(X_1, \dots, X_n)$ (which does not depend on the parameter) a.k.a a \textbf{statistic}.
 (e.g. average, max, etc. Measurable means that given data, you can compute it, it does not depend on $\theta$. Things that are implicitly defined, such as sup or inf, are not measurable.)
 
 An estimator is \textbf{weakly consistent} if it converges in probability to $\theta$, or strongly consistent if it converges almost surely.
@@ -1436,6 +1436,32 @@ Example, in a court where subject is innocent unless proven guilty, Type I is ju
 There is tradeoff between Type I and Type II error, think judging everyone innocent vs judging everyone guilty, and this is a multi-objective optimization, in which case the best one can do is usually combining the different objectives using ad hoc heuristics.
 
 In statistics, the usual criteria is to constrain Type I error to be at most $5\%$ (and minimize Type II from there).
+\\
+\\
+Power function $\mathbb{P}_{\Theta}(\psi = 1)$ of a test is defined on $\Theta$ means the probability of rejecting null hypothesis at that $\theta$.
+The value $\pi$ is then the smallest value of power function in the domain $\Theta_1$.
+\\
+\\
+A test $\psi$ has \textbf{level} $\alpha$ if $\alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
+Where $\alpha_{\psi} = \argmax_{\theta \in \Theta_0} \alpha_{\psi}(\theta)$, the maximum Type I error probability.
+
+Given $\alpha$ ($5\%$), we pick $C$ such that $\alpha$ is at that value.
+\\
+\\
+A test has \textbf{asymptotic level} $\alpha$ if $\lim_{n \to \infty} \alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
+When the number of samples approaches infinity.
+\\
+\\
+In general, a test has the form $\psi = I\{T_n > c\}$ (indicator function) for some statistic $T_n$ and threshold $c \in \mathbb{R}$.
+
+$T_n$ is the \textbf{test statistic}, and the rejection region is $R_{\psi} = \{T_n > c\}$.
+\\
+\\
+Example: given a Bernoulli coin flip, test whether the coin is fair ($H_0$ is $p = 0.5$).
+
+One test statistic we can use is $T_n = \sqrt{n} \frac{\bar{X_n} - p}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}$. We want to constrain this $P(T_n > c)$ at the level of 0.05, $\forall p \in \Theta_0$ (which is equivalent to $p = 0.5$).
+
+Then $T_n = \sqrt{n} \frac{\bar{X_n} - 0.5}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}$ and by CLT $\lim_{n \to \infty} T_n \sim N(0, 1)$ (limit comes in as we are targetting an asymptotic level), and solving for $c$ in $P\{|N(0, 1)| > c\} = 0.05$ gives us $c = 1.96$ (often denoted as $q_{\frac{\alpha}{2}} = 1.96$).
 
 \subsection{Markov chains}
 
