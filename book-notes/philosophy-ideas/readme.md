@@ -1617,7 +1617,7 @@ Go through a world of wonder, wondering.
 
 ### Hegel and history
 
-Classicicism and romanticism world views.
+Classicicism vs romanticism world views.
 
 Born 1770, geared for unexciting theological studies. German romantic idealism.
 Defender of freedom, rejecton of the past. German ideology being influenced by the French revolution.
@@ -1651,3 +1651,39 @@ Fichte, German nationalism, preserve German cultural ideology in the face of the
 Moral development of the human race.
 The stage of perfected sinfulness, acting for the sheer sake of expressing freedom against any ground of constraint, opposition or coercion.
 Only when one abandons individuality, which is materiality itself, can there be an eternal life.
+
+### The aesthetic movement
+
+The divorce between natural philosophers and the scientists. (1862, Helmholtz)
+Hegel was vehemently against natural philosophers, and almost accused Newtonian science being narrow minded, and scientists accused philosophers being insane.
+
+The aesthetic movement in late 19c.
+A humanitarian century of reforms, removal of obstacles and saving people from traditional patterns of oppression.
+A century that concerns itself with the discriminated groups and those who were not able to care for themselves.
+Radicals, emancipation of slaves, centiments of benevolence.
+
+Now, in a scientifically knowledgeable period with the right methods and perspectives, we could actually solve problems.
+
+Romanticism sees science's understanding of nature is incomplete and too narrow, the Hegelians were on to something when they claimed science provided correct but empty equations, and it doesn't give us the reason of things.
+
+Romanticism would have us see through art, beauty, poetry, that we come to realize our essential nature. And through understanding of that nature, ever more aware of the kind of world we should strive to bring about.
+
+Aestheticists claim the fundamental connection between truth and beauty.
+
+Science vs culture.
+Should higher education teach Latin and Greek, or scientific methods?
+
+James Mill.
+
+Matthew Arnold, advocate of culture, "to know the best that has been thought and said about the world", also, Plato's world view would be strange nowadays, nonetheless, the nation's best interest may not be secured by a scientific education. To understand human nature, you can take a biological approach and keep tracing back. Keep going long enough, taking the scientific reductive approach, and good things can happen.
+The way of culture is different: we are summoned to examine the achievements of humanity under favoring conditions. Take a look at what it creates when it took itself most seriously. A virtual addiction that I am not complete ever, the perfecting of lives through examples. Culture provides such examples, through drama, literature, art.
+The whole point of classical study, or the aesthetic movement, is not to prepare for the life of a book reviewer, but rather to prepare for the life of a rational being.
+The whole point of culture is to make a rational being more rational, to achieve "sweetness and light".
+On culture and America. Its political system is meant for its people. The problem with US isn't power or wealth, it's that it's uninteresting: what makes a nation interesting is its capacity to inspire awe, through the creation of beauty.
+
+Harrison. What makes England great is coal. (Not Shakespeare, Locke, Marlowe, etc)
+
+John Ruskin. Architecture / art critic. The Stones of Venice. Appreciation of the Gothic.
+Man is never so authentically himself than when at play (Schiller), and one of the great productions of play, is art itself. The authentication of human nature is found in its aesthetic enterprises, not its mechanical, routine, servile undertakings.
+
+Oscar Wilde. The birth of America was the death of art. The idea and the practical.
