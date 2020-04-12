@@ -1462,6 +1462,25 @@ Example: given a Bernoulli coin flip, test whether the coin is fair ($H_0$ is $p
 One test statistic we can use is $T_n = \sqrt{n} \frac{\bar{X_n} - p}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}$. We want to constrain this $P(T_n > c)$ at the level of 0.05, $\forall p \in \Theta_0$ (which is equivalent to $p = 0.5$).
 
 Then $T_n = \sqrt{n} \frac{\bar{X_n} - 0.5}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}$ and by CLT $\lim_{n \to \infty} T_n \sim N(0, 1)$ (limit comes in as we are targetting an asymptotic level), and solving for $c$ in $P\{|N(0, 1)| > c\} = 0.05$ gives us $c = 1.96$ (often denoted as $q_{\frac{\alpha}{2}} = 1.96$).
+\\
+\\
+The asymptotic \textbf{p-value} of a test $\psi_{\alpha}$ is the smallest asymptotic level $\alpha$ at which $\psi_{\alpha}$ rejects $H_0$.
+It is random and depends on the sample.
+
+The golden rule is that p-value $\leq \alpha \iff H_0$ is rejected by $\psi_{\alpha}$ at the asymptotic level $\alpha$.
+
+The smaller the \textbf{p-value}, the more confidently one can reject $H_0$.
+
+Going back to the coin toss example, note that how you formulate your $H_0$ and $H_1$ matters:
+Say a coin shows head 13 out of 30 times, then
+$H_0$ being $p = 0.5$ $H_1$ being $p \neq 0.5$ will not be rejected, but
+$H_0$ being $p = 0.5$ $H_1$ being $p = 0.43$ will be rejected (note that this will be with a different test, say, test whichever hypothesis has the higher probability).
+
+On a high level, given data $X_1, ... X_n$ and a level $\alpha$, and the test spits out an yes/no.
+(or given data, test spits out a p-value.)
+
+\textbf{Neyman-Pearson's Paradigm}, for given hypotheses, among all tests of level / asymptotic level $\alpha$, is it possible to find one that has maximal power?
+(e.g. the trivial test $\psi = 0$ that never rejects $H_0$ has a perfect level $\alpha = 0$ but poor power $\pi_{\psi} = 0$)
 
 \subsection{Markov chains}
 
