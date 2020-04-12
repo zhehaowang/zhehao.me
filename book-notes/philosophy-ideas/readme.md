@@ -1687,3 +1687,58 @@ John Ruskin. Architecture / art critic. The Stones of Venice. Appreciation of th
 Man is never so authentically himself than when at play (Schiller), and one of the great productions of play, is art itself. The authentication of human nature is found in its aesthetic enterprises, not its mechanical, routine, servile undertakings.
 
 Oscar Wilde. The birth of America was the death of art. The idea and the practical.
+
+### Nietzsche
+
+Two ways of influencing philosophy:
+* Rigorously analytical, built on foundation of logic, indebted to Aristotle and Plato.
+* By way of aphorism, wise personal penetrating reflection on the meaning of all things philosophy deals with. Broadly atmospheric.
+
+If the object of philosophy is the search for truth, then Nietzsche's _"what are man's truth ultimately? Merely his irrefutable errors"_, or _"my concept of the philosopher is worlds removed from any concept that would include even a Kant, not to speak of academic ruminants and other professors of philosophy"_.
+
+Nietzsche, 1844 to 1900. Troubled life. Syphilis that may have resulted in madness. A dark, radical, luminary with style and ingenuity.
+Democratization of knowledge is deeply underway. There aren't many periods in history in which Nietzsche would gain a publisher, or a reader base.
+
+Attempts to anchor humanity to a fixed star, moral, or aesthetical, illustrates what Nietzsche judged to be the source of philosopher's failure: lack of historical sense.
+In the universals they seek for, they think of man as constant, but given person is only a product of conditions under which one finds him.
+
+Nietzsche had two different estimations of Schopenhauer.
+Schopenhauer's subjectification of knowledge: _"the world is my idea. No truth is more absolutely certain than that all that exists for knowledge, and, therefore, this whole world, is only object in relation to subject, perception of a perceiver--in a word, idea."_ was a starting point for Nietzsche.
+
+As is, the primary basic aim is self preservation, the will to live.
+
+In time, Schopenhauer's influence on Nietzsche wanes, the will to live transformed to the will to power.
+Ziegfried, the Nibelungenlied, the will to power, lusty unconventionalism.
+We are destroyers. The will to power manifests through destructions.
+
+**The Birth of Tragedy** contrasts the Apollonian and Dionysian, the two faces of the Greek world. (Dionysian enthusiamos, to be willing to be possessed by something. Ecstasis, to be removed from oneself.) Dionysian madness within Apollonian plot.
+
+_"Socratic ethics, dialectics, the temperance and cheerfulness of the pure scholar could be viewed as the symptoms of decline, fatigue, distemper. Might it be the inquiring mind terrified by pessimism and trying to escape from it."_
+
+Ardent admirer of Wagner. Both were influenced by Schopenhauer, and seeking to restore in art what it had lost to the concession to reasonableness.
+Parsifal by Wagner. Wagner was anti-semitic.
+
+Ubermensch, one who will overcome man, or a life of comfort, staying out of trouble, the society of servile, mechanically living people whose lives are empty, pointless sets of distractions.
+
+**Thus said Zarathustra**: I teach you the Overman (Ubermensch). Man is something that shall be overcome. What have you done to overcome him?
+What is ape to man, a laughing stock, and man shall be just that, to the Overman.
+Once the sin against God was the greatest sin, but God died, to sin against the earth is now the most dreadful sin. What is the greatest experience you can have? It is the hour of the great contempt, the hour when your happiness, virtue and reason arouse your disgust.
+
+Nietzsche doesn't think himself or Wagner the overman, the closest one was Goethe, life authentically lived, utterly faithful to one's vocation.
+
+Nietzsche's view on progress. The cheerful aspect of evolutionary forces, is but another myth, whose central mechanism is destruction, creation is always at the expense of destroying something else. Every creative act has to destroy.
+
+Nietzsche declares the body of Judeo-Christian beliefs religions of servitude and guilt, and himself the anti-Christ.
+He then had a scandalous depiction of Jesus, a naive child-like figure, very much akin to Dostoyevsky's idiot.
+That the Christian concept of the other cheek, helping those in need, are rehearsals to keep people in their place, to set a limit on the expression of their feelings.
+Nietzsche finds Judaism worse.
+
+One finds in Nietzsche rejection of all comforting superstitions, the prospect of actual suffering is almost a goal.
+Self loathing, the torture of mistrust, and the misery of him who is overcome have to take place in life, for one to realize oneself to be in the thrall of an inauthentic theater piece, scripted by others. One has not yet began to live the life of man.
+
+One has to realize that loving relationship, or faithful friendship has been based on little more than habit, or sloth, mutual exploitation, before one is finally overcome, and rejecting everything that gave rise to the inauthentic life.
+
+It's only after these, that one begins to see light at the end of the tunnel.
+Through these struggles, one makes one worthy of oneself.
+
+Nietzsche hugged and kissed a horse mistreated by coachman, before collapsing, presumably seeing the horse as an innocent suffering being living the servile life of above.
