@@ -1155,14 +1155,16 @@ The ultimate ontology, is an ontology of matter.
 
 ### Locke's Newtonian science of the mind
 
-John Locke (1632 - 1704, younger contemporary of Newton's): Newtonian psychology.
+John Locke (1632 - 1704, younger contemporary of Newton's): British empiricism and Newtonian psychology.
 Trained as a physician. One of the few to be elected to the Royal Society for his philosophical contributions.
 
 One of the most influential in modern history. Parliamentary pedigree, opposite to that of Hobbes's.
 
-Scientific approach to the mind and the society. British empiricism. Started with Bacon, featuring Locke, Hume, Mills, etc.
+Scientific approach to the mind and the society.
+Started with Bacon, featuring Locke, Hume, Mills, etc.
 
 Newtonian science develops a simple model and then approach the physical problem through observation.
+
 Newtonian science's ontology: begin with an assumption that the ultimate constituents of reality are not visible things but small corpuscular things (light, e.g., is made of such).
 Complex phenomenons are to be resolved into elementary (atomic) components.
 
@@ -1173,8 +1175,7 @@ He does not accept the theory of innate ideas, i.e. _"the soul received in its v
 Locke, however, does accept some original acts of the mind, e.g. the law of contradiction, and other forms of logic. **Intuitive knowledge**.
 There are other undisputable truths in all cases, such as geometric proofs, but such has to be proven and requires an argument. This is **demonstrative knowledge**.
 
-All ideas (the complex contents of human understanding) come from sensation (sensory acts / channels) or reflection.
-From experience.
+All ideas (the complex contents of human understanding) come from sensation (sensory acts / channels) or reflection, and in other words, from experience.
 
 The thought experiment **Molyneux's problem**: a person born blind can feel the differences between shapes such as spheres and cubes, could he, after gaining sight, distinguish those by sight alone?
 Locke's empiricism says no.
@@ -1185,6 +1186,7 @@ We learn by association. Those we experience frequently together become associat
 Locke then faces the skeptical challenges of how truthful the senses are.
 
 **Dualistic epistemology** was found in Locke. Realist when we perceive certain objects in the world. Phenomenalist when it comes to other properties of the real world.
+
 The lectern example. Its **primary quality**, hardness. What is there actually and can be reported by the sensory organs accurately. The hardness is made up from atomic elements that are hard.
 The color is not: a brown lectern is not made up from atomic elements that are brown. This is a **secondary quality**, produced by that object but is not something in that object itself.
 
@@ -1199,7 +1201,7 @@ Plutarch says the ancient philosophers argued about the same thing: over time **
 
 Locke regards self / personal identity as a collection of experiences, memories, held together by the process of associations.
 
-Scriblerians, including Alexander Pope and Jonathan Swift, attacked this theory, as philosophy run amock: Jack kills Bill and by the time Bill hits the ground he is already a different person when attacked by Jack, and you can't even have a court trial on this.
+Scriblerians, including Alexander Pope and Jonathan Swift, attacked this theory, as philosophy ran amock: Jack kills Bill and by the time Bill hits the ground he is already a different person when attacked by Jack, and you can't even have a court trial on this.
 
 ### The challenge of materialism
 
@@ -1210,7 +1212,7 @@ No matter, never mind. Classic materialist position.
 No mind, never matter. The material world presupposes a thinking entity.
 
 Locke's radical empiricism seems to underestimate the creativity of the mind.
-Tabula rasa theory: men are born blank slate and all knowledge came from knowledge / experience.
+**Tabula rasa theory**: men are born blank slate and all knowledge came from experience.
 
 Leibniz. Calculus, statesman, probability theory, rationalist philosopher.
 
@@ -1218,7 +1220,8 @@ Leibniz. Calculus, statesman, probability theory, rationalist philosopher.
 Leibniz interprets Locke as "nothing is in the mind at all, except what is first in the senses". From Medieval Scholasticism of Duns Scotus.
 Leibniz's point would be, "except intelligence itself".
 
-It's not just a collection of sensations pulled together to form elementary ideas, then complex ideas, rather, there can't be a mind that's empty, mind is an integrative, creative, collective set of powers. The mind, self-awareness, self-reflection pre-exists experiences.
+It's not just a collection of sensations pulled together to form elementary ideas, then complex ideas.
+Rather, there can't be a mind that's empty: mind is an integrative, creative, collective set of powers. The mind, self-awareness, self-reflection pre-exists experiences.
 
 Thought experiment: make a device like this, but make it huge, what would you see?
 Leibniz would claim you can find machinery, but not a perception or an idea.
@@ -1242,12 +1245,13 @@ So long as they are not actually perceived by me, or do no exist in my mind or t
 No primary, secondary qualities like Locke's.
 
 Yet the world remains as it's always been, it's not a fiction or a figment, it's filled with all the properties seen and experienced.
-His thesis does not undermines the physical mechanical principles. The laws of science are summaries of experience, their reduction to a set of rules does not constitute the discovery of some real unperceived cause.
+His thesis does not undermine the physical mechanical principles. The laws of science are summaries of experience, their reduction to a set of rules does not constitute the discovery of some real unperceived cause.
 
-**"esse est percipi"**: to be is to be perceived.
+**_"esse est percipi"_**: to be is to be perceived.
 
 Does the dark side of moon exist then? Or the peak of the tallest mountain yet to be climbed?
-The material world subsists in the mind who made it, but it also subsists in its parts and particulars of those who have experience of the world. No mind, no matter.
+The material world subsists in the mind who made it, but it also subsists in its parts and particulars of those who have experience of the world.
+No mind, no matter.
 
 ### Hume, psychologizing morality and causation
 
@@ -1281,7 +1285,7 @@ Hume has a Darwinian view of the external world, and this was before Darwin's ti
 
 Hume is dubious about causes: the basis upon which we can ever know about causes.
 Core principles of (Locke's) association: repetition is a principle of association (when A and B occur together often enough.)
-Causation is then what the mind assigns to constantly conjoin experiences.
+Causation is then what the mind assigns to constantly conjoined experiences.
 
 _"anything may be the cause of anything."_
 Point being, the concept causation are habitual mental processes, not something recorded in the external world.
@@ -1312,7 +1316,8 @@ The principle of common sense, not the prevailing opinion of the crowd or settle
 Necessary preconditions for thought and action.
 
 The prevailing theory, of Locke and the scholastics before him, had been that the external world cannot be directly known, but rather mediated through our senses (and presented to us as copies).
-Reid found this idea and how it was reached worrisome. Example: visual perception of rectilinear triangle projected onto a spherical surface.
+Reid found this idea and how it was reached worrisome.
+Example: visual perception of rectilinear triangle projected onto a spherical surface.
 Reid intends to take a Baconian / Newtonian experimental approach in this matter, as opposed to theorizing to which philosophers are prone.
 
 Reid rejects Hume's theory on causation.
@@ -1320,7 +1325,7 @@ Conjoined events may be not causation, just correlations.
 No set of observations or events taking place in the external world, could possibly lead to a concept like A causes B.
 The concept of causation is an inference we make, based on our knowledge of ourselves as having an active power to do something. (Us having the power such as closing our eyes and darken the world, and projecting this power onto the world is how causation came about.)
 
-On Hume's moral theory that passion rules reason, Reid does not think we are pleasure-seeking pain-avoiding organisms, rather we are rational entities first, and seek benefits in the long run or benefits us as a whole.
+On Hume's moral theory that passion rules reason, Reid does not think we are pleasure-seeking pain-avoiding organisms, rather we are rational entities first, and seek benefits in the long run or benefit us as a whole.
 
 Psychological theory of morality.
 Belief that our actions are in our power.
@@ -1334,7 +1339,7 @@ Whatever we add of our own, is of no authority.
 
 ### France and the Philosophes
 
-_"My works are the issue of pure and simple experience, who is the one true mistress"_
+_"My works are the issue of pure and simple experience, who is the one true mistress."_
 Leonardo da Vinci
 
 Similar thoughts can be found in Voltaire: the light of experience casts sufficient illumination for us to understand to the nature of our difficulties, and guide us out of the labyrinth.
@@ -1382,7 +1387,7 @@ Condorcet. Sketch for a historical picture of the human mind. Hopefulness in the
 Integral calculus, probability and decision theory. Secretary of the Academy. Revoluntionary. Died in prison.
 
 18th Century claimed revival of the classics, but not quite compatible of the classical world view, one of harmony and propotion, everything has its place and function, a search for the absolute and everything good can be preserved.
-The idea of progress in the 18th Century however, suggests what is stationary is stagnant, and the future is under no obligation to mimic the past. Liberate human imagination.
+The idea of progress in the 18th Century, however, suggests what is stationary is stagnant, and the future is under no obligation to mimic the past. Liberate human imagination.
 
 ### Federalist papers and the great experiment
 
@@ -1393,9 +1398,11 @@ Political philosophy contribution with realistic and practical wisdom.
 A set of templates for a national government, compared with the work of the contemporary Rousseau, (and earlier) Locke, Hume, Montesquieu, etc, on whose work the authors are well read.
 
 Hamilton proposed president for life with veto power, which seemed nearly tyrannical.
-Madison was a key figure to the constitution and American politics. Reformed Princeton's curriculum, from where he graduated. Promulgater of Scottish common sense philosophy. Naturalist, scientific and progressive.
+Madison was a key figure to the constitution and American politics. Reformed Princeton's curriculum, from where he graduated.
+Promulgater of Scottish common sense philosophy. Naturalist, scientific and progressive.
 
-Madison answers **"what is a republic"**: when government's power is derived entirely from its people. _"When it is administered by persons holding their offices during pleasure for limited period or during good behavior"_. (serve at the people's pleasure and required to uphold standards of conduct acceptable to those who are governed.)
+Madison answers **"what is a republic"**: when government's power is derived entirely from its people.
+_"When it is administered by persons holding their offices during pleasure for limited period or during good behavior"_. (serve at the people's pleasure and required to uphold standards of conduct acceptable to those who are governed.)
 
 The closer something comes to approximating this sense of the republic, the sooner it dies.
 Those who it make are puritanical republic: power is delegated by the people, not held and wielded by them.
@@ -1412,7 +1419,7 @@ _"The federal and state governments are in fact different trustees of the people
 
 Montesquieu: despotism - the required disposition is fear, monarchy - honor, republican - cultivation of virtue. Natural aristocrats by character, not by birth.
 
-Madison discusses the failed republics of Greece and Rome, lifetime senates appointments, the tendency of citizens to misplace their interest under the enthusiam of the moment.
+Madison discusses the failed republics of Greece and Rome, lifetime senate appointments, the tendency of citizens to misplace their interest under the enthusiam of the moment.
 _"As the cool and deliberate sense of the community ought, in all governments, and actually will, in all free governments, ultimately prevail over the views of its rulers; so there are particular moments in public affairs when the people, stimulated by some irregular passion, or some illicit advantage, or misled by the artful misrepresentations of interested men, may call for measures which they themselves will afterwards be the most ready to lament and condemn."_
 
 Human nature can be occasionally fickle, foolish, and gullible. The right form of government cannot rid human of such nature, but can control them long enough for a person to engage in the lifelong mission of self correction.
@@ -1742,3 +1749,4 @@ It's only after these, that one begins to see light at the end of the tunnel.
 Through these struggles, one makes one worthy of oneself.
 
 Nietzsche hugged and kissed a horse mistreated by coachman, before collapsing, presumably seeing the horse as an innocent suffering being living the servile life of above.
+
