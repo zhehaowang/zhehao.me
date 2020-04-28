@@ -1471,6 +1471,11 @@ The golden rule is that p-value $\leq \alpha \iff H_0$ is rejected by $\psi_{\al
 
 The smaller the \textbf{p-value}, the more confidently one can reject $H_0$.
 
+\textbf{p-value} of a standard Gaussian is the probability $P(| N(0, 1) | > | T(n) |) = P(1 - \Psi(T_n))$ where $\Psi(T_n)$ is the Gaussian CDF.
+
+Example: $\chi_{d}^2$ distribution (sum of $d$ independent standard Gaussian r.v. squared, think throwing darts with x, y axis variations being Gaussian as a $\chi_{2}^2$. Expected value of $\chi_{d}^2$ is $d$), $\chi_2^{2}$ is exponential distribution $Exp(\frac{1}{2})$.
+\\
+\\
 Going back to the coin toss example, note that how you formulate your $H_0$ and $H_1$ matters:
 Say a coin shows head 13 out of 30 times, then
 $H_0$ being $p = 0.5$ $H_1$ being $p \neq 0.5$ will not be rejected, but
@@ -1481,6 +1486,8 @@ On a high level, given data $X_1, ... X_n$ and a level $\alpha$, and the test sp
 
 \textbf{Neyman-Pearson's Paradigm}, for given hypotheses, among all tests of level / asymptotic level $\alpha$, is it possible to find one that has maximal power?
 (e.g. the trivial test $\psi = 0$ that never rejects $H_0$ has a perfect level $\alpha = 0$ but poor power $\pi_{\psi} = 0$)
+
+
 
 \subsection{Markov chains}
 
