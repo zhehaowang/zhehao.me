@@ -1475,7 +1475,7 @@ All bachelors are unmarried, is an example of the former. **Analytical propositi
 Bill is wearing shoes, is an example of the latter. **Synthetic propositions**, whose truth cannot be known prior to the experience / a priori.
 
 Kant's rebuttal on the above is by pure intuitions of space and time. All empirical statements we make will have certain properties that can be established a priori, by way of the pure intuitions of time and space, and pure categories of understanding.
-Hence a part of that synthetic proposition can be known a priori: you experience takes place in some framework.
+Hence a part of that synthetic proposition can be known a priori: your experience takes place in some framework.
 
 In a sense, the Kantian pure intuition and categories are prerequisites for Hume's experience to work.
 
@@ -1750,3 +1750,44 @@ Through these struggles, one makes one worthy of oneself.
 
 Nietzsche hugged and kissed a horse mistreated by coachman, before collapsing, presumably seeing the horse as an innocent suffering being living the servile life of above.
 
+### J.S. Mill and the liberal tradition
+
+John Stuart Mill. Victorian. 1806 - 1873. Scientific psychology. Inductive experimental science. Autobiography. Home schooled, insulated from other boys. James Mill, father. Hostile towards all religion, especially Christianity, or any God that would make a hell.
+
+Influenced by Jeremy Bentham, and Coleridge.
+Also influenced by Auguste Comte, positivism. The three stages of human mind: the theological, the metaphysical, and the positive (Humian). All phenomemon are subject to constant laws, including social phenomenon.
+
+Influenced Ernst Mach. The Vienna circle. Rid the science of all metaphysical speculation.
+
+Essay **On Liberty**. Locus classicus of political science. Moral paternalism.
+Rights of the individual person to fashion a form of life for himself, freed from the despotism of fashion.
+Defense of utilitarianism.
+
+Science is what takes place in the domain of experience, an empirical enterprise.
+_"Matter itself is the permanent possibility of sensation."_
+The enemy is then any form of intuitionism, or a-priorism, like Kant's categories, or Reed's common sense, or intuition theory of knowledge.
+
+Mill rejects Meno's intuition of knowledge / the introspective method: recalling on what we know from our early years, we fail to come up with any experience that might have conveyed the idea, so we hastily conclude our current awareness is intuition.
+Mill proposes an alternative he called the psychological method.
+Why assume anything else (intuition) is involved, when we learn through experience: see how you learn something now, why assume things you learnt before came from intuition?
+
+Treatise on inductive science. A is the cause of B, in the sense that A can be used causally to manipulate B.
+
+On moral: what we do, we do chiefly as creatures of nature, constituted in such a way to maximize our pleasure, and minimize our pains, i.e. Hume's utilitarianism.
+The right test is then whether something holds up in life, not something holds up in logic.
+
+_"Actions are right in proportion as they tend to promote happiness, wrong as they tend to produce the reverse of happiness"_
+
+This facade of utilitarianism almost sounds like Epicureanism.
+
+Does this depreciate the human nature? It's not necessarily that what we find pleasurable is always at a low and vulgar level: Mill claims when people assign utility to courses of action, surely what they include is what makes life richer, more meaningful, more developed, more elevated, and more under their rational control, not episodic pleasures.
+The pleasure of this achievement, and the pain caused by the disregard of it, that stand as imperative to good conduct.
+
+Mill's position on freedom is also utilitarian.
+If the wildest and most pernicious and degrading view is false, its falsity will only be exposed by criticism. If something deemed false this way were to be true, then we'd be deprived of its truth because of censorship, or us being the censor.
+
+Our observations and ideas are fallible. No one's idea should take precedence over anyone else's, and such precedence is earned, through utility / usefulness: what works for the general public good.
+
+Liberty extends to a liberty of conscious. Your actions are free as long as they do not harm others.
+Liberty must be used in such a way that does not harm the liberty of others.
+Mill worried about the tyranny of majorities.
