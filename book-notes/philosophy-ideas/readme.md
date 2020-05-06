@@ -1791,3 +1791,48 @@ Our observations and ideas are fallible. No one's idea should take precedence ov
 Liberty extends to a liberty of conscious. Your actions are free as long as they do not harm others.
 Liberty must be used in such a way that does not harm the liberty of others.
 Mill worried about the tyranny of majorities.
+
+### Darwin's influence on philosophy
+
+Species and philosophy. A uniform type of structure and function seem to give insight to the nature itself.
+
+Darwin's influence stretches across biology, political theory, ethics and philosophy.
+With change being the dominating principles now, the search for absolutes seems anachronistic and naive.
+
+Darwin (1809 - 1882) comes from an enlightenment context, a period that values progress through conflict.
+His interest in biology was influenced by friends. Grandfather accomplished physician and inventor. Naturalist on HMS Beagle.
+
+_"being well prepared to appreciate the struggle for existence which everywhere goes on from long-continued observation of the habits of animals and plants, it at once struck me that under these circumstances favourable variations would tend to be preserved, and unfavourable ones to be destroyed. The result of this would be the formation of a new species."_
+
+Designs without a designer.
+
+**Origin of Species**, published 1859. Received immediate and highly positive review by its contemporaries for its systematic observations.
+Natural selection theme.
+
+**The Descent of Man**, controversial work.
+Sexual selection theme. Human nature is not separated in any foundamental way from the balance of nature.
+
+Symmetry between explanation and prediction. A scientific theory is expected to account for what has happened, but also predict what will happen.
+The evolutionary theory does not offer too much in predicting the future.
+
+Geology studies of fossils at his time has already shown earth is far older than the scripture suggests, and whole species had been eradicated.
+Fossil records also suggests a non-linear progression: they provide a broken and shifted record. Breeders also have not produced a new species over the centuries.
+Darwin's view of gradualism does not necessarily hold.
+
+**Herbert Spencer** (social Darwinism, radical libertarianism) proposed survival of the fittest in his Social Statics, which Darwin borrowed in the Origin of Species.
+Darwin remained aloof to Spencer's claims that progress depends on the achievements of the best, and not to be held back to accommodate the needs of the less talented.
+Darwin would reject social Darwinism: survival of a genre / collectives, not of individuals, there needs be a large population for natural selection to work productively over the different variations. Altruism in this sense also complies with natural selection: to serve the interest of the collective and sacrificing that of one's own.
+
+Survival of the fittest and progress through competition echoes in the ethos of Victorian England.
+Growth of population will exceed the production of food. Ireland famine claimed 3 million lives.
+
+The British eugenics society was founded by **Galton**, Darwin's cousin.
+Galton held a hereditarian view of natural variations, and the need to improve society by genetic means. He proposed cash payment to voluntary sterilization, with the payment being proportional to the degree of mental deficiency.
+
+All is in transition and there are natural engines of change operating on each of us.
+There are no fixed values, no eternal verities, no one-size-fits-all moral precepts, no form of law that is the last word, all is contingent and based on the moment-to-moment facts of the natural world.
+There is no telling what features will be serviceable, and the best approach in the interest of survival, may be to let a thousand flowers bloom.
+
+Does the theory of evolution explain human nature?
+There is claim that the domains of purely abstract thought, that of aesthetics, or that of moral thought and ethics where we intentionally sacrifice our most cherished interests, are not explained by natural or sexual selection.
+The debate goes on.
