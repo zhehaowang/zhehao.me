@@ -1836,3 +1836,58 @@ There is no telling what features will be serviceable, and the best approach in 
 Does the theory of evolution explain human nature?
 There is claim that the domains of purely abstract thought, that of aesthetics, or that of moral thought and ethics where we intentionally sacrifice our most cherished interests, are not explained by natural or sexual selection.
 The debate goes on.
+
+### Marxism
+
+The American view on Marxism is often biased, and the practices of Mao, Lenin or Stalin do not quite match the depth of Marx's writing.
+
+Marx declares himself not a philosopher, and has somewhat a contempt for philosopher: philosophical speculation arises from the underdeveloped nature of the society. In a developed society it would go away as Tarot cards or astrology.
+
+Marx (1818 - 1883) regarded himself a social scientist, and his ideas are specifically drawn from science, not philosophy.
+
+Ethically Jewish, his father converted to Protestantism to preserve his profession in law.
+Married a daughter of the aristocracy. University of Berlin, Hegelian influence. Wrote his doctoral thesis on Democrites and Epicurus's philosophies. Journalism. Radical. His teacher, Feuerbach, was a materalist and relentlessly attacked religion.
+
+Moved from Prussia to France to London, a revolutionary from a young age.
+Little of Marx's writing would have significant scientific contribution. Nor was he interested in systematic philosophical questions, e.g. the mind-body problem.
+
+Marx referred to himself as a **dialectical materialist**: difference with a philosophical materialist being the latter embraces mechanistic considerations: Newton and Galileo's science for example.
+
+The former retains a materialistic ontology, but accounts all change on the struggle of opposites, on whose basis progress becomes possible.
+Hegel sees a transcendental progress based on an abstract rational or intelligent precept, which Marx rejects, and proposes instead that economics is the dominant force behind social progress and human behavior.
+
+Marx claims Darwin's work serves as a natural science basis for his theory on class struggle throughout history. **Das Kapital** was dedicated to Darwin.
+
+Aristotle argues the political and legal framework of society shape the moral character of the citizens, and this represents the decisive factor in social life. Laws of the polis is established to achieve certain ends, e.g. that of virtue.
+For Thomas Aquinas law is reason promulgated by one who has the good of the community at heart.
+
+Economics wouldn't be the central concern for law in their accounts, but Marx turns this around: you begin with productive resources of a tribal enclave, and this recruits the physical powers of a laboring class. That class becomes an instrument by which production becomes possible. Things are produced more efficiently through collaboration. In time, classes becomes separated into the property class and the laborers working the properties. It becomes necessary for the former class to some means to guard their possession, hence the same class proceeds to write the laws and exact the punishments.
+For Marxists, law is a class concept / tool that arose from the material interdependencies of the bourgeouis class.
+
+With the rise of capitalism, the process works mechanically. To amass profit the cost of the labor wants to be minimized. In a capitalist system, it becomes necessary to control the means of production: to make sure production does not outstrip need, in which case the value of the product drops and the goal of amassing profit would not be achieved.
+This control requires power over the primary motive of production, i.e. labor.
+
+There is then the laboring class like a machinery, and treated like machinery in that they'd need to be kept in good shape (wages at slightly higher than subsistance level, means by which the laboring class can reproduce itself), and replenished if broken (the offspring of the laboring class is likely to enter the same enterprises almost like cloning).
+
+Those at the top of the chain see to it that their interests are protected, by law. The legislative and executive powers are mutually serving.
+
+Unionization of 19th century would support his theory.
+
+Feudal society has a pattern of dependency that is more homogeneous, Marx has a positive attitude towards feudal society. The feudal seeks not to amass capital or power, but instead a status compatible with certain religious world view, or to preserve what has been achieved. To do this he recognizes the need and the nobility of labor.
+
+The undoing of feudal society arose from its success: as the feudal states become secure and prosperous, the desire for new goods arise, the possibilities to trade rise.
+Guilds of laborers are formed to limit production and keep prices high. Manufacturing and mass production came about, the unskilled labor replaces the craftsman, and formation of capital fastens thanks to now cheaper labor and centralized modes of production.
+
+This, left unchecked, leads to the rich becoming richer and poor becoming poorer, and revolution becomes necessary.
+
+What is capital?
+Labor produces more than what was paid for it. And the surplus becomes capital. This works only if there are consumers, then for capitalism to succeed, it must continue to expand, the consumer class must be increased.
+In time you have to start producing things unrelated in any way to means of survival, and you must create a consumerism, a consumer ethos, and to do this, you rely on the basic impulse of members of the society, e.g. their self identity, sense of fellowship and worth: I am what I buy / what I am able to buy.
+Marx draws this psychology from the history of religion. He claims religion to be opiate of the masses (for its complacency: to be convinced that your current situation is but an instance in the immense of time, and all that are important are going to happen after this earthly and meagre interval, then you become complacent to the current form of life, as religion redirects the here and now to the unreachable then and there).
+
+Yet his teaching, at least as rendered by Mao and Stalin, might also qualify as opiate of the masses: people put up with forms of life that many would have revolted against, and put up with it because they accept a theory that this form of life is a necessary stage in an alleged evolutionary process.
+Marxism then becomes a deliberate and motivated attempt by the powerful to keep the masses in place through some mythos, a set of rites and rituals, grounded on something unreal but entirely serviceable for the purposes.
+The class conscious becomes the necessary engine of revolution and engine. First thing to recognize is that you are exploited: those paying you wages are not in your interest, but to preserve a system where they are successful, and their success depends on your failure to change anything materially about your life. Then comes the bloody revolution, through which economic and social stasis are compelled to change.
+Science and technology changes the modes of production.
+
+Marx's theory is deterministic, which could be defeated by actual persons living real lives according to terms they articulate terms for themselves.
