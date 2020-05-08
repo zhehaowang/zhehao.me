@@ -55,11 +55,11 @@ I appreciate the beauty in most trades, be it various fields of liberal arts, sc
 Such diversity is what makes here an incredible place for the curious, whose efforts are fueled by the freedom to pursue these.
 
 It is my goal to number among the curious.
-To be ready and excited waking up each morn thinking about the new knowledge we are going to internalize, and the new challenges we are going to tackle.
+To be ready and excited waking up each morn thinking about the knowledge we are going to internalize, and the challenges we are going to tackle.
 
 To take in, think and act with an open mind, and be open and flexible to change, without losing sight of what we set out to achieve, or failing to adhere to our principles.
 
-To reflect, strengthen what we did well, and readily acknowledge where I was wrong, and to not judge others for our differences in the perception of what is worth internalizing.
+To reflect, strengthen what we did well, and readily acknowledge where I was wrong, and to not judge others for our differences in the perception of what is worthwhile.
 
 ### Compassion, gratefulness, and humility
 
@@ -71,7 +71,7 @@ Such cannot be said for many others, not for those from a poor rural area where 
 It is not due to their lack of endeavors (the cases usually suggest quite the opposite), but simply a factor of luck.
 
 To such fortune and those who participated in weaving it we show gratitude.
-And to cherish these that we arguably aren't worthy of, we work and learn hard, and pay it forward.
+And to cherish these that we arguably are not worthy of, we work and learn hard, and pay it forward.
 
 Do not ridicule, or easily discredit others: it could be just a difference in habits, belief, temperament and priorities.
 Most in life are burdened with their own struggles, be it career, health, relationships and many others.
@@ -79,7 +79,11 @@ Most in life are burdened with their own struggles, be it career, health, relati
 Do not think that the troubles you face are the biggest adversity, or decide what few accomplishments you have deserve the attention and praise of all, or boast what little you own and realize.
 Listen attentively, show compassion, be supportive, learn from them, and heartily congratulate them for their achievements.
 
-Greed, vanity and ignorance often cloud our judgment, do not fall victim to the temptations of such.
+Greed, vanity and ignorance often cloud our judgment, do not fall victim to the temptation of such.
+
+### On canon, change, and principles
+
+
 
 ### Courage, determination and discipline
 
@@ -89,13 +93,6 @@ Perseverance, rituals, habits.
 
 The wisest men follow their own directions.
 
-### Fragility of life
+### On fragility of life
 
 To clear the unworthy out of your mind, and to learn like you will not be able to tomorrow.
-
-### Opportunities, choices and trade-off
-
-The beauty of computer science
-
-
-
