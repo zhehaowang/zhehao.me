@@ -1914,4 +1914,60 @@ Science and technology changes the modes of production.
 
 Marx's theory is deterministic, which could be defeated by actual persons living real lives according to terms they articulate for themselves.
 
+### The Freudian World
 
+Some of the great ideas in philosophy has not been contributed by philosophers.
+Physicians, theologians, mathematicians, etc.
+Freud, e.g. shapes the contemporary understanding of sources of our conduct, and our nature.
+
+Freud, Jewish, b 1856, eldest of 7 children, born to his father's 3rd wife. Medicine at the University of Vienna, influenced by Ernst Brücke, who was a contemporary of Helmholtz (physicist, theory of conservation, no eternal motion).
+
+Freud's own theory reflects that of a conservationist, and was consistent in grounding his psychoanalytic theory in the more basic sciences.
+Disciple of Darwinian evolution theory. Designs without a designer, and the design feature came from raw, brutal daily biological conflict and collision.
+Self-serving and selfish motives to survive.
+
+Freud wanted to be a research scientist in Vienna, with reluctance he took on practice of medicine (neurology).
+Neurologists treat neurological defects and hysteria, which was mistakenly linked to female uterus by Greeks.
+Freud studied treating hysteria with hypnosis.
+
+Anna O., patient of Josef Breuer, with whom Freud came to the conclusion that each of her symptoms was the result of earlier trauma and repression. **Studies of Hysteria**, and psycho-analysis was born.
+A talking cure.
+
+Hysteria is induced by traumatizing thought (fears and desires) at unconscious level, and as a result of this repression, a process is developed to convert this into a physical and hysterical symptom.
+Add to this notion the theory of conservation.
+
+The question then becomes what kind of (repressed) thought is of such a nature, that the mind of the patient would shut it out at the price of lost sight / sensitivity / movement, etc? 
+Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. The pleasure principle.
+
+Freud concludes infants sucking at a breast with his theory of infant sexuality, it's pleasing itself.
+
+**Gratification** remains the constant goal, throughout the development of Freudian stages, oral, anal, phallic, latency, and genital.
+Culminating in adult sexuality, a source of pleasure. The fact that it yields pleasure, serves the purposes of nature.
+
+What if we labor in the pursuit of pleasure 24 hours a day?
+This creature designed by nature to please itself and to avoid punishment has to become civilized, socialized and enculturated.
+The pleasure principle has to come face to face with the reality principle, for an integral society.
+
+Hegelian dialectics resurfaces here: (**the ego**) / self is a reconciliation of two opposing principles: the pleasure (**the id**) and the reality (**the super ego**) principles.
+In this sense, the ego is the synthesis out of the thesis and antithesis.
+
+This puts a new light on the problems of knowledge, conduct and governance.
+The life we live will not be a fully authentic one: we'll not act as our most basic impulses would have us act.
+Parents, institutions and practices set out to do just that, via religious or ethical precepts, and these customs are essentially outgrowth of the unconscious, or rationalization after the fact.
+
+Institutions and practices are being formed to move people relentless toward heterosexual modes of sexual gratification within the framework of marriage, serving the purpose of securing the needs and interests of the society itself.
+
+Once you read through the symbolism, the same is found everywhere.
+
+This is somewhat Gothic, in that beneath rationality and simplicity, is the work of unconscious, directing and forming complex institutions, causing weird dreams and disturbing symptoms.
+Making matters stranger, people waking up blind or with paralysis due to harboring certain wishes that cannot be fulfilled. Freud would claim such wishes are sexual in nature, and for a junior person, that is the desire for his mother, the **Oepidal Complex**.
+Junior has to learn mother is off limits, the socialization of sexuality requires the redirection of sexual energy to a socially acceptable target.
+
+Freud was castigated by his contemporary for such theories, even with the sexual content removed, but for the often times hypothetical nature of his theories.
+
+Freud claims the royal road to the unconscious is dreams, in which our wishes and desires are fulfilled.
+Put in symbolic form, e.g. being tripped by puppies is the dream of the chap that his younger sibling has enjoyed the affection of his father far more than he has.
+
+Homosexuality is adopting a female persona rather than facing the possible castration threat as in Oepidal Complex.
+
+Psycho-analysis's lack of success in most practical fields had little effect on its popularity, and this becomes something we learn to live with, or even enjoy from time to time.
