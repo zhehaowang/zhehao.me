@@ -1839,55 +1839,135 @@ The debate goes on.
 
 ### Marxism
 
-The American view on Marxism is often biased, and the practices of Mao, Lenin or Stalin do not quite match the depth of Marx's writing.
+The American view on Marxism is often biased, nor does the practices of Mao, Lenin or Stalin quite match the depth of Marx's writing.
 
-Marx declares himself not a philosopher, and has somewhat a contempt for philosopher: philosophical speculation arises from the underdeveloped nature of the society. In a developed society it would go away as Tarot cards or astrology.
+Marx declares himself not a philosopher, and has somewhat a contempt for philosophers: philosophical speculation arises from the underdeveloped nature of the society.
+In a developed society it would go away as Tarot cards or astrology.
 
 Marx (1818 - 1883) regarded himself a social scientist, and his ideas are specifically drawn from science, not philosophy.
+Little of Marx's writing would have significant scientific contribution, nor was he interested in systematic philosophical questions, e.g. the mind-body problem.
 
 Ethically Jewish, his father converted to Protestantism to preserve his profession in law.
-Married a daughter of the aristocracy. University of Berlin, Hegelian influence. Wrote his doctoral thesis on Democrites and Epicurus's philosophies. Journalism. Radical. His teacher, Feuerbach, was a materalist and relentlessly attacked religion.
+Married a daughter of the aristocracy. Studied journalism at University of Berlin, Hegelian influence. Wrote his doctoral thesis on Democritus and Epicurus's philosophy. Radical. His teacher, Feuerbach, was a materalist and relentlessly attacked religion.
 
 Moved from Prussia to France to London, a revolutionary from a young age.
-Little of Marx's writing would have significant scientific contribution. Nor was he interested in systematic philosophical questions, e.g. the mind-body problem.
 
 Marx referred to himself as a **dialectical materialist**: difference with a philosophical materialist being the latter embraces mechanistic considerations: Newton and Galileo's science for example.
+While the former retains a materialistic ontology, but accounts all change on the struggle of opposites, on whose basis progress becomes possible.
 
-The former retains a materialistic ontology, but accounts all change on the struggle of opposites, on whose basis progress becomes possible.
 Hegel sees a transcendental progress based on an abstract rational or intelligent precept, which Marx rejects, and proposes instead that economics is the dominant force behind social progress and human behavior.
 
-Marx claims Darwin's work serves as a natural science basis for his theory on class struggle throughout history. **Das Kapital** was dedicated to Darwin.
+Marx claims Darwin's work serves as a natural science basis for his theory on class struggle throughout history.
+**Das Kapital** was dedicated to Darwin.
+
+##### View on laws
 
 Aristotle argues the political and legal framework of society shape the moral character of the citizens, and this represents the decisive factor in social life. Laws of the polis is established to achieve certain ends, e.g. that of virtue.
 For Thomas Aquinas law is reason promulgated by one who has the good of the community at heart.
 
-Economics wouldn't be the central concern for law in their accounts, but Marx turns this around: you begin with productive resources of a tribal enclave, and this recruits the physical powers of a laboring class. That class becomes an instrument by which production becomes possible. Things are produced more efficiently through collaboration. In time, classes becomes separated into the **property class** and the **laborers working the properties**. It becomes necessary for the former class to some means to guard their possession, hence the same class proceeds to write the laws and exact the punishments.
-For Marxists, law is a class concept / tool that arose from the material interdependencies of the bourgeouis class.
+Economics wouldn't be the central concern for law in neither of their accounts, but Marx turns this around: you begin with productive resources of a tribal enclave (or a city for that matter), and this recruits the physical powers of a laboring class.
+That class becomes an instrument by which production becomes possible, and things are produced more efficiently through collaboration.
 
-With the rise of capitalism, the process works mechanically. To amass profit the cost of the labor wants to be minimized. In a capitalist system, it becomes necessary to control the means of production: to make sure production does not outstrip need, in which case the value of the product drops and the goal of amassing profit would not be achieved.
+In time, classes becomes separated into the property class and the laborers working the properties.
+It becomes necessary for the former class to develop some means to guard their possession, hence the same class proceeds to write the laws and exact the punishments.
+For Marxists, law is a class concept / tool that arose from the material interdependencies of the bourgeoisie class.
+Those at the top of the chain see to it that their own interests are protected, by law. The legislative and executive powers are mutually serving.
+
+With the rise of capitalism, the above process works mechanically.
+
+##### On capitalism, feudal society and class struggle
+
+To amass profit the cost of the labor wants to be minimized.
+In a capitalist system, it becomes necessary to control the means of production: to make sure production does not outstrip need, in which case the value of the product drops and the goal of amassing profit would not be achieved.
 This control requires power over the primary motive of production, i.e. labor.
 
-There is then the laboring class like a machinery, and treated like machinery in that they'd need to be kept in good shape (wages at slightly higher than subsistance level, means by which the laboring class can reproduce itself), and replenished if broken (the offspring of the laboring class is likely to enter the same enterprises almost like cloning).
-
-Those at the top of the chain see to it that their interests are protected, by law. The legislative and executive powers are mutually serving.
+The laboring class then becomes like a machinery, and treated like machinery in that they'd need to be kept in good shape (wages at slightly higher than subsistance level, means by which the laboring class can reproduce itself), and replenished if broken (the offspring of the laboring class is likely to enter the same enterprises almost like cloning).
 
 Unionization of 19th century would support his theory.
 
-Feudal society has a pattern of dependency that is more homogeneous, Marx has a positive attitude towards feudal society. The feudal seeks not to amass capital or power, but instead a status compatible with certain religious world view, or to preserve what has been achieved. To do this he recognizes the need and the nobility of labor.
+Feudal society has a pattern of dependency that is more homogeneous, Marx has a positive attitude towards feudal society.
+The feudal lord seeks not to amass capital or power, but instead a status compatible with certain religious world view, or to preserve what has been achieved.
+To do this he recognizes the need and the nobility of labor.
 
-The undoing of feudal society arose from its success: as the feudal states become secure and prosperous, the desire for new goods arise, the possibilities to trade rise.
-Guilds of laborers are formed to limit production and keep prices high. Manufacturing and mass production came about, the unskilled labor replaces the craftsman, and formation of capital fastens thanks to now cheaper labor and centralized modes of production.
+The undoing of feudal society arose from its success: as the feudal states become secure and prosperous, then the desire for new goods arise, and the possibilities to trade rise.
+Guilds of laborers are formed to limit production and keep prices high. Manufacturing and mass production came about, the unskilled labor replaces the craftsman, and formation of capital quickens thanks to now cheaper labor and centralized modes of production.
 
 This, left unchecked, leads to the rich becoming richer and poor becoming poorer, and revolution becomes necessary.
 
 What is capital?
 Labor produces more than what was paid for it. And the surplus becomes capital. This works only if there are consumers, then for capitalism to succeed, it must continue to expand, the consumer class must be increased.
-In time you have to start producing things unrelated in any way to means of survival, and you must create a consumerism, a consumer ethos, and to do this, you rely on the basic impulse of members of the society, e.g. their self identity, sense of fellowship and worth: I am what I buy / what I am able to buy.
-Marx draws this psychology from the history of religion. He claims religion to be opiate of the masses (for its complacency: to be convinced that your current situation is but an instance in the immense of time, and all that are important are going to happen after this earthly and meagre interval, then you become complacent to the current form of life, as religion redirects the here and now to the unreachable then and there).
+In time you have to start producing things unrelated in any way to means of survival, and you must create a consumerism society, a consumer ethos, and to do this, you rely on the basic impulse of members of the society, e.g. their self identity, sense of fellowship and worth: I am what I buy / what I am able to buy.
+
+##### On religion
+
+Marx draws the above psychology from the history of religion.
+He claims religion to be _"opiate of the masses"_ (for its complacency: to be convinced that your current situation is but an instance in the immense of time, and all that are important are going to happen after this earthly and meager interval, then you become content in the current form of life, as religion redirects the here and now to the unreachable then and there).
 
 Yet his teaching, at least as rendered by Mao and Stalin, might also qualify as opiate of the masses: people put up with forms of life that many would have revolted against, and put up with it because they accept a theory that this form of life is a necessary stage in an alleged evolutionary process.
+
 Marxism then becomes a deliberate and motivated attempt by the powerful to keep the masses in place through some mythos, a set of rites and rituals, grounded on something unreal but entirely serviceable for the purposes.
-The class conscious becomes the necessary engine of revolution and engine. First thing to recognize is that you are exploited: those paying you wages are not in your interest, but to preserve a system where they are successful, and their success depends on your failure to change anything materially about your life. Then comes the bloody revolution, through which economic and social stasis are compelled to change.
+
+The class conscious becomes the necessary engine of revolution and change.
+First thing to recognize is that you are exploited: those paying you wages are not in your interest, but to preserve a system where they are successful, and their success depends on your failure to change anything materially about your life. Then comes the revolution, often times bloody, through which economic and social stasis are compelled to change.
+
 Science and technology changes the modes of production.
 
-Marx's theory is deterministic, which could be defeated by actual persons living real lives according to terms they articulate terms for themselves.
+Marx's theory is deterministic, which could be defeated by actual persons living real lives according to terms they articulate for themselves.
+
+### The Freudian World
+
+Some of the great ideas in philosophy has not been contributed by philosophers.
+Physicians, theologians, mathematicians, etc.
+Freud, e.g. shapes the contemporary understanding of sources of our conduct, and our nature.
+
+Freud, Jewish, b 1856, eldest of 7 children, born to his father's 3rd wife. Medicine at the University of Vienna, influenced by Ernst Brücke, who was a contemporary of Helmholtz (physicist, theory of conservation, no eternal motion).
+
+Freud's own theory reflects that of a conservationist, and was consistent in grounding his psychoanalytic theory in the more basic sciences.
+Disciple of Darwinian evolution theory. Designs without a designer, and the design feature came from raw, brutal daily biological conflict and collision.
+Self-serving and selfish motives to survive.
+
+Freud wanted to be a research scientist in Vienna, with reluctance he took on practice of medicine (neurology).
+Neurologists treat neurological defects and hysteria, which was mistakenly linked to female uterus by Greeks.
+Freud studied treating hysteria with hypnosis.
+
+Anna O., patient of Josef Breuer, with whom Freud came to the conclusion that each of her symptoms was the result of earlier trauma and repression. **Studies of Hysteria**, and psycho-analysis was born.
+A talking cure.
+
+Hysteria is induced by traumatizing thought (fears and desires) at unconscious level, and as a result of this repression, a process is developed to convert this into a physical and hysterical symptom.
+Add to this notion the theory of conservation.
+
+The question then becomes what kind of (repressed) thought is of such a nature, that the mind of the patient would shut it out at the price of lost sight / sensitivity / movement, etc? 
+Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. The pleasure principle.
+
+Freud concludes infants sucking at a breast with his theory of infant sexuality, it's pleasing itself.
+
+**Gratification** remains the constant goal, throughout the development of Freudian stages, oral, anal, phallic, latency, and genital.
+Culminating in adult sexuality, a source of pleasure. The fact that it yields pleasure, serves the purposes of nature.
+
+What if we labor in the pursuit of pleasure 24 hours a day?
+This creature designed by nature to please itself and to avoid punishment has to become civilized, socialized and enculturated.
+The pleasure principle has to come face to face with the reality principle, for an integral society.
+
+Hegelian dialectics resurfaces here: (**the ego**) / self is a reconciliation of two opposing principles: the pleasure (**the id**) and the reality (**the super ego**) principles.
+In this sense, the ego is the synthesis out of the thesis and antithesis.
+
+This puts a new light on the problems of knowledge, conduct and governance.
+The life we live will not be a fully authentic one: we'll not act as our most basic impulses would have us act.
+Parents, institutions and practices set out to do just that, via religious or ethical precepts, and these customs are essentially outgrowth of the unconscious, or rationalization after the fact.
+
+Institutions and practices are being formed to move people relentless toward heterosexual modes of sexual gratification within the framework of marriage, serving the purpose of securing the needs and interests of the society itself.
+
+Once you read through the symbolism, the same is found everywhere.
+
+This is somewhat Gothic, in that beneath rationality and simplicity, is the work of unconscious, directing and forming complex institutions, causing weird dreams and disturbing symptoms.
+Making matters stranger, people waking up blind or with paralysis due to harboring certain wishes that cannot be fulfilled. Freud would claim such wishes are sexual in nature, and for a junior person, that is the desire for his mother, the **Oepidal Complex**.
+Junior has to learn mother is off limits, the socialization of sexuality requires the redirection of sexual energy to a socially acceptable target.
+
+Freud was castigated by his contemporary for such theories, even with the sexual content removed, but for the often times hypothetical nature of his theories.
+
+Freud claims the royal road to the unconscious is dreams, in which our wishes and desires are fulfilled.
+Put in symbolic form, e.g. being tripped by puppies is the dream of the chap that his younger sibling has enjoyed the affection of his father far more than he has.
+
+Homosexuality is adopting a female persona rather than facing the possible castration threat as in Oepidal Complex.
+
+Psycho-analysis's lack of success in most practical fields had little effect on its popularity, and this becomes something we learn to live with, or even enjoy from time to time.
