@@ -1971,3 +1971,37 @@ Put in symbolic form, e.g. being tripped by puppies is the dream of the chap tha
 Homosexuality is adopting a female persona rather than facing the possible castration threat as in Oepidal Complex.
 
 Psycho-analysis's lack of success in most practical fields had little effect on its popularity, and this becomes something we learn to live with, or even enjoy from time to time.
+
+### William James, radical empiricism
+
+Yankee.
+The American Hegelian movement, romanticism. A time when Hegelian thought and German idealism have overtaken English thought, the Rhine has flown into the Thames.
+Back to nature movement, a world of Thoreau and Emerson.
+
+William James (b 1842) tries to set this aright with clear, pragmatic, basic, confidence in the evidence of senes, and a belief that common sense is about the best thing going for us.
+Rescue thought from the seduction of a world of mystery.
+
+Harvard chemistry and medical degree. Faculty. Academic psychology. Radical empiricism. 
+Brother of Henry James.
+
+The position of an empiricist: of all things we know we know by experience. There are abstract, Leibnizian, Cartesian things. The senses can be deceiving but I'm still using them as much as possible.
+
+Radical empiricism would claim no set of experiences would be superior to another set of experiences. Experience is under no obligation to justify itself before some court that would declare itself to be of greater authority, e.g. that of science or philosophy.
+
+William James would then criticize association theory of experience of Aristotle, Locke or Hume.
+The mind-stuff theory is unintelligible.
+
+Consciousness is not an entity, but a process.
+The ideas of ours invariably draws upon those of the past, the continuity of thought, as revealed by experience.
+The thought is always someone's, which the association theory does not account for; and it invariably include some form of selection.
+
+His **Psychology** would claim consciousness as personal, changing, continuous and selective.
+Any philosophy that cannot come to terms with these, must be defective. Critique of the Hegelians and the absolute ego, and proposes a philosophy and science that would come to term with the world that is known and knownable, i.e. the world of experiences.
+
+**The psychologist's fallacy**: the assumption that a mental phenomenon is of a certain kind, because your method of inquiry examines it only in that way.
+What goes on in reality mimics your experiment, given the method you chose.
+Experience as experienced, or thought as thought, has the properties or the essential nature the researcher notes, based on his inevitably faulty methods.
+
+James takes a Reedian ground in that a theory should be developed to meet the facts, on the ground that the facts choose; and facts don't become facts because of science or philosophy constructs, but rather because of the human experiences in the world they live.
+
+A common-sense, pratical, experience-based, American philosopher, willing to go anywhere experience points him to.
