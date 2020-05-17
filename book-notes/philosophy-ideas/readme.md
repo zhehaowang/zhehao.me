@@ -1986,7 +1986,7 @@ Brother of Henry James.
 
 The position of an empiricist: of all things we know we know by experience. There are abstract, Leibnizian, Cartesian things. The senses can be deceiving but I'm still using them as much as possible.
 
-Radical empiricism would claim no set of experiences would be superior to another set of experiences. Experience is under no obligation to justify itself before some court that would declare itself to be of greater authority, e.g. that of science or philosophy.
+**Radical empiricism** would claim no set of experiences would be superior to another set of experiences. Experience is under no obligation to justify itself before some court that would declare itself to be of greater authority, e.g. that of science or philosophy.
 
 William James would then criticize association theory of experience of Aristotle, Locke or Hume.
 The mind-stuff theory is unintelligible.
@@ -2005,3 +2005,38 @@ Experience as experienced, or thought as thought, has the properties or the esse
 James takes a Reedian ground in that a theory should be developed to meet the facts, on the ground that the facts choose; and facts don't become facts because of science or philosophy constructs, but rather because of the human experiences in the world they live.
 
 A common-sense, pratical, experience-based, American philosopher, willing to go anywhere experience points him to.
+
+### William James, Pragmatism
+
+Pragmatism and pluralism.
+
+James's pluralism: epistemological. Functionalist theory of the mind. American behaviorialism.
+Functionalism, creatures of nature, having undergone evolution, is fitted to its environment, that organs of the body fulfills a particular function.
+
+What then, are the functions of the mind? (This differs from structuralism, psychological school of differentiating different faculties of the mind / sensations / feelings)
+
+Does consciousness exist? Some spaceless massless but ontologically thing, that doesn't exist. Flow of ideas, stream of perceptions and thoughts, then it does exist.
+What is consciousness for, what does it achieve that cannot be achieved without it? Our mental function includes selection, attention and the will, a process by which we can confine brain functions to the business at hand. We choose to pick out certain things and react to them.
+Science and philosophy have to accept this freedom of the will.
+
+Ideomotor theory of the mind. Reservoir of reflex behaviors (from native endowment, or experience) for selectivity to choose from. Volition refers this this selection process.
+
+James's pragmatism ties to his functionalism, which does not suggest the notion "if something works, then it is true" (under which both Ptolemy's earth-centric and Corpernicus's helio-centric theories can be justified: both can lead to successful navigation at sea). Rather, what gives us the warrant, to declare a statement to be true?
+
+**Pragmatism**, first and chiefly, is a method to settle metaphysical disputes. What difference would it pragmatically make to anyone, if this notion rather than that notion, is true. If no pragmatic consequence can be traced, then the dispute between this and the alternative is idle.
+
+The will expresses itself, on behalf of what we take to be our highest interests. What we do, we do on behalf of our highest interest. There is a stream of consciousness / thoughts, and the free will chooses from the possibilities.
+
+Why do we accept Newton's law of universal gravitation? We accept it because it matches up with certain observations.
+Why do we accept it because it matches up with certain observations? Because a foundamental tie between the evidence of sense / experience and the practical needs of life.
+
+The ultimate court in which competing theories will vie for our allegiance, is the court in which are located our highest interest, to be distinguished from our moment-to-moment interest (vulgar pragmatism).
+
+Interests pertain to health, economy, careers, politics, art, inter-personal relationships. (what about the highest interest?) 
+There is no final say on interest, for all the striving and confidence, new experience and thoughts still bring forth possibilities.
+There is always more to be said, seen, thought, or, a **plurality of possibilities**.
+The universe is not a solid block neatly bound such we that we know its beginning and end, nor will it surrender to the tidy remedies of mathematics and logic. Changes occur, interests shift.
+Nothing real is absolutely simple.
+
+What does this imply on moral philosophy?
+James is not a relativist. His pluralism is a falliblelism, in that the complex and evolving nature being what it is, we are never going to have the last words on what our highest interests are, but this does not mean the moral position we take is relative to the shifting desires and shifting experiences, and the interest of particular groups does not justify the Nazi party or the KKK.
