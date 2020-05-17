@@ -2040,3 +2040,41 @@ Nothing real is absolutely simple.
 
 What does this imply on moral philosophy?
 James is not a relativist. His pluralism is a falliblelism, in that the complex and evolving nature being what it is, we are never going to have the last words on what our highest interests are, but this does not mean the moral position we take is relative to the shifting desires and shifting experiences, and the interest of particular groups does not justify the Nazi party or the KKK.
+
+### Wittgenstein
+
+He's not here to solve problems, but _"to show the fly the way out of the bottle"_.
+
+Complex personality. **Tractatus Logico-Philosophicus**, on ethics and how philosophy should be conducted.
+20th Century, Austro-Hungarian, youngest of 7 children in one of the richest family in Europe. Himself troubled by depression and anxiety, and 3 older brothers committed suicide. Jewish heritage but Protestant converts.
+Served in WWI on the Austrian side, contemporary of Bertrand Russell, went on to become an elementary school teacher, lived the rest of his life in Oxford.
+
+The case at hand must be part of the world.
+Misunderstanding of the language leading to that the deepest problems are, in fact, not problems at all.
+
+The picture theory (representational) of knowledge. I know the external world because I have a mental picture of it.
+We publicize our knowledge by presenting our picture to others, but the person in question has the last say on his senses and mental life. Such knowledge is individual and private.
+
+Wittgenstein set out to show the above view is mistaken, and mostly because of ways we use our words, i.e. grammatical.
+
+The language game.
+Beetle in a box. Each one in a room is given a box with a bottle, one can see inside their own box, but not others'. When asked what is in each one's box, everyone says beetle. But how can one know that the beetle he's referring to is very much alike to the one you are referring to, when you say beetle? What if in his language beetle means something else?
+The adoption of such convention (naming this insect beetle) is based on some social rules, and no one can bring about some convention singularly. No one by himself can even know what's inside his own box, except when having such grammatical convention available to you.
+
+Same goes for knowledge, being, proposition, I, etc.
+
+Reed, for their to be an artificial language, there has to be a natural language.
+Wittgenstein takes a similar position, description of pain, with an artificial language, is what's grafted on top of the natural one (grimacing, tears, etc).
+
+_"The limits of my language mean the limits of my world."_
+_"To imagine a language, is to imagine a form of life."_
+The traditional view of the mental is replaced with a discursive model: meaning is shared, the sole occupant of the cosmos, if there were to be one, can have experiences, but not know the meaning of something (e.g., to know "an airplane", "a sandwich", "a school", requires one to be a participant in a game, a settled discourse in which there are rules that govern how things are to be described and ordered. This is social, and not individual).
+
+Where there is meaning, there has to be social conventions, the task is not then one seeking truth within him and making it public, rather, seeking the discursive history that gives something meaning.
+
+Strip one of everything social and cultural, what's left is merely a biological entity with no identity.
+Is gender then socially constructed? Is morality socially constructed?
+
+The problem of knowledge then becomes a problem of meaning, and it's a linguistic rather than epistemological question.
+
+With all due respect, there is more to the problem of knowledge, than just linguistics.
