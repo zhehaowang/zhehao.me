@@ -1937,7 +1937,7 @@ Hysteria is induced by traumatizing thought (fears and desires) at unconscious l
 Add to this notion the theory of conservation.
 
 The question then becomes what kind of (repressed) thought is of such a nature, that the mind of the patient would shut it out at the price of lost sight / sensitivity / movement, etc? 
-Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. The pleasure principle.
+Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. **The pleasure principle**.
 
 Freud concludes infants sucking at a breast with his theory of infant sexuality, it's pleasing itself.
 
