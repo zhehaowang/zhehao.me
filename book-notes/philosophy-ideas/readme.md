@@ -2077,4 +2077,34 @@ Is gender then socially constructed? Is morality socially constructed?
 
 The problem of knowledge then becomes a problem of meaning, and it's a linguistic rather than epistemological question.
 
-With all due respect, there is more to the problem of knowledge, than just linguistics.
+With all due respect to Wittgenstein, there is more to the problem of knowledge, than just linguistics.
+
+### Alan Turing and computability
+
+Contemporary, b 1912 d 1954. Prodigy.
+1936, Turing machine. Cambridge and Princeton. Maths and logic. Cryptography work, Enigma cipher machine breaking.
+Fellow of Royal Society, well-respected, arrested for homosexual activity, suicided.
+
+How do problems get solved?
+
+Problem of Turing's generation: David Hilbert's decision problem (**Entscheidungsproblem**): finding a method for deciding all decidable questions in mathematics.
+Turing's paper (**On Computable Numbers, with an Application to the Entscheidungsproblem**) on this / computability was foundamental to computer science.
+
+Tape, push, pop, **Turing machine** and computability.
+Any problems that is decidable / computable, can be described in series of steps on this machine.
+
+Can experience itself then be modeled by such?
+What then is an intelligent being? How should we understand human intelligence?
+Can we model human intelligence?
+What does it then mean for our intelligent and rational nature?
+
+To answer the above, Turing's paper **computing machinery and intelligence** in Mind proposed a **Turing test**.
+
+The problem of knowledge now becomes a computational problem: there are things we can know (those that are computable, hence modelable with some algorithm, eventually) and those that we are never going to have an answer to (by anything).
+
+20th Century development in philosophy of the mind, and its relation with computer science.
+
+(The Chinese Room argument: (while not knowing Chinese) being able to compile a Chinese poem from a collection of cards with idiograms on them by following instructions in English of what pattern goes after what, does not suggest we comprehend anything about what we compiled.
+Missing ingredient here being intentionality.)
+
+(Hinduism Upanishads and the forest of wisdom, perhaps similar to Pythagoras, Turing lived a life illustrated by the light within.)
