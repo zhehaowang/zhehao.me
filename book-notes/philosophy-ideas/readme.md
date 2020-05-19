@@ -1971,3 +1971,110 @@ Put in symbolic form, e.g. being tripped by puppies is the dream of the chap tha
 Homosexuality is adopting a female persona rather than facing the possible castration threat as in Oepidal Complex.
 
 Psycho-analysis's lack of success in most practical fields had little effect on its popularity, and this becomes something we learn to live with, or even enjoy from time to time.
+
+### William James, radical empiricism
+
+Yankee.
+The American Hegelian movement, romanticism. A time when Hegelian thought and German idealism have overtaken English thought, the Rhine has flown into the Thames.
+Back to nature movement, a world of Thoreau and Emerson.
+
+William James (b 1842) tries to set this aright with clear, pragmatic, basic, confidence in the evidence of senes, and a belief that common sense is about the best thing going for us.
+Rescue thought from the seduction of a world of mystery.
+
+Harvard chemistry and medical degree. Faculty. Academic psychology. Radical empiricism. 
+Brother of Henry James.
+
+The position of an empiricist: of all things we know we know by experience. There are abstract, Leibnizian, Cartesian things. The senses can be deceiving but I'm still using them as much as possible.
+
+**Radical empiricism** would claim no set of experiences would be superior to another set of experiences. Experience is under no obligation to justify itself before some court that would declare itself to be of greater authority, e.g. that of science or philosophy.
+
+William James would then criticize association theory of experience of Aristotle, Locke or Hume.
+The mind-stuff theory is unintelligible.
+
+Consciousness is not an entity, but a process.
+The ideas of ours invariably draws upon those of the past, the continuity of thought, as revealed by experience.
+The thought is always someone's, which the association theory does not account for; and it invariably include some form of selection.
+
+His **Psychology** would claim consciousness as personal, changing, continuous and selective.
+Any philosophy that cannot come to terms with these, must be defective. Critique of the Hegelians and the absolute ego, and proposes a philosophy and science that would come to term with the world that is known and knownable, i.e. the world of experiences.
+
+**The psychologist's fallacy**: the assumption that a mental phenomenon is of a certain kind, because your method of inquiry examines it only in that way.
+What goes on in reality mimics your experiment, given the method you chose.
+Experience as experienced, or thought as thought, has the properties or the essential nature the researcher notes, based on his inevitably faulty methods.
+
+James takes a Reedian ground in that a theory should be developed to meet the facts, on the ground that the facts choose; and facts don't become facts because of science or philosophy constructs, but rather because of the human experiences in the world they live.
+
+A common-sense, pratical, experience-based, American philosopher, willing to go anywhere experience points him to.
+
+### William James, Pragmatism
+
+Pragmatism and pluralism.
+
+James's pluralism: epistemological. Functionalist theory of the mind. American behaviorialism.
+Functionalism, creatures of nature, having undergone evolution, is fitted to its environment, that organs of the body fulfills a particular function.
+
+What then, are the functions of the mind? (This differs from structuralism, psychological school of differentiating different faculties of the mind / sensations / feelings)
+
+Does consciousness exist? Some spaceless massless but ontologically thing, that doesn't exist. Flow of ideas, stream of perceptions and thoughts, then it does exist.
+What is consciousness for, what does it achieve that cannot be achieved without it? Our mental function includes selection, attention and the will, a process by which we can confine brain functions to the business at hand. We choose to pick out certain things and react to them.
+Science and philosophy have to accept this freedom of the will.
+
+Ideomotor theory of the mind. Reservoir of reflex behaviors (from native endowment, or experience) for selectivity to choose from. Volition refers this this selection process.
+
+James's pragmatism ties to his functionalism, which does not suggest the notion "if something works, then it is true" (under which both Ptolemy's earth-centric and Corpernicus's helio-centric theories can be justified: both can lead to successful navigation at sea). Rather, what gives us the warrant, to declare a statement to be true?
+
+**Pragmatism**, first and chiefly, is a method to settle metaphysical disputes. What difference would it pragmatically make to anyone, if this notion rather than that notion, is true. If no pragmatic consequence can be traced, then the dispute between this and the alternative is idle.
+
+The will expresses itself, on behalf of what we take to be our highest interests. What we do, we do on behalf of our highest interest. There is a stream of consciousness / thoughts, and the free will chooses from the possibilities.
+
+Why do we accept Newton's law of universal gravitation? We accept it because it matches up with certain observations.
+Why do we accept it because it matches up with certain observations? Because a foundamental tie between the evidence of sense / experience and the practical needs of life.
+
+The ultimate court in which competing theories will vie for our allegiance, is the court in which are located our highest interest, to be distinguished from our moment-to-moment interest (vulgar pragmatism).
+
+Interests pertain to health, economy, careers, politics, art, inter-personal relationships. (what about the highest interest?) 
+There is no final say on interest, for all the striving and confidence, new experience and thoughts still bring forth possibilities.
+There is always more to be said, seen, thought, or, a **plurality of possibilities**.
+The universe is not a solid block neatly bound such we that we know its beginning and end, nor will it surrender to the tidy remedies of mathematics and logic. Changes occur, interests shift.
+Nothing real is absolutely simple.
+
+What does this imply on moral philosophy?
+James is not a relativist. His pluralism is a falliblelism, in that the complex and evolving nature being what it is, we are never going to have the last words on what our highest interests are, but this does not mean the moral position we take is relative to the shifting desires and shifting experiences, and the interest of particular groups does not justify the Nazi party or the KKK.
+
+### Wittgenstein
+
+He's not here to solve problems, but _"to show the fly the way out of the bottle"_.
+
+Complex personality. **Tractatus Logico-Philosophicus**, on ethics and how philosophy should be conducted.
+20th Century, Austro-Hungarian, youngest of 7 children in one of the richest family in Europe. Himself troubled by depression and anxiety, and 3 older brothers committed suicide. Jewish heritage but Protestant converts.
+Served in WWI on the Austrian side, contemporary of Bertrand Russell, went on to become an elementary school teacher, lived the rest of his life in Oxford.
+
+The case at hand must be part of the world.
+Misunderstanding of the language leading to that the deepest problems are, in fact, not problems at all.
+
+The picture theory (representational) of knowledge. I know the external world because I have a mental picture of it.
+We publicize our knowledge by presenting our picture to others, but the person in question has the last say on his senses and mental life. Such knowledge is individual and private.
+
+Wittgenstein set out to show the above view is mistaken, and mostly because of ways we use our words, i.e. grammatical.
+
+The language game.
+Beetle in a box. Each one in a room is given a box with a bottle, one can see inside their own box, but not others'. When asked what is in each one's box, everyone says beetle. But how can one know that the beetle he's referring to is very much alike to the one you are referring to, when you say beetle? What if in his language beetle means something else?
+The adoption of such convention (naming this insect beetle) is based on some social rules, and no one can bring about some convention singularly. No one by himself can even know what's inside his own box, except when having such grammatical convention available to you.
+
+Same goes for knowledge, being, proposition, I, etc.
+
+Reed, for their to be an artificial language, there has to be a natural language.
+Wittgenstein takes a similar position, description of pain, with an artificial language, is what's grafted on top of the natural one (grimacing, tears, etc).
+
+_"The limits of my language mean the limits of my world."_
+_"To imagine a language, is to imagine a form of life."_
+The traditional view of the mental is replaced with a discursive model: meaning is shared, the sole occupant of the cosmos, if there were to be one, can have experiences, but not know the meaning of something (e.g., to know "an airplane", "a sandwich", "a school", requires one to be a participant in a game, a settled discourse in which there are rules that govern how things are to be described and ordered. This is social, and not individual).
+
+Where there is meaning, there has to be social conventions, the task is not then one seeking truth within him and making it public, rather, seeking the discursive history that gives something meaning.
+
+Strip one of everything social and cultural, what's left is merely a biological entity with no identity.
+Is gender then socially constructed? Is morality socially constructed?
+
+The problem of knowledge then becomes a problem of meaning, and it's a linguistic rather than epistemological question.
+
+With all due respect, there is more to the problem of knowledge, than just linguistics.
