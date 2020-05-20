@@ -2108,3 +2108,38 @@ The problem of knowledge now becomes a computational problem: there are things w
 Missing ingredient here being intentionality.)
 
 (Hinduism Upanishads and the forest of wisdom, perhaps similar to Pythagoras, Turing lived a life illustrated by the light within.)
+
+### Theories on the good life
+
+This is like discussing a good diet, one which would only apply to a particular biological system. Or a chess move being right which would pertain to a particular game.
+
+Essentialist view on human nature: rational, moral and aesthetic.
+
+There is Aristotle, **contemplative** life on the isle of the blessed, eudaimonia, something that is desired for the sake of itself.
+He also proposes **the active life**, as would the Stoics and medieval scholars.
+
+One can also take a **fatalistic** perspective on the good life: we can take on this massive project, but the future seems almost written. Coming to grips with the reality.
+
+Lawrence of Arabia. Seven Pillars of Wisdom.
+_"All men dream, but not equally. Those who dream by night in the dusty recesses of their minds, wake in the day to find that it was vanity: but the dreamers of the day are dangerous men, for they may act on their dreams with open eyes, to make them possible."_
+_"It is written that one does not venture into the desert twice. Nothing is written."_
+
+Resignation as an important element of a good life.
+_"Never say of anything that I've lost it, only that I've given it back."_
+
+Then there is **hedonist** position on the good life.
+One desires not to suffer. The unrequited desire is a sure path to suffering.
+The true hedonist is not out for any and all pleasure, but rather, never wanting a pleasure so much that its deprivation constitutes pain, and never to avoid pain so assiduously as to miss out on chances of pleasure.
+A peaceful life of tranquility, one that is removed from harm.
+
+The **selfless** life of the hero or the saint. The exemplary life that goes beyond duty.
+A life of service and sacrifice?
+The deep sense of satisfaction knowing not that one is a hero, rather that one has, e.g. saved a life.
+
+Suppose you can be given any life of your choosing, played out into you by stimulating your brain to experience such, on what grounds would you reject this option?
+What's the basis upon which you would forfeit a life that is frustrating, in which desires are unrequited, in which you cannot achieve the level of excellencem, goodness or decency, in favor of the above by stimulating your brain?
+Why would you not be a brain in a vat?
+
+Is there something else desired on a foundamental level? Does one find that in the pursuit of happiness?
+
+The good life might be contemplative, active, somewhat fatalistic, hedonistic, and selfless.
