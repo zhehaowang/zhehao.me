@@ -2143,3 +2143,31 @@ Why would you not be a brain in a vat?
 Is there something else desired on a foundamental level? Does one find that in the pursuit of happiness?
 
 The good life might be contemplative, active, somewhat fatalistic, hedonistic, and selfless.
+
+### Ontology
+
+What there really is?
+
+Aristotle's Metaphysics. A science that investigates being as being.
+
+Kant's analytical and synthetic propositions. Categories and modes of understanding.
+
+Classification, essentiality.
+
+The nature of universals and the relationship between universals and particular instances.
+* Aristotle, properties exist only in particulars.
+* Medieval nominalist, realist controversy (former: universals were just names given to collections of particulars; latter: universals are of necessity real, otherwise the particulars would have nothing from which to derive their essential nature.)
+* Locke's nominal and real essence of things.
+
+Haidegger: existence and essence. Is there essence for something that does not exist?
+
+Polanyi, Roger Penrose: what really exists is the formal relationship expressed in math? Human fallibility.
+
+The role of linguistics. We know more than what we can say.
+Tacit knowledge.
+
+How is potentiality to be understood ontologically?
+
+The method to test ontological claims, is science itself. What is science's decree, and is science the final word?
+
+Is there a why something is?
