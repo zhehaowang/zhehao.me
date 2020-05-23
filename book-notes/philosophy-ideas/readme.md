@@ -1937,7 +1937,7 @@ Hysteria is induced by traumatizing thought (fears and desires) at unconscious l
 Add to this notion the theory of conservation.
 
 The question then becomes what kind of (repressed) thought is of such a nature, that the mind of the patient would shut it out at the price of lost sight / sensitivity / movement, etc? 
-Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. The pleasure principle.
+Inspired by evolutionary theory and human nature deriving from animal nature, Freud draws on survival mechanisms: everything at the individual level is done for survival, to maximize pleasure and minimize pain. **The pleasure principle**.
 
 Freud concludes infants sucking at a breast with his theory of infant sexuality, it's pleasing itself.
 
@@ -2077,4 +2077,97 @@ Is gender then socially constructed? Is morality socially constructed?
 
 The problem of knowledge then becomes a problem of meaning, and it's a linguistic rather than epistemological question.
 
-With all due respect, there is more to the problem of knowledge, than just linguistics.
+With all due respect to Wittgenstein, there is more to the problem of knowledge, than just linguistics.
+
+### Alan Turing and computability
+
+Contemporary, b 1912 d 1954. Prodigy.
+1936, Turing machine. Cambridge and Princeton. Maths and logic. Cryptography work, Enigma cipher machine breaking.
+Fellow of Royal Society, well-respected, arrested for homosexual activity, suicided.
+
+How do problems get solved?
+
+Problem of Turing's generation: David Hilbert's decision problem (**Entscheidungsproblem**): finding a method for deciding all decidable questions in mathematics.
+Turing's paper (**On Computable Numbers, with an Application to the Entscheidungsproblem**) on this / computability was foundamental to computer science.
+
+Tape, push, pop, **Turing machine** and computability.
+Any problems that is decidable / computable, can be described in series of steps on this machine.
+
+Can experience itself then be modeled by such?
+What then is an intelligent being? How should we understand human intelligence?
+Can we model human intelligence?
+What does it then mean for our intelligent and rational nature?
+
+To answer the above, Turing's paper **computing machinery and intelligence** in Mind proposed a **Turing test**.
+
+The problem of knowledge now becomes a computational problem: there are things we can know (those that are computable, hence modelable with some algorithm, eventually) and those that we are never going to have an answer to (by anything).
+
+20th Century development in philosophy of the mind, and its relation with computer science.
+
+(The Chinese Room argument: (while not knowing Chinese) being able to compile a Chinese poem from a collection of cards with idiograms on them by following instructions in English of what pattern goes after what, does not suggest we comprehend anything about what we compiled.
+Missing ingredient here being intentionality.)
+
+(Hinduism Upanishads and the forest of wisdom, perhaps similar to Pythagoras, Turing lived a life illustrated by the light within.)
+
+### Theories on the good life
+
+This is like discussing a good diet, one which would only apply to a particular biological system. Or a chess move being right which would pertain to a particular game.
+
+Essentialist view on human nature: rational, moral and aesthetic.
+
+There is Aristotle, **contemplative** life on the isle of the blessed, eudaimonia, something that is desired for the sake of itself.
+He also proposes **the active life**, as would the Stoics and medieval scholars.
+
+One can also take a **fatalistic** perspective on the good life: we can take on this massive project, but the future seems almost written. Coming to grips with the reality.
+
+Lawrence of Arabia. Seven Pillars of Wisdom.
+_"All men dream, but not equally. Those who dream by night in the dusty recesses of their minds, wake in the day to find that it was vanity: but the dreamers of the day are dangerous men, for they may act on their dreams with open eyes, to make them possible."_
+_"It is written that one does not venture into the desert twice. Nothing is written."_
+
+Resignation as an important element of a good life.
+_"Never say of anything that I've lost it, only that I've given it back."_
+
+Then there is **hedonist** position on the good life.
+One desires not to suffer. The unrequited desire is a sure path to suffering.
+The true hedonist is not out for any and all pleasure, but rather, never wanting a pleasure so much that its deprivation constitutes pain, and never to avoid pain so assiduously as to miss out on chances of pleasure.
+A peaceful life of tranquility, one that is removed from harm.
+
+The **selfless** life of the hero or the saint. The exemplary life that goes beyond duty.
+A life of service and sacrifice?
+The deep sense of satisfaction knowing not that one is a hero, rather that one has, e.g. saved a life.
+
+Suppose you can be given any life of your choosing, played out into you by stimulating your brain to experience such, on what grounds would you reject this option?
+What's the basis upon which you would forfeit a life that is frustrating, in which desires are unrequited, in which you cannot achieve the level of excellencem, goodness or decency, in favor of the above by stimulating your brain?
+Why would you not be a brain in a vat?
+
+Is there something else desired on a foundamental level? Does one find that in the pursuit of happiness?
+
+The good life might be contemplative, active, somewhat fatalistic, hedonistic, and selfless.
+
+### Ontology
+
+What there really is?
+
+Aristotle's Metaphysics. A science that investigates being as being.
+
+Kant's analytical and synthetic propositions. Categories and modes of understanding.
+
+Classification, essentiality.
+
+The nature of universals and the relationship between universals and particular instances.
+* Aristotle, properties exist only in particulars.
+* Medieval nominalist, realist controversy (former: universals were just names given to collections of particulars; latter: universals are of necessity real, otherwise the particulars would have nothing from which to derive their essential nature.)
+* Locke's nominal and real essence of things.
+
+Haidegger: existence and essence. Is there essence for something that does not exist?
+
+Polanyi, Roger Penrose: what really exists is the formal relationship expressed in math? Human fallibility.
+
+The role of linguistics. We know more than what we can say.
+Tacit knowledge.
+
+How is potentiality to be understood ontologically?
+
+The method to test ontological claims, is science itself. What is science's decree, and is science the final word?
+
+Is there a why something is?
