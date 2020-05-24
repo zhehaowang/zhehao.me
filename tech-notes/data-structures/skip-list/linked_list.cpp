@@ -19,7 +19,7 @@ template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList& rhs) { return *this; }
 
 template <typename T>
-void LinkedList<T>::appendValue(T&& val) {
+typename LinkedList<T>::iterator LinkedList<T>::appendValue(T&& val) {
     LinkedListNode<T>* node = new LinkedListNode(std::forward<T>(val));
     if (!_head) {
         _head = node;
@@ -29,6 +29,7 @@ void LinkedList<T>::appendValue(T&& val) {
         node->setPrev(_tail);
         _tail = node;
     }
+    return LinkedListIterator<T>(node);
 }
 
 #ifdef DEBUG
@@ -54,5 +55,6 @@ std::string LinkedListNode<T>::toString() const {
 
 #endif
 
-// @todo: how does others around this?
+// @todo: how does others around this? having everything in header is the only way?
+// does that slow compile time down?
 template class LinkedList<int>;

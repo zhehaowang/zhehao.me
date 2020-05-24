@@ -8,6 +8,14 @@ wip/*
 **/data.csv
 *.pyc
 
+*.a
+*.o
+*.out
+*.test
+*.so
+*.dylib
+*.dll
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

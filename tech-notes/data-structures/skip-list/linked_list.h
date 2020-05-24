@@ -28,6 +28,8 @@ class LinkedListNode {
     void setNext(LinkedListNode* next) { _next = next; }
     void setPrev(LinkedListNode* prev) { _prev = prev; }
 
+    T get() const { return _value; }
+
 #ifdef DEBUG
     std::string toString() const;
 #endif
@@ -39,18 +41,26 @@ class LinkedListNode {
 };
 
 template <typename T>
+class LinkedListIterator;
+
+template <typename T>
 class LinkedList {
   public:
+    using iterator = LinkedListIterator<T>;
+
     LinkedList() = default;
     ~LinkedList();
 
     LinkedList(const LinkedList& rhs);
     LinkedList& operator=(const LinkedList& rhs);
 
-    // @todo: implement iterator
-    void appendValue(T&& val);
+    iterator appendValue(T&& val);
 
     // void append(LinkedListNode<T> node);
+
+    iterator begin() const;
+
+    bool empty() const { return _head == nullptr; }
 
 #ifdef DEBUG
     std::string toString() const;
@@ -60,5 +70,38 @@ class LinkedList {
     LinkedListNode<T>* _head = nullptr;
     LinkedListNode<T>* _tail = nullptr;
 };
+
+// bidirectional iterator
+template <typename T>
+class LinkedListIterator {
+  public:
+    LinkedListIterator(LinkedListNode<T>* data) : _data(data) {}
+    
+    LinkedListIterator& operator=(const LinkedListIterator& rhs) = default;
+    LinkedListIterator(const LinkedListIterator& rhs) = default;
+    
+    LinkedListIterator& operator=(LinkedListIterator&& rhs) = default;
+    LinkedListIterator(LinkedListIterator&& rhs) = default;
+
+    bool hasNext() const { return _data->next() != nullptr; }
+    void next() { _data = _data->next(); }
+
+    bool hasPrev() const { return _data->prev() != nullptr; }
+    void prev() { _data = _data->prev(); }
+
+    bool operator==(LinkedListIterator<T> rhs) const { return _data == rhs._data; }
+
+    const LinkedListNode<T>* get() const { return _data; }
+    
+    T operator->() const { return _data->get(); }
+    T operator*()  const { return _data->get(); }
+  private:
+    LinkedListNode<T>* _data;
+};
+
+template <typename T>
+typename LinkedList<T>::iterator LinkedList<T>::begin() const {
+    return LinkedListIterator<T>(_head);
+}
 
 #endif
