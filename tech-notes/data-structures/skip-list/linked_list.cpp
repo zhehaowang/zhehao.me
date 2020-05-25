@@ -32,12 +32,41 @@ typename LinkedList<T>::iterator LinkedList<T>::appendValue(T&& val) {
     return LinkedListIterator<T>(node);
 }
 
+template <typename T>
+typename LinkedList<T>::iterator
+LinkedList<T>::insertAfter(T&& val, iterator iter) {
+    LinkedListNode<T>* node = new LinkedListNode(std::forward<T>(val));
+    auto nextNode = iter.get()->next();
+
+    if (nextNode) {
+        node->setNext(nextNode);
+        nextNode->setPrev(node);
+    } else {
+        _tail = node;
+    }
+    iter.get()->setNext(node);
+    node->setPrev(iter.get());
+
+    return LinkedListIterator<T>(node);
+}
+
+template <typename T>
+typename LinkedList<T>::size_type LinkedList<T>::size() const {
+    auto temp = _head;
+    size_type total = 0;    
+    while (temp) {
+        total += 1;
+        temp = temp->next();
+    }
+    return total;
+}
+
 #ifdef DEBUG
 
 template <typename T>
 std::string LinkedList<T>::toString() const {
     std::stringstream stream;
-    LinkedListNode<T>* temp = _head;
+    auto temp = _head;
     
     while (temp) {
         stream << temp->toString() << " ";

@@ -44,9 +44,17 @@ template <typename T>
 class LinkedListIterator;
 
 template <typename T>
+struct DefaultComparator {
+    bool operator()(const T& lhs, const T& rhs) const {
+        return lhs < rhs;
+    }
+};
+
+template <typename T>
 class LinkedList {
   public:
     using iterator = LinkedListIterator<T>;
+    using size_type = uint64_t;
 
     LinkedList() = default;
     ~LinkedList();
@@ -56,11 +64,19 @@ class LinkedList {
 
     iterator appendValue(T&& val);
 
+    template <typename Comparator = DefaultComparator<T>>
+    iterator insertValueOrdered(T&& val, Comparator comp = DefaultComparator<T>());
+
+    iterator insertAfter(T&& val, iterator iter);
+
     // void append(LinkedListNode<T> node);
 
     iterator begin() const;
+    // non-standard
+    iterator end() const;
 
     bool empty() const { return _head == nullptr; }
+    size_type size() const;
 
 #ifdef DEBUG
     std::string toString() const;
@@ -92,6 +108,7 @@ class LinkedListIterator {
     bool operator==(LinkedListIterator<T> rhs) const { return _data == rhs._data; }
 
     const LinkedListNode<T>* get() const { return _data; }
+    LinkedListNode<T>* get() { return _data; }
     
     T operator->() const { return _data->get(); }
     T operator*()  const { return _data->get(); }
@@ -102,6 +119,40 @@ class LinkedListIterator {
 template <typename T>
 typename LinkedList<T>::iterator LinkedList<T>::begin() const {
     return LinkedListIterator<T>(_head);
+}
+
+template <typename T>
+typename LinkedList<T>::iterator LinkedList<T>::end() const {
+    return LinkedListIterator<T>(_tail);
+}
+
+template <typename T>
+template <typename Comparator>
+typename LinkedList<T>::iterator
+LinkedList<T>::insertValueOrdered(T&& val, Comparator comp) {
+    auto temp = _head;
+    while (temp) {
+        if (!comp(temp->get(), val)) {
+            if (temp->prev()) {
+                return insertAfter(
+                    std::forward<T>(val), LinkedListIterator<T>(temp->prev()));
+            } else {
+                LinkedListNode<T>* node = new LinkedListNode(
+                    std::forward<T>(val));
+                _head = node;
+                temp->setPrev(node);
+                node->setNext(temp);
+                return LinkedListIterator<T>(node);
+            }
+        }
+        temp = temp->next();
+    }
+
+    if (_tail) {
+        return insertAfter(std::forward<T>(val), LinkedListIterator<T>(_tail));
+    } else {
+        return appendValue(std::forward<T>(val));
+    }
 }
 
 #endif
