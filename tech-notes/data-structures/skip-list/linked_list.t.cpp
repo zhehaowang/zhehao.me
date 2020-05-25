@@ -20,9 +20,11 @@ TEST(LinkedListTest, AppendValue) {
     EXPECT_EQ(l.toString(), std::string("3 4 "));
     l.appendValue(5);
     EXPECT_EQ(l.toString(), std::string("3 4 5 "));
+
+    EXPECT_EQ(3, l.size());
 }
 
-TEST(LinkedListTest, Iterator) {
+TEST(LinkedListTest, AppendValueIterator) {
     LinkedList<int> l;
 
     l.appendValue(3);
@@ -47,6 +49,52 @@ TEST(LinkedListTest, Iterator) {
     EXPECT_TRUE(lit2.hasPrev());
     lit2.prev();
     EXPECT_EQ(lit, lit2);
+}
+
+TEST(LinkedListTest, InsertAfterIterator) {
+    LinkedList<int> l;
+
+    auto it = l.appendValue(3);
+    auto eit = l.insertAfter(5, it);
+
+    EXPECT_EQ(it, l.begin());
+    EXPECT_EQ(eit, l.end());
+
+    auto eit2 = l.insertAfter(4, it);
+    EXPECT_EQ(it, l.begin());
+    EXPECT_EQ(eit, l.end());
+
+    auto bit = l.begin();
+    EXPECT_EQ(*bit, 3);
+    bit.next();
+    EXPECT_EQ(*bit, 4);
+    bit.next();
+    EXPECT_EQ(*bit, 5);
+    EXPECT_EQ(bit, l.end());
+}
+
+TEST(LinkedListTest, InsertValueOrderedIterator) {
+    LinkedList<int> l;
+
+    l.insertValueOrdered(5);
+    l.insertValueOrdered(3);
+    l.insertValueOrdered(4);
+    l.insertValueOrdered(1);
+    l.insertValueOrdered(6);
+    l.insertValueOrdered(3);
+
+    auto bit = l.begin();
+    EXPECT_EQ(*bit, 1);
+    bit.next();
+    EXPECT_EQ(*bit, 3);
+    bit.next();
+    EXPECT_EQ(*bit, 3);
+    bit.next();
+    EXPECT_EQ(*bit, 4);
+    bit.next();
+    EXPECT_EQ(*bit, 5);
+    bit.next();
+    EXPECT_EQ(*bit, 6);
 }
 
 int main(int argc, char **argv) {
