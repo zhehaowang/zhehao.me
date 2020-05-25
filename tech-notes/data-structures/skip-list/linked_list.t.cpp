@@ -58,11 +58,11 @@ TEST(LinkedListTest, InsertAfterIterator) {
     auto eit = l.insertAfter(5, it);
 
     EXPECT_EQ(it, l.begin());
-    EXPECT_EQ(eit, l.end());
+    EXPECT_EQ(eit, l.last());
 
     auto eit2 = l.insertAfter(4, it);
     EXPECT_EQ(it, l.begin());
-    EXPECT_EQ(eit, l.end());
+    EXPECT_EQ(eit, l.last());
 
     auto bit = l.begin();
     EXPECT_EQ(*bit, 3);
@@ -70,7 +70,7 @@ TEST(LinkedListTest, InsertAfterIterator) {
     EXPECT_EQ(*bit, 4);
     bit.next();
     EXPECT_EQ(*bit, 5);
-    EXPECT_EQ(bit, l.end());
+    EXPECT_EQ(bit, l.last());
 }
 
 TEST(LinkedListTest, InsertValueOrderedIterator) {
@@ -89,6 +89,57 @@ TEST(LinkedListTest, InsertValueOrderedIterator) {
     EXPECT_EQ(*bit, 3);
     bit.next();
     EXPECT_EQ(*bit, 3);
+    bit.next();
+    EXPECT_EQ(*bit, 4);
+    bit.next();
+    EXPECT_EQ(*bit, 5);
+    bit.next();
+    EXPECT_EQ(*bit, 6);
+}
+
+TEST(LinkedListTest, RemoveAt) {
+    LinkedList<int> l;
+
+    l.insertValueOrdered(5);
+    l.insertValueOrdered(3);
+    l.insertValueOrdered(4);
+    l.insertValueOrdered(1);
+    l.insertValueOrdered(6);
+    l.insertValueOrdered(3);
+
+    auto bit = l.begin();
+    l.removeAt(bit);
+
+    auto eit = l.last();
+    l.removeAt(eit);
+
+    auto nit = l.begin();
+    nit.next();
+    nit.next();
+    l.removeAt(nit);
+
+    auto oit = l.begin();
+    EXPECT_EQ(*oit, 3);
+    oit.next();
+    EXPECT_EQ(*oit, 3);
+    oit.next();
+    EXPECT_EQ(*oit, 5);
+}
+
+TEST(LinkedListTest, RemoveValue) {
+    LinkedList<int> l;
+
+    l.insertValueOrdered(5);
+    l.insertValueOrdered(3);
+    l.insertValueOrdered(4);
+    l.insertValueOrdered(1);
+    l.insertValueOrdered(6);
+    l.insertValueOrdered(3);
+
+    l.removeValue(3);
+
+    auto bit = l.begin();
+    EXPECT_EQ(*bit, 1);
     bit.next();
     EXPECT_EQ(*bit, 4);
     bit.next();

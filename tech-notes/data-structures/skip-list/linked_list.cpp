@@ -33,6 +33,44 @@ typename LinkedList<T>::iterator LinkedList<T>::appendValue(T&& val) {
 }
 
 template <typename T>
+void LinkedList<T>::removeValue(T&& val) {
+    if (empty()) {
+        return;
+    }
+
+    auto it = begin();
+    while (it != end()) {
+        if (*it == val) {
+            it = removeAt(it);
+        } else {
+            it.next();
+        }
+    }
+    return;
+}
+
+template <typename T>
+typename LinkedList<T>::iterator LinkedList<T>::removeAt(iterator it) {
+    auto node = it.get();
+    auto nextNode = node->next();
+    auto prevNode = node->prev();
+
+    if (node == _tail) {
+        _tail = node->prev();
+    } else {
+        nextNode->setPrev(prevNode);
+    }
+    if (node == _head) {
+        _head = nextNode;
+    } else {
+        prevNode->setNext(nextNode);
+    }
+    
+    delete node;
+    return LinkedList<T>::iterator(nextNode);
+}
+
+template <typename T>
 typename LinkedList<T>::iterator
 LinkedList<T>::insertAfter(T&& val, iterator iter) {
     LinkedListNode<T>* node = new LinkedListNode(std::forward<T>(val));
@@ -53,12 +91,24 @@ LinkedList<T>::insertAfter(T&& val, iterator iter) {
 template <typename T>
 typename LinkedList<T>::size_type LinkedList<T>::size() const {
     auto temp = _head;
-    size_type total = 0;    
+    size_type total = 0;
     while (temp) {
         total += 1;
         temp = temp->next();
     }
     return total;
+}
+
+template <typename T>
+typename LinkedList<T>::iterator LinkedList<T>::find(T&& val) const {
+    auto temp = _head;
+    while (temp) {
+        if (temp->get() == val) {
+            break;
+        }
+        temp = temp->next();
+    }
+    return LinkedListIterator<T>(temp);
 }
 
 #ifdef DEBUG

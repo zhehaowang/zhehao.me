@@ -69,11 +69,21 @@ class LinkedList {
 
     iterator insertAfter(T&& val, iterator iter);
 
+    void removeValue(T&& val);
+    iterator removeAt(iterator it);
+
+    iterator find(T&& val) const;
+
+    template <typename Comparator = DefaultComparator<T>>
+    iterator search(T&& val, Comparator comp = DefaultComparator<T>()) const;
+
     // void append(LinkedListNode<T> node);
 
     iterator begin() const;
-    // non-standard
     iterator end() const;
+
+    iterator last() const;
+    iterator first() const { return begin(); }
 
     bool empty() const { return _head == nullptr; }
     size_type size() const;
@@ -106,6 +116,7 @@ class LinkedListIterator {
     void prev() { _data = _data->prev(); }
 
     bool operator==(LinkedListIterator<T> rhs) const { return _data == rhs._data; }
+    bool operator!=(LinkedListIterator<T> rhs) const { return !operator==(rhs); }
 
     const LinkedListNode<T>* get() const { return _data; }
     LinkedListNode<T>* get() { return _data; }
@@ -123,36 +134,49 @@ typename LinkedList<T>::iterator LinkedList<T>::begin() const {
 
 template <typename T>
 typename LinkedList<T>::iterator LinkedList<T>::end() const {
+    return LinkedListIterator<T>(nullptr);
+}
+
+template <typename T>
+typename LinkedList<T>::iterator LinkedList<T>::last() const {
     return LinkedListIterator<T>(_tail);
+}
+
+// left in header because of Comparator template...
+template <typename T>
+template <typename Comparator>
+typename LinkedList<T>::iterator
+LinkedList<T>::insertValueOrdered(T&& val, Comparator comp) {
+    auto temp = search(std::forward<T>(val), comp);
+    if (temp != end()) {
+        return insertAfter(std::forward<T>(val), temp); 
+    } else {
+        LinkedListNode<T>* node = new LinkedListNode(
+            std::forward<T>(val));
+        if (_head) {
+            _head->setPrev(node);
+        }
+        node->setNext(_head);
+        _head = node;
+        return LinkedListIterator<T>(node);
+    }
 }
 
 template <typename T>
 template <typename Comparator>
 typename LinkedList<T>::iterator
-LinkedList<T>::insertValueOrdered(T&& val, Comparator comp) {
+LinkedList<T>::search(T&& val, Comparator comp) const {
     auto temp = _head;
+    LinkedListNode<T>* prev = nullptr;
     while (temp) {
         if (!comp(temp->get(), val)) {
-            if (temp->prev()) {
-                return insertAfter(
-                    std::forward<T>(val), LinkedListIterator<T>(temp->prev()));
-            } else {
-                LinkedListNode<T>* node = new LinkedListNode(
-                    std::forward<T>(val));
-                _head = node;
-                temp->setPrev(node);
-                node->setNext(temp);
-                return LinkedListIterator<T>(node);
-            }
+            break;
         }
+        prev = temp;
         temp = temp->next();
     }
 
-    if (_tail) {
-        return insertAfter(std::forward<T>(val), LinkedListIterator<T>(_tail));
-    } else {
-        return appendValue(std::forward<T>(val));
-    }
+    return LinkedListIterator<T>(prev);
 }
 
 #endif
