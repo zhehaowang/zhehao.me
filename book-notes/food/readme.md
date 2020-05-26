@@ -115,7 +115,7 @@ And then Greeks took over and the old testament ended. **Hanukkah**(December) de
 
 Romans then took over. Destruction of the 2nd temple. Worships happen at each household.
 
-### Greece
+### Greece - classical
 
 Presumably mountainous terrain making it hard to get somewhere via land led to flourishing sea trade.
 
@@ -142,3 +142,69 @@ Part of Archestratus's cookbook survived till today. Written in verses mostly on
 Simplicity over complexity, emphasis on where the fish came from.
 
 Fresh milk (and butter) is rarely eaten by Greeks (barbarians do), presumably having to do with its being hard to preserve in warm weather. They make cheese instead.
+
+### Greece - Alexandrian
+
+The conquest of Alexander introduced pepper (India), ginger (India), citrus (Southeast Asia), peach (Persia), cinnamon (Sri Lanka), apricots to Greek cuisine.
+
+Dining also became luxurious, as authors of his time would find the eastern mannerism feminine, soft and weak.
+
+Nutrition theory of the Hippocratic school started before Alexander's time, and lasted well into Imperial Rome.
+The most prolific author being Galen of Pergammon, physician of Marcus Aurelius.
+
+The authors of Hippocratic school claims four fluids of the body (blood, phlegm, yellow bile and black bile. **Humorism**) echoes with the four elements (earth, fire, water and air)
+
+Food, as classified by hot / cold, dry / moist, would help with some of the four aspects, and nutrition is about finding balance between the four fluids via food.
+Each individual is different in which fluids are prevalent, and should be treated differently.
+
+Stoics advocated an austere, virtuous view on food, and proposed to avoid the luxuries.
+Epicureans likewise, to not desire something so much such that its deprivation would cause pain.
+
+### pre-12th century India
+
+Cities along the Indus River, like Mohenjo Daro are founded around Minoan Crete / Akkadian cities, but much less is understood about the former.
+
+Ancient Indian civilization saw the invasion of Aryans (middle eastern / Iranian (land of Aryans)), nomad, light-skinned, and war-like.
+
+Around the same time Hittites invaded Turkey, Dorians Greece.
+Aryans had beef and butter being prevalent in their diet. And theirs would be a time when cows weren't yet seen as sacred.
+
+**Rigveda** (veda - I know / I see / wisdom / knowledge, vidi in Latin and vision in English) in Sanskrit was the important religious text.
+
+Some religious beliefs include gods are essence / primordial existence, and in this sense, **Atman** (self). All creations are the same, and there was emphasis on reverence for all life. This suggested vegetarianism.
+
+And through meditation, mantra, and cutting out bodily need, one can reconnect with the greater cosmos, or Atman.
+Some followers of Shiva would even attempt to do so through bodily mutilation.
+
+Caste system was also brought about by the Aryans to differentiate the conquers and the conquered (Dravidian).
+The caste system would feature no social mobility.
+
+The divination of cows came later, presumably during times of famine and hardship when the Brahmin needed to invent new text and rules to justify and maintain their supremacy.
+The idea of reincarnation, transmigration of souls, divinity of cows (the ultimate vessel of reincarnation, it takes 86 transmigrations from devil to cow) were introduced.
+Umpanishads of 800BC came about this time.
+
+Food taboos include those with 5 toes, 2 rows of teeth, too much hair or no hair. Ducks, swans, e.g. are also forbidden, and the concept of fried food, milk and beans being pure, and leftovers, meat, alcohol being polluted food came about.
+
+Lower class would only observe the above convention on festivals.
+
+Then Buddha, an aristocratic prince, came about, and wandered the earth to relieve the world of its suffering.
+He advocated having no desire, no violence, strict vegetarianism, and through such break the chain of causation to reach the state of nothingness / nirvana.
+
+Ashoka, who reigned about 50 years after the conflict with Alexander, was a buddhist (after butchering to bolster his rule) and enforced vegetarianism in his domain.
+
+Ayurveda (Ayur - lifetime / longevity) was a book on nutritions where the theory was similar with that of the Hipprocratic school: five elements air, fire, water, earth and space, make up the different aspects (dosha) of our body (fire + water -> metabolism, water + earth -> structure, air + space -> breath / ideas). And one seeks to strike a balance via diet, and energy inflow through meditation (and spices).
+
+The Indian cuisine as popularized by the west largely featured northern India, under the influence of its later Islamic rulers / middle eastern conquerors.
+Creamy food, korma, tandoori, kebap, etc.
+
+Southern Indian food traditions are different, e.g. dosa.
+
+Basmati (and other branches of) rice, millet, wheat are prevalent.
+As are legumes (various kinds), dairy (e.g. paneer), yoghurt (lassi), mango, and eggplant.
+
+Indian cuisine has always been rich in spices.
+The native pepper, ginger, coconut, sugar (originated from New Guinea, India was arguably first in its cultivation and processing), plus the later introduced sesame (Africa), nutmeg, cloves, chili peppers (introduced by the Portuguese), etc.
+
+Alcohol was not indigenous.
+
+The Indian culture also often times features a large, extended family and strong bonds in a household.
