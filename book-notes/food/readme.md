@@ -208,3 +208,45 @@ The native pepper, ginger, coconut, sugar (originated from New Guinea, India was
 Alcohol was not indigenous.
 
 The Indian culture also often times features a large, extended family and strong bonds in a household.
+
+### Classical Chinese
+
+Some factors that help the development of a sophisticated food culture.
+* Access to a variety of materials. Not necessarily the case for Japan.
+* Long, stable environment
+* Strong tradition of family / household. Chinese filial piety was exemplary in this regard. US much less so.
+* Court culture, or patronage from aristocracy, and some social mobility.
+* Restaurant culture, as in 19th Century France or modern US.
+
+Shang invaded Xia around the same time as Dorians, Aryans. There seems to be surprisingly similarity between Shang people / artwork and Central American culture of the same time.
+
+Climate was warmer, and millet was predominant, rice and wheat less so.
+
+Zhou, more centralized power, emperor reigns by the mandate of heaven. A bureaucratic class of scholars to rule and spread the culture. The Shi.
+Saw the introduction of soybeans, invention of cast iron which facilitated agriculture.
+
+Culture, production, and science flourished.
+Schools of thought include Confucianism, with an emphasis on obedience, harmony; knowing one's place; filial piety; explicit manners and ritualization of daily life.
+Taoism, harmony with nature, inaction and simplistic lifestyle.
+
+The pursuit of longevity.
+
+Qin. The first empire. A form of government introduced to last till 20th C.
+Replacement of local warlords with bureaucrats.
+Unification of measurement, culture, etc.
+
+Han. Confucianism. Imperial college. The meritocracy of scholar bureaucrats.
+Trade flourished, exploration went far and wide.
+2AD, 6 million people.
+Extraordinary level of organization to feed these cities. Agricultural laws. Low tax on land to allow small independent farmers to flourish. Textbooks, encyclopedia on agriculture, officials sent out to teach the populace; public works, granary, irrigation; public relief; state sponsorship of medical research.
+
+Staggering technological enhancement: multiple cropping, methods of irrigation, breeding of animals, storage technique, fertilizers, soil categorization, iron tools, etc.
+Soy sauce, pickling techniques, dried meats, noodle technology.
+Introduction of the wok and stir frying cooking technique. Iron woks rusted and were not preserved, but clay models survived.
+
+Medical theory, holistic.
+Qi, energy, life force. Health depends on Yin and Yang being in harmony.
+Earth, fire, wood, metal and water. Organized in a cycle (creation and destruction, processes of change).
+Development of acupuncture.
+
+Arguably the most complex culinary tradition on earth.
