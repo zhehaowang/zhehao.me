@@ -2179,3 +2179,32 @@ How is potentiality to be understood ontologically?
 The method to test ontological claims, is science itself. What is science's decree, and is science the final word?
 
 Is there a why something is?
+
+### The Philosophy of Science - the last word
+
+The modern world is radically different from any previous age, and the difference is largely the bequest of science.
+
+Political, social, moral, Christian science, scientology, are they to be treated the same way as, say, physics?
+
+On what understanding does science come about?
+Defining features of science are in the logical form of "scientific explanation".
+
+Hempel, **Aspects of Scientific Explanation**:
+* the event that warrants a scientific explanation must be empirical in principle.
+* the domain should be in principle subject to observation.
+* there is a universal law that specifies all events of this kind.
+* all conditions related to the event have been specified or otherwise controlled.
+
+Science is empirical in principle.
+
+Just with these principles it seems this is a scientific explanation: "John is male, John takes birth control, John doesn't get pregnant a scientific explanation for birth control helps one not get pregnant"
+
+Inductive and deductive.
+There would then be fields lacking universal laws.
+Consider psychology and biology, and this is when inductive statistical model comes in.
+These statistical laws, if significant, should imply that there are underlying fundamental / universal laws yet to be discovered.
+Hence these disciplines should be considered science. They are less developed but moving along the same path.
+
+There is also the statistical reality of nature itself at quantum level.
+
+
