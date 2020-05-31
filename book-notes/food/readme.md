@@ -250,3 +250,44 @@ Earth, fire, wood, metal and water. Organized in a cycle (creation and destructi
 Development of acupuncture.
 
 Arguably the most complex culinary tradition on earth.
+
+### Roman
+
+Republican, austere, Mediterranean
+
+Garum from Spain. Fermented fish sauce.
+
+Imperial, exotic luxurious.
+Rooster testicles, flamingo tongues, etc.
+Social aspirant looking to awe their dinner guests.
+Social function of dinner parties.
+
+On Cooking Things.
+
+Gastronomic perversities of the late empire.
+Elagabalus camel's heels, tongues of nightingales, heads of peacocks, etc.
+
+### Early Christianity
+
+Jews being the subjects of he empire, with their own puppet king and a Roman governor.
+New forms of worship in the synagogue (Greek for school)
+
+Different sects of Judaism, that of John the Baptist; escaping the city and living in communities.
+
+The communion (Eucharist). The supper of Jesus and his 12 disciples (celibration of passover), during which Jesus suggests the bread his flesh and the wine his blood, and asked the disciples to remember him when they dine.
+
+The laws of the Old Testament were altered with the cruxificion of Jesus (Jesus as the scapegoat sacrified to God for our sins). Circumcision, food taboo, being exclusive to the Jewish, etc people were no more.
+
+Secret society. Ecclesia. (Actively persecuted. Paul beheaded during Nero's reign.)
+Symbol of a fish.
+
+Absorption of pagan practices to ease the spread of Christianity.
+
+Fasting and asceticism. Subdueing the body's needs nurtures the soul.
+
+The early ascetics lived alone in celibacy, obedience, or silence, later on they adopted a monastic lifestyle. Western monasticism, St Benedict, austerity and penitential.
+A resentment to the rest of the world who gets to enjoy these pleasures?
+
+Gluttony has become one of the seven deadly sins.
+
+A salad to curb lust: cold, dry (mallows, tansy, hyssop, parsley), very sparing on the oil and vinegar.
