@@ -2197,7 +2197,9 @@ Hempel, **Aspects of Scientific Explanation**:
 
 Science is empirical in principle.
 
-Just with these principles it seems this is a scientific explanation: "John is male, John takes birth control, John doesn't get pregnant a scientific explanation for birth control helps one not get pregnant"
+Just with these principles it seems this is a scientific explanation: "John is male, John takes birth control, John doesn't get pregnant a scientific explanation for birth control helps one not get pregnant".
+
+This model of scientific explanation also does not rule out spurious causal relations.
 
 Inductive and deductive.
 There would then be fields lacking universal laws.
@@ -2207,4 +2209,12 @@ Hence these disciplines should be considered science. They are less developed bu
 
 There is also the statistical reality of nature itself at quantum level.
 
+Realists: laws of science express reality, they reflect how things really are.
 
+Anti-realists: laws of science are useful generalization, valid within the context they are developed, but not applicable to the universal ways or how things really are.
+
+How Laws of Physics Lie: Fundamental laws govern not objects in reality, but only objects in an ideal model.
+
+Kuhn, the Structure of Scientific Revolutions, that science ultimately is a human product, produced by a guild-like association, and may compress / distort realities to make it fit in what scientific explanations require.
+
+Karl Popper. Falsificationism. Critique on verificationism. Statements immune to verification are meaningless. Scientific laws would then require an infinite number of tests to verify.
