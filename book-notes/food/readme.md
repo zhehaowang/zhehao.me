@@ -291,3 +291,28 @@ A resentment to the rest of the world who gets to enjoy these pleasures?
 Gluttony has become one of the seven deadly sins.
 
 A salad to curb lust: cold, dry (mallows, tansy, hyssop, parsley), very sparing on the oil and vinegar.
+
+### Dark ages and Charlemagne
+
+450 - 800 dark ages of Western Europe, fall of Rome to the Carolingian Renaissance.
+
+The Germanic peoples, Goths, Franks, Saxons, Jutes, Vandals, etc, overran the depleted empire.
+A period where culture is bleak, and as was culinary arts.
+
+Trade shrinked, famine and plague were common. Lack of trade and grain reserve saw a decline in population in Western Europe.
+
+Food culture focused on a return to the wilderness: competitive drinking of beer (rye-brewed served in a horn), lard, butter, meat, curdled milk were often on the menu.
+
+Cook books of the time would focus on roasting meat (barbeque), with barely any mention of spices for a lack of trade.
+
+Grain, wine and oil as required by the Christian communion would be scarce, and white bread became a status symbol (wheat grew in the south and warmer areas), while rye bread (dark and dense, rye grew in the colder north) became commoner's food.
+Ergotism, caused by the fungi ergot on the rye bread, also spread.
+
+The Greco/Romano tradition of fast and feasting were also replaced.
+
+The reign of Charlemagne, both as a Germanic and Christian king saw a combination of Christian dieting / moderation and Germanic feasting. Food trade laws were instated, and agricultural Capitularies (royal edict) were issued to encourage planting vegetables and fruit, and digging fish ponds.
+This period also saw the domestication of oats.
+
+The organization of land owning lords (counts) and serfs working the land also saw rise to Feudalism.
+
+In general, Western Europe in this period did not have the preconditions for a sophisticated food culture.
