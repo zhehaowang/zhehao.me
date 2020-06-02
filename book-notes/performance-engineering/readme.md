@@ -9,15 +9,17 @@ Premature optimization is the root of all evil. (taken out of context)
 
 More computing sins are committed in the name of efficiency (without necessarily achieving it) than for any other single reason, including blind stupidity.
 
-First rule of performance optimization: don't do it. Second rule: experts only.
+First rule of performance optimization: don't do it.
+Second rule: experts only.
 
 Clock speed plateau'ed in 2004. (Due to power density growth, the dynamic power is less of a concern than static circuit leakage whose heat generated we can't yet handle well)
-Vendors switched to a multicore solution.
+Consequently, vendors switched to a multicore solution.
+
 Multicore parallelism, vector units, GPU, steeper cache hierarchy all made performance enigneering relevant again.
 
 The big question: how do we write software to effectively leverage the complex modern hardware.
 
-L1, L2 caches private to the processor, shared across processors L3/LLC cache.
+L1, L2 caches private to the processor, L3/LLC cache shared across processors.
 
 ### Example: matrix multiplication
 
@@ -60,7 +62,7 @@ C intrinsic instruction allows you to write platform specific code vector instru
 AVX intrinsics can do another 2x, bringing us to 41% peak.
 Intel MLK does about this much, and for general size matrices, 50000x from where we started in Python.
 
-This course allows you to print performance money, and focuses on multicore performance
+This course allows you to print performance money, and focuses on multicore performance.
 
 GPU, file system, network performance are really important in real life, and some lessons can be learnt from optimizing CPU performance / memory access pattern.
 
