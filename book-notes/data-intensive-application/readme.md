@@ -637,13 +637,13 @@ This is not limited to distributed DBs, Kafka and RabbitMQ's high availability q
 
 ### Synchronous and asynchronous replication
 
-* Synchronous: the leader wait for a follower to confirm it received the write before reporting success to the user, and before making the write visible to other clients.
+* Synchronous: the leader waits for a follower to confirm it received the write before reporting success to the user, and before making the write visible to other clients.
   * Advantage: the follower is guaranteed to have an up-to-date copy of the data that is consistent with leader. If leader suddenly fails data is still available on the follower.
   * Disadvantage: the write cannot be processed if the follower does not respond and the leader has to block all writes.
   * It's impractical for all followers to be synchronous.
 * Asynchronous: leader does not wait for follower response before telling the user.
 
-Usually if you enable synchronous replication on database it's **semi-synchronous** where one of the followers receive synchronous updates and all others async.
+Usually if you enable synchronous replication on database it's **semi-synchronous** where one of the followers receives synchronous updates and all others async.
 If the synchronous followers becomes slow, one of the async followers is made sync.
 This guarantees up-to-date data on at least two nodes.
 
@@ -748,12 +748,11 @@ With multiple data centers this can serve as an alternative to having all your w
 * This can tolerate data center outage.
 * This is more tolerant of network problems as inter-data center connections usually go through the Internet and is much more error prone than local network within a data center: a temporary network outage does not prevent writes from being made.
 
-Some databases support multi-leader configuration by default, but it often implemented by external tools over commercials DBs.
+Some databases support multi-leader configuration by default, but is often implemented by external tools over commercials DBs.
 
 Multi-leader comes with a big downside of the same data can be concurrently modified in two different data centers, and those writes have to have their conflicts resolved.
 
 Multi-leader can be quite dangerous due to configuration pitfalls and surprising interaction with other DB features such as autoincrementing keys, triggers and integrity constraints.
-
 
 Clients with offline operation support is essentially a multi-leader replication, as when offline the client's local DB acts as a leader that can accept writes.
 
