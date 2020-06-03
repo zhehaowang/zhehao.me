@@ -64,3 +64,5 @@ Dandy. In our society most conform, these show an insolent side and stand out. O
 Naturals. Child-like naivete reflected in their actions, thoughts but not openly professed. Charlie Chaplin. Genji.
 
 Charisma. Origin in the religious sense. Confident; Mysterious (e.g. through contradiction); Saintly, having inherent principles you believe in; Eloquent; Fervent, true belief that lights up in your eyes and shines upon the repressed daily lives of people; Vulnerable, feed upon the excitement of the public; Adventurousness and show heroism; Magnetism, eyes. Moses. Joan of Arc. Rasputin. Lenin. Krishnamurti.
+
+

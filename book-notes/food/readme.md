@@ -316,3 +316,46 @@ This period also saw the domestication of oats.
 The organization of land owning lords (counts) and serfs working the land also saw rise to Feudalism.
 
 In general, Western Europe in this period did not have the preconditions for a sophisticated food culture.
+
+### Islam
+
+Religion of the Bedouin, nomadic warrior / trader society in the deserts of the Arabian Peninsula.
+
+The prophet Mohammed was a merchant, married to a wealthy widow and served as her financial adviser.
+
+The development of Islam had clear Jewish and Christian influence.
+Islam (submission to the will of God) being the last and most complete of Abrahamic religions with simpler and more accessible accounts. E.g. explicit pictures of heaven and its pleasures; also the Quran being the mouthpiece of one person, it offers fewer conflicting accounts.
+Islam features no ascetic traditions, except certain sects.
+There is general appreciation for the arts, except creating image of God / idolatry.
+
+Hijrah, 622, the journey of the prophet to Medina. Year in which the Islamic calendar begins.
+
+Halal food (no pig or blood, properly prepared, no meat offered to pagan Gods.)
+
+Islam forbids alcohol but throughout time this seems only obeyed by the most devout.
+Coffee then becomes popular in place of alcohol. Popularization of coffee houses and 16C onwards, communal hookah.
+Roasted coffee beans and drinking coffee thick would be a Turkish tradition.
+
+The month of Ramadan is a pillar of Islam, during which no eating or drinking is allowed during daylight.
+People eat with 3 fingers of right hand, usually sitting on the floor. Flatbread + tray of food.
+
+The tradition of sharing food with strangers at your door became adopted, symbolizing hospitality and equality. Although certain sects only dine with muslims.
+
+Elite food include dates, mutton, camel's milk (sheep tail fat in particular).
+
+Islamic golden age saw the preservation of Greco/Roman work, later to be reintroduced to Europe.
+Arguably for the first time real expansion on Greek thoughts.
+
+Jews-Muslim animosity would also be a fairly late development.
+
+Persian culture was largely absorbed, including its preference for young meats (roasted / fried in butter, served with sugar / syrup / crushed nuts / creamy, and slowly cooked over low fire. Usually marinated)
+
+Islamic culinary arts were also accomplished in sweets / pastry / ice cream.
+The same period also saw advancement in agriculture technology, irrigation and medicine.
+
+### High middle ages
+
+Norse influence.
+Global warming.
+Population boom.
+Danish cook book.
