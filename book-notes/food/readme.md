@@ -353,9 +353,20 @@ Persian culture was largely absorbed, including its preference for young meats (
 Islamic culinary arts were also accomplished in sweets / pastry / ice cream.
 The same period also saw advancement in agriculture technology, irrigation and medicine.
 
-### High middle ages
+### High middle ages and the international Gothic cuisine
 
 Norse influence.
-Global warming.
-Population boom.
+Global warming and population boom before the Bubonic plagues starting 1348.
 Danish cook book.
+
+Banquet, cookbooks focusing on handling meat.
+
+Bubonic plague started in late 14th Century in Southern Europe. Black rats were hosts, and fleas the vessel whose bite transmitted the disease to human. The plague became widespread in Europe within a year, killing off a third of its population.
+The last major plague was the Justinian plague of 6th Century.
+Accompanied it was a time of famine.
+
+It is believed, however, that the depopulation caused the living conditions of peasants in the coming generations to improve.
+Culinary arts became more widespread among the commoners, or soon-to-be middle class townsfolks.
+The trade cities of Italy and northern Europe flourished soon afterwards.
+
+Surviving French cookbooks of the late 14th and 15th Century mentioned methods to prepare meat (which seemed to favor a large quantity to spices, to flavor food and show wealth) in large scale banquets as well as in common households.
