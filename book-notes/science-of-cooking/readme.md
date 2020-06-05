@@ -94,3 +94,43 @@ Tools. (Not every invention is a step forwards—pay attention to how versatile 
 * Chopping board (Durable and good for all foods, wooden boards have "give" so they don't dull knives, unlike granite and glass. Plastic traps bacteria in grooves, while wood has bacteria-killing tannins, making it a hygienic choice.)
 
 ### Meat and poultry
+
+All made of the same three tissues, varying proportions determine flavor and texture and its best culinary usage.
+* Muscle.
+  * Red or pink in color and makes up the bulk of most cuts of meat. 70 to 85 percent water—moisture that needs to be conserved to keep cooked meat juicy.
+  * Made of thousands of hair-width strands, packed with moisture and protein.
+  * Tender cuts need minimal cooking to retain moisture. Marbled muscle can be cooked slowly.
+* Fat.
+  * Chewy and bland uncooked, but imparts huge amounts of flavor when the fat cells burst open during cooking.
+  * Each fat cell contains a droplet of oil which bursts open when heated, dissolving flavor molecules.
+  * Tasteless when raw, fat turns into oil when cooked, carrying flavor and giving a moist mouthfeel.
+* Connective tissue.
+  * Forms sheathes around muscle fibers and connects muscles to bone — it slowly breaks down during cooking, imparting rich flavor to meat dishes.
+  * Made of protein that soften and break down when heated to 126 F / 52 C.
+  * Long slow cooking transforms it into velvety gelatin, giving meat its succulence.
+
+Know your white meat
+* Chicken
+  * Fat medium, protein high
+  * Not high in fat, so it has a dry mouthfeel if overcooked. Cooking it in a sauce can help to introduce moisture.
+* Duck
+  * Fat medium, protein medium
+  * Rich, dark duck meat has a thick layer of fat under the skin. Roasting, frying, or grilling works best; prick or score the skin first to help the fat melt.
+* Turkey
+  * Fat low, protein high
+  * With lots of muscle and little fat, white turkey meat is good for stir-frying and grilling. The dark leg meat contains more connective tissue and can be stewed.
+
+Know your red meat
+* Beef
+  * Fat high, protein medium
+  * A cow's large endurance muscles produce dark, rich meat that suits both slow and fast cooking methods. Cuts that contain muscle marbled with fat will be more succulent.
+* Lamb
+  * Fat medium, protein medium
+  * Fat provides lambs with their day-to-day fuel, so most cuts are marbled with fat. Lamb is suited to most methods of cooking, but the sinewy shoulder and leg cuts need to be cooked down slowly.
+* Pork
+  * Fat high, protein lowest
+  * Ranging from pale pink to rose, pork cuts often have a thick layer of fat that helps keep the meat moist when cooking. Lean fillets and steaks require fast cooking methods to stop them from drying out.
+* Venison
+  * Fat low, protein high
+  * As deer are ranging animals, deer meat contains more muscle and connective tissue than fat. Braise or stew small, lean cuts to conserve moisture, or roast large cuts, which will have a lot of connective tissue.
+
