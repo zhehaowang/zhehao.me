@@ -101,9 +101,9 @@ All made of the same three tissues, varying proportions determine flavor and tex
   * Made of thousands of hair-width strands, packed with moisture and protein.
   * Tender cuts need minimal cooking to retain moisture. Marbled muscle can be cooked slowly.
 * Fat.
-  * Chewy and bland uncooked, but imparts huge amounts of flavor when the fat cells burst open during cooking.
-  * Each fat cell contains a droplet of oil which bursts open when heated, dissolving flavor molecules.
-  * Tasteless when raw, fat turns into oil when cooked, carrying flavor and giving a moist mouthfeel.
+  * Usually tucked under the skin, along connective tissue, or around organs.
+  * Chewy, bland and tasteless when uncooked, but imparts huge amounts of flavor when the fat cells burst open during cooking.
+  * Each fat cell contains a droplet of oil which bursts open when heated, dissolving flavor molecules and giving meat a moist mouthfeel.
 * Connective tissue.
   * Forms sheathes around muscle fibers and connects muscles to bone — it slowly breaks down during cooking, imparting rich flavor to meat dishes.
   * Made of protein that soften and break down when heated to 126 F / 52 C.
@@ -120,6 +120,12 @@ Know your white meat
   * Fat low, protein high
   * With lots of muscle and little fat, white turkey meat is good for stir-frying and grilling. The dark leg meat contains more connective tissue and can be stewed.
 
+Choosing your white meat
+* Breast meat should be firm and plump.
+* Bones should be in-tact, not broken.
+* Flesh should be blemish-free.
+* The skin should be smooth and soft.
+
 Know your red meat
 * Beef
   * Fat high, protein medium
@@ -133,4 +139,23 @@ Know your red meat
 * Venison
   * Fat low, protein high
   * As deer are ranging animals, deer meat contains more muscle and connective tissue than fat. Braise or stew small, lean cuts to conserve moisture, or roast large cuts, which will have a lot of connective tissue.
+
+Choosing your red meat
+* Fat enhances flavor. A yellow hue simply suggests the animal was grass-fed.
+* The surface should be smooth and not appear sticky or slimy, which could suggest bacteria have proliferated on the surface.
+* Meat should have a mild but not unpleasant smell.
+* For tender cuts, choose one with a fine grain and little connective tissue. For tough cuts, the grain will be thicker, indicating the muscle was well-used.
+* For stewing, look for cuts with fat and connective tissue.
+* Marbling is a good sign that meat is full of flavor.
+
+Color of the meat alone is not a reliable indicator of its quality.
+* The natural color of meat comes from a red oxygen-carrying pigment, myoglobin, stored in the muscle tissue.
+* The higher the levels of myoglobin, the darker and redder the meat, while lower levels of myoglobin result in paler meat.
+* Red meat contains myoglobin more than white and older animals have higher levels, giving their meat a darker hue.
+* The same animal may have varying levels of myoglobin in different muscles.
+  * Dark "slow-twitch" muscles, like those in a leg, are for endurance and need a steady oxygen supply, so have more myoglobin. Whiter "fast-twitch" muscles, for short bursts of energy, need less oxygen, such as chicken breast muscles, designed for flapping wings.
+  * Proportions of light and dark meat affect flavor and texture. Darker, well-exercised muscles tend to have more protein, fat droplets, iron, and flavor-generating enzymes. (generally higher levels intensifying flavor and lower levels creating a blander-tasting meat. Light meat needs extra flavoring.)
+* Vacuum-packed meat deprived of oxygen has a natural purple tinge.
+* Once in contact with air, myoglobin changes color, turning meat bright red. (If it stays purple, this suggests that the animal may have been stressed at slaughter and its meat will be dry and firm.)
+* Myoglobin browns the longer it is exposed to oxygen.
 
