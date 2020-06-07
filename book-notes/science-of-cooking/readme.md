@@ -154,8 +154,33 @@ Color of the meat alone is not a reliable indicator of its quality.
 * Red meat contains myoglobin more than white and older animals have higher levels, giving their meat a darker hue.
 * The same animal may have varying levels of myoglobin in different muscles.
   * Dark "slow-twitch" muscles, like those in a leg, are for endurance and need a steady oxygen supply, so have more myoglobin. Whiter "fast-twitch" muscles, for short bursts of energy, need less oxygen, such as chicken breast muscles, designed for flapping wings.
-  * Proportions of light and dark meat affect flavor and texture. Darker, well-exercised muscles tend to have more protein, fat droplets, iron, and flavor-generating enzymes. (generally higher levels intensifying flavor and lower levels creating a blander-tasting meat. Light meat needs extra flavoring.)
+  * Proportions of light and dark meat affect flavor and texture. Darker, well-exercised muscles tend to have more protein, fat droplets, iron, and flavor-generating enzymes. (generally higher levels intensifying flavor and lower levels creating a blander-tasting meat. Light meat needs extra flavoring. As animal grows myoglobin levels rise, muscles strengthen, and fat increases, adding to flavor.)
 * Vacuum-packed meat deprived of oxygen has a natural purple tinge.
 * Once in contact with air, myoglobin changes color, turning meat bright red. (If it stays purple, this suggests that the animal may have been stressed at slaughter and its meat will be dry and firm.)
 * Myoglobin browns the longer it is exposed to oxygen.
+* Red liquid pooling at the bottom of a package of meat isn't blood, but a mix of myoglobin and water.
+
+##### Does organic matter?
+
+Animals that have had enough exercise, have been well fed, and have been spared undue stress produce meat that has lots of well-textured muscle and flavorsome fat. Organic-status meat should help guarantee all of these things.
+* Animals are raised on organic land and eat organic feed; however, this has little bearing on the quality of meat.
+* Animals reared organically aren’t given antibiotics or growth-promoting hormones, although this is already the case for all cattle in many countries.
+* Organic stock are more likely to have been slaughtered humanely, which produces better-quality meat. If an animal is stressed preslaughter, adrenaline levels surge, burning energy and producing dry, firm, dark meat.
+* Being fed grass or grain has more impact on flavor.
+  * Grain-fed muscle has more flavorful fat, is less acidic, and contains pleasant-tasting substances called lactones, while grass-fed cows' meat can have a bitter, grassy flavor.
+  * Leaner grass-fed cows store their fat just under the skin. The meat of grain-fed cows tends to be well-marbled throughout.
+* If meat isn’t stored or transported with care, this affects quality. High demand for organic means it can travel far and be stored for a long period of time. A nonorganic farm rearing humanely treated animals slaughtered and sold locally is likely to be superior.
+
+##### Does heritage / breed matter?
+
+Beef has a complex flavor, yet genetic differences lead to only subtle taste variations. Research consistently shows that the amount of marbling in any given cut is more important than the actual breed.
+
+##### Do larger chicken lack flavor?
+
+The modern "broiler" chicken is the result of decades of aggressive selective breeding.
+
+The bird that is industrially farmed today is four times the size of those bred 50 years ago, reaches slaughter weight in just 35 days (less than half the time of traditional breeds), and is plagued with health problems due to its abnormal proportions.
+
+Heritage breeds of chicken take longer to grow and are considerably more expensive, but research shows that the meat has a significantly richer flavor and better mouthfeel than intensively farmed chickens.
+
 
