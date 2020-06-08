@@ -8,6 +8,8 @@ wip/*
 **/data.csv
 *.pyc
 
+notebooks/.ipynb_checkpoints/
+
 *.a
 *.o
 *.out
