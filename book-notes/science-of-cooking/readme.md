@@ -169,6 +169,9 @@ Animals that have had enough exercise, have been well fed, and have been spared 
 * Being fed grass or grain has more impact on flavor.
   * Grain-fed muscle has more flavorful fat, is less acidic, and contains pleasant-tasting substances called lactones, while grass-fed cows' meat can have a bitter, grassy flavor.
   * Leaner grass-fed cows store their fat just under the skin. The meat of grain-fed cows tends to be well-marbled throughout.
+  * Grass-fed cows have to work harder for their food, so are smaller and leaner.
+  * Although grass-fed meat has less fat, the fat it has contains more essential omega-3s, known for their health benefits, than grain-fed cows. (The amount of omega-3 is low compared to the quantities in foods such as oily fish, but this does give grass-fed meat a slight nutritional edge over grain-fed beef.)
+  * Many find grain-fed meat flavorful and tender due to its marbling, which makes it less prone to drying out when cooked. Grain-fed beef is described as having a rich, “beefy” flavor.
 * If meat isn’t stored or transported with care, this affects quality. High demand for organic means it can travel far and be stored for a long period of time. A nonorganic farm rearing humanely treated animals slaughtered and sold locally is likely to be superior.
 
 ##### Does heritage / breed matter?
@@ -183,4 +186,101 @@ The bird that is industrially farmed today is four times the size of those bred 
 
 Heritage breeds of chicken take longer to grow and are considerably more expensive, but research shows that the meat has a significantly richer flavor and better mouthfeel than intensively farmed chickens.
 
+Of chicken raised in the US, less than 2 percent are raised organic.
 
+##### Different cuts of beef
+
+* Fillet steak, or filet mignon, is a scarce, highly sought-after commodity. The least-worked section of the least-worked muscle on a cow—the tenderloin along the back.
+* Fillet steak is low in fat because the tenderloin muscle doesn’t need much energy.
+* We think of saturated fat as bad, but fat helps us to enjoy meat’s full flavor and texture, melting when cooked to make meat juicy and tender, and chemically reacting (or oxidizing) in heat to
+generate flavors.
+* A lack of fat means that fillet requires very careful cooking to ensure it doesn’t dry out and lose its silky-smooth consistency. If you enjoy meat no more than medium done, a properly cooked fillet is indeed the best cut. However, if you prefer meat medium to well done, other cuts are often more delicious.
+* A thicker fillet (4cm) allows the outside to be well browned without overdoing the middle.
+
+* Tenderloin
+  * lean, little fat, contains fillet mignon.
+  * Scant connective tissue and fat mean fillet needs delicate cooking to prevent drying. Cook no more than medium.
+* Sirloin
+  * top sirloin, lightly marbled and more tender; bottom sirloin, more marbling and less tender.
+  * rich flavor thanks to its succulent fat; cook quickly, medium rare to medium to keep its tenderness.
+* T-bone
+  * With tenderloin on one side, sirloin on the other, this is highly flavored and with spinal bone that adds flavor.
+  * Pan-fry or grill to rare or medium rare.
+* Rib-eye
+  * Cheaper, less tender, well-used muscle around the ribs.
+  * Rich marbling makes it flavorful.
+  * Cook to at least medium so fat and connective tissue can soften.
+* Rump (buttocks)
+  * Less tender than sirloin.
+  * Also rich in flavor. Pan-fry fairly quickly, medium rare to medium.
+* Chuck
+  * Neck and shoulder with tough connective tissue.
+  * Cook slowly in liquid to break down the connective tissue to tenderize the meat into succulent gelatin.
+
+* Wagyu is usually highly marbled, which makes their meat wonderfully flavorful and very rich. Enzymes called calpains, which break down and tenderize meat, are particularly active in Wagyu breeds. (A1 - A5 with A5 highest. A5 Wagyu is ruby red and densely textured with glistening ribbons of fat and a smooth, velvety texture.)
+
+##### Signs that water was added
+
+Manufacturers would claim injecting water "wet-cured" / "vacuum tumbled" in briny water helps with flavor, it can as muscle fibers become softer, but it also affects intensity of flavor, resulting in blander meat.
+
+Ingredients containing added or retained water being high on the list indicates water was injected.
+
+##### Does freezing destroy taste and texture
+
+Meat freezes from the outside inward. In home freezers this is a slow process, giving time for sharp-edged ice crystals to form, which gradually get bigger and pierce the muscle’s delicate structure. When thawed, damaged cells lose water and the meat is less juicy and tender.
+
+Chicken e.g. would see a significant drop in quality having been frozen for 12 months.
+Beef / pork even shorter.
+
+##### Pound meat or not
+
+Striking a cut of meat with a tenderizing hammer crushes and damages muscle fibers, creating tiny rips in the connective tissue that binds the fibers together.
+Puncturing the muscle fibers and tissues in this way actually means that the meat retains 5–15 percent more moisture during cooking because the pounded muscle fibers shrink less, and the damaged proteins in the fibers soak up moisture, giving the meat succulence.
+
+##### Marinating meat
+
+Marinate meat for no longer than 24 hours, and ideally less.
+If you marinate meat for too long, the salt in the marinade will actually start to cure the outside of the meat and the outer layers will be mushy when cooked. Marinating meat for just 30 minutes before cooking will have an impact on flavor.
+
+Alkaline ingredients, such as egg whites and baking soda, can accelerate the browning reaction.
+
+During cooking, the sugars and proteins in a marinade help to brown the meat, creating a crisp, flavorful crust.
+
+Marinades don't really infuse meat with flavor.
+It is physically impossible for marinades to penetrate far into meat. Most flavor molecules are too large to squeeze into the muscle tissue cells in meat.
+This means that oil and flavor molecules infuse no further than a few millimeters into the meat, and instead pool on the surface.
+
+A marinade should include most of the following: salt, a fat, such as oil, an acid ingredient (optional, because it can slow browning), and flavorings, such as sugar, herbs, and spices.
+* Salt enhances overall flavor and it also disrupts the structure of the proteins in the top layers of the meat (see opposite), allowing a little moisture to enter and giving meat a more tender texture.
+* Fats. Oils, such as olive oil, serve as a base for a marinade, spreading other flavour molecules and helping meat to brown and crisp. Yogurts are traditionally used in Indian marinades. The dairy sugars and proteins interact with those on the meat during cooking to create unique aromatic substances.
+* Acidic substance
+  * Lemon juice adds a tangy flavor, triggering the bitterness taste buds. It also helps to tenderize the outer layers of meat.
+  * Vinegar helps tenderize meat and brings a tartness to a marinade that helps to offset the naturally rich flavor of the meat and the oil or fat in the marinade.
+  * This provides tartness and the alcohol helps to disperse other flavors in a marinade. Wine can soften the outer layers of the meat.
+* Flavorings
+  * Sugar. As well as enhancing flavor, sugar helps to speed browning and also caramelizes. Use honey or corn syrup rather than table sugar.
+  * Herbs and spices. Helping to distinguish a marinade as sweet, spicy, sharp, or fresh-tasting. The flavours are extracted when carried in the marinade’s oil.
+
+##### When to salt meat
+
+Salt adds flavor, and soaks up moisture.
+
+Salting meat just before cooking creates a brine layer that can be dabbed off to dry the meat and help it brown more quickly.
+
+Salting meat well in advance of cooking has added benefits. Left for longer, salt starts to tenderize meat by "denaturing" the surface proteins; after about 40 minutes, meat is noticeably softer.
+
+Ground meat should not be presalted.
+
+##### Smoking meat and dry aging at home
+
+##### Cut across the grain, or along it
+
+The "grain" is the direction in which the muscle fibers run.
+On a piece of meat, look for the direction of the fibers and lines of connective tissue on the surface. If you tore the muscle, it would split along these grains.
+
+When you cut meat for serving, it should be cut across, not along, the grain.
+Biting into meat cut along the grain takes ten times the biting force as chewing across the grain.
+
+##### Crackling pork (skin)
+
+##### Steak
