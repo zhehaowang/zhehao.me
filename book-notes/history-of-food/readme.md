@@ -370,3 +370,13 @@ Culinary arts became more widespread among the commoners, or soon-to-be middle c
 The trade cities of Italy and northern Europe flourished soon afterwards.
 
 Surviving French cookbooks of the late 14th and 15th Century mentioned methods to prepare meat (which seemed to favor a large quantity to spices, to flavor food and show wealth) in large scale banquets as well as in common households.
+
+### Renaissance
+
+### Meso American
+
+Maize, tomator, squash, beans, chili, guacamole, cocoa.
+
+Small domesticated animals.
+
+Eat in moderation. Aztec sacrifice and cannibalism.

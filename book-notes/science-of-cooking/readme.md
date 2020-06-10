@@ -284,3 +284,62 @@ Biting into meat cut along the grain takes ten times the biting force as chewing
 ##### Crackling pork (skin)
 
 ##### Steak
+
+There is usually no need for warming meat to room temperature before cooking.
+
+A seared steak (crusty surface) does not seal moisture inside. In fact the high heat needed to brown the meat's outer layer dries out the inside more quickly.
+A seared brown surface does make for a tastier steak.
+
+* Ensure the pan or grill is hot
+* Look for thick cuts (<4cm. Finish thicker cuts off in the oven) with good marbling for a moist, flavor filled steak
+* Dab with salt and dry 40 minutes before cooking.
+* Sear on high heat for a delicious crust and a soft juicy center.
+* Flip it often to cook it evenly.
+* For extra flavor, add butter at the final stages, spooning it over the steak as it melts.
+* Make your sauce in the same pan so gelatin from the meat thickens the sauce.
+* Maximize juiciness by resting steak so the juice thickens. (leave the steak to cool in gravy for a few minutes)
+
+* Extra-rare (soft, center temp 54 C, seared for about 1min on each side)
+* Rare (center temp 57 C, cooked for about 2.5min)
+* Medium rare (63 C, 3.5min)
+* Medium (71 C, 5min)
+* Well done (74 C, 6min)
+
+##### Slow cooking
+
+* Best for tough cuts of meat with white connective tissue, root vegetables, dried beans and other pulses.
+* Lower temperature is better. Muscle fibers cook from 60 C, as the temperature rises, moisture is lost.
+* Chewy collagen in tough meat breaks into velvety gelatin takes place between 65 and 70 C
+* Gelatin breaks down in the cooking liquid, thickening it and emulsifying flavor-rich fats to create a rich, luscious gravy.
+
+* If needed, brown onions and pan first in a pan, as slow cooking temperature does not reach required for Maillard reaction.
+* Avoid removing the lid.
+* Add enough liquid to just cover the food
+
+##### How to keep chicken from drying out
+
+* Brining (submerged in salty over night, to force water into uncooked meat)
+* Sous vide (cook in airless bag immersed in hot water)
+* Adding fats
+
+##### Sauce
+
+* The aim of a sauce is to achieve a smooth consistency that is thicker than water but less dense than the main ingredient.
+
+Thickener (Starch, cream, protein (egg white), food particles (puree, tomato sauce)) + liquids (water, stock, wine, milk, cream)
+
+##### Stock
+
+A stock is an extraction of flavors from fresh ingredients. In near-boiling water, flavor molecules diffuse out of vegetables and meat as they slowly cook.
+
+##### Why safe to eat rare beef, but not chicken or pork
+
+Handling of chicken, compared with larger animals, usually increases chance of cross contamination.
+Chickens often harbor dangerous bacteria such as Salmonella and Campylobacter.
+
+Poultry should be cooked to at least 74 C and pork to 62 C to kill harmful bacteria.
+
+##### Why do so many foods taste like chicken
+
+Red meats taste distinctive to us, but when we try a white meat for the first time, we often compare it to chicken. The clue is in the type of muscle the animal has (chicken - fast twitch muscle, no endurance required). Many of the animals we eat today derive from a chicken-tasting ancestor.
+
