@@ -117,4 +117,40 @@ Their mission is public good, though that is often arbitrary.
 
 There are also private regulatory agencies (self-regulatory organizations), including exchanges, clearing houses, trader associations. NASD and NFA are both SROs. FASB sets accounting standards for firms, and AIMR sets performance reporting standards that investment managers use to report their results. AIMR charters financial analysts / CFAs. The SEC provides oversight over the SROs.
 
+### Orders
+
+Orders are trade instructions.
+
+**Liquidity** is the ability to trade when you want to trade.
+Some orders offer liquidity by presenting others with opportunity to trade, and others take liquidity by seizing those opportunities.
+Dealers make money by selling liquidity to their clients.
+
+A market is **liquid** when traders can trade without significant adverse effect on price.
+
+Continuous trading markets (process orders as they come in), call markets (collect orders and process them all at the same time).
+
+Traders **quote** their bids and offers when they arrange their own trades, otherwise they use orders to convey their bids and offers to brokers.
+
+A market **quotation** reports the BBO.
+
+The space between BBO is **inside**, the spread is often referred to as **the touch**.
+
+Markets can decide to treat agency orders (brokers representing their clients) and proprietary orders (traders representing their own account) differently. The former usually takes precedence at the price.
+
+Market orders pay half the spread, for the immediacy.
+
+In markets where traders negotiate prices, market orders may sometimes trade at better prices than the market BBO, such orders receive **price improvement**.
+
+**Market impact** is when a large order moves the price.
+
+**Limit order book**. **Aggressively priced**.
+
+A **marketable limit order** is an order that can be executed immediately when a trader submits it.
+
+Limit orders at BBO are called **at the market**. Backlevel orders are behind / away from the market.
+Traders who submit these orders **make the market**. They **make a new market** when they improve the BBO.
+
+Since traders can choose whether they want to trade with a standing limit order, standing limit orders are options to trade. In particular, sell limit orders are call options that give other traders opportunities to buy when they want to buy. Buy limit orders likewise are put options that give other traders opportunities to sell when they want to sell. The option strike prices
+are the limit prices.
+
 
