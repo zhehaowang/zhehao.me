@@ -76,4 +76,11 @@ A few areas we hope to do better in:
 
 # HRT 2018 - Now
 
+* achievements
 
+* outlook
+
+* Implementation
+    * Morning rituals
+    * Hour of learning
+    * The symposium
