@@ -1,7 +1,10 @@
+# Career
+
+Initial commit: 11/23/2018
+
+Last modified: 06/14/2020
+
 # Bloomberg 2017 - 2018
-
-11/23/2018
-
 
 The coming week marks the end of my first job as a full-time software engineer, working with Bloomberg LP.
 
@@ -20,14 +23,14 @@ There are, however, a plethora of factors behind each decision, and I hope to ju
 
 ##### Growth
 
-As a junior engineer growing my skill set is the top-most concern.
+As a junior engineer growing one's skill set is the top-most concern.
 
 There is a tactical and a strategic perspective to most of our problems.
 The tactician in us identifies the best approach to the battle at hand, while the strategist looks ahead and behind, carefully planning the next campaign, making sure it's fought at the right time and place so that we could reap the heftiest benefits.
 
-The strategist surveyed the battleground, and became doubtful of the outlooks.
+The strategist surveyed the battleground, and became doubtful of its outlook.
 
-In seeking growth we strive for the areas we want to grow in to line up with our efforts at work.
+In seeking growth we strive for the areas in which we want to grow to line up with our efforts at work.
 Yet most of the time we found the work so focused in the mundane that we doubt if anything we gain is of strategic value, i.e. transferrable skills.
 
 Coupling that with legacy frameworks inherited from a long past (by software engineering standards), the outlook dims further.
@@ -48,7 +51,7 @@ What could be better than to experience the difference firsthand?
 Without seeing the contrast, it's difficult to appreciate what we enjoy here.
 
 Over the years I saw myself becoming accustomed to bad practices, and getting satisfied from just getting by.
-This would be the exact state we fear: settling for the sub-optimal, knowing only the superficial, essentially becoming stale.
+This state of stagnancy would be my worst fear: settling for the sub-optimal and knowing only the superficial.
 
 The environment assimilates us: it lures us to its comforts, dulls our senses and weakens our resolve.
 
@@ -59,14 +62,18 @@ On the other hand we live but once the twenty-fifth year of our lives, perhaps t
 
 ### Going forward
 
-It pains to state that from my under-sampled observation, quite a few who left are considered the best and brightest among us.
+From my under-sampled observation, quite a few who left are considered the best and brightest among us.
 I admire the dedication and loyalty, as well as the talent of those who stayed.
 Nor dare I number myself among the ranks of the best and brightest.
 
-Now that we are given an opportunity to start fresh at a place well regarded by some, I hope we make sure to treasure such.
+Now that we are given an opportunity to start afresh at a place well regarded by some, I hope we make sure to treasure such.
 
 A few areas we hope to do better in:
 * Proactivity
 * Deliver
 * Critical path and prioritization
 * Advocate for yourself, sell, and speaking up
+
+# HRT 2018 - Now
+
+
