@@ -1443,9 +1443,7 @@ The value $\pi$ is then the smallest value of power function in the domain $\The
 \\
 \\
 A test $\psi$ has \textbf{level} $\alpha$ if $\alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
-Where $\alpha_{\psi} = \argmax_{\theta \in \Theta_0} \alpha_{\psi}(\theta)$, the maximum Type I error probability.
-
-Given $\alpha$ ($5\%$), we pick $C$ such that $\alpha$ is at that value.
+Where $\alpha_{\psi} = \argmax_{\theta \in \Theta_0} \alpha_{\psi}(\theta)$, the maximum Type I error probability when $\theta \in \Theta_0$.
 \\
 \\
 A test has \textbf{asymptotic level} $\alpha$ if $\lim_{n \to \infty} \alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
@@ -1455,6 +1453,9 @@ When the number of samples approaches infinity.
 In general, a test has the form $\psi = I\{T_n > c\}$ (indicator function) for some statistic $T_n$ and threshold $c \in \mathbb{R}$.
 
 $T_n$ is the \textbf{test statistic}, and the rejection region is $R_{\psi} = \{T_n > c\}$.
+\\
+\\
+Given $\alpha$ ($5\%$), we pick then $c$ such that $\alpha$ is at that value.
 \\
 \\
 Example: given a Bernoulli coin flip, test whether the coin is fair ($H_0$ is $p = 0.5$).
@@ -1468,6 +1469,8 @@ The asymptotic \textbf{p-value} of a test $\psi_{\alpha}$ is the smallest asympt
 It is random and depends on the sample.
 
 The golden rule is that p-value $\leq \alpha \iff H_0$ is rejected by $\psi_{\alpha}$ at the asymptotic level $\alpha$.
+
+Intuition: highest probability of Type I error.
 
 The smaller the \textbf{p-value}, the more confidently one can reject $H_0$.
 
