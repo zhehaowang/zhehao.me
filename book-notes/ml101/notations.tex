@@ -10,6 +10,8 @@
 
 % \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand*\mean[1]{\bar{#1}}
+% independent
+\newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
@@ -1279,7 +1281,7 @@ $$
 MLE converges in probability to $\theta*$. Bias goes to 0.
 
 $$
-\sqrt(n) (\hat{\theta}^{MLE}_{n} - \theta^*) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} ~ ~ \mathit{N}(0, I(\theta^*)^{-1}) w.r.t ~ \mathbb{P}_{\theta^*}
+\sqrt{n} (\hat{\theta}^{MLE}_{n} - \theta^*) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} ~ ~ \mathit{N}(0, I(\theta^*)^{-1}) w.r.t ~ \mathbb{P}_{\theta^*}
 $$
 MLE minus $\theta^*$ converges in distribution to normal distribution. $\theta^*$ may not even have a closed form, and we still have the same properties of an average. CLT-like.
 Variance is measured by Fisher information.
@@ -1443,9 +1445,7 @@ The value $\pi$ is then the smallest value of power function in the domain $\The
 \\
 \\
 A test $\psi$ has \textbf{level} $\alpha$ if $\alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
-Where $\alpha_{\psi} = \argmax_{\theta \in \Theta_0} \alpha_{\psi}(\theta)$, the maximum Type I error probability.
-
-Given $\alpha$ ($5\%$), we pick $C$ such that $\alpha$ is at that value.
+Where $\alpha_{\psi} = \argmax_{\theta \in \Theta_0} \alpha_{\psi}(\theta)$, the maximum Type I error probability when $\theta \in \Theta_0$.
 \\
 \\
 A test has \textbf{asymptotic level} $\alpha$ if $\lim_{n \to \infty} \alpha_{\psi} \leq \alpha$, $\forall \theta \in \Theta_0$.
@@ -1455,6 +1455,9 @@ When the number of samples approaches infinity.
 In general, a test has the form $\psi = I\{T_n > c\}$ (indicator function) for some statistic $T_n$ and threshold $c \in \mathbb{R}$.
 
 $T_n$ is the \textbf{test statistic}, and the rejection region is $R_{\psi} = \{T_n > c\}$.
+\\
+\\
+Given $\alpha$ ($5\%$), we pick then $c$ such that $\alpha$ is at that value.
 \\
 \\
 Example: given a Bernoulli coin flip, test whether the coin is fair ($H_0$ is $p = 0.5$).
@@ -1469,11 +1472,24 @@ It is random and depends on the sample.
 
 The golden rule is that p-value $\leq \alpha \iff H_0$ is rejected by $\psi_{\alpha}$ at the asymptotic level $\alpha$.
 
+Intuition: highest probability of Type I error.
+
 The smaller the \textbf{p-value}, the more confidently one can reject $H_0$.
 
 \textbf{p-value} of a standard Gaussian is the probability $P(| N(0, 1) | > | T(n) |) = P(1 - \Psi(T_n))$ where $\Psi(T_n)$ is the Gaussian CDF.
+\\
+\\
+A test is usually about, given an estimator that gives us $\hat{\theta}$, we have a $T_n = f(\hat{\theta}, \theta_0, n)$ (and maybe some covariance matrix representing cross-terms for multi-dimensional $\theta$).
 
-Example: $\chi_{d}^2$ distribution (sum of $d$ independent standard Gaussian r.v. squared, think throwing darts with x, y axis variations being Gaussian as a $\chi_{2}^2$. Expected value of $\chi_{d}^2$ is $d$), $\chi_2^{2}$ is exponential distribution $Exp(\frac{1}{2})$.
+$T_n$ conforms to some distribution under $H_0$ (say, Gaussian, T, or $\chi^2$, etc),
+and given a desired level (Type I error cap, y-axis of $T_n$'s pdf), find the corresponding point on $T_n$ (x-axis),
+such that when plugged with different values of $\hat{\theta}$, we can compute $T_n$ and decide whether it sits left or right to the afore-mentioned point,
+therefore conclude whether $\hat{\theta}$ sits far enough (on a pdf under $H_0$), and if it does $H_0$ should be rejected,
+and we know the likelihood of erroneously rejecting $H_0$ is capped.
+
+\subsection{$\chi^2$ distribution and Student T distribubtion}
+
+$\chi_{d}^2$ distribution ($Z_1^2 + \dots + Z_d^2$, where $Z_i \sim N(0, 1)$. Think throwing darts with x, y axis variations being Gaussian as a $\chi_{2}^2$. Expected value of $\chi_{d}^2$ is $d$), $\chi_2^{2}$ is exponential distribution $Exp(\frac{1}{2})$.
 \\
 \\
 Going back to the coin toss example, note that how you formulate your $H_0$ and $H_1$ matters:
@@ -1486,8 +1502,92 @@ On a high level, given data $X_1, ... X_n$ and a level $\alpha$, and the test sp
 
 \textbf{Neyman-Pearson's Paradigm}, for given hypotheses, among all tests of level / asymptotic level $\alpha$, is it possible to find one that has maximal power?
 (e.g. the trivial test $\psi = 0$ that never rejects $H_0$ has a perfect level $\alpha = 0$ but poor power $\pi_{\psi} = 0$)
+\\
+\\
 
+For a positive integer $d$, \textbf{Student's T Distribution} with $d$ DoF (denoted as $t_d$) is the law of the random variable $\frac{Z}{\sqrt{\frac{V}{d}}}$.
+Where $Z \sim N(0, 1)$, $V \sim \chi_d^2$ and $Z \indep V$.
 
+Why care about this?
+
+For an $X \sim N(\mu, \sigma^2)$, we can standardize it with $Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$.
+To do this, we need to know $\mu$ and $\sigma$.
+$\mu$ we know from $H_0$ when doing hypothesis testing, but $\sigma$ we don't know.
+
+Sample variance $S_n$ is a consistent estimator of $\sigma^2$.
+
+$$
+S_n = \frac{1}{n}\sum_{i = 1}^{n}(X_i - \bar{X})^2 = \frac{1}{n}\sum_{i = 1}^{n}X_i^2 - \bar{X}^2 \approx \sigma^2
+$$
+
+(Essentially, sample mean $S_n$ (centering with mean) is as if we lose one DoF in the $\chi^2$ distribution, think of the distribution of $\frac{1}{n}\sum_{i=1}^{n}X_i^2$ where $X_i \sim N(0, \sigma^2)$.
+The $\frac{n}{\sigma^2}$ term below adjusts for $\sigma^2$, and we are already centered on $\mu = 0$).
+
+$$
+\frac{n S_n}{\sigma^2} \sim \chi_{n - 1}^2 
+$$
+
+And we want to use $S_n$ to estimate $\sigma$. We do
+
+$$
+\frac{\bar{X_n} - \mu}{\sqrt{S_n}} = \frac{\bar{X_n} - \mu}{\sigma} \frac{\sigma}{\sqrt{S_n}} = \frac{X - \mu}{\sigma} \frac{\sqrt{n}}{\sqrt{\frac{n S_n}{\sigma^2}}} = Z \frac{\sqrt{n}}{\sqrt{\chi_{n - 1}^2}}
+$$
+
+So, denoting $V = \chi^2_{n-1}$
+
+$$
+\frac{\bar{X_n} - \mu}{\sqrt{S_n}} = \frac{Z}{\sqrt{\frac{V}{n}}}
+$$
+
+Note that this looks almost the same as the definition for T-distribution, except an $\sqrt{\frac{n}{n - 1}}$ term.
+
+We could instead use a different estimator for $\sigma^2$, which is also unbiased.
+
+$$
+S_n = \frac{1}{n - 1}\sum_{i = 1}^{n}(X_i - \bar{X})^2
+$$
+
+T-distribution has fatter tails than standard Gaussian (hence wider confidence intervals at the same level).
+Given law of large numbers, T-distribution with high enough degree of freedom is going to look very much like standard Gaussian.
+(At the same time $S_n$ becomes a better estimator of $\sigma^2$.)
+
+\subsection{Wald's test}
+
+Consider a statistical model $(E, (\mathbb{P}_\theta)_{\theta \in \Theta})$ where $\Theta \subset \mathbb{R}^d$ $(d \geq 1)$ and let $\theta_0$ be fixed and given.
+
+Consider the hypotheses $H_0: \theta = \theta_0$, $H_1: \theta \neq \theta_0$
+
+\textbf{Wald's test} says something about the MLE estimator.
+
+Under $H_0$
+
+$$
+\sqrt{n} ~ I(\hat{\theta}^{MLE})^{\frac{1}{2}} ~ (\hat{\theta}^{MLE}_{n} - \theta_0) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} ~ ~ \mathit{N}(0, I(\theta_0)^{-1}) ~ w.r.t ~ \mathbb{P}_{\theta_0}
+$$
+
+Where $I$ is the Fisher information matrix.
+\\
+\\
+Taking squared of the first part,
+
+$$
+T_n = n ~ (\hat{\theta}^{MLE}_{n} - \theta_0)^T ~ I(\hat{\theta}^{MLE}) ~ (\hat{\theta}^{MLE}_{n} - \theta_0) \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} \chi^2_d ~ w.r.t ~ \mathbb{P}_{\theta_0}
+$$
+
+And Wald's test with asymptotic level $\alpha$ is $\psi = \mathbb{I}\{T_n > q_{\alpha}\}$.
+Where $q_{\alpha}$ is the $(1 - \alpha)$-quantile of $\chi_d^2$.
+\\
+\\
+\textbf{Intuition}: given $\theta^{MLE} = (1.2, 0.9, 2.1)$ and $\theta_0 = (1, 1, 2)$, to see if we can reject $H_0$, instead of calculating $(1.2 - 1)^2 + (0.9 - 1)^2 + (2.1 - 2)^2$, each term should have some weight according to the Fisher Information matrix (and cross terms if Fisher Information matrix is not diagonal).
+What does it mean for two points to be close in a space curved by Fisher Information matrix.
+
+\subsection{Likelihood ratio test}
+
+There are multiple estimators to choose from (say, MLE and method of moments), and multiple tests one can do.
+They sometimes agree, and other times differ.
+
+If we are to test $H_0: \theta = \theta_0$ vs $H_1: \theta = \theta_1$ (it's very rare that in real life that we'll have hypotheses of this form), we test if $\theta_0$ is more likely than $\theta_1$.
+Or, the likelihood $\frac{L(X_1, \dots, X_n, \theta_1)}{L(X_1, \dots, X_n, \theta_0)} > C$, where $C$ we can calibrate based on the desired level.
 
 \subsection{Markov chains}
 
