@@ -343,3 +343,74 @@ Poultry should be cooked to at least 74 C and pork to 62 C to kill harmful bacte
 
 Red meats taste distinctive to us, but when we try a white meat for the first time, we often compare it to chicken. The clue is in the type of muscle the animal has (chicken - fast twitch muscle, no endurance required). Many of the animals we eat today derive from a chicken-tasting ancestor.
 
+### Eggs
+
+Eggs are versatile, able to bind, coat, clarify, thicken, and aerate food.
+
+Yolks are rich in fat.
+
+Egg whites are mainly water, with some protein. More protein are found in white than yolk. White is low in calories and fat-free.
+
+Eggs are to provide for growing chicks, and happen to contain amino acids in near-perfect proportions for human health.
+
+* Goose eggs, high fat yolk, thick and firm whites.
+* Duck eggs, porous shells, higher yolk-to-white ratio than chicken, high fat.
+* Chicken eggs, small yolk, lower yolk-to-white ratio.
+* Quail eggs, firm white, hard shell, earthy flavor.
+
+Worries about cholesterol levels in eggs have also receded as research has shown that dietary sources of cholesterol are far less of a problem for the majority of people than was once thought.
+
+High levels of "bad" LDL cholesterol in the blood can clog arteries, increasing the risk of serious health issues. But it’s foods high in saturated fats, such as fatty meats, creams, butter, and cheese, that cause the body to overproduce cholesterol, while dietary cholesterol has limited impact.
+
+Egg yolks also contain a substance that prevents the cholesterol it contains from being absorbed.
+
+In terms of nutrition, eggs are hard to beat, providing a host of nutrients and antioxidants.
+Today, nearly all international healthy eating guidelines have removed restrictions on the number of eggs that should be eaten each week.
+
+##### Free ranging or no
+
+Hens fed feed mix designed for maximum egg production turns 2kg of feed into 1kg of eggs.
+However, each egg is less nutrient.
+Free-roaming chicken eggs have higher omega-3, vitamin and less saturated fats.
+
+##### Salmonella
+
+Eggs in contact with infected feces contract Salmonella bacteria.
+In most cases, strict regulations mean infected eggs are now rare.
+Any eggs with cracks should be discarded.
+
+##### Why do rotten eggs smell bad
+
+Proteins in egg white break down as eggs age.
+The bad smell mostly comes from hydrogen sulfide.
+
+As eggs age, carbon dioxide escapes through tiny pores in the shell. The eggs become more alkaline, and this change in acidity forces proteins to unravel and let go of sulfur atoms, which turn into a foul-smelling hydrogen sulfide gas.
+
+##### How to tell egg is fresh
+
+Egg moisture start to evaporate once it's laid, and air is pulled in.
+So eggs out sufficiently long will not float in water, make a slushing noise of air bubbles when shaken, and should be discarded.
+
+As eggs age, when after cracked, the white becomes thinner and more transparent and the yolk flatter.
+
+##### Poaching an egg
+
+Crack egg into boiling water such that the whites solidify and yolk is still runny.
+
+##### Soft boiled eggs with runny yolks
+
+The outermost layer, thin white sets at 70C, thick white sets at 60C and yolk sets at 68C.
+
+To get runny yolks, consider steaming or sous vide for slower heating.
+
+##### Custard
+
+Sweetened milk or cream sauce thickened with an egg.
+
+##### Whipped egg whites
+
+Whipped correctly, egg whites will inflate eight-fold into a snow-like foam.
+
+##### Mayonnaise
+
+Blended egg yolk with oil and flavoring.
