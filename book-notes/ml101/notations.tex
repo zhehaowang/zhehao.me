@@ -1264,7 +1264,7 @@ The \textbf{Fisher information} of a statistical model $l(\theta) = log ~ L_1(X,
 I(\theta) &= \mathbb{E}[\bigtriangledown l(\theta) \bigtriangledown l(\theta)^T] - \mathbb{E}[\bigtriangledown l(\theta)] \mathbb{E}[\bigtriangledown l(\theta)]^T \\
           &= - \mathbb{E}[\bigtriangledown^2 l(\theta)]
 \end{align*}
-Assuming $l$ is twice differentiable.
+Assuming $l$ is twice differentiable (pseudo-inverse of the covariance matrix?).
 
 If $\theta \subset \mathbb{R}$, we get:
 $$
@@ -1588,6 +1588,18 @@ They sometimes agree, and other times differ.
 
 If we are to test $H_0: \theta = \theta_0$ vs $H_1: \theta = \theta_1$ (it's very rare that in real life that we'll have hypotheses of this form), we test if $\theta_0$ is more likely than $\theta_1$.
 Or, the likelihood $\frac{L(X_1, \dots, X_n, \theta_1)}{L(X_1, \dots, X_n, \theta_0)} > C$, where $C$ we can calibrate based on the desired level.
+
+\subsection{$\chi^2$-test on multinomial distribution}
+
+(We build a test statistic that has $\chi^2$ distribution.)
+
+Given a statistical model with discrete event events space and a model identified by pmf $P$ (multinomial distribution),
+this tests if $H_0: P = P_0$ vs $H_1: P \neq P_0$.
+
+E.g. test if zodiac signs of (sampled) wealthiest people follow a uniform distribution.
+Or test if a sampled set of jurors are representative of the racial demographic breakdown of the entire country.
+
+
 
 \subsection{Markov chains}
 
