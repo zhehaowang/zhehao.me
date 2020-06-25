@@ -1470,6 +1470,9 @@ Then $T_n = \sqrt{n} \frac{\bar{X_n} - 0.5}{\sqrt{\bar{X_n} (1 - \bar{X_n})}}$ a
 The asymptotic \textbf{p-value} of a test $\psi_{\alpha}$ is the smallest asymptotic level $\alpha$ at which $\psi_{\alpha}$ rejects $H_0$.
 It is random and depends on the sample.
 
+\textbf{Intuition}, the best probability of obtaining test results at least as extreme as the results actually observed, if $H_0$ holds.
+\\
+\\
 The golden rule is that p-value $\leq \alpha \iff H_0$ is rejected by $\psi_{\alpha}$ at the asymptotic level $\alpha$.
 
 Intuition: highest probability of Type I error.
@@ -1512,7 +1515,7 @@ Why care about this?
 
 For an $X \sim N(\mu, \sigma^2)$, we can standardize it with $Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$.
 To do this, we need to know $\mu$ and $\sigma$.
-$\mu$ we know from $H_0$ when doing hypothesis testing, but $\sigma$ we don't know.
+$\mu$ we know from $H_0$ when doing hypothesis testing (in Student T test, $H_0: \mu = \mu_0$), but $\sigma$ we don't know.
 
 Sample variance $S_n$ is a consistent estimator of $\sigma^2$.
 
@@ -1550,6 +1553,21 @@ $$
 T-distribution has fatter tails than standard Gaussian (hence wider confidence intervals at the same level).
 Given law of large numbers, T-distribution with high enough degree of freedom is going to look very much like standard Gaussian.
 (At the same time $S_n$ becomes a better estimator of $\sigma^2$.)
+\\
+\\
+
+With Student T test, let $X_1, \dots X_d \sim \mathbb{N}(\mu, \sigma^2)$ for some unknown $\mu \in \mathbb{R}$ and let $\mu_0$ be fixed and given.
+
+We want to test $H_0: \mu = \mu_0$ vs $H_1: \mu \neq \mu_0$ with asymptotic level $\alpha \in (0, 1)$.
+
+If $sigma^2$ is known, let $T_n = \sqrt{n} \frac{\bar{X_n} - \mu_0}{\sigma}$, then $T_n \sim \mathbb{N}(0, 1)$ and
+$\psi_{\alpha} = \mathbb{I}\{|T_n| > q_{\frac{\alpha}{2}}\}$ is a test with level $\alpha$.
+
+If $sigma^2$ is unknown, let $T_n = \sqrt{n - 1}\frac{\bar{X_n} - \mu_0}{\sqrt{S_n}}$, then $T_n \sim t_{n - 1}$, Student's T distribution with $n - 1$ degrees of freedom. And
+$\psi_{\alpha} = \mathbb{I}\{|T_n| > q_{\frac{\alpha}{2}}\}$ is a test with level $\alpha$ (reading from a different table from standard Gaussian, parameterized on $n$).
+\\
+\\
+T test is not asymptotic and can be run small samples, but still relies on the assumption that the sample is Gaussian.
 
 \subsection{Wald's test}
 
@@ -1599,7 +1617,100 @@ this tests if $H_0: P = P_0$ vs $H_1: P \neq P_0$.
 E.g. test if zodiac signs of (sampled) wealthiest people follow a uniform distribution.
 Or test if a sampled set of jurors are representative of the racial demographic breakdown of the entire country.
 
+\subsection{Testing goodness of fit}
 
+Student T-test requires the samples to be Gaussian.
+What if I want to test my data is Gaussian?
+
+$\chi^2$-test does something a goodness of fit test for a distributed pmf.
+
+p-value is a random variable (its formula using the data we plug in stays constant, but the data we plug in is random.)
+
+E.g. with Gaussian r.v. and $H_0: \mu = 0$ vs $H_1: \mu \neq 0$,
+Say we know $\sigma^2$, p-value is $P(|\sqrt{n} \frac{\bar{X_n}}{\sigma}| > |\sqrt{n} \frac{\bar{x_n}}{\sigma}|) = 2 ~ \Phi(-\sqrt{n} \frac{\bar{x_n}}{\sigma})$,
+(the probability of the population being more extreme than the observed, in which case we'd be wrong if we reject $H_0$.)
+
+Where $\Phi$ is the CDF of standard Gaussian, $X_n$ represents the population and $x_n$ represents the observed.
+Then p-value under $H_0$ will have a uniform distribution.
+(Meaning, if we are to generate lots of test sets, then under $H_0$ their p-values (i.e. probability of generating a test statistic more extreme than this observed) should have a uniform distribution)
+
+GoF tests don't have parametric modeling.
+
+We look at CDF $F(t) = \mathbb{P}(X \leq t) = \mathbb{E}[\mathbb{I}(X \leq t)]$ instead.
+
+
+The \textbf{Empirical CDF}, $F_n(t)$ is an estimator of CDF by replacing the expectation with average.
+$$
+F_n(t) = \frac{1}{n} ~ \sum_{i = 1}^{n}{\mathbb{I}(X_i \leq t)} = \frac{1}{n} ~ \sum_{i = 1}^{n}{Bern(F(t))}
+$$
+(i.e. the proportion of $X_i$s that are $\leq t$)
+
+And by strong law LLN, for all $t \in \mathbb{R}$, $F_n(t) \overset{a.s.}{\underset{n \to \infty}{\longrightarrow}} F(t)$.
+
+And this stronger Glivenko-Cantelli Theorem holds:
+
+$$
+\sup_{t \in \mathbb{R}}|F_n(t) - F(t)| \overset{a.s.}{\underset{n \to \infty}{\longrightarrow}} 0
+$$
+(i.e. LLN holds for any one $t$, and Glivenko-Cantelli Theorem holds for all $t$ at the same time.)
+
+And by CLT, plugging in the variance of $Bern(F(t))$, for all $t \ in \mathbb{R}$,
+
+$$
+\sqrt{n} ~ (F_n(t) - F(t)) \overset{a.s.}{\underset{n \to \infty}{\longrightarrow}} ~ \mathbb{N}(0, F(t) (1 - F(t)))
+$$
+
+Furthermore, Donsker's Theorem suggests the above is not only Gaussian with the specified variance, but also the sup over all $t$s is bound by a Brownian bridge.
+\\
+\\
+Using this bound, we can build \textbf{Kolmogorov-Smirnov test}: let $X_1, \dots, X_n$ be iid rvs with unknown CDF $F$ and let $F_0$ be a continuous CDF.
+
+Consider these two hypotheses $H_0: F = F_0$ vs $H_1: F \neq F_1$.
+
+Let $F_n$ be the empirical cdf of the sample $X_1, \dots X_n$, if $F = F_0$ then $F_n(t) \approx F_0(t)$ for all $t \in [0, 1]$.
+
+Let test statistic $T_n = \sup_{t \in \mathbb{R}} \sqrt{t}|F_n(t) - F_0(t)|$.
+
+And KS test with asymtotic level $\alpha$ is
+
+$$
+\delta_{\alpha}^{KS} = \mathbb{I} \{T_n > q_{\alpha}\}
+$$
+where $q_{\alpha}$ is the $(1-\alpha)$-quantile of $Z$, the sup of a Brownian bridge.
+\\
+\\
+(\textbf{Intuition}: by Donsker theorem, if $H_0$ holds, the empirical CDF at any point can only deviate from CDF in $H_0$ by a bounded amount, and we test the sup of the deviation.)
+\\
+\\
+p-value of KS test is $\mathbb{P}[Z > T_n | T_n]$.
+
+In practice, $F_{n}(t)$ is an incontinuous step function going up (at each ordered $X_{(i)}$),
+and to compare it with the $F_0$ continuous CDF we only need compare the left and right points of each observation.
+This turns the sup into a max.
+\\
+\\
+Another problem in practice is we want $F_0$ to be fully specified, say Gaussian, what do we use for its $\mu$ and $\sigma^2$?
+
+We could use sample mean and sample variance, but this tilts the test in favor of $H_0$, and limits the power of your test (i.e. your ability to reject $H_0$ just because of wrong $\mu$, $\sigma^2$)
+\\
+\\
+KS-test offers one way to measure distance between two functions, i.e.
+$$
+d(F_n, F) = \sup_{t \in \mathbb{R}} |F_n(t) - F(t)|
+$$
+
+There are other ways to measure distance between functions, leading to different tests.
+E.g.
+
+Cramer-Von Mises uses $L^2$ norm
+$$
+d^2(F_n, F) = \int_{\mathbb{R}} [F_n(t) - F(t)]^2 dt
+$$
+
+Anderson-Darling uses
+$$
+d^2(F_n, F) = \int_{\mathbb{R}} \frac{[F_n(t) - F(t)]^2}{F(t) (1 - F(t))} dt
+$$
 
 \subsection{Markov chains}
 
