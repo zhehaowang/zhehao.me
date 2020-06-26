@@ -1550,7 +1550,7 @@ $$
 S_n = \frac{1}{n - 1}\sum_{i = 1}^{n}(X_i - \bar{X})^2
 $$
 
-T-distribution has fatter tails than standard Gaussian (hence wider confidence intervals at the same level).
+T-distribution has heavier tails than standard Gaussian (hence wider confidence intervals at the same level).
 Given law of large numbers, T-distribution with high enough degree of freedom is going to look very much like standard Gaussian.
 (At the same time $S_n$ becomes a better estimator of $\sigma^2$.)
 \\
@@ -1689,11 +1689,6 @@ and to compare it with the $F_0$ continuous CDF we only need compare the left an
 This turns the sup into a max.
 \\
 \\
-Another problem in practice is we want $F_0$ to be fully specified, say Gaussian, what do we use for its $\mu$ and $\sigma^2$?
-
-We could use sample mean and sample variance, but this tilts the test in favor of $H_0$, and limits the power of your test (i.e. your ability to reject $H_0$ just because of wrong $\mu$, $\sigma^2$)
-\\
-\\
 KS-test offers one way to measure distance between two functions, i.e.
 $$
 d(F_n, F) = \sup_{t \in \mathbb{R}} |F_n(t) - F(t)|
@@ -1711,6 +1706,41 @@ Anderson-Darling uses
 $$
 d^2(F_n, F) = \int_{\mathbb{R}} \frac{[F_n(t) - F(t)]^2}{F(t) (1 - F(t))} dt
 $$
+\\
+\\
+Another problem in practice is we want $F_0$ to be fully specified, say Gaussian, what do we use for its $\mu$ and $\sigma^2$?
+
+We could use sample mean and sample variance, but this tilts the test in favor of $H_0$, and limits the power of your test (i.e. your ability to reject $H_0$ just because of wrong $\mu$, $\sigma^2$)
+
+In this case Donsker theorem does not hold, and it is a mistake to check the test statistic with a value bounded by Brownian Bridge.
+
+Instead, one can show that the test statistic
+$$
+\sup_{t \in \mathbb{R}}|F_n(t) - \Phi_{\hat{\mu}, \hat{\sigma^2}}(t)|
+$$
+(Kolmogorov-Lilliefors test) does not depend on actual $\mu$ and $\sigma^2$, essentially when pluggin in $\hat{\mu}$ and $\hat{\sigma^2}$ we can check against a more strict table.
+
+This test is of lower power than Kolmogorov-Smirnov test (heavier tail than KS test).
+
+\subsection{Quantile-quantile plots}
+
+What makes a Gaussian desirable is usually tail decaying at $e^{-\frac{x^2}{2}}$ rate, and having some fluctuations around the peak doesn't matter.
+
+\textbf{QQ plots} is a visual way to perform GoF test. (if the plot $F_n$ is close to that of $F$, or if $F^{-1}_n$ is close to $F^{-1}$)
+
+In fact, we check if the scatterplot of points
+
+$(F^{-1}(\frac{1}{n}), F_{n}^{-1}(\frac{1}{n}))$, $(F^{-1}(\frac{2}{n}), F_{n}^{-1}(\frac{2}{n}))$, $\dots$, $(F^{-1}(\frac{n - 1}{n}), F_{n}^{-1}(\frac{n - 1}{n}))$
+are near the line $y = x$.
+(Checking against standard Gaussian CDF or a $\Phi(\hat{\mu}, \hat{\sigma^2})$ just results in the straight line having an intercept / different slope.)
+
+Having points below the $y = x$ when ($x > 0$) means empirical distribution having a lighter tail than the Gaussian, when $x < 0$, the opposite.
+
+(Quantile - inverse of CDF, hence the name quantile-quantile comes from comparing the inverse of $F$ and $F_n$.)
+
+The piecewise function $F_n$ is not inversible, but we define $F^{-1}(\frac{i}{n}) = X_{(i)}$
+
+
 
 \subsection{Markov chains}
 
