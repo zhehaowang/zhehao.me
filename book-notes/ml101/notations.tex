@@ -1735,12 +1735,61 @@ are near the line $y = x$.
 (Checking against standard Gaussian CDF or a $\Phi(\hat{\mu}, \hat{\sigma^2})$ just results in the straight line having an intercept / different slope.)
 
 Having points below the $y = x$ when ($x > 0$) means empirical distribution having a lighter tail than the Gaussian, when $x < 0$, the opposite.
+An S curve compared with the straight line then shows lighter tail than Gaussian on both ends, and lighter tails indicate better regulated noise.
 
 (Quantile - inverse of CDF, hence the name quantile-quantile comes from comparing the inverse of $F$ and $F_n$.)
 
 The piecewise function $F_n$ is not inversible, but we define $F^{-1}(\frac{i}{n}) = X_{(i)}$
 
+\subsection{$\chi^2$ goodness-of-fit test}
 
+In the finite case,
+
+Let $X_1, \dots, X_n$ be iid rv on some finite space $E = \{a_1, \dots, a_K\}$ with some probability measure $\mathbb{P}$.
+
+Let $(\mathbb{(P_{\theta})}_{\theta \in \Theta})$ be a parametric family of probability distributions on $E$.
+
+Consider the two hypotheses $H_0: \mathbb{P} \in (\mathbb{P}_{\theta})_{\theta \in \Theta}$ vs $H_1: \mathbb{P} \notin (\mathbb{P}_{\theta})_{\theta \in \Theta}$
+
+Testing $H_0$ means testing whether the statistical model $(E, (\mathbb{P_{\theta}})_{\theta \in \Theta})$ fits the data (e.g. whether data is indeed drawn from a family of binomial distribution).
+
+$H_0$ is equivalent to $p_j = p_j(\theta)$, $\forall j = 1, \dots, K$ for some $\theta \in \Theta$.
+\\
+\\
+Let $\hat{\theta}$ be the MLE of $\theta$ when assuming $H_0$ is true.
+
+Let
+
+$$
+\hat{p}_j = \frac{1}{n} \sum_{i = 1}^{n}\mathbb{I}\{X_i = a_j\}
+$$
+
+If $H_0$ is true, then $p_j = p_j(\theta)$ so both $\hat{p}_j$ and $p_j(\hat{\theta})$ are good estimators of $p_j$,
+and $\hat{p}_j \approx p_j(\hat{\theta})$, $\forall j = 1, \dots, K$
+
+Define the test statistic
+
+$$
+T_n = n ~ \sum_{j = 1}^{K} \frac{(\hat{p}_j - p_j(\hat{\theta}))^2}{p_j(\hat{\theta})}
+$$
+
+If $H_0$ is true, this test statistic converges to a $\chi^2$ distribution
+$$
+T_n \overset{(d)}{\underset{n \to \infty}{\longrightarrow}} \chi^2_{K - d - 1}
+$$
+Where $d$ is the size of parameter $\theta$. $K - d - 1$ is the degree of freedom.
+
+\textbf{Intuition}: as $d$ becomes bigger, the degree of freedom drops meaning it becomes harder to deviate away from the family of distribution.
+
+p-value is then $\mathbb{P}[Z > T_n | T_n]$ where $Z \sim \chi^2_{K - d - 1}$ and $Z \indep T_n$.
+\\
+\\
+
+In the infinite case, we partition $E$ into $K$ disjoint bins.
+
+The $p_j$, $\hat{p}_j$ then becomes the probability of sample falling into bin $j$.
+
+In practice, deciding how many bins / how to bin to have is ad hoc. It affects the decision you can draw: I can/cannot reject that my data looks like a distribution binned this way.
 
 \subsection{Markov chains}
 
