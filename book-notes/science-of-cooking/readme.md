@@ -414,3 +414,97 @@ Whipped correctly, egg whites will inflate eight-fold into a snow-like foam.
 ##### Mayonnaise
 
 Blended egg yolk with oil and flavoring.
+
+### Milk
+
+Milk is key in butter, cream, yoghurt, cheese, etc.
+Fats in milk are wrapped into microscopic globules.
+Less dense than water, these float to the surface and knit together to form a thick, fatty layer.
+
+In the processing of most milks, fat is separated to produce cream and skim milk.
+For 1%, 2%, and whole milk, fat is then added back in the correct ratio.
+Today, nearly all commercially produced dairy milk is homogenized to stop further (sprayed fat) separation.
+
+Sugar levels vary little in dairy milk, and generally lower in non-dairy milk.
+Milk is also a high-quality source of protein.
+
+Dairy milk:
+* Whole cow's milk 3.25% fat. Milk of choice for baking.
+* 2% fat milk tastes less rich, but still works well for drinking and cooking.
+* Skim milk (0.5%) is perfect for frothing coffee drinks.
+* Goat's milk 4% fat. Strong flavored, good for cheese, butter and ice cream.
+* Sheep's milk 7% fat. Creamier than cow's milk, nearly twice the amount of protein. Ideal for cheese and yoghurt.
+
+Non-dairy milk:
+* Soy milk, low sugar, 1.8% fat.
+* Almond milk, low in sugar, protein and fats (1.1%).
+* Oat milk, 1.5% fat, a good substitute for dairy milk in baking.
+* Coconut milk, 1.8% fat, low in sugar, its cream used in sauces and sweetening desserts.
+
+Some concepts:
+* Pasteurization: heated to a high temperature to kill off bacteria. Raw milk still carries risk. Nearly every major health body advises us to avoid drinking unpasteurized milk. Pasteurized milk is heated to 72C, making it safer without sacrificing nutrients. Raw milk cheese is generally safe.
+* UHT (ultra-heat-treatment / longlife) milk: heated to 140C, for long shelf time and has a negative effect on flavor.
+* Evaporated milk: boiled under low pressure until its volume has halved.
+* Condensed milk: sweetened evaporated milk that is 55 percent sugar, and this is used in candy and desserts.
+
+Milk contains sugar lactose, which reacts with proteins to brown surfaces and unlock flavors.
+
+Fat is vital for flavor perception, mouthfeel, and texture.
+Cooking with lower quantities of it can be a challenge.
+
+Full far dairy amplifies other flavors, and contains calcium and protein, but is high in saturated fat and calories, so consume in moderation.
+
+Look out for added sugar and salt.
+
+Large processing plants separate fat globules from milk in high-speed centrifuges, creating “0 percent fat” skim milk and thick, or heavy, cream that is about 50:50 fat to liquid.
+
+Types of cream:
+* Light cream: 18% fat. Not suitable for cooking because its low fat means it's likely to curdle when heated, especially if mixed with an acid. Use it for pouring over fruit, drizzling onto soups, or adding to dessert for a creamy flavor contrast.
+* Whipping cream: 35% fat. Safe for heating and whipping.
+* Heavy cream: 48% fat. Same as above.
+* Clotted cream: 55% fat. Burned and buttery notes. Not suitable for cooking. Seen in ice cream.
+* Sour cream: 20% fat. Sour come from fermentation. Used in goulash, soups and spicy South American dishes.
+* Creme Fraiche: 30% fat. Also fermented, but higher fat makes it suitable for cooking.
+
+Though often discarded, the skin that can form on heated milk is actually full of highly nutritious whey proteins.
+
+##### Homemade icecream
+
+Whisking and rapid freeze.
+
+##### Homemade yoghurt
+
+Using live bacteria from yoghurt.
+
+Yogurt is a key ingredient in many Indian and Pakistani dishes.
+Acid + high temp makes yoghurt separate (curdle), and these dishes usually add yoghurt when cooling.
+
+Probiotic yoghurt may help balancing intestinal flora but the claim is often overhyped.
+
+### Cheese
+
+On its most basic level, cheese is a congealed lump of curdled milk that has been fermented (partially digested) by microbes.
+
+The process:
+Add starter bacteria to (raw) milk, heat for the bacteria to flourish (they feed on lactose and produce lactic acid), then add acid (acid causes milk protein to lose their shape and stick together / curdle). Sometimes left to mature in temperature and humidity controlled environment for months at a time (Ripening breaks portions of proteins into animo acids, then into amines, which smells).
+
+Different soft cheese:
+* Paneer. 25-28% fat. Aged for 1+ day (Young). Mild flavor. acid-set, so remains solid when cooked. Fry and add to vegetable curries.
+* Mozzarella. 21-23% fat. Aged for 1+ day. Mild flavor. Set using rennet. Kneaded to form layers.
+* Feta. 20-23& fat. Aged for 2 months. Medium flavor. Kept in olive oil or brine. Adds salty flavor and crumbly texture to salads, pastries and pies.
+* Camembert. 24% fat. Aged for 3-5 weeks. Medium flavor. Fungi from the penicillin family give Camembert its mushroomy aroma. Serve as it is, or bake until oozing.
+* Bavaria Blu. 43-44% fat. Aged for 4-6 weeks. Mild flavor. Milk, cream mixture. High fat. Mild blue cheese.
+
+Different hard cheese:
+* Monterey Jack. 28-30% fat. Aged for 1-12 months. Medium flavor. Sweet and tart. Grill it or grate it atop beans or chili.
+* Emmentaler. 28-32% fat. Aged for 4-18 months. Mild flavor. Grate into fondues, grill on bread, or eat cold.
+* Manchego. 39-40% fat. Aged for 6-18 months. Medium flavor. Best served raw.
+* Parmigiano-Reggiano (Parmesan). 28% fat. Aged for 18-36 months. Strong flavor. Adds umami to pastas, sauces, soups.
+
+The blue mold on cheese (e.g. Roquefort) is usually Penicillium fungi.
+Quite safe to eat.
+
+Processed cheese (slices as used in burgers) is an amalgam of different cheeses, milk whey proteins, salt and flavorings, bound with emulsifiers.
+They typically have more additives (thickeners), less calcium than natural cheese.
+
+Unfermented cheese, however, can be made at home without any special equipment.
