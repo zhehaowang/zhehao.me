@@ -1780,7 +1780,9 @@ $$
 Where $d$ is the size of parameter $\theta$. $K - d - 1$ is the degree of freedom.
 
 \textbf{Intuition}: as $d$ becomes bigger, the degree of freedom drops meaning it becomes harder to deviate away from the family of distribution.
-
+(This essentially compares the empirical pmf from sample with the pmf of theta estimated with MLE.)
+\\
+\\
 p-value is then $\mathbb{P}[Z > T_n | T_n]$ where $Z \sim \chi^2_{K - d - 1}$ and $Z \indep T_n$.
 \\
 \\
@@ -1790,6 +1792,43 @@ In the infinite case, we partition $E$ into $K$ disjoint bins.
 The $p_j$, $\hat{p}_j$ then becomes the probability of sample falling into bin $j$.
 
 In practice, deciding how many bins / how to bin to have is ad hoc. It affects the decision you can draw: I can/cannot reject that my data looks like a distribution binned this way.
+
+\subsection{Regression}
+
+Let $X$, $Y$ be two real r.v. with two moments and such that $Var(X) \neq 0$.
+
+The theoretical linear regression of $Y$ on $X$ is the best approximation in quadratic means of $Y$ by a linear function of $X$,
+i.e. the r.v. $a + bX$ where $a$ and $b$ are two real numbers minimizing $\mathbb{E}[(Y - a - bX)^2]$.
+
+Note that the expectation we are trying to minimize here means minimizing the vertical distance of a point $(x, y)$ to the line $Y = a + bX$.
+\\
+\\
+If we center $X$ on 0 (let $\tilde{X} = X - \mathbb{E}(X)$).
+
+$$
+\mathbb{E}[(Y - a - bX)^2] = \mathbb{E}[(Y - (a + b \mathbb{E}(X) + b \tilde{X}))^2]
+$$
+
+Let $\tilde{a} = a + b \mathbb{E}(X)$, and minimize the above by taking derivative,
+
+$$
+\frac{\partial}{\partial{a}} = 0 \implies \mathbb{E}[-2 (Y - (\tilde{a} + b \tilde{X}))] = 0 \implies \tilde{a} = \mathbb{E}(Y)
+$$
+$$
+\frac{\partial}{\partial{b}} = 0 \implies \mathbb{E}[-2 \tilde{X} (Y - (\tilde{a} + b \tilde{X}))] = 0 \implies \mathbb{E}[\tilde{X} Y] = b \mathbb{E}(\tilde{X}^2)
+$$
+
+
+Since $\tilde{X}$ is centered, $ Cov(X, Y) = \mathbb{E}[\tilde{X} Y]$ by definition of covariance, and $Var(X) = \mathbb{E}(X^2)$
+
+Thus $b = \frac{Cov(X, Y))}{Var(X)}$, and we have $a = \mathbb{E}[Y] - b \mathbb{E}[X] = \mathbb{E}[Y] - \frac{Cov(X, Y))}{Var(X)} ~ \mathbb{E}[X]$.
+
+(The same closed form can be reached without centering $X$.)
+\\
+\\
+\textbf{Intuition}: looking at the closed form, the slope is really captured by the covariance relative to the variance of $X$, and the rest is normalization.
+
+And replacing expectations with average, we plug in the empirical expectation / sample variance and covariance, and get our $\hat{a}$, $\hat{b}$.
 
 \subsection{Markov chains}
 
