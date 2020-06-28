@@ -1829,6 +1829,42 @@ Thus $b = \frac{Cov(X, Y))}{Var(X)}$, and we have $a = \mathbb{E}[Y] - b \mathbb
 \textbf{Intuition}: looking at the closed form, the slope is really captured by the covariance relative to the variance of $X$, and the rest is normalization.
 
 And replacing expectations with average, we plug in the empirical expectation / sample variance and covariance, and get our $\hat{a}$, $\hat{b}$.
+\\
+\\
+
+Now if we have some noise $Y = a + bX + \epsilon$, for the best fit where $a + b \mathbb{E}(X) = \mathbb{E}(Y)$, we have
+$\mathbb{E}[\epsilon] = 0$ and $Cov(X, \epsilon) = 0$.
+
+Conversely, we assume $Y = a + bX + \epsilon$ for some $a, b \in \mathbb{R}$ and some centered r.v. that satisfies $Cov(X, \epsilon) = 0$ (if $X \indep \epsilon$ or if $\mathbb{E}[\epsilon | X] = 0$, then $Cov(X, \epsilon) = 0$)
+Then $a + bX$ is the theoretical linear regression of $Y$ on $X$.
+\\
+\\
+The \textbf{least squared error} estimator of $(a, b)$ is the minimizer of the sum of squared errors, i.e.
+$$
+\sum_{i = 1}^{n}(Y_i - a - bX_i)^2
+$$
+\\
+\\
+In the multivariate case, $Y_i = X_i \beta + \epsilon_i$, $i = 1, \dots n$.
+
+Where $Y_i \in \mathbb{R}$, $X_i \in \mathbb{R}^p$, and $\epsilon_i$ is the noise term satisfying $Cov(X_i, \epsilon_i) = 0$.
+
+Note that we have the first dimension of $X$ being 1, and $\beta_1$ is the intercept ($a$ in the univariate case).
+\\
+\\
+Least squared estimator of $\beta$ is of a similar form
+$$
+\hat{\beta} = \argmin_{t \in \mathbb{R}^p} \sum_{i = 1}^{n}(Y_i - X_i t)^2
+$$
+
+And written in matrices, we have $Y = X \beta + \epsilon$ where $X$ is a $n \times p$ matrix, and $Y$ and $\epsilon$ are dimension $n$ vectors
+
+We have the LSE estimator as
+$$
+\hat{\beta} = \argmin_{t \in \mathbb{R}^p} \norm{Y - Xt}^2_2
+$$
+
+
 
 \subsection{Markov chains}
 
