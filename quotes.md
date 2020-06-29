@@ -186,3 +186,6 @@ Necessity will continue to be the mother of invention."
 
 "The unexamined life is not worth living."
 -- Socrates
+
+"Optimism (pragmatism enthusiam for what can be achieved). Courage. Focus. Decisiveness. Curiosity. Fairness. Thoughtfulness. Relentless pursuit of perfection (refusal to accept mediocrity. If you believe somethinf can be made better, put in the effort to do it. If you are in the business of making things, be in the business of making things great). Integrity. Authenticity. "
+-- Robert Iger
