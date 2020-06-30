@@ -1860,11 +1860,59 @@ $$
 And written in matrices, we have $Y = X \beta + \epsilon$ where $X$ is a $n \times p$ matrix, and $Y$ and $\epsilon$ are dimension $n$ vectors
 
 We have the LSE estimator as
+
+\begin{align*}
+\hat{\beta} &= \argmin_{t \in \mathbb{R}^p} \norm{Y - Xt}^2_2 \\
+            &= \argmin_{t \in \mathbb{R}^p} \norm{Y}^2_2 - \norm{Xt}^2_2 + 2 Y^{T}Xt \\
+            &= \argmin_{t \in \mathbb{R}^p} \norm{Y}^2_2 - t^T X^T X t + 2 Y^{T}Xt \\
+\end{align*}
+
+Compute the gradient to $t$ (as a column vector) of the above, we have
+
 $$
-\hat{\beta} = \argmin_{t \in \mathbb{R}^p} \norm{Y - Xt}^2_2
+2 X^T X t - 2 X^T Y = 0
 $$
 
+And the optimal $t$ (the LSE estimator $\hat{\beta}$) is $\hat{\beta} = (X^T X)^{-1} X^T Y$, if $X^T X$ is invertible (i.e. $X^T X$ is of rank $p$).
 
+If $X^T X$ is not invertible, then $\exists v~~s.t. X^T X v = 0$, in which case if $\hat{\beta}$ is a solution, so is $\hat{\beta} + \lambda v, ~\forall~\lambda \in \mathbb{R}$.
+
+(Every time $p > n$, the matrix $X^T X$ cannot be of rank $p$ and is not invertible, and you cannot talk about LSE estimator.)
+\\
+\\
+Also we have that $X \hat{\beta}$ is the orthogonal projection of $Y$ onto the subspace spanned by the columns of $X$.
+
+$$
+X \hat{\beta} = P Y
+$$
+
+where $P = X (X^T X)^{-1} X$ (eigenvalue of this vector should be 0 or 1).
+
+And by Pythagorean theorem, we have $\norm{Y}^2_2 = \norm{X \hat{\beta}}^2_2 + \norm{Y - X \hat{\beta}}^2_2$.
+\\
+\\
+
+If we make the following assumptions
+\begin{itemize}
+  \item The design matrix $X$ is deterministic and $rank(X) = p$,
+  \item The model is homoscedastic: $\epsilon_1, \dots, \epsilon_n$ are iid,
+  \item The noise vector $\epsilon$ is Gaussian $\epsilon \sim \mathit{N}(0, \sigma^2 I_n)$ where $I_n$ is the unit covariance matrix.
+\end{itemize}
+
+We have linear regression with deterministic design and Gaussian noise, and
+
+\begin{align*}
+\hat{\beta} &= (X^T X)^{-1} X^T Y \\
+            &= (X^T X)^{-1} X^T (X \beta + \epsilon) \\
+            &= \beta + (X^T X)^{-1} X^T \epsilon \\
+            &= \beta + \mathit{N}(0, \sigma^2 (X^T X)^{-1} X^T X (X^T X)^{-1}) \\
+            &= \beta + \mathit{N}(0, \sigma^2 (X^T X)^{-1})
+\end{align*}
+
+And we have these properties
+\begin{itemize}
+  \item LSE $=$ MLE. $\hat{\beta} \sim \mathit{N}_p (\beta, \sigma^2 (X^T X)^{-1})$
+\end{itemize}
 
 \subsection{Markov chains}
 
