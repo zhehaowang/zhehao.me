@@ -1905,14 +1905,40 @@ We have linear regression with deterministic design and Gaussian noise, and
 \hat{\beta} &= (X^T X)^{-1} X^T Y \\
             &= (X^T X)^{-1} X^T (X \beta + \epsilon) \\
             &= \beta + (X^T X)^{-1} X^T \epsilon \\
-            &= \beta + \mathit{N}(0, \sigma^2 (X^T X)^{-1} X^T X (X^T X)^{-1}) \\
-            &= \beta + \mathit{N}(0, \sigma^2 (X^T X)^{-1})
+            &= \beta + \mathit{N}_p(0, \sigma^2 (X^T X)^{-1} X^T X (X^T X)^{-1}) \\
+            &= \beta + \mathit{N}_p(0, \sigma^2 (X^T X)^{-1})
 \end{align*}
 
 And we have these properties
 \begin{itemize}
   \item LSE $=$ MLE. $\hat{\beta} \sim \mathit{N}_p (\beta, \sigma^2 (X^T X)^{-1})$
+  \item Quadratic risk of $\hat{\beta}$ $\mathbb{E}[\norm{\hat{\beta} - \beta}_2^2] = \sigma^2 \text{Tr}((X^T X)^{-1})$
+  \item Prediction error $\mathbb{E}[\norm{Y - X \hat{\beta}}_2^2] = \sigma^2 (n - p)$
+  \item Reversing the above, we have an unbiased estimator of $\sigma^2$: $\hat{\sigma^2} = \frac{1}{n - p} \norm{Y - X \hat{\beta}}_2^2$, and $(n - p) \frac{\hat{\sigma}^2}{\sigma^2} \sim \chi^2_{n - p}$
 \end{itemize}
+
+Where Tr is the \textbf{trace} of a matrix: sum of its values on the diagonal.
+Trace is equal to the sum of eigenvalues.
+\\
+\\
+To prove that LSE $=$ MLE in this case, our model for $Y = X \beta + \epsilon$ is
+$$
+(P_{\theta})_{\theta \in \Theta} = \{\mathit{N}_n(X \beta, \sigma^2 I)\}
+$$
+Which is a multivariate Gaussian, and the density is
+$$
+P(y) = \frac{1}{(\sigma^2 2 \pi)^{\frac{n}{2}}} e^{-\frac{\norm{y - X \beta}^2_2}{2 \sigma^2}}
+$$
+Log-likelihood then becomes
+$$
+\log{P(y)} = -\frac{n}{2} \log{\sigma^2 2 \pi} - \frac{1}{2 \sigma^2} \norm{y - X \beta}^2_2
+$$
+MLE is achieved when the above is maximized, i.e. when $\norm{y - X \beta}^2_2$ is minimized, hence its equality with LSE.
+\\
+\\
+
+To test whether the $j$-th explanatory variable is significant in the linear regression ($1 \leq j \leq p$).
+We test $H_0: \beta_j = 0$ vs $H_1: \beta_j \neq 0$
 
 \subsection{Markov chains}
 
