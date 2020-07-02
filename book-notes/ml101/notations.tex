@@ -248,7 +248,7 @@ $$
 
 \subsection{Eigenvalue, eigenvector}
 
-An \textbf{eigenvalue} of a \textbf{linear transformation} \footnote{Think square transformation matrix} is a non-zero vector that changes by only a scalar factor when that linear transformation is applied to it.
+An \textbf{eigenvalue} of a \textbf{linear transformation} \footnote{Think square matrix} is a non-zero vector that changes by only a scalar factor when that linear transformation is applied to it.
 
 Meaning the set of $\vec{v}$ that satisfies
 
@@ -1914,7 +1914,7 @@ And we have these properties
   \item LSE $=$ MLE. $\hat{\beta} \sim \mathit{N}_p (\beta, \sigma^2 (X^T X)^{-1})$
   \item Quadratic risk of $\hat{\beta}$ $\mathbb{E}[\norm{\hat{\beta} - \beta}_2^2] = \sigma^2 \text{Tr}((X^T X)^{-1})$
   \item Prediction error $\mathbb{E}[\norm{Y - X \hat{\beta}}_2^2] = \sigma^2 (n - p)$
-  \item Reversing the above, we have an unbiased estimator of $\sigma^2$: $\hat{\sigma^2} = \frac{1}{n - p} \norm{Y - X \hat{\beta}}_2^2$, and $(n - p) \frac{\hat{\sigma}^2}{\sigma^2} \sim \chi^2_{n - p}$
+  \item Reversing the above, we have an unbiased estimator of $\sigma^2$: $\hat{\sigma^2} = \frac{1}{n - p} \norm{Y - X \hat{\beta}}_2^2$, and $(n - p) \frac{\hat{\sigma}^2}{\sigma^2} \sim \chi^2_{n - p}$, $\sigma^2 \indep \hat{\beta}$
 \end{itemize}
 
 Where Tr is the \textbf{trace} of a matrix: sum of its values on the diagonal.
@@ -1937,8 +1937,78 @@ MLE is achieved when the above is maximized, i.e. when $\norm{y - X \beta}^2_2$ 
 \\
 \\
 
-To test whether the $j$-th explanatory variable is significant in the linear regression ($1 \leq j \leq p$).
+Three pillars of inference: estimator, confidence interval (tests)
+\\
+\\
+\textbf{Significance in linear regression}: to test whether the $j$-th explanatory variable is significant in the linear regression ($1 \leq j \leq p$, i.e. this factor should show up in our formula).
 We test $H_0: \beta_j = 0$ vs $H_1: \beta_j \neq 0$
+
+The basis for inference in linear regression is $\hat{\beta} = \beta + \mathit{N}_p(0, \sigma^2 (X^T X)^{-1})$, shown above.
+\\
+\\
+We are interested in
+$$
+\hat{\beta}_j = \beta_j + e_j^T \mathit{N}(0, \sigma^2 (X^T X)^{-1})
+$$
+where $e_j = (0, 0, \dots, 1, \dots, 0)^T$, a vector that leaves only the $j-$th element in.
+And 
+$$
+e_j^T \mathit{N}(0, \sigma^2 (X^T X)^{-1}) \overset{d}{=} \mathit{N}(0, \sigma^2 e_j^T (X^T X)^{-1} e_j) = \mathit{N}(0, \sigma^2 (X^T X)^{-1}_{jj})
+$$
+The $j$-th diagonal element of the matrix $X^T X^{-1}$.
+
+And
+$$
+\hat{\beta_j} = \beta_j + \mathit{N}(0, \sigma^2 (X^T X)^{-1}_{jj})
+$$
+(This looks similar to how $t-$test is set up, $\hat{\theta} = \theta + \mathit{N}(0, \frac{\sigma^2}{n})$).
+
+(1) If $\sigma^2$ is known, we can use Gaussian quantiles:
+
+Under $H_0$, we have
+$$
+\hat{\beta}_j \sim \mathit{N}(0, \sigma^2 (X^T X)^{-1}_{jj})
+$$
+And
+$$
+\frac{\hat{\beta}_j}{\sigma \sqrt{(X^T X)^{-1}_{jj}}} \sim \mathit{N}(0, 1)
+$$
+The test statistic
+$$
+\Phi = \mathit{I}\{|\frac{\hat{\beta}_j}{\sigma \sqrt{(X^T X)^{-1}_{jj}}}| > q_{\frac{\alpha}{2}} (\mathit{N}(0, 1))\}
+$$
+\\
+\\
+(2) If $\sigma$ is unknown, we use $\hat{\sigma}^2$ and $t-$test.
+$$
+\frac{\hat{\beta}_j}{\hat{\sigma} \sqrt{(X^T X)^{-1}_{jj}}} = \frac{\hat{\beta}_j}{\sigma \sqrt{(X^T X)^{-1}_{jj}}} ~ \sqrt{\frac{\sigma^2}{\hat{\sigma}^2}} = \mathit{N}(0, 1) \frac{1}{\sqrt{\frac{\hat{\sigma}^2 (n - p)}{\sigma^2}}} ~ \sqrt{n - p} = \frac{\mathit{N}(0, 1)}{\sqrt{\frac{\chi^2_{n - p}}{n - p}}} \sim t_{n - p}
+$$
+The test statistic
+$$
+\Phi = \mathit{I}\{|\frac{\hat{\beta}_j}{\hat{\sigma} \sqrt{(X^T X)^{-1}_{jj}}}| > q_{\frac{\alpha}{2}} (t_{n - p})\}
+$$
+The more there are parameters, the heavier the tail, and the harder it becomes to reject $H_0$.
+\\
+\\
+Now imagine you run significance tests for all $\beta_j$s and each of them has a $5\%$ Type I error rate, all of them combined you are going to make mistakes if $p$ is large enough.
+
+In this running-multiple-tests-simultaneously case we correct using \textbf{Bonferroni correction}.
+\\
+\\
+$H_0: \beta_j = 0, ~ \forall j \in S$ vs $H_1: \exists j \in S, ~ \beta_j \neq 0$ where $S \subseteq \{1, \dots p\}$
+
+The probability of Type I error (one of the above mentioned $t$-test at level $\alpha$ says reject whereas we shouldn't have rejected $H_0$) is
+$$
+P_{H_0}(\bigcup_{i \in S} \{\Phi_i = 1\})
+$$
+Which by union bound of probability, is $\leq \sum_{i \in S}P_{H_0}(\{\Phi_i = 1\}) = |S| \alpha$.
+(equality happens when all sets are disjoint)
+\\
+\\
+And to control Type I error rate $< \alpha$,
+we instead run each individual $t$-test with level $\frac{\alpha}{|S|}$, where $|S| = p$ if you care about all the explanatory variables in your $H_0$.
+
+In reality the individual tests are rarely completely disjoint, and Bonferroni correction can be more conservative (harder to reject $H_0$) than it needs to be.
 
 \subsection{Markov chains}
 
