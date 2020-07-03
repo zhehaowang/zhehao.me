@@ -2009,6 +2009,57 @@ And to control Type I error rate $< \alpha$,
 we instead run each individual $t$-test with level $\frac{\alpha}{|S|}$, where $|S| = p$ if you care about all the explanatory variables in your $H_0$.
 
 In reality the individual tests are rarely completely disjoint, and Bonferroni correction can be more conservative (harder to reject $H_0$) than it needs to be.
+\\
+\\
+
+In addition to significance tests, there can be more general tests of the form
+$H_0: G \beta = \lambda$ vs $H_1: G \beta \neq \lambda$
+
+Where $G$ is a $k \times p$ matrix with $rank(G) = k (k \leq p)$ and $\lambda \in \mathbb{R}^k$.
+(This can accommodate e.g. testing $\beta_2 + \beta_3 = 0$)
+\\
+\\
+Under $H_0$,
+
+$G \hat{\beta} = G \beta + G \epsilon$ 
+
+$G \hat{\beta} - \lambda \sim \mathit{N}_k(0, \sigma^2 G (X^T X)^{-1} G^T)$
+
+To build a test we want to turn the right hand side to a pivotal that can be looked up.
+\\
+\\
+If $X \sim \mathit{N}(0, \Sigma)$ then $X^T \Sigma^{-1} X \sim \chi^2_{k}$.
+
+Consequently, we have
+$$
+\frac{(G \hat{\beta} - \lambda)^T (G (X^T X)^{-1} G^T)^{-1} (G \hat{\beta} - \lambda))}{\sigma^2} \sim \chi^2_k
+$$
+
+Substituting $\sigma^2$ with $\hat{\sigma}^2$ as before, the right hand side becomes $\frac{\chi^2_k}{\frac{\chi^2_{n - p}}{n - p}}$
+
+Divide both the lhs and rhs above by $k$,
+we have the rhs as $\frac{\chi^2_k / k}{\chi^2_{n - p} / (n - p)}$, which is called
+\textbf{Fisher (F) Distribution} $F_{k, n-p}$ (with $k$ and $n - p$ degrees of freedom, and the two $chi^2$ are independent)
+\\
+\\
+We have $T_q^2 \sim F_{1, q}$, a square root relation between $T$-distribution and $F$-distribution. (Just like $\chi^2$ with 1 DoF is square of the Gaussian.)
+\\
+\\
+Then to test $H_0$ vs $H_1$, we have
+$$
+\Phi_{\alpha} = \mathit{I}\{\frac{(G \hat{\beta} - \lambda)^T (G (X^T X)^{-1} G^T)^{-1} (G \hat{\beta} - \lambda))}{\hat{\sigma}^2 k} \sim \chi^2_k > q_{\alpha}(F_{k, n - p})\}
+$$
+\\
+\\
+
+Closing remarks
+\begin{itemize}
+  \item looking at the variance of each term $\beta_j$, if you get to choose your $X$s as orthogonal as you can,
+  you are going to end up with smaller variance (the innate $\sigma^2$ times the diagonal of $X^T X^{-1}$).
+  \item linear regression exhibits correlations, not causality. Causation does not come from statistics.
+  \item The properties we analyzed and tests are built upon normality of the noise. Without it, we only have $\hat{\beta} = \beta + \epsilon$
+\end{itemize}
+
 
 \subsection{Markov chains}
 
