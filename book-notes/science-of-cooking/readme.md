@@ -508,3 +508,57 @@ Processed cheese (slices as used in burgers) is an amalgam of different cheeses,
 They typically have more additives (thickeners), less calcium than natural cheese.
 
 Unfermented cheese, however, can be made at home without any special equipment.
+
+### Rice, Grains, Pasta
+
+Removing each grain’s shell-like, inedible husk reveals an edible kernel coated in a nutritious, colored bran—this is "brown" (unmilled) rice.
+
+The bran oxidize and turn rancid in months, or milled, leaving behind only the starch-filled core, or endosperm—this is "white" rice.
+
+Brown rice takes two to three times longer than white rice to cook because hot water needs to penetrate the tough bran layer.
+
+Brown rice contains the living "germ" of the seed as well as fiber and protein rich bran.
+
+Rice contains two types of starch: amylopectin (soft, sticky) and amylose (hard).
+
+As a general rule the longer the grain, the more amylose it contains.
+
+Know your rice
+* Short grain
+  * Sticky rice. High in amylopectin, low in amylose.
+  * Risotto rice. Both are >= 90% amylopectin.
+* Medium grain
+  * Paella rice. (Calrose, valencia, bomba)
+* Long grain
+  * White rice. (78% amylopectin). Basmati is of this category.
+  * Wild rice (98% amylopectin). Called rice but this dark colored rice (cooked with bran intact) comes from a different plant.
+
+Rinse the rice before cooking to wash off surface starch and reduce stickiness.
+Washing also removes dust and microscopic debris, but avoid repeated drenching, because this may also wash off aromatic flavor molecules.
+
+To cook any variety of rice to perfection (slightly firm and not too sticky), use equal amounts of water and rice—a ratio of 1:1 water:rice—plus extra water for evaporation.
+
+A soil bateria, Bacillus cereus (causing diarrhea), starts to multiply and release its toxins on cooked rice between 39–131°F (4–55°C), making reheating leftover rice potentially dangerous.
+Cooked rice becomes unsafe once the bacteria and toxins reach a critical level, but the smell and appearance of the rice is unchanged.
+
+Reheating cooked rice may kill the new bacteria, but will not destroy the toxins.
+
+Day 2 and day 3 leftover rice should not be reheated.
+
+In a wheat kernel, 83% is endosperm (largely starch), 14% bran (rich in vitamin B, minerals, disease fighting antioxidants), 3% is the germ (sprouting part of the seed, omega-3 fats, vitamins and minerals.)
+
+Quinoa is high in protein, and boasts all nine essential amino acids, omega fats, vitamin B, and minerals.
+
+Beans are rich in fiber, protein, and essential nutrients, thoroughly good for health.
+However, for people who do not normally eat this high-fiber food, a meal of beans gives the gas-producing bacteria in the gut a sudden excess of fiber to feast on, thus producing gas.
+
+Soaking dried beans and peas before cooking and draining away the water is thought to help remove some soluble fibers.
+
+A pinch of salt when boiling pasta helps remove sticky starch.
+Constant stirring in early stage, and adding oil after boiling both help pasta to become non-sticky.
+
+### Vegetables, fruits, nuts and seeds
+
+More nutritionally important than organic status is the quality of the soil and the mineral it provides.
+
+
