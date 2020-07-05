@@ -1147,6 +1147,7 @@ Given a level of confidence $x\%$, you want to find the interval which contains 
 When dealing with normal distribution, confidence interval depends on whether population standard deviation is known or estimated with sample standard deviation. If not, then student's T distribution is used as the critical value.
 
 \subsection{Maximum likelihood estimation}
+\label{chap:mle}
 
 Let $(E, \{\mathbb{P_{\theta}}\}_{\theta \in \Theta})$ be a statistical model associated with i.i.d r.v. $X_1, \dots X_n$ and assume $\exists \theta^* \in \Theta$ such that $X_i \sim \mathbb{P}_{\theta^*}$: $\theta^*$ is the true parameter.
 
@@ -1222,7 +1223,7 @@ This is the \textbf{maximum likelihood principle}.
 \textbf{Intuition}: the multiplicative form we arrived at is the joint density of $X_1 \dots n$. Imagine the model is a Gaussian centered at $\theta*$, and we have only one observation at $\theta'$, then the maximum likehood estimator is going to estimate a Gaussian centered around $\theta'$.
 Then if we have $n$ points, we are just multiplying the values mapped onto the vertical line of different $\theta$s, and finding the $\theta$ such that the product is maximized.
 
-In the real world maxmimum likelihood estimators often don't have a closed form, hence the many optimizations in machine learning.
+In the real world maximum likelihood estimators often don't have a closed form, hence the many optimizations in machine learning.
 \\
 \\
 The \textbf{likelihood of a model} $(E, (\mathbb{P}_{\theta})_{\theta \in \Theta})$ associated with a sample of i.i.d r.v $X_1, \dots X_n$ can then be defined as
@@ -1759,7 +1760,6 @@ $H_0$ is equivalent to $p_j = p_j(\theta)$, $\forall j = 1, \dots, K$ for some $
 Let $\hat{\theta}$ be the MLE of $\theta$ when assuming $H_0$ is true.
 
 Let
-
 $$
 \hat{p}_j = \frac{1}{n} \sum_{i = 1}^{n}\mathbb{I}\{X_i = a_j\}
 $$
@@ -2081,22 +2081,23 @@ Example, say we are to estimate the proportion of men in the population.
 
 Let $X_1, \dots X_d \sim Ber(p)$ where $X_i$ are iid and takes the value 1 for men and 0 for women.
 
-The frequentist approach, we estimate $p$ using the MLE, construct some confidence interval for $p$,
-then did hypothesis testing (e.g. $H_0: p = 0.5$ vs $H_1: p \neq 0.5$).
+With the frequentist approach, we estimate $p$ using the MLE, construct some confidence interval for $p$,
+then do hypothesis testing (e.g. $H_0: p = 0.5$ vs $H_1: p \neq 0.5$).
 
 However before analyzing the data, we may believe $p$ is likely to be close to $\frac{1}{2}$.
-
+\\
+\\
 The Bayesian approach is a tool to include mathematically our prior belief in the statistical procedures,
 and update our prior belief using the data.
 
-(It often looks like adding one more observation that reflects your prior.)
-
-The prior can look like, e.g. we are $90\%$ sure $p$ is between $.4$ and $.6$.
+In the example, the prior can look like, e.g. we are $90\%$ sure $p$ is between $.4$ and $.6$.
 
 Hence we can model our prior belief using a distribution for $p$ as if it's random.
 (in reality, the true parameter is not random)
-This distribution is called the prior distribution.
 
+This distribution is called the \textbf{prior distribution}.
+\\
+\\
 In our statistical experiment, $X_1, \dots X_n$ are assumed to be iid Bernoulli rv with parameter $p$ conditionally on $p$.
 
 After observing the available sample $X_1, \dots X_n$, we can update our belief about $p$ by taking its distribution conditionally on the data.
@@ -2112,9 +2113,94 @@ Where a prior distribution $\beta(a, a)$ becomes a posterior distribution
 $$
 \beta(a + \sum_{i = 1}^{n} X_i, a + n - \sum_{i = 1}^{n} X_i)
 $$
-
 Another conjugate prior is Gaussian.
 A prior being conjugate brings nice mathematical properties, and people use these as prior distributions more often.
+\\
+\\
+
+Think of this in terms of Bayesian rule,
+$$
+P(\theta ~ | ~ Data) = \frac{P(Data ~ | ~ \theta) P(\theta)}{P(Data)}
+$$
+Where $P(\theta)$ is our prior, $P(Data | \theta)$ is what our statistical experiment assumes,
+and $P(Data)$ says something about the distribution of data itself if drawn completely randomly,
+note that it has not to do with $\theta$.
+\\
+\\
+
+Now formalize the above, let $\pi(\theta)$ be the prior distribution,
+the posterior distribution looks like
+$$
+\pi(\theta ~ | ~ X_1, \dots X_n) = \frac{P(X_1, \dots X_n ~ | ~ \theta) \pi(\theta)}{\int_{\Theta} P(X_1, \dots X_n ~ | ~ \theta) \pi(\theta) d\theta}
+$$
+where the $P(X_1, \dots X_n ~ | ~ \theta)$ part is what we get from our modeling,
+which \ref{chap:mle} defined as likelihood of $\theta$.
+
+I.e. the posterior is a likelihood weighted by the prior.
+\\
+\\
+
+Diving back to the previous example of Bernoulli with prior distribution as $\beta-$distribution.
+
+We have
+(1)
+$$
+\pi(p) ~ \propto ~ p^{a - 1} (1 - p)^{a - 1}, ~ p \in (0, 1)
+$$
+
+(2) Given $p$, $X_1, \dots X_n \overset{iid}{\sim} Ber(p)$, so
+$$
+P_n(X_1, \dots X_n ~ | ~ \theta) = p^{\sum_{i = 1}^{n} X_i} ~ (1 - p)^{n - \sum_{i = 1}^{n} X_i}
+$$
+So the posterior distribution is
+$$
+\pi(\theta ~ | ~ X_1, \dots X_n) ~ \propto ~ p^{a - 1 + \sum_{i = 1}^{n} X_i} ~ (1 - p)^{a - 1 + n - \sum_{i = 1}^{n} X_i}
+$$
+which is $\beta(a + \sum_{i = 1}^{n} X_i, a + n - \sum_{i = 1}^{n} X_i)$
+\\
+\\
+
+Now what if we don't really have a prior?
+
+The formula really says prior is there to weigh some $\theta$ higher than others,
+and you can have a prior that weighs no $\theta$ higher than others,
+i.e. replacing $\pi(\theta)$ with a constant,
+a \textbf{non-informative} prior.
+
+If $\theta$ is bounded, this is the uniform prior on $\Theta$.
+
+If not, this does not define a proper pdf on $\Theta$
+(improper prior, using which we can still do Bayesian statistics).
+\\
+\\
+With a non-informative prior in the Bernoulli with $\beta$-distribubtion prior example,
+the posterior becomes $\beta(1 + \sum_{i = 1}^{n} X_i, 1 + n - \sum_{i = 1}^{n} X_i)$.
+\\
+\\
+Now with a non-informative prior on a Gaussian: given $\theta$, $X_1, \dots X_n \overset{iid}{\sim} \mathit{N}(\theta, 1)$,
+$$
+p_n(X_1, \dots X_n ~ | ~ \theta) = \frac{1}{(\sqrt{2 \pi})^n} ~ exp(- \frac{1}{2} \sum_{i = 1}^{n} (X_i - \theta)^2)
+$$
+And the posterior (note that we now see this as a density on $\theta$ and not on $X_i$)
+\begin{align*}
+\pi(\theta ~ | ~ X_1, \dots X_n) ~ &\propto ~ exp(- \frac{1}{2} \sum_{i = 1}^{n} (X_i - \theta)^2) \\
+                                   &\propto ~ exp(- \frac{1}{2} \sum_{i = 1}^{n} (-2 X_i \theta + \theta^2)) \\
+                                   &\propto ~ exp(- \frac{n}{2} (\bar{X} - \theta)^2) \\
+                                   &\sim ~ \mathit{N}(\bar{X}, ~ \frac{1}{n})
+\end{align*}
+\\
+\\
+Another generic non-informative prior, \textbf{Jeffreys prior} is
+$$
+\pi_{J}(\theta) ~ \propto ~ \sqrt{\text{det}~I(\theta)}
+$$
+where $I(\theta)$ is the Fisher information matrix of the statistical model associated with $X_1, \dots X_n$ in the frequentist approach.
+
+(i.e. I want to put more weights on $\theta$ that extracts information from the data.)
+\\
+\\
+Jeffreys prior satisfies reparametrization invariance principle, when you parameterize you model on a $\eta(\theta)$ instead of $\theta$,
+then your Jeffreys prior is just parameterized on $\sqrt{\text{det} ~ I(\eta)}$ instead.
 
 
 
