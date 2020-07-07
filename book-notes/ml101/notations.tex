@@ -2249,7 +2249,7 @@ Bayesian methods tends to have the same behavior as a frequentist confidence int
 Bayesian methods are particularly useful for one-time draw of samples, and on small sample sizes.
 \\
 \\
-A concrete example:
+\textbf{A concrete example}:
 say we have draw once 2 iid samples $X_1 = \theta + \epsilon_1$, $X_2 = \theta + \epsilon_2$,
 $\epsilon \in \{-1, 1\}$ with equal probability.
 
@@ -2289,9 +2289,16 @@ And say that we observe $(5, 7)$, then
 
 And the posterior
 
-$$
-\mathbb{P}(\theta ~ | ~ (5, 7)) = \frac{\mathbb{P}((5, 7) ~ | ~ \theta) \mathbb{P}(\theta)}{\mathbb{P}((5, 7))}
-$$
+\begin{align*}
+  \mathbb{P}(\theta ~ | ~ (5, 7)) &= \frac{\mathbb{P}((5, 7) ~ | ~ \theta) \mathbb{P}(\theta)}{\mathbb{P}((5, 7))} \\
+                                  &= \frac{\mathbb{P}((5, 7) ~ | ~ \theta) \mathbb{P}(\theta)}{\mathbb{P}((5, 7)) \mathbb{P}(\theta = 6) + \mathbb{P}((5, 7)) \mathbb{P}(\theta \neq 6)} \\
+                                  &= \begin{cases}
+                                       & 1, ~ \text{if} ~ \theta = 6, \\
+                                       & 0, ~ \text{otherwise}
+                                     \end{cases}
+\end{align*}
+
+And in this sense the Bayesian confidence interval is more meaningful.
 
 \subsection{Markov chains}
 
