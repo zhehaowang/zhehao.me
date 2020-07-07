@@ -2200,9 +2200,98 @@ where $I(\theta)$ is the Fisher information matrix of the statistical model asso
 \\
 \\
 Jeffreys prior satisfies reparametrization invariance principle, when you parameterize you model on a $\eta(\theta)$ instead of $\theta$,
-then your Jeffreys prior is just parameterized on $\sqrt{\text{det} ~ I(\eta)}$ instead.
+then your Jeffreys prior is just 
 
+$$
+\tilde{\pi}(\eta) ~ \propto ~ \sqrt{\text{det} ~ \tilde{I}(\eta)}
+$$
+where $\tilde{I}(\eta)$ is the Fisher information of the statistical model parameterized by $\eta$ instead of $\theta$.
+\\
+\\
 
+When doing Bayesian inference, given $X_1, \dots X_n$ and a prior $\pi(\theta)$, it spits out not just an estimator $\hat{\theta}$,
+but an entire posterior distribution $\pi(\theta | X_1, \dots X_n$,
+from which you can build a confidence region.
+
+The \textbf{Bayesian confidence region} with level $\alpha \in (0, 1)$ is a random subset $\mathit{R}$ of the parameter space $\Theta$,
+which depends on the sample $X_1, \dots X_n$ such that
+
+$$
+\mathbb{P}[\theta \in \mathit{R} ~ | ~ X_1, \dots X_n] = 1 - \alpha
+$$
+Note that $\mathit{R}$ depends on the prior distribution.
+
+And that \textbf{a Bayesian confidence region and a frequentist confidence interval are two distinct notions}.
+
+In a frequentist view,
+an example confidence interval could suggest
+$$
+\mathbb{P}(\theta \in [\bar{X_n} - q_{\frac{\alpha}{2}}, \bar{X_n} + q_{\frac{\alpha}{2}}]) < 95\%
+$$
+And we don't condition on $X_1, \dots X_n$ in this case because if we do, the probability is either 1 (if $\theta \in $ the region) or 0 (if not).
+
+I.e. the frequentist view is saying,
+if we draw one set of $X_1, \dots X_n$, we get a $\bar{X_n}$ and a confidence interval centered around $\hat{\theta}$,
+true $\theta$ is either in or not in there.
+
+And to have a confidence interval at $95\%$ in the frequentist view means if we draw these samples repeatedly,
+the frequency of times of the confidence interval we build containing $\theta$ is $95\%$.
+\\
+\\
+While the Bayesian confidence region conditions on the data: given this particular set of $n$ samples,
+it suggests how likely is true $\theta$ within this region.
+\\
+\\
+When sample size is large enough,
+Bayesian methods tends to have the same behavior as a frequentist confidence interval.
+(the one extra sample, your prior, doesn't matter as much.)
+
+Bayesian methods are particularly useful for one-time draw of samples, and on small sample sizes.
+\\
+\\
+A concrete example:
+say we have draw once 2 iid samples $X_1 = \theta + \epsilon_1$, $X_2 = \theta + \epsilon_2$,
+$\epsilon \in \{-1, 1\}$ with equal probability.
+
+Thus the possible observations are
+$(\theta - 1, \theta - 1)$,
+$(\theta - 1, \theta + 1)$,
+$(\theta + 1, \theta - 1)$,
+$(\theta + 1, \theta + 1)$.
+
+Say we have a Frequentist confidence interval $R$ as defined by
+
+\begin{equation}
+  \begin{cases}
+    & X_1 - 1, ~ \text{if} ~ X_1 = X_2 \\
+    & \frac{X_1 + X_2}{2}, ~ \text{if} ~ X_1 \neq X_2
+  \end{cases}
+\end{equation}
+
+Then this confidence interval has level $75\%$.
+
+Note that if we condition on the data,
+then in the second case true $\theta$ is always within the region,
+while in the first only half of the time it is.
+\\
+\\
+Now if we have a Bayesian confidence region instead,
+say the prior is $\pi(j) > 0, ~ \forall j \in \mathbb{Z}$.
+
+And say that we observe $(5, 7)$, then
+\begin{equation}
+  \mathbb{P}((5, 7) ~ | ~ \theta) = 
+  \begin{cases}
+    & \frac{1}{4}, ~ \text{if} ~ \theta = 6, \\
+    & 0, ~ \text{otherwise}
+  \end{cases}
+\end{equation}
+
+And the posterior
+
+$$
+\mathbb{P}(\theta ~ | ~ (5, 7)) = \frac{\mathbb{P}((5, 7) ~ | ~ \theta) \mathbb{P}(\theta)}{\mathbb{P}((5, 7))}
+$$
 
 \subsection{Markov chains}
 
