@@ -2299,6 +2299,36 @@ And the posterior
 \end{align*}
 
 And in this sense the Bayesian confidence interval is more meaningful.
+\\
+\\
+
+The Bayesian framework can also be used to estimate the true underlying parameter,
+in which case the prior distribution does not reflect a prior belief,
+but just an artificial tool to define a new class of estimators.
+
+A \textbf{Bayes estimator} is defined as the posterior mean:
+$$
+\hat{\theta}^{(\pi)} = \int_{\Theta} \theta d\pi(\theta ~ | ~ X_1, \dots X_n)
+$$
+which depends on the choice of the prior distribution.
+
+We can also use other estimators from the posterior, e.g. its mode.
+\\
+\\
+In the previous example where prior is $\beta(a, a)$,
+the posterior mean $\hat{p}^{(\pi)} = \frac{a / n + \bar{X_n}}{2 a / n + 1}$,
+which is independent of $a$ as $n \rightarrow \infty$.
+\\
+\\
+With the non-informative prior on a Gaussian example ($\mathit{N}(\theta, 1)$),
+the posterior is $\mathit{N}(\bar{X_n}, \frac{1}{n})$,
+$\hat{p}^{(\pi)} = \bar{X_n}$.
+
+Bayes estimator in this case is consistent and asymptotic normal.
+
+In general,
+the asymptotic properties of Bayes estimator does not depend on the choice of the prior.
+
 
 \subsection{Markov chains}
 
