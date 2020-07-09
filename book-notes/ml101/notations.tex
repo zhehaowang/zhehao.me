@@ -2330,6 +2330,55 @@ In general,
 the asymptotic properties of Bayes estimator does not depend on the choice of the prior.
 
 
+\subsection{Principle component analysis}
+
+Let $X$ be a d-dimensionral random vector and $X_1, \dots X_n$ be $n$ independent copies of $X$.
+
+Denote by $\mathbf{X}$ the random $n \times d$ matrix ($n$ rows. $X_1, \dots X_n$ stacked together vertically).
+
+Mean of $\mathbf{X}$: $\mathbb{E}[\mathbf{X}] = (\mathbb{E}[X^1], \dots \mathbb{E}[X^d])^T$.
+
+Covariance matrix of $\mathbf{X}$ ($d \times d$) is the matrix $\Sigma = (\sigma_{j, k})$ where $j, k \in \{1 \dots d\}$,
+and $\sigma_{j, k} = cov(\mathbf{X}^j, \mathbf{X}^k)$.
+(The covariance between the mean of the $j-$th and $k-$th dimensions, which by definition is
+$\mathbb{E}[X^j X^k] - \mathbb{E}[X^j] \mathbb{E}[X^k]$).
+And expanding on this definition:
+
+$$
+\Sigma =
+\mathbb{E}[\mathbf{X} \mathbf{X}^T] - \mathbb{E}[\mathbf{X}] \mathbb{E}[\mathbf{X}]^T =
+\mathbb{E}[(\mathbf{X} - \mathbb{E}[\mathbf{X}]) (\mathbf{X} - \mathbb{E}[\mathbf{X}])^T]
+$$
+
+We then apply the same trick of replacing expectation with average over our samples:
+
+The empirical mean is $\bar{\mathbf{X}} = \frac{1}{n} \sum_{i = 1}^{n} X_i$.
+
+And the empirical covariance matrix (sample covariance matrix) is
+
+\begin{align*}
+  S &= \frac{1}{n} \sum_{i = 1}^{n} X_i X_i^T - \bar{\mathbf{X}} \bar{\mathbf{X}}^T =
+  \frac{1}{n} \sum_{i = 1}^{n} (X_i - \bar{\mathbf{X}}) (X_i - \bar{\mathbf{X}})^T \\
+  &= \frac{1}{n} \mathbf{X}^T \mathbf{X} - \frac{1}{n^2} \mathbf{X}^T \mathbb{I} ~ \mathbb{I}^T \mathbf{X} \\
+  &= \frac{1}{n} \mathbf{X}^T ~ H ~ \mathbf{X}
+\end{align*}
+
+Where $\mathbb{I}$ is the $n \times 1$ all 1 vector,
+$H = \mathit{I}_n - \frac{1}{n} \mathbb{I} ~ \mathbb{I}^T$, and
+$\mathit{I}_n$ is the $n \times n$ identity matrix.
+
+And $H$ is in fact the matrix with diagonal $1 - \frac{1}{n}$ and all other elements $-\frac{1}{n}$.
+It is an orthogonal projector: $H^2 = H$, $H^T = H$.
+
+Consider what $H$ projects onto, for a $n \times 1$ vector $V$,
+$$
+HV = V - \bar{V} \mathbb{I}
+$$
+and $\bar{HV} = 0$.
+
+Meaning $H$ projects onto the subspace of vectors that have mean 0,
+i.e. $V ~ \indep ~ \text{span}(\mathbb{I})$.
+
 \subsection{Markov chains}
 
 Consider a physical system with the following properties
