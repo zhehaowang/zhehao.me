@@ -2378,6 +2378,48 @@ and $\bar{HV} = 0$.
 
 Meaning $H$ projects onto the subspace of vectors that have mean 0,
 i.e. $V ~ \indep ~ \text{span}(\mathbb{I})$.
+\\
+\\
+Given the above,
+$S = \frac{1}{n} \mathbf{X}^T ~ H^T H ~ \mathbf{X} = \frac{1}{n} (H \mathbf{X})^T (H \mathbf{X})$.
+\\
+\\
+
+Take $u \in \mathbb{R}^d$, by definition of $\Sigma$,
+$u^T \Sigma u = \mathbb{E}[(u^T \mathbf{X}) (\mathbf{X}^T u)] - \mathbb{E}[(u^T \mathbf{X})] \mathbb{E}[(\mathbf{X}^T u)]$,
+which is the variance of $u^T \mathbf{X}$.
+
+Similarly, $u^T S u$ (a number) is the sample variance of $u^T \mathbf{X_1}, \dots u^T \mathbf{X_n}$.
+\\
+\\
+Think of the $u^T \Sigma u$ as the variance you get, after projecting the matrix $\mathbf{X}$ onto the direction $u$.
+
+If we want to do dimensionality reduction by projecting our points onto a lower dimension,
+and we don't want the projected points to spread as much as possible.
+Variance is one measurement of spread, and in this case we want a variance as large as possible.
+\\
+\\
+And the idea of primary component analysis is to identify these directions along which we have a high variance.
+
+If we can find a $u \in \mathbb{R}^d$ and $\norm{u}_2 = 1$ that maximizes $u^T S u$,
+i.e. empirical variance of the points projected onto the direction $u$.
+
+This maximization is not convex, but we can solve it with linear algebra.
+
+In particular, $\Sigma$ and $S$ are symmetric and positive semi-definite.
+
+\textbf{Theorem:}
+any real matrix $A \in \mathbb{R}^{d \times d}$ has the decomposition $A = P D P^T$,
+where $P$ is a $d \times d$ orthogonal matrix, i.e. $P P^T = P^T P = \mathit{I}_d$ and
+$D$ is diagonal.
+
+The diagonal elements of $D$ are the eigenvalues of $A$ and the columns of $P$ are the corresponding eigenvectors of $A$.
+\\
+\\
+$A$ is semi-definite positive iff all its eigenvalues are non-negative.
+
+
+
 
 \subsection{Markov chains}
 
