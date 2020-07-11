@@ -2332,6 +2332,14 @@ the asymptotic properties of Bayes estimator does not depend on the choice of th
 
 \subsection{Principle component analysis}
 
+The goal is to project a point cloud onto lower dimensions while keeping as much information possible
+(we don't want points to collide).
+PCA's answer is to do this by keeping as much covariance structure as possible by keeping orthogonal directions that discriminate well the points of the cloud.
+\\
+\\
+
+The linear algebra that supports PCA:
+
 Let $X$ be a d-dimensionral random vector and $X_1, \dots X_n$ be $n$ independent copies of $X$.
 
 Denote by $\mathbf{X}$ the random $n \times d$ matrix ($n$ rows. $X_1, \dots X_n$ stacked together vertically).
@@ -2408,7 +2416,7 @@ This maximization is not convex, but we can solve it with linear algebra.
 
 In particular, $\Sigma$ and $S$ are symmetric and positive semi-definite.
 
-\textbf{Theorem:}
+\textbf{Theorem (spectral decomposition / eigen decomposition):}
 any real matrix $A \in \mathbb{R}^{d \times d}$ has the decomposition $A = P D P^T$,
 where $P$ is a $d \times d$ orthogonal matrix, i.e. $P P^T = P^T P = \mathit{I}_d$ and
 $D$ is diagonal.
@@ -2417,8 +2425,47 @@ The diagonal elements of $D$ are the eigenvalues of $A$ and the columns of $P$ a
 \\
 \\
 $A$ is semi-definite positive iff all its eigenvalues are non-negative.
+\\
+\\
 
+To do PCA, by the above theorem, let $S = P D P^T$, we know $D$ is diagonal.
+And $P = (v_1, \dots v_d)$, an orthogonal matrix i.e. $\norm{v_j}_2 = 1$, $v_j^T v_k = 0$, $\forall v \neq k$.
 
+Without loss of generality, let $\lambda_1 \geq \lambda_2 \dots \geq \lambda_d$ be the diagonal values of $D$.
+\\
+\\
+Note that $D$ is empirical covariance matrix of the $P^T X_i$'s, $i = 1 \dots n$.
+
+In particular, $\lambda_1$ is the empirical variance of $v_1^T X_i$'s.
+
+In other words, each $\lambda_i$ measures the spread of the point cloud in the direction $v_j$.
+\\
+\\
+And the problem of maximizing empirical variance post-projection (i.e. find the $u$ that maximizes the variance of $u^T X_1 \dots u^T X_n$) becomes
+picking the $u$ associated with the largest $\lambda_i$,
+which is assumed to be $\lambda_1$,
+thus $u = v_1$.
+
+We can prove that for any vector (including non-eigenvector of $S$) other than $v_1$,
+the resulting empirical variance will be no bigger.
+\\
+\\
+Thus, if PCA wants to reduce the dimension to $k$,
+we take the $k$ orthogonal directions in which the cloud is the most spread out,
+and these $k$ directions correspond exactly to the eigenvectors associated with the $k$ largest eigenvalues of $S$.
+\\
+\\
+If you have higher dimensionality than points, then this method does not apply.
+
+Otherwise, the above maths can be turned into a PCA algorithm involving
+\begin{itemize}
+  \item first calculate the empirical covariance matrix of input point cloud $\mathbf{X} \in \mathbb{R}^{n \times d}$,
+  \item then do a spectral decomposition on it,
+  \item use the $k$ eigenvectors of the empirical covariance matrix
+  associated with the $k$-largest eigenvalues to build the projection matrix
+  $P_k = (v_1, \dots v_k) \in \mathbb{R}^{d \times k}$.
+  \item The resulting point cloud $\mathbf{Y} = \mathbf{X} P_k \in \mathbb{R}^{n \times k}$
+\end{itemize}
 
 
 \subsection{Markov chains}
