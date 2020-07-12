@@ -561,4 +561,70 @@ Constant stirring in early stage, and adding oil after boiling both help pasta t
 
 More nutritionally important than organic status is the quality of the soil and the mineral it provides.
 
+A fruit or vegetable doesn’t die when it's harvested, but continues to take in oxygen and live for days or weeks.
+However, cut off from the mother plant, vitamins and nutrients in the fruit or vegetable are used up from its stores, leaving fewer nutrients for us when we finally eat the produce.
+
+Most delicate vegetables should be chilled. Low temperatures delay chemical reactions in the cells, protecting fragile nutrients such as vitamin C, which is high in many delicate varieties (tomatoes, asparagus, salad leaves).
+
+Herbs such as basil suffer if chilled, so they should be kept on the countertop with access to sunlight. Unripe tomatoes or avocados can be left on the countertop to ripen, but transfer them to the fridge when ripe if you’re not eating them right away.
+
+Root vegetables typically hold onto vitamins and antioxidants for longer than delicate vegetables.
+
+Some hardy vegetables, such as carrots, parsnips, turnips, and hardier greens such as kale, are best kept at cold fridge temperatures.
+
+Vegetables such as potatoes, sweet potatoes, onions, and squash can be stored in a cool, dark, well-ventilated place such as a kitchen pantry or cabinet.
+Their flavor can be affected by the chilly fridge air.
+
+Cooking destroys vitamins and antioxidants in some foods, while increases them in others.
+
+Tomatoes release more of the relatively rare antioxidant lycopene and carrots release more beta-carotene when cooked, but vitamin C (also in tomatoes), several B vitamins, and certain enzymes are destroyed by heating.
+
+To optimize health, it’s important to eat a variety of cooked and raw vegetables.
+
+Better raw, broccoli, watercress, garlic, onions, red pepper.
+Better cooked, carrots, spinach, cabbage, tomatoes, asparagus.
+
+Peeling the skin of a sweet potato removes up to 35 percent of its vitamin C content.
+Peeling vegetables has the benefit of removing more pesticide residues than scrubbing, but the amount of pesticides on vegetables is usually tiny and many of them are destroyed with cooking.
+Overall, washing or gently scrubbing is the best way to retain a vegetable’s goodness.
+
+Steaming is one of the healthiest cooking methods.
+As food is not immersed in water, nutrients that can leach into water are preserved and food cooks without the need for fats.
+
+14% of broccoli’s vitamin C is lost with steaming, compared to 54 percent with boiling.
+
+Of all the many colors of pepper, green are under-ripe peppers. (chlorophyll, a green pigment that harnesses the power of sunlight to create energy.)
+Yellow, light and fruity-tasting.
+Orange, mild and sweet.
+Green, firm and the most aromatic.
+Red, sweet and juicy.
+Purple, semisweet and firm.
+Brown.
+
+90% of a carrot is water. Potatoes are around 80 percent water.
+
+The holy grail of oven-cooked vegetables is a flavorful, crispy coat and firm, tender flesh.
+
+Of all the ways to cook vegetables, frying and boiling tend to lose most nutrients.
+Steaming retains nutrients well, though research also shows that vegetables benefit from different cooking techniques.
+
+The sodium in salt disrupts the connections between pectin molecules (rigid walls in plant cells), so salted vegetables really will cook faster than unsalted ones.
+
+##### Potatoes
+
+Rich in starch, potatoes have fewer calories than pasta and rice, and are a good source of fiber, minerals, and vitamins especially potassium, vitamin C, and B vitamins.
+
+From a cook’s perspective, they group into "mealy" (floury) or "waxy".
+
+Know your potatoes
+* Maris Piper: high-starch mealy potato, ideal for roasting and fries.
+* King Edward: high-starch content and a floury texture when cooked, ideal for mashing.
+* Yukon Gold: with a fluffy texture and a medium starch content, these buttery yellow potatoes work well mashed or baked.
+* Rooster: high starch. versatile.
+
+* Charlotte: waxy, a relatively low number of starch granules and holds its shape during cooking, making it ideal for salads and gratins.
+* Desirée: holds its shape well for boiling or wedges.
+* Purple Majesty: suited for boiling and steaming.
+* Anya: slightly nutty flavor, ideal for salads or roasting with a pan of vegetables.
+
 
