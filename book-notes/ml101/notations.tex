@@ -2330,7 +2330,7 @@ In general,
 the asymptotic properties of Bayes estimator does not depend on the choice of the prior.
 
 
-\subsection{Principle component analysis}
+\subsection{Principal component analysis}
 
 The goal is to project a point cloud onto lower dimensions while keeping as much information possible
 (we don't want points to collide).
@@ -2464,8 +2464,26 @@ Otherwise, the above maths can be turned into a PCA algorithm involving
   \item use the $k$ eigenvectors of the empirical covariance matrix
   associated with the $k$-largest eigenvalues to build the projection matrix
   $P_k = (v_1, \dots v_k) \in \mathbb{R}^{d \times k}$.
+  The $(v_1, \dots v_k)$ are called principal components.
   \item The resulting point cloud $\mathbf{Y} = \mathbf{X} P_k \in \mathbb{R}^{n \times k}$
 \end{itemize}
+
+How to choose $k$?
+Multiple ways
+\begin{itemize}
+  \item Experimental rule: take $k$ where there is an inflection point in the decreasing sequence $\lambda_1 \dots \lambda_d$
+  (inflection point of two lines going through two clusters of decreasing points in the scree plot;
+   roughly, after this point you stopped gaining a lot of variance)
+  \item Define a criterion: take $k$ such that $\frac{\lambda_1 + \dots + \lambda_k}{\lambda_1 + \dots + \lambda_n} \geq 1 - \alpha$.
+  For some $\alpha \in (0, 1)$ that determines the approximation error.
+  The numerator is called variance explained by the PCA and denominator (the Trace of $S$.) is called total variance.
+  \item Or for visualization, take $k = 2$ or $3$.
+\end{itemize}
+
+In practice, PCA is used to reduce dimensionality of point clouds that are not necessarily random.
+In statistics if $n \gg d$, the empirical covariance matrix $S$ is a consistent estimator of population covariance matrix $\Sigma$.
+In many applications such as gene expression, $n \ll d$ but the rank of $\Sigma$ could be fairly low, and one can do sparse PCA first before regression.
+
 
 
 \subsection{Markov chains}
