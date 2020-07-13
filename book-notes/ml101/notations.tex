@@ -2484,7 +2484,58 @@ In practice, PCA is used to reduce dimensionality of point clouds that are not n
 In statistics if $n \gg d$, the empirical covariance matrix $S$ is a consistent estimator of population covariance matrix $\Sigma$.
 In many applications such as gene expression, $n \ll d$ but the rank of $\Sigma$ could be fairly low, and one can do sparse PCA first before regression.
 
+\subsection{Generalized Linear Model}
 
+A linear model says $Y = X^T \beta + \epsilon$.
+
+If $\epsilon \sim \mathit{N}(0, ~ \sigma^2 I)$,
+$Y | X \sim \mathit{N}(\mu(x), ~ \sigma^2 I)$,
+where $\mu(x) = \mathbf{X}^T \beta$ in the linear case.
+
+The two components are
+\begin{itemize}
+  \item Random component: the response variable $Y | X$ is continuous and normally distributed with $\mu = \mu(x) = \mathbb{E}(Y | X)$
+  \item Link: between the random and covariates $X = (X^{(1)}, \dots X^{(p)})^T ~ : ~ \mu(X) = X^T \beta$.
+\end{itemize}
+
+In GLM,
+we relax the random component to be $Y | X \sim $ some exponential family distribution.
+
+And we relax the link component to $g(\mu(X)) = X^T \beta$, where $g$ is called link function.
+\\
+\\
+Example:
+modeling the expected number of new cases ($\mu_i$) on day $i$ for the early stages of a disease epidemic,
+assuming new cases increase exponentially,
+$$
+\mu_i = \gamma e^{(\delta t_i)}
+$$
+This model can be turned into GLM form by using a log link:
+$$
+\log{\mu_i} = \log{\gamma} + \delta t_i = \beta_0 + \beta_1 t_i
+$$
+
+Since this is a count, the Poisson distribution with expected value $\mu_i$ is probably a reasonable distribution.
+\\
+\\
+
+Another example, $\mu_i = \frac{\alpha x_i}{h + x}$ for a concave $(0, 1)$ plateauing at some value,
+we can use a reciprocal link to turn this into linear.
+\\
+\\
+In the Gaussian case, we have a closed form for LSE, and MLE is LSE,
+but in these more general cases, we need a different model fitting method.
+\\
+\\
+A family of distribution $\{P_{\theta} : \theta \in \Theta\}$, $\Theta \subset \mathbb{R}^k$ is said to be a
+\textbf{k-parameter exponential family} on $\mathbb{R}^k$, if there exist real valued functions
+$\eta_1, \dots \eta_k$ and $B$ of $\theta$, $T_1, \dots T_k$ and $h$ of $x \in \mathbb{R}^q$ s.t.
+the identity function (pmf or pdf) of $\P_{\theta}$ can be written as
+$$
+p_{\theta}(x) = \text{exp}[\sum_{i = 1}^{k} \eta_i(\theta) T_i(x) - B(\theta)] h(x)
+$$
+\textbf{intuition} being to constrain ways $\theta$ and $x$ can interact to
+$p_{\theta}(x) = \text{exp}(\theta x) f(\theta) g(x)$.
 
 \subsection{Markov chains}
 
