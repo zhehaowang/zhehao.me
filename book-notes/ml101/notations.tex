@@ -2534,8 +2534,65 @@ the identity function (pmf or pdf) of $\P_{\theta}$ can be written as
 $$
 p_{\theta}(x) = \text{exp}[\sum_{i = 1}^{k} \eta_i(\theta) T_i(x) - B(\theta)] h(x)
 $$
-\textbf{intuition} being to constrain ways $\theta$ and $x$ can interact to
+\textbf{Intuition} is to constrain ways $\theta$ and $x$ can interact to
 $p_{\theta}(x) = \text{exp}(\theta x) f(\theta) g(x)$.
+
+$f(\theta)$ is pushed into the $\exp$ as $B(\theta)$,
+which functions like a normalizing factor.
+$g(x)$ ($h(x)$ in the formula) allows us to account for discrete and continuous $x$,
+as if the density is expressed on a transformed $x$.
+\\
+\\
+We then want to show a Gaussian is of the exponential family:
+$X \sim \mathit{N}(\mu, \sigma^2)$, $\theta = (\mu, \sigma^2)$,
+$p_{\theta} = \frac{1}{\sigma \sqrt{2 \pi}} \text{exp}(-\frac{(x - \mu)^2}{2 \sigma^2})$.
+
+This holds when
+$T_1(x) = x$, $\eta_1(\theta) = \frac{\mu}{\sigma^2}$,
+$T_2(x) = x^2$, $\eta_2(\theta) = - \frac{1}{2 \sigma^2}$,
+$B(\theta) = \frac{\mu^2}{2 \sigma^2} + \log(\sigma \sqrt{2 \pi})$,
+$h(x) = 1$.
+Note that this is not the only solution,
+the constant term can go into $B$ or $h$.
+\\
+\\
+When $\sigma^2$ is known, $\theta = \mu$ and it becomes a one-parameter exponential family on $\mathbb{R}$.
+$\eta = \frac{\mu}{\sigma^2}$, $T(x) = x$,
+$B(\theta) = \frac{\mu^2}{2 \sigma^2}$, $h(x) = \frac{\text{exp}(-\frac{x^2}{2 \sigma^2})}{\sigma \sqrt(2 \pi)}$
+The term before $h(x)$ explains how the Gaussian scales with respect to a standard Gaussian.
+And $B(\theta)$ carries information about the mean, likelihood, etc (shown later).
+\\
+\\
+Discrete distributions, such as Bernoulli and Poisson, are also of this family.
+As is the continuous distributions, $\Gamma$, inverse $\Gamma$, inverse Gaussian, $\chi^2$, $\beta$, binomial and negative binomial.
+The uniform distribution is not of this family.
+\\
+\\
+\textbf{Canonical exponential family} for $k = 1$, $y \in \mathbb{R}$ is
+$$
+f_{\theta}(y) = \text{exp}(\frac{y \theta - b(\theta)}{\phi} + c(y, \phi))
+$$
+for some known functions $b$ and $c$.
+If $\phi$ is known, this is a one-parameter exponential family with $\theta$ being the canonical parameter.
+If not, this may or may not be a two-parameter exponential family.
+$\phi$ is called the dispersion parameter.
+
+The rest assumes $\phi$ is known.
+\\
+\\
+
+Let $l(\theta) = \log (f_{\theta} (Y))$ denote the log-likelihood function.
+The mean $\mathbb{E}(Y)$ and variance $\text{var}(Y)$ can be derived from the identities
+$\mathbb{E}(\frac{\partial l}{\partial \theta}) = 0$, and
+$\mathbb{E}(\frac{\partial^2 l}{\partial \theta^2}) + \mathbb{E}(\frac{\partial l}{\partial \theta})^2 = 0$
+obtained from $\int f_{\theta(y)} dy = 1$.
+
+Note that $l(\theta) = \frac{Y \theta - b(\theta)}{\phi} + c(Y; \phi)$,
+therefore $0 = \mathbb{E}(\frac{\partial l}{\partial \theta}) = \frac{\mathbb{E}(Y) - b'(\theta)}{\phi}$,
+and $\mathbb{E}(Y) = \mu = b'(\theta)$.
+
+Similarly, $\text{var}(Y) = b''(\theta) \phi$.
+Note that variance is positive, and this means $b(\theta)$ is convex.
 
 \subsection{Markov chains}
 
