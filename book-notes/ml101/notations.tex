@@ -2573,6 +2573,7 @@ $$
 f_{\theta}(y) = \text{exp}(\frac{y \theta - b(\theta)}{\phi} + c(y, \phi))
 $$
 for some known functions $b$ and $c$.
+
 If $\phi$ is known, this is a one-parameter exponential family with $\theta$ being the canonical parameter.
 If not, this may or may not be a two-parameter exponential family.
 $\phi$ is called the dispersion parameter.
@@ -2581,8 +2582,25 @@ The rest assumes $\phi$ is known.
 \\
 \\
 
+Expectation of the first derivative of the log likelihood function looks like:
+\begin{align*}
+  \mathbb{E}_{\theta}(\frac{\partial \log{f_{\theta}(x)}}{\partial \theta})
+    &= \mathbb{E}_{\theta}[\frac{\frac{\partial}{\partial \theta} f_{\theta}(x)}{f_{\theta}(x)}] \\
+    &= \int \frac{\frac{\partial}{\partial \theta} f_{\theta}(x)}{f_{\theta}(x)} f_{\theta}(x) dx \\
+    &= \int \frac{\partial}{\partial \theta} f_{\theta}(x) dx \\
+    &= \frac{\partial}{\partial \theta} \int f_{\theta}(x) dx \\
+    &= \frac{\partial}{\partial \theta} 1 \\
+    &= 0
+\end{align*}
+
+Similarly, we can derive that the expectation of the second derivative of the log likelihood function
+$\mathbb{E}_{\theta}[\frac{\partial^2 }{\partial \theta^2 } \log f_{\theta}(x)] = \mathbb{E}_{\theta}[(\frac{\partial \log{f_{\theta}(x)}}{\partial \theta})^2]$.
+\\
+\\
 Let $l(\theta) = \log (f_{\theta} (Y))$ denote the log-likelihood function.
-The mean $\mathbb{E}(Y)$ and variance $\text{var}(Y)$ can be derived from the identities
+
+The mean $\mathbb{E}(Y)$ and variance $\text{var}(Y)$ can be derived using the above conclusions:
+
 $\mathbb{E}(\frac{\partial l}{\partial \theta}) = 0$, and
 $\mathbb{E}(\frac{\partial^2 l}{\partial \theta^2}) + \mathbb{E}(\frac{\partial l}{\partial \theta})^2 = 0$
 obtained from $\int f_{\theta(y)} dy = 1$.
@@ -2593,6 +2611,20 @@ and $\mathbb{E}(Y) = \mu = b'(\theta)$.
 
 Similarly, $\text{var}(Y) = b''(\theta) \phi$.
 Note that variance is positive, and this means $b(\theta)$ is convex.
+\\
+\\
+For example, Poisson distribution $f(y) = \frac{\mu^y}{y!} e^{-\mu}$ written in canonical form has $b(\theta) = \mu$,
+$\theta = \log \mu$, $c(y, \phi) = - \log (y!)$, $\phi = 1$.
+Thus $b(\theta) = b'(\theta) = b''(\theta) = e^{\theta} = \mu$, which is the mean and variance of Poisson distribution.
+\\
+\\
+
+However, in GLM we don't care about $\mathbb{E}[Y]$, but rather $\mathbb{E}[Y | X]$,
+and this is where the link function comes in.
+
+We want the link function $g$ to be strictly increasing, continuously differentiable, $g(\mu)$ spans over $\mathbb{R}$ (image of the function $g$).
+
+These imply $g^{-1}$ exists and increasing.
 
 \subsection{Markov chains}
 
