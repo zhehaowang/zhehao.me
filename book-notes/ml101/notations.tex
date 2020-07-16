@@ -2625,6 +2625,39 @@ and this is where the link function comes in.
 We want the link function $g$ to be strictly increasing, continuously differentiable, $g(\mu)$ spans over $\mathbb{R}$ (image of the function $g$).
 
 These imply $g^{-1}$ exists and increasing.
+\\
+\\
+Some examples of link functions include
+\begin{itemize}
+  \item identity function for linear models.
+  \item $\log$ for Poisson data ($Y | X \sim Poisson(\mu(X)), \mu(X) > 0$, link function should map $(0, +\infty)$ to $\mathbb{R}$).
+  \item $\log(\frac{\mu(X)}{1 - \mu(X)})$ for Bernoulli / Binomial data where $0 < \mu < 1$ and $g$ should map $(0, 1)$ to $\mathbb{R}$ (logit, logistic regression).
+  Or we can use the inverse of normal CDF (probit), or a complementary log-log function.
+\end{itemize}
+
+The function $g$ that links the mean $\mu$ to the canonical parameter $\theta$ is called the \textbf{canonical link}.
+($\mu = b'(\theta)$)
+$$
+g(\mu) = \theta = (b')^{-1}(\mu)
+$$
+
+Ultimately we want to express our log likelihood function using $\beta$ (the parameter we are estimating in order to maximize likelihood),
+and $\beta$ is connected with $\mu(x)$ ($\mathbb{E}(Y | X)$) via $g(\mu(x)) = \beta^T X$, and $\mu(x)$ with $\theta$ via $b'$ or $(b')^{-1}$.
+
+So we have
+$$
+\theta = (b')^{-1}(\mu) = (b')^{-1}(g^{-1}(\mu)) = (b')^{-1}(g^{-1}(X^T \beta))
+$$
+
+If we have $n$ independent pairs of observation $(X_i, Y_i) \in \mathbb{R}^p \times \mathbb{R}$, $i = 1 \dots n$.
+The conditional distribution of $Y_i$ given $X_i = x_i$ has density in the canonical exponential family:
+$$
+f_{\theta_i}(y_i) = \text{exp}(\frac{y_i \theta_i - b(\theta_i)}{\phi} + c(y_i, \phi))
+$$
+
+and $\theta_i = (b')^{-1}(g^{-1}(X_i^T \beta))$.
+Denote the function $(b')^{-1}(g^{-1}(X_i^T \beta))$ as $h(X_i^T \beta)$.
+
 
 \subsection{Markov chains}
 
