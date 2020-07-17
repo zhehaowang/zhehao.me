@@ -2656,7 +2656,75 @@ f_{\theta_i}(y_i) = \text{exp}(\frac{y_i \theta_i - b(\theta_i)}{\phi} + c(y_i, 
 $$
 
 and $\theta_i = (b')^{-1}(g^{-1}(X_i^T \beta))$.
+
+Note that for different observations $(X_i, Y_i)$, $\beta$ does not depend on $i$.
+\\
+\\
 Denote the function $(b')^{-1}(g^{-1}(X_i^T \beta))$ as $h(X_i^T \beta)$.
+
+(If $g$ is the canonical link function, $h$ is identity.)
+\\
+\\
+The log-likelihood is then
+$$
+l_n(\beta; Y, X) = \sum_{i} \frac{Y_i h(X^T_i \beta) - b(h(X^T_i \beta))}{\phi}
+$$
+When we use the canonical link function $g$, we get
+$$
+l_n(\beta, \phi; Y, X) = \sum_{i} \frac{Y_i X^T_i \beta - b(X^T_i \beta)}{\phi}
+$$
+The first term is linear to $\beta$, which is both convex and concave,
+and when added on to the second term,
+does not affect the convexity of the entire function.
+\\
+\\
+We know that $b''(\theta)$ is positive,
+the second term is strictly convex,
+then $l_n(\beta, \phi; Y, X)$ is (strictly) concave.
+
+Hence when using canonical link, the MLE estimator is unique.
+\\
+\\
+
+Now, to optimize $l_n$ (a strictly concave function).
+
+We have \textbf{Newton-Raphson Method}, a black box.
+This performs quadratic approximation (second-order Taylor expansion).
+
+Suppose $f$ has a continuous Hessian map at $x_0$.
+Then we can approximate $f$ quadratically in a neighborhood of $x_0$ using
+$$
+f(x) \approx f(x_0) + \nabla^T_f (x_0) (x - x_0) + \frac{1}{2} (x - x_0)^T H_f(x_0) (x - x_0)
+$$
+Where $\nabla_f (x_0)$ is the gradient of $f$ at $x_0$,
+and $H_f (x_0)$ is the Hessian (second order partial derivative matrix) of $f$ at $x_0$,
+which is negative definite.
+
+Maximizing the right hand side (its derivative $\nabla = 0$), we have
+$$
+\nabla_f (x) = \nabla_f (x_0) + H_f (x_0) (x - x_0) = 0
+$$
+
+And the $x^*$ that maximize the right hand side is
+$$
+x^* = x_0 - H_f(x_0)^{-1} \nabla_f (x_0)
+$$
+This is a Newton iteration: starting at an arbitrary $x_0$,
+we use the above to get to $x^*$ that maximizes the right hand side,
+and keep iterating until convergence.
+
+Meaning
+$$
+x^{(k + 1)} = x^{(k)} - H_f (x^{(k)})^{-1} \nabla_f(x^{(k)})
+$$
+
+This second-order method (requiring a known Hessian) is more powerful than Gradient Descent,
+in practice inverting the matrix $H$ is extremely painful,
+and people use pseudo Hessian inverse to emulate the Hessian.
+
+\textbf{Fisher-scoring}.
+
+\textbf{Iteratively re-weighted least squares}.
 
 
 \subsection{Markov chains}
