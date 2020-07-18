@@ -2721,10 +2721,46 @@ $$
 This second-order method (requiring a known Hessian) is more powerful than Gradient Descent,
 in practice inverting the matrix $H$ is extremely painful,
 and people use pseudo Hessian inverse to emulate the Hessian.
+\\
+\\
 
-\textbf{Fisher-scoring}.
+Newton-Raphson method is general enough (works for a deterministic case without random data),
+however exploiting the structure of our specific GLM maximum likelihood optimization problem,
+computation can be made easier by replacing the Hessian with its expected value.
+\\
+\\
+The idea is to replace the Hessian with its expected value.
+Recall that $\mathbb{E}_{\theta}(H_{l_n}(\theta)) = -I (\theta)$ is the Fisher information.
+($l_n$ is the log-likelihood)
 
-\textbf{Iteratively re-weighted least squares}.
+The \textbf{Fisher-scoring} is then using the Fisher information matrix as a stand-in for the Hessian in the Newton-Raphson algorithm,
+giving the update:
+$$
+\theta^{(k + 1)} = \theta^{(k)} + I(\theta^{(k)})^{-1} \nabla_{l_n}(\theta^{(k)})
+$$
+This has the same convergence properties as Newton-Raphson,
+but $I$ is often easier to compute than $H_{l_n}$.
+\\
+\\
+
+\textbf{Iteratively re-weighted least squares} is an algorithm for fitting GLM obtained by Newton-Raphson / Fisher-scoring.
+
+According to the chain rule,
+\begin{align*}
+  \frac{\partial l_n}{\partial \beta_j} &= \sum_{i = 1}^{n} \frac{\partial l_i}{\partial \theta_i} \frac{\partial \theta_i}{\partial \beta_j} \\
+                                        &= \sum_{i} \frac{Y_i - \mu_i}{\phi} ~ h'(X_i^T \beta) ~ X_i^j \\
+                                        &= \sum_{i} (\tilde{Y_i} - \tilde{\mu_i}) ~ W_i ~ X_i^j
+\end{align*}
+Where $W_i = (\frac{h'(X_i^T \beta)}{g'(\mu_i) \phi})$,
+$\tilde{Y_i} = (g'(\mu_1) Y_1, \dots g'(\mu_n) Y_n)^T$,
+and $\tilde{\mu_i} = (g'(\mu_1) \mu_1, \dots g'(\mu_n) \mu_n)^T$.
+
+Rewriting the above in matrix form, the gradient is
+$$
+\nabla_{l_n} (\beta) = X^T ~ W ~ (\tilde{Y_i} - \tilde{\mu_i})
+$$
+Where $W$ is a diagonal matrix with $W_1, \dots W_n$ on the diagonal.
+
 
 
 \subsection{Markov chains}
