@@ -2744,6 +2744,7 @@ but $I$ is often easier to compute than $H_{l_n}$.
 \\
 
 \textbf{Iteratively re-weighted least squares} is an algorithm for fitting GLM obtained by Newton-Raphson / Fisher-scoring.
+The above iteration is turned into each step solving a least square problem.
 
 According to the chain rule,
 \begin{align*}
@@ -2757,11 +2758,47 @@ and $\tilde{\mu_i} = (g'(\mu_1) \mu_1, \dots g'(\mu_n) \mu_n)^T$.
 
 Rewriting the above in matrix form, the gradient is
 $$
-\nabla_{l_n} (\beta) = X^T ~ W ~ (\tilde{Y_i} - \tilde{\mu_i})
+\nabla_{l_n} (\beta) = \frac{\partial l_n}{\partial \beta_j} = X^T ~ W ~ (\tilde{Y_i} - \tilde{\mu_i})
 $$
 Where $W$ is a diagonal matrix with $W_1, \dots W_n$ on the diagonal.
 
+From the above before replacing with $W$, take second derivative to $\beta_k$,
+$$
+\frac{\partial^2 l_n}{\partial \beta_j \beta_k} =
+\sum_{i} \frac{Y_i - \mu_i}{\phi} ~ h''(X_i^T \beta) ~ X_i^j ~ X_i^k - \frac{1}{\phi} \sum_{i} (\frac{\partial \mu_i}{\partial \beta_k}) ~ h'(X_i^T \beta) ~ X_i^j
+$$
+Note that
+$$
+\frac{\partial \mu_i}{\partial \beta_k} =
+\frac{\partial b'(h(X_i^T \beta))}{\partial \beta_k} = b''(\theta_i) h'(X_i^T \beta) X_i^k
+$$
 
+And we take the expectation of $\frac{\partial^2 l_n}{\partial \beta_j \beta_k}$,
+we have 
+$$
+\mathbb{E}[\frac{\partial^2 l_n}{\partial \beta_j \beta_k} ~ | ~ X_1, \dots X_n] = - \frac{1}{\phi} \sum_{i} b''(\theta_i) ~ [h'(X_i^T \beta)]^2 X_i^k X_i^j
+$$
+And the matrix form
+$$
+\mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = - \frac{1}{\phi} \sum_{i} b''(\theta_i) ~ [h'(X_i^T \beta)]^2 X_i X_i^T
+$$
+
+Recall that
+$$
+b''(\theta_i) ~ h'(X_i^T \beta) = \frac{1}{g'(\mu_i)}
+$$
+As a result,
+$$
+\mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = - \frac{h'(X_i^T \beta)}{g'(\mu_i) \phi} X_i X_i^T
+$$
+
+Therefore $I(\beta) = - \mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = X^T W X$.
+
+Plugging this back to the Fisher scoring method iteration,
+\begin{align*}
+\beta^{(k + 1)} &= \beta^{(k)} + I(\beta^{(k)})^{-1} \nabla_{l_n}(\beta^{(k)}) \\
+                &= \beta^{(k)} + (X^T W^(k) X)^{-1} X^T W^{(k)} (\tilde{Y} - \tilde{\mu})
+\end{align*}
 
 \subsection{Markov chains}
 
