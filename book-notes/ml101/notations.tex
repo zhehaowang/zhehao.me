@@ -2573,6 +2573,7 @@ $$
 f_{\theta}(y) = \text{exp}(\frac{y \theta - b(\theta)}{\phi} + c(y, \phi))
 $$
 for some known functions $b$ and $c$.
+
 If $\phi$ is known, this is a one-parameter exponential family with $\theta$ being the canonical parameter.
 If not, this may or may not be a two-parameter exponential family.
 $\phi$ is called the dispersion parameter.
@@ -2581,8 +2582,25 @@ The rest assumes $\phi$ is known.
 \\
 \\
 
+Expectation of the first derivative of the log likelihood function looks like:
+\begin{align*}
+  \mathbb{E}_{\theta}(\frac{\partial \log{f_{\theta}(x)}}{\partial \theta})
+    &= \mathbb{E}_{\theta}[\frac{\frac{\partial}{\partial \theta} f_{\theta}(x)}{f_{\theta}(x)}] \\
+    &= \int \frac{\frac{\partial}{\partial \theta} f_{\theta}(x)}{f_{\theta}(x)} f_{\theta}(x) dx \\
+    &= \int \frac{\partial}{\partial \theta} f_{\theta}(x) dx \\
+    &= \frac{\partial}{\partial \theta} \int f_{\theta}(x) dx \\
+    &= \frac{\partial}{\partial \theta} 1 \\
+    &= 0
+\end{align*}
+
+Similarly, we can derive that the expectation of the second derivative of the log likelihood function
+$\mathbb{E}_{\theta}[\frac{\partial^2 }{\partial \theta^2 } \log f_{\theta}(x)] = \mathbb{E}_{\theta}[(\frac{\partial \log{f_{\theta}(x)}}{\partial \theta})^2]$.
+\\
+\\
 Let $l(\theta) = \log (f_{\theta} (Y))$ denote the log-likelihood function.
-The mean $\mathbb{E}(Y)$ and variance $\text{var}(Y)$ can be derived from the identities
+
+The mean $\mathbb{E}(Y)$ and variance $\text{var}(Y)$ can be derived using the above conclusions:
+
 $\mathbb{E}(\frac{\partial l}{\partial \theta}) = 0$, and
 $\mathbb{E}(\frac{\partial^2 l}{\partial \theta^2}) + \mathbb{E}(\frac{\partial l}{\partial \theta})^2 = 0$
 obtained from $\int f_{\theta(y)} dy = 1$.
@@ -2593,6 +2611,194 @@ and $\mathbb{E}(Y) = \mu = b'(\theta)$.
 
 Similarly, $\text{var}(Y) = b''(\theta) \phi$.
 Note that variance is positive, and this means $b(\theta)$ is convex.
+\\
+\\
+For example, Poisson distribution $f(y) = \frac{\mu^y}{y!} e^{-\mu}$ written in canonical form has $b(\theta) = \mu$,
+$\theta = \log \mu$, $c(y, \phi) = - \log (y!)$, $\phi = 1$.
+Thus $b(\theta) = b'(\theta) = b''(\theta) = e^{\theta} = \mu$, which is the mean and variance of Poisson distribution.
+\\
+\\
+
+However, in GLM we don't care about $\mathbb{E}[Y]$, but rather $\mathbb{E}[Y | X]$,
+and this is where the link function comes in.
+
+We want the link function $g$ to be strictly increasing, continuously differentiable, $g(\mu)$ spans over $\mathbb{R}$ (image of the function $g$).
+
+These imply $g^{-1}$ exists and increasing.
+\\
+\\
+Some examples of link functions include
+\begin{itemize}
+  \item identity function for linear models.
+  \item $\log$ for Poisson data ($Y | X \sim Poisson(\mu(X)), \mu(X) > 0$, link function should map $(0, +\infty)$ to $\mathbb{R}$).
+  \item $\log(\frac{\mu(X)}{1 - \mu(X)})$ for Bernoulli / Binomial data where $0 < \mu < 1$ and $g$ should map $(0, 1)$ to $\mathbb{R}$ (logit, logistic regression).
+  Or we can use the inverse of normal CDF (probit), or a complementary log-log function.
+\end{itemize}
+
+The function $g$ that links the mean $\mu$ to the canonical parameter $\theta$ is called the \textbf{canonical link}.
+($\mu = b'(\theta)$)
+$$
+g(\mu) = \theta = (b')^{-1}(\mu)
+$$
+
+Ultimately we want to express our log likelihood function using $\beta$ (the parameter we are estimating in order to maximize likelihood),
+and $\beta$ is connected with $\mu(x)$ ($\mathbb{E}(Y | X)$) via $g(\mu(x)) = \beta^T X$, and $\mu(x)$ with $\theta$ via $b'$ or $(b')^{-1}$.
+
+So we have
+$$
+\theta = (b')^{-1}(\mu) = (b')^{-1}(g^{-1}(\mu)) = (b')^{-1}(g^{-1}(X^T \beta))
+$$
+
+If we have $n$ independent pairs of observation $(X_i, Y_i) \in \mathbb{R}^p \times \mathbb{R}$, $i = 1 \dots n$.
+The conditional distribution of $Y_i$ given $X_i = x_i$ has density in the canonical exponential family:
+$$
+f_{\theta_i}(y_i) = \text{exp}(\frac{y_i \theta_i - b(\theta_i)}{\phi} + c(y_i, \phi))
+$$
+
+and $\theta_i = (b')^{-1}(g^{-1}(X_i^T \beta))$.
+
+Note that for different observations $(X_i, Y_i)$, $\beta$ does not depend on $i$.
+\\
+\\
+Denote the function $(b')^{-1}(g^{-1}(X_i^T \beta))$ as $h(X_i^T \beta)$.
+
+(If $g$ is the canonical link function, $h$ is identity.)
+\\
+\\
+The log-likelihood is then
+$$
+l_n(\beta; Y, X) = \sum_{i} \frac{Y_i h(X^T_i \beta) - b(h(X^T_i \beta))}{\phi}
+$$
+When we use the canonical link function $g$, we get
+$$
+l_n(\beta, \phi; Y, X) = \sum_{i} \frac{Y_i X^T_i \beta - b(X^T_i \beta)}{\phi}
+$$
+The first term is linear to $\beta$, which is both convex and concave,
+and when added on to the second term,
+does not affect the convexity of the entire function.
+\\
+\\
+We know that $b''(\theta)$ is positive,
+the second term is strictly convex,
+then $l_n(\beta, \phi; Y, X)$ is (strictly) concave.
+
+Hence when using canonical link, the MLE estimator is unique.
+\\
+\\
+
+Now, to optimize $l_n$ (a strictly concave function).
+
+We have \textbf{Newton-Raphson Method}, a black box.
+This performs quadratic approximation (second-order Taylor expansion).
+
+Suppose $f$ has a continuous Hessian map at $x_0$.
+Then we can approximate $f$ quadratically in a neighborhood of $x_0$ using
+$$
+f(x) \approx f(x_0) + \nabla^T_f (x_0) (x - x_0) + \frac{1}{2} (x - x_0)^T H_f(x_0) (x - x_0)
+$$
+Where $\nabla_f (x_0)$ is the gradient of $f$ at $x_0$,
+and $H_f (x_0)$ is the Hessian (second order partial derivative matrix) of $f$ at $x_0$,
+which is negative definite.
+
+Maximizing the right hand side (its derivative $\nabla = 0$), we have
+$$
+\nabla_f (x) = \nabla_f (x_0) + H_f (x_0) (x - x_0) = 0
+$$
+
+And the $x^*$ that maximize the right hand side is
+$$
+x^* = x_0 - H_f(x_0)^{-1} \nabla_f (x_0)
+$$
+This is a Newton iteration: starting at an arbitrary $x_0$,
+we use the above to get to $x^*$ that maximizes the right hand side,
+and keep iterating until convergence.
+
+Meaning
+$$
+x^{(k + 1)} = x^{(k)} - H_f (x^{(k)})^{-1} \nabla_f(x^{(k)})
+$$
+
+This second-order method (requiring a known Hessian) is more powerful than Gradient Descent,
+in practice inverting the matrix $H$ is extremely painful,
+and people use pseudo Hessian inverse to emulate the Hessian.
+\\
+\\
+
+Newton-Raphson method is general enough (works for a deterministic case without random data),
+however exploiting the structure of our specific GLM maximum likelihood optimization problem,
+computation can be made easier by replacing the Hessian with its expected value.
+\\
+\\
+The idea is to replace the Hessian with its expected value.
+Recall that $\mathbb{E}_{\theta}(H_{l_n}(\theta)) = -I (\theta)$ is the Fisher information.
+($l_n$ is the log-likelihood)
+
+The \textbf{Fisher-scoring} is then using the Fisher information matrix as a stand-in for the Hessian in the Newton-Raphson algorithm,
+giving the update:
+$$
+\theta^{(k + 1)} = \theta^{(k)} + I(\theta^{(k)})^{-1} \nabla_{l_n}(\theta^{(k)})
+$$
+This has the same convergence properties as Newton-Raphson,
+but $I$ is often easier to compute than $H_{l_n}$.
+\\
+\\
+
+\textbf{Iteratively re-weighted least squares} is an algorithm for fitting GLM obtained by Newton-Raphson / Fisher-scoring.
+The above iteration is turned into each step solving a least square problem.
+
+According to the chain rule,
+\begin{align*}
+  \frac{\partial l_n}{\partial \beta_j} &= \sum_{i = 1}^{n} \frac{\partial l_i}{\partial \theta_i} \frac{\partial \theta_i}{\partial \beta_j} \\
+                                        &= \sum_{i} \frac{Y_i - \mu_i}{\phi} ~ h'(X_i^T \beta) ~ X_i^j \\
+                                        &= \sum_{i} (\tilde{Y_i} - \tilde{\mu_i}) ~ W_i ~ X_i^j
+\end{align*}
+Where $W_i = (\frac{h'(X_i^T \beta)}{g'(\mu_i) \phi})$,
+$\tilde{Y_i} = (g'(\mu_1) Y_1, \dots g'(\mu_n) Y_n)^T$,
+and $\tilde{\mu_i} = (g'(\mu_1) \mu_1, \dots g'(\mu_n) \mu_n)^T$.
+
+Rewriting the above in matrix form, the gradient is
+$$
+\nabla_{l_n} (\beta) = \frac{\partial l_n}{\partial \beta_j} = X^T ~ W ~ (\tilde{Y_i} - \tilde{\mu_i})
+$$
+Where $W$ is a diagonal matrix with $W_1, \dots W_n$ on the diagonal.
+
+From the above before replacing with $W$, take second derivative to $\beta_k$,
+$$
+\frac{\partial^2 l_n}{\partial \beta_j \beta_k} =
+\sum_{i} \frac{Y_i - \mu_i}{\phi} ~ h''(X_i^T \beta) ~ X_i^j ~ X_i^k - \frac{1}{\phi} \sum_{i} (\frac{\partial \mu_i}{\partial \beta_k}) ~ h'(X_i^T \beta) ~ X_i^j
+$$
+Note that
+$$
+\frac{\partial \mu_i}{\partial \beta_k} =
+\frac{\partial b'(h(X_i^T \beta))}{\partial \beta_k} = b''(\theta_i) h'(X_i^T \beta) X_i^k
+$$
+
+And we take the expectation of $\frac{\partial^2 l_n}{\partial \beta_j \beta_k}$,
+we have 
+$$
+\mathbb{E}[\frac{\partial^2 l_n}{\partial \beta_j \beta_k} ~ | ~ X_1, \dots X_n] = - \frac{1}{\phi} \sum_{i} b''(\theta_i) ~ [h'(X_i^T \beta)]^2 X_i^k X_i^j
+$$
+And the matrix form
+$$
+\mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = - \frac{1}{\phi} \sum_{i} b''(\theta_i) ~ [h'(X_i^T \beta)]^2 X_i X_i^T
+$$
+
+Recall that
+$$
+b''(\theta_i) ~ h'(X_i^T \beta) = \frac{1}{g'(\mu_i)}
+$$
+As a result,
+$$
+\mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = - \frac{h'(X_i^T \beta)}{g'(\mu_i) \phi} X_i X_i^T
+$$
+
+Therefore $I(\beta) = - \mathbb{E}[H_{l_n}(\beta) ~ | ~ X_1, \dots X_n] = X^T W X$.
+
+Plugging this back to the Fisher scoring method iteration,
+\begin{align*}
+\beta^{(k + 1)} &= \beta^{(k)} + I(\beta^{(k)})^{-1} \nabla_{l_n}(\beta^{(k)}) \\
+                &= \beta^{(k)} + (X^T W^(k) X)^{-1} X^T W^{(k)} (\tilde{Y} - \tilde{\mu})
+\end{align*}
 
 \subsection{Markov chains}
 
