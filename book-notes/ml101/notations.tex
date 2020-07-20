@@ -2800,6 +2800,30 @@ Plugging this back to the Fisher scoring method iteration,
                 &= \beta^{(k)} + (X^T W^(k) X)^{-1} X^T W^{(k)} (\tilde{Y} - \tilde{\mu})
 \end{align*}
 
+
+Recall that with least squares, given $Y = X \beta + \epsilon$, we have $\hat{\beta} = (X^T X)^{-1} X^T Y$.
+If $\epsilon \sim \mathit{N}(0, I_d)$.
+
+However if $\epsilon \sim \mathit{N}(0, W^{-1})$, where $W^{-1}$ is a $n \times n$ diagonal matrix.
+When variances are different, the regression is said to be \textbf{heteroskedastic} (trust some areas less than you do others).
+
+And \textbf{weighted least squares} comes in to solve this problem.
+We want
+$$
+\argmin_{\beta}(Y - X \beta)^T W (Y - X \beta)
+$$
+And the solution is
+$$
+(X^T W X)^{-1} X^T W Y
+$$
+(we can get to this by plugging $\sqrt{W}$ into the terms before and after, since $W$ is diagonal.)
+
+Plugging this back to our problem, the response $Y = \tilde{Y} - \tilde{\mu} + X \beta^{(k)}$,
+design matrix $X$ is $X$,
+and weight matrix $W = W(\beta^{(k)})$.
+
+And we can obtain $\beta^{(k + 1)}$ using any system solving weighted least square.
+
 \subsection{Markov chains}
 
 Consider a physical system with the following properties
