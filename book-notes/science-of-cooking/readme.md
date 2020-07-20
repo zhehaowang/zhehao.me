@@ -617,14 +617,64 @@ Rich in starch, potatoes have fewer calories than pasta and rice, and are a good
 From a cook’s perspective, they group into "mealy" (floury) or "waxy".
 
 Know your potatoes
+Floury:
 * Maris Piper: high-starch mealy potato, ideal for roasting and fries.
 * King Edward: high-starch content and a floury texture when cooked, ideal for mashing.
 * Yukon Gold: with a fluffy texture and a medium starch content, these buttery yellow potatoes work well mashed or baked.
 * Rooster: high starch. versatile.
+* Idaho and Russet
 
+Waxy:
 * Charlotte: waxy, a relatively low number of starch granules and holds its shape during cooking, making it ideal for salads and gratins.
 * Desirée: holds its shape well for boiling or wedges.
 * Purple Majesty: suited for boiling and steaming.
 * Anya: slightly nutty flavor, ideal for salads or roasting with a pan of vegetables.
 
+##### Fruits
 
+Fruit has a host of enzymes and chemicals designed to deter pests, parasites, and bacterial invaders by turning its exposed flesh a mushy brown.
+Cooking to beyond 90C permanently disables these enzymes.
+Drizzling lemon juice over exposed fruit, or keeping in water, chilling also slows this browning.
+
+Juicer and blenders
+* Conventional juicers lose precious fiber and nutrients in the discarded pulp.
+* Blenders retain all of the pulp, but nutrients quickly degrade because protective enzymes start to brown produce as soon as it is damaged. Vitamin C and other delicate antioxidants degrade quickly when left sitting in a glass.
+* Whole fruits and vegetables offer the best nutritional value as vitamins aren’t degraded before eating.
+
+##### Ripening
+
+Ripening is coordinated by a chemical signal: ethylene gas, which plants release when the climate is right or if the fruit is damaged.
+Ripening softens fruit, releasing flavor molecules and increasing sugar levels.
+As bananas produce large quantities of ethylene, they can be used to ripen climacteric fruits (fruits that ripen off the plant, Kiwis, Peaches, Avocados, Tomatoes, Mangoes, Melons, etc, but not Oranges, Grapefruit, Lemons, Limes, Berries) at home.
+
+As fruit ripens, natural enzymes go to work, breaking down starches into sweet sugars, releasing fruity aromas, destroying green pigments, and weakening the strong pectin chemical "glue" that holds the cell walls together.
+
+Fresh olives are extremely bitter and barely edible thanks to a bitter substance called oleuropein.
+Traditionally olives are left in salt to shrivel or ferment for at least six weeks.
+Food producers can now make olives edible within one to two hours, which involved adding wood ash (alkaline) to water to break apart oleuropein.
+
+##### Frozen fruits
+
+Like most frozen foods, fruits suffer damage when frozen because spiky ice crystals form inside them.
+Commercially frozen fruits are rapidly "flash frozen" to at least –20C to limit how large these ice crystals grow, but because fruits contain so much water—typically over 80 percent—they lose much of their natural bite.
+
+### Microwaving
+
+* Agitates water and oil molecules in food (rather than heating air around food). (microwave in the oven changes direction constantly, causing water molecules to line up in different ways due to magnetic field.)
+* Difficult to defrost food evenly.
+* Doesn't brown food well: once surface dries, heating slows due to lack of moisture.
+* Aren't radioactive. Wavelength typically about 12cm, and cannot escape through the metal surface gaps.
+* Retains nutrients well.
+
+### Nuts
+
+Nuts are loaded with oils and protein: a plant pours its resources into its nuts and seeds to give the next generation the best chance of survival.
+
+Weight for weight they have more calories than most other ingredients (except cooking oil and butter).
+
+Know your nuts
+* Cashew, low fat, high protein, smooth, buttery, high in starch. Soup thickener.
+* Pistachio, Cashew family. Low fat, high protein, sweet and meaty.
+* Almonds, low fat, high protein, nutritious skin good for heart health.
+* Hazelnuts, medium fat, medium protein, full of healthy oils.
+* Walnuts, medium fat, medium protein, 
