@@ -3,6 +3,9 @@
 
 #include <header_with_static_const.h>
 
+// cannot be defined again
+// const int MyClass::d_x;
+
 int main() {
     std::cout << "invoking main\n";
     // When replacing #define with consts
@@ -19,7 +22,7 @@ int main() {
     // To test class member static const definitions
     MyClass mc;
     mc.d_obj.print();
-    std::cout << mc.d_x << "\n";
+    std::cout << mc.d_x << " " << mc.d_y << "\n";
     //const int* const addrOfStaticConst = &mc.d_x;
     return 0;
 }

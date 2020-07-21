@@ -1,14 +1,14 @@
 # Accustoming yourself with C++
 
-### View C++ as a federation of languages
+### Item 1: View C++ as a federation of languages
 
 View C++ as a federation of languages.
 The rules within each particular sublanguage tend to be straightforward, however, the rules change as you move from one sublanguage to another.
 
 The primary sublanguages are
-* C. Statements, blocks, preprocessor, built-in types, arrays, pointers, etc. C++ often offers superior approaches to the C counterparts
-* OO C++. Classes, encapsulation, inheritance, polymorphism, dynamic binding, etc
-* Template C++. The aspect of generic programming in C++
+* C. Statements, blocks, preprocessor, built-in types, arrays, pointers, etc. C++ often offers superior approaches to the C counterparts.
+* OO C++. Classes, encapsulation, inheritance, polymorphism, dynamic binding, etc.
+* Template C++. The aspect of generic programming in C++.
 * The STL. Containers, iterators, algorithms, function objects that mesh beautifully.
 
 Don't be surprised when moving from one sublanguage to another, the strategy might switch.
@@ -17,28 +17,31 @@ For example, pass built-in C types by value, but pass user defined C++ classes b
 **Takeaways**
 * Rules for effective C++ programming vary, depending on the part of C++ you are using.
 
-### Prefer const, enum, inline, to define
+### Item 2: Prefer `const`, `enum`, `inline`, to `define`
 
 Alternatively, this item can be called "prefer compilers to preprocessors"
 
-\#define is substituted by the preprocessor thus the symbol is never seen by the compiler, nor does it exist inside symbol table.
+`#define` is substituted by the preprocessor thus the symbol is never seen by the compiler, nor does it exist inside symbol table.
 A language const instead will be seen by the compiler.
 
 Advantages of using the latter include
-* The compiler will be able to point out the symbol should an error occur
-* If the const appears multiple times, the memory footprint is smaller using a const (only one copy in memory)
-* No way to create class-specific const with \#define because define does not respect scope
+* The compiler will be able to point out the symbol should an error occur.
+* If the `const` appears multiple times, the memory footprint is smaller using a `const` (only one copy in memory).
+* No way to create class-specific const with `#define` because define does not respect scope.
 
-When declaring const to replace \#define, keep in mind that pointers should have both the pointer and the object it refers to declared const. E.g.
+When declaring `const` to replace `#define`, keep in mind that pointers should have both the pointer and the object it refers to declared const. 
+
+E.g.
 ```cpp
 const char* const author = "me";
 ```
-Though item 3 would claim in this case, a const std::string is preferable
+Though item 3 would claim in this case, a `const std::string` is preferable.
 ```cpp
 const std::string author = "me";
 ```
 
-Another case to keep in mind is class-specific consts, to limit the scope of a constant to a class, you should make it a member, to ensure there is only one copy, make it a static member.
+Another case to keep in mind is class-specific `const`s, to limit the scope of a constant to a class, you should make it a member.
+To ensure there is only one copy, make it a static member.
 ```cpp
 class GamePlayer {
 private:
@@ -53,7 +56,7 @@ If you need to take the address of NumTurns, define it in the impl file of this 
 ...
 const int GamePlayer::NumTurns;  // definition
 ```
-This does not go in the header so that you don't double define when the header is included in multiple places, and the definition does not have '=' since an initial value is already given at the point of declaration.
+This does not go in the header so that you don't double define when the header is included in multiple places, and the definition does not have `=` since an initial value is already given at the point of declaration.
 
 In-class initialization is allowed only for integral types and only for constants.
 In cases where the above syntax can't be used, you put the initial value at the point of definition. Like this
@@ -68,7 +71,8 @@ const double                             // definition of static class
   CostEstimate::FudgeFactor = 1.35;      // constant; goes in impl. file
 ```
 
-If your compiler wrongfully forbid the in-class initialization of constant integral types, which is required to, for example, declare an array of that size, you could do the "enum hack". Like this
+If your compiler wrongfully forbid the in-class initialization of constant integral types, which is required to, for example, declare an array of that size, you could do the "enum hack".
+Like this
 ```cpp
 class GamePlayer {
 private:
@@ -81,10 +85,10 @@ private:
 
 };
 ```
-The enum hack can also be used to forbid your client caller from taking the address or a reference of 'NumTurns', or to enforce that compiler does not allocate memory for 'NumTurns' (due to its being unnecessary).
+The enum hack can also be used to forbid your client caller from taking the address or a reference of `NumTurns`, or to enforce that compiler does not allocate memory for `NumTurns` (due to its being unnecessary).
 And enum hack is fundamental for TMP.
 
-Another common misuse of \#define is to implement macros that look like functions but don't incur the cost of a function call.
+Another common misuse of `#define` is to implement macros that look like functions but don't incur the cost of a function call.
 This misuse can be confusing to reason, e.g.
 ```cpp
 #define CALL_WITH_MAX(a, b) f((a) > (b) ? (a) : (b))
@@ -94,9 +98,9 @@ int a = 5, b = 0;
 CALL_WITH_MAX(++a, b);          // a is incremented twice
 CALL_WITH_MAX(++a, b+10);       // a is incremented once
 ```
-Here, the number of times that a is incremented before calling f depends on what it is being compared with!
+Here, the number of times that `a` is incremented before calling `f` depends on what it is being compared with!
 
-Do this instead with a regular inline function using templates.
+Do this instead with a regular `inline` function using templates.
 ```cpp
 template<typename T>                               // because we don't
 inline void callWithMax(const T& a, const T& b)    // know what T is, we
@@ -105,18 +109,18 @@ inline void callWithMax(const T& a, const T& b)    // know what T is, we
 }
 ```
 
-Given the availability of consts, enums, and inlines, your need for the preprocessor (especially \#define) is reduced, but not eliminated.
-\#include, \#ifdef, \#ifndef continue to play important roles in controlling compilation.
+Given the availability of `const`, `enum`, and `inline`, your need for the preprocessor (especially `#define`) is reduced, but not eliminated.
+`#include`, `#ifdef`, `#ifndef` continue to play important roles in controlling compilation.
 
 **Takeaways**
-* For simple constants, prefer const objects or enums to #defines.
-* For function-like macros, prefer inline functions to #defines.
+* For simple constants, prefer `const` objects or `enum` to `#define`.
+* For function-like macros, prefer `inline` functions to `#defines`.
 
-### Use const whenever possible
+### Item 3: Use `const` whenever possible
 
-const is how you can communicate to the compiler and other programmers that a value should not be altered and the compiler will enforce it. Use it whenever this constraint holds.
+`const` is how you can communicate to the compiler and other programmers that a value should not be altered and the compiler will enforce it. Use it whenever this constraint holds.
 
-Using const with pointers:
+Using `const` with pointers:
 ```cpp
 char greeting[] = "Hello";
 
@@ -124,36 +128,36 @@ char *p = greeting;                    // non-const pointer,
                                        // non-const data
 
 const char *p = greeting;              // non-const pointer,
-                                       // const data
+                                       // const data.
 
 char * const p = greeting;             // const pointer,
-                                       // non-const data
+                                       // non-const data.
 
 const char * const p = greeting;       // const pointer,
-                                       // const data
+                                       // const data.
 ```
-If the word const appears to the left of the asterisk, what's pointed to is constant; if the word const appears to the right of the asterisk, the pointer itself is constant; if const appears on both sides, both are constant.
-If a const appears on the left of the asterisk, whether it's "const type" or "type const" makes no difference.
+If the word `const` appears to the left of `*`, what's pointed to is constant; if the word const appears to the right of `*`, the pointer itself is constant; if const appears on both sides, both are constant.
+If a `const` appears on the left of the asterisk, whether it's `const type` or `type const` makes no difference.
 
-An STL iterator is modeled on a pointer, declaring an iterator itself const will be analogous to declaring the pointer const.
-If with STL you want to declare the data const, use const\_iterator.
+An STL iterator is modeled on a pointer, declaring an `iterator` itself `const` will be analogous to declaring the pointer `const`.
+If with STL you want to declare the data `const`, use `const_iterator`.
 
 ```cpp
 std::vector<int> vec;
 ...
 
-const std::vector<int>::iterator iter =     // iter acts like a T* const
+const std::vector<int>::iterator iter =    // iter acts like a T* const
   vec.begin();
-*iter = 10;                                 // OK, changes what iter points to
+*iter = 10;                                // OK, changes what iter points to
 ++iter;                                    // error! iter is const
 
 std::vector<int>::const_iterator cIter =   //cIter acts like a const T*
   vec.begin();
 *cIter = 10;                               // error! *cIter is const
-++cIter;                                  // fine, changes cIter
+++cIter;                                   // fine, changes cIter
 ```
 
-const can be used to specify a function return value, its parameters, and the function itself if it is a member function.
+`const` can be used to specify a function return value, its parameters, and the function itself if it is a member function.
 
 Having a function return a constant value is generally inappropriate, but sometimes doing so can reduce the incidence of client errors without giving up safety or efficiency. For example,
 ```cpp
@@ -176,7 +180,7 @@ if (a * b = c) ...                     // oops, meant to do a comparison!
 One of the hallmarks of good user-defined types is that they avoid gratuitous incompatibilities with the built-ins.
 The above where the product of two can be assigned is to is pretty gratuitous.
 
-const member functions are important as they make the interface easier to understand (which functions can change the object in question), and they make it possible to work with const objects.
+`const` member functions are important as they make the interface easier to understand (which functions can change the object in question), and they make it possible to work with `const` objects.
 
 Member functions differing only in their constness can be overloaded. E.g.
 ```cpp
@@ -198,10 +202,10 @@ class TextBlock {
 
 It's never legal to modify the return value of a function that returns a built-in type. (and when modify the return value of a function, note that it'd be done on a copy of the source inside that function)
 
-Semantics-wise, there is bitwise constness and logical constness.
+Semantic-wise, there is **bitwise constness** and **logical constness**.
 C++ uses bitwise constness, where a const member function is not allowed to modify any of the bits inside the object.
 
-Bitwise const would mean if the object's data member is a pointer, inside a const member function where the pointer looks at cannot be changed, but the content of what it points to can be. For example,
+Bitwise `const` would mean if the object's data member is a pointer, inside a const member function where the pointer looks at cannot be changed, but the content of what it points to can be. For example,
 ```cpp
 class CTextBlock {
 public:
@@ -220,7 +224,7 @@ const CTextBlock cctb("Hello");        // declare constant object
 char *pc = &cctb[0];                   // call the const operator[] to get a
                                        // pointer to cctb's data
 
-*pc = 'J';                              // cctb now has the value "Jello"
+*pc = 'J';                             // cctb now has the value "Jello"
 // in the book this should allow you to change the value, though in my code
 // sample the assignment call results in 'bus error'
 ```

@@ -17,4 +17,5 @@ Oxford English Dictionary has 600k definitions in there, an average high school 
 
 Spelling - meaning connection. (silent letters)
 
-Chomsky - English spelling system is optimal. Spelling is not just pronunciation based, but also meaning based.
+Chomsky claims English spelling system is optimal.
+Spelling is not just pronunciation based, but also meaning based.
