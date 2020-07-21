@@ -677,4 +677,18 @@ Know your nuts
 * Pistachio, Cashew family. Low fat, high protein, sweet and meaty.
 * Almonds, low fat, high protein, nutritious skin good for heart health.
 * Hazelnuts, medium fat, medium protein, full of healthy oils.
-* Walnuts, medium fat, medium protein, 
+* Walnuts, medium fat, medium protein, high antioxidant level, bitter.
+* Brazil nuts, medium fat, medium protein, milk-like.
+* Pecans, high fat, low protein, similar healthy fats as in avocado and olives.
+* Macadamia, high fat, low protein, mostly monounsaturated fat. Ideal for sweet dishes and baked goods.
+
+Peanuts are not nuts but legumes.
+
+The healthful, aromatic oils concealed within nuts are unsaturated, making them good for our arteries but bad for storing.
+
+These delicate fat molecules are easily broken apart by light, heat, and moisture, and react readily with oxygen, fragmenting and degrading into acidic and offensive-tasting molecules.
+
+To maintain freshness, keep nuts in an airtight container in a dark, cool place, or in freezers.
+Nuts have a low moisture content, so they don’t suffer the ice-crystal damage that other frozen foods do.
+
+
