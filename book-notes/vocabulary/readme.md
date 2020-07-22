@@ -9,7 +9,7 @@ Principle of learning words: definition, context, connections, morphology / etym
 
 Factotum, Alfred batman's butler
 Factotum, Latin root. fac, totum
-Procrastine, Attican highwayman
+Procrustean, Attican highwayman
 
 Oxford English Dictionary has 600k definitions in there, an average high school / college person's receptive vocabulary is about 25k to 75k.
 
@@ -19,3 +19,7 @@ Spelling - meaning connection. (silent letters)
 
 Chomsky claims English spelling system is optimal.
 Spelling is not just pronunciation based, but also meaning based.
+
+Mountebank, (Italian) charlatan mounted on a bench. 
+Sophist, (Greek)
+

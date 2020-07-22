@@ -230,7 +230,7 @@ char *pc = &cctb[0];                   // call the const operator[] to get a
 ```
 
 Logical constness suggest that a const member function may modify parts of the object only if its clients cannot detect.
-This notion can be achieved with 'mutable' keyword. E.g.
+This notion can be achieved with `mutable` keyword. E.g.
 ```cpp
 class CTextBlock {
 public:
@@ -257,8 +257,8 @@ std::size_t CTextBlock::length() const
 }
 ```
 
-Now suppose you have boundary check, logging, etc in TextBlock's operator[].
-These logic would be duplicated in both the const and the non-const version.
+Now suppose you have boundary check, logging, etc in `TextBlock::operator[]`.
+These logic would be duplicated in both the `const` and the non-`const` version.
 To avoid the duplication, we could do a cast instead (which is usually a bad idea in other circumstances) like this
 ```cpp
 class TextBlock {
@@ -280,15 +280,15 @@ public:
   }
 };
 ```
-This is safe as when we are given a non-const TextBlock, we can safely invoke the const version and then cast its result.
-The other way round of having the const version call the non-const version is not something you want to do.
+This is safe as when we are given a non-`const` `TextBlock`, we can safely invoke the `const` version and then cast its result.
+The other way round of having the const version call the non-`const` version is not something you want to do.
 
 **Takeaways**
-* Declaring something const helps compilers detect usage errors. const can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.
-* Compilers enforce bitwise constness, but you should program using conceptual constness.
-* When const and non-const member functions have essentially identical implementations, code duplication can be avoided by having the non-const version call the const version.
+* Declaring something `const` helps compilers detect usage errors. `const` can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.
+* Compilers enforce bitwise constness, but you should program using logical constness.
+* When `const` and non-`const` member functions have essentially identical implementations, code duplication can be avoided by having the non-`const` version call the `const` version.
 
-### Make sure objects are initialized before they are used
+### Item 4: Make sure objects are initialized before they are used
 
 If you see this
 ```cpp
@@ -301,7 +301,8 @@ Point point;
 ```
 Reading uninitialized values yields undefined behavior. More often, reading them will result in semi-random bits.
 
-The rules for when they are and when they aren't could be too complicated to be worth remembering: in general, if you're in the C part of C++ (see Item 1) and initialization would probably incur a runtime cost, it's not guaranteed to take place. If you cross into the non-C parts of C++, things sometimes change. This explains why an array (from the C part of C++) isn't necessarily guaranteed to have its contents initialized, but a vector (from the STL part of C++) is.
+The rules for when they are and when they aren't could be too complicated to be worth remembering: in general, if you're in the C part of C++ (see Item 1) and initialization would probably incur a runtime cost, it's not guaranteed to take place.
+If you cross into the non-C parts of C++, things sometimes change. This explains why an array (from the C part of C++) isn't necessarily guaranteed to have its contents initialized, but a vector (from the STL part of C++) is.
 
 The best way to deal with this seemingly indeterminate state of affairs is to always initialize your objects before you use them.
 For non-member objects of built-in types, do this manually:
@@ -316,19 +317,21 @@ std::cin >> d;                            // an input stream
 ```
 For almost everything else, do this in ctors.
 Don't confuse member initialization list with assignments.
-Member initialization list will often be more efficient as they do a default ctor call (wasted) + copy assignment, as opposed to just one copycon call.
+Member initialization list will often be more efficient as assignments do a default ctor call (wasted) + copy assignment, as opposed to just one copycon call.
 Also sometimes member initialization list has to be used, e.g. data members that are const or references.
-Sometimes when multiple ctors have to duplicate the same member initialization lists and are undesirable, in which case we could use the assignment approach and make them call one function that does the assignment. But in general, always prefer the member initialization list.
+Sometimes when multiple ctors have to duplicate the same member initialization lists and are undesirable, in which case we could use the assignment approach and make them call one function that does the assignment, or with C++11, constructors are allowed to call other constructors.
+In general, always prefer the member initialization list.
 
 The order in which an object's data is initialized is defined: base class before derived class, and within a class, data members are initialized in the order they are declared. This is true even if member initialization list has a different order.
 To avoid confusion, always list the declaration and the member initialization list in the same order.
 
-And now on to the order of initialization of non-local static objects defined in different translation units.
+And now on to the order of initialization of non-local `static` objects defined in different translation units.
 
-Firstly, a static object is one that exists from the time it's constructed until the end of the program.
-Stack and heap-based objects are thus excluded. Included are global objects, objects defined at namespace scope, objects declared static inside classes, objects declared static inside functions, and objects declared static at file scope.
+Firstly, a `static` object is one that exists from the time it's constructed until the end of the program.
+Stack and heap-based objects are thus excluded. Included are global objects, objects defined at namespace scope, objects declared `static` inside classes, objects declared `static` inside functions, and objects declared `static` at file scope.
 
-Static objects inside functions are known as local static objects (because they're local to a function), and the other kinds of static objects are known as non-local static objects. Static objects are automatically destroyed when the program exits, i.e., their destructors are automatically called when main finishes executing.
+Static objects inside functions are known as local `static` objects (because they're local to a function), and the other kinds of `static` objects are known as non-local static objects.
+Static objects are automatically destroyed when the program exits, i.e. their destructors are automatically called when main finishes executing.
 
 The relative order of initialization of non-local static objects defined in different translation units is undefined.
 What if you want to control the order of their initialization then? Make them local instead: have a function call that instantiates them and return the static objects (like a singleton pattern). E.g.
@@ -339,7 +342,7 @@ What if you want to control the order of their initialization then? Make them lo
 // instantiated first.
 // now since the sequence would be undefined, we make both function-local static
 // instead, and make sure file system function is always called before temp directory
-// function.  
+// function.
 
 class FileSystem { ... };           // as before
 
@@ -380,4 +383,4 @@ Thus, to avoid using objects before they are initialized, you need to do
 **Takeaways**
 * Manually initialize objects of built-in type, because C++ only sometimes initializes them itself
 * In a constructor, prefer use of the member initialization list to assignment inside the body of the constructor. List data members in the initialization list in the same order they're declared in the class
-* Avoid initialization order problems across translation units by replacing non-local static objects with local static objects
+* Avoid initialization order problems across translation units by replacing non-local static objects with local static objects (Meyers Singleton)
