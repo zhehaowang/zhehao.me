@@ -1,6 +1,6 @@
 # Constructors, destructors, and assignment operators
 
-### Know what functions C++ silents writes and calls
+### Item 5. Know what functions C++ silents writes and calls
 
 If you don't declare a copy constructor, copy assignment operator, or destructor, C++ declares and defines one for you.
 If you don't declare any constructors, C++ declares a default constructor for you.
@@ -75,20 +75,20 @@ p = s;                                       // what should happen to
 **Takeaways**
 * Compilers may implicitly generate a class's default constructor, copy constructor, copy assignment operator, and destructor
 
-### Explicitly disallow the use of compiler generated functions you don't want
+### Item 6. Explicitly disallow the use of compiler generated functions you don't want
 
 As of C++03, the key to the solution is that all the compiler generated functions are public.
 To prevent these functions from being generated, you must declare them yourself, but there is nothing that requires that you declare them public. Instead, declare the copy constructor and the copy assignment operator private.
 By declaring a member function explicitly, you prevent compilers from generating their own version, and by making the function private, you keep people from calling it.
 And you don't implement it, so that member functions or friends cannot call these private functions.
-(Or, you could declare a base class Uncopyable whose copycon and assignment opr are made private, and make your class private inherit from Uncopyable, in which case, when trying to call your class's copycon or assignment opr within a friend, you'd get compiler error instead of linker error, which is preferable.)
+(Or, you could declare a base class `Uncopyable` whose copycon and assignment opr are made private, and make your class private inherit from `Uncopyable`, in which case, when trying to call your class's copycon or assignment opr within a `friend`, you'd get compiler error instead of linker error, which is preferable.)
 
 This would be obsolete by EMC++ item 11.
 
 **Takeaways**
 * To disallow functionality automatically provided by compilers, declare the corresponding member functions private and give no implementations. Using a base class like Uncopyable is one way to do this.
 
-### Declare dtors virtual in polymorphic base classes
+### Item 7. Declare dtors virtual in polymorphic base classes
 
 Declare a virtual destructor in a class if and only if that class contains at least one virtual function. (if it does not, it usually indicates the class is not meant to be inherited from)
 
@@ -105,7 +105,7 @@ std::string* ptr = new SpecialString(...);
 // undefined behavior
 delete ptr;
 ```
-The same analysis applies to any class lacking a virtual destructor, including all the STL container types (e.g., vector, list, set, std::unordered\_map.)
+The same analysis applies to any class lacking a virtual destructor, including all the STL container types (e.g., `vector`, `list`, `set`, `std::unordered_map`.)
 Don't inherit from STL container types!
 
 Occasionally it can be convenient to give a class a pure virtual destructor: if you want an abstract class (one that cannot be instantiated) but you don't have any pure virtual functions for it. You could give it a pure virtual dtor, but remember you have to provide a definition for this pure virtual dtor.
@@ -121,14 +121,14 @@ AWOV::~AWOV() {}                     // definition of pure virtual dtor
 Reason for needing a definition being when destroying an object of a derived class, the base class's dtor will be called after that of the derived class, and you provide a definition to base class's dtor since otherwise the linker would complain. 
 
 Some classes are designed to be used as base classes, yet are not designed to be used polymorphically.
-Such classes — examples include Uncopyable from Item 6, are not designed to allow the manipulation of derived class objects via base class interfaces.
+Such classes — examples include `Uncopyable` from Item 6, are not designed to allow the manipulation of derived class objects via base class interfaces.
 As a result, they don't need virtual destructors.
 
 **Takeaways**
 * Polymorphic base classes should declare virtual destructors. If a class has any virtual functions, it should have a virtual destructor
 * Classes not designed to be base classes or not designed to be used polymorphically should not declare virtual destructors
 
-### Prevent exceptions from leaving dtors
+### Item 8. Prevent exceptions from leaving dtors
 
 Consider this code.
 ```cpp
@@ -144,7 +144,7 @@ void doSomething()
   ...
 }                                // v is automatically destroyed here
 ```
-If an exception is thrown when the first element in v is destroyed, C++ has to finish destroying all the remaining Widgets in v, say another exception is thrown then, we'll have two exceptions at the same time, which is not allowed in C++ and causes undefined behavior or program termination.
+If an exception is thrown when the first element in `v` is destroyed, C++ has to finish destroying all the remaining `Widget` in v, say another exception is thrown then, we'll have two exceptions at the same time, which is not allowed in C++ and causes undefined behavior or program termination.
 
 What if your dtor needs to perform an action that might fail and cause an exception to be thrown?
 Suppose you have this class for DBConnection
@@ -228,7 +228,7 @@ private:
 ```
 
 Does this violate the principle of making interfaces easy to use?
-We would argue not as in this example, telling clients to call close themselves gives them an opportunity to deal with errors they would otherwise have no chance to react to.
+We would argue not as in this example, telling clients to call `close` themselves gives them an opportunity to deal with errors they would otherwise have no chance to react to.
 And if they don't want to deal with it, they'd still fall back on the dtor's default action.
 
 **Takeaways**
