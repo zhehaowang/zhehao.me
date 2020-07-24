@@ -235,7 +235,7 @@ And if they don't want to deal with it, they'd still fall back on the dtor's def
 * Destructors should never emit exceptions. If functions called in a destructor may throw, the destructor should catch any exceptions, then swallow them or terminate the program
 * If class clients need to be able to react to exceptions thrown during an operation, the class should provide a regular (i.e., non-destructor) function that performs the operation
 
-### Never call virtual functions during ctor or dtor
+### Item 9. Never call virtual functions during ctor or dtor
 
 Suppose you have this code.
 ```cpp
@@ -256,14 +256,14 @@ Transaction::Transaction()                        // implementation of
 
 class BuyTransaction: public Transaction {        // derived class
 public:
-  virtual void logTransaction() const;          // how to log trans-
-                                                // actions of this type
+  virtual void logTransaction() const;           // how to log trans-
+                                                 // actions of this type
   ...
 };
 class SellTransaction: public Transaction {      // derived class
 public:
-virtual void logTransaction() const;            // how to log trans-
-                                                // actions of this type
+  virtual void logTransaction() const;           // how to log trans-
+                                                 // actions of this type
   ...
 };
 
@@ -271,20 +271,20 @@ virtual void logTransaction() const;            // how to log trans-
 BuyTransaction b;
 ```
 Base class ctor would have to be called first:
-The version of logTransaction that's called is the one in Transaction, not the one in BuyTransaction — even though the type of object being created is BuyTransaction.
+The version of `logTransaction` that's called is the one in Transaction, not the one in `BuyTransaction` — even though the type of object being created is `BuyTransaction`.
 
 During base class construction, virtual functions never go down into derived classes. Instead, the object behaves as if it were of the base type.
 The reason for such is that while base class ctor is being called, derived class members aren't initialized yet. If we do call into derived class's overriden functions then we'd run into undefined behavior when those functions refer to members of the derived class.
 
 Actually, during base class construction of a derived class object, the type of object is that of the base class.
-Not only do virtual functions resolve to those of the base class, but also parts of the language using runtime type information (e.g., dynamic_cast and typeid) treat the object as a base class type: during base class ctor, the derived part does not exist yet, so it's best to treat the object's type as that of the base.
+Not only do virtual functions resolve to those of the base class, but also parts of the language using runtime type information (e.g., `dynamic_cast` and `typeid`) treat the object as a base class type: during base class ctor, the derived part does not exist yet, so it's best to treat the object's type as that of the base.
 An object doesn't become a derived class object until execution of a derived class constructor begins.
 
 The same reasoning applies during destruction.
 Once a derived class destructor has run, the object's derived class data members assume undefined values, so C++ treats them as if they no longer exist.
-Upon entry to the base class destructor, the object becomes a base class object, and all parts of C++ — virtual functions, dynamic_casts, etc., — treat it that way.
+Upon entry to the base class destructor, the object becomes a base class object, and all parts of C++ virtual functions, `dynamic_cast`, etc, treat it that way.
 
-In the above example code's case, it shouldn't link as logTransaction in base class is pure virtual.
+In the above example code's case, it shouldn't link as `logTransaction` in base class is pure virtual.
 Some compilers would also issue warnings about this.
 
 This more insidious version, however, will likely compile and link:
@@ -328,21 +328,21 @@ Transaction::Transaction(const std::string& logInfo)
 
 class BuyTransaction: public Transaction {
 public:
-BuyTransaction( parameters )
+BuyTransaction(parameters)
 : Transaction(createLogString(parameters ))             // pass log info
   { ... }                                               // to base class
    ...                                                  // constructor
 
 private:
-  static std::string createLogString( parameters );
+  static std::string createLogString(parameters);
 };
 ```
-Note the private static function createLogString, using a helper function like this is often more readable, and making it avoids accidentally using the data members of BuyTransaction in createLogString, whose uninitialized state is the reason why we parameterize the message in the first place.
+Note the private static function `createLogString`, using a helper function like this is often more readable, and making it avoids accidentally using the data members of `BuyTransaction` in `createLogString`, whose uninitialized state is the reason why we parameterize the message in the first place.
 
 **Takeaways**
 * Don't call virtual functions during construction or destruction, because such calls will never go to a more derived class than that of the currently executing constructor or destructor
 
-### Have assignment operators return a reference to \*this
+### Item 10. Have assignment operators return a reference to `*this`
 
 You can chain assignments together, and they are right associative.
 
@@ -358,16 +358,16 @@ x = (y = (z = 15));
 
 The way this is implemented is that assignment returns a reference to its left-hand argument, and that's the convention you should follow when you implement assignment operators for your classes.
 
-This convention applies to all assignment operators, not just the standard =, but also +=, -=.
+This convention applies to all assignment operators, not just the standard `=`, but also `+=`, `-=`.
 
 This is only a convention; code that doesn't follow it will compile.
-However, the convention is followed by all the built-in types as well as by all the types in the standard library (e.g., string, vector, complex, std::shared\_ptr, etc.).
+However, the convention is followed by all the built-in types as well as by all the types in the standard library (e.g., `string`, `vector`, `complex`, `std::shared_ptr`, etc.).
 Unless you have a good reason for doing things differently, don't.
 
 **Takeaways**
-* Have assignment operators return a reference to \*this
+* Have assignment operators return a reference to `*this`
 
-### Handle assignment to self in operator=
+### Item 11. Handle assignment to self in `operator=`
 
 Assignments to self are legal, so rest assured clients will do it.
 They may come in forms not easily recognizable, e.g.
@@ -398,7 +398,7 @@ private:
   Bitmap *pb;                                     // ptr to a heap-allocated object
 };
 ```
-The issue is that when assigning to self (rhs and \*this point to the same object), we would delete the Bitmap of rhs first, then try to use a copy of the deleted Bitmap.
+The issue is that when assigning to self (`rhs` and `*this` point to the same object), we would delete the Bitmap of rhs first, then try to use a copy of the deleted Bitmap.
 
 The traditional way to prevent self assignment is to add an identity test at the top. E.g.
 ```cpp
@@ -412,9 +412,9 @@ Widget& Widget::operator=(const Widget& rhs)
   return *this;
 }
 ```
-This version works, but it's exception-unsafe: if new Bitmap(...) yields an exception (insufficient memory, or copyctor of Bitmap throws), the Widget will end up holding a pointer to the deleted Bitmap.
+This version works, but it's exception-unsafe: if `new Bitmap(...)` yields an exception (insufficient memory, or copyctor of Bitmap throws), the `Widget` will end up holding a pointer to the deleted `Bitmap`.
 
-Making operator= exception-safe typically renders it self-assignment-safe, too. As a result, it's increasingly common to deal with issues of self-assignment by ignoring them, focusing instead on achieving exception safety.
+Making `operator=` exception-safe typically renders it self-assignment-safe, too. As a result, it's increasingly common to deal with issues of self-assignment by ignoring them, focusing instead on achieving exception safety.
 In this code to achieve exception safety, we only have to reorder the statements:
 ```cpp
 Widget& Widget::operator=(const Widget& rhs)
@@ -426,8 +426,8 @@ Widget& Widget::operator=(const Widget& rhs)
   return *this;
 }
 ```
-Now if the new throws, pb would still point at the old Bitmap which is not yet deleted.
-Self assignment would also be making a new copy, pointing pb to that new copy, and freeing the old Bitmap that pb used to point to.
+Now if the `new` throws, `pb` would still point at the old `Bitmap` which is not yet deleted.
+Self assignment would also be making a new copy, pointing `pb` to that new copy, and freeing the old `Bitmap` that `pb` used to point to.
 This may not look the most efficient when self-assigning (compared with the identity test), but before you add that in, consider how often self-assignment happens, and the cost of the check. (think bigger code, additional branch, the effectiveness of prefetching, caching and pipelining)
 
 An alternative to this reordering approach is copy-and-swap, discussed in more details in item 29. Like this
@@ -461,14 +461,14 @@ This may sacrifice clarity for 'cleverness'.
 Compilers may also generate more efficient code for this version (passing-by-value-copy over calling copy in function body).
 
 **Takeaways**
-* Make sure operator= is well-behaved when an object is assigned to itself. Techniques include comparing addresses of source and target objects, careful statement ordering, and copy-and-swap
+* Make sure `operator=` is well-behaved when an object is assigned to itself. Techniques include comparing addresses of source and target objects, careful statement ordering, and copy-and-swap
 * Make sure that any function operating on more than one object behaves correctly if two or more of the objects are the same
 
-### Copy all parts of an object
+### Item 12. Copy all parts of an object
 
 Say you don't like compiler's copy implementation and provided your own, compiler, in turn, does not warn you if your impl is only copying a part of the object. (E.g. when new data member gets added)
 
-Similarly, you'll need to update the ctors, other forms of assignment opr (+=, etc).
+Similarly, you'll need to update the ctors, other forms of assignment opr (`+=`, etc).
 
 A particular insidious case can arise through inheritance. E.g.
 ```cpp
@@ -499,12 +499,12 @@ PriorityCustomer::operator=(const PriorityCustomer& rhs)
   return *this;
 }
 ```
-The problem with this is the Customer part of PriorityCustomer will be default ctor'ed in the copy ctor, or in the copy assignment the Customer part is not assigned.
+The problem with this is the `Customer` part of `PriorityCustomer` will be default ctor'ed in the copy ctor, or in the copy assignment the Customer part is not assigned.
 
 Any time you take it upon yourself to write copying functions for a derived class, you must take care to also copy the base class parts. Like this:
 ```cpp
 PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
-:    Customer(rhs),                   // invoke base class copy ctor
+: Customer(rhs),                   // invoke base class copy ctor
   priority(rhs.priority)
 {
   logCall("PriorityCustomer copy constructor");
@@ -530,7 +530,7 @@ In practice, the two copying functions will often have similar bodies, and this 
 Your desire to avoid code duplication is laudable, but having one copying function call the other is the wrong way to achieve it.
 
 Instead, if you find that your copy constructor and copy assignment operator have similar code bodies, eliminate the duplication by creating a third member function that both call.
-Such a function is typically private and is often named init.
+Such a function is typically `private` and is often named `init`.
 This strategy is a safe, proven way to eliminate code duplication in copy constructors and copy assignment operators.
 
 **Takeaways**
