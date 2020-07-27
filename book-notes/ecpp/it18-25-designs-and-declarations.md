@@ -2,7 +2,7 @@
 
 Guidelines on designing good interfaces.
 
-### Make interfaces easy to use correctly and hard to use incorrectly
+### Item 18. Make interfaces easy to use correctly and hard to use incorrectly
 
 Assuming your clients want to use your interface correctly, then if they manage to use it incorrectly, your interface would be partially to blame.
 
@@ -40,10 +40,10 @@ Date d(Day(30), Month(3), Year(1995));    // error! wrong types
 Date d(Month(3), Day(30), Year(1995));    // okay, types are correct
 ```
 
-Making Day, Month, and Year full-fledged classes with encapsulated data would be better than the simple use of structs above (see Item 22).
+Making `Day`, `Month`, and `Year` full-fledged classes with encapsulated data would be better than the simple use of structs above (see Item 22).
 
 Once the right types are in place, it can sometimes be reasonable to restrict the values of those types.
-For example, there are only 12 valid month values, so the Month type should reflect that.
+For example, there are only 12 valid month values, so the `Month` type should reflect that.
 
 One way to achieve that is to use enums, with C++11, enum classes due to type-safety.
 Without using enums, you could do the following.
