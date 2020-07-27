@@ -71,9 +71,9 @@ If the idea of using functions instead of objects to represent specific months s
 And to remind you, unless there is good reason not to, have your types behave consistently with the built-in types. 
 The real reason can be phrased as have interfaces behave consistently (with built-in types, amongst themselves.)
 Think the STL: their container interfaces are largely (though not perfectly) consistent, and this helps make them fairly easy to use.
-E.g. every STL container has a member function named size that tells how many objects are in the container.
+E.g. every STL container has a member function named `size` that tells how many objects are in the container.
 
-Another way to prevent client errors is to restrict what can be done with a type, a common way is to add const qualifier.
+Another way to prevent client errors is to restrict what can be done with a type, a common way is to add `const` qualifier.
 
 Any interface that requires that clients remember to do something is prone to incorrect use, because clients can forget to do it.
 For example this one,
@@ -83,13 +83,15 @@ Investment* createInvestment();   // from Item 13; parameters omitted
 ```
 Returning a raw pointer means the client needs to remember to delete that pointer exactly once, when they are done using it.
 This would be error prone.
-Instead, the interface could return a std::unique\_ptr or a std::shared\_ptr, which also has the benefit if you need a custom deleter behavior (instead of relying on client calling a deleteInvestment(), you could bind that in the smart pointer instantiation).
+
+Instead, the interface could return a `std::unique_ptr` or a `std::shared_ptr`, which also has the benefit if you need a custom deleter behavior (instead of relying on client calling a `deleteInvestment()`, you could bind that in the smart pointer instantiation).
+
 Like this (with custom deleter)
 ```cpp
-std::tr1::shared_ptr<Investment> createInvestment()
+std::shared_ptr<Investment> createInvestment()
 {
-  std::tr1::shared_ptr<Investment> retVal(nullptr,
-                                          getRidOfInvestment);
+  std::shared_ptr<Investment> retVal(nullptr,
+                                     getRidOfInvestment);
 
   ...                                    // make retVal point to the
                                          // correct object
@@ -97,30 +99,30 @@ std::tr1::shared_ptr<Investment> createInvestment()
   return retVal;
 }
 ```
-The shared\_ptr version also works around the issue of cross-DLL deletion, where an object is created using new in one DLL and freed in another one. The shared pointer deletion in this case would guarantee that the same DLL news and deletes this object.
+The `shared_ptr` version also works around the issue of cross-DLL deletion, where an object is created using `new` in one DLL and freed in another one. The shared pointer deletion in this case would guarantee that the same DLL `new`s and `delete`s this object.
 
 **Takeaways**
 * Good interfaces are easy to use correctly and hard to use incorrectly. Your should strive for these characteristics in all your interfaces.
 * Ways to facilitate correct use include consistency in interfaces and behavioral compatibility with built-in types.
 * Ways to prevent errors include creating new types, restricting operations on types, constraining object values, and eliminating client resource management responsibilities.
-* std::shared\_ptr supports custom deleters. This prevents the cross-DLL problem, can be used to automatically unlock mutexes (see Item 14), etc.
+* `std::shared_ptr` supports custom deleters. This prevents the cross-DLL problem, can be used to automatically unlock mutexes (see Item 14), etc.
 
-### Treat class design like type design
+### Item 19. Treat class design like type design
 
 Defining a new class meant designing a new type, meaning you're not just a class designer, you're a type designer augmenting C++'s type system.
 You should therefore approach class design with the same care that language designers lavish on the design of the language's built-in types.
 Good types have a natural syntax, intuitive semantics, and one or more efficient implementations.
 
-How, then, do you design effective classes? First, you must understand the issues you face.
-* **How should objects of your new type be created and destroyed**: this affects your ctor and dtor, and potentially operator new delete new[] delete[] overload
+How do you design effective classes? First, you must understand the issues you face.
+* **How should objects of your new type be created and destroyed**: this affects your ctor and dtor, and potentially operator `new` `delete` `new[]` `delete[]` overload
 * **How should object initialization differ from object assignment**: this lets you decide how your ctors differ from assignment oprs
 * **What does it mean for objects of your new type to be passed by value**: copy ctor defines how pass-by-value is implemented for a type
 * **What are the restrictions on legal values for your new type**: usually only certain combinations of values for data members are valid (invariants that your class has to maintain). This determines the error checking you need to do, and your exception specification
-* **Does your new type fit into an inheritance graph**: do you inherit from other classes, what functions of theirs are declared virtual, do you intend for other classes to inherit from yours, what functions should your class declare virtual
-* **What kind of conversions are allowed for your type**: if you wish T1 to be implicitly convertible to T2, you will want either an operator T2 inside T1, or an non-explicit ctor in T2 that takes T1. If you want explicit conversions only, you'll write the conversions but avoid the two implicit approaches
+* **Does your new type fit into an inheritance graph**: do you inherit from other classes, what functions of theirs are declared `virtual`, do you intend for other classes to inherit from yours, what functions should your class declare `virtual`
+* **What kind of conversions are allowed for your type**: if you wish `T1` to be implicitly convertible to `T2`, you will want either an `operator T2` inside `T1`, or an non-explicit ctor in `T2` that takes `T1`. If you want explicit conversions only, you'll write the conversions but avoid the two implicit approaches
 * **What operators and functions make sense for the new type**
 * **What standard functions should be disallowed**
-* **Who should have access to the members of your new type**: public, protected, private members; friend functions; nest one class in another?
+* **Who should have access to the members of your new type**: `public`, `protected`, `private` members; `friend` functions; nest one class in another?
 * **What is the "undeclared interface" of your new type**: what guarantees do your class offer in terms of performance, exception safety, and resource usage (think locks and dynamic memory)
 * **How general is your new type**: are you defining one new type or a family of types? If it's the latter, you should probably define a class template
 * **Is the new type really what you need**
