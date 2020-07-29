@@ -130,7 +130,7 @@ How do you design effective classes? First, you must understand the issues you f
 **Takeaways**
 * Class design is type design. Before defining a new type, be sure to consider all the issues discussed in this item.
 
-### Prefer pass-by-reference-to-const to pass-by-value
+### Item 20. Prefer pass-by-reference-to-const to pass-by-value
 
 By default C++ passes by value, function parameters are initialized with copies of the actual argument.
 These copies are produced by the objects' copy ctors.
@@ -152,7 +152,7 @@ They can get bigger in the next release, or change as you switch to a different 
 * Prefer pass-by-reference-to-const over pass-by-value. It's typically more efficient and it avoids the slicing problem
 * The rule doesn't apply to built-in types and STL iterator and function object types. For them, pass-by-value is usually appropriate
 
-### Don't try to return a reference when you must return an object
+### Item 21. Don't try to return a reference when you must return an object
 
 Once folks learn passing by reference, some become so relenting with it that they start passing references to things that don't exist.
 
@@ -170,16 +170,16 @@ private:
 
 friend
    const Rational&                           // see Item 3 for why the
-     operator*(const Rational& lhs,         // return type is const
+     operator*(const Rational& lhs,          // return type is const
                const Rational& rhs) {
      Rational result(lhs.n * rhs.n, lhs.d * rhs.d);
      return result;
    }
 };
 ```
-Returning a reference to a local stack-allocated object would bring undefined behavior to anyone calling operator\*.
+Returning a reference to a local stack-allocated object would bring undefined behavior to anyone calling `operator*`.
 
-What about a heap allocated version? It won't be undefined behavior, but who's in charge of calling delete?
+What about a heap allocated version? It won't be undefined behavior, but who's in charge of calling `delete`?
 
 Imagine it's heap allocated with new instead and this code
 ```cpp
@@ -197,7 +197,7 @@ const Rational& operator*(const Rational& lhs,    // warning! yet more
   static Rational result;             // static object to which a
                                       // reference will be returned
 
-  result = ...;                      // multiply lhs by rhs and put the
+  result = ...;                       // multiply lhs by rhs and put the
                                       // product inside result
   return result;
 }
@@ -210,18 +210,18 @@ Rational a, b, c, d;
 
 ...
 if ((a * b) == (c * d))  {
-    do whatever's appropriate when the products are equal;
+   // do whatever's appropriate when the products are equal;
 } else    {
-   do whatever's appropriate when they're not;
+   // do whatever's appropriate when they're not;
 }
 
 // think of the equality test as
 if (operator==(operator*(a, b), operator*(c, d)))
 ```
-Not to mention the potentially undesirable lifetime, thread-safety issue of static, the above code's check will always be true.
-The two operator\* calls would be returning reference to the same object, so they are always equal.
+Not to mention the potentially undesirable lifetime, thread-safety issue of `static`, the above code's check will always be true.
+The two `operator*` calls would be returning reference to the same object, so they are always equal.
 
-The right way to write a function that must return a new object is to have that function return a new object. For Rational's operator\*, that means either the following code or something essentially equivalent:
+The right way to write a function that must return a new object is to have that function return a new object. For `Rational::operator*`, that means either the following code or something essentially equivalent:
 ```cpp
 inline const Rational operator*(const Rational& lhs, const Rational& rhs) {
   return Rational(lhs.n * rhs.n, lhs.d * rhs.d);
@@ -231,35 +231,35 @@ inline const Rational operator*(const Rational& lhs, const Rational& rhs) {
 It all boils down to this: when deciding between returning a reference and returning an object, your job is to make the choice that offers correct behavior. Let your compiler vendors wrestle with figuring out how to make that choice as inexpensive as possible.
 
 **Takeaways**
-* Never return a pointer or reference to a local stack object, a reference to a heap-allocated object, or a pointer or reference to a local static object if there is a chance that more than one such object will be needed. (Item 4 provides an example of a design where returning a reference to a local static is reasonable, at least in single-threaded environments.)
+* Never return a pointer or reference to a local stack object, a reference to a heap-allocated object, or a pointer or reference to a local `static` object if there is a chance that more than one such object will be needed. (Item 4 provides an example of a design where returning a reference to a local `static` is reasonable, at least in single-threaded environments.)
 
-### Declare data members private
+### Item 22. Declare data members `private`
 
-Why not public data members?
+Why not `public` data members?
 * Syntactic consistency (item 18), clients will know always to retrieve data members with getter functions instead of scratching their head trying to remember.
 * Member functions grant you more precise control. With member functions you can control read / write access, but with public members you can't.
-* Most importantly, encapsulation. If you implement access to a data member with a function, you can later replace the data member with a computation, and no clients will be affected. Hiding data members behind functional interfaces can offer all kinds of implementation flexibility. E.g. it makes it easy to notify other objects when data members are read or written, to verify class invariants and function pre-and postconditions, to perform synchronization in threaded environments, etc.
+* Most importantly, encapsulation. If you implement access to a data member with a function, you can later replace the data member with a computation, and no clients will be affected. Hiding data members behind functional interfaces can offer all kinds of implementation flexibility. E.g. it makes it easy to notify other objects when data members are read or written, to verify class invariants and function pre-and post-conditions, to perform synchronization in threaded environments, etc.
 
 If you hide your data members from your clients (i.e., encapsulate them), you can ensure that class invariants are always maintained, because only member functions can affect them. Furthermore, you reserve the right to change your implementation decisions later.
 Public means unencapsulated, and practically speaking, unencapsulated means unchangeable, especially for classes that are widely used.
 
-The argument against protected data members is similar.
-Aren't protected data members more encapsulated than public ones? Practically speaking, the surprising answer is that they are not.
+The argument against `protected` data members is similar.
+Aren't `protected` data members more encapsulated than public ones? Practically speaking, the surprising answer is that they are not.
 Something's encapsulation is inversely proportional to the amount of code that might be broken if that something changes.
 
-Suppose we have a protected data member, and we eliminate it.
+Suppose we have a `protected` data member, and we eliminate it.
 How much code might be broken now? All the derived classes that use it, which is typically an unknowably large amount of code, not unlike the case with public data members.
 
-From an encapsulation point of view, there are really only two access levels: private (which offers encapsulation) and everything else (which doesn't).
+From an encapsulation point of view, there are really only two access levels: `private` (which offers encapsulation) and everything else (which doesn't).
 
 **Takeaways**
-* Declare data members private. It gives clients syntactically uniform access to data, affords fine-grained access control, allows invariants to be enforced, and offers class authors implementation flexibility
-* protected is no more encapsulated than public
+* Declare data members `private`. It gives clients syntactically uniform access to data, affords fine-grained access control, allows invariants to be enforced, and offers class authors implementation flexibility
+* `protected` is no more encapsulated than `public`
 
-### Prefer non-member non-friend functions to member functions
+### Item 23. Prefer non-member non-friend functions to member functions
 
 Often times you'll find yourself facing the choice of having a function being a member of a class, a function in this translation unit / namespace.
-Say, you have a an object o with member functions a, b, c, and there is an action abc() that calls o.a(), o.b(), o.c(). Should abc() be a part of the class, or not (say, being a part of the namespace that the class is in)?
+Say, you have an object `o` with member functions `a`, `b`, `c`, and there is an action `abc()` that calls `o.a()`, `o.b()`, `o.c()`. Should `abc()` be a part of the class, or not (say, being a part of the namespace that the class is in)?
 
 Object-oriented principles dictate that data and the functions that operate on them should be bundled together.
 Object-oriented principles dictate that data should be as encapsulated as possible.
@@ -270,16 +270,16 @@ How encapsulated a data member in a class is can be evaluated by how many functi
 
 Thus when given the choice of a member / friend function vs a non-member non-friend option, the preferred choice in terms of encapsulation is always the non-member non-friend function.
 
-C++ doesn't require that all functions be a part of a class as Java, C\# does, so a natural approach in this case is to make the function (abc()) a part of the same namespace that the class is in.
+C++ doesn't require that all functions be a part of a class as Java, C\# does, so a natural approach in this case is to make the function `(abc())` a part of the same namespace that the class is in.
 
-Namespace, unlike classes, can spread across multiple files, and often times it only makes sense for some clients to know this abc(), and for those who don't care their compilation shouldn't require the declaration of abc() at all.
+Namespace, unlike classes, can spread across multiple files, and often times it only makes sense for some clients to know this `abc()`, and for those who don't care their compilation shouldn't require the declaration of `abc()` at all.
 To address this, we could split these functions declarations into different headers.
-This is how the std namespace is organized. memory, list, algorithm, vector, etc.
+This is how the `std` namespace is organized. memory, list, algorithm, vector, etc.
 Clients only need to include part of the std library headers where the required symbol is declared, and in turn their compilation would only depend on those headers.
 
 Partioning into different headers like described above is not possible for class member functions, as they have to appear in one file.
 
-This approach of putting abc() in the namespace of the class also allows clients to easily extend the namespace with helper functions they need. This is another feature the member function approach cannot offer: classes are closed to extension by clients.
+This approach of putting `abc()` in the namespace of the class also allows clients to easily extend the namespace with helper functions they need. This is another feature the member function approach cannot offer: classes are closed to extension by clients.
 
 **Takeaways**
 * Prefer non-member non-friend functions to member functions. Doing so increases encapsulation, packaging flexibility, and functional extensibilit
