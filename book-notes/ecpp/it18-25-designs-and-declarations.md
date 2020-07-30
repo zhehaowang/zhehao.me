@@ -284,10 +284,10 @@ This approach of putting `abc()` in the namespace of the class also allows clien
 **Takeaways**
 * Prefer non-member non-friend functions to member functions. Doing so increases encapsulation, packaging flexibility, and functional extensibilit
 
-### Declare non-member functions when type conversions should apply to all parameters
+### Item 24. Declare non-member functions when type conversions should apply to all parameters
 
-Having classes support implicit conversions is generally a bad idea, but there are exceptions. For example, a numerical Rational class.
-Having int and float being able to implicit convert to Rational is not a bad idea.
+Having classes support implicit conversions is generally a bad idea, but there are exceptions. For example, a numerical `Rational` class.
+Having `int` and `float` being able to implicit convert to `Rational` is not a bad idea.
 
 You may have this
 ```cpp
@@ -328,7 +328,7 @@ Rational result = oneHalf * oneEighth;            // fine
 result = result * oneEighth;                      // fine
 ```
 
-But if you also want to support doing multiply with an int, this breaks
+But if you also want to support doing multiply with an `int`, this breaks
 ```cpp
 result = oneHalf * 2;                             // fine
 result = 2 * oneHalf;                             // error!
@@ -338,13 +338,13 @@ result = oneHalf.operator*(2);                    // fine, implicit conversion f
 result = 2.operator*(oneHalf);                    // error!
 ```
 
-oneHalf has an operator\*, so it's fine.
-int doesn't, so compiler will look for non-member functions that can be called like operator\*(2, oneHalf), i.e. functions that are global, or in namespaces. But in this example, that search also fails.
+`oneHalf` has `operator*`, so it's fine.
+int doesn't, so compiler will look for non-member functions that can be called like `operator*(2, oneHalf)`, i.e. functions that are global, or in namespaces. But in this example, that search also fails.
 
 It turns out that parameters are eligible for implicit conversion only if they are listed in the parameter list.
-In terms of member function, \*this is not eligible to become target of implicit conversion, causing the second statement to fail.
+In terms of member function, `*this` is not eligible to become target of implicit conversion, causing the second statement to fail.
 
-So, to support mixed mode operators consistently, one approach is to make operator\* not a member. Like this
+So, to support mixed mode operators consistently, one approach is to make `operator*` not a member. Like this
 ```cpp
 const Rational operator*(const Rational& lhs,     // now a non-member
                          const Rational& rhs)     // function
@@ -360,15 +360,15 @@ result = oneFourth * 2;                           // fine
 result = 2 * oneFourth;                           // hooray, it works!
 ```
 
-The next question is should operator\* be a friend of Rational?
-In this case no, because operator\* can be implemented entirely on Rational's public interface.
-Whenever you can avoid friend functions, you should.
+The next question is should `operator*` be a friend of `Rational`?
+In this case no, because `operator*` can be implemented entirely on `Rational`'s public interface.
+Whenever you can avoid `friend` functions, you should.
 
 This item contains nothing but truth, but not the whole truth.
-When Rational is class template instead of a class, there are new things to consider.
+When `Rational` is class template instead of a class, there are new things to consider.
 
 **Takeaways**
-* If you need type conversions on all parameters to a function (including the one pointed to by the this pointer), the function must be a non-member
+* If you need type conversions on all parameters to a function (including the one pointed to by the `this` pointer), the function must be a non-member
 
 ### Consider support for a non-throwing swap
 
