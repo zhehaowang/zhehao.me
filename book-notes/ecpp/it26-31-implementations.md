@@ -2,7 +2,7 @@
 
 Coming up with appropriate definitions for your classes and declaration for your functions is often times lion's share of the battle, but there are still things in implementation to watch out for.
 
-### Postpone variable definitions as long as possible
+### Item 26. Postpone variable definitions as long as possible
 
 Unused variables come with the cost of ctors and dtors. Like this function
 ```cpp
@@ -21,10 +21,10 @@ std::string encryptPassword(const std::string& password)
   return encrypted;
 }
 ```
-The object encrypted isn't completely unused, only if an exception is thrown. Why not move it after the length check instead?
+The object `encrypted` isn't completely unused, only if an exception is thrown. Why not move it after the length check instead?
 
-With that the code is still not as tight as it might be: encrypted is defined without initialization.
-Say you are going to want encrypted to hold the value of password initially, then given to an encrypt call
+With that the code is still not as tight as it might be: `encrypted` is defined without initialization.
+Say you are going to want `encrypted` to hold the value of password initially, then given to an encrypt call
 ```cpp
 void encrypt(std::string& s);             // encrypts s in place
 
@@ -53,15 +53,15 @@ for (int i = 0; i < n; ++i){         for (int i = 0; i < n; ++i) {
 // 1 ctor + 1 dtor + n assignments   // n ctor + n dtor
 ```
 
-A is generally more efficient if you know an assignment costs less than a ctor-dtor pair.
-A also makes w visible in larger scope, something that's contrary to program comprehensibility and maintainability.
+`A` is generally more efficient if you know an assignment costs less than a ctor-dtor pair.
+`A` also makes `w` visible in larger scope, something that's contrary to program comprehensibility and maintainability.
 
-As a result, you should default to B unless you know assignment is less expensive than ctor-dtor pair and you are dealing with a performance sensitive part of your code.
+As a result, you should default to `B` unless you know assignment is less expensive than ctor-dtor pair and you are dealing with a performance sensitive part of your code.
 
 **Takeaways**
 * Postpone variable definitions as long as possible. It increases program clarity and improves program efficiency
 
-### Minimize casting
+### Item 27. Minimize casting
 
 In theory, if your program compiles cleanly, it's not trying to perform any unsafe or nonsensical operations on any objects.
 
@@ -120,7 +120,7 @@ int x, y;
 double d = static_cast<double>(x)/y;           // divide x by y, but use
                                                // floating point division
 ```
-Converting from int to double will most likely generate code due to different underlying representations.
+Converting from `int` to `double` will most likely generate code due to different underlying representations.
 
 Now what about this
 ```cpp
@@ -133,11 +133,11 @@ Derived d;
 Base *pb = &d;                         // implicitly convert Derived* ⇒ Base*
 ```
 Here we're just creating a base class pointer to a derived class object, but sometimes, the two pointer values will not be the same.
-When that's the case, an offset is applied at runtime to the Derived* pointer to get the correct Base* pointer value.
+When that's the case, an offset is applied at runtime to the `Derived*` pointer to get the correct `Base*` pointer value.
 
 When do such cases happen? It can't happen in C, C\# or Java, but it does happen in C++, with multiple inheritance.
 It can happen in single inheritance, too, so avoid making assumptions on how things are laid out, and performing casts based on such assumptions.
-E.g., casting object addresses to char* pointers and then using pointer arithmetic on them almost always yields undefined behavior.
+E.g., casting object addresses to `char*` pointers and then using pointer arithmetic on them almost always yields undefined behavior.
 
 Object layout is compiler specific, so by making the above assumptions, you are making your code unportable.
 
@@ -165,7 +165,7 @@ public:
 };
 ```
 This code does call the base class's `onResize` method, but not on `this` object!
-Instead, the cast creates a new, temporary copy of the base class part of `*this`, then invokes onResize on the copy!
+Instead, the cast creates a new, temporary copy of the base class part of `*this`, then invokes `onResize` on the copy!
 This can easily lead to object being in an invalid state.
 
 The solution is not to use cast but express what you really want to say:
@@ -194,7 +194,7 @@ To avoid this,
 
 Neither of these approaches (type safe containers, or moving virtual functions up the hierarchy) are universally applicable, but they offer alternatives to `dynamic_cast`.
 
-One thing you definitely want to avoid is cascading `dynamic_cast`, like in this inheritance hierarchy of Window, SpecialWindow1, SpecialWindow2, SpecialWindow3,
+One thing you definitely want to avoid is cascading `dynamic_cast`, like in this inheritance hierarchy of `Window`, `SpecialWindow1`, `SpecialWindow2`, `SpecialWindow3`,
 ```cpp
 typedef std::vector<std::shared_ptr<Window> > VPW;
 VPW winPtrs;
@@ -220,14 +220,14 @@ Good C++ uses few casts, but it's generally not practical to completely get rid 
 Like most suspicious constructs, casts should be isolated as much as possible, typically hidden inside functions whose interfaces shield callers from the grubby work being done inside.
 
 **Takeaways**
-* Avoid casts whenever practical, especially dynamic_casts in performance-sensitive code. If a design requires casting, try to develop a cast-free alternative
+* Avoid casts whenever practical, especially `dynamic_casts` in performance-sensitive code. If a design requires casting, try to develop a cast-free alternative
 * When casting is necessary, try to hide it inside a function. Clients can then call the function instead of putting casts in their own code
 * Prefer C++-style casts to old-style casts. They are easier to see, and they are more specific about what they do
 
-### Avoid returning handles to object internals
+### Item 28. Avoid returning handles to object internals
 
 Suppose you are working on a rectangle class represented by its upper left and lower right corners.
-To keep a Rectangle object small, you decided to keep the extents of a rectangle in a class pointed to by a member in the Rectangle object.
+To keep a `Rectangle` object small, you decided to keep the extents of a rectangle in a class pointed to by a member in the `Rectangle` object.
 ```cpp
 class Point {                      // class for representing points
 public:
@@ -248,10 +248,10 @@ class Rectangle {
   ...
 
 private:
-  std::shared_ptr<RectData> pData;   // see Item 13 for info on
-};                                   // tr1::shared_ptr
+  std::shared_ptr<RectData> pData;
+};
 ```
-Now you want to add functions in Rectangle to expose its points:
+Now you want to add functions in `Rectangle` to expose its points:
 ```cpp
 class Rectangle {
 public:
@@ -261,9 +261,9 @@ public:
   ...
 };
 ```
-This design is self-contradictory: const member functions (meant for read-only use) exposed internal private data that can be modified by client.
-In this case, ulhc and lrhc are effectively public.
-Since ulhc and lrhc are stored outside the Rectangle class, const member functions of Rectangle can return references to them. (limitation of bitwise const)
+This design is self-contradictory: `const` member functions (meant for read-only use) exposed internal private data that can be modified by client.
+In this case, `ulhc` and `lrhc` are effectively public.
+Since `ulhc` and `lrhc` are stored outside the `Rectangle` class, `const` member functions of Rectangle can return references to them. (limitation of bitwise const)
 
 Returning pointers, iterators demonstrates the same problem (breaking encapsulation): they are handles whose modification will affect internal members.
 
@@ -296,7 +296,7 @@ const Point *pUpperLeft =                   // get a ptr to the upper
                                             // bounding box
 ```
 `boundingBox(*pgo)` returns a temporary object that will be destroyed at the end of the statement.
-In turn, pUpperLeft will be dangled at the end of the statement that created it.
+In turn, `pUpperLeft` will be dangled at the end of the statement that created it.
 
 This is why returning a reference / iterator / pointer to an internal part of the object is dangerous: what if the reference outlives the object?
 
@@ -304,9 +304,9 @@ This doesn't mean you should never return a handle, sometimes you have to, e.g. 
 But such functions are exceptions, not the rule.
 
 **Takeaways**
-* Avoid returning handles (references, pointers, or iterators) to object internals. This increases encapsulation, helps const member functions act const, and minimizes the creation of dangling handles.
+* Avoid returning handles (references, pointers, or iterators) to object internals. This increases encapsulation, helps const member functions act `const`, and minimizes the creation of dangling handles.
 
-### Strive for exception-safe code
+### Item 29. Strive for exception-safe code
 
 Consider this code where we want to have this menu change background images in a threaded environment. 
 ```cpp
@@ -339,9 +339,9 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
 ```
 From the perspective of exception safety, this function is bad as it violates
 * Leak no resources: if this throws before unlock, mutex is locked forever
-* Don't allow data structures to become corrupted: if `new Image(imgSrc)` throws, bgImage is left pointing at a deleted object, and `imageChanges` is incremented
+* Don't allow data structures to become corrupted: if `new Image(imgSrc)` throws, `bgImage` is left pointing at a deleted object, and `imageChanges` is incremented
 
-Item 14 introduces a lockguard like RAII object to tackle mutex locking forever.
+Item 14 introduces a `lockguard`-like RAII object to tackle mutex locking forever.
 ```cpp
 void PrettyMenu::changeBackground(std::istream& imgSrc)
 {
@@ -357,7 +357,7 @@ To address data corruption, first we defines the terms.
 Exception-safe functions offer one of the three guarantees:
 * The basic guarantee promises if an exception is thrown, everything in the program is left in valid state. All objects are in internally consistent state, though the state of the entire program may not be predictable
 * The strong guarantee promises if an exception is thrown, the state of the program is unchanged. Calls to such functions are atomic (transactional) in the sense that if they succeed they succeed completely, and if they fail it's like they've never been called
-* The nothrow guarantee promises never to throw exceptions: the function always does what they promise to do. All operations on built-in types (int, pointer, etc) guarantee no throw. This is a critical building block of exception safe code.
+* The nothrow guarantee promises never to throw exceptions: the function always does what they promise to do. All operations on built-in types (`int`, `pointer`, etc) guarantee no throw. This is a critical building block of exception safe code.
 
 Empty throw specification does not mean a function is not going to throw.
 `int doSomething() throw();` indicates if an exception is thrown, it's a serious error and the "unexpected" function should be called. 
@@ -368,7 +368,7 @@ As a general rule, you want to offer the strongest guarantee that's practical.
 Anything dynamically allocating memory (all STL containers) typically throw a `bad_alloc` if it cannot find enough memory to satisfy the allocation.
 Offer no throw when you can, but most of the time, the choice is between strong exception guarantee and basic exception guarantee.
 
-Now if we change the `bgImage` pointer to a smart pointer (good idea from resource management perspective as well as exception safety perspective), and increment `imageChanges` after the `reset` (usually a good idea to change a status to reflect a state update only after the state update actually happens), we end up with
+Now if we change the `bgImage*` to a smart pointer (good idea from resource management perspective as well as exception safety perspective), and increment `imageChanges` after the `reset` (usually a good idea to change a status to reflect a state update only after the state update actually happens), we end up with
 ```cpp
 class PrettyMenu {
   ...
@@ -386,20 +386,20 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
   ++imageChanges;
 }
 ```
-Now there is no need for manual delete, and delete only happens if the reset succeeds.
+Now there is no need for manual `delete`, and delete only happens if the `reset` succeeds.
 
-Now this is almost a strong guarantee, except that imgSrc marker might moved in case of an exception.
+Now this is almost a strong guarantee, except that `imgSrc` marker might moved in case of an exception.
 
-It's important to know a general strategy that typically leads to exception safe code: copy-and-swap.
+It's important to know a general strategy that typically leads to exception safe code: **copy-and-swap**.
 In principle, if you want to change something, make a copy of it, change the copy, and swap the original with the copy.
 If any of the operation throws, the original object is not affected.
-And after the operations are done, use a no-throw swap to swap the copy and the original.
+And after the operations are done, use a no-throw `swap` to swap the copy and the original.
 
 This is usually implemented with a pimpl. Like this
 ```cpp
-struct PMImpl {                               // PMImpl = "PrettyMenu
-  std::tr1::shared_ptr<Image> bgImage;        // Impl."; see below for
-  int imageChanges;                           // why it's a struct
+struct PMImpl {      // see below for why it's a struct
+  std::shared_ptr<Image> bgImage;
+  int imageChanges; 
 };
 
 class PrettyMenu {
@@ -407,7 +407,7 @@ class PrettyMenu {
 
 private:
   Mutex mutex;
-  std::tr1::shared_ptr<PMImpl> pImpl;
+  std::shared_ptr<PMImpl> pImpl;
 };
 
 void PrettyMenu::changeBackground(std::istream& imgSrc)
@@ -416,7 +416,7 @@ void PrettyMenu::changeBackground(std::istream& imgSrc)
 
   Lock ml(&mutex);                            // acquire the mutex
 
-  std::tr1::shared_ptr<PMImpl>                // copy obj. data
+  std::shared_ptr<PMImpl>                     // copy obj. data
     pNew(new PMImpl(*pImpl));
 
   pNew->bgImage.reset(new Image(imgSrc));     // modify the copy
@@ -454,11 +454,11 @@ Time goes on. We live. We learn.
 * The strong guarantee can often be implemented via copy-and-swap, but the strong guarantee is not practical for all functions
 * A function can usually offer a guarantee no stronger than the weakest guarantee of the functions it calls
 
-### Understand the ins and outs of inlining
+### Item 30. Understand the ins and outs of inlining
 
 Inline replaces a function call with the body of the function code, which saves function call overhead, but results in larger object code size (in turn, additional page, reduced instruction cache hits, etc).
 
-On the other hand, if an inline function is very short, the code generated for the function body may be smaller than that generated for a function call, and the effects of larger object size would be reversed.
+On the other hand, if an `inline` function is very short, the code generated for the function body may be smaller than that generated for a function call, and the effects of larger object size would be reversed.
 
 Bear in mind `inline` is a request to the compiler, not a command.
 Inline can be implicit or explicit:
@@ -486,9 +486,9 @@ Inline functions must typically be in header files, because most compilers do in
 Templates are typically in header files, because compiler needs to know what a template looks like in order to instantiate it.
 (Some compilers can do instantiation at linking)
 
-It's not true that function templates must be inline, they are independent.
+It's not true that function templates must be `inline`, they are independent.
 
-Most compilers refuse to inline a function deemed too complicated (e.g. loops or recursion)
+Most compilers refuse to `inline` a function deemed too complicated (e.g. loops or recursion)
 
 Virtual function calls cannot be inlined: if what to call is only known at runtime, then compiler cannot replace the function call with function body.
 
@@ -537,23 +537,23 @@ E.g. like the following
 Derived::Derived()                       // conceptual implementation of
 {                                        // "empty" Derived ctor
 
-Base::Base();                           // initialize Base part
+Base::Base();                            // initialize Base part
 
-try { dm1.std::string::string(); }      // try to construct dm1
-catch (...) {                           // if it throws,
+try { dm1.std::string::string(); }       // try to construct dm1
+catch (...) {                            // if it throws,
    Base::~Base();                        // destroy base class part and
    throw;                                // propagate the exception
 }
 
-try { dm2.std::string::string(); }      // try to construct dm2
-catch(...) {                            // if it throws,
+try { dm2.std::string::string(); }       // try to construct dm2
+catch(...) {                             // if it throws,
    dm1.std::string::~string();           // destroy dm1,
    Base::~Base();                        // destroy base class part, and
    throw;                                // propagate the exception
 }
 
-try { dm3.std::string::string(); }      // construct dm3
-catch(...) {                            // if it throws,
+try { dm3.std::string::string(); }       // construct dm3
+catch(...) {                             // if it throws,
    dm2.std::string::~string();           // destroy dm2,
    dm1.std::string::~string();           // destroy dm1,
    Base::~Base();                        // destroy base class part, and
@@ -565,7 +565,7 @@ Considering all the code added by the compiler, inlining a ctor or dtor might le
 
 Library compiler must also consider that inlining a function makes it get compiled with client's code.
 Should the library decide to change that function, clients would now need to recompile as opposed to relink, which is often times undesirable.
-And if the library is dynamically, this change may be absorbed in a way transprent to clients.
+And if the library is dynamically linked, this change may be absorbed in a way transprent to clients.
 
 Most debuggers have trouble with inline functions (how do you set a breakpoint to a function that's not there?).
 Some debuggers do support it, while others may simply disable inlining for debug builds.
@@ -577,7 +577,7 @@ Then figure out the right functions to inline. (Remember the 80-20 rule of 80% o
 * Limit most inlining to small, frequently called functions. This facilitates debugging and binary upgradability, minimizes potential code bloat, and maximizes the chances of greater program speed
 * Don't declare function templates inline just because they appear in header files
 
-### Minimize compilation dependencies between files
+### Item 31. Minimize compilation dependencies between files
 
 When you change the private parts / implementation of a class, sometimes you have to recompile the entire project.
 Why? Arguably C++ doesn't do a good job splitting interface from implementation. Like this
@@ -648,12 +648,12 @@ int main() {
   ...
 }
 ```
-You could play the hide the implementation behind a pointer yourself, pimpl idiom, like this
+You could hide the implementation behind a pointer yourself, pimpl idiom, like this
 ```cpp
 #include <string>                      // standard library components
                                        // shouldn't be forward-declared
 
-#include <memory>                      // for tr1::shared_ptr; see below
+#include <memory>
 
 class PersonImpl;                      // forward decl of Person impl. class
 class Date;                            // forward decls of classes used in
@@ -668,8 +668,8 @@ public:
   std::string address() const;
 ...
 private:                                   // ptr to implementation;
-  std::tr1::shared_ptr<PersonImpl> pImpl;  // see Item 13 for info on
-};                                         // std::tr1::shared_ptr
+  std::shared_ptr<PersonImpl> pImpl;
+};
 ```
 This is a true separation of interface and implementation, whose key is replacement of dependencies on definitions with dependencies on declarations.
 
@@ -700,7 +700,6 @@ Here is what an impl of the pimpl `Person` (handle class) could look like
 ```cpp
 #include "Person.h"          // we're implementing the Person class,
                              // so we must #include its class definition
-
 
 #include "PersonImpl.h"      // we must also #include PersonImpl's class
                              // definition, otherwise we couldn't call
@@ -734,17 +733,17 @@ public:
 ```
 Clients of `Person` interface has to program in terms of pointers and references, due to being not possible to instantiate classes containing pure virtual methods.
 
-Clients of an interface class need a way to create new objects, typically via static functions called factory methods or virtual ctors.
+Clients of an interface class need a way to create new objects, typically via `static` functions called factory methods or virtual ctors.
 Like this
 ```cpp
 class Person {
 public:
 ...
 
-static std::tr1::shared_ptr<Person>    // return a tr1::shared_ptr to a new
-   create(const std::string& name,      // Person initialized with the
-          const Date& birthday,         // given params; see Item 18 for
-          const Address& addr);         // why a tr1::shared_ptr is returned
+static std::shared_ptr<Person>    // see Item 18 for why a shared_ptr is returned
+   create(const std::string& name,
+          const Date& birthday,
+          const Address& addr);
 ...
 };
 
@@ -755,7 +754,7 @@ Address address;
 ...
 
 // create an object supporting the Person interface
-std::tr1::shared_ptr<Person> pp(Person::create(name, dateOfBirth, address));
+std::shared_ptr<Person> pp(Person::create(name, dateOfBirth, address));
 ```
 And we'll need a concrete class to handle the actual work:
 ```cpp
@@ -779,10 +778,10 @@ private:
 };
 
 // and person's create function works like this
-std::tr1::shared_ptr<Person> Person::create(const std::string& name,
-                                            const Date& birthday,
-                                            const Address& addr) {
-  return std::tr1::shared_ptr<Person>(new RealPerson(name, birthday,addr));
+std::shared_ptr<Person> Person::create(const std::string& name,
+                                       const Date& birthday,
+                                       const Address& addr) {
+  return std::shared_ptr<Person>(new RealPerson(name, birthday,addr));
 }
 ```
 A more realistic implementation of `Person::create` would create different types of derived class objects, depending on function parameters, environment, etc.
@@ -795,12 +794,10 @@ It costs you some speed at runtime, plus some additional memory per object.
 Additional level of indirection, size of additional pointer, have to use heap allocation for pimpl;
 Needing to go through vptr and look at vtable for Interface class method call.
 
-Finally neither pimpl of interface classes can't get much use out of inline functions: inline needs to see function bodies (in the headers), but the point of pimpl or interface (in this instance) is to hide such details away.
+Finally neither pimpl nor interface classes can't get much use out of inline functions: inline needs to see function bodies (in the headers), but the point of pimpl or interface (in this instance) is to hide such details away.
 
-Don't be scared off by the runtime cost of pimpl / interface functions, use them in development where propoer.
+Don't be scared off by the runtime cost of pimpl / interface functions, use them in development where proper.
 
 **Takeaways**
 * The general idea behind minimizing compilation dependencies is to depend on declarations instead of definitions. Two approaches based on this idea are Handle classes and Interface classes
 * Library header files should exist in full and declaration-only forms. This applies regardless of whether templates are involved
-
-
