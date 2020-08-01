@@ -82,14 +82,15 @@ namespace client {
 
 void call_swap_right() {
   something::Foo foo1, foo2;
-  // call swap like this
+  // call swap like this, looks up swap in `something` namespace
+  // first, then global namespace and finally std 
   using std::swap;
   swap(foo1, foo2);
 }
 
 void call_swap_wrong() {
   something::Foo foo1, foo2;
-  // not like this
+  // not like this, dictates using std
   std::swap(foo1, foo2);
 }
 

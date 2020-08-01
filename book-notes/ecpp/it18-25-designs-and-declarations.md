@@ -370,11 +370,11 @@ When `Rational` is class template instead of a class, there are new things to co
 **Takeaways**
 * If you need type conversions on all parameters to a function (including the one pointed to by the `this` pointer), the function must be a non-member
 
-### Consider support for a non-throwing swap
+### Item 25. Consider support for a non-throwing `swap`
 
-swap is originally included as part of STL, and has since been a mainstay of exception-safe programming, and used to cope with the possibility of assignment to self.
+`swap` is originally included as part of STL, and has since been a mainstay of exception-safe programming, and used to cope with the possibility of assignment to self.
 
-A typical implementation of std::swap is like
+A typical implementation of `std::swap` is like
 ```cpp
 namespace std {
   template<typename T>          // typical implementation of std::swap;
@@ -386,7 +386,7 @@ namespace std {
   }
 }
 ```
-As long as your type supports copycon and copy assignment opr, the std::swap will work without additional effort.
+As long as your type supports copycon and copy assignment opr, the `std::swap` will work without additional effort.
 
 But this default implementation can be slow: three copy calls.
 E.g. think of a class following pimpl idiom (item 31):
@@ -417,9 +417,9 @@ private:
   WidgetImpl *pImpl;                         // ptr to object with this
 };                                           // Widget's data
 ```
-To swap two Widget objects we only need to swap the pointers, yet the std::swap has no way of knowing that.
+To `swap` two Widget objects we only need to `swap` the pointers, yet the `std::swap` has no way of knowing that.
 
-Using total template specialization (template\<\>, with the later \<Widget\> to specify this specialization is for Widget), we could tell std::swap function template to swap only the implementation pointers when dealing with Widget objects:
+Using total template specialization (`template<>`, with the later `<Widget>` to specify this specialization is for Widget), we could tell `std::swap` function template to swap only the implementation pointers when dealing with Widget objects:
 ```cpp
 namespace std {
   template<>                            // this is a specialized version
@@ -431,7 +431,7 @@ namespace std {
 }
 ```
 This, however, wouldn't compile due to pImpl being private.
-We could have this swap being a friend, but the convention here is different, we have swap being a public member of Widget which calls std::swap to swap the pointers. Like this
+We could have this swap being a friend, but the convention here is different, we have swap being a public member of Widget which calls `std::swap` to swap the pointers. Like this
 ```cpp
 class Widget {                     // same as above, except for the
 public:                            // addition of the swap mem func
@@ -456,10 +456,10 @@ namespace std {
   }                                // swap member function
 }
 ```
-This compiles and is compliant with how STL containers do it: public swap member function and template specialization for each container.
+This compiles and is compliant with how STL containers do it: public `swap` member function and template specialization for each container.
 
-What if Widget and WidgetImpl are instead class templates instead of classes?
-The swap member function inside is fine, but we can't partial specialize the swap function in std namespace like this
+What if `Widget` and `WidgetImpl` are instead class templates instead of classes?
+The swap member function inside is fine, but we can't partial specialize the `swap` function in `std` namespace like this
 ```cpp
 namespace std {
   template<typename T>
@@ -481,13 +481,13 @@ namespace std {
 }
 ```
 In general, overloading function templates is fine, but std is special:
-It's ok to specialize templates in std, but not ok to add new templates (or classes or functions or anything else) to std.
+It's ok to specialize templates in `std`, but not ok to add new templates (or classes or functions or anything else) to `std`.
 (However programs that cross this line will compile, but this will be undefined behavior.)
 
-Unfortunately, this overload template in std will be seen as adding functions to std, and this approach yields undefined behavior per above. 
+Unfortunately, this overload template in `std` will be seen as adding functions to `std`, and this approach yields undefined behavior per above. 
 So what do we do?
-We still declare an overload, just not in std namespace.
-Say Widget's in namespace WidgetStuff, we could do
+We still declare an overload, just not in `std` namespace.
+Say `Widget`'s in namespace `WidgetStuff`, we could do
 ```cpp
 namespace WidgetStuff {
   ...                                     // templatized WidgetImpl, etc.
@@ -506,13 +506,13 @@ namespace WidgetStuff {
 }
 ```
 
-Now if code anywhere calls swap on two Widgets, the name lookup rule (argument dependent lookup, or Koenig lookup) will find this version in WidgetStuff, which is what we want.
+Now if code anywhere calls `swap` on two `Widget`s, the name lookup rule (argument dependent lookup, or Koenig lookup) will find this version in `WidgetStuff`, which is what we want.
 (If you are not using namespaces the above would still work, but why clog everything in global namespace?)
 
 Should we use this approach all the time then?
-There is still a case for specializing std::swap. In fact, to have your class specific version of swap be called in as many places as possible, you need to write both a non-member version in the same namespace as your class, and a specialization of std::swap.
+There is still a case for specializing `std::swap`. In fact, to have your class specific version of `swap` be called in as many places as possible, you need to write both a non-member version in the same namespace as your class, and a specialization of `std::swap`.
 
-Now, from a client's perspective, you want to call swap
+Now, from a client's perspective, you want to call `swap`
 ```cpp
 template<typename T>
 void doSomething(T& obj1, T& obj2)
@@ -523,8 +523,8 @@ void doSomething(T& obj1, T& obj2)
 }
 ```
 Which one do you want to call?
-The one in std (exist)? Its specialization (may or may not exist)? A T-specific swap (may exist but not in std namespace)?
-You'll want to call a T-specific one if it exists, but fall back to general version in std if not.
+The one in `std` (exist)? Its specialization (may or may not exist)? A `T`-specific swap (may exist but not in `std` namespace)?
+You'll want to call a `T`-specific one if it exists, but fall back to general version in `std` if not.
 
 To achieve this, you do
 ```cpp
@@ -537,34 +537,34 @@ void doSomething(T& obj1, T& obj2)
   ...
 }
 ```
-With this, name lookup rules dictate swap will find T-specific swap at global scope or in the same namespace as type T (argument dependent lookup).
-If no T-specific swap exists, compilers will use swap in std, thanks to the using statement that makes std::swap visible.
-Even then, compiler would still prefer a specialization if there is one, over the general std::swap template.
+With this, name lookup rules dictate `swap` will find `T`-specific `swap` at global scope or in the same namespace as type `T` (argument dependent lookup).
+If no `T`-specific swap exists, compilers will use `swap` in `std`, thanks to the using statement that makes `std::swap` visible.
+Even then, compiler would still prefer a specialization if there is one, over the general `std::swap` template.
 
 Keep in mind the one thing you don't want to do is qualify the call, like
 ```cpp
 std::swap(obj1, obj2);  // the wrong way to call swap
 ```
 
-You'd force the compiler to consider only the std one and its specializations, eliminating the possibility of using a more T-specific one elsewhere.
+You'd force the compiler to consider only the `std` one and its specializations, eliminating the possibility of using a more `T`-specific one elsewhere.
 
-Some programmers do call swap like the above, thus the need for swap's writers to provide the fully specialized version, to accommodate such clients. (such code is present even in std's implementation)
+Some programmers do call `swap` like the above, thus the need for `swap`'s writers to provide the fully specialized version, to accommodate such clients. (such code is present even in `std`'s implementation)
 
 To summarize:
-* if the default swap offers acceptable efficiency for your class, don't do anything
-* if not, do the following: offer a public member function swap (that should never throw); offer a non-member swap in the same namespace as your class, have it call the member version; if you are writing a class (not a class template), specialize std::swap for your class and have it call the member version
+* if the default `swap` offers acceptable efficiency for your class, don't do anything
+* if not, do the following: offer a `public` member function `swap` (that should never throw); offer a non-member `swap` in the same namespace as your class, have it call the member version; if you are writing a class (not a class template), specialize `std::swap` for your class and have it call the member version
 
-Finally, if you are using swap as a client, be sure to do using std::swap and not qualify the swap call.
+Finally, if you are using `swap` as a client, be sure to do `using std::swap` and not qualify the `swap` call.
 
-Now on exception safety, the most useful application of swap is to help classes offer strong exception safety guarantee.
+Now on exception safety, the most useful application of `swap` is to help classes offer strong exception safety guarantee.
 This constraint (never throws) only applies on the member version as the default version uses copycon and copy assignment, both of which are allowed to throw in general.
 
-When you write a custom version of swap, you are typically offering more than just an efficient way to swap values; you're also offering one that doesn't throw exceptions.
+When you write a custom version of `swap`, you are typically offering more than just an efficient way to swap values; you're also offering one that doesn't throw exceptions.
 
-As a general rule, these two swap characteristics go hand in hand, because highly efficient swaps are almost always based on operations on built-in types (such as the pointers underlying the pimpl idiom), and operations on built-in types never throw exceptions.
+As a general rule, these two `swap` characteristics go hand in hand, because highly efficient swaps are almost always based on operations on built-in types (such as the pointers underlying the pimpl idiom), and operations on built-in types never throw exceptions.
 
 **Takeaways**
-* Provide a swap member function when std::swap would be inefficient for your type. Make sure your swap doesn't throw exceptions
-* If you offer a member swap, also offer a non-member swap that calls the member. For classes (not templates), specialize std::swap, too
-* When calling swap, employ a using declaration for std::swap, then call swap without namespace qualification
-* It's fine to totally specialize std templates for user-defined types, but never try to add something completely new to std
+* Provide a `swap` member function when `std::swap` would be inefficient for your type. Make sure your `swap` doesn't throw exceptions
+* If you offer a member `swap`, also offer a non-member `swap` that calls the member. For classes (not templates), specialize `std::swap`, too
+* When calling `swap`, employ a `using` declaration for `std::swap`, then call `swap` without namespace qualification
+* It's fine to totally specialize `std` templates for user-defined types, but never try to add something completely new to `std`
