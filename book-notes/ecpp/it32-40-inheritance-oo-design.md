@@ -1,6 +1,6 @@
 # Inheritance and Object Oriented Design
 
-### Make sure public inheritance models "is-a"
+### Item 32. Make sure public inheritance models "is-a"
 
 Public inheritance means "is-a", commit this to memory.
 
@@ -89,9 +89,9 @@ This means using public inheritance, which suggests everything applicable to a r
 Two other common relationships are "has-a" and "is-implemented-in-terms-of", which will be discussed in later items.
 
 **Takeaways**
-* Public inheritance means “is-a.” Everything that applies to base classes must also apply to derived classes, because every derived class object is a base class object
+* Public inheritance means "is-a". Everything that applies to base classes must also apply to derived classes, because every derived class object is a base class object
 
-### Avoid hiding inherited names
+### Item 33. Avoid hiding inherited names
 
 Name hiding (shadowing) looks like this:
 ```cpp
@@ -263,7 +263,7 @@ When inheritance is combined with templates, an entirely different form of the "
 * Names in derived classes hide names in base classes. Under public inheritance, this is never desirable
 * To make hidden names visible again, employ using declarations or forwarding functions
 
-### Differentiate between inheritance of interface and inheritance of implementation
+### Item 34. Differentiate between inheritance of interface and inheritance of implementation
 
 Public inheritance turns out to have two different notions, inheritance of interface (like a declaration) and inheritance of impl (like a definition).
 Sometimes you want the derived to inherit only the declaration, sometimes you want both but derived can override the impl, and sometimes you want both but derived cannot override.
@@ -317,7 +317,7 @@ protected:
 };
 
 void Airplane::defaultFly(const Airport& destination) {
-  default code for flying an airplane to the given destination
+  // default code for flying an airplane to the given destination
 }
 ```
 The derived classes that can use the default behavior do this:
@@ -345,7 +345,7 @@ public:
 };
 
 void ModelC::fly(const Airport& destination) {
-  code for flying a ModelC airplane to the given destination
+  // code for flying a ModelC airplane to the given destination
 }
 ```
 This is not fool proof, but safer than just a simple virtual function.
@@ -363,8 +363,8 @@ public:
 
 void Airplane::fly(const Airport& destination)     // an implementation of
 {                                                  // a pure virtual function
-  default code for flying an airplane to
-  the given destination
+  // default code for flying an airplane to
+  // the given destination
 }
 
 class ModelA: public Airplane {
@@ -388,7 +388,7 @@ public:
 };
 
 void ModelC::fly(const Airport& destination) {
-  code for flying a ModelC airplane to the given destination
+  // code for flying a ModelC airplane to the given destination
 }
 ```
 This is almost exactly the same as above, except that `Airplane::fly` takes the place of `Airplane::defaultFly`.
