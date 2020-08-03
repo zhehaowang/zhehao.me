@@ -10,7 +10,7 @@ In philosophy there is a **critical, disinterested skepticism**, towards the pri
 The pursuit would be **wisdom itself**, not wisdom for the sake of something else.
 And a philosophical realization made through skeptical analysis and debates would not end with an exclamation mark, but with semicolon.
 
-The Greek civilization of 6 Century BC would not have been more powerful than the Egyptians or Persians, yet the latter were not considered to have laid the foundations of Western civilization.
+The Greek civilization of 6th Century BC would not have been more powerful than the Egyptians or Persians, yet the latter were not considered to have laid the foundations of Western civilization.
 How developed the thoughts are of a people / country / culture does not necessarily reflect how wealthy / powerful the group is (their ability to solve practical problems and influence others).
 Nor would philosophy be the product of a leisurely Hellenistic upper class built upon labor of slaves and indentured servants.
 Egyptians and Persians would have been better suited in that regard.
@@ -42,11 +42,11 @@ The lawfulness with which we enter social life is based off of numbers.
 
 Also known for his theorem on right angle triangle and (himself / his school's) contribution to discovery of harmonic structure of music (harmony, matches with something in the soul; what creates a harmony is the relationship between notes) (part of the intended design of the cosmos).
 
-Over time we won't exist but rectilinear triangle will, mathematical abstractions will, and will remain correct, precise in describing the relationships in physical world.
+Over time we won't exist but rectilinear triangle will, mathematical abstractions will, and will remain correct and precise in describing the relationships in physical world.
 
 Also believes in transmigration of souls, death liberates something in us.
 
-Pi, e, sqrt(-1) has no place in Pythagoreanism?
+`Pi`, `e`, `sqrt(-1)` has no place in Pythagoreanism.
 
 Sophia, wisdom itself; and Pythagoras considered himself a philosopher, as he strived to and have befriended wisdom itself.
 
@@ -65,7 +65,7 @@ Aristotle notes that they have just completed a systematic consideration of natu
 Centuries later people notes his work after the physics treatise as metaphysics: after the physics / natural science work.
 
 **Metaphysics** deals with the subject of real existence.
-* What is there: **ontology** (being, the branch of metaphysics that deals with reality and existence. After change, does the original still exist? Cause and effect. Are there minds and thoughts, or just peculiar states of the brain, are they merely terms hankering to superstitution? Does what really exists vary being by being i.e. sensory apparatus? What sort of being am I? What am I made of, made for?)
+* What is there: **ontology** (being, the branch of metaphysics that deals with reality and existence. After change, does the original still exist? Cause and effect. Are there minds and thoughts, or just peculiar states of the brain, are they merely terms hankering to superstition? Does what really exists vary being by being i.e. sensory apparatus? What sort of being am I? What am I made of, made for?)
 * Our modes of knowing: **epistemology**. Epistemological (systematic, organization and principle of facts) questions: are senses wrong? If so, what is right? Abstract rationality of Pythagoras? Customs? Religion? Epistemology is the study, criticism and refinements of our modes of knowing. Epistemic justification.
 
 Is there heaven? Is there such a thing as goodness? Is there a moral reality and objectivity? Is there real beauty? Is there truth? Is there right or wrong?
@@ -74,35 +74,35 @@ The conclusion we reach is more or less based on the method we choose, often tim
 There tends to be a vicious circularity, between the claim (ontology) and the methods (epistemology).
 
 Certainly the harmony and balance Greek perceived as beautiful, is not the same as what medieval artists found beautiful in their depiction of human form.
-Yet the Greeks philosophers were unaware of the shifting.
 
 **Democritus**: ultimate reality is but an incredibly large of atoms. Atoms and the space in between (the void).
 Everything is ultimately reducible to that level. What we see as flowers, buildings, animals are but ephemeral, different in atomic composition.
-The soul is a finer kind of atomics structure.
+The soul is a finer kind of atomic structure.
 
 Earth, air, fire and water.
 
 Can we even answer the ontological questions? Beautiful or ugly? True or false? Moral or not?
 
-**Heraclitus**: "no one descends twice in the same river". Sees nothing but flux and change.
+**Heraclitus**: _"no one descends twice in the same river"_. Sees nothing but flux and change.
 
 **Protagoras**: pre-Socratic. Founding father of **Sophist** thought.
-"Man is the measure of all things."
+_"Man is the measure of all things."_
 Judgment of any form, must have some grounding, and that grounding can only be the experiences of a lifetime, we cannot take an epistemological position external to our own human ways of thought and feeling.
 If there is a standard independent of human nature, we cannot even comprehend it.
 
 Hence, is pursuing truth a misguided objective? Each person is the measure of all things. Truth is subjective. We are not equipped to comprehend it, even if there might be objective.
 
-About the gods, I cannot say if they are or how they are constituted in shape, the unclarity of the subject and the shortness of human lives.
+About the gods, I cannot say if they are or how they are constituted in shape.
 I can write you about what I see and hear and touch, but I cannot write you about the gods.
 
-**Socrates** spends much of his work disputing the Sophists: much can be questioned about the claim.
-Each man not only is not the measure of all things, we are generally very poor in understanding ourselves.
+**Socrates** spends much of his work disputing the Sophists: much can be questioned about Protagoras's claim.
+Each man is not the measure of all things. We are generally very poor in understanding ourselves.
 With him philosophy becomes a humanizing and humanistic enterprise (the human condition), from which there is no retreat.
 
 ### Greek tragedian on men's fate
 
-Dance is important in Homer, Ovid and other classical authors. Dance of cranes Theseus.
+Dance is important in Homer, Ovid and other classical authors.
+E.g. Dance of cranes Theseus.
 
 Chorus + Dance + Participants and preliterate history and moral thought.
 
@@ -143,12 +143,12 @@ Solon would claim only after one's story is complete can one be judged whether t
 
 Teaching of Socrates is preserved by Zenophon and Plato (broad shoulders), who claims to be the mere scribe but his works are much more a portrayal of his and Socrates's thoughts via Socrates's mouth, than mere description.
 
-Socrates lived in a time when Athens lost the Peloponnesian War against Sparta, and as a loyal faithful soldier of Athens, his thoughts are very often on the practical side, what went wrong with Athens, in matters of educating the youth, of conduct and government.
+Socrates lived in a time when Athens lost the Peloponnesian War against Sparta, and as a loyal faithful soldier of Athens, his thoughts are very often on the practical side: what went wrong with Athens, in matters of educating the youth, of conduct and government.
 The Dialogues are conducted by the losing side, which often explains him taking a Spartan view on the matters above.
 
 Socrates described himself as a gadfly asking those confident in their thoughts, reminding us of the gadfly sent by Zeus to unseat Bellerophon from Pegasus, an analogy for unseating the confident writers.
 
-He was well trained by his Sophist teachers (sophistical teaching), known for their skills in debate and rhetorics and to expose the ignorance of the interlocuter via whimsical and deft conversations.
+He was well trained by his Sophist teachers (sophistical teaching), known for their skills in debate and rhetorics and to expose the ignorance of the interlocutor via whimsical and deft conversations.
 
 Yet Socrates aimed to defeat the skepticism and cynicism, claiming that there is something we can truly know, and knowing that our methodology of knowing is sound, contrasting his thoughts from those of Pythagoras.
 
@@ -160,15 +160,16 @@ Neither charges were truthful, and Socrates had the choice of death or exile (os
 
 A Homeric ending (think Hector "breaker of horses") where upon death, he uttered "will you remember to pay the debt".
 
-Socrates would teach "the unexamined life is not worth living".
+Socrates would teach _"the unexamined life is not worth living"_.
 What is wrong with the unexamined?
 Socrates would describe it as a screen on which events are laid out and not a lived life, as prisoners living in a cave watching parapets on which the shadows of puppets are cast, where all they see is shadows and illusion.
 
 Examine, in the sense of interpretation of meaning of events, integration of experience, subject to the refinements through self criticism and introspection, and making the thought whole.
 
-This connects back to the motto at the Oracle of Delphi "know thyself", meaning knowing what it means to be a human being? Beyond the biology, constituents, etc.
+This connects back to the motto at the Oracle of Delphi _"know thyself"_, meaning knowing what it means to be a human being. Beyond the biology, constituents, etc.
+
 The Socratic agenda would argue against skepticism and cynicism, and realizing the interconnectedness between matters of knowledge, conducts and governance.
-Dealing first with knowledge and establishing a good philosophical basis that there is something we can know, one kernel of truth we can know (if we can't know anything as the skepticists claim, then the life is uselessly examined, prejudices and self deceptions).
+Dealing first with knowledge and establishing a good philosophical basis that there is something we can know, one kernel of truth we can know (if we can't know anything as the skepticists claim, then the life is uselessly examined: prejudices and self deceptions).
 If it is possible to know something, know that you know it, and know the methodology of knowing it, then we can inquire into what kind of life is right for beings such as ourselves? Happiness and pleasure? Are they the same for all people, all cultures?
 What about our values? Are they just relative, opinions and prejudices? What about governance, how should we be governed? Are the core precepts of Athenian democracy to be questioned?
 
