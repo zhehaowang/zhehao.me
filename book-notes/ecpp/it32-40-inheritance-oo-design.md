@@ -414,7 +414,7 @@ Also avoid the mistake of declaring all functions virtual in a base class where 
 * Simple (impure) virtual functions specify inheritance of interface plus inheritance of a default implementation
 * Non-virtual functions specify inheritance of interface plus inheritance of a mandatory implementation
 
-### Consider alternatives to virtual functions
+### Item 35. Consider alternatives to virtual functions
 
 Suppose that you are designing a game where different game characters have different ways of calculating health values.
 ```cpp
@@ -430,7 +430,7 @@ While this approach might seem obvious, there are possible alternatives.
 
 ##### Non virtual interface idiom
 
-Let's begin with the interesting school of thought that virtual functions should almost always be private.
+Let's begin with the interesting school of thought that `virtual` functions should almost always be `private`.
 Adherents to this school would make `healthValue` a non-virtual public method that calls into a virtual private method `doHealthValue`, like this
 ```cpp
 class GameCharacter {
@@ -565,7 +565,7 @@ GameLevel currentLevel;
 EvilBadGuy ebg2(                                  // character using a
   std::bind(&GameLevel::health,                   // health calculation
           currentLevel,                           // member function;
-          std::placeholders::_1_1)                // see below for details
+          std::placeholders::_1)                  // see below for details
 );
 ```
 `std::function` offers a lots of flexibility in the form of what can be given.
