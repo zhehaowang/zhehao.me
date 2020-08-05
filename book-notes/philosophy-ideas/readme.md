@@ -179,14 +179,14 @@ Socrates would question Athenian democracy which Aristotle would later defend, c
 
 To be able to arrive at any truth, one first defeats the skepticism claim that nothing can definitively be known.
 
-Plato's Meno deals with the search for Truth, where Socrates converses with Meno, a noble from an area with strong Sophist presence, on whether virtue comes from teaching, or nature.
+**Plato's Meno** deals with the search for Truth, where Socrates converses with Meno, a noble from an area with strong Sophist presence, on whether virtue comes from teaching, or nature.
 
-Socrates in Meno instructs by guiding the barbarian servant boy of Meno's to discovering the Pythagoras theorem.
+Socrates in Meno instructs by guiding the barbarian servant boy of Meno's to discovering the Pythagorean theorem.
 And claims knowledge is a form of reminiscence, where, through philosophical guidance, one is no longer clouded by the sensory systems of the material world, and recalls the Truth that the soul had always known.
 
 Hence Plato establishes that **Truth** is different from **facts**, where the former is eternal, not sensory, and cannot come by perceptions, and the latter is ephemeral, material, and as Heraclitus would claim, always in flux, as the material world would be.
 
-Facts are various forms of rectilinear triangles drawn on the sand (flux, ephemeral, and material), and Truth is Pythagorean theorem that a^2 + b^2 = c^2 is the true form of rectilinear triangle. (Aristotle would argue this is Platonic and not Socratic. Plato's work is also divided by later scholars into early, mid, and late where some ideas came earlier are later revised.)
+Facts are various forms of rectilinear triangles drawn on the sand (flux, ephemeral, and material), and Truth is the Pythagorean theorem that `a^2 + b^2 = c^2` is the true form of rectilinear triangle. (Aristotle would argue this is Platonic and not Socratic. Plato's work is also divided by later scholars into early, mid, and late where some ideas came earlier are later revised.)
 
 How is Truth acquired? One has it intuitively. The gift of rationality.
 
@@ -194,7 +194,7 @@ Plato draws much from Pythagoras, in illustrating Truth with his discovery, and 
 
 Plato considers mathematical Truth an example of knowledge we know for certainty, and where the skepticists are wrong, but the debate would continue with evolution on both sides.
 
-To Plato the problem then becomes identifying mathematics-like Truth, and it can be discovered by **the dialectical approach**, to achieve something abstract and uncover what one has always possessed but became clouded by the material world.
+To Plato the problem then becomes identifying mathematics-like Truth, and it can be discovered by **the dialectical approach**, to achieve something abstract and uncover what one has always possessed but become clouded by the material world.
 
 To this end, it is also thought that the discovery of Truth has naught to do with experience, and the experience of many do not necessarily draw us any closer to Truth, than the experience of one.
 On this ground Socrates would question the basis of Athenian democracy.
@@ -209,12 +209,12 @@ The same argumentative approach to knowledge should be applied.
 
 How life should be lived? What kind of life is right for beings such as ourselves?
 
-Plato's Protagoras.
+**Plato's Protagoras**.
 
 Setting: Protagoras is in town, a young 30s Socrates put several questions to Hippocrates (not the physician) who woke him up to this news.
 
 Socrates then raises the questions to Protagoras, who eloquently discourses on virtue, conduct, etc.
-Socrates and Protagoras then engaged in Socratic dialectical method, and hard to say who had the upper hand.
+Socrates and Protagoras then engaged in Socratic dialects, and hard to say who had the upper hand.
 
 What do you want to be, that makes you want to study under Protagoras?
 Protagoras claims moral excellence.
@@ -222,7 +222,7 @@ Protagoras claims moral excellence.
 What is virtue? (Justice, temperance, courage, wisdom, etc, what are they? Parts of virtue? Parts in what sense?)
 Is virtue teachable?
 
-Both men agree knowledge is the greatest, and there must be knowledge first, before there is virtue.
+Both men agree knowledge is the greatest, and there must be knowledge first before there is virtue.
 Knowledge known in some non-sensory way.
 
 How do we teach anybody anything?
@@ -255,7 +255,7 @@ There is a measure of all things, and it's the task of each man to understand th
 
 Late-middle dialogue.
 
-Russell on the Republic: fascist and imperialistic.
+Russell on **the Republic**: fascist and imperialistic.
 
 Foundational work in political science.
 Tied to the considerations of statecraft are observations on moral, justice, weakness of human, hence somewhat foundational in psychology.
@@ -282,7 +282,7 @@ Example of Ring of Gyges (invisibility, used to commit unjust).
 
 Being just may be for reputation, not for the sake of justice.
 
-Socrates suggests to inspect the state instead, so that we can seek justice on an enlarged scale, rather than on each flimsy individuals.
+Socrates suggests to inspect the state instead, so that we can seek justice on an enlarged scale, rather than on each flimsy individual.
 
 No claim can be made towards politics, without understanding human nature.
 
@@ -290,7 +290,7 @@ Guardians. Elimination of greed, no payments. Shared partners. Marriage "lottery
 
 Problem of knowledge.
 Allegory of the cave. Being shackled and faced with parapets with projections, shadowy illusions. Each man his own measure.
-Imagine one breaks out, discovers the outside and realized what they've perceived as true are merely halluciatory experience.
+Imagine one breaks out, discovers the outside and realized what they've perceived as true are merely hallucinatory experience.
 This one goes back to share his experience, the others wouldn't be able to comprehend and instead thought him as blinded by the light.
 
 Being bound by our material selves, resisting transcendance, believing whatever we see and only what we see.
@@ -299,7 +299,7 @@ Ignorance is darkness. See the reality behind the appearance of shadowy illusion
 The eyes and ears never record the truth, and what they do pick up will never be parlayed into the truth.
 Being experientialist, while missing the point of life, not even understanding life has a point.
 
-There are some things that only be seen under the light of philosophical examination / the wise man's guidance.
+There are some things that can only be seen under the light of philosophical examination / the wise man's guidance.
 
 Problem of knowledge then gets us back to the search of truth, of the relationship as the relationships constitute the true form of things.
 
@@ -309,7 +309,7 @@ Justice is also perceived as the the harmonious relationship among the rational,
 Also behavioral theory e.g. children has to be protected from vulgar music but exposed to martial music.
 
 How should we behave? How should we live our lives?
-We are corporeal, inclined towards pleasure and avoid pains.
+We are corporeal, inclined towards pleasure and avoidance of pains.
 We are like charioteers standing on two horses, a good horse and a vicious one, a metaphor also found in India. 
 
 A will capable of resolving us to follow the right course.
