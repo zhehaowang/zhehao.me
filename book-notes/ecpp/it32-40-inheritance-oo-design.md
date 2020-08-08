@@ -617,7 +617,7 @@ There are lots of alternatives in OO design, explore them often.
 * A disadvantage of moving functionality from a member function to a function outside the class is that the non-member function lacks access to the class's non-public members
 * `std::function` objects act like generalized function pointers. Such objects support all callable entities compatible with a given target signature
 
-### Never redefine an inherited non-virtual function
+### Item 36. Never redefine an inherited non-virtual function
 
 Consider this code,
 ```cpp
@@ -664,7 +664,7 @@ And should an object of the derived type be referred to using pointer to base ty
 **Takeaways**
 * Never redefine an inherited non-virtual function
 
-### Never redefine a function's inherited default parameter value
+### Item 37. Never redefine a function's inherited default parameter value
 
 Virtual functions are dynamically bound, but default parameters are statically bound.
 
@@ -755,7 +755,7 @@ This makes it clear that `draw` being an invariant (_how_ can be substituted, bu
 **Takeaways**
 * Never redefine an inherited default parameter value, because default parameter values are statically bound, while virtual functions — the only functions you should be overriding — are dynamically bound
 
-### Model "has-a" or "is-implemented-in-terms-of" through composition
+### Item 38. Model "has-a" or "is-implemented-in-terms-of" through composition
 
 Composition is the relationship between types that arises when objects of one type contain objects of another type.
 
@@ -778,11 +778,11 @@ private:
 ```
 `Person` objects are composed of `string`, `Address`, and `PhoneNumber` objects.
 
-Composition means either “has-a” or “is-implemented-in-terms-of.” 
+Composition means either "has-a" or "is-implemented-in-terms-of". 
 
 Most people have little difficulty differentiating "has-a" and "is-a", but how about differentiating "implemented-in-terms-of" and "is-a"?
 
-Consider you want to implement a `set` (no duplicated elements) based on `std::list`, since you don't want to pay the space cost of a binary search tree of `std::set` (three pointers)
+Consider you want to implement a `set` (no duplicated elements) based on `std::list`, since you don't want to pay the space cost of a binary search tree of `std::set` (three pointers).
 
 How about having this `set` derive from `std::list`?
 ```cpp
@@ -833,7 +833,7 @@ One can argue this `set`'s interface would be easier to use correctly and harder
 * Composition has meanings completely different from that of public inheritance
 * In the application domain, composition means has-a. In the implementation domain, it means is-implemented-in-terms-of
 
-### Use private inheritance judiciously
+### Item 39. Use private inheritance judiciously
 
 Let's look at a private inheritance example
 ```cpp
@@ -858,11 +858,11 @@ How does private inheritance behave?
 
 What does private inheritance mean?
 It means is-implemented-in-terms-of. You do so because you want the derived to take advantage of some of the features available in the base, not because of there is any conceptual relationship between objects of the base and the derived.
-As such, private inheritance is an implementation technique, and means nothing during software design.
+As such, **private inheritance is an implementation technique, and means nothing during software design**.
 
 Using the terms from Item 34, private inheritance means that implementation only should be inherited; interface should be ignored.
 
-Item 38 suggests composition also can mean "is-implemented-in-terms-of", what to choose between the two?
+Item 38 suggests composition also can mean "is-implemented-in-terms-of", how to choose between the two?
 Use composition whenever you can, and use private inheritance only when you must.
 
 When must you?
@@ -939,7 +939,7 @@ But let's go back to the basics, both private inheritance and composition mean i
 * Private inheritance means is-implemented-in-terms of. It's usually inferior to composition, but it makes sense when a derived class needs access to protected base class members or needs to redefine inherited virtual functions
 * Unlike composition, private inheritance can enable the empty base optimization. This can be important for library developers who strive to minimize object sizes
 
-### Use multiple inheritance judiciously
+### Item 40. Use multiple inheritance judiciously
 
 When multiple inheriting, it becomes possible to inherit the same name (e.g. function, typedef, etc) from more than one base class.
 This could lead to ambiguity.
@@ -966,7 +966,7 @@ MP3Player mp;
 
 mp.checkOut();                     // ambiguous! which checkOut?
 ```
-Note that in this case, even if only `BorrowableItem`'s `checkOut` is accessible, this call is still ambiguous in that C++ first identifies the best match for the call, and then check its accessibility.
+Note that in this case, even if only `BorrowableItem::checkOut` is accessible, this call is still ambiguous in that C++ first identifies the best match for the call, and then check its accessibility.
 In this case both are equally good matches, so it's ambiguous.
 To resolve ambiguity, you could do
 ```cpp
@@ -1034,7 +1034,7 @@ public:                                    // useful in implementing
 
 class CPerson: public IPerson, private PersonInfo {     // note use of MI
 public:
-  explicit CPerson(    DatabaseID pid): PersonInfo(pid) {}
+  explicit CPerson(DatabaseID pid): PersonInfo(pid) {}
   virtual std::string name() const                      // implementations
   { return PersonInfo::theName(); }                     // of the required
                                                         // IPerson member
