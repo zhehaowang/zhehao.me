@@ -1,6 +1,6 @@
 # Templates and generic programming
 
-### Understand implicit interfaces and compile-time polymorphism
+### Item 41. Understand implicit interfaces and compile-time polymorphism
 
 We are familiar with explicit interfaces (one that is explicitly visible in the source code), and runtime polymorphism (via virtual function).
 
@@ -23,7 +23,7 @@ While these aren't yet complete, but they suffice for now to demonstrate the **i
 To make calls involving `w` succeed we need to instantiate the template at compile time.
 Because instantiating function templates with different template parameters leads to different functions being called, this is known as **compile time polymorphism**.
 
-An implicit interface is not based on function signatures, rather, it consists of valid expressions: e.g. `T` must often a `size` member function that returns an integral.
+An implicit interface is not based on function signatures, rather, it consists of valid expressions: e.g. `T` must have a `size` member function that returns an integral.
 Actually not necessarily an integral, rather, as long as `size()` returns a type `X` that has `operator<(Y, int)` defined, where `X` can implicit convert to `Y`, then we can instantiate this call.
 
 Just as you can't use an object in a way contradictory to the explicit interface its class offers (the code won't compile), you can't try to use an object in a template unless that object supports the implicit interface the template requires (again, the code won't compile).
@@ -33,7 +33,7 @@ Just as you can't use an object in a way contradictory to the explicit interface
 * For classes, interfaces are explicit and centered on function signatures. Polymorphism occurs at runtime through virtual functions
 * For template parameters, interfaces are implicit and based on valid expressions. Polymorphism occurs during compilation through template instantiation and function overloading resolution
 
-### Understand the two meanings of `typename`
+### Item 42. Understand the two meanings of `typename`
 
 These two mean the same thing:
 ```cpp
@@ -140,7 +140,7 @@ This could cause minor portability headaches.
 * When declaring template parameters, class and typename are interchangeable
 * Use typename to identify nested dependent type names, except in base class lists or as a base class identifier in a member initialization list
 
-### Know how to access names in templatized base classes
+### Item 43. Know how to access names in templatized base classes
 
 Suppose we have this code
 ```cpp
@@ -286,9 +286,9 @@ zMsgSender.sendClearMsg(msgData);            // error! won't compile
 An error will be emitted.
 
 **Takeaways**
-* In derived class templates, refer to names in base class templates via a “this->” prefix, via using declarations, or via an explicit base class qualification
+* In derived class templates, refer to names in base class templates via a `this->` prefix, via using declarations, or via an explicit base class qualification
 
-### Factor parameter independent code out of templates
+### Item 44. Factor parameter independent code out of templates
 
 Templates let you save time and avoid code replication, but if you are not careful, using templates can lead to code bloat: the source may look trim and fit, but the binary is fat and flabby.
 
@@ -302,7 +302,7 @@ template<typename T,           // template for n x n matrices of
 class SquareMatrix {           // on the size_t parameter
 public:
   ...
-  void invert();              // invert the matrix in place
+  void invert();               // invert the matrix in place
 };
 
 SquareMatrix<double, 5> sm1;
@@ -324,7 +324,7 @@ protected:
   ...
 };
 
-template<          typename T, std::size_t n>
+template<typename T, std::size_t n>
 class SquareMatrix: private SquareMatrixBase<T> {
 private:
   using SquareMatrixBase<T>::invert;   // avoid hiding base version of
