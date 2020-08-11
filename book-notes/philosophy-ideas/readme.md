@@ -384,7 +384,7 @@ Aristotle usually inspects the historical work done, what is left wanting, and g
 
 Metaphysics opens with
 
-_"All men by nature desire to know. An indication of this is the delight we take in our senses"_
+_"All men by nature desire to know. An indication of this is the delight we take in our senses."_
 
 This sets a fundamentally different tone from a Platonic dismissiveness towards senses.
 **Nature produces nothing without a purpose**, and senses do not exist to deceive creatures.
@@ -428,7 +428,7 @@ Evolutionary theory is teleological, where wings, mating behavior, etc serve spe
 
 We do not understand something fully unless we know **all four modalities**.
 The number of things we know are based on the questions we ask:
-* does it exist? 
+* Does it exist?
 * If it does, to what degree?
 * In what relation does it stand to other things?
 * What is it for? 
@@ -437,7 +437,7 @@ The central point of Aristotelian program are these four causes / questions, in 
 
 In politics, what is the polis for?
 
-In ethics, what kind of being am I? How do the actions of my mine either realize what is potential within me, or stultify such potentials? What am I here for (my potentials?) How do I live my life to honor the central fact of my being?
+In ethics, what kind of being am I? How do the actions of mine either realize what is potential within me, or stultify such potentials? What am I here for (my potentials?) How do I live my life to honor the central fact of my being?
 
 Living things of the universe fit in a plan.
 Nothing with pattern or design comes about accidentally.
@@ -490,10 +490,10 @@ It's a disposition / inclination to act towards certain ends and avoid other end
 
 Virtue is to be understood in two senses
 * Intellectual excellence. Science, artistic, technical, central to a creative life. These are not innate, and come from learning, discipline and practice.
-* Moral excellence. These are habitual forms of activity, and are reinforced by discplined practice as well. Receding Platonic's view of men of gold, silver and bronze, borrowed from Hesiod. (A program of research directed at the world as we know it.)
+* Moral excellence. These are habitual forms of activity, and are reinforced by disciplined practice as well. Receding Platonic's view of men of gold, silver and bronze, borrowed from Hesiod. (A program of research directed at the world as we know it.)
 
 Is anger (first word in Illiad) good or bad?
-Natured equipped us with such emotions, it'd be wrong to say such emotions are pathological.
+Nature equipped us with such emotions, and it'd be wrong to say such emotions are pathological.
 The right question then becomes what should be one's disposition towards anger? What should one be angry for?
 
 To become angry when virtue triumphs vice is bad.
@@ -563,10 +563,10 @@ Fitness - harmonia <-> discordia
 Music - melodia
 
 Aristotle sees the rule of law as the rule of reason, laws based on punishment are tyrannical laws.
-Good laws calls upon us to do things that make us better, not stop us from doing things for fear of punishment; we see in the law something we see in good friends.
+Good laws call upon us to do things that make us better, not stop us from doing things for fear of punishment; we see in the law something we see in good friends.
 
 Are the life of the law giver and the disinterested contemplative wise man competing (activity and decisive action / contemplation and study)?
-That's the dillema faced by all, who weigh the contemplation of choices between the first things and making the world conform to one's best judgments.
+That's the dilemma faced by all, who weigh the contemplation of choices between the first things and making the world conform to one's best judgments.
 
 ### Rome, Stoics, Rule of Law
 
@@ -608,7 +608,7 @@ Cicero was a critic of Stoicism, but his work on law incorporated much essential
 Evil is to go against your nature, and the nature of men being rationality.
 Irrationality is an evil.
 
-Epicureanism may have left the impression of _"eat drink and be merry for tomorrow you shall die"_, though the actual teaching of Epicurus was conservative in terms of social life and quite contrary, it's rather don't need something so much that its absence causes pain and suffering and quite close to Apatheia.
+Epicureanism may have left the impression of _"eat drink and be merry for tomorrow you shall die"_, though the actual teaching of Epicurus was conservative in terms of social life and quite the contrary, it's rather don't need something so much that its absence causes pain and suffering and quite close to Apatheia.
 
 Stoicism requires us participate in the affairs of the state, to be law givers, interact with the public world, Epicureanism would have us remove ourselves from the polis or politics, imagine living in the suburbs with a close group of friends.
 Epicureanism would reduce the likelihood of pain and suffering, defer death as long as one can.
@@ -680,7 +680,7 @@ Life of freedom under the governance of the law.
 12 tables of Rome, Romans rumored to take counsel from Solon in Athens.
 
 Cicero on Laws.
-What is the essence of law?
+What is the essence of the law?
 
 There seem to be certain universal precepts that are honored without exception across different jurisdictions.
 Cicero calls these precepts the law of nations / peoples.
