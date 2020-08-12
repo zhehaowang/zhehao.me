@@ -54,4 +54,18 @@ Time of change.
 Babylonian captivity. The Great Schism. The Black Death.
 
 New arts of Notre-Dame school.
-* Secular subjects. Isorhythmic. Structural complexity.
+* Secular subjects. Isorhythmic (Pitch and rhythms are designed separately. Think multiple vocal tracks of multiple poems simultaneously). Structural complexity.
+
+### Renaissance
+
+Lost faith in church, classicism, trying to achieve what the Greeks once did in their music: expressive and being moved by their composition.
+
+Emphasis on
+* Articulation of words
+* Music reflecting on the meaning of words
+* Secular, humanistic subjects
+
+This led to the rejection of melismatic, ornamental organum (one word over multple notes hurts articulation), as well as isorhythmic pattern from the last century.
+
+Reinspection of Pythagoras's work on consonant and dissonant notes (notes that blend well vs not).
+Harmony and tuning system.
