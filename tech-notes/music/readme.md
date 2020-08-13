@@ -69,3 +69,40 @@ This led to the rejection of melismatic, ornamental organum (one word over multp
 
 Reinspection of Pythagoras's work on consonant and dissonant notes (notes that blend well vs not).
 Harmony and tuning system.
+
+(Pythagoras: pitch produced by a string of length 6 is an octave lower than the pitch produced by a string of length 3. The distance between pitch of length 3 is a "perfect 5th" away from pitch of length 2. The theory on harmonic series.)
+
+A cappella: as in the chapel (without instrumental accompanying)
+
+Major triads were explored during the Renaissance, the notes are conjunct.
+
+The words are articulate but multiple voices are overlapping.
+Machaut, Mass de Notre Dame.
+
+Polyphony.
+
+### Renaissance - mass
+
+Mass got its name from missa in Latin "Ite, missa est" (the concluding act to dismiss the congregation).
+
+The high mass has two major sections
+* The liturgy of words
+* The liturgy of eucharist (Greek for giving thanks)
+and 17 (or more, depending on categorization) parts.
+
+Two categories of activities:
+* The proper, where texts differ from mass to mass
+* The ordinary, where texts do not change
+
+Renaissance composer had the choice to compose for the former or the latter, and they chose the latter.
+
+Parts in the second category include Kyrie, Gloria, Credo (in the liturgy of words), and Sanctus (divine), Agnus Dei (lamb of God), ite missa est (in liturgy of the eucharist).
+
+High Renaissance composers unified the ordinary of a mass with a plain chart, featuring harmonic triads on the more conjunctive end.
+Its form either
+* Fixed melody mass (tenor mass), where an existing plain chant is used as-is as one track
+* Paraphrase mass, where the plain chant was changed from being modal to more tonal. Josquin is master at this.
+* Imitation mass, where any melody instead a of plain chant can do.
+
+16th Century Catholic church was originally tolerant towards the last form of mass, until Martin Luther and the Reformation, his 95 theses targetting the church.
+Council of Trent and the Counter Reformation lowered the tolerance for such, and Giovanni Pierluigi da Palestrina's masses where the words are clearly distinguishable became acceptable to the church.
