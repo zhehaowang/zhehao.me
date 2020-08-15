@@ -106,3 +106,20 @@ Its form either
 
 16th Century Catholic church was originally tolerant towards the last form of mass, until Martin Luther and the Reformation, his 95 theses targetting the church.
 Council of Trent and the Counter Reformation lowered the tolerance for such, and Giovanni Pierluigi da Palestrina's masses where the words are clearly distinguishable became acceptable to the church.
+
+Palestrina may have been the most influential before Bach.
+His mass features a clarity of words in that although multiple vocal parts involved, no syllables are started at the same time: when one starts, others are silent or maintaining a previous syllable.
+
+### Madrigal
+
+Madrigal of 16th Century put Italy at the center of western music development.
+
+Madrigal is like a musical equivalent of written words, on the edge of developing into opera.
+
+Typically secular, they are written for 4 - 6 distinct voices and not a choir, and also feature a clear and direct articulation of words.
+
+Word painting can often be heard in Madrigals, e.g. "death", "descend" became literally descending notes, "live" lively notes, and "in pairs" in two vocals. 
+As well as a combination of homophony and polyphony.
+
+Poems of e.g. Petrarch (14th Century, founding Italian poet), are put into Madrigal.
+Madrigals are composed in 16th and 17th Century in English as well, e.g. dedicated to Queen Elizabeth I.
