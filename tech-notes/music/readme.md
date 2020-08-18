@@ -123,3 +123,24 @@ As well as a combination of homophony and polyphony.
 
 Poems of e.g. Petrarch (14th Century, founding Italian poet), are put into Madrigal.
 Madrigals are composed in 16th and 17th Century in English as well, e.g. dedicated to Queen Elizabeth I.
+
+### Baroque
+
+The word originated from Portuguese meaning irregular shape / color of pearls.
+Originally implying in bad taste, bizarre and overly extravagant, but the negative implication was lost over time.
+
+1600 (when the first opera was performed in Florence) - 1750 (Bach died)
+
+Opera features an expression of singularity: the emotion of the character as opposed to that of a (generalized) group.
+(Think Dido's pain in Dido and Aeneas, vs that of Vesta in As Vesta was from Latmos hill descending.)
+
+Music of this period features a duality of being exuberant yet tempered by control.
+Its brilliance, logic, control, order and rationality behind the details (reflected by cyclical symmetry) is a mirror of the science and discovery of this age.
+
+Think a Renaissance mass where it is tranquil, sober and seeks not to overwhelm us, vs Bach's mass featuring dance-like energy and exuberance, like an extravagant celebration concerted with voices and instruments.
+
+French overture, especially during Louis XIV became a new trend, and Handel (Water Music) is a master at this.
+
+Pure instrumental music without need for text or voice served as powerful enough statement, creating one of the most abstract form of art.
+
+Music in its raw definition, as time (rhythm) defined by sound (pitch, motifs, melodies, texture).

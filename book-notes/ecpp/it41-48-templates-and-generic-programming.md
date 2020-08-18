@@ -394,7 +394,7 @@ If you are concerned with code bloat, you could do the same thing.
 * Bloat due to non-type template parameters can often be eliminated by replacing template parameters with function parameters or class data members
 * Bloat due to type parameters can be reduced by sharing implementations for instantiation types with identical binary representations
 
-### Use member function templates to accept all compatible types
+### Item 45. Use member function templates to accept all compatible types
 
 Iterators into STL containers are almost always smart pointers.
 
@@ -454,7 +454,7 @@ private:                                     // built-in pointer held
 ```
 Note the `heldPtr` initialization, this will compile only if there is an implicit conversion from a `U*` to `T*`, and that's what we want.
 
-Another common role for member function templates is to support assignment. E.g. `std::tr1::shared_ptr`
+Another common role for member function templates is to support assignment. E.g. `std::shared_ptr`
 ```cpp
 template<class T> class shared_ptr {
 public:
@@ -463,24 +463,24 @@ public:
   template<class Y>                                     // built-in pointer,
     shared_ptr(shared_ptr<Y> const& r);                 // shared_ptr,
   template<class Y>                                     // weak_ptr, or
-    explicit shared_ptr(weak_ptr<Y> const& r);          // auto_ptr
+    explicit shared_ptr(weak_ptr<Y> const& r);          // unique_ptr
   template<class Y>
-    explicit shared_ptr(auto_ptr<Y>& r);
+    explicit shared_ptr(unique_ptr<Y>&& r);
 
   template<class Y>                                     // assign from
     shared_ptr& operator=(shared_ptr<Y> const& r);      // any compatible
   template<class Y>                                     // shared_ptr or
-    shared_ptr& operator=(auto_ptr<Y>& r);              // auto_ptr
+    shared_ptr& operator=(unique_ptr<Y>&& r);            // unique_ptr
   ...
 };
 ```
 Note that among the ctors only the generalized copy ctor is not explicit, meaning one can't implicit convert `weak_ptr`, raw pointer or `unique_ptr` to a `shared_ptr`, but implicit conversions among `shared_ptr`s is allowed.
 
-Also note that in the version with `auto_ptr`, the given pointer is not `const` since ownership is taken over when copying an `auto_ptr`.
+Also note that in the version with `unique_ptr`, the given pointer is not `const` since ownership is taken over when copying an `unique_ptr`.
 
 Declaring a generalized copy constructor (a member template) in a class doesn't keep compilers from generating their own copy ctor (a non-template), so if you want to control all aspects of copy construction, you must declare both a generalized copy ctor as well as the normal copycon.
 
-E.g. excerpt in `std::tr1::shared_ptr`
+E.g. excerpt in `std::shared_ptr`
 ```cpp
 template<class T> class shared_ptr {
 public:
@@ -503,7 +503,7 @@ _Refer to [my_unique_ptr](../emcpp/my-unique-ptr) for code example._
 * Use member function templates to generate functions that accept all compatible types
 * If you declare member templates for generalized copy construction or generalized assignment, you'll still need to declare the normal copy constructor and copy assignment operator, too
 
-### Define non-member functions inside templates when type conversions are desired
+### Item 46. Define non-member functions inside templates when type conversions are desired
 
 Recall that item 24 explained why non-member functions are eligible for implicit type conversions on all arguments (`operator*` on `Rational` class, why it should not be a member function, instead, have a non-member so that `lhs` is eligible for implicit conversion.)
 
