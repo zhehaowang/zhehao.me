@@ -143,4 +143,25 @@ French overture, especially during Louis XIV became a new trend, and Handel (Wat
 
 Pure instrumental music without need for text or voice served as powerful enough statement, creating one of the most abstract form of art.
 
+### Style features of Baroque music
+
 Music in its raw definition, as time (rhythm) defined by sound (pitch, motifs, melodies, texture).
+* A **pitch** is characterized by a **fundamental frequency** (e.g. an A at 440Hz) and **timbre** (tone color of the instrument. Other vibrations / overtones that differ instrument by instrument).
+* A **note** is a pitch with duration. The succession of notes builds **melody**.
+* A **motif** is a brief succession of notes, usually in groups of 3 to 6. A motif is constructed from repetition, sequence and transformation of notes.
+* A **tune** is melody with lyricism (usually a clear begin and end), which can be not just for voice, but also conceptions.
+* A **theme** can refer to a tune, motif, harmony, or even timbre that characterizes a piece.
+* A **texture** refers to the number of melodies and their relationship.
+  * The plain chant features **monophony**, one melodic line.
+  * **Polyphony** (counterpoint) features multiple melody lines at the same time. Their relationship can be
+    * Imitative, where the multiple melodies are similar repetitions of one. The **strict** variant meaning exact same, and **non-strict** being just similar. (This is called a **canon** in German, **round** in English, and its cyclical nature brings structure / conveys meaning)
+    * Non-imitative, where the multiple melody lines are distinct. E.g. Josquin's 6 melodic lines with multiple poems being rendered at the same time
+  * **Homophony**, where there are multiple melody lines but one is the principle one, while others are support / complementary to the thematic melody. E.g. Beethoven's 2nd movement Piano Sonata No. 8 in C minor Op 13 Pathetique.
+
+Through the manipulation of motifs (especially in sequence), baroque music achieves a consistency abd structure, which allowed abstract instrumental music to convey meaning.
+
+Beethoven's 5th is e.g. very motific: the first four notes being repeated and manipulated (upwards, downwards) gives an intensity and clearness of purpose.
+
+Being motific is different from being tuneful.
+
+It wasn't until the Baroque era that instrumental music became standalone (it used to exist, but as a piece to e.g. support dance).
