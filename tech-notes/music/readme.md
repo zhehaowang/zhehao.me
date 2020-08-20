@@ -160,8 +160,35 @@ Music in its raw definition, as time (rhythm) defined by sound (pitch, motifs, m
 
 Through the manipulation of motifs (especially in sequence), baroque music achieves a consistency abd structure, which allowed abstract instrumental music to convey meaning.
 
+It wasn't until the Baroque era that instrumental music became standalone (it used to exist, but as a piece to e.g. support dance).
+
+The above concepts, through inquiry into music similar to the scientific inquiries of the same age, became interesting enough to inspire an instrumental music tradition starting from the Baroque era.
+
 Beethoven's 5th is e.g. very motific: the first four notes being repeated and manipulated (upwards, downwards) gives an intensity and clearness of purpose.
 
 Being motific is different from being tuneful.
 
-It wasn't until the Baroque era that instrumental music became standalone (it used to exist, but as a piece to e.g. support dance).
+Functional harmony (rest, tension, preparation), meter, tuning system, invention of instruments such as violin (and basso continuo e.g. cello, harpsichord) of the Baroque era all remain fundamental to western music till this day.
+
+### German and Italian traditions
+
+Broadly speaking, German and Italian tradition since the Baroque period was different.
+
+Think early 19C Beethoven's 5th and his contemporary Rosini's Barber of Seville: the Italian tradition features opera with a usual focus on (light hearted, playful) entertainment, while the German / Austrian tradition is more profound and solemn.
+In Rosini's words, Germans were better at harmony and Italians better at melody, until Mozart.
+
+Music nationalism reflects not just differences in folk music elements, but also language, culture and ethnic mindset.
+
+The Latin language features long, smooth vowels and gentle consonants, while the German language has many guttural, explosive and sharp consonants. (When it comes to melisma, you are as good as your vowels.)
+The former is more melismatic, while the latter more syllabic (one pitch per syllable).
+
+The Italian tradition inherits from Latin vocals, usually homophonic, has a preference for melodic directness.
+This tradition gave birth to symphonies (evolved from overtures played for an opera) and concerto.
+
+The German tradition is influenced by Protestant Reformation.
+Luther who rejects the original sin, preaches faith alone is what matters, not prayers or connection to the church and that Bible is up for interpretation of each individual, was outraged by the Catholic church selling indulgence.
+
+Luther was fond of modern music of his time, suggesting all music were a gift from God, leading to the creation of German hymns (Christ in all things).
+The Protestant view lined up better with the ancient view of music as a spiritual force, and its music featuring clearly articulated rhythms, and sharp, compact, clear tunes.
+Bach, under Lutheran influence, would not differentiate religious or secular music: all are acts of faith to honor God.
+His German language and Lutheran faith would be the ground of his work.
