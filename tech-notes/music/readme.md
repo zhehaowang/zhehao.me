@@ -192,3 +192,29 @@ Luther was fond of modern music of his time, suggesting all music were a gift fr
 The Protestant view lined up better with the ancient view of music as a spiritual force, and its music featuring clearly articulated rhythms, and sharp, compact, clear tunes.
 Bach, under Lutheran influence, would not differentiate religious or secular music: all are acts of faith to honor God.
 His German language and Lutheran faith would be the ground of his work.
+
+### Bach's Fugue
+
+Fugue is a form (procedure) that epitomizes Baroque systematic structure and extravagant ingenuity.
+
+The harpsichord is often featured in fugue.
+
+Fugues are polyphonic monothematic work (one subject dissected and reconstituted in multiple ways, along the process demonstrating the polyphonic capability of your subject.) 
+
+The structure of a fugue is in 3 parts:
+* Exposition, where voices (instrumental) of equal importance are introduced in sequence. As one enters, the currently ongoing ones carry on. It sounds like a round but is not a round or strictly imitative. The newly entering voice can only be the highest or lowest among current ones: soprano - alto - bass is not a valid sequence, while alto - soprano - bass is.
+* Episode, this modulated section, usually several motifs, is used to transition into subject reconstruction. 
+* Subject restatement which brings back the subject.
+
+A good polyphonic work is seamless in the transition of the parts.
+
+##### Tuning system
+
+After Pythagoras's discovery of half length, an octave started out having 7 pitches in between.
+The chromatic scale has 12 pitches in between.
+
+Pythagorean scale (just intonation tuning) steps by the perfect 5th (each time we land on a different pitch), and maps onto 7 pitches in one octave. The tuned pitches match with the white keys on a piano.
+
+Meantone temperament developed since the Renaissance introduced semi-tones, making the pitches in between 12. The extra 5 corresponds with black keys on the piano.
+
+Modern tuning system does equal temperament tuning, this is different from Bach's well tempered tuning used in his well tempered clavier, two sets of Fugue and preludes in 24 major and minor keys.
