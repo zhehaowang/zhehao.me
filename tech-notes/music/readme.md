@@ -218,3 +218,22 @@ Pythagorean scale (just intonation tuning) steps by the perfect 5th (each time w
 Meantone temperament developed since the Renaissance introduced semi-tones, making the pitches in between 12. The extra 5 corresponds with black keys on the piano.
 
 Modern tuning system does equal temperament tuning, this is different from Bach's well tempered tuning used in his well tempered clavier, two sets of Fugue and preludes in 24 major and minor keys.
+
+### Opera
+
+Renaissance period believed Greek drama were performed like opera: stage play set to music. And their people were moved by such drama because of such music: the power of music intensifies the words, adds musical inflection to the words, natural like kids at play.
+
+There was also medieval musical liturgical drama at play during Christmas and Easter before this time, but the form differs much from opera.
+
+Secular play was prevalent at the time, whose intermezzo (interlude between play) evolved to become full-fledged pieces, and opera is born.
+
+The Florentine Camerata were a group of musicians and poets who pioneered this form, with their beliefs include
+* a solo singer over a chorus offers more expressive flexibility, and the audience identifies personally with a solo singer better.
+* Polyphony and wordplay are showing off and childish.
+* Text must be clearly understood
+* Text should be direct and natural as in daily life
+* interpret te feelings and emotions of the singing ones, not literal meaning
+
+Peri from this group composed Eurydice, set to stage in 1600, making it the first opera in record, with its unique style of representation and recitation.
+
+Early opera soon matured, with Monteverdi's L'Orfeo performed 1607 in Manchua explored the same subject. (Story of Orpheus and Eurydice, with a culminating moment of Orpheus learning her being dead from a nymph.)
