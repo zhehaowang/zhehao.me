@@ -237,3 +237,56 @@ The Florentine Camerata were a group of musicians and poets who pioneered this f
 Peri from this group composed Eurydice, set to stage in 1600, making it the first opera in record, with its unique style of representation and recitation.
 
 Early opera soon matured, with Monteverdi's L'Orfeo performed 1607 in Manchua explored the same subject. (Story of Orpheus and Eurydice, with a culminating moment of Orpheus learning her being dead from a nymph.)
+
+### Operadic Aria
+
+Aria (air) differs from a song in the latter being simple, short, rhythmic, musical representation of text, while the operadic opera is typically lengthy, substantial, complicated and where the music, instead of words, carries the expressive message.
+
+In an opera, two key elements, recitative is the dialogue, and aria is for expression of feelings, character development (where time stops and the character's inflection begins)
+
+Aria is the focal point of Baroque opera, typically accompanied by orchestra, while recitative is performed dry, along basso continuo instruments.
+
+### Cantata and Oratorio
+
+The religious music tradition of the Baroque era diverged into Cantata for the Lutheran Church, and Oratorio for the Catholic Church.
+
+The Lutheran Cantata is like a sermon set in music (harmonizing a carol), a one-act opera being part of service; and Oratorio like a multi-act religious opera with a concert but without acting.
+
+The Catholic Lent might have given rise to Oratorio, during which time no opera is performed, and entertainment is instead found in opera-like Oratorio.
+Hendel's Messiah (hallelujah) is an Oratorio still performed till this day.
+Hendel was born in Germany, trained in Italy, started out in the Hannover court but spent most of his life composing in London.
+
+Bach composed 350 Cantatas (the biggest chunk of his work) and more than 200 survived till this day.
+
+### Baroque music forms
+
+From a high level, forms are number of sections of music in a movement and how they relate: contrast, repetition, variation, development or combination.
+
+Having familiar ways of organizing instrumental helps convey something this abstract to the audience, using something they have prior knowledge of. (imagine a police TV show)
+The Baroque era typically features great discipline and logic in organization.
+
+Although the structures (the shared context) are categorized into familiar sets, e.g. fugue and passacaglia, the details within each piece can differ greatly.
+
+Fantasia and impromptu are not following an established forms.
+
+Baroque era variation forms first states a theme, and then play variations of it.
+Passacaglia (ground base: a structural feature) is of this category, which features a strict cyclic repetition of the theme with a development in the upper voices.
+
+An example being Bach's Passacaglia in C Minor.
+
+**Chamber music** is where each instrument has its own part of the music to play. E.g. a string quartet where the 2 violins, 1 viola and 1 cello are playing different parts.
+
+**Orchestral music** is where one or more parts are at least doubled in instruments: in a modern orchestra, the 16-18 first violins all play one part, 16 second violins all play one part, 12 violas, 10 cellos etc.
+
+**Chamber-Orchestral** is where each part is still played by 1 instrument, but with a variety of instruments like in an orchestra: 1 first violin, 1 second, 1 bass, 1 flute, 1 oboe, 1 french horn, etc.
+
+The Orchestra came from Opera House Orchestra, and the operadic practices saw the development of Italian style overture (which morphed into symphonies), the French overture, the orchestral suite (collection of dances for an orchestra) and concerto.
+
+The term Orchestra derived from in Greek plays the space between the stage and the rows of audience.
+
+The **concerto** usually features few soloists and an orchestra. E.g. Bach's Brandenburg Concerto.
+
+They are categorized as **solo** where one soloist is pitched against an orchestra, **grosso** (grand, where there are 2, 3, or 4 soloists).
+(Concertino - the group of soloists Ripieno; Ripieno - the ensemble of accompanying orchestra; Tutti - all)
+
+Note this being from Baroque era, is different from a symphony, which is a classical era concept.
