@@ -290,3 +290,24 @@ They are categorized as **solo** where one soloist is pitched against an orchest
 (Concertino - the group of soloists Ripieno; Ripieno - the ensemble of accompanying orchestra; Tutti - all)
 
 Note this being from Baroque era, is different from a symphony, which is a classical era concept.
+
+Concertos are typically 3 movements, fast, slow and fast.
+Fast movement often features the Ritornello form: departure and return from a theme. Homophonic thematic statement with polyphonic concertino.
+Then a slow adagio, and then a fast and fugue-like (polyphonic in nature, with theme dissected and recombined) 3rd movement.
+
+Vivaldi from the high Baroque taught Bach concerti, and the latter wrote e.g. 6 Branden concerti as a job application.
+Bach's music was not considered great of his age: criticized for being overly complicated and hard-to-play.
+
+### Enlightenment and classical
+
+1750 - 1827 (death of Bach to death of Beethoven), but the exact dates are fuzzy.
+
+There is, however, a big contrast between early 18 Century and late 18 Century work, in terms of
+* Instrument: piano was invented and popularized in the classical era. Driven by the need for a portable harpsichord that follows the dynamics of human voice. The first piano was named by its (harpsichord) manufacturer as a big harpsichord with soft and loud sounds. The difference between a harpsichord and piano is that the strings of the former are plucked, while the latter is struck by a hammer, thus achieving graded dynamics, un-uniform volume that responds to how hard the key is pressed. This makes the piano better suited for a homophonic texture and mimic'ing a more intimate human voice. (Dynamic grading in harpsichord can only be achieved with multiple sets of strings.)
+* Texture. Rise of an instrument that is well suited for homophonic texture.
+* Expression. Different tunes.
+* Thematic melody. This is subjective, but the classical era typically contrives to show a different thing: not the exuberance and complexity, but rather a human-voice-like subtle, intimate and natural impression.
+
+The time period of classical era sees the focus shift from a land-owning inheritance-based aristocracy to a middle class flourishing on trade and manufacturing with a love of wealth.
+
+This rising middle class demands education, control of their own lives, quality of life and social mobility.
