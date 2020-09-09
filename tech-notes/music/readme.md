@@ -311,3 +311,26 @@ There is, however, a big contrast between early 18 Century and late 18 Century w
 The time period of classical era sees the focus shift from a land-owning inheritance-based aristocracy to a middle class flourishing on trade and manufacturing with a love of wealth.
 
 This rising middle class demands education, control of their own lives, quality of life and social mobility.
+
+In music, this new class seeks accessibility and expressiveness of the human voice, and not the high Baroque complexity on the surface or exuberance. "Natural" is the buzzword of enlightenment era.
+
+Music would become vocal and tuneful, and tunes clear and engaging.
+
+Rise of amateurism also demands pieces that an amateur would want to and be able to play: Bach's fugues are too complicated.
+Although content-wise, Mozart's no simpler, but the expressive style and appearance of simplicity by design captures the classical era audience's taste better.
+
+Cosmopolitanism is another feature of classical era: pan-European and a fusion of Italian/German/French styles.
+
+Ultimately, the cultural environment defines the sound.
+
+### Viennese classical style, homophony and cadence
+
+Classical era music features melodic beauty and clarity above all else: balance of purity of the form, and expressive constraints.
+
+While Bach's fugue would feature little dynamics (in volume), strong beats (pulse), and less flexibility, often a cyclical structure, Mozart's piano sonata would feature simple and direct melodies and a linear structure.
+
+As another example from Baroque, Pachelbel's Canon (which was a passacaglia, not a canon per se) features 28 repetition of its ground base.
+If we are to shuffle, rearrange and cut this piece, the dramatic expression would work just fine, it's often times difficult to tell even when the piece is about to finish.
+This has to do with the Baroque era's usually monothematic themes, its focus on rhythmic continuity and cyclical process.
+
+Classical era would instead emphasize development and discontinuity, e.g. this era saw the cadential flourish, where **cadence** means the end of a phrase (in music, a formula that conveys conclusion; a musical punctuation mark, which was rarely seen in Baroque era)
