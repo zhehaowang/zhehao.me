@@ -334,3 +334,33 @@ If we are to shuffle, rearrange and cut this piece, the dramatic expression woul
 This has to do with the Baroque era's usually monothematic themes, its focus on rhythmic continuity and cyclical process.
 
 Classical era would instead emphasize development and discontinuity, e.g. this era saw the cadential flourish, where **cadence** means the end of a phrase (in music, a formula that conveys conclusion; a musical punctuation mark, which was rarely seen in Baroque era)
+
+Classical era saw the development of 4 styles of cadence:
+* Open cadence, where tonic (tonal center, major scale) chord transitions to dominant (tension) chord (a perfect fifth away from the tonic pitch). This is build tension via dissonance, and create irresolution.
+* Closed (authentic) cadence, where the dominant chord resolves to tonic chord, creating a musical period.
+* False cadence, where the dominant chord resolves to not the tonic chord, creating a delay.
+* Plagal (amen) cadence, where the subdominant chord resolves to the tonic chord.
+
+Classical era cadences are cause for pause and rhetorical elements, and they allow composers to end one section and start another within a single movement.
+Cadence exist in Baroque music, but they were not cause for pause, given the latter's focus on musical continuity.
+
+Vienna in 1770 to 1800 under the enlightened rule of Joseph II became the center of this development, with the city being the adopted home of Mozart, Haydn, and Beethoven.
+
+### Classical era form: theme and variations
+
+Classical era forms derive from the Baroque era, from simple to complex
+* Theme and variations derive from passacaglia, with the difference being the latter having the theme played as a base in repetition, and the former putting the theme as the surface element.
+* Minuet and trio
+* Rondo deriving from ritornello form
+* Sonata deriving from binary dance form
+
+The form defines thematic relationship between sections (where sections are divided by cadences).
+With the relationship being
+* Repetition (a), denoted with the repetition sign.
+* Variation (a'), where the same thematic material is repeated but with different accompaniment.
+* Contrast (b), where a different same thematic material is applied. There are different degrees of contrast, slight/bold.
+
+Theme and variations form follow the same phrase structure.
+E.g. Mozart's 12 variation on Twinkle Twinkle Little Star (Ah vous dirai-je, maman) features the same aababa structure, where theme is in major, duple (notes in twos), moderate tempo, and the variations can change in accompaniment, notes in threes, tempo, minor mode, etc.
+
+A **coda** (tail) is an expanded rhetorical final cadence flourish to conclude the piece.
