@@ -364,3 +364,30 @@ Theme and variations form follow the same phrase structure.
 E.g. Mozart's 12 variation on Twinkle Twinkle Little Star (Ah vous dirai-je, maman) features the same aababa structure, where theme is in major, duple (notes in twos), moderate tempo, and the variations can change in accompaniment, notes in threes, tempo, minor mode, etc.
 
 A **coda** (tail) is an expanded rhetorical final cadence flourish to conclude the piece.
+
+Consequently, theme and variations form
+* feels sectional due to close cadences
+* is usually not dramatic
+* relation between sections is variation and little departure
+
+### Classical era form - minuet and trio - Baroque antecedents
+
+Of the Classical era homophonic forms, minuet and trio derives from stylized French dance suites from opera in the high Baroque.
+
+Minuet and trio is so ubiquitous that usually a four-movement classical piece, such as a symphony, would have one movement in this form.
+
+Dance suites meaning excerpts from an opera piece, stylized for listening rather than dancing to.
+The real piece is usually short and formulaic, and the stylized version longer and more interesting for listening.
+Such pieces in Baroque era was also homophonic in nature: a polyphonic texture would cause mayhem in choreography otherwise.
+
+Minuet by itself is a Baroque French dance style, and there are many others such as Allemande, Bourrée, etc, with many derived from other places in Europe.
+
+This antecedent was almost always of binary dance form: sections AABB.
+
+Trio Sonata is a Baroque chamber music form, with two sopranos (violins) + one base (cello) + one basso continuo (harpsichord).
+Named trio since the basso continuo is by default present. Change that to viola and we get classical era string quartet.
+
+Lully was the court music master of Louis XIV, under whose reign the French noble dances flourished.
+A Trio Sonata could e.g. be of the general structure ABA, with each section in compound duple (123 223), and the first A (first minuet) into aabb, the second minuet (trio) ccdd, and a thematic closure / menuet da capo of sections ab, where we return to the opening section.
+
+This form features thematic contrast within a movement, adding flavor to relation between sections.
