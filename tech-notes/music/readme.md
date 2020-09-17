@@ -388,6 +388,30 @@ Trio Sonata is a Baroque chamber music form, with two sopranos (violins) + one b
 Named trio since the basso continuo is by default present. Change that to viola and we get classical era string quartet.
 
 Lully was the court music master of Louis XIV, under whose reign the French noble dances flourished.
-A Trio Sonata could e.g. be of the general structure ABA, with each section in compound duple (123 223), and the first A (first minuet) into aabb, the second minuet (trio) ccdd, and a thematic closure / menuet da capo of sections ab, where we return to the opening section.
+A Trio Sonata could e.g. be of the general structure ABA, with each section in compound duple (123 223), and the first A (first minuet) into _aabb_, the second minuet (trio) ccdd, and a thematic closure / menuet da capo of sections ab, where we return to the opening section.
 
 This form features thematic contrast within a movement, adding flavor to relation between sections.
+
+### Classical era minuet and trio
+
+Minuet & Trio form is common for 2nd or 3rd movement in a 4 movement classical piece, such as symphony.
+
+The change from its predecessor in Baroque era is in the structure of the first minuet and the ensueing trio: a rounded binary form _aababa_ replaces _aabb_.
+Adoption of this form makes the structure of a single section match that of the overall movement (ABA).
+
+Trio is named Trio as it's scored for 3 instruments in Baroque era, but not necessarily so in classical era, but still usually reduced instrumental ensemble from the first minuet.
+
+It's worth noting that this simple schematic is not saying composition is formulaic.
+
+An example of this form is Mozart's K.550 Symphony in G Minor 3rd Movement, where the minuet and trio had a strong contrast of light and dark.
+
+(Mozart's work is numbered K.XXX, after Köchel catalogue, an amateur after Mozart's death who collected his work.)
+
+Another is Haydn's Symphony No.88, where there is much less contrast but a sense of humor.
+Haydn is a mentor and friend of Mozart's, and a mentor of Beethoven's.
+
+Features of classical era minuet and trio
+* Sectional (discontinuity)
+* Non-dramatic (the return, minuet da capo is, is dramatic. Still in general more dramatic than theme and variation)
+* Adjacent sections are contrast
+* ABA structure in a movement
