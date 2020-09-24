@@ -415,3 +415,67 @@ Features of classical era minuet and trio
 * Non-dramatic (the return, minuet da capo is, is dramatic. Still in general more dramatic than theme and variation)
 * Adjacent sections are contrast
 * ABA structure in a movement
+
+### Classical era Rondo form
+
+While minuet is the most predictable and formulaic form, Rondo is the least so.
+
+Rondo features contrast in the sense of multiple-departure and multiple-return.
+(The word comes from French / Latin round)
+
+Rondo is similar to Ritornello form, except that Rondo theme is the dramatic device of the piece, while Ritornello theme is not heard in full until the end.
+
+Thus Rondo theme is usually catchy, tuneful and memorable.
+
+An example piece is Beethoven's Op 49 2nd movement.
+(note that Opus, meaning "work" in Latin, is a number assigned by the publisher, usually in the sequence of the composer's work being published.)
+
+Rondo differs from minuet and trio in that the nature of contrast in minuet and trio is thematic (different themes), while Rondo is more transitional: the 2nd section does not play a different minuet, but back to Rondo theme.
+
+Haydn 88th Symphony 4th movement is another example.
+Haydn is known for his wit in music, where he establishes an expectation and then subvert it. (fakse return)
+
+Features of Rondo include
+* non-sectional and more continuous
+* not defined by a series of close cadences
+* it's dramatic and sectional relationship is contrast by departure and return
+* ABACA-coda structure
+
+### Classical era Sonata form
+
+Sonata means "sounded piece", meaning played by any instruments.
+The antonym is cantata, meaning song piece.
+
+This term is overloaded in that during Renaissance it meant any instrumental music.
+During Baroque era it means a multi-movement solo or chamber piece.
+During classical era Sonata in the name means a multi-movement piano or piano + one piece. E.g. a cello sonata means cello + piano.
+
+The musical form (sonata allegro) in question means a different thing, which this section covers.
+
+Mozart is a great sonata allegro (and symphony, chamber, cantata, opera) composer, especially productive during the last 10 years of his life 1781 - 1791.
+Mozart had many names for himself, sometimes backwards, in German or Latin, but would not have referred to himself as Wolfgang Amadeus (favored of God) Mozart.
+A musical prodigy, his relationship with his father was strained.
+He died young with debated cause, possibly kidney failure due to massive bloodletting.
+Mozart's music is not autobiographical: the hardship in life is rarely expressed in his composition at the same time.
+
+The sonata allegro differs from theme and variation, Minuet and trio, Rondo form in having multiple principal themes within one movement.
+Some sonata have more but most have two themes.
+
+Mozart K550 (commonly known as his 40th Symphony) movements 1, 2 and 4 are all in Sonata form.
+
+The 4th movement exposition theme one in G minor (rounded binary form, aaba'a') in particular was "nasty": a stark soft vs loud contrast in minor mode.
+
+A sonata form piece has sections exposition, development, and recapitulation.
+Sonata is derived from binary dance form, but is operadic in spirit, with the above sections like the introduction of characters, story development with contrast and conflict, and eventually revelation of truth.
+
+K550 movement 4 exposition in particular features theme 1 (G minor) - modulating bridge - theme 2 (B-Flat major) - cadence material.
+We don't think of the modulating bridge as belonging to either theme 1 or 2, as it is transitional in having no main key (harmonic instability) and having a non-thematic surface.
+
+Development sections can have little commonality, except that it should be based on the themes from exposition, and feature harmonic instability, usually achieved via fragmentation of the theme, dissonance chords, modulation and imitative polyphony.
+
+Recapitulation section differs from exposition in being the tonal reconciliation of the two themes: in K550 movement 4's case theme 2 in recapitulation is played using theme 1's G minor key.
+
+Features of sonata form then include
+* non sectional, two cadences at the end of exposition and at the end of the movement
+* dramatic
+* Usually AABA' + coda, where the exposition (A) is repeated. This is done for balancing (against the harmonic unstable development) and creating familiarity of the audience with the theme.
