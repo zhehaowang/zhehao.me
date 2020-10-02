@@ -475,7 +475,32 @@ Development sections can have little commonality, except that it should be based
 
 Recapitulation section differs from exposition in being the tonal reconciliation of the two themes: in K550 movement 4's case theme 2 in recapitulation is played using theme 1's G minor key.
 
+An example of sonata form is Haydn's 88th Symphony 1st Movement, which features a rhythmed theme (four squared like happy birthday, where all phrases are of the same length) (an alternative to this is prose-like).
+
+As is Mozart's opera Don Giovanni's overture.
+Don Giovanni is a dramatic comedy, featuring duo characters: each with their counterpart as contrast: Don Giovanni the handsome, lively and flamboyant vs Leporello his servant.
+
 Features of sonata form then include
 * non sectional, two cadences at the end of exposition and at the end of the movement
 * dramatic
 * Usually AABA' + coda, where the exposition (A) is repeated. This is done for balancing (against the harmonic unstable development) and creating familiarity of the audience with the theme.
+
+### Classical music - symphony - music for everyone
+
+The terminology can be confusing: symphony derives from Greek, meaning sounding in concordance, while concerto derives from Latin, also meaning sounding in concordance.
+
+An ensemble that plays such symphony is sometimes also called a symphony, though the more accurate term is orchestra or philharmonic (deriving from French, philharmonique, love of harmony).
+
+Symphony as a classical era composition genre features a multi-movement piece composed for an orchestra.
+Typically 3 or 4 movements, where the 4-movement ones follow a template of
+- Intellectually and emotionally challenging 1st movement (one that speaks to the mind), usually in sonata form and complex. Somewhat opera-like, where the operadic aria is a sonata theme, and the operadic recitation the modulating bridge
+- Lyrical and slow 2nd movement (one that speaks to the heart)
+- A dance-like 3rd movement, usually in minuet and trio form
+- A playful and fast 4th movement, usually in rondo form
+
+Haydn contributed 104 symphony and contributed much to the popularity of the genre.
+Haydn's last 12 London symphonies, back then still called a "grand overture", were well received by the English.
+
+The first concert hall was built in Oxford in 18th Century, and symphony became the popular form of entertainment which concert goers seek: it's more exciting than the intimate chamber music, and less aristocratic / snobbish (more approachable) than the opera typically in the Italian language.
+
+Concerts in taverns, universities, parks and churchs spoke well to the classical era amateurism of the middle class.
