@@ -3,7 +3,7 @@ Trump Plaza, Jersey City
 
 A recent conversation drew me to realize the surprising similarity between the way our memory works and that of a log structured merge tree.
 
-In my pseudo-scientific language (idea credit Sophia),
+In my pseudo-scientific language,
 * our short-term memory would be like a memtable
 * long-term memory would be like an SSTable
 * sleep would be the process of committing a memtable to an on-disk SSTable, it would also be the process where compaction happens
