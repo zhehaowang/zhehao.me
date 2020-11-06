@@ -5,7 +5,6 @@
 * [Latency numbers](https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html)
   * Augmentations
 * [Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
-* 
 
 ### Memory and CPU cache
 
