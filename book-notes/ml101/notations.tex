@@ -2976,12 +2976,12 @@ $$
 Lasso regression typically lead to feature sparsity (more coefficient equal to $0$).
 This can be shown intuitively by comparing the two on the intersection of contour plot (of empirical risk minimizer) and the area constrained by lasso (diamond on a $f(x) = ax + b$ prediction function) / ridge (circle on the same prediction function) regression, as show in Figure \ref{lasso-vs-ridge-sparsity}\footnote{https://niallmartin.wordpress.com/2016/05/12/shrinkage-methods-ridge-and-lasso-regression/}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.3]{res/lasso_vs_ridge_regression.png}
-\caption{Why lasso regression tends to lead to feature sparsity}
-\label{lasso-vs-ridge-sparsity}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[scale=0.3]{res/lasso_vs_ridge_regression.png}
+% \caption{Why lasso regression tends to lead to feature sparsity}
+% \label{lasso-vs-ridge-sparsity}
+% \end{figure}
 
 Lasso regression ($\mathit{l}_1$-norm) is not differentiable, thus we cannot apply gradient descent as-is.
 We split each coefficient into positive and negative parts: rewrite the vector $w = w^{+} - w^{-}$ ($|w| = w^{+} + w^{-}$), and we have this equivalent problem\footnote{whose equivalence can be proved. And this can be plugged in to a quadratic solver to give us $w^{+}$ and $w^{-}$}:
@@ -3088,12 +3088,12 @@ It always wants more margin, and is differentiable.
 \\
 0-1 loss, hinge and Logistic loss functions are illustrated in Figure \ref{logistic-hinge-01-loss} \footnote{http://fa.bianp.net/blog/2013/loss-functions-for-ordinal-regression/}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.3]{res/logistic-hinge-01-loss.png}
-\caption{0-1 loss, hinge loss and Logistic loss functions}
-\label{logistic-hinge-01-loss}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[scale=0.3]{res/logistic-hinge-01-loss.png}
+% \caption{0-1 loss, hinge loss and Logistic loss functions}
+% \label{logistic-hinge-01-loss}
+% \end{figure}
 
 \subsection{SVM and Lagrangian duality}
 
