@@ -504,3 +504,21 @@ Haydn's last 12 London symphonies, back then still called a "grand overture", we
 The first concert hall was built in Oxford in 18th Century, and symphony became the popular form of entertainment which concert goers seek: it's more exciting than the intimate chamber music, and less aristocratic / snobbish (more approachable) than the opera typically in the Italian language.
 
 Concerts in taverns, universities, parks and churchs spoke well to the classical era amateurism of the middle class.
+
+### Classical music - solo concerto
+
+Concerto depicts the contrast / collaboration between the soloist and the orchestra, a good reflection of enlightenment era's perception of the individual vs society.
+
+The concerto solo instruments usually features a fortepiano or a violin.
+* Viol, the predecessor of violin family of instruments, means any string instrument played with a bow. In particular, viol de gamba (leg) means those resting on one's leg when playing. These 6 / 7 strings instruments featured a flat sound.
+* Violin, or viol de braccio (arm) features a richer sound, and was popularized by the Cremona violin makers (luthiers) (Stradivari, Amati, Guarneri, 16C to 18C).
+
+The violin family features four instruments, soprano (violin), alto (viola), tenor (violon(cello)), bass (double bass), where the viola is one perfect fifth beneath the violin.
+
+Fortepiano refers to a wooden harp early piano, and piano (forte) (1860 onwards) refers to a modern metal harp piano. Steinway grand pianos were among the best.
+
+Mozart's K453 is an example piano concerto, one among the seventeen written during his best Vienna days.
+They typically feature a three movement of fast slow fast, often times the first movement in double exposition, and the third in rondo form.
+
+Double exposition is a concerto adaptation of the sonata form, where the theme is no longer repeated, but rather two themes in different keys are played by the orchestra and the soloist (e.g. in a contrasting new key), the rest such as bridge and cadence follows.
+A cadenza is also introduced before the cadence, borrowing the term from opera where a soloist gets to improvise before closing.
