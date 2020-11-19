@@ -522,3 +522,19 @@ They typically feature a three movement of fast slow fast, often times the first
 
 Double exposition is a concerto adaptation of the sonata form, where the theme is no longer repeated, but rather two themes in different keys are played by the orchestra and the soloist (e.g. in a contrasting new key), the rest such as bridge and cadence follows.
 A cadenza is also introduced before the cadence, borrowing the term from opera where a soloist gets to improvise before closing.
+
+### Classical opera - opera buffa
+
+17th C Venetian opera had gone down the route of favoring monetization over artistic value.
+Early 18th C reform led to opera seria (serious), where, often mythological or classical in theme, the libretto followed static patterns of conflicts of human passions and renunciation of something.
+This formulaic form led to singers' performance, rather than the music creation itself, being the focal point.
+
+Since then, Rousseau had important impacts on the rejection of opera seria for its being unnatural, in favor of opera buffa (comic opera).
+Opera buffa also featured stereotypes such as the pompous aristocrat, street smart servants, and are often satirical of the aristocrats.
+
+Opera buffa, featuring simpler composition, smaller cast, and everyday scenes, would seem more natural in expression, flexible in structure, and the audience find it easier to identify with the characters.
+
+An example is La Serva Padrona, the maid as the mistress, hailed during Rousseau's time.
+The cast has three members, the maid servant, the wealthy merchant bachelor, and a mute.
+
+Opera buffa heralds the opera of classicism.
