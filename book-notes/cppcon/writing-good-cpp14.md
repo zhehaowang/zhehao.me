@@ -19,3 +19,7 @@ Core rules, no leaks (RAII), no dangling pointers, no type violation through poi
 Similar concepts, `absl::span`, `std::reference_wrapper`, etc.
 
 Smart pointer usage
+* often overused when you don't need to deal with ownership.
+* when you are not transferring / sharing ownership, do not pass unique or shared ptr by value.
+
+Ideally, the tools know the rules.
