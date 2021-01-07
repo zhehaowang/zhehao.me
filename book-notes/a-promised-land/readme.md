@@ -26,3 +26,5 @@ The loss in 2010 was drastic.
 
 With all the woes of contemporary American society aside, the promise of democracy, freedom, rule of law, reinforced by the separation of powers, is still a powerful one, and perhaps more ambitious in scale than any our species previously tried.
 It is worth striving for, knowing full well the uphill battles awaiting.
+
+His was perhaps a life fitting that of the active Stoic teaching of the past.
