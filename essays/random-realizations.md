@@ -120,3 +120,4 @@ Come to think of it, perhaps I was naive and biased while she was right all alon
 
 * what service do we provide? what service do I provide in the company? what does ownership really mean? what is it that they really want?
 
+* Ultimately, one is alone and has one's own best judgment to answer for. The states of being convinced otherwise are ephemeral. Do not willingly drown oneself in such vain hopes or temptation, and lose that judgment.

@@ -9,6 +9,8 @@ wip/*
 *.pyc
 
 notebooks/.ipynb_checkpoints/
+# save paired md instead
+notebooks/*.ipynb
 
 *.a
 *.o

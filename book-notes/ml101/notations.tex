@@ -3620,5 +3620,39 @@ written in block-matrix form.
 
 \subsection{Recap: linear regression with square loss}
 
+Why OLS (vertical distance squared loss) estimator ($f(y)$):
+
+OLS is a best unbiased linear estimator, when the true model is linear and
+$\mathbb{E}(\epsilon_i | X) = 0$, $Var(\epsilon_i | X) = \sigma^2$ and
+$Cov(\epsilon_i, \epsilon_j | X) = 0$.
+
+Gaussian error $\implies$ OLS is best unbiased.
+
+Best meaning lowest variance, unbiased meaning $\hat{E} = E$.
+
+Also because of its closed form and simple:
+$\hat{\beta} = (X^TX)^{-1}Xy$ is linear to $y$.
+
+\subsection{Prediction vs inference}
+
+Prediction is asking given X, what is the best guess for Y.
+
+$R^2$ is an important metric where it says how much variance in the given data is explained by your model.
+$$
+R^2 = 1 - \frac{\mathbb{E}((y - \hat{y})^2)}{\mathbb{E}{((y - \bar{y})^2)}}
+$$
+
+$R^2$ on training set ranges between $[0, 1]$, and $[-\inf, 1]$ OOS.
+
+Inference is learning the data generation process: the underlying relationship between $X$ and $Y$.
+
+Standard error is an important metric here.
+
+Hypothesis testing is often done in inference.
+
+\textbf{What happens if two features are highly correlated?}
+
+In a linear regression, you often see offseting coefficients, this causes standard error to go up.
+Correlated features can be mitigated by regularization, which also results in a biased estimator.
 
 \end{document}

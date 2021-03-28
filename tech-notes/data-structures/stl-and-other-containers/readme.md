@@ -1,10 +1,12 @@
-# Containers containers
+# Containers
 
 ### Containers
 
 `boost::intrusive`
 
 `boost::stable_vector`
+
+`std::deque`
 
 `boost::small_vector`
 
@@ -22,6 +24,10 @@
 
 `google::sparse_hash_map`
 
+`absl::flat_hash_map`
+
+`absl::node_hash_map`
+
 ### Associative in other languages
 
 Python `dict`
@@ -31,3 +37,9 @@ Java `HashMap`
 JavaScript objects
 
 PHP Array
+
+### 
+
+`boost::multi_index_container`
+
+`boost::bimap`
