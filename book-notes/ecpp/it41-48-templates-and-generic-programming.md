@@ -470,13 +470,13 @@ public:
   template<class Y>                                     // assign from
     shared_ptr& operator=(shared_ptr<Y> const& r);      // any compatible
   template<class Y>                                     // shared_ptr or
-    shared_ptr& operator=(unique_ptr<Y>&& r);            // unique_ptr
+    shared_ptr& operator=(unique_ptr<Y>&& r);           // unique_ptr
   ...
 };
 ```
 Note that among the ctors only the generalized copy ctor is not explicit, meaning one can't implicit convert `weak_ptr`, raw pointer or `unique_ptr` to a `shared_ptr`, but implicit conversions among `shared_ptr`s is allowed.
 
-Also note that in the version with `unique_ptr`, the given pointer is not `const` since ownership is taken over when copying an `unique_ptr`.
+Also note that in the version with `unique_ptr`, the given pointer is not `const` since ownership is taken over when moving an `unique_ptr`.
 
 Declaring a generalized copy constructor (a member template) in a class doesn't keep compilers from generating their own copy ctor (a non-template), so if you want to control all aspects of copy construction, you must declare both a generalized copy ctor as well as the normal copycon.
 
@@ -631,7 +631,7 @@ In essence, `operator*` makes sure implicit conversion happens, and when both be
 **Takeaways**
 * When writing a class template that offers functions related to the template that support implicit type conversions on all parameters, define those functions as friends inside the class template
 
-### Uses traits classes for information about types
+### Item 47. Uses traits classes for information about types
 
 STL has templates for containers, algorithms, iterators, etc, but also utilities.
 Among its utilities templates there is `advance`.
@@ -798,7 +798,7 @@ And TR1 introduces `is_fundamental<T>`, `is_array<T>`, `is_base_of<T1, T2>`.
 * Traits classes make information about types available during compilation. They're implemented using templates and template specializations
 * In conjunction with overloading, traits classes make it possible to perform compile-time `if...else` tests on types
 
-### Be aware of template meta programming
+### Item 48. Be aware of template meta programming
 
 TMP is the technique that writes template-based C++ programs that execute during compilation.
 
