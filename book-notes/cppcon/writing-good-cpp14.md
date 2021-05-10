@@ -23,3 +23,23 @@ Smart pointer usage
 * when you are not transferring / sharing ownership, do not pass unique or shared ptr by value.
 
 Ideally, the tools know the rules.
+
+
+```cpp
+extern int x = 10; // extern is ignored.
+```
+A declaration with an initializer is always definition.
+
+A variable defined without an initializer in the global or a namespace scope is initialized by default.
+This is not the case for non-static local variable or objects created on the free store (heap / dynamic storage).
+
+External linkage: a name that can be used in translation units different from the one in which it was defined.
+Internal linkage: name that can only be referred to within the translation unit in which it is defined.
+No linkage: names that linker does not see e.g. local variables.
+
+`static` in namespace scope means internal linkage.
+`const` (or `constexpr`, `using` / type aliases) in namespace scope implies internal linkage, to let it have external linkage, add `extern` to `const`.
+`inline` function in every translation unit must be declared identically.
+
+
+
