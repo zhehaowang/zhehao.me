@@ -46,7 +46,7 @@ The upshot of locality is we can keep only a subset of a process's address space
 
 RAM is individed into small fixed size **page**s, by default 4KB ones.
 At any one time, only some of the pages of a program need to be resident in physical memory page frames.
-These pages form the so-called **resident set**.
+These pages form the **resident set**.
 
 Copies of the unused pages of a program are maintained in the **swap** area: a reserved area of disk space used to supplement the computer's RAM and loaded into physical memory only as required.
 
@@ -72,5 +72,50 @@ Virtual memory management achieves
 * Programmer, compiler and linker needn't be concerned with the physical layout of the program in RAM.
 * Because not all memory used by the process need to live in RAM, the program loads and runs faster. (also each process uses less RAM increases the amount of processes that can live in RAM, and at any moment CPU is less likely to be idle.)
 
+### Stack
+
+The stack pointer tracks the current top of the stack.
+Each time a function is called, an additional frame is allocated on the stack, and this frame is removed when the function returns.
+
+The term **user stack** is used to distinguish the stack here from the **kernel stack**.
+The kernel stack is a per-process memory region maintained in kernel memory that is used as the stack for execution of the functions called internally during the execution of a system call. (The kernel can't employ the user stack for this purpose since it resides in unprotected user memory.)
+
+Each (user) stack frame contains the following information:
+* Function arguments and local variables (automatic variables)
+* Call linkage information: each function uses certain CPU registers. Each time one function calls another, a copy of these registers is saved in the called function's stack frame so that when the function returns, the appropriate register values can be restored for the calling function. 
+
+### argc, argv, environ
+
+`argc`, `argv`. `argv[0]` contains the name used to invoke the program. (`gzip`, `zcat`, `gunzip` points to the same binary, and uses this invoked name technique to identify what code to run).
+They live in a memory area above the program's stack, and that area is limited in memory (usually by `ARG_MAX` from `limits.h`).
+
+GNU C library exposes these global vars `program_invocation_name` and `program_invocation_short_name`.
+
+
+Each process has an associated array of strings called the environment.
+When a new process is created, it inherits a copy of its parent's environment.
+
+A common use of environment variables is in the shell.
+`export` (`unset`), `setenv` (`unsetenv`) permanently add a value to the shell’s environment and this environment is then inherited by all child processes that the shell creates. (`printenv`, `/proc/PID/environ` file to see).
+Bourne shell and its descendants allow setting single command environment values by prepending `NAME=value` to the command run.
+
+The environment variables are available to C as a global `char **environ` or `char* getenv(const char*)`. (to set, `setenv(name, value, override)` / `putenv(char*)`. note that the latter doesn't make a copy in environment but rather let a pointer in the environment linked list point to your given string! `clearenv` sets `environ` head to null.)
+
+### setjmp, longjmp
+
+`setjmp()`, `longjmp()`: non-local go-to. (target location is somewhere outside the current executing function.)
+They should be avoided like `goto`.
+
+(`goto` from C can't be used to jump between functions in C, because all functions reside at the same scope level, thus given two functions `x` and `y`, the compiler has no way of knowing whether a stack frame for `x` might be present when `y` is invoked (and thus whether a `goto` from `y` to `x` is possible). Having nested function can make this possible. Inner function can goto the outer scope.)
+
+Calling `setjmp(jmp_buf env)` establishes a target for a later jump performed by `longjmp(jmp_buf env, int val)`.
+From a programming point of view, after the `longjmp()`, it looks exactly as though we have just returned from the `setjmp()` call for a second time.
+The way in which we distinguish the second `return` from the initial return is by the integer value returned by `setjmp()`: first call returns `0`, second call returns what `longjmp` is called with.
+`setjmp` saves various information about the current process environment (including `PC` and `SP`) into its argument and `longjmp` needs to call with the same env.
+
+It is permitted to call setjmp() only inside expressions simple enough not to require temporary storage. (assignment from `setjmp` is not allowed).
+`setjmp(global)` --> `return` --> `longjmp(global, 1)` is wrong in that the `longjmp` would set the stack pointer to a frame that no longer exists.
+
+`longjmp` may interact poorly with compiler optimization: local vars optimized onto a register may not have their state correctly restored.
 
 
