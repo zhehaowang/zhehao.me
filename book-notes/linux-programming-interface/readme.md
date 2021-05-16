@@ -118,4 +118,119 @@ It is permitted to call setjmp() only inside expressions simple enough not to re
 
 `longjmp` may interact poorly with compiler optimization: local vars optimized onto a register may not have their state correctly restored.
 
+# Memory allocation
 
+### Heap allocation
+
+The current limit of the heap is referred to as the **program break**.
+
+To allocate memory, C programs normally use the `malloc` family of functions, which uses `brk` / `sbrk`.
+
+`brk` / `sbrk` resizes the heap by telling the kernel to adjust where the process's program break is.
+
+After the program break is increased, the program may access any address in the newly allocated area, but no physical memory pages are allocated yet.
+The kernel automatically allocates new physical pages on the first attempt by the process to access addresses in those pages.
+
+```cpp
+#include <unistd.h>
+
+// Sets program break to the specified location (rounded up to the next page boundary)
+// Returns 0 on success, or –1 on error.
+// Adjusting the program break below the initial boundary (end, as the end of user
+// initialized data segment) is usually undefined behavior.
+int brk(void *end_data_segment);
+
+// Adjusts the program break by adding increment (of integer data type) to it.
+// Returns previous program break (begin of newly allocated area) on success, or (void *) –1 on error.
+// sbrk(0) returns the current setting of the program break without changing it.
+void *sbrk(intptr_t increment);
+```
+
+Compared with `sbrk` / `brk`, `malloc` / `free`:
+* are standardized as part of the C language
+* are easier to use in threaded programs
+* provide a simple interface that allows memory to be allocated in small units
+* allow us to arbitrarily deallocate blocks of memory, which are maintained on a free list and recycled in future calls to allocate memory
+
+```cpp
+#include <stdlib.h>
+
+// Returns pointer to allocated memory on success, or NULL and sets errno on error.
+// Returned memory is aligned on a byte boundary suitable for any type of C data structure.
+// 
+// malloc scans the list of memory blocks previously released by free() in order to find
+// one whose size is larger than or equal to its requirements (a best-fit or first-fit
+// strategy e.g.) and split if the empty block is larger. If no block on the free list is
+// large enough, then malloc() calls sbrk() to allocate more memory (usually some
+// multiple of the virtual memory page size).
+void *malloc(size_t size);
+
+// deallocates the block of memory pointed to by its ptr argument, which should be an
+// address previously returned by malloc()
+// 
+// In general, free() doesn't lower the program break, but instead adds the block of
+// memory to a list of free blocks that are recycled by future calls to malloc(), because
+// - free may not happen at the end of program's heap
+// - minimizes the number of sbrk calls (system calls have a small but significant overhead
+//
+// free(NULL) does nothing and is not an error.
+// Double-free and use-after-free are.
+// glibc free() calls sbrk() to lower the program break only when the free block at the top
+// end is "sufficiently" large.
+// 
+// How does free know the size to free?
+// When malloc() allocates the block, it allocates extra bytes to hold an integer containing
+// the size of the block and return pointer to memory after that.
+void free(void *ptr);
+
+// mtrace() and muntrace() allow a program to turn tracing of memory allocation calls on and
+// off. (They write to MALLOC_TRACE env var, name of a file).
+// mcheck(), mprobe(), MALLOC_CHECK_ env var require linking in a malloc debugging library.
+// mallopt() and mallinfo() (non-standard) controls / reports params for malloc / free.
+
+// Allocate memory for an array of identical items. same return convention as malloc.
+// Unlike malloc(), calloc() initializes the allocated memory to 0.
+void *calloc(size_t numitems, size_t size);
+
+// Resize (usually enlarge) a block of memory previously allocated by a malloc-like function.
+// Returns pointer to allocated memory on success (which may be different from its location
+// before the call, in which case realloc copies over all existing data), or NULL on error
+// and ptr is untouched. When increasing size, realloc does not initialize the additional
+// bytes.
+void *realloc(void *ptr, size_t size);
+
+// memory allocated with calloc and realloc should also be free'ed.
+// realloc-copy is often and expensive, in general this should be minimized.
+// 
+// to account for possibility of returned memory being different, we want to do
+nptr = realloc(ptr, newsize);
+if (nptr == NULL) {
+  /* Handle error. note setting ptr in this case would mean we lose reference to the
+     currently allocated object! */
+} else {
+  /* realloc() succeeded. Note that any pointers to locations inside the previous block
+     (if realloc moves this) are now invalid. */
+  ptr = nptr;
+}
+```
+
+```cpp
+#include <malloc.h>
+
+// Allocates size bytes starting at an address aligned to a multiple of boundary.
+// Returns pointer to allocated memory on success, or NULL on error.
+void *memalign(size_t boundary, size_t size);
+// an alternative posix_memalign (as specified in SUSv3) may be provided instead.
+// should also be free'ed when done.
+```
+
+### Stack allocation
+
+```cpp
+#include <alloca.h>
+
+// Obtains memory from the stack by bumping stack pointer. Need not be free'd.
+// Returns pointer to allocated block of memory.
+// We can’t use alloca() within a function argument list.
+void *alloca(size_t size);
+```
