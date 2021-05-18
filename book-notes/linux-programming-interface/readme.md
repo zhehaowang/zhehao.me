@@ -234,3 +234,25 @@ void *memalign(size_t boundary, size_t size);
 // We can’t use alloca() within a function argument list.
 void *alloca(size_t size);
 ```
+
+# IPC
+
+### Taxonomy
+
+Functional categories of IPC:
+* commuication
+  * data transfer (one process writes to kernel memory buffer, others read from it. Multiple readers are possible. Compared with shm reads are destructive. Synchronization is automatic, i.e. reader blocks on waiting for data)
+    * byte stream (undelimited, arbitrary number of bytes): pipe, fifo, stream socket (internet domain, UNIX domain)
+    * message (each read is one whole message): System V message queue, POSIX message queue, datagram socket
+    * pseudoterminal
+  * shared memory (same RAM page made available to two processes. No syscall or transfer to kernel memory required when communicating, hence very fast, but may need manual synchronization.): System V shm, POSIX shm, memory mapping (anonymous mapping, mapped file)
+* synchronization
+  * semaphore (kernel-maintained integer that processes can increment / decrement, never drops below 0 and blocks on decrease instead): System V. POSIX named / unnamed.
+  * file lock (read / shared and write / exclusive locks): `fcntl`
+  * mutex, conditional variable
+* signal: standard, realtime
+
+These mechanisms also differ in accessibility, persistence (process, kernel (before reboot) and file system level)
+
+Here we refrain from making performance comparison on different IPC mechanisms, since performance may vary across Linux kernel versions, and performance will wary depending on the manner and environment they are used.
+Benchmark individual applications if performance is a concern. Hide them behind an abstraction layer such that substitution is easy.
