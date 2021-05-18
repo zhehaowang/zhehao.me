@@ -1,3 +1,56 @@
+# Concepts
+
+**Operating system**: the central software managing a computer's resources and all of the accompanying standard software tools, such as command-line interpreters, graphical user interfaces, file utilities, etc.
+
+**Kernel**: just the central software managing and allocating CPU, RAM and devices. (i.e. it provides a software layer to manage the limited resources of a computer). Its tasks
+* Process scheduling. (Linux being multitask - multiple processes resides in memory at the same time. preemptive - kernel scheduler decides which process to run.)
+* Memory management. (Linux uses virtual memory - process memory address is isolated, only part of a process memory is kept in memory.)
+* Provision of a file system (crud).
+* Process creation and termination (giving a process resources and reclaiming resources after done).
+* Access to devices.
+* Networking.
+* Provision of a system call API.
+* Virtual private computer (Linux being multiuser).
+
+The Linux kernel executable is typically `/boot/vmlinuz`. z - compressed, vm - called this way after virtual memory's implemented.
+
+Modern processor allows the CPU to operate in **user mode** and **kernel mode** (switched by hardware instructions).
+Areas of virtual memory can also be marked **user space** and **kernel space**: CPU in user mode cannot access kernel address space.
+
+Certain operations can only performed when the processor is in in kernel mode (like initiating IO operation).
+
+* A process typically doesn't know where it is located in RAM,
+* doesn't know where on the disk drive the files it accesses are being held,
+* can't directly communicate with another process,
+* can't itself create a new process or end its own existence (i.e. it requests the kernel to do so).
+By contrast,
+* The kernel maintains data structures containing information about all running processes and updates these structures as processes are created, change state, and terminate.
+* The kernel maintains all of the low-level data structures that enable the filenames used by programs to be translated into physical locations on the disk.
+* The kernel also maintains data structures that map the virtual memory of each process into the physical memory of the computer and the swap area(s) on disk.
+* All communication between processes is done via mechanisms provided by the kernel.
+* The kernel (in particular, device drivers) performs all direct communication with input and output devices, transferring information to and from user processes as required.
+
+A **shell** is a special-purpose program designed to read commands typed by a user and execute appropriate programs in response to those commands.
+On UNIX systems, the shell is a user process.
+* Bourne shell (sh) featuring io redirection, pipes, globbing, variables, env var manipulation, functions, background command execution, etc
+* Bourne again shell (bash) GNU's implementation of Bourne shell.
+* C shell, Korn shell
+
+### User & Groups
+
+`/etc/passwd` includes username, uid, (first) gid, home directory, login shell.
+`/etc/group` includes groupname, gid, user list.
+
+`superuser` / `root` (uid 0) bypasses all file permissions / can send signal to any process.
+
+### File & directory
+
+The kernel maintains a single hierarchical directory structure to organize all files in the system (regardless of the disk device as Windows would care about).
+
+A directory is a special file whose contents take the form of a table of filenames coupled with references to the corresponding files. (`.` and `..` are special links (i.e. filename-plus-reference association). `/..` is `/`.)
+
+
+
 # Process
 
 A process is an instance of an executing program.
