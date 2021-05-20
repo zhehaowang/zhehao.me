@@ -43,13 +43,39 @@ On UNIX systems, the shell is a user process.
 
 `superuser` / `root` (uid 0) bypasses all file permissions / can send signal to any process.
 
+Each process has a real uid, gid, an effective uid, gid, and supplementary gids.
+
 ### File & directory
 
 The kernel maintains a single hierarchical directory structure to organize all files in the system (regardless of the disk device as Windows would care about).
 
 A directory is a special file whose contents take the form of a table of filenames coupled with references to the corresponding files. (`.` and `..` are special links (i.e. filename-plus-reference association). `/..` is `/`.)
 
+Symlink (to be differentiated from hard link) is a specially marked file containing the name of another file.
+When a pathname is specified in a system call, in most circumstances, the kernel automatically follows each symbolic link in the pathname (limited number of depth).
 
+Permission in a directory: read allows listing content, write allows contents (filenames) to be added / removed / changed, and execute allows access to files within the directory and entering that directory.
+
+### File IO model
+
+**Universality** of IO: `open` `read` `write` `close` perform IO on all types of files, including devices.
+
+(UNIX systems have no end-of-file character; the end of a file is detected by a read that returns no data.)
+
+The IO system refers to open files using a file descriptor, obtained by a call to `open()`.
+Normally a process inherits three open file descriptors when it's started by the shell. 0 stdin, 1 stdout, 2 stderr (in an interactive shell, these are normally connected to the terminal).
+
+### Memory mapping
+
+`mmap()` system call creates a new memory mapping in the calling process’s virtual address space.
+* A **file mapping** maps a region of a file into the calling process's virtual memory. Once mapped the program can access bytes of the file directly (pages of the mapping are loaded as needed).
+* An **anonymous mapping** does not have a corresponding file. The pages of the mapping are initialized to 0.
+
+Memory mapping of a process can be shared with mappings in other processes.
+When they share the same page, each process can see others' changes depending on whether the mapping is created as private or shared.
+When private, modification to contents of the mapping is not carried through to the underlying file (and not visible to other processes). Shared mapping modifications are carried through to underlying file and visible to other processes.
+
+Memory mappings serve a variety of purposes, including initialization of a process's text segment from the corresponding segment of an executable file, allocation of new (zero filled) memory, memory-mapped file IO and IPC (via a shared mapping).
 
 # Process
 
@@ -70,7 +96,27 @@ From the kernel’s point of view, a process consists of user-space memory conta
 With the exception of a few system processes (e.g. system process `init` uses PID 1) there is no fixed relationship between PID of a process and the program it runs.
 
 Each process has the PID of its parent process, forming a tree-like structure viewable with `pstree` and tracing back to `init` as root.
-If a child process becomes orphaned because its birth parent terminates, it becomes adopted by `init`.
+If a child process becomes orphaned because its birth parent terminates, it becomes adopted by `init` (`init` is loaded from program file `/sbin/init`, and cannot be killed).
+
+Each process has a current working directory, and it is from this directory that relative path- names are interpreted for the process.
+A process inherits its current working directory from its parent process.
+
+A **daemon** process is usually long lived and runs in the background, like `syslogd` which records messages in the system log.
+
+Each process can be limited in resources such as open files, memory and CPU time by `setrlimit()`. (`fork`ed program inherits copies of parents' resource limit settings.)
+
+The resource limits of the shell can be adjusted using the `ulimit` command, which is also inherited by child processes created by this shell.
+
+### Process creation & termination
+
+A process can create a new process calling `fork`.
+The forked child inherits copies of the parent's data, stack, and heap segments (note that the read-only text is shared between the two), which it may then modify independent of the parent's copies.
+
+The child can go on and execute same code as parent, or use `execve` system call to load and execute a different program.
+An `execve()` call destroys the existing text, data, stack, and heap segments, replacing them with new segments based on the code of the new program.
+
+A program can request its own termination using `_exit()` system call, or do so by the delivery of a signal.
+Either case the program yields a termination status (either the param to `_exit`, or the type of signal) which is available for the parent process to inspect using `wait()` system call.
 
 ### Process memory layout
 
