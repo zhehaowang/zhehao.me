@@ -77,6 +77,40 @@ When private, modification to contents of the mapping is not carried through to 
 
 Memory mappings serve a variety of purposes, including initialization of a process's text segment from the corresponding segment of an executable file, allocation of new (zero filled) memory, memory-mapped file IO and IPC (via a shared mapping).
 
+### Static and shared libraries
+
+Object library (compiled binary code).
+Static library / archive: structured bundle of compiled object modules. To use functions from static library, we specify the library in link command used to build the program, and after resolving the various function references from the main program to the modules in the static library, the linker extracts copies of object modules from the library and copies into the executable file.
+
+Drawbacks including each program having a copy wastes disk space. Correspondingly, waste of memory when programs using the same statically linked library function run at the same time.
+Additionally if a library requires modification, then after recompiling the library all application needs to be relinked.
+
+Shared libraries don't copy object modules from the library into the executable, the linker just writes a record into the executable to indicate at runtime the executable needs to use that shared library.
+When program gets loaded into the memory at runtime, a program called dynamic linker ensures shared libraries required by the program are found and loaded into memory, and performs runtime linking to resolve function calls in the executable to the corresponding definitions in the shared library.
+
+Reduced copies in memory and easier to make sure a program uses the latest version.
+
+### Signals
+
+Signals are sent to a process by the kernel, by another process or by the process itself.
+The kernel may send a signal when
+* user types interrupt character on the keyboard
+* one of process's children terminated
+* a timer set by the process has expired
+* the process attempted to access an invalid memory address
+* shell `kill` command / `kill()` system call
+
+The program can install custom signal handlers.
+Normally a signal is delivered as soon as the receiving process is next scheduled to run, or immediately if the process is already running.
+However it's also possible to block a signal temporarily by adding it to the process's signal mask. They get blocked until removed from the signal mask.
+
+### Threads
+
+Each thread is executing the same program code and shares the same data area and heap. However, each thread has it own stack containing local variables and function call linkage information.
+
+The primary advantages of using threads are that they make it easy to share data (via global variables) between cooperating threads and that some algorithms transpose more naturally to a multithreaded implementation than to a multiprocess implementation.
+Furthermore, a multithreaded application can transparently take advantage of the possibilities for parallel processing on multiprocessor hardware.
+
 # Process
 
 A process is an instance of an executing program.
