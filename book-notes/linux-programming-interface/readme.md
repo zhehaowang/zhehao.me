@@ -141,6 +141,16 @@ Each process can be limited in resources such as open files, memory and CPU time
 
 The resource limits of the shell can be adjusted using the `ulimit` command, which is also inherited by child processes created by this shell.
 
+### Realtime OS
+
+Response is guaranteed to be delivered within a certain deadline time after the triggering event.
+This requires support from the underlying system, and such requirements can conflict with that of a multiuser time- sharing operating systems.
+Realtime variants of Linux have also been created.
+
+### The `/proc` file system
+
+Linux (like Unix) provides the **/proc** file system is a virtual file system that provides an interface to kernel data structures in a form that looks like files and directories on a file system.
+
 ### Process creation & termination
 
 A process can create a new process calling `fork`.
@@ -151,6 +161,22 @@ An `execve()` call destroys the existing text, data, stack, and heap segments, r
 
 A program can request its own termination using `_exit()` system call, or do so by the delivery of a signal.
 Either case the program yields a termination status (either the param to `_exit`, or the type of signal) which is available for the parent process to inspect using `wait()` system call.
+
+### Date and time
+
+Two types of time:
+* **Real time** - wall clock since epoch.
+* **CPU time** - total amount of CPU time that a process has used since starting. System time - CPU time spent in kernel mode (syscalls and kernel services performed on behalf of the process), user time - CPU time spent in user mode.
+
+### Process group, session
+
+Each program executed by the shell is started in a new process.
+For example, the shell creates three processes to execute the following pipeline `ls -l | sort -k5n | less`
+
+A **session** is a collection of process groups (jobs).
+Sessions usually have an associated controlling terminal.
+At any point in time, one process group in a session is the foreground process group ( foreground job), which may read input from the terminal and send output to it.
+A session can have any number of background jobs.
 
 ### Process memory layout
 
@@ -389,3 +415,79 @@ These mechanisms also differ in accessibility, persistence (process, kernel (bef
 
 Here we refrain from making performance comparison on different IPC mechanisms, since performance may vary across Linux kernel versions, and performance will wary depending on the manner and environment they are used.
 Benchmark individual applications if performance is a concern. Hide them behind an abstraction layer such that substitution is easy.
+
+# System programming concepts
+
+### System calls
+
+A **system call** is a controlled entry point into the kernel, allowing a process to request that the kernel perform some action on the process’s behalf.
+* changes the processor state from user mode to kernel mode, so that the CPU can access protected kernel memory.
+* the set of system calls is fixed. Each system call is identified by a unique number.
+* each system call may have a set of arguments that specify information to be transferred from user space (i.e., the process's virtual address space) to kernel space and vice versa.
+
+From a program, invoking a syscall looks like calling a C function, but what happens underneath the hood is (e.g. on x86-32)
+* invoking wrapper function in the C library
+* wrapper function makes all of the syscall arguments available (passed to the wrapper C function via stack but kernel expects them to be in certain registers, so the wrapper copies them onto registers)
+* all system calls enter kernel in the same way and the kernel needs some way to identify the syscall. To do this the wrapper copies syscall number into register `eax`
+* wrapper function executes a `trap` / `sysenter` machine instruction, which causes the processor to switch to kernel mode and execute code pointed to by location 0x80 of system's trap vector.
+* In response to trap to location 0x80, the kernel invokes its `system_call` routine to handle the trap. This
+  * saves register values onto kernel stack
+  * checks validity of syscall number
+  * invokes the appropriate syscall routine (lookup via syscall number), which performs the task and may involve transferring data between kernel and user space memory (e.g. in IO operation) and returns a result status to `system_call` routine. 
+  * restores register value from the kernel stack and places system call return value on the stack.
+  * returns to wrapper, and returning processor to user mode.
+* if the syscall return value is error, the wrapper function sets global var `errno` (return value of the syscall) and returns an int to the user to indicate success / fail. (syscall returns non-negative when success, and negative when error, whose value negated is used to set errno. The wrapper function returns -1 to indicate error.)
+
+(Even for a simple system call like `getppid`, a considerable amount of work needs to happen! These can have significant overhead over a user-space function call due to mode switch, verifying args, transferring data between system and user memory, etc.)
+
+`strace` calls can be used to trace syscalls made by a program.
+
+### Library functions
+
+A **library function** is a function in the standard C library, many of which don't involve syscalls underneath while others do.
+(e.g. library function `fopen` uses syscall `open` underneath the hood, `printf` uses syscall `write` underneath the hood, and does output buffering, formatting, on top of the latter which just outputs a block of bytes. Similarly `malloc` and `free` over the underlying `brk`.)
+
+### GNU C library (glibc)
+
+There are different standard C library implementations, with the most common one on Linux being GNU C library.
+
+Running `ldd` (list dynamic dependencies) can usually find the path of glibc shared library.
+
+### Handling syscall and library function errors
+
+Always check the return of syscalls / library functions. (except on a few syscalls that never fail: `getpid`, `_exit`, etc) (`exit()` vs `_exit()`, former flushes stdio buffer and calls exit handlers while latter does not)
+
+Successful system calls and library functions never reset `errno` to 0, so it can have a value from the previous failed syscall.
+(plus rarely a successful syscall can set `errno`, so always check retvalue before checking `errno`.)
+
+(also rarely a system call can return `-1` on success, like `getpriority`, in this case user code can set `errno` before the call, and check it afterwards.)
+
+`errno` to (locale-sensitive) string is available via `perror()` and `strerror()` library functions (the string returned from the latter can be statically allocated and overwritten by later calls to it).
+
+(In C terminology, an lvalue is an expression referring to a region of storage.)
+
+### Portability
+
+Various implementation data types are represented using standard C types (like pids, uids, file offsets).
+
+One could use C fundamental types like `long` and `int` but this reduces portability as size of these can vary across platform.
+Instead, use `pid_t` (usually `typedef`'ed from `int`), `uid_t`, `off_t`, `size_t` (size of an object in bytes).
+
+Note that library header files, order of members in library-defined structs, macros declared can vary across platforms as well.
+
+# Universal file IO model
+
+All system calls for performing I/O refer to open files using a **file descriptor**, a (usually small) nonnegative integer.
+File descriptors are used to refer to all types of open files, including pipes, FIFOs, sockets, terminals, devices, and regular files.
+Each process has its own set of file descriptors.
+
+Three standard file descriptors (stdin, stdout, stderr) are inherited from copies of the shell's file descriptors.
+
+Key system calls for performing IO is `open`, `read`, `write`, `close`.
+
+### Universality
+
+The above system calls perform IO on all types of files, including devices such as terminals (`/dev/tty`)
+
+Universality of I/O is achieved by ensuring that each file system and device driver implements the same set of I/O system calls.
+
