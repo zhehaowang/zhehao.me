@@ -89,6 +89,7 @@ Shared libraries don't copy object modules from the library into the executable,
 When program gets loaded into the memory at runtime, a program called dynamic linker ensures shared libraries required by the program are found and loaded into memory, and performs runtime linking to resolve function calls in the executable to the corresponding definitions in the shared library.
 
 Reduced copies in memory and easier to make sure a program uses the latest version.
+(_A header from so change would still require a recompile of executables using it, usually such should be identified by the version of the so? What if an so masquerades as a particular version? that would be how dll injection works? but what if .h doesn't match? Probably undefined behavior, like the stack is a couple bytes short?_)
 
 ### Signals
 
@@ -132,7 +133,7 @@ With the exception of a few system processes (e.g. system process `init` uses PI
 Each process has the PID of its parent process, forming a tree-like structure viewable with `pstree` and tracing back to `init` as root.
 If a child process becomes orphaned because its birth parent terminates, it becomes adopted by `init` (`init` is loaded from program file `/sbin/init`, and cannot be killed).
 
-Each process has a current working directory, and it is from this directory that relative path- names are interpreted for the process.
+Each process has a current working directory, and it is from this directory that relative pathnames are interpreted for the process.
 A process inherits its current working directory from its parent process.
 
 A **daemon** process is usually long lived and runs in the background, like `syslogd` which records messages in the system log.
@@ -175,13 +176,13 @@ For example, the shell creates three processes to execute the following pipeline
 
 A **session** is a collection of process groups (jobs).
 Sessions usually have an associated controlling terminal.
-At any point in time, one process group in a session is the foreground process group ( foreground job), which may read input from the terminal and send output to it.
+At any point in time, one process group in a session is the foreground process group (foreground job), which may read input from the terminal and send output to it.
 A session can have any number of background jobs.
 
 ### Process memory layout
 
 * Text segment, program code, sharable between many processes running the same program (i.e. mapped into the virtual memory address space of all such processes), read-only
-_how does runtime code patching work then?_
+_how does runtime code patching work then? Probably private filename mmap, then the text segment would need to be duplicated anyway?_
 * (User) initialized data segment. Global and static variables (including local static) that are explicitly initialized. Values of those vars are read from the executable file when the program is loaded into memory.
 * Uninitialized data segment (bss, block started by symbol; zero-initialized segment). Global and static variables (including local static) that are not explicitly initialized. Initialized to 0 before program starts.
   * Reason for separating this from initialized data is these need not be stored in the program. Just storing their location and size in the program is enough, and the area gets allocated by the program loader at runtime.
@@ -223,7 +224,7 @@ This can happen when
 Paged memory management unit (PMMU) translates virtual address to physical address, and advises the kernel of a page fault when a particular virtual memory corresponds to a page that is not resident in RAM.
 
 Virtual memory management achieves
-* Processes are isolated from one another and from the kernel, so that one pro- cess can’t read or modify the memory of another process or the kernel. (accomplished by having the page-table entries for each process point to dis- tinct sets of physical pages in RAM (or in the swap area).
+* Processes are isolated from one another and from the kernel, so that one process can’t read or modify the memory of another process or the kernel. (accomplished by having the page-table entries for each process point to distinct sets of physical pages in RAM (or in the swap area).
 * Where appropriate, two or more processes can share memory.
   * When multiple processes executing the same program, text segment can be shared. (Or when multiple processes load the same shared library, that code can be shared)
   * Processes can use `shmget`/`mmap` to explicitly request sharing of memory with another process, for inter-process communication.
@@ -243,9 +244,9 @@ Each (user) stack frame contains the following information:
 * Function arguments and local variables (automatic variables)
 * Call linkage information: each function uses certain CPU registers. Each time one function calls another, a copy of these registers is saved in the called function's stack frame so that when the function returns, the appropriate register values can be restored for the calling function. 
 
-### argc, argv, environ
+### `argc`, `argv`, environ
 
-`argc`, `argv`. `argv[0]` contains the name used to invoke the program. (`gzip`, `zcat`, `gunzip` points to the same binary, and uses this invoked name technique to identify what code to run).
+`argv[0]` contains the name used to invoke the program. (`gzip`, `zcat`, `gunzip` points to the same binary, and uses this invoked name technique to identify what code to run).
 They live in a memory area above the program's stack, and that area is limited in memory (usually by `ARG_MAX` from `limits.h`).
 
 GNU C library exposes these global vars `program_invocation_name` and `program_invocation_short_name`.
