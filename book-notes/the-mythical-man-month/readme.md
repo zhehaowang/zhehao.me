@@ -151,3 +151,12 @@ Document your code as you are writing it.
 Claim: no single improvement in technology, management would cause the software development productivity, simplicity, or reliability to increase by an order of magnitude.
 The making of a great designer.
 
+### No silver bullets refired
+
+The essential difficulties (of software development) are inherent in the conceptual complexity of the software functions to be designed and built at any time, by any method.
+
+Yesterday's complexity is tomorrow's order.
+Software may not ever reveal those kinds of ordering principles, but the burden is on you to explain why not.
+Someday the "complexity" of software will be understood in terms of some higher order notions.
+
+
