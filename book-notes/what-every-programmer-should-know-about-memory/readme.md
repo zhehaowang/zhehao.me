@@ -169,6 +169,77 @@ It is not possible for a cache to hold partial cache lines.
 A cache line which has been written to and which has not been written back to main memory is said to be "dirty".
 Once it is written the dirty flag is cleared.
 
-In an exclusive cache, an eviction from L1d pushes the cache line down into L2, which in turn push to L3 and then main memory.
-In an inclusive cache (Intel), each cache line in L1d is also present in L2, therefore we waste a little space but makes eviction faster.
+In an **exclusive** cache, an eviction from L1d pushes the cache line down into L2, which in turn push to L3 and then main memory.
+In an **inclusive** cache (Intel), each cache line in L1d is also present in L2, therefore we waste a little space but makes eviction faster.
 
+The CPUs are allowed to manage the caches as they like as long as the memory model defined for the processor architecture is not changed.
+(E.g. take advantage of non-busy bus line and write dirty cache lines back to memory)
+
+**Cache coherency**: in symmetric multi-processor systems, caches of all CPUs cannot work independently from each other: all processors are supposed to see the same memory content all the time. (cache line dirtied by other processors in their caches)
+
+Cache coherency protocols generally achieve: a dirty cache line is not present in any other processor's cache, and clean copies of the same cache line can reside in arbitrarily many caches.
+All the processors need to do is to monitor each others' write accesses and compare the addresses with those in their local caches.
+
+When possible, we want to start the memory/cache read early such that by the time the CPU pipeline needs it, we have the data ready and the cost of reading memory can be hidden.
+This is often possible for L1d and for processors with long pipelines possible for L2 as well.
+
+### CPU cache implementation
+
+**Fully associative** cache: any cache line can hold a copy of any memory location. (length of Cache-Set in the address is 0)
+We do a linear walk of cache and compare Tag with requested address to decide if in cache or not.
+
+These are practical for some small caches, e.g. TLB caches on some Intel processors (a few dozen entries).
+
+**Direct mapped** cache does the completely opposite thing (length of Tag in the address is 0).
+This unsurprisingly creates hot spots in cache lines.
+
+A **set associative** cache combines the above two approaches.
+E.g. an 8-way associative cache (4MB/64B line, 16 bits) where 13 bits of tags are used to address the set, and within that set 3 bits (8) tags has to be compared.
+
+##### Write behavior
+
+Need to achieve coherency transparent to user code.
+
+Write policies:
+
+* Write-through cache: if the cache line is written to, processor also writes the cache line to main memory. simple but not very fast (think a program writing a local var again and again, this does not need to generate traffic on the bus).
+
+* Write-back cache: the cache line is only marked dirty and not immediately written back, when the cache line is dropped from the cache having dirty bit set would cause it to be written back to memory.
+More prevalent since more efficient. Processors can also proactively write back (and unset dirty bit) when FSB is not busy.
+
+* Write combining: for special regions not backed by RAM, when writing back is expensive such as in video RAM. Instead of transferring a line when just one word is written, we transfer the line when all words are written.
+
+* Uncacheable: special addresses not backed by RAM, such as memory mapped cards attached to PCI-E, and cannot be brought into the cache.
+
+##### Multi-processor coherency
+
+Biggest problem with write-back is multiple processors. One processor dirtying cache means others cannot just load from RAM.
+
+It is completely impractical to provide direct access from one processor to the cache of another processor. The connection is simply not fast enough.
+
+What developed instead is the MESI 4-state cache coherence protocol.
+* Modified: local processor modified this line, which is also the only copy in any cache.
+* Exclusive: not modified, but also the only copy in any cache.
+* Shared: not modified and also exists in other caches.
+* Invalid: unused.
+
+State transition looks something like (rr - remote read, lw - local write):
+```
+E -- rr --> S -- rr/lr --> S -- rw --> I
+S -- lw --> M -- lw/lr --> M -- rw --> I
+E -- rw --> I -- rw --> I -- lr --> E/S
+I -- lw --> M
+```
+
+Certain operations a processor performs are announced on external pins and thus make the processor’s cache handling visible to the outside.
+
+One processor hearing remote write invalidates all other cache's copy, and this is the rather expensive Request-For-Ownership (RFO).
+
+Having the Exclusive state (as opposed to not differentiating from Shared) means local writes in the former case does not have to be annouced.
+It is an optimization.
+
+A MESI transition cannot happen until it is clear that all the processors in the system have had a chance to reply to the message.
+(Collisions on the bus, latency in NUMA systems can all further slow things down.)
+
+Concurrency is severely limited by the finite bandwidth available for the implementation of the necessary syn- chronization.
+Programs need to be carefully designed to minimize accesses from different processors and cores to the same memory locations.
