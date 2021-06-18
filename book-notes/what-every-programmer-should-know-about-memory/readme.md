@@ -241,5 +241,44 @@ It is an optimization.
 A MESI transition cannot happen until it is clear that all the processors in the system have had a chance to reply to the message.
 (Collisions on the bus, latency in NUMA systems can all further slow things down.)
 
-Concurrency is severely limited by the finite bandwidth available for the implementation of the necessary syn- chronization.
+Concurrency is severely limited by the finite bandwidth available for the implementation of the necessary synchronization.
 Programs need to be carefully designed to minimize accesses from different processors and cores to the same memory locations.
+
+**Hyper threads** (symmetric multi-threading) share the same processor resources except for the register set.
+The advantage is that the CPU can schedule another hyperthread and take advantage of the available resources such as arithmetic logic units when the currently running hyperthread is delayed e.g. by memory access.
+
+One thing to worry about two hyperthreads share the L1d L1i caches, so if they are running completely different code, effective size of the cache is halved for both meaning more cache misses.
+For two threads to actually bring down total run time, certain cache hit rate has to be guaranteed in comparison to the single threaded situation.
+
+##### Virtual address or physical address for tagging
+
+Virtual addresses can refer to different physical addresses over time, and the same address in different programs also likely refers to different physical addresses.
+
+The downside with using physical addresses for tagging is virtual-to-physical address translation (through the MMU) takes time, meaning physical address is only available later on in the pipeline.
+
+Processor designers are currently using virtual addresses for the first level cache (given its low latency).
+
+For larger caches we can tag with physical address: they have higher latency and the virtual -> physical address translation can finish in time (and also takes longer to load in new content).
+
+##### Replacement strategy
+
+LRU is a good default.
+
+It might be cache lines in all logical pages are mapped to the same cache sets, leaving much of the cache unused, it is the job of the OS or VM to ensure this deficiency in physical address assignment does not happen too much.
+
+The best a programmer can do is to a) use logical memory pages completely and b) use page sizes as large as meaningful to diversify the physical addresses as much as possible.
+
+### Instruction cache
+
+Instruction cache is usually less problematic than data caches, more predictable flow / access pattern help with prefetching, and spatial / temporal locality.
+
+Pipeline stalls happen, for instance, if the location of the next instruction cannot be correctly predicted or if it takes too long to load the next instruction (e.g. from memory).
+
+In CISC architecture such as x86, x86-64 instruction decoding also takes time.
+Processor L1i caches in recent years cache the decoded instruction and not the raw instruction bytes.
+
+To achieve the best performance with instruction cache,
+* generate code which is as small as possible (unless the overhead of doing so is too high).
+* help the processor make good prefetching decisions (done through code layout or explicit prefetching).
+
+Compiler code generation tries to keep both in mind.
