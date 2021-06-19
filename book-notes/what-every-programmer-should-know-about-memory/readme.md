@@ -282,3 +282,18 @@ To achieve the best performance with instruction cache,
 * help the processor make good prefetching decisions (done through code layout or explicit prefetching).
 
 Compiler code generation tries to keep both in mind.
+
+##### Self modifying code
+
+Self-modifying code should generally be avoided.
+They are usually correctly executed except in edge cases and can create performance problems if not done correctly.
+
+Code which is changed cannot be kept in decoded instructions cache, and if an upcoming instruction in the pipeline is changed then CPU has to throw away a lot of work.
+
+Because in the vast majority of cases program code is not self-modifying, L1i cache does not use MESI for simplicity, and if changes are made a lot of pessimistic assumptions has to be made.
+
+If they have to be used, SMC write operation should bypass cache.
+
+On Linux, the programmer has to perform significant magic at link time to create an executable where the code pages are writable.
+
+
