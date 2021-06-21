@@ -296,4 +296,11 @@ If they have to be used, SMC write operation should bypass cache.
 
 On Linux, the programmer has to perform significant magic at link time to create an executable where the code pages are writable.
 
+### Cache miss factors
 
+A set of experiments to produce `(working set size - read/write bytes/cycle)` on various processors with various cache sizes and policies, hyperthreaded vs single-thread.
+
+Critical workload: memory to cache transfers 8B each time, typically 8 transfers to fill the cache, and in burst mode DRAM chips can transfer 64B without further commands from the memory controller. (Each 8B block would still arrive a couple of cycles later than the previous)
+
+The word inside the cache line which is required for the program to continue might not be the first word in the cache line, in which case memory controller is free to request blocks in different order by communicating which **critical word** the program is waiting on which can be served first.
+This technique is called Critical Word First & Early Restart
