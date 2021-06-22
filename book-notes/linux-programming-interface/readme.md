@@ -224,7 +224,7 @@ This can happen when
 Paged memory management unit (PMMU) translates virtual address to physical address, and advises the kernel of a page fault when a particular virtual memory corresponds to a page that is not resident in RAM.
 
 Virtual memory management achieves
-* Processes are isolated from one another and from the kernel, so that one process can’t read or modify the memory of another process or the kernel. (accomplished by having the page-table entries for each process point to distinct sets of physical pages in RAM (or in the swap area).
+* Processes are isolated from one another and from the kernel, so that one process can't read or modify the memory of another process or the kernel. (accomplished by having the page-table entries for each process point to distinct sets of physical pages in RAM (or in the swap area).
 * Where appropriate, two or more processes can share memory.
   * When multiple processes executing the same program, text segment can be shared. (Or when multiple processes load the same shared library, that code can be shared)
   * Processes can use `shmget`/`mmap` to explicitly request sharing of memory with another process, for inter-process communication.

@@ -303,4 +303,63 @@ A set of experiments to produce `(working set size - read/write bytes/cycle)` on
 Critical workload: memory to cache transfers 8B each time, typically 8 transfers to fill the cache, and in burst mode DRAM chips can transfer 64B without further commands from the memory controller. (Each 8B block would still arrive a couple of cycles later than the previous)
 
 The word inside the cache line which is required for the program to continue might not be the first word in the cache line, in which case memory controller is free to request blocks in different order by communicating which **critical word** the program is waiting on which can be served first.
-This technique is called Critical Word First & Early Restart
+This technique is called Critical Word First & Early Restart.
+
+**Cache placement**, or sharing L2 vs independent L2 can affect performance.
+Sharing means cache space is saved when working set of two threads running on two cores overlap. (and should they not overlap, there is some anti-monopoly logic in place)
+Independent typically works well for single-threaded programs.
+
+The future of cache design for multi-core processors will lie in more layers.
+
+**FSB performance** also matters greatly: cache content can only be stored and loaded as quickly as the connection to the memory allows.
+If speed is important and the working set sizes are larger, fast RAM and high FSB speeds are certainly worth the money.
+
+# Virtual RAM
+
+A virtual address space is implemented by the Memory Management Unit (MMU) of the CPU.
+
+The OS has to fill out the page table data structures, but most CPUs do the rest of the work themselves.
+
+### simplest translation
+
+We can have each virtual address being Directory + Offset, we use Directory to look up in Page Directory where the physical page is, and use Offset to index into that physical page.
+
+The OS manages the multi-to-one Page Directory which determines the address of a physical memory page.
+
+The page directory entry also contains some additional information about the page such as access permissions.
+
+The data structure for the page directory is stored in main memory.
+The OS has to allocate contiguous physical memory and store the base address of this memory region in a special register.
+
+E.g. on x86, Offset is 22 bits and able to address every bit in a 4MB page, and 10 bits of virtual address selects one of the 1024 entries in the page directory.
+
+### Multi-level page tables
+
+4MB pages are not the norm and they waste a lot of space (with OS requiring alignment to memory pages).
+
+4KB is more typical, and offset is 12 bits instead, 20 bits for page directory.
+
+This makes page directory really big (imagine each entry is 4B, then we'd have a 4MB table), and with each process potentially having its own distinct page directory much of the physical memory of the system would be tied up for these page directories.
+
+The solution is to use multiple levels of page tables.
+
+E.g. with a 4-level address translation, the virtual address is split into 5 parts.
+If a directory entry is marked empty it need not point to any lower directory.
+This way the page table tree can be sparse and compact.
+
+This tree walking in x86 is implemented in hardware.
+
+It is therefore good for performance and scalability if the memory needed by the page table trees is as small as possible.
+
+The ideal case for this is to place the used memory close together in the virtual address space; the actual physical addresses used do not matter.
+
+Stack and heap are at top and bottom respectively, so usually at least two lv2 directories.
+In reality for security reasons the various parts of an executable (code, data, heap, stack, shared libraries are mapped at randomized addresses.
+Meaning these can be widespread throughout the address space.
+
+If performance is really much more important than security, randomization can be turned off.
+At least shared objects would have contiguous virtual memory address.
+
+### Optimizing page table access
+
+
