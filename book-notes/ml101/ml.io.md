@@ -48,3 +48,30 @@ Features cross: one way to introduce some non-linearity into the model is to cre
 Linear models can be trained efficiently on massive datasets, and to introduce some non-linearity into the process without sacrificing training efficiency, we can do features cross.
 In practice, machine learning models seldom cross continuous features. However, machine learning models do frequently cross one-hot feature vectors. Think of feature crosses of one-hot feature vectors as logical conjunctions. (like binned longitude, altitude)
 
+##### Regularization
+
+Strategies
+* early stop
+* penalize model complexity (structural risk minimization of `minimize(Loss(Data|Model) + complexity(Model))` )
+  * L2 - ridge, penalize by `lambda (sum of weights^2)` where `lambda` is a coefficient you can use to balance getting the model right on training data vs keeping it simple (overfitting vs underfitting). The prior here is that weights should be zero-centered and normally distributed.
+  * L1 - lasso
+
+(Low learning rates and high L2 regularization can produce similar effects of driving weights to values near 0.)
+
+### Logistic regression
+
+Produce a probability estimate as output.
+
+Sigmoid function `y' = 1 / (1 + e^(-z))` is used by logistic regression guarantees a value range of `(0, 1)`.
+Where `y'` is the output of the logistic regression model for a particular example, and `z = b + w_1 x_1 + ...`, the `x` values of that particular example.
+
+The loss function for linear regression is squared loss.
+The loss function for logistic regression is LogLoss.
+```latex
+$$LogLoss = \Sigma_{(x, y) \in D} -y log (y') - (1 - y) log(1 - y')$$
+```
+Where `(x, y)` is the dataset containing many labeled examples, `y` is the label `(0, 1)` and `y'` is the predicted label (between 0 and 1).
+
+Regularization is extremely important in logistic regression modeling.
+Without regularization, the asymptotic nature of logistic regression would keep driving loss towards 0 in high dimensions.
+Consequently, most logistic regression models use regularization to dampen model complexity.
