@@ -48,7 +48,7 @@ Features cross: one way to introduce some non-linearity into the model is to cre
 Linear models can be trained efficiently on massive datasets, and to introduce some non-linearity into the process without sacrificing training efficiency, we can do features cross.
 In practice, machine learning models seldom cross continuous features. However, machine learning models do frequently cross one-hot feature vectors. Think of feature crosses of one-hot feature vectors as logical conjunctions. (like binned longitude, altitude)
 
-##### Regularization
+### Regularization
 
 Strategies
 * early stop
@@ -72,6 +72,18 @@ $$LogLoss = \Sigma_{(x, y) \in D} -y log (y') - (1 - y) log(1 - y')$$
 ```
 Where `(x, y)` is the dataset containing many labeled examples, `y` is the label `(0, 1)` and `y'` is the predicted label (between 0 and 1).
 
+So given a vector `X`, we would pass it through a linear layer first using coefficients learned via logistic regression (i.e. minimizing LogLoss), then pass the resulting value through sigmoid function (no further parameterization).
+
 Regularization is extremely important in logistic regression modeling.
 Without regularization, the asymptotic nature of logistic regression would keep driving loss towards 0 in high dimensions.
 Consequently, most logistic regression models use regularization to dampen model complexity.
+
+### Classification
+
+Metric: accuracy (percentage of cases you classified right)
+
+Possible problem: imbalance (predicting ad click throughrate, like one over ten thousand. A biased model with zero features and just return false would have a really high accuracy.)
+* To help with this, we split accuracy into true/false positive/negative.
+* precision: true_positive / all_positive_predictions (did the model cry wolf too often)
+* recall: true_positive / all_actual_predictions (did it miss any wolves)
+
