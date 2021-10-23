@@ -82,8 +82,27 @@ Consequently, most logistic regression models use regularization to dampen model
 
 Metric: accuracy (percentage of cases you classified right)
 
-Possible problem: imbalance (predicting ad click throughrate, like one over ten thousand. A biased model with zero features and just return false would have a really high accuracy.)
-* To help with this, we split accuracy into true/false positive/negative.
+Possible problem: class-imbalanced data set (predicting ad click throughrate, like one over ten thousand. A biased model with zero features and just return false would have a really high accuracy.)
+* To help with this, we split accuracy into true/false positive/negative (true -> predicted right, positive -> predict happened)
+* accuracy: total_true / total
 * precision: true_positive / all_positive_predictions (did the model cry wolf too often)
-* recall: true_positive / all_actual_predictions (did it miss any wolves)
+* recall: true_positive / all_actual_positives (did it miss any wolves)
+* precision and recall are usually at odds with each other
+
+Say Logistic regression mapped our value to a `(0, 1)` probability, we then need to choose a classification threshold to map that to 0 or 1.
+
+ROC curve (receiving operator characteristic curve) plots true-positive rate (recall) to false-positive rate `FP / (FP + TN)`. (Up and to the right)
+
+Lower classification threshold: high true-positive and high false-positive rates, a point to the right end of ROC curve.
+
+AUC: area under the ROC curve (performance across all classification thresholds).
+
+One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example.
+AUC has the properties scale-invariant (just scale model value and AUC does not change) and classification-threshold-invariant.
+(However depending on the situation, being scale and classification-threshold-invariant may not be good properties.)
+
+Prediction bias = average of predictions - average of labels in dataset
+
+Adding a calibration layer (e.g. scale model value to have the means of predictions match the mean of dataset) to fix prediction bias is not a good idea: fix your model instead.
+
 
