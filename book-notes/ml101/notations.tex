@@ -3514,35 +3514,422 @@ Stratification brings out specificity (also more bias), bucketing smoothes bias 
 
 Linear prediction functions, like SVM, ridge, lasso generate feature vector $\Phi(x)$ by hand, and learn parameter vector $w$ from data.
 A neural net adds \textbf{hidden nodes} between the $\Phi(x)$ and score.
-Multi-layer perceptron, e.g. in this two-layer representation (two affine combinations):
 
+A single \textbf{perceptron} is of the form 
+$$
+y = g(x_0 + v_i^T \Phi(x))
+$$
+whereby we pass the linear combination of inputs $\Phi(x)$ through a \textbf{non-linear activation function} $g$ to get the result $y$.
+
+A perceptron can be multi-output.
+A layer where all inputs ($\Phi(x)$) connect to all outputs (linear combination of inputs) is called a \textbf{dense} layer.
+
+One hidden layer can consist of some number of perceptrons, and then the end result is the linear combination of the results coming from each of the perceptrons in this layer.
+E.g. in this one hidden layer representation:
 \begin{align*}
-h_i   &= \sigma(v_i^T \Phi(x)) \\
+y_i   &= g(v_i^T \Phi(x)) \\
 score &= w^T h + b
 \end{align*}
+We need to learn the vectors $v_i$ (with a bias term), $w$, and scalar $b$.
 
-where $\sigma$ is a nonlinear \textbf{activation function}, and we need to learn the vectors $v_i$ (with a bias term), $w$, and scalar $b$.
-We can add hidden nodes, hidden layers, etc, where $>1$ hidden layer is a deep network.
+We can compose perceptrons in multiple layers, forming a deep neural network.
 
-\textbf{Hyperbolic tangent} is a common activation function.
+\textbf{The rationale} of an activation function is to introduce non-linearity into the network (and deal with non-linear data).
+This non-linearity allows approximating arbitrary functions.
+
+Some common activation functions include:
+
+\textbf{Sigmoid}
 
 $$
-\sigma(x) = tanh(x)
+\sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-\textbf{Rectified linear function} (ReLU) is another. ReLU in practice often works better.
+Mapping $R \to (0, 1)$, often suitable for probability problems.
+
+\textbf{Hyperbolic tangent} 
+
+$$
+\sigma(x) = tanh(x) = \frac{e^{x} + e^{-x}}{e^{x} + e^{-x}}
+$$
+
+\textbf{Rectified linear function} (ReLU). Desirable for its simplicity, and often works well in practice.
 
 $$
 \sigma(x) = max(0, x)
 $$
 
 One way to think about neural nets is that it's learning the non-linear featurization functions we want to create.
-(From the hidden layer $h_i$ to $score$ looks just like learning in a linear context, and neural nets learn $\Phi(x)$ to $h_i$ as well).
 
-Our objective function (with $tanh$) is then differentiable w.r.t. all parameters (we can use gradient descent), but not convex.
-In practice gradient descent seems sufficient.
+Our empirical loss is then a simple function of the network weights.
+This function is not necessarily convex.
+
+To learn the weights, we can use gradient descent:
+The loss function is a function of all the weights, and then starting from a random point, compute the gradient, and take a small step (learning rate) along negative gradient where loss is minimized.
+Continue until we converge (to a local minimum).
+
+How do we compute the gradient: \textbf{backpropagation}.
+Imagine we have a simple perceptron on a single feature where:
+\begin{align*}
+\hat{y} &= g(x_1 * w_1) * w_2 \\
+loss = some_loss_function(y - \hat{y})
+\end{align*}
+and $loss$ is a function of $(w_1, w_2)$.
+
+To know $\frac{\partial loss}{\partial w_2}$, we can use the chain rule:
+$$
+\frac{\partial loss(w_1, w_2)}{\partial w_2} = \frac{\partial loss(w_1, w_2)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w_2} 
+$$
+
+And to know $\frac{\partial loss}{\partial w_1}$, we need to apply the chain rule one more time.
+
+The loss surface can have many local minima in practice.
+
+Setting learning rate in practice: trial and error, or dynamically adapted.
+
+\subsubsection{In practice}
+
+Computing loss function's gradient to all weights (with all data points factored in) is not practical.
+We use \textbf{Mini-batching} instead (i.e. randomize a set of data points first, and compute loss function of that set's gradient), a balance between the expensive full descent and noisy sgd.
+
+Mini-batching is parallelizable (by the partial derivatives to each weight, I guess?).
+
+Overfit and regularization:
+
+One regularization commonly seen in nnets is \textbf{dropout}: during training, randomly set some (predefined percent) of the activations to 0.
+(you can't overly rely on some pathways too strongly)
+
+Another is \textbf{early stop}: stop iterating when test set loss does not go down.
 
 \textbf{Universal approximation theorem}: a neural network with one (possibly huge) hidden layer can uniformly approximate any continuous function on a compact set iff the activation function is not a polynomial. (the bias term is necessary)
+
+\subsection{Deep sequence modeling}
+
+The above section describes a feed forward nnet, where we have fixed static input to fixed static output,
+i.e. $x \in R^m \to \hat{y} \in R^n$.
+
+Many practical problems involve sequential processing / modeling (text, audio wave, stock prices, genetic data).
+
+Some use cases include:
+\begin{itemize}
+  \item tweet sentiment classification (one sequence to a static classification)
+  \item label an image (one static input to a sequence)
+  \item machine translation, music generation (one sequence to another)
+\end{itemize}
+
+The problem is then about how to add the temporal dimension to our models?
+
+If we are to stitch a sequence of feed forward nnets (at $t_i$, a feed forward nnet of $x_i \to \hat{y}_i$) together,
+some states from $t_0$ needs to be factored in for the feed forward nnet at $t_1$, i.e. neurons with recurrence.
+
+We then introduce a memory between the feed forward nnets at each time step:
+$$
+\hat{y}_t = f(x_t, h_{t - 1})
+$$
+meaning our current network at time $t$ depends on the past memory at the previous timestamp. 
+
+The key idea for \textbf{recurrent neural network} is then a memory $h(t)$ updated at each time step a sequence is processed,
+where the cell state is
+$$
+h(t) = f_{W} (x_t, h_{t - 1})
+$$
+The same $f_{W}$ is used at every time step of processing the sequence.
+
+Then, given an input vector $x_t$, we update the hidden state, e.g.
+$$
+h(t) = tanh(W^T_{hh} h_{t - 1} + W^T_{xh} x_t)
+$$
+then
+$$
+\hat{y}(t) = W^T_{hy} h(t)
+$$
+At every time step, we are reusing the same weight matrices $W_T$.
+
+Taking a step back, to model sequences, we need to be able to
+\begin{itemize}
+  \item handle variable-length sequences
+  \item track long-term dependencies
+  \item maintain information about order
+  \item share parameters across the sequence
+\end{itemize}
+
+RNN meets all of these sequence modeling criteria. While e.g. feed forward networks have inputs of fixed dimensionality.
+
+\subsubsection{Predicting next word}
+
+Now imagine we are predicting the next word in a sentence: how do we represent language in an RNN?
+
+Start with a corpus of words, then each unique word is represented by an index in this words array.
+
+Then we use some \textbf{embedding} to transform indexes into a vector of fixed size, e.g. one-hot embedding,
+or learned embedding (like a PCA on words and decomposing each word into a lower dimension vector).
+
+\subsubsection{Training RNN: backpropagation through time (BPTT)}
+
+The overall loss is the sum of loss at each time step, and computing the gradient of the overall loss wrt $h_0$ is going to involve many factors of $W_{hh}$ and repeated gradient calculations.
+This introduces two problems: exploding gradients and vanishing gradients (multiply too many small numbers together).
+
+(how parallelizable is this?)
+
+Gradient clipping is often used to address the former, and to address the latter,
+choosing activation function (ReLU's derivative is not continuous, and for all values $> 0$, its derivative is 1, making it ideal to tackle vanishing gradients),
+weight initialization (initialize weights to identity matrixes and biases to 0), and
+network architecture can help.
+
+Network architceture is most robust among all 3:
+the idea is to use a more complex recurrent unit with gates (\textbf{Gated Cells}) to control what information is passed through.
+
+\textbf{Long Short Term Memory (LSTM)} is a gated cell approach.
+Networks built using LSTM are particularly good at maintaining long term dependency throughout the data / tracking information across multiple time steps.
+
+An LSTM node looks something like
+
+To summarize, LSTMs
+\begin{itemize}
+  \item maintain a separate cell state $c_t$ from what is outputtted,
+  \item use gates to control the flow of information
+  \item backpropagation through time with uninterrupted gradient flow.
+\end{itemize}
+
+In particular, the gates
+\begin{itemize}
+  \item \textbf{forget}: gets rid of irrelevant current information, 
+  \item \textbf{store}: relevant information from this time step,
+  \item selectively \textbf{update} cell state, 
+  \item \textbf{output} gate returns a filtered version of the cell state),
+\end{itemize}
+
+Attention module. Transformers.
+
+\subsection{Convolutional neural network}
+
+Computer vision (what is where, what actions are taken, to predict and anticipate, given a 2D list of numbers).
+
+Problems include regression and classification (which president is this, what's present in the image),
+traditionally doable via manual feature extraction based on domain knowledge, but facing challenges like
+viewpoint, illumination, scale variation of the same object.
+
+The deep learning approach tries to learn a hierarchy of features directly from the data instead of hand engineering.
+This requires a different architecture from the previous sections' feed forward dense nnets or RNNs.
+
+We can have a fully connected nnet where we connect neuron in hidden layer to all neurons in input layer (1D vector),
+but this means the spatial information from the input is lost, and introduces many parameters.
+
+How can we build spatial information (which node is close to which) back into the nnet?
+We can instead connect patches of input to neurons in the hidden layer, where a patch maps a 2D area to one single input,
+and can be generated by applying a sliding window on the original image.
+
+The idea of \textbf{convolution} is to preserve the spatial relationship between pixels by learning features in small little patches.
+
+We do an element-wise multiplication between the filter matrix (with learnt weights) and the patch of input image, and add up the result.
+\footnote{This is what a convolution means: element-wise multiplication and sum up the results.}
+The resulting 2D matrix is a feature map that tells where this filter was activated in the input image.
+
+By applying different (constructed) filter matrices, we could learn to sharpen the image, detect edges, etc.
+Historically effort had gone into hand engineering these filters.
+CNN allows learning the weights defining these filters.
+
+To summarize what CNN does:
+\begin{itemize}
+  \item apply a set of weights (filter matrix) to extract local features
+  \item use multiple filters to extract different features
+  \item spatially share the parameters of each filter
+\end{itemize}
+Pass feature maps from convolution layer through non-linearity (often ReLU to replace all negative values) and pooling (downsampling operation on each feature map),
+and pass the result through a fully connected hidden layer.
+
+The feature map from convolution layer can be represented with a 3D structure where each plane is the application of one filter, and we have depth filters.
+
+Pooling is used to reduce dimensionlity while keep spatial invariance, e.g. taking the max (or mean) of each sliding window.
+
+We can apply many layers of convolution and pooling (convolution on the feature map from previous pooling),
+and the resulting feature map represent high-level features of the input.
+
+The fully connected layer uses those features to classify an image
+(or whatever other tasks, note that e.g. an object detection task can share the same feature map as a classification task. softmax activation is often used for classification),
+and express an output as a probability of image belonging to a particular class.
+
+\subsubsection{Some applications}
+
+Object detection (output bounding boxes): one naive way is to draw random bounding boxes and pass them through CNN classification.
+This is slow, instead we could use R-CNN: find regions we think have objects (brittle!), use CNN to classify.
+
+Faster R-CNN tries to learn the region proposals through another nnet.
+
+Semantic segmentation (output selection boxes like magic wand): fully convolutional network that classifies every single pixel using upsampling.
+
+Captioning may feed feature map from convolution into another RNN.
+
+How are CNN trained?
+
+\subsection{Deep generative models}
+
+Unsupervised learning.
+
+\textbf{Generative modeling}: take as input training samples from some distribution and learn a model that represents that distribution.
+
+Key problem: how can we learn $P_{model}(x)$ similar to $P_{data}(x)$.
+
+Can we learn the true explanatory factors (e.g. latent variables) from only observed data?
+
+\subsubsection{Autoencoders and variational autoencoders}
+
+Autoencoders: unsupervised approach for learning a lower-dimensional feature representation from unlabeled training data.
+
+\textbf{Encoders} learn mapping from the data $x$ to a lower dimensional latent space $z$ (through a series of nnets).
+But how?
+
+Train the model to use features $z$ to reconstruct the original data, and we try to minimize the loss between original data and reconstructed data.
+
+\textbf{Decoders} learn mapping back from the latent space $z$ to a reconstructed observation $\hat{x}$ (through a series of nnets).
+
+Autoencoding is a form of compression and the lower dimensionality of latent space the poorer your reconstruction quality.
+
+\textbf{Bottleneck hidden layer} forces network to learn a compressed latent representation.
+\textbf{Reconstruction loss} forces the latent representation to capture (encode) as much information about the data as possible.
+
+Smaller latent space will force a larger training bottleneck.
+
+A traditional encoder learns a deterministic latent space $z$ (the same if given the same data).
+\textbf{Variational autoencoders (VAE)} imposes a stochastic twist on this process: instead of learning the latent variable $z$ directly,
+it learns a mean $\mu$ and variance $\sigma$ associated with that latent variable (or its probability distribution).
+We sample the $\mu$ and $\sigma$ to get latent samples and to reconstruct data.
+
+The encoder computes $q_{\phi} (z | x)$ (distribution of $z$ given $x$ under the encoder parameters $\phi$, inferred latent distribution) and decoder computes $p_{\theta} (x | z)$.
+
+The loss of VAE is
+$$
+L(\phi, \theta, x) = \text{reconstruction loss} + \text{regularization term}
+$$
+
+The regularization term places a fixed prior on the distribution of $z$ (denoted $p(z)$), i.e. some initial hypotheses about what we expect $z$ to look like (e.g. standard Gaussian).
+It's a function of the divergence between $q_{\phi} (z | x)$ and $p(z)$ (e.g. KL-divergence between the two distributions).
+
+Regularization enforces \begin{itemize}
+  \item continuity: points that are close in latent space results in similar content after decoding
+  \item completeness: sampling from latent space should result in meaningful content after decoding
+\end{itemize}
+
+There is a problem with VAE training: we cannot backpropagate gradients through sampling layers.
+Instead, we reparametrize the sampling layer: consider the sampled latent vector $z = \mu + \sigma \bigodot \epsilon$ where $\epsilon \tilde N(0, 1)$
+(a fixed $\mu$ vector plus a fixed $\sigma$ vector scaled by random constants drawn from the prior distribution).
+
+Latent perturbation: keep all other latent variables the same and tweak one.
+Ideally we want latent variables that are uncorrelated with each other (disentanglement).
+
+$\beta$-VAE applies a multiplier on the regularization term to encourage disentanglement, i.e.
+
+$$
+L(\phi, \theta; x, z, \beta) = \mathbb{E}_{q_{\phi} (z | x)} [log p_{\theta}(x | z)] - \beta D_{KL} (q_{\phi} (z | x) || p(z))
+$$
+
+One application: debiasing, use latent distribution to create fair and representative datasets.
+
+\subsubsection{Generative adversarial networks (GANs)}
+
+What if we don't model the distribution of the underlying latent variables, instead just sample to generate new instances.
+
+Problem: we want to sample from a very complex distribution.
+Instead we sample from something simple (noise), learn a transformation to the data distribution,
+and then sample from this distribution to generate data as close to our input as possible.
+
+The key breakthrough of GAN is to have two nnets (a generator and a discriminator) compete against each other.
+The generator (G) turns noise into an imitation of the data to try to trick the discriminator (D).
+The discriminator tries to identify real data from fakes generated by the generator.
+
+Training of GAN defines adversarial objectives for the generator and discriminator.
+For the discriminator:
+$$
+\argmax_{D} { \mathbb{E}_{z, x} [log D(G(z)) + log (1 - D(x))]}
+$$
+
+The first term is to maximize the discriminator's probability to identify fake data as fake,
+and the second is to maximize the discriminator's probability to identify real data as real.
+
+For the generator:
+$$
+\argmin_{G} { \mathbb{E}_{z, x} [log D(G(z)) + log (1 - D(x))]}
+$$
+We minimize the discriminator's ability to successfully tell fake data from real.
+
+And combining the two, we want to find a generator that's best at fooling the discriminator.
+$$
+\argmin_{G} \argmax_{D} { \mathbb{E}_{z, x} [log D(G(z)) + log (1 - D(x))]}
+$$
+
+Progressive growth of GANs: we can iteratively build more details into the generator.
+
+StyleGAN: progressive growth + style transfer.
+
+Conditional GAN, application in paired translation.
+
+Cycle GAN, learns transformation across domains without pairs of data, e.g. synthesizing speech.
+
+\subsection{Deep reinforcement learning}
+
+Given state-action pairs, maximize future rewards over many time steps.
+
+Concepts
+\begin{itemize}
+  \item Agent: takes actions.
+  \item Environment: the world in which the agent exists and operates.
+  \item Action: a move agent can make in the environment. An action in action space $a_t \in A$, can be discrete or continuous.
+  \item Observation: of the environment after taking actions.
+  \item State: a situation which the agent perceives.
+  \item Reward: measures the success / failure of the agent's action. Total reward since time step $t$ into the future: $R_t = \Sigma_{i = t}^{\infty} r_i$, often future rewards needs to be discounted $R_t = \Sigma_{i = t}^{\infty} \gamma^i r_i$
+\end{itemize}
+
+The \textbf{Q-function} captures the expected total future reward an agent in state $s$ can receive by executing an action $a$.
+
+$$
+Q(s_t, a_t) = \mathbb{E} [R_t | s_t, a_t]
+$$
+
+Ultimately, the agent needs a policy $\pi(s)$ to infer the best action to take at its state $s$, i.e.
+$$
+\pi^{*}(s) = \argmax_{a} Q(s, a)
+$$
+
+\textbf{Value learning}: Q-functions are unintuitive, and this tries to use a nnet to model Q-functions / predict expected return.
+
+Action + State -- Deep Q Network --> $Q(s, a)$
+
+Or more efficiently,
+
+State -- Deep Q Network --> a vector of $Q(s, a_1), Q(s, a_2), ...$
+
+To train the DQN, we use Q-loss (minimize the difference between the target return of taking all the best actions and predicted return)
+$$
+\mathbf{L} = \mathbb{E} [ \norm{(r + \gamma \argmax_{a'} Q(s', a')) - Q(s, a) }^2 ]
+$$
+
+Then use the learned Q-function to infer the optimal policy.
+
+Some downsides include:
+This can model action spaces that are discrete and small and cannot handle continuous spaces.
+Policy is deterministically computed from Q function by maximizing the reward, and this cannot learn stochastic policy.
+\\
+\\
+\subsubsection{Policy learning}: policy gradient tries to directly learn the policy $\pi(s)$ to decide which action to take.
+
+The nnet predicts a probability distribution, the probability of each action being the best action, i.e. (for all $i$s, $p(a_i | s)$).
+
+This can handle continuous action space.
+
+Say we assume a Gaussian distribution, the nnet then needs to predict the $\mu$ and $\sigma^2$.
+
+We sample this distribution to get an action.
+
+To train policy gradient: we initialize the agent, run a policy till termination, record all state, action, rewards triplets,
+and decrease the probability of actions that resulted in a low reward,
+increase the probability of actions that resulted in a high reward.
+
+How to do the probability increase/decrease?
+
+Loss function can be expressed as the log-likelihood of action multiplied by reward: $- log p(a_t | s_t) R_t$.
+(action is good, we amplify its likelihood.)
+
+
 
 \subsection{Multinomial logistic regression}
 
