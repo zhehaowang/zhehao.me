@@ -63,6 +63,8 @@ ret
 
 How godbolt annotates c++ line / asm line correspondence: compiler generates this info with `-g` flag.
 
+Google benchmark online wrapper https://quick-bench.com/
+
 ### Globals, linker
 
 [talk](https://www.youtube.com/watch?v=xVT1y0xWgww)
@@ -119,3 +121,29 @@ What linker does:
 
 Different from traditional unix linker, clang linker (lld) keeps track of defined symbols even if they aren't requested by an object already seen, with this you don't have to specify the same library multiple times.
 
+# What else has my compiler done for me lately
+
+[Talk](https://www.youtube.com/watch?v=nAbCKa0FzjQ)
+[Slides]()
+
+### alias'ing / __restrict
+
+Consider this code
+```c++
+void maxArray(double* __restrict x, double* y) {
+    for (int i = 0; i < 65536; ++i) {
+        if (y[i] > x[i]) {  // same effect as std::max
+            x[i] = y[i];
+        }
+    }
+}
+```
+
+Without the `restrict` keyword, i.e. the two input memory areas won't overlap, compiler will first check to see if they overlap, and if they don't, use vector instructions to make this faster.
+With restrict, we skip those checks.
+
+Pointer aliasing: one location in memory can be referred to by more than one name (e.g. with different pointers). Restrict effectively says alias'ing won't happen.
+
+### Devirtualization
+
+Instead of a virtual call, do a switch case comparison and possibly inline the function to call.
