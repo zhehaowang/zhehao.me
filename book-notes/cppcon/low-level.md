@@ -241,5 +241,54 @@ If on stack, data ptr points to the start of capacity instead, and we get 15B + 
 
 [Talk](https://www.youtube.com/watch?v=wQxj20X-tIU)
 
+# (Multi / virtual) inheritance layout
 
+[Reference](https://shaharmike.com/cpp/vtable-part1/)
 
+```cpp
+struct Mother {
+  virtual void foo();
+
+  uint64_t motherData;
+};
+
+struct Father {
+  virtual void bar();
+
+  uint64_t fatherData;
+};
+
+struct Child : public Mother, Father {
+  void foo() override;
+  void bar() override;
+
+  uint64_t childData;
+};
+```
+
+Clang
+```
+Object Child                 vtbl of Child
++---------------------+      +------------------------------------+
+| Mother / Child vptr | ---> | top_offset (0)                     |
++---------------------+      +------------------------------------+     +--------------------+
+|     Mother data     |      | type_info* for child               | --> | type_info methods* |
++---------------------+      +------------------------------------+     +--------------------+
+|     Father vptr     | -+   |  Child::foo()*                     |     |  type name string  |
++---------------------+  |   +------------------------------------+     +--------------------+
+|     Father data     |  |   |  Child::bar()*                     |     |  parent type_info* |
++---------------------+  |   +------------------------------------+     +--------------------+
+|      Child data     |  +-> | top_offset (-16)                   |
++---------------------+      +------------------------------------+
+                             | type info* for child               |
+                             +------------------------------------+
+                             | non-virtual thunk* to Child::bar() |
+                             +------------------------------------+
+```
+Why this layout?
+* The first part of the vtbl is like a single-inheritance, calling `Child::foo()` via a `Mother* c = new Child()` just works.
+* We need to support calling `Child::bar()` via a `Father* c = new Child()`, when presented with that, the **non-virtual thunk** needs to offset `this` object to the start of `Child` object (using `top_offset`) and resolve the call to `Child::bar()`.
+
+This is what gdb means when it's in some non-virtual thunk to call some function.
+
+TBC: virtual inheritance
