@@ -147,3 +147,99 @@ Pointer aliasing: one location in memory can be referred to by more than one nam
 ### Devirtualization
 
 Instead of a virtual call, do a switch case comparison and possibly inline the function to call.
+
+### fbstring, gcc strings
+
+[talk](https://www.youtube.com/watch?v=kPR8h4-qZdk)
+
+##### pre-`gcc5` `std::string`
+
+`<gcc5`, `string` is implemented as 8B pointer into start of a string, prefixed with size, capacity and refcount.
+
+```
+                   +----------+
+                   |   size   | 
+                   +----------+
+                   | capacity | 
+                   +----------+
+                   | refcount | 
++------------+     +----------+
+| string obj | --> |   data   |
++------------+     +----------+
+```
+
+Empty string is special: it is implemented as a pointer to global var with just `\0`. (you don't want to heap allocate 1 byte and prefix just for all the default constructed empty strings.)
+
+why not just have `nullptr` be empty string? we don't want branching in all the `size` calls etc.
+
+`<gcc5` also does CoW, no longer allowed since c++11 for concurrency reasons.
+
+we store `refcount - 1`, so that default state zero loaded at boot time, empty string does not require any additional processing.
+
+##### `fbstring`
+
+`fbstring` 24B string with SSO.
+How much size do we have? Norman answer: 22. `\0` 1B and `size + union` 1B. But if we store instead remaining size on stack, then `0` double duties as `\0` and size, and we get 23.
+```
++----------+
+|   size   | 
++----------+
+| capacity |
++----------+
+| data_ptr |
++----------+
+
+(SSO)
++---------------------+
+|                     | 
+|      data_23B       |
+|                     |
++---------------------+
+| remaining_size_byte |
++---------------------+
+```
+
+What about union bit?
+
+jemalloc fb: rounds up 29B to 32B, and return one bucket of 32B size. `fbstring` knows to work with jemalloc to see if there are actual additional room behind what's returned, and use the space there for union bit. (clang instead uses one bit from capacity: no string is allowed more than `2^63`)
+
+fbstring also has large size optimization: when larger than 255B, use CoW.
+
+fbstring does result in branching (and longer / more complicated asm) when trying to get `size` while gcc version doesn't, but benchmark with a large set of strings suggests the fb one can be faster because of memory access cost of gcc: gcc can have much higher l1cache misses compared with fbstring.
+
+##### post-`gcc5` `std::string`
+
+`>gcc5` new string layout, dropped CoW because of std, and adopted SSO by default. The new layout is 32B data ptr, size, capacity, on-stack data.
+If on stack, data ptr points to the start of capacity instead, and we get 15B + nullptr as maximum string size we can hold on stack.
+
+```
++------------+     +------------+
+|  data_ptr  | --> |    data    |
++------------+     +------------+
+|    size    |
++------------+
+|  capacity  |
++------------+
+| stack data |
++------------+
+
+(SSO)
++------------+
+|  data_ptr  | --+
++------------+   |
+|    size    |   |
++------------+ <-+
+|            |
+| stack data |
+|     /0     |
++------------+
+```
+
+`data` and `size` need no branching with this layout.
+
+### Type Deduction and Why You Care
+
+[Talk](https://www.youtube.com/watch?v=wQxj20X-tIU)
+
+
+
