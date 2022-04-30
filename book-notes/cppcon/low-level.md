@@ -292,3 +292,25 @@ Why this layout?
 This is what gdb means when it's in some non-virtual thunk to call some function.
 
 TBC: virtual inheritance
+
+# Speed is found in the minds of people
+
+[talk](https://www.youtube.com/watch?v=FJJTYQYB1JQ)
+
+Quicksort. When few enough elements remain, use linear scan insertion sort.
+
+What about binary search to find where the new element should go in insertion sort?
+Fewer comparisons but slower than linear, because binary maximizes information with each comparison, and branch prediction is correct only ~50% of time, while branch prediction in linear case is much easier: always predict success and you will mispredict only once.
+
+When you can get away with bit operation and avoid branching, do that.
+
+Middle-out insertion sort (fewer moves), but time is identical compared with naive insertion sort.
+
+We often try clever things that don't work.
+
+First make heap, then insertion sort. Fewer swaps, fewer comparisons.
+Can be optimized to be faster than std::sort.
+
+A better proxy for time spent: number of compares, swaps and the distance between two consecutive array accesses.
+
+
