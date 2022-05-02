@@ -293,7 +293,7 @@ This is what gdb means when it's in some non-virtual thunk to call some function
 
 TBC: virtual inheritance
 
-# Speed is found in the minds of people
+# Speed is found in the minds of people, sorting algorithms
 
 [talk](https://www.youtube.com/watch?v=FJJTYQYB1JQ)
 
@@ -313,4 +313,4 @@ Can be optimized to be faster than std::sort.
 
 A better proxy for time spent: number of compares, swaps and the distance between two consecutive array accesses.
 
-
+# 
