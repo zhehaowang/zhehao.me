@@ -186,4 +186,78 @@ Alternatively, Nominal Exchange Rate is a measure of relative inflation between 
 
 Purchasing power parity is limited in that, many goods are not easily traded, and even tradable goods are not perfect substitutions when purchased in different countries.
 
+# Open economics analysis
 
+Two markets are central to the analysis of open economics: loanable funds market and foreign currency market.
+
+### Loanable funds market
+
+```
+National Saving = Domestic Investment + Net Capital Outflow
+```
+
+* Supply - National Saving
+* Demand - Domestic Investment + Net Capital Outflow
+
+Real interest rate balances the supply and demand.
+
+Higher real interest rate --> Supply (the amount of loanable funds) goes up and demand goes down.
+
+### Foreign currency market
+
+```
+Net exports = Net capital outflow
+```
+
+* Supply - net capital outflow, dollars supplied to buy foreign assets
+* Demand - net exports, dollars demanded by foreigners to buy US exports
+(The difference between increase in supply and decrease in demand can be more semantic rather than substantive.)
+
+Real exchange rate balances the supply and demand in the market for foreign exchange.
+
+Dollar strengthens, net exports drop.
+(Supply curve is vertical because net capital outflow is not affected by real exchange rate: this is because capital invested abroad still wants to be exchanged back to dollars eventually.)
+
+### How policies and events affect an open economy
+
+Real interest rate is the price of present relative to the future, and real exchange rate price of domestic relative to abroad.
+These two fluctuate and determine national saving, domestic investment, net capital outflow, and net exports.
+
+Note that net capital outflow is part of the demand for loanable funds and because it provides the supply of dollars for foreign-currency exchange, it is the variable that connects these two markets -- when analyzing, we identify which curve between (Real Interest Rate - Loanable fund, Supply/Demand) and (Real Exchange Rate - Net Capital Outflow, Supply/Demand) should shift, and analyze the effect on the diagram accordingly.
+
+* Government budget deficit
+Saving negative, supply of loanable funds drop, interest rate rises, crowds out domestic investment.
+Net capital outflow falls, dollar strengthens, net exports fall.
+
+(government budget deficit and trade deficit move closely together.)
+
+* Tariff / import quota
+
+Import drops, net export rises (with exchange rate fixed), demand for dollar rises, dollar strengthens, net export drops to remain the same level as before.
+
+Trade policies do not affect the overall trade balance. (they do not alter national saving or domestic investment)
+They may, however, affect the trade balance of the particular industry for which the import quota affects. (just the overall balance is dragged back by averaging over other industries)
+
+* Political instability and capital flight
+
+Demand for loanable fund increases to fund foreign assets, interest rate rises, net capital outflow rises, exchange rate drops.
+
+There is no universal good or bad direction for the dollar to move. The desirability of any shift in the exchange rate depends on why the dollar is moving.
+(A big government deficit can cause similar strengthening effects as domestic innovations increasing demand for dollars.)
+The exchange rate is the purview of market economics, not of the Treasury or strong-dollar ideologues.
+
+One way any monetary expansion helps a distressed economy is by weakening the dollar. (foreign goods are more expensive -- more Americans are working)
+
+* Chinese policy
+
+China fixes the price of RMB, while US lets dollar value move in response to its supply and demand in fx markets.
+The Chinese government has sometimes tried to depress the value of RMB, in foreign exchange markets to promote its export industries. It did this by accumulating foreign assets, including substantial amounts of US government bonds.
+
+Yet the impact of the Chinese policy on the US economy was not all bad, the inflow of capital from China reduced US interest rates, which in turn increased investment in the US economy -- the Chinese government was financing US economic growth. The Chinese policy of investing in the US economy created winners and losers among Americans. All things considered, the net impact on the US economy was probably small.
+
+Why does the Chinese hold such large foreign reserve? It may be a rainy day fund.
+
+Policymakers and commentators are often quick to blame foreigners for problems facing the US economy.
+By contrast, economists more often view these problems as homegrown.
+Foreigners are a convenient target for politicians because blaming foreigners provides a way to avoid responsibility without insulting any domestic constituency.
+The real solution (to trade deficit) might be to boost US national saving.
