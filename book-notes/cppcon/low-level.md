@@ -313,4 +313,183 @@ Can be optimized to be faster than std::sort.
 
 A better proxy for time spent: number of compares, swaps and the distance between two consecutive array accesses.
 
-# 
+# How we get to main
+
+[talk](https://www.youtube.com/watch?v=dOfucXtyEsU)
+
+`objdump -dC a.o` does not fill relocation of that object file, so if there is a call to some functions in a different object file, it'll be `opcode-call 00 00 00 00` which almost looks like calling the next instruction.
+
+`objdump --reloc -dC a.o` interleaves with content of relocation section.
+After interleaving we are basically given what linker would see, and the linker needs to patch the code to fill in with where those calls should actually go.
+
+Even for calls in the same translation unit, the compiler might opt to put functions into different sections and let the linker fill in the actual address.
+
+`objdump --syms -dC a.o` shows syms (defined and undefined), similar to `nm`.
+
+linker reads all the inputs, identify all the symbols, applies relocations.
+
+Linker script (`-Wl,--verbose`) what to do with sections
+
+What's within a section is an opaque blob to the linker, meaning it can't discard unused functions in a section.
+We could let the compiler do `--ffunction-sections,-fdata-sections` (putting each unique function and blob of data into their own sections), and let linker run with `-Wl,--gc-sections` to discard them. (this could affect optimization between functions calls?)
+
+### dynamic linking
+
+your executable e.g. doesn't have libstdc++ in it, and this is where dynamic linking comes in.
+
+your calls to functions within a dynamic shared object will point to an address in Procedure Linkage Table (@plt).
+
+The first time we make that call, PLT will not have the actual address for the function called and needs another lookup, but once we do have the address we'll fill it in such that subsequent calls will jump more cheaply (lazy).
+
+Why do it lazily?
+We don't know what functions from the library will get called. If we resolve them all upfront, we'll slow down the startup time.
+
+`LD_BIND_NOW` should disable the lazy behavior: fill in PLT as opposed to asking resolver.
+
+`ldd your_executable`, env var `LD_DEBUG=all|help` help debug what's loaded and how the lazy loading works.
+
+This lazy behavior also allows `LD_PRELOAD`, where you can supply the needed symbols yourself (e.g. those in stdc library).
+
+High performance code should probably avoid dynamic linking -- a barrier for optimization (PLT as one level of indirection, LTO can't see through).
+
+### More
+
+Weak references: c++ `inline` functions gets marked a weak symbol -- it's ok to have many of these symbols and you get to pick which one is the implementation.
+
+LTO: compiler generates an intermediate form to tell the linker, and linker when linking and talk back to the compiler to see the code for something.
+
+# Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"
+
+[talk](https://www.youtube.com/watch?v=nXaxk27zwlk)
+
+### First step to tuning, measure.
+
+### Second step, understand the measurement.
+
+Consider googlebenchmark'ing `vector<int>::push_back` code:
+```cpp
+// just this:
+static void bench_pushback(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        v.push_back(42);
+    }
+}
+// not great, we might essentially be benchmarking malloc.
+
+// the above + baseline:
+static void bench_baseline(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        (void) v;
+    }
+}
+// not great, the baseline doesn't do malloc.
+
+// reserve as a baseline to do malloc, so this
+static void bench_baseline(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        v.reserve(1);
+    }
+}
+// vs test
+static void bench_pushback(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        v.reserve(1);
+        v.push_back(42);
+    }
+}
+// Not great, everything got magically faster -- optimizer realized it does nothing and deleted
+// everything.
+// Why was the optimizer able to delete after the addition of reserver?
+// Handwavy: push_back has a conditional reserve. When analyzing push_back with reserve, the
+// optimizer gets confused while when analyzing each separately optimizer realized it can delete
+// things.
+// Why not just turn down -O level? We want fine grained control: in general we still want optimized
+// code.
+
+// to avoid optimizer deleting everything, try
+static void escape(void *p) {
+    asm volatile("" : : "g"(p) : "memory");
+    // volatile: this asm code has observable side effect (that may not be known to the compiler.
+    // optimizer shouldn't try to optimize this asm code.
+    // a good use case for this volatile might be, e.g. I want to produce exactly 8B of instructions
+    // here because later on I might rewrite those as we execute (e.g. hot patching or jit).
+    
+    // the syntax goes as : outputs : inputs : clobbers (what about our program can change). so this
+    // line takes our memory address, outputs nothing, and tells our compiler any memory area can be
+    // read or written.
+}
+
+static void clobber() {
+    asm volatile("" : : : "memory");
+    // any memory area can be read or written.
+
+    // why not forget about `escape` and just use `clobber`? `clobber` sees just memory, and with it,
+    // compiler is still free to optimize if the vector never live in memory. But with `escape`, a
+    // memory address is given so it forces something to live in memory, and in combination with
+    // "memory", that void* cannot be optimized away. It's like if we never take the address of
+    // something, it may not even live in memory.
+}
+
+// then a better version
+static void bench_create(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        // we need to keep the stack object around
+        escape(&v);
+        (void)v;
+    }
+}
+// vs reserve
+static void bench_reserve(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        v.reserve(1);
+        // we need to keep just the heap allocated data* around
+        escape(v.data());
+    }
+}
+// vs test
+static void bench_pushback(benchmark::State& state) {
+    while (state.keepRunning()) {
+        vector<int> v;
+        v.reserve(1);
+        escape(v.data());
+        v.push_back(42);
+        // make sure push_back happens
+        clobber();
+    }
+}
+```
+
+### `perf`
+
+`perf stat`, it gives
+* task-clock: CPU time (if you are switched off core, we don't count that time)
+* seconds elapsed: wall time
+Where we are stalled in the CPU pipeline
+* stalled cycles frontend
+* stalled cycles backend
+* ...
+
+`perf record`: sampling with periodic signal interrupt, `perf report`: just breakdown without being able to expand.
+
+`perf record -g`, `perf report -g`: record and report call graph info (when interrupted, look at the current running thread, and try to figure out the call stack). Gives "+" with `enter` you can expand.
+`perf report -g` call graph is kinda inversed: it shows each callee (every place that function's called), and when you expand you see callers to them.
+`perf report -g 'graph,0.5,caller'`: `0.5` the filter, `caller` inverts the graph, for a view closer to flamegraph.
+
+Caution:
+You are likely going to see artifacts of `perf` measurement in `perf report` (similar to heisenberg uncertainty).
+Similarly, it's not crazy for an expensive operation to have its cost attributed to, say, a memory write or jump right after it.
+
+`a` in `perf report` annotates the function with assembly.
+
+`-fno-omit-frame-pointer`: stop deleting the frame pointer. This register tells you where the bottom of the stack frame is (_is this not bp_), and you can then walk the stack. Compilers usually omit this to get 1 extra register.
+
+`--benchmark_filter` option of `perf` works nicely with google benchmark.
+
+
+[reference](https://www.youtube.com/watch?v=zWxSZcpeS8Q)
