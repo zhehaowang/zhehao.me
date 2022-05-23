@@ -261,3 +261,59 @@ Policymakers and commentators are often quick to blame foreigners for problems f
 By contrast, economists more often view these problems as homegrown.
 Foreigners are a convenient target for politicians because blaming foreigners provides a way to avoid responsibility without insulting any domestic constituency.
 The real solution (to trade deficit) might be to boost US national saving.
+
+# Short run fluctuations
+
+Previous notes were on the generation-to-generation scale, while this is on the year-to-year scale.
+
+In the short run
+* economics fluctuations (business cycle) are irregular and unpredictable
+* most macroeconomics quantities fluctuate together (GDP, investment spending, unemployment rate)
+* as output falls, unemployment rises
+
+The theories of fluctuation remains controversial.
+The analysis on which previous notes based, classical dichotomy and money neutrality, may not hold to explain short run fluctuations.
+
+### Model of aggregate demand and aggregate supply
+
+* (for a fixed amount of money supply) aggregate demand (of goods and services, a real value) slopes downward as price level (a nominal value, but because of fixed money supply this becomes a real value) rises
+  * The wealth effect: a decrease in the price level raises the real value of money and makes consumers wealthier, which in turn encourages them to spend more. The increase in consumer spending means a larger quantity of goods and services demanded.
+  * The interest rate effect: a lower price level also reduces the interest rate, encourages greater spending on investment goods, and thereby increases the quantity of goods and services demanded.
+  * The exchange rate effect: when a fall in the U.S. price level causes U.S. interest rates to fall, the real value of the dollar declines in foreign exchange markets. This depreciation stimulates U.S. net exports and thereby increases the quantity of goods and services demanded.
+
+Shifts in the demand curve: changes in consumption (e.g. tax cut, stock market boom), investment (optimism, interest rate and money supply), government purchase, net exports. (Corresponds with the constituents of GDP.)
+
+* in the long run, the aggregate supply curve is vertical, whereas in the short run, the aggregate-supply curve slopes upward as price level rises.
+  * in the long run, supply is determined by supplies of labor, capital, natural resources, and available technologies to turn the factor of production into goods and services
+
+Long-run trends are the background on which short run fluctuations are superimposed.
+
+The key difference between the economy in the short run and in the long run is the behavior of aggregate supply: in the short run, rising price levels does increase supply.
+Why? Market imperfection.
+* The quantity of output supplied deviates from its long-run level when the actual price level in the economy deviates from the price level that people expected to prevail.
+  * Sticky wage theory: wage adjustment lags price level change
+  * Sticky price theory: price of some goods lags price level change (think menu cost)
+  * The misperceptions theory: supplies responding to change in general price level as the change in their own goods' price level
+
+An increase in the expected price level reduces the quantity of goods and services supplied and shifts the short-run aggregate-supply curve to the left.
+A decrease in the expected price level raises the quantity of goods and services supplied and shifts the short-run aggregate-supply curve to the right.
+
+Method of analysis is first identify is the (short term) event a left / right shift of supply or demand curve, then the new short-term equilibrium is found, then gradually the other (or the same) short-term curve would shift such that the vertical long-term-supply and the demand curve becomes balanced again.
+
+Policymakers can adjust monetary policy to offset the short term event, such that the recession part of the curve shifts is not as painful.
+
+* Shifts in aggregate supply can cause stagflation—a combination of recession (falling output) and inflation (rising prices).
+* Policymakers who can influence aggregate demand can potentially mitigate the adverse impact on output but only at the cost of exacerbating the problem of inflation.
+
+# The influence of monetary and fiscal policy on aggregate demand
+
+Monetary: supply of money as set by central bank
+Fiscal: government spending and taxation as set by the government
+
+Recall the three effects that explain the downward slope of demand curve:
+For the U.S. economy, the most important reason for the downward slope of the aggregate-demand curve is the interest-rate effect.
+Because money holding is a small part of household wealth, and imports/exports is a small fraction of US economy.
+
+Theory of liquidity preference: "The General Theory of Employment, Interest, and Money" Keynes: the interest rate adjusts to balance the supply of and demand for money. (both real and nominal interest rates)
+
+

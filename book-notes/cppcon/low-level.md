@@ -358,7 +358,7 @@ Weak references: c++ `inline` functions gets marked a weak symbol -- it's ok to 
 
 LTO: compiler generates an intermediate form to tell the linker, and linker when linking and talk back to the compiler to see the code for something.
 
-# Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"
+# Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!
 
 [talk](https://www.youtube.com/watch?v=nXaxk27zwlk)
 
