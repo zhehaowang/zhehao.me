@@ -491,5 +491,71 @@ Similarly, it's not crazy for an expensive operation to have its cost attributed
 
 `--benchmark_filter` option of `perf` works nicely with google benchmark.
 
+# CppCon 2015: Bryce Adelstein-Lelbach “Benchmarking C++ Code"
 
-[reference](https://www.youtube.com/watch?v=zWxSZcpeS8Q)
+[talk](https://www.youtube.com/watch?v=zWxSZcpeS8Q)
+
+HPC performance benchmark.
+
+Observational error in performance measurement in avoidable, and a statistical test is needed.
+* random errors: natural variance
+* systematic errors
+
+Sources of variance, hardware jitter, OS, observer effect, etc.
+
+Figure out dep, indep, control vars. Determine metrics, assume independence of variables, assume normal distribution.
+
+Hot and cold effect: skip the first iterations.
+
+Population standard deviation: `1/n` <-- use when you have the entire population
+Sample standard deviation: `1/(n - 1)` <-- use when you have samples of the population
+
+Confidence intervals, constructed from confidence level, data (including sample size), uncertainty of the data.
+
+Given a margin of error, a critical value, an uncertainty and a mean, you can compute the right sample size needed (using an initial pilot of samples) -- if this requires a huge size then the experiment probably needs to be redesigned.
+
+Mean - median test, normality test: if a dataset fits a normal distribution well.
+
+### Time-based benchmarking
+
+Monotonic clock -- frequency stable (turboboost etc), monotonic, but accessed at higher overhead (suitable for mics and up, not good for nanos scale), *nix use `CLOCK_MONOTONIC`.
+
+`std::chrono`
+* `system_clock`: wall clock, can go back
+* `steady_clock`: monotonic clock
+* `high_resolution_clock`: clock with the shortest tick period (often an alias of one of the previous 2, and platform dependent)
+
+rdtsc -- monotonic, lower overhead to access (good for nanos).
+* Resolution is in CPU cycles but not always frequency stable (newer architectures are frequency stable - constant TSC, older ones are not), ticks with base clock cycles (100MHz / 133MHz).
+  * Constant TSC means means we are good at measuring time, but bad at measuring number of CPU cycles -- for the same number of constant TSC ticks, the CPU frequency might have changed underneath you.
+  * Non-constant TSC is the reverse -- good at measuring CPU cycles, but bad at measuring time.
+
+### Memory
+
+goopleperftools tcmalloc, overloading operator new/delete, etc
+
+Counting copies / moves: consider passing mock objects that does counting.
+
+### Hardware performance counter
+
+Low overhead and informative, but microarchitecture specific, some are estimates and need specialized knowledge to use these for performance analysis (e.g. Linux PAPI).
+
+Consider Intel VTune Amplifier over Linux PAPI to get around some needing some specialized knowledge.
+* Sampling based
+* Gets data from timers, hardware performance counters, OS metrics
+* Perf can be viewed in source / asm granularity
+* Analyzes kernel calls, threads, subprocesses
+* Support for instrumenting parallel and distributed code (which can use vtune API to tell profiler about threading, concurrency data structure, etc)
+* Support for user defined analysis passes
+* gui
+
+### Writing performance tests
+
+* Stateful, comparison vs previous
+* Stateless, benchmark
+
+# Want faster C++? Know your hardware
+
+[talk](https://www.youtube.com/watch?v=BP6NxVxDQIs)
+
+
