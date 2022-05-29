@@ -558,4 +558,114 @@ Consider Intel VTune Amplifier over Linux PAPI to get around some needing some s
 
 [talk](https://www.youtube.com/watch?v=BP6NxVxDQIs)
 
+prefetching, cache associativity, false sharing, data dependency, denormal floats
+
+# When a Microsecond Is an Eternity: High Performance Trading Systems in C++
+
+[talk](https://www.youtube.com/watch?v=NH1Tta7purM)
+
+Sometimes the optimizer can do some of these for you, and these instances could help it do the right thing.
+
+* Slow path removal
+```cpp
+if (errorA) {
+    handleA();
+} else if (errorB) {
+    handleB();
+} else if (...) {
+    ...
+} else {
+    sendOrder();
+}
+
+// vs
+int64_t errFlags;
+if (!errFlags) {
+    sendOrder();
+} else {
+    // don't inline this
+    handleError(errFlags);
+}
+```
+* Template based configuration to replace dynamic dispatch
+* Prefer template to branches in the hot path, but don't go crazy with this
+```cpp
+void runStrategy() {
+    calcPrice(s, p, c);
+    ...
+}
+
+double calcPrice(Side side, double px, double commission) {
+    return side == Side::Buy ? px + commission : px - commission;
+}
+
+// vs
+template<Side T>
+void Strategy<T>::runStrategy() {
+    calcPrice(s, p, c);
+    ...
+}
+
+double Strategy<Side::Buy>::calcPrice(double px, double commission) {
+    return px + commission;
+}
+
+double Strategy<Side::Sell>::calcPrice(double px, double commission) {
+    return px - commission;
+}
+```
+* Lambdas are fast and convenient
+```cpp
+template <class T>
+void sendMessage(T&& lambda) {
+    Msg msg = prepareMessage();
+    lambda(msg);
+    send(msg);
+}
+
+// usage:
+sendMessage((&)[auto& msg]{
+    msg.field = ...;
+});
+```
+* Memory allocation is costly: use a pool of objects, reuse objects instead of free'ing
+* Exceptions: when not throwing 0 cost, but expensive when thrown. Don't use exceptions for control flow.
+* Multi-threading is best avoided for latency sensitive code.
+  * Consider not sharing data, and just provide copies of data from producer to consumer (e.g. a single reader single writer queue).
+  * If you have to share data, try to avoid synchronization.
+* Data lookup: pull all the data you care about in the same cache line (denormalize if necessary).
+* Fast associative containers (possibly a combination of chaining and probing (? or more like another level of indirection))
+* `__attribute__((always_inline))` and `__attribute__((noinline))`
+* Keep the cache hot: the full hot path can be only exercised very rarely, you cache likely has been trampled by non-hot-path data and instructions. Try code warming (also trains the branch predictor correctly). Chances are Mellanox and Solarflare cards even supports this.
+* Don't share L3 (or partition L3). Turn off all but 1 core. If you have all cores enabled, choose your neighor carefully / move noisy ones to different NUMA pack from you.
+* Placement new used to be slightly inefficient (an extra nullptr check on the pointer you give it).
+* Small string optimization in gcc >=5.1
+* Static local variable initialization guaranteed to be only -- even in case of multithreaded programs (i.e. a lock is introduced)
+* `std::function` can do small function optimization, but may allocate for large enough closure.
+* glibc `std::pow` can be slow.
+* avoid system calls.
+
+### Measurements
+
+* Profiling: sampling profilers, instrumentation profilers
+* Benchmarking: google benchmark
+
+Set up a production-like environment and measure end-to-end time, may not be easy to set up.
+
+# Rich Code for Tiny Computers: A Simple Commodore 64 Game in C++17
+
+[talk](https://www.youtube.com/watch?v=zBkNBP00wJE)
+
+lambdas with/without bindings, anonymous namespace functions, objects/methods, function calls, structured bindings, variadic recursive templates, standard algorithms, etc, can be zero-runtime-overhead abstractions.
+
+const can affect optimization decisions.
+
+well defined object lifetime is the greatest strength of C++.
+
+Straightforward logic, little branching.
+
+# Spectre: Secrets, Side-Channels, Sandboxes, and Security
+
+[talk](https://www.youtube.com/watch?v=_f7O3IfIR2k)
+
 
