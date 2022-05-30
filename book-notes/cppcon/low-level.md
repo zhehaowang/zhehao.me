@@ -668,4 +668,5 @@ Straightforward logic, little branching.
 
 [talk](https://www.youtube.com/watch?v=_f7O3IfIR2k)
 
+Speculative execution.
 

@@ -1,6 +1,6 @@
 # Money and prices in the long run
 
-Wealth
+Wealth vs money.
 
 Money
 * Medium of transaction
@@ -11,10 +11,10 @@ Kinds of money
 * Intrinsic money (gold, cigarettes in prison camps)
 * Fiat money (paper money)
 
+M1, M2
 * currency, checking account, saving account, money mutual funds
 
-
-Fed
+### Fed
 * serves as a lender of last resort to maintain financial stability in the system.
 * controls money supply.
 
@@ -36,16 +36,17 @@ The leverage ratio of a bank is its total asset to bank capital. (Capital comes 
 Bank regulators require banks to hold a certain amount of capital. The goal of such a capital requirement is to ensure that banks will be able to pay off their depositors (without having to resort to government-provided deposit insurance funds)
 
 
-* Fed's control of money supply
-  * influences the quantity of reserves
-    * Open-market operation: the purchase and sale of U.S. government bonds.
-      * If the FOMC decides to increase the money supply, the Fed creates dollars and uses them to buy government bonds from the public in the nation's bond markets.
-      * Conversely, if the FOMC decides to decrease the money supply, the Fed sells government bonds from its portfolio to the public in the nation’s bond markets. After the sale, the dollars the Fed receives for the bonds are out of the hands of the public.
-    * Lending to banks
-      * Fed lends to banks at a rate called discount rate: increasing it discourages banks from borrowing from the Fed, which brings down their reserves and reduces money supply.
-  * influence reserve ratio
-    * Change reserve requirement. Rare because it is disruptive and many banks hold excess reserves.
-    * Paying interest on reserves. Since 2008, Fed started paying interest to banks reserve with the Fed. Increasing this rate incentivizes banks to increase reserve ratio.
+### Fed's control of money supply
+
+* influences the quantity of reserves
+  * Open-market operation: the purchase and sale of U.S. government bonds.
+    * If the FOMC decides to increase the money supply, the Fed creates dollars and uses them to buy government bonds from the public in the nation's bond markets.
+    * Conversely, if the FOMC decides to decrease the money supply, the Fed sells government bonds from its portfolio to the public in the nation’s bond markets. After the sale, the dollars the Fed receives for the bonds are out of the hands of the public.
+  * Lending to banks
+    * Fed lends to banks at a rate called discount rate: increasing it discourages banks from borrowing from the Fed, which brings down their reserves and reduces money supply.
+* influence reserve ratio
+  * Change reserve requirement. Rare because it is disruptive and many banks hold excess reserves.
+  * Paying interest on reserves. Since 2008, Fed started paying interest to banks reserve with the Fed. Increasing this rate incentivizes banks to increase reserve ratio.
 
 The Fed's various tools are not precise: it needs some estimate of household deposits, and some estimate of banks' real reserve ratio.
 
@@ -64,8 +65,7 @@ The quantity of money demanded depends on the interest rate that a person could 
 
 A higher price level (a lower value of money) increases the quantity of money demanded.
 
-**quantity theory of money** asserts that the quantity of money available determines
-the price level and that the growth rate in the quantity of money available determines the inflation rate.
+**quantity theory of money** asserts that the quantity of money available determines the price level and that the growth rate in the quantity of money available determines the inflation rate.
 
 ### Classical dichotomy
 
@@ -80,7 +80,6 @@ Monetary neutrality is unrealistic, especially in the short run -- the change in
 the rate at which money changes hands
 
 quantity equation:
-
 ```
 MoneySuppy * VelocityOfMoney = PriceOfOutput * AmountOfOutput
 ```
@@ -96,6 +95,7 @@ Usually government spending is paid for by levying taxes, but it could also be p
 When the government has high spending, inadequate tax revenue, and limited ability to borrow, it turns to the printing press to pay for its spending. The inflation ends when the government institutes fiscal reforms -- such as cuts in government spending -- that eliminate the need for the inflation tax.
 
 ### The Fisher effect
+
 ```
 Real interest rate = Nominal interest rate - Inflation rate
 ```
@@ -272,7 +272,7 @@ In the short run
 * as output falls, unemployment rises
 
 The theories of fluctuation remains controversial.
-The analysis on which previous notes based, classical dichotomy and money neutrality, may not hold to explain short run fluctuations.
+The principles on which previous analysis based, classical dichotomy and money neutrality, may not hold to explain short run fluctuations.
 
 ### Model of aggregate demand and aggregate supply
 
@@ -307,13 +307,75 @@ Policymakers can adjust monetary policy to offset the short term event, such tha
 
 # The influence of monetary and fiscal policy on aggregate demand
 
-Monetary: supply of money as set by central bank
-Fiscal: government spending and taxation as set by the government
+* Monetary: supply of money as set by central bank.
+* Fiscal: government spending and taxation as set by the government.
+
+### Monetary policy
 
 Recall the three effects that explain the downward slope of demand curve:
 For the U.S. economy, the most important reason for the downward slope of the aggregate-demand curve is the interest-rate effect.
 Because money holding is a small part of household wealth, and imports/exports is a small fraction of US economy.
 
-Theory of liquidity preference: "The General Theory of Employment, Interest, and Money" Keynes: the interest rate adjusts to balance the supply of and demand for money. (both real and nominal interest rates)
+**Theory of liquidity preference** ("The General Theory of Employment, Interest, and Money" by Keynes): the interest rate adjusts to balance the supply of and demand for money. (both real and nominal interest rates).
 
+Liquidity preference as money is by definition the most liquid (because it is the medium of exchange, the easeness of conversion to which defines liquidity). Its liquidity explains the demand for it over higher return assets.
 
+* Money supply: consider money supply fixed by the fed, then the more money demand, the higher interest rate.
+* Money demand: an interest rate increase increases the opportunity cost of holding money compared with an interest bearing bond, thus lowering the demand for money.
+
+In other words to explain the interest rate effect of price level's impact on aggregated demand: a higher price level raises money demand, which leads to a higher interest rate, which reduces the quantity of goods and services demanded.
+
+Note that earlier we established in the long run interest rate moves to bring balance between supply and demand for loanable funds (national saving - desired investments), now we say interest rate moves to balance the supply and demand of money, how are these reconciled?
+* In the long run, output is only affected by supplies of labor and capital. For some level of output, interest rate adjusts to balance the supply and demand of loanable funds. Then given output and interest rate, price level adjusts to balance supply and demand for money.
+* In the short run, price level changes slowly. For some fixed price level, interest rate adjusts to balance the supply and demand for money. The interest rate that balances the money market influences the quantity of goods and services demanded and thus the level of output.
+
+When Fed increases money supply, it lowers interest rate and increases the quantity of goods and services demanded at any price level, shifting the aggregated demand curve to the right.
+
+What follows from the theory of liquidity preference is that monetary policy can be described in terms of money supply or interest rate.
+Discussion of the Fed often treat the interest rate, as opposed to money supply, as the Fed's policy instrument.
+
+The stock market is highly volatile and can give wrong signals about the economy. But fluctuations in stock prices are often a sign of broader economic developments. A booming stock market stimulates aggregated demands for goods and services.
+* When the stock market booms, households become wealthier, and this increased wealth stimulates consumer spending.
+* A rise in stock prices makes it more attractive for firms to sell new shares of stock, and this stimulates investment spending.
+
+One of the Fed's goals is to stabilize aggregate demands.
+The Fed might respond to a stock market boom by keeping the money supply lower and interest rates higher than it otherwise would.
+
+What if interest rates have already gone to 0?
+Nominal interest rate cannot go much below 0, at which point it's preferable to hold cash.
+Some say central bank still has control at this point by keeping interest rate at 0 for extended periods of time.
+Other mechanisms to stimulate demand include central bank buying more instruments than just short term government bonds: mortgages, corporate debt, longer term government bonds and lower interest on all these. This is quantitative easing.
+
+### Fiscal policy
+
+Spending and taxation policy by the government.
+
+How much does a government order of $X shift the demand curve?
+* Multiplier effect: he additional shifts in aggregate demand that result when expansionary fiscal policy increases income and thereby increases consumer spending. How big this effect is has to do with marginal propensity to consume (the fraction of spending for each extra dollar you earn). This effect is also present on other components of GDP: consumption, investment, government purchases and net exports.
+* Crowding out effect: counteracting the multiplier effect, government spending stimulates demands but also causes interest rate to rise (assume Fed doesn't follow up with monetary supply change), which reduces investment spending and puts downward pressure on aggregate demand.
+
+Tax cut also stimulates aggregate demand, and is affected by multiplier effect and crowding effect, too.
+
+Fiscal policies can affect aggregate supply in the longer run, e.g. building roads improving productivity.
+
+### Using policy to stabilize economy
+
+The US government has chosen to hold itself accountable for short-run macroeconomic performance.
+This means
+* the government should avoid being a cause of economic fluctuations: no sudden large change in monetary and fiscal policies, and when they happen one balances off the other.
+* the government should respond to changes in the private economy to stabilize aggregate demand.
+
+Which of the effects from previous section is bigger and what is the actual multiplier value? It depends.
+
+Keynes argued that aggregate demand fluctuates because of largely irrational waves of pessimism and optimism, "animal spirits".
+In a sense, government / the Fed are then trying to stabilize these irrational waves.
+
+Some are against using monetary and fiscal policies to stabilize the economy -- such tools have long lags and should be used to achieve long run goals.
+
+### Automatic stabilizer
+
+E.g. tax system and unemployment insurance system. When in recession, people get laid off, apply for unemployment insurance, government increases spending, and shifts aggregate demands.
+
+Most economists are again an amendment that requires the government to always run balanced budgets, as doing so would mean raising taxes or cut spending in a recession.
+
+# Short run tradeoff between inflation and unemployment
