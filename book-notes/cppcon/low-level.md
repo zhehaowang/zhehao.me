@@ -119,3 +119,16 @@ What linker does:
 
 Different from traditional unix linker, clang linker (lld) keeps track of defined symbols even if they aren't requested by an object already seen, with this you don't have to specify the same library multiple times.
 
+### How do we get to main
+
+```
+_start
+__init_array_start
+__init_array_end
+```
+
+
+[talk](https://www.youtube.com/watch?v=dOfucXtyEsU)
+[slides](https://github.com/CppCon/CppCon2018/blob/master/Presentations/the_bits_between_the_bits/the_bits_between_the_bits__matt_godbolt__cppcon_2018.pdf)
+
+

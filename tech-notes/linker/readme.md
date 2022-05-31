@@ -9,10 +9,11 @@ Object file format on modern nix is ELF (executable and linkable format).
 
 ELF format object files has
 * header (word size, compiled machine endian)
+* program header table
 * text (program code)
-* rodata (the likes of printf format string)
+* rodata (read-only data, the likes of printf format string)
 * data (initialized vars)
-* bss (uninitialized vars, no need to take up space on disk. Better Save Space)
+* bss (uninitialized vars (i.e. zero initialized, like static vars), no need to take up space on disk, just say what and how much size is needed. Better Save Space)
 * symtab (symbol table, present regardless of `-g`. function and global var defined and referenced. no local symbols (in the linker sense, not stack variables sense!) needed)
 * rel.txt (relocatable text: reference to external functions, relocation required when linking. not present in the produced executable)
 * rel.data (relocatable data: reference to external vars, relocation required when linking. not present in the produced executable)
@@ -100,3 +101,4 @@ An archive is a collection of concatenated relocatable object files, with a head
 
 
 Check out `readelf`, `nm`, etc.
+
