@@ -121,4 +121,122 @@ Questions to ask
 
 Berkshire arbitrage diversifies little.
 
+### Efficient market hypothesis
 
+All public known information are priced in.
+The market is often, but not always, efficient and that makes all the difference.
+
+### Risk
+
+The academic's definition of risk is far off the mark: beta (relative volatility) as opposed to the dictionary "possibility of loss or injury".
+The real risk an investor must assess is whether his after-tax receipts from an investment will, over his prospective holding period, give him at least as much purchasing power as he had to begin with, plus a modest rate of interest on that initial stake.
+
+Some factors to evaluate this risk
+* The certainty with which the long term economic characteristics of the business can be evaluated
+* The certainty with which the management can be evaluated (their ability to realize the full potential of the business and wisely employ its cash flows)
+* The certainty with which the management can be counted on to channel the reward from the business to the shareholders rather than to itself
+* The purchase price of the business
+* The levels of taxation and inflation that will be experienced
+
+There are shortcomings -- a business that must deal with fast moving technology is not going to lend itself to reliable evaluations of its long term economics (TV and computer industries were forego)
+
+### Diversification
+
+It's too hard making hundreds of smart investment decisions (like Coca Cola).
+One good idea a year.
+
+The efforts in arbitrage, on the other hand, requires wide diversification.
+
+Wide diversification is required when an investor does not understand the economics of the business but nevertheless believes it in his interest to be a long term owner of that business, making index fund buying a good strategy for them.
+
+If you are a know-something investor, able to understand business economics and to find some reasonably priced companies that possess long term competitive advantages, conventional diversification makes no sense for you.
+
+Continually search for large businesses with understandable, enduring and mouth-watering economics that are run by able and shareholder-oriented managements, and buy at a sensible price.
+
+Keynes:
+put fairly large sums into enterprises which one thinks one knows something about and in the management of which one thoroughly believes.
+It is a mistake to think that one limits one's risk by spreading too much between enterprises about which one knows little and has no reason for special confidence.
+One's knowledge and experience are definitely limited and there are seldom more than two or three enterprises at any given time in which I personally feel myself entitled to put full confidence.
+
+Volatility caused by money managers who speculate irrationally with huge sums will offer the true investor more chances to make intelligent investment moves. He can be hurt by such volatility only if he is forced, by either financial or psychological pressures, to sell at untoward times.
+
+### Value investing: a redundancy
+
+Find an outstanding business at a sensible price, not a mediocre business at a bargain price.
+
+A critical skill for CEOs is capital allocation, yet not many are good at it: they rise to CEO not because of their skill in capital allocation.
+Many employ external help, whose effects aren't necessarily good. This is why restructuring happens often in corporate America.
+
+Now what's a reasonable price?
+Most analysts choose between "value" and "growth". Berkshire views growth as a component of value, hence value as in value investing becomes redundant.
+
+Growth benefits investors only when each dollar used to finance growth can create over a dollar in market value.
+
+Value is the sum of future cashflow discounted by an interest rate incurred during the remaining lifetime of the asset.
+For bond this is well defined, for stocks the investor has to estimate themselves -- this is hard, and Berkshire sticks to businesses they know, and enforces a margin of safety (threshold, cornerstone to success). An investors need to do very few things right as long as they avoid big mistakes.
+
+The best business to own is one that over an extended period can employ large amounts of incremental capital at very high rates of return.
+Unfortunately most high return business need little capital, and shareholders of such business usually benefit the most if the business pays out its earnings in dividends or buy back shares.
+
+An intelligent investor in common stocks will do better in secondary markets than he will do buying new issues.
+Sellers in the primary market is less ruled by mass folly -- they only unload when they feel the market is overpaying.
+
+### Intelligent investing
+
+Inactivity is the intelligent behavior.
+Acquire at a sensible price a business with excellent economics and able, honest management.
+Then you need only monitor whether these qualities changed.
+
+Berkshire favors businesses and industries unlikely to experience major changes.
+It applauds the innovation but prefer to skip the ride.
+
+Many companies in high tech businesses will grow much faster in percentage terms than The Inevitables like Coke, but Berkshire would rather be certain of a good result than be hopeful of a great one.
+
+Investors making purchases in an overheated market must realize it might take a long time for the value of an outstanding company to catch up with the price they paid.
+
+Loss of focus is what worries Berkshire the most when they contemplate investing in businesses that in general look outstanding.
+
+Most individuals and institution will find the best way to own common stocks is via index funds charging minimal fees.
+Those following this path beats most investment professionals.
+
+Should you, however, choose to construct your own portfolio, you need the ability to correctly evaluate selected businesses -- you only have to be able to evaluate companies in your circle of competence.
+The size of this circle is not important, but knowing where the boundary lies is important.
+
+Investment students need only two well taught lessons - how to value a business and how to think about market prices.
+
+If you aren't willing to own a stock for 10 years, don't even think about owning it for 10 minutes.
+
+### Cigar butts and institutional imperative
+
+If you buy a stock at a sufficiently low price, there will usually be some hiccup in the fortunes of the business that gives you a chance to unload at a decent profit, even though the long-term performance of the business may be terrible.
+Like a cigar butt you pick from the street -- there is one puff left. This approach to buying business is foolish.
+
+When a management with a reputation for brilliance tackles a business with a reputation for bad economics, it is the reputation of the business that remains intact.
+
+In both business and investments it is usually far more profitable to simply stick with the easy and obvious than it is to resolve the difficult.
+Berkshire's done better by avoiding dragons rather than slaying them.
+
+Rationality frequently wilts when the institutional imperative comes into play:
+* An institution will have inertia -- resist any change in its current direction.
+* Just as work expands to fill available time, corporate projects or acquisition will materialize to seize available funds.
+* Any business craving of the leader, however foolish, will be supported by detailed rate-of-return and strategic studies prepared for by his troops.
+* The behavior of peer companies, whether they are expanding, acquiring, setting executive compensation or whatever, will be mindlessly imitated.
+
+Berkshire never succeeded in making a good deal with managers not trusted or admired.
+
+Some of Berkshire's worst mistakes were not visible to the public -- they passed on a couple big purchases served on a platter which Buffett was fully capable of understanding.
+
+Consistently conservative financial policies (more leverages) might have been a mistake but not in Buffett's view: in retrospect more leverage could have generated more returns, but a small chance of distress cannot be offset by a large chance of extra returns.
+
+### Life and debt
+
+Except for token amounts, Berkshire shuns debts.
+
+Unquestionably, some people have become very rich through the use of borrowed money. However, that's also been a way to get very poor.
+History tells us that leverage all too often produces zeroes (multiplied at the end of a stream of very impressive numbers), even when it is employed by very smart people.
+
+Leverage can be lethal to businesses as well. Companies with large debts often assume that these obligations can be refinanced as they mature. That assumption is usually valid. Occasionally, though, either because of company-specific problems or a worldwide shortage of credit, maturities must actually be met by payment. For that, only cash will do the job.
+
+Borrowers then learn that credit is like oxygen. When either is abundant, its presence goes unnoticed. When either is missing, that's all that is noticed.
+
+Berkshire consistently keeps a large sum of cash (in US T bills) in hand to withstand unprecedented insurance losses (like Katrina), and quickly seize acquisitions or investment opportunities even in time of turmoil.
