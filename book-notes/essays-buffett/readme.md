@@ -240,3 +240,23 @@ Leverage can be lethal to businesses as well. Companies with large debts often a
 Borrowers then learn that credit is like oxygen. When either is abundant, its presence goes unnoticed. When either is missing, that's all that is noticed.
 
 Berkshire consistently keeps a large sum of cash (in US T bills) in hand to withstand unprecedented insurance losses (like Katrina), and quickly seize acquisitions or investment opportunities even in time of turmoil.
+
+# Investment alternatives
+
+### Surveying the landscape
+
+* Investments denominated in a currency (money market funds, bonds, mortgages, bank deposits) are considered safe but among the most dangerous due to inflation tax. Berkshire does not favor them in a low interest rate environment, but has to keep some around for liquidity requirement of the insurance industry, usually in the form of T bills.
+* Another possibility is instruments bought because there is likely a large group of buyers willing to pay a higher price. Like tulips, or gold.
+They do not procreate.
+
+These 2 categories enjoy maximum popularity at peaks of fear: terror over economic collapse drives people to cash based investments.
+
+* Berkshire's preference is investment in productive assets: business, farms, real estate.
+Some of these assets perform poorly in inflation, like utilities requiring heavy capital requirements, while others like Coca Cola performs just fine.
+Even so, the utilities sector will remain superior to non-productive or currency-based assets.
+
+Berkshire's goal will be to increase its ownership of first-class businesses.
+The first choice would be to own them in their entirety, if not, then by holding large amounts of marketable stocks.
+
+This category of investing over a long period should be safest and earn the most reward.
+
