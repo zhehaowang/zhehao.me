@@ -338,18 +338,18 @@ Linux x86-64 calling convention:
 
 In particular, a stack frame when A calls B calls C
 ```
-+---------------------------+ ---------------
++---------------------------+ -------------+
 | args from A to B          |              |
 |    (linkage block)        |              |
 +---------------------------+              |
 | A's return address        |              |
 +---------------------------+           B's frame
-| A's base pointer          |              |
-+---------------------------+ <== %rbp     |
+| A's base pointer          | <== %rbp     |
++---------------------------+              |
 | B's local vars            |              |
 +---------------------------+              |
-| args from B to C          |              |
-+---------------------------+ <== %rsp ------
+| args from B to C          | <== %rsp     |
++---------------------------+ -------------+
 ```
 
 ### Multicore programming
