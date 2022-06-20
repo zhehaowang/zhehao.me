@@ -260,3 +260,17 @@ The first choice would be to own them in their entirety, if not, then by holding
 
 This category of investing over a long period should be safest and earn the most reward.
 
+Bank industry, highly levered, mistakes are common and costly, and risk exposure.
+
+The most common cause of low prices is pessimism —- sometimes pervasive, sometimes specific to a company or industry. We want to do business in such an environment, not because we like pessimism but because we like the prices it produces. It's optimism that is the enemy of the rational buyer.
+
+However, a contrarian approach is just as foolish as a follow-the-crowd strategy. What's required is thinking rather than polling.
+
+### More investment alternatives
+
+Junk bonds, 0-coupon / pay-in-kind bonds.
+
+Preferred stocks.
+
+Derivatives.
+
