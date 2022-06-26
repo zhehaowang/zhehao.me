@@ -274,3 +274,64 @@ Preferred stocks.
 
 Derivatives.
 
+Foreign currency and assets.
+Berkshire holds assets denoted in foreign currencies.
+Increasing American trade deficit has led to foreigners owning more of American corporations. This is problematic if left unaddressed.
+
+# Common stock
+
+Two contageous disease, fear and greed, will forever occur in the investment community.
+Our goal is to be fearful when others are greedy, and greedy when others are fearful.
+
+### The bane of trading: transaction costs
+
+For investors as a whole, returns decrease as motions increase.
+
+Berkshire shares have consistently sold in an unusually narrow range around intrinsic business value, and that is the goal, not maximizing the price at which Berkshire trades.
+Berkshire lists on NYSE to reduce transaction cost for its shareholders -- narrower spreads than OTC markets, and not to achieve a higher valuation on Berkshire shares.
+
+Berkshire wants very little activity and attracts long term owners.
+
+### Dividend policy and share repurchases
+
+Allocation of capital is crucial for business and investment management.
+Under which circumstances should a business retain its earnings, or distribute to investors as dividends?
+
+All earnings are not created equal.
+Inflation causes the earnings of many businesses with high asset/profit ratios to become ersatz (inferior replacement goods).
+This ersatz portion ("restricted" earnings) cannot, if business is to retain its economic position, be distributed as dividends.
+A company that consistently distributes this portion is destined for oblivion unless equity capital is otherwise infused.
+
+The "unrestricted" earnings can be retained or distributed. Managers should choose whichever course makes the more sense for owners.
+
+Unrestricted earnings should only be retained when there is a reasonable prospect that for every dollar retained by the corporation, at least one dollar of market value will be created for owners.
+You should wish your earnings be reinvested if they can be expected to earn high returns.
+
+A company's management should first examine reinvestment possibilities offered by its current business—projects to become more efficient, expand territorially, extend and improve product lines or to otherwise widen the economic moat separating the company from its competitors.
+
+Many corporations that consistently showed good return on equity and on incremental capital have employed large amounts of their retained earnings on economically unattractive opportunities (usually involving overpriced acquisitions).
+Yet their core business camouflaged repeatedly failures in capital allocation elsewhere.
+In such cases, shareholders would be far better off if earnings were only retained to expand the high-return business, with the balance paid in dividends or to repurchase stocks.
+
+As shareholders, stock repurchase by the company when there is large discrepancy between value and price is encouraging and rewarding.
+It is a pro-shareholder move.
+
+Repurchase can be also be made for an ignoble reason, to pump up the stock price. These repurchases are overcompensating leaving shareholders, at the cost of those continue holding.
+
+Favor repurchases when two conditions are met: first, a company has ample funds to take care of the operational and liquidity needs of its business; second, its stock is selling at a material discount to the company's intrinsic business value, conservatively calculated.
+
+### Stock splits, recapitalization
+
+Berkshire did not split for fear of attracting worse investors (desirable ones are rational long term investors who think like Buffett).
+
+A hyper-active market is the pick-pocket of enterprise.
+
+Berkshire issues A shares and B shares. One A share can be converted into 30 B at any time, but not the other way round.
+One B has 1/200 voting right of A, and and B will not be eligible to participate in shareholder-designated charitable contributions programs.
+Roughly, B's price should be 1/30 of A.
+
+B is a convenience for people making gifts.
+
+# Merger acquistion
+
+
