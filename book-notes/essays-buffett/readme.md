@@ -334,4 +334,62 @@ B is a convenience for people making gifts.
 
 # Merger acquistion
 
+Looking for an acquisition is like looking for a spouse, it pays to be active, interested and it does not pay to be in a hurry.
 
+On issueing shares to acquire: parts of A (the acquirer) is being sold to get B (the target).
+This is a bad deal if A's shares are undervalued.
+
+Berkshire strongly prefers to use cash rather than its stock in acquisitions.
+Using stocks means trading away a portion of ownership of great businesses. The newly acquired rarely matches how great the current basket of business held is.
+
+Leveraged buyout operator - private equity.
+
+Becoming the buyers of choice.
+
+# Valuation and accounting
+
+The formula for valuing all assets purchased for financial gains is: "a bird in the hand is worth two in the bush" (Aesop).
+
+To flesh this out, you need to answer three questions,
+* how certain are you of the birds in the bush
+* when will they emerge and how many
+* what is the risk-free rate (usually the yield on US long term bond)
+
+Common yardsticks such as dividend yield, P/E ratio, or price to book value ratio, and even growth rate has nothing to do with valuation except to the extent they provide clues to the amount and timing of cashflows into and from the business.
+Growth is simply a component in the value equation.
+
+The first two questions are difficult to answer.
+Usually we look at a confidence interval (and keep your estimates conservative).
+
+With new businesses / changing industries, the error bars can be huge and any capital commitments must be labeled speculative.
+
+The bubble market of 1999 allowed the creation of bubble companies, entities designed more with an eye to make money off of investors rather than for them.
+Too often, an IPO, not profits, were the main goal of a company's promoters.
+
+Two lessons:
+* Many in Wall Street will sell investors anything they'll buy.
+* Speculation is most dangerous when it seems the easiest.
+
+### Intrinsic value, book value and market price
+
+Intrinsic value: discounted value of cash that can be taken out during its remaining lifetime. This is the only logical value to evaluate the relative attractiveness of businesses and investments but hard to estimate.
+
+Book value is easily calculated but of limited use because it can differ much from intrinsic value.
+
+Book value at a premium of intrinsic value means shareholders entering then is worse off than they should be -- benefiting the existing shareholders at the cost of new shareholders.
+For a fair shareholder experience, management should attempt to let book value reflect intrinsic value.
+
+Earnings statement can be misleading.
+E.g. for Berkshire's GAAP (generally accepted accounting principles) earnings, Accounting rules dictate that the earnings of a company which Berkshire owns more than 20% show up in Berkshire's earnings statement, but otherwise just the dividend the company paid shows up in Berkshire earnings statement.
+This can create a big underestimation of earnings if those companies choose to reinvest much of their earnings.
+
+The primary test of managerial economic performance is the achievement of a high earnings rate on equity capital employed (without undue leverage, accounting gimmickry, etc.) and not the achievement of consistent gains in earnings per share. 
+
+Any unleveraged business that requires some net tangible assets to operate (and almost all do) is hurt by inflation.
+Businesses needing little in the way of tangible assets are hurt the least.
+
+### Economic goodwill vs accounting goodwill
+
+### Owners earnings and where GAAP accounting reports can fall short
+
+### Options valuation
